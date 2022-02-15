@@ -1,0 +1,213 @@
+table.wp-list-table.exclusions.widefat tbody th.check-column {
+    vertical-align: middle;
+    padding: 0 0 0 3px;
+}
+
+.ywzm-add-exclusions {
+    margin: 0 5px 0 20px;
+}
+
+.ywzm-excl-name-wrapper{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+}
+.ywzm-excl-name-wrapper img {
+    width: 50px;
+    height: auto;
+}
+
+table.wp-list-table.exclusions{
+    border: 2px solid #f1f1f1;
+}
+
+table.wp-list-table.exclusions.striped > tbody > :nth-child(odd) {
+    background-color: #f1f1f1;
+}
+table.wp-list-table.widefat.fixed.striped.table-view-list.exclusions td,
+table.wp-list-table.widefat.fixed.striped.table-view-list.exclusions th{
+    vertical-align: middle;
+    height:50px;
+    border: 0;
+}
+table.wp-list-table.widefat.fixed.striped.table-view-list.exclusions tr:hover{
+    background-color:#e7f0f6;
+    transition: all 0.3s linear;
+}
+
+.exclusions ul.actions{
+    display:none;
+    padding:0;
+    margin:0;
+    position:absolute;
+    top:50%;
+    bottom:50%;
+    left:0;
+    right:0;
+    min-width: 140px;
+    z-index: 10;
+}
+
+.exclusions tr:hover ul.actions{
+    display:block;
+}
+
+.exclusions tr:hover td .actions{
+    display: flex;
+    align-items:center;
+}
+
+.exclusions  .actions li{
+    margin:0 3px;
+    width:30px;
+    height:30px;
+    background-color:#fff;
+    border-radius:50%;
+    text-align:center;
+    line-height: 25px;
+    box-shadow: 3px 3px 4px 0px rgba(0,0,0,0.2);
+}
+.exclusions th#name.column-primary {
+    width: 50%;
+}
+.exclusions td.action.column-action {
+    position: relative;
+}
+.exclusions  .actions li:hover{
+    cursor:pointer;
+    box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.2);
+}
+
+.exclusions .actions li.action__trash{
+    background: url("../icons/yith-trash.svg") no-repeat center center #fff;
+}
+
+/**
+POPUP
+ */
+.yith-exclusion-list__popup_wrapper{
+    display:none;
+}
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ywzm-exclusion-list-popup.ui-dialog-buttons.ui-draggable.ui-resizable {
+    border-radius: 15px;
+    box-shadow: none;
+}
+
+.ywzm-exclusion-list-popup .ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix.ui-draggable-handle {
+    border: 0;
+    background: #fff;
+}
+
+.ywzm-exclusion-list-popup{
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 12px
+}
+
+.ywzm-exclusion-list-popup .label{
+    text-align:left;
+    min-width:110px;
+    padding:10px 0;
+}
+
+.ywzm-exclusion-list-popup.ui-dialog .ui-widget-header .ui-icon,
+.ui-state-highlight { display:none; }
+
+button.yith-save-form.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.disabled {
+    background: #ccc!important;
+    color: #000!important;
+    text-shadow: none!important;
+}
+
+.yith-exclusion-list__form_row .ywzm-field{
+    margin-bottom:30px;
+}
+.yith-exclusion-list__form_row .ywzm-field {
+    display: flex;
+    align-items: start;
+}
+.yith-exclusion-list__form_row .ywzm-field label{
+    width: 100px;
+    padding-right:20px;
+    font-size: 13px;
+}
+
+.yith-exclusion-list__form_row .ywzm-field  .description{
+    display: block;
+    font-size: 11px;
+}
+
+form.yith-exclusion-list__form_row {
+    padding: 15px 10px 0;
+}
+
+.ywzm-exclusion-list-popup button.yith-save-form.ui-button.ui-corner-all.ui-widget {
+    width: 100%;
+    margin:0 auto;
+    height:35px;
+}
+.ywzm-exclusion-list-popup  .ui-dialog-title{
+    color:#007694;
+    font-size: 16px;
+    font-weight:500;
+    margin-left:5px;
+}
+.ywzm-exclusion-list-popup .ui-button.ui-dialog-titlebar-close{
+    margin-top:10px;
+    color:#bbb;
+    right: 10px;
+    top: -2px;
+}
+.ywzm-exclusion-list-popup .ui-dialog-buttonset {
+    width: 100%;
+    margin:0 auto;
+    float:none!important;
+}
+
+.ywzm-exclusion-list-popup .ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix {
+    border: 0;
+    text-align:center;
+    padding: 0 .4em 2em;
+}
+
+.wc-wp-version-gte-53 .select2-container .select2-search--inline .select2-search__field{
+    width: 100%!important;
+}
+
+.ywzm-exclusion-list-popup.ui-dialog.ywzm-exclusion-list-popup-confirmation button.yith-close{
+    border:1px solid #007694;
+    background-color:#fff;
+    color:#007694;
+    transition: all ease-in-out 0.3s;
+}
+
+div#yith-exclusion-list__delete_row p {
+    padding: 0 10px;
+}
+
+.ywzm-exclusion-list-popup.ui-dialog .ui-dialog-buttonpane{
+    border:0;
+    padding: 0 10px 20px!important;
+}
+.ywzm-exclusion-list-popup.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset{
+    width:100%;
+    text-align:center;
+    float:none;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.ywzm-exclusion-list-popup.ui-dialog.ywzm-exclusion-list-popup-confirmation .ui-dialog-buttonpane .ui-dialog-buttonset button{
+    width: 46%;
+    float: left;
+}
+.ywzm-exclusion-list-popup.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button.yith-confirm{
+    margin-right: 5%;
+}
+.ywzm-exclusion-list-popup.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button{
+    width: 100%;
+    margin: 0 auto;
+    height:35px;
+    margin-bottom:20px;
+}
+.ywzm-exclusion-list-popup.ui-dialog.ywzm-exclusion-list-popup-confirmation  .ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix {
+    padding: 0 0 0 9px!important;
+}

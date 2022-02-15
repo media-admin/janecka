@@ -1,0 +1,45 @@
+/* Tab Icons */
+#woocommerce-coupon-data {
+
+    /* set icons for each data tab */
+    .coupon_data_tabs {
+
+        .acfw_url_coupon_tab a:before {
+            content: "\f103" !important;
+        }
+
+        .acfw_scheduler_tab a:before {
+            content: "\f508" !important;
+        }
+
+        .acfw_role_restrictions_tab a:before {
+            content : "\f110" !important;
+        }
+
+        .acfw_add_products_tab a:before {
+            content : "\f312" !important;
+        }
+
+        .acfw_cart_conditions_tab a:before {
+            content : "\f174" !important;
+        }
+
+        .acfw_bogo_deals_options a:before {
+            content : "\f524" !important;
+        }
+
+        .acfw_apply_notification_options a:before {
+            content: "\f488" !important;
+        }
+
+        .acfw_payment_methods_restrict_tab a:before {
+            content: '\e01e' !important;
+            font-family: WooCommerce!important;
+        }
+
+        .acfw_shipping_overrides_tab a:before {
+            content: '\e019' !important;
+            font-family: WooCommerce!important;
+        }
+    }
+}

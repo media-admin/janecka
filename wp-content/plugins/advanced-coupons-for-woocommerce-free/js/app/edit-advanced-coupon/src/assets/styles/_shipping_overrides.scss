@@ -1,0 +1,90 @@
+#woocommerce-coupon-data {
+
+    #acfw_shipping_overrides {
+        position: relative;
+
+        .shipping-overrides-info {
+            padding: 10px 15px;
+
+            h3 {
+                margin: 0;
+            }
+
+            p {
+                padding: 0;
+                line-height: 1.6em;
+                margin: 15px 0 0;
+            }
+        }
+
+        .shipping-overrides-table-wrap {
+            margin: 10px 15px 51px;
+        }
+
+        .shipping-overrides-actions-block {
+            position:absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background: #fafafa;
+            border-top: 1px solid #e5e5e5;
+    
+            &:after {
+                content: '';
+                display: table;
+                clear: both;
+            }
+    
+        }
+
+        .acfw-styled-table {
+
+            .discount {
+                width: 120px;
+
+                input {
+                    width: calc(100% - 51px);
+                }
+
+                select {
+                    width: 46px;
+                    margin-right: 5px;
+                }
+            }
+
+            .actions {
+                width: 100px;
+            }
+
+            .shipping-zone,
+            .shipping-method, {
+                width: auto;
+
+                div {
+                    width: 100%;
+                
+                    select {
+                        width: 100% !important;
+                    }
+
+                    &:after {
+                        content: '';
+                        display: table;
+                        clear: both;
+                    }
+                }
+
+            }
+
+            .shipping-method {
+                width: 35%;
+            }
+        }
+
+        #clear-shipping-overrides {
+            float: right;
+        }
+    } 
+}

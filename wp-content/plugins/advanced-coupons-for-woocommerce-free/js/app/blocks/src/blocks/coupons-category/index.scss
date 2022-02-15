@@ -1,0 +1,27 @@
+.acfw-block-coupons-category {
+
+  ul.woocommerce-search-list__list {
+    margin: 0;
+
+    > li {
+      border-bottom: 1px solid #f1f1f1;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      .woocommerce-search-list__item {
+        padding: 7px 16px;
+      }
+    }
+  }
+
+  .woocommerce-search-list__selected ul {
+    margin: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+    }
+  }
+}

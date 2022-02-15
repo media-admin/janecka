@@ -1,0 +1,640 @@
+@import "../editor/css/abstracts/_variables";
+
+$column-padding-right: 5%;
+
+body, html {
+  font-size: $normal-font-size;
+  line-height: 1.5;
+}
+
+/**
+ * Core block styles
+ */
+ul, ol {
+  padding-left: 1.3em;
+  margin-top: 0;
+
+  li {
+    margin-bottom: 0;
+  }
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
+p:empty {
+  display: none;
+}
+
+figure.wp-block-table {
+  margin-left: 0;
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+
+    td, th {
+      padding: .5em;
+      border: 1px solid;
+      word-break: normal;
+    }
+  }
+
+  figcaption {
+    color: #555d66;
+    font-size: 13px;
+    text-align: center;
+  }
+}
+
+figure.is-style-stripes {
+  table {
+    tbody, thead {
+      td, th {
+        border-color: transparent;
+        border: none;
+      }
+
+      tr.sab-table-row-odd {
+        background: $default-bg-highlight-color;
+
+        td {
+          background: $default-bg-highlight-color;
+        }
+      }
+    }
+  }
+}
+
+blockquote.wp-block-quote {
+  border-left: 4px solid #000;
+  margin: 0 0 28px;
+  padding-left: 1em;
+  quotes: none;
+
+  &.is-style-large {
+    margin: 0 0 16px;
+    padding: 0 1em;
+    border: none;
+
+    p {
+      font-size: 24px;
+      font-style: italic;
+      line-height: 1.6;
+    }
+  }
+
+  .wp-block-quote__citation {
+    color: #6c7781;
+    font-size: 13px;
+    margin-top: 1em;
+    position: relative;
+    font-style: normal;
+  }
+}
+
+.has-text-align-right, .alignright {
+  text-align: right;
+}
+
+.has-text-align-left, .alignleft {
+  text-align: left;
+}
+
+.has-text-align-center, .aligncenter {
+  text-align: center;
+}
+
+.is-vertically-aligned-top {
+  vertical-align: top;
+}
+
+.is-vertically-aligned-middle {
+  vertical-align: middle;
+}
+
+.is-vertically-aligned-bottom {
+  vertical-align: bottom;
+}
+
+.is-horizontally-aligned-right {
+  text-align: right;
+}
+
+.is-horizontally-aligned-left {
+  text-align: left;
+}
+
+.is-horizontally-aligned-center {
+  text-align: center;
+}
+
+.sab-block {
+  margin-top: 0;
+  margin-bottom: $global-block-margin;
+}
+
+.clearfix {
+  clear: both;
+}
+
+/**
+ * This is the outer wrapper of the columns block
+ */
+.wp-block-columns {
+  margin-bottom: 0;
+  float: left;
+  width: 100%;
+  clear: both;
+}
+
+.has-background {
+  padding: $global-block-margin;
+}
+
+/**
+ * This is the custom inner wrapper which spreads the columns
+ */
+.sab-block-columns-wrapper {
+  width: 100%;
+  margin-left: -2.5%;
+  clear: both;
+  float: left;
+
+  .clearfix {
+    margin-left: 2.5%;
+    float: left;
+    width: 0;
+  }
+
+  .wp-block-column {
+    float: left;
+    width: (50% - ((1 * $column-padding-right) / 2));
+    padding: 0 ($column-padding-right/2);
+    margin-bottom: 0;
+  }
+
+  .wp-block-column-last {
+    padding-right: 0;
+    // Somehow MPDF seems to allow us to use a negative padding here. Otherwise the last column jumps to the next row.
+    padding-right: -($column-padding-right) !important;
+    // Native HTML -> CSS fix
+    margin-right: -($column-padding-right);
+  }
+
+  &.wp-block-columns-3 {
+    .wp-block-column {
+      width: (33.333% - ((2 * $column-padding-right) / 3));
+    }
+  }
+
+  &.wp-block-columns-1 {
+    .wp-block-column {
+      width: 100%;
+      padding-right: 0;
+    }
+  }
+
+  &.wp-block-columns-4 {
+    .wp-block-column {
+      width: (25% - ((3 * $column-padding-right) / 4));
+    }
+  }
+
+  &.wp-block-columns-5 {
+    .wp-block-column {
+      width: (20% - ((4 * $column-padding-right) / 5));
+    }
+  }
+}
+
+.wp-block-storeabill-address {
+  .address-heading {
+    margin-top: 0;
+    margin-bottom: $global-margin/2;
+  }
+  .address-content {
+    margin: 0;
+  }
+}
+
+#content {
+  clear: both;
+}
+
+.wp-block-separator {
+  padding: 0;
+  max-width: 100px;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wp-block-separator.is-style-wide {
+  width: 100%;
+  max-width: 100%;
+}
+
+.barcode {
+  margin: 0;
+  border: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sab-item-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  overflow: hidden;
+  border-style: solid;
+  border-width: 0;
+
+  td.has-border-inner, th.has-border-inner {
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-left-width: 1px;
+  }
+
+  td.without-has-border-color, th.without-has-border-color {
+    border-color: $default-border-color;
+  }
+
+  td.has-border-horizontal, th.has-border-horizontal {
+    border-bottom-width: 1px;
+  }
+
+  td.sab-item-table-column-last, th.sab-item-table-column-last {
+    border-right-width: 0;
+  }
+
+  td.sab-item-table-column-first, th.sab-item-table-column-first {
+    border-left-width: 0;
+  }
+
+  td.sab-item-table-column-vertical-top, th.sab-item-table-column-vertical-top {
+    vertical-align: top;
+  }
+
+  td.sab-item-table-column-vertical-center, th.sab-item-table-column-vertical-center {
+    vertical-align: center;
+  }
+
+  td.sab-item-table-column-vertical-bottom, th.sab-item-table-column-vertical-bottom {
+    vertical-align: bottom;
+  }
+
+  th.sab-item-table-column-right, td.sab-item-table-column-right {
+    text-align: right;
+  }
+
+  th.sab-item-table-column-center, td.sab-item-table-column-center {
+    text-align: center;
+  }
+
+  tr.sab-item-table-row-last {
+    td.has-border-horizontal {
+      border-bottom-width: 1px;
+    }
+  }
+
+  tr.sab-item-table-row-header {
+    th.sab-item-table-column {
+      border-top-width: 0;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    th.has-border-horizontal {
+      border-bottom-width: 1px;
+    }
+  }
+
+  .sab-item-table-column {
+    vertical-align: center;
+    font-weight: normal;
+    padding: $item-table-padding;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 0;
+    text-align: left;
+  }
+
+  thead {
+    th.sab-item-table-column {
+      padding: 0 $item-table-padding;
+      line-height: $item-table-line-height;
+    }
+
+    tr th.without-has-border-color {
+      border-color: $default-border-color;
+    }
+  }
+
+  tbody {
+    tr td.sab-item-table-column-body {
+      p {
+        &:first-child {
+          margin-top: 0;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  /**
+   * Bundled product specific styles
+   */
+  tr.sab-bundle-child-item td {
+    font-size: 90% !important;
+  }
+
+  tr.sab-bundle-child-item td.sab-item-table-column-first {
+    padding-left: $global-margin * 3;
+  }
+}
+
+table.has-dense-layout {
+  .sab-item-table-column {
+    padding: $item-table-padding-dense;
+  }
+
+  thead {
+    th.sab-item-table-column {
+      padding: 0 $item-table-padding-dense;
+      line-height: $item-table-line-height-dense;
+    }
+  }
+}
+
+table.item-data {
+  border: none;
+  border-spacing: 0;
+  width: 100%;
+
+  td {
+    padding-top: $item-table-block-margin;
+  }
+
+  margin-bottom: 0;
+}
+
+table.item-data-first {
+  td {
+    padding-top: 0;
+  }
+}
+
+table.has-dense-layout {
+  table.item-data {
+    td {
+      padding-top: $item-table-block-margin-dense;
+    }
+  }
+
+  table.item-data-first {
+    td {
+      padding-top: 0;
+    }
+  }
+}
+
+table.sab-item-attributes-table {
+  padding: 0;
+  margin: 0;
+  border: 0;
+
+  tr {
+    td {
+      margin: 0;
+      padding-top: .25em;
+    }
+  }
+
+  tr.first {
+    td {
+      padding: 0;
+    }
+  }
+}
+
+ul.sab-item-attributes {
+  margin: 0;
+  margin-left: 1em;
+  padding: 0;
+}
+
+table.is-style-attribute-line {
+  ul.sab-item-attributes {
+    list-style: none;
+    margin-left: 0;
+  }
+}
+
+table.without-has-border-color {
+  border-color: $default-border-color;
+}
+
+/**
+ * Somehow MPDF doesnt like nested classes e.g. table.sab-item-table.has-border-outer
+ */
+table.has-border-outer {
+  border-bottom-width: 1px;
+
+  td.sab-item-table-column-last, th.sab-item-table-column-last {
+    border-right-width: 1px;
+  }
+
+  td.sab-item-table-column-first, th.sab-item-table-column-first {
+    border-left-width: 1px;
+  }
+
+  tr.sab-item-table-row-header {
+    th.sab-item-table-column {
+      border-top-width: 1px;
+    }
+  }
+
+  tr.sab-item-table-row-last {
+    td.sab-item-table-column-body {
+      border-bottom-width: 1px;
+    }
+  }
+}
+
+table.has-border-horizontal {
+  border-bottom-width: 1px;
+}
+
+table.is-style-odd {
+  tr.sab-item-table-row-odd {
+    td.sab-item-table-column {
+      background: $default-bg-highlight-color;
+    }
+  }
+}
+
+table.is-style-even {
+  tr.sab-item-table-row-even {
+    td.sab-item-table-column {
+      background: $default-bg-highlight-color;
+    }
+  }
+}
+
+table.sab-item-field {
+  margin-bottom: 0;
+  width: 75%;
+  border-spacing: 0;
+  border: none;
+
+  &.has-border-color {
+    border: 1px solid transparent;
+  }
+
+  tr, td {
+    border: none;
+  }
+
+  .placeholder {
+    border: none;
+    padding: $global-margin * 3 $global-margin 0.3em $global-margin;
+    text-align: left;
+    width: 100%;
+  }
+}
+
+.sab-item-totals-wrapper {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+
+  tr {
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+    td {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      text-align: right;
+    }
+  }
+
+  td.sab-item-totals-wrapper-first, td.sab-item-totals-wrapper-last {
+    width: 50%;
+  }
+}
+
+.sab-item-totals {
+  border-collapse: collapse;
+  overflow: hidden;
+  border-style: solid;
+  border-width: 0;
+  float: right;
+  clear: both;
+
+  tr {
+    border-style: solid;
+    border-width: 0;
+    max-width: 100%;
+
+    td, th {
+      padding: ( $total-row-padding + 0.1 ) $global-margin/2;
+      text-align: right;
+    }
+
+    td.sab-item-total-data {
+      padding-right: 0;
+      min-width: 25%;
+    }
+
+    td.sab-item-total-heading {
+
+    }
+  }
+
+  tr.without-has-border-color {
+    border-color: $default-border-color;
+  }
+
+  tr.sab-item-total-row-border-top {
+    border-top-width: 1px;
+  }
+
+  tr.sab-item-total-row-border-bottom {
+    border-bottom-width: 1px;
+  }
+}
+
+.sab-item-totals-has-dense-layout {
+  tr {
+    border-style: solid;
+    border-width: 0;
+
+    td, th {
+      padding: ( $total-row-padding-dense + 0.1 ) $global-margin/2;
+      text-align: right;
+    }
+
+    td.sab-item-total-data {
+      padding-right: 0;
+    }
+  }
+}
+
+.wp-block-storeabill-logo {
+  figure {
+    margin: 0;
+
+    &.aligncenter {
+      text-align: center;
+    }
+    &.alignright {
+      text-align: right;
+    }
+  }
+  figcaption {
+    display: none;
+  }
+}
+
+.wp-block-spacer {
+  clear: both;
+}
+
+footer {
+  /**
+   * MPDF does not apply margins within footer
+   */
+  .sab-block {
+    padding-top: $global-block-margin * 0.75;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .wp-block-spacer {
+    clear: both;
+    visibility: visible;
+    display: block;
+  }
+
+  .wp-block-separator {
+    padding-bottom: 0 !important;
+  }
+
+  .wp-block-columns, .wp-block-column, .sab-block-columns-wrapper {
+    padding-top: 0;
+  }
+}

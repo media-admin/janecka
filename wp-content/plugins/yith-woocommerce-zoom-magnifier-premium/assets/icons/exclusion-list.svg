@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.57 10.67">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #333;
+        stroke-miterlimit: 10;
+        stroke-width: 0.44px;
+      }
+    </style>
+  </defs>
+  <g id="Livello_2" data-name="Livello 2">
+    <g id="_ÎÓÈ_1" data-name="—ÎÓÈ_1">
+      <g>
+        <path class="cls-1" d="M5.65,1.14h1a.73.73,0,0,1,.74.73V9.72a.74.74,0,0,1-.74.73H1a.73.73,0,0,1-.73-.73V1.87A.73.73,0,0,1,1,1.14h1"/>
+        <path class="cls-1" d="M4.33.73A.55.55,0,0,0,3.78.22a.56.56,0,0,0-.55.51h-1V1.84H5.35V.73Z"/>
+        <line class="cls-1" x1="3.78" y1="9.24" x2="6" y2="9.24"/>
+        <g>
+          <line class="cls-1" x1="2.93" y1="3.91" x2="6" y2="3.91"/>
+          <line class="cls-1" x1="2.93" y1="5.36" x2="6" y2="5.36"/>
+          <line class="cls-1" x1="2.93" y1="6.8" x2="6" y2="6.8"/>
+          <rect class="cls-1" x="1.5" y="3.54" width="0.87" height="0.87"/>
+          <rect class="cls-1" x="1.5" y="5.23" width="0.87" height="0.87"/>
+          <rect class="cls-1" x="1.5" y="6.91" width="0.87" height="0.87"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,70 @@
+.wp-block[data-type="storeabill/item-totals"] {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: flex-end;
+
+  .wp-block-storeabill-item-totals {
+    width: 100%;
+  }
+
+  .wp-block[data-type="storeabill/item-total-row"] {
+    margin: 0;
+
+    .wp-block-storeabill-item-total-row {
+      display: flex;
+      justify-content: flex-end;
+      border-color: $default-border-color;
+
+      .item-total-row-heading, .item-total-row-data {
+        padding: $total-row-padding;
+        text-align: right;
+        border-style: solid;
+        border-width: 0;
+        border-color: inherit;
+
+        &.item-total-row-heading {
+          min-width: 12%;
+          max-width: 40% !important;
+        }
+
+        &.item-total-row-data {
+          padding-right: 0;
+          flex-basis: 100px;
+        }
+      }
+
+      &.has-border-top {
+        .item-total-row-heading, .item-total-row-data {
+          border-top-width: 1px;
+        }
+      }
+      &.has-border-bottom {
+        .item-total-row-heading, .item-total-row-data {
+          border-bottom-width: 1px;
+        }
+      }
+    }
+  }
+
+  .components-placeholder {
+    min-height: 40px;
+    max-height: 40px;
+
+    .components-placeholder__label {
+      display: none;
+    }
+  }
+}
+
+.wp-block[data-type="storeabill/item-totals"] {
+  .has-dense-layout {
+    .wp-block[data-type="storeabill/item-total-row"] {
+      .wp-block-storeabill-item-total-row {
+        .item-total-row-heading, .item-total-row-data {
+          padding: $total-row-padding-dense;
+        }
+      }
+    }
+  }
+}

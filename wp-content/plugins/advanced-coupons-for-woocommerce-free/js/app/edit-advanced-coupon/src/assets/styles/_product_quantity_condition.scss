@@ -1,0 +1,92 @@
+#woocommerce-coupon-data,
+#acfw-cart-conditions {
+
+    #acfw_cart_conditions,
+    #acfw_bogo_deals {
+
+        .condition-set {
+            position: relative;
+            padding: 15px 13px 10px;
+            background: #f1f1f1;
+
+            &:after {
+                content: '';
+                display: table;
+                clear: both;
+            }
+
+            .field-control {
+                float: left;
+                margin-right: 2%;
+                margin-bottom: 10px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                label {
+                    display: block;
+                    float: none;
+                    margin: 0;
+                    text-align: left;
+                }
+
+                select, input, textarea {
+                    float: none;
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+
+                select , .select2-container {
+                    width: 100% !important;
+                    float: none;
+                }
+
+                button.condition-product-add {
+                    margin-top: 15px;
+                }
+            }
+
+            .product-quantity-condition-table {
+                clear: both;
+
+                tr {
+                    th, td {
+                        width: 30%;
+                    }
+
+                    .quantity {
+                        width: 15%;
+                    }
+
+                    .actions {
+                        width: 150px;
+                    }
+                }
+
+            }
+        }
+
+        .add-edit-product-form {
+
+            .field-control {
+                margin-bottom: 15px !important;
+
+                &:nth-child(1) {
+                    width: 45%;
+                }
+
+                &:nth-child(2),
+                &:nth-child(3) {
+                    width: 20%;
+                }
+
+                &:nth-child(4) {
+                    width: 8%;
+                }
+            }
+        }
+
+    }
+
+}

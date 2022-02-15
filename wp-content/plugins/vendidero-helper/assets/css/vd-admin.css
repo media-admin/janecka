@@ -1,0 +1,83 @@
+.vd-wrapper .vendidero-wrap .updated, .vd-wrapper .vendidero-wrap .error {
+	display: block !important;
+}
+
+.vd-wrapper .about-wrap p.submit {
+	float: left;
+} 
+
+.vd-wrapper .about-wrap .refresh {
+	margin-left: 1em;
+	font-size: 12px;
+	line-height: 27px;
+	text-decoration: none;
+}
+
+span.vd-inline-upgrade-expire-notice {
+	display: inline-block;
+	margin: 5px 0px !important;
+	border-left: 4px solid #dc3232;
+	padding: 1px 12px !important;
+}
+
+.vd-wrapper .error p {
+	line-height: 1.8;
+}
+
+.vd-wrapper .table-wrap {
+	max-width: 100%;
+}
+
+.vd-wrapper .column-product_status {
+	text-align: right;
+}
+
+.vd-wrapper .column-product_expires {
+	width: 15ch;
+}
+
+.vd-wrapper .column-product_name {
+	width: 35ch;
+}
+
+.vd-wrapper .version {
+	background: rgb(238, 238, 238);
+	padding: 0.2em 0.5em;
+	border-radius: 3px;
+	margin-right: 5px;
+}
+
+.vd-wrapper .version-old {
+	background: #eba3a3;
+	color: #761919;
+}
+
+.vd-wrapper .version-latest {
+	background: #c6e1c6;
+	color: #5b841b;
+}
+
+.vd-wrapper .column-product_version .button-secondary {
+	margin-top: 10px;
+}
+
+.vd-wrapper .column-product_name .active-on {
+	font-size: .8em;
+}
+
+.vd-wrapper .column-product_active {
+	width: 30ch;
+}
+
+table.licenses td.product_expires, table.licenses th.product_expires {
+	text-align: center;
+}
+
+table.licenses td.product_expires a.refresh-expiration {
+	margin-top: 5px;
+	font-size: 11px;
+	display: block;
+	color: #50575e;
+	text-decoration: underline;
+	margin-left: 0;
+}

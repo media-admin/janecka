@@ -1,0 +1,219 @@
+@import "icons";
+@import "add_products";
+@import "cart_conditions";
+@import "product_quantity_condition";
+@import "bogo_deals";
+@import "auto_apply_coupon";
+@import "shipping_overrides";
+@import "scheduler";
+@import "apply_notifications";
+@import "upsell";
+@import "help_modal";
+
+/* General styles */
+#woocommerce-coupon-data,
+#acfw-cart-conditions {
+  .acfw-styled-table {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #dcdcdc;
+    border-collapse: collapse;
+    font-size: 14.5px;
+
+    tr {
+      th,
+      td {
+        padding: 8px;
+      }
+
+      th {
+        font-weight: normal;
+        text-align: left;
+        background: #555555;
+        color: #fff;
+      }
+    }
+
+    tbody {
+      td {
+        border-bottom: 1px solid #dcdcdc;
+      }
+
+      td.actions {
+        text-align: right;
+        width: 120px;
+
+        a {
+          text-decoration: none;
+
+          &.remove {
+            color: #dc3332;
+
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+
+      tr.editing-row td {
+        background: #feffd9 !important;
+      }
+    }
+
+    .add-edit-form {
+      min-height: 45px;
+
+      td {
+        position: relative;
+
+        .object-search-wrap,
+        .condition-quantity {
+          .wc-product-search {
+            width: 100%;
+          }
+        }
+
+        &.actions {
+          button {
+            font-size: 11px;
+            padding: 0 8px;
+          }
+        }
+      }
+    }
+
+    &.editing {
+      td.actions * {
+        visibility: hidden;
+      }
+    }
+
+    tfoot {
+      td {
+        border: 1px solid #fff;
+        text-align: center;
+
+        .add-table-row {
+          display: inline-block;
+          padding: 10px 15px 0;
+          text-decoration: none;
+          color: #000;
+          font-weight: bold;
+
+          &:focus {
+            box-shadow: none;
+            color: #2386bb;
+          }
+        }
+      }
+    }
+  }
+
+  .acfw-overlay {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    background: #fff center center no-repeat;
+    opacity: 0.7;
+  }
+
+  .disabled {
+    opacity: 0.5;
+  }
+
+  .acfw_premium_panel {
+    padding: 10px 15px;
+  }
+}
+
+.acfw-generic-panel > h3 {
+  margin: 15px 10px 0;
+}
+
+.woocommerce_options_panel {
+  .acfw-tab-info {
+    margin: 15px 10px 0;
+  
+    h3 {
+      margin: 0;
+    }
+  
+    p {
+      margin: 15px 0 0;
+      padding: 0;
+    }
+  }
+}
+
+
+/* Loyalty Program */
+div#acfw-loyalty-program-metabox {
+  dl {
+    margin: 0;
+
+    dt {
+      float: left;
+      clear: left;
+      width: 50px;
+      font-weight: bold;
+    }
+
+    dd {
+      float: left;
+      margin-left: 0;
+      width: calc(100% - 100px);
+    }
+
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+#acfw-premium-upsell {
+  a {
+    box-shadow: none;
+    outline: 0;
+  }
+}
+
+span.acfw-warn-url-coupon {
+  display: block;
+  max-width: 470px;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  background: #ffd054;
+  font-size: 12.5px;
+  line-height: 1.3em;
+}
+
+// did you know notice.
+.woocommerce_options_panel {
+  p.acfw-dyk-notice {
+    position: relative;
+    display: block;
+    margin: 10px 12px 5px;
+    padding: 10px 135px 10px 15px;
+    background: #f5fcfc;
+    border-left: 3px solid #1693a7;
+    line-height: 1.3em;
+  
+    .title {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  
+    .acfw-button {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+    }
+  }
+}

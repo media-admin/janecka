@@ -1,0 +1,53 @@
+[
+    {
+        "name": "cleverreach/integration-core",
+        "version": "v1.14.5",
+        "version_normalized": "1.14.5.0",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:cleverreach/logeecore.git",
+            "reference": "8202d884cb13a9f944139771e72981bbee1f6039"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/cleverreach/logeecore/zipball/8202d884cb13a9f944139771e72981bbee1f6039",
+            "reference": "8202d884cb13a9f944139771e72981bbee1f6039",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^5.7"
+        },
+        "time": "2020-03-26T23:05:07+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "CleverReach\\BusinessLogic\\": "src/BusinessLogic",
+                "CleverReach\\Infrastructure\\": "src/Infrastructure",
+                "CleverReach\\Tests\\GenericTests\\": "generic_tests"
+            }
+        },
+        "autoload-dev": {
+            "psr-4": {
+                "CleverReach\\Tests\\BusinessLogic\\": "tests/BusinessLogic",
+                "CleverReach\\Tests\\Infrastructure\\": "tests/Infrastructure",
+                "CleverReach\\Tests\\Common\\": "tests/Common"
+            }
+        },
+        "scripts": {
+            "post-install-cmd": [
+                "bash setup.sh"
+            ],
+            "post-update-cmd": [
+                "bash setup.sh"
+            ]
+        },
+        "license": [
+            "proprietary"
+        ],
+        "description": "CleverReach integrations core library"
+    }
+]

@@ -1,0 +1,121 @@
+/**
+ * Custom WC Germanized CSS for Astra
+ */
+
+/**
+ * LOOP
+ */
+
+.woocommerce ul.products li.product .price-unit, .woocommerce-page ul.products li.product .price-unit {
+  font-size: .8em;
+  opacity: 0.5;
+}
+
+.woocommerce ul.products li.product .wc-gzd-additional-info, .woocommerce-page ul.products li.product .wc-gzd-additional-info {
+  font-size: .8em;
+  opacity: 0.5;
+  margin: 0;
+}
+
+.woocommerce div.product p.price-unit {
+  font-size: 1rem;
+  opacity: 0.5;
+}
+
+p.price .wc-gzd-sale-price-label, span.price .wc-gzd-sale-price-label {
+  font-size: .7em;
+  font-weight: normal;
+  opacity: .7;
+}
+
+span.price .wc-gzd-sale-price-label {
+  font-size: .9em;
+}
+
+p.price .wc-gzd-sale-price-regular-label, span.price .wc-gzd-sale-price-regular-label {
+  margin-left: .5em;
+}
+
+table.shop_table p.units-info, table.shop_table p.delivery-time-info {
+  font-size: .8em;
+  opacity: 0.7;
+  margin: .3em 0;
+  font-weight: normal;
+}
+
+table.shop_table .unit-price-cart {
+  opacity: 0.7;
+  font-weight: normal;
+}
+
+table.shop_table .wc-gzd-item-desc {
+  opacity: 0.7;
+  margin-top: .5em;
+}
+
+table.shop_table .wc-gzd-item-desc p {
+  font-size: .8em;
+}
+
+.woocommerce-multistep-checkout form #order_review {
+  border: none !important;
+}
+
+.woocommerce-multistep-checkout .step-buttons {
+  margin-bottom: 1.5em;
+
+  &.step-buttons-order {
+    text-align: center;
+  }
+}
+
+.woocommerce-multistep-checkout p.data-privacy {
+  clear: left;
+}
+
+.wc-gzd-checkbox-placeholder {
+  float: none;
+  clear: both;
+}
+
+@media (min-width: 769px) {
+  .woocommerce-page.woocommerce-multistep-checkout form #order_review, .woocommerce-page.woocommerce-multistep-checkout form #order_review_heading {
+    width: 100%;
+    float: none;
+    clear: both;
+  }
+}
+
+.woocommerce.woocommerce-checkout form #order_review_heading, .woocommerce-page.woocommerce-checkout form #order_review_heading {
+  border: none !important;
+  float: none;
+  clear: both;
+  width: 100%;
+  padding-left: 0 !important;
+  padding-top: 0 !important;
+  margin-top: 1.5em !important;
+}
+
+.woocommerce.woocommerce-checkout form #order_review table, .woocommerce-page.woocommerce-checkout form #order_review table {
+  margin-top: 1em;
+  clear: both;
+}
+
+.woocommerce.woocommerce-checkout form #place_order, .woocommerce-page.woocommerce-checkout form #place_order {
+  width: 100%;
+}
+
+.woocommerce.woocommerce-checkout form #order_payment_heading, .woocommerce-page.woocommerce-checkout form #order_payment_heading {
+  font-size: 1.2rem;
+  padding-top: 1.5em;
+}
+
+.woocommerce-page.woocommerce-checkout form #order_review, .woocommerce-page.woocommerce-checkout form #order_review {
+  border-top-width: 2px !important;
+  padding-bottom: 1.5em !important;
+  margin-bottom: 1.5em !important;
+}
+
+.woocommerce-page.woocommerce-checkout form #order_review th, .woocommerce-page.woocommerce-checkout form #order_review td {
+  padding-left: 12px;
+}

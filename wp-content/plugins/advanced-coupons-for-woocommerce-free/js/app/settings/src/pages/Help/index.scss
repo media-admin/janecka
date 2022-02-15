@@ -1,0 +1,38 @@
+.help-page {
+    max-width: 1211px;
+
+    .page-header{
+        margin-bottom: 30px;
+    }
+
+    .ant-row {
+        margin-bottom: 15px;
+    }
+
+    .ant-card {
+        border-color: #D5D5D5;
+
+        h2 {
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        p {
+            font-size: 15px;
+            color: #000;
+            line-height: 1.3em;
+        }
+
+        .ant-btn {
+            background: #035E6B;
+            border: 0;
+            border-radius: 0;
+            font-size: 15px;
+            font-weight: bold;
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+    }
+}

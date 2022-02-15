@@ -1,0 +1,23 @@
+.wp-block[data-type="storeabill/item-attributes"] {
+  ul.sab-item-attributes {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .is-style-attribute-line {
+    ul.sab-item-attributes {
+      list-style: none;
+      padding-left: 0;
+
+      li {
+        display: inline-block;
+
+        &:not(:first-child) {
+          &::before {
+            content: ", ";
+          }
+        }
+      }
+    }
+  }
+}

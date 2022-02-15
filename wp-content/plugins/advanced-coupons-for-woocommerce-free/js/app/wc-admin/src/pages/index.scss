@@ -1,0 +1,43 @@
+#acfw-admin-app {
+
+  .components-card {
+
+    .title {
+      margin: 0;
+    }
+
+    .stars {
+      color:#ffb100;
+    }
+
+    .description {
+      font-size: 16px;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #646970;
+      margin-bottom: 16px;
+      font-weight: 400;
+    } 
+  
+    .upgrade-btn {
+      display: inline-block;
+      padding: 10px 15px;
+      margin-right: 15px;
+      background: #dbe41d;
+      border: 1px solid #c9d034;
+      color: #000;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a.upgrade-btn:hover {
+      background: #cdd61c;
+      border: 1px solid #c9d034;
+    }
+  
+    .sub-label {
+      font-size: 16px;
+    }
+  }
+}
+

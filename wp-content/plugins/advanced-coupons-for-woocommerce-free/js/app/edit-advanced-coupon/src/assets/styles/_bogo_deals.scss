@@ -1,0 +1,399 @@
+#woocommerce-coupon-data {
+
+    #general_coupon_data.acfw-bogo-type {
+        min-height: auto;
+
+        p.form-field {
+            display: none;
+
+            &.discount_type_field,
+            &.expiry_date_field,
+            &.acfw-sort-coupon-priority-field {
+                display: block;
+            }
+        }
+    }
+
+    /* BOGO Deals panel styles */
+    #acfw_bogo_deals {
+        position: relative;
+        width: 100%;
+
+        .product-quantity-condition-field {
+
+            .remove-condition-field {
+                display: none;
+            }
+        }
+
+        .bogo-info {
+            padding: 10px 15px 25px;
+
+            h3 {
+                margin: 0;
+            }
+
+            p {
+                padding: 0;
+                line-height: 1.6em;
+                margin: 15px 0 0;
+            }
+
+            ul {
+                margin: 0;
+
+                li {
+                    position: relative;
+                    padding-left: 20px;
+
+                    &:before {
+                        content: "\f522";
+                        font-family: dashicons;
+                        position: absolute;
+                        top: 1px;
+                        left: 5px;
+                        color: #1571af;
+                    }
+                }
+            }
+        }
+
+        .bogo-conditions-wrap,
+        .bogo-product-deals-wrap {
+            margin: 0 15px 20px;
+            padding: 10px 10px 15px;
+            border: 2px dashed #1287b7;
+            border-radius: 7px;
+
+            .bogo-type-selector {
+                text-align: left;
+                padding: 5px 0;
+
+                label {
+                    display: block;
+                    float: none;
+                    width: auto;
+                    margin: 0 10px 15px 0;
+                    font-size: 17px;
+                    font-weight: 700;
+                }
+
+                select {
+                    float: none;
+                    width: 300px;
+                }
+            }
+
+            p.instructions {
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        .bogo-product-deals-wrap {
+            border-color: #30b453;
+        }
+
+        .bogo-conditions-block,
+        .bogo-product-deals-block,
+        .additional-settings-block {
+
+            > h2 {
+                display: block;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .condition-set {
+                padding-top: 10px !important;
+            }
+
+            .add-edit-product-form,
+            .add-product-categories-form {
+                margin: 10px 0 15px;
+
+                &:after {
+                    content: '';
+                    display: table;
+                    clear: both;
+                }
+            }
+
+            .field-control {
+                display: inline-block;
+                width: 20%;
+                margin-right: 1%;
+
+                &:nth-child(1) {
+                    width: 45%;
+                }
+
+                > * {
+                    float: none;
+                    width: 100% !important;
+                    box-sizing: border-box;
+                    margin: 0 !important;
+                }
+
+                button {
+                    width: auto !important;
+
+                    &.cancel {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .bogo-conditions-block {
+
+            .acfw-styled-table {
+                
+                .product {
+                    width: auto;
+                }
+
+                .quantity {
+                    width: 15%;
+
+                    input {
+                        width: 100%;
+                    }
+                }
+
+                .actions {
+                    width: 100px;
+                    max-width: 100px;
+                }
+            }
+        }
+
+        .bogo-product-deals-block {
+
+            .acfw-styled-table {
+
+                .product , .product-cat {
+                    width: auto;
+                }
+    
+                .quantity {
+                    width: 15%;
+
+                    input {
+                        width: 100%;
+                    }
+                }
+    
+                .price {
+                    width: 15%;
+                    padding: 8px 10px;
+
+                    input {
+                        width: calc(100% - 51px);
+                    }
+    
+                    select {
+                        width: 46px;
+                        margin-right: 5px;
+                    }
+                }
+
+                .actions {
+                    width: 100px;
+                    max-width: 100px;
+                }
+            }
+        }
+
+        .additional-settings-block {
+            padding: 0 20px 70px;
+
+            > h2 {
+                padding: 10px 0;
+                font-size: 20px;
+                font-weight: normal;
+            }
+
+            .bogo-settings-field {
+                margin-bottom: 15px;
+
+                label {
+                    float: left;
+                    width: 240px;
+                    box-sizing: border-box;
+                    margin: 0 10px 0 0;
+                }
+
+                .text-input {
+                    width: 50%;
+                }
+
+                .radio-group-wrap {
+                    float: left;
+                    box-sizing: border-box;
+                    width: calc( 100% - 250px );
+
+                    label {
+                        float: none;
+                        display: block;
+                        margin: 0;
+                    }
+                }
+
+                &:after {
+                    content: '';
+                    display: table;
+                    clear: both;
+                }
+            }
+        }
+
+        .bogo-actions-block {
+            position:absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background: #fafafa;
+            border-top: 1px solid #e5e5e5;
+
+            &:after {
+                content: '';
+                display: table;
+                clear: both;
+            }
+
+            #clear-bogo-deals {
+                float: right;
+            }
+
+        }
+
+        .combined-products-form {
+            margin-top: 10px;
+
+            td.products-list {
+                width: 60%;
+
+                .select2-container {
+                    width: 100% !important;
+                }
+            }
+        }
+
+        .acfw-styled-table {
+            margin-top: 10px;
+
+            .actions {
+
+                button {
+                    font-size: 11px;
+                    padding: 0 8px;
+                }
+            }
+
+            tfoot {
+
+                td {
+                    border: 1px solid #fff;
+                    text-align: center;
+
+                    .add-table-row {
+                        display: inline-block;
+                        padding: 10px 15px 0;
+                        text-decoration: none;
+                        color: #000;
+                        font-weight: bold;
+
+                        &:focus {
+                            box-shadow: none;
+                            color: #2386bb;
+                        }
+                    }
+                    
+                }
+                
+            }
+        }
+
+        .bogo-block.premium-only {
+            position: relative;
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 10;
+                opacity: 0.5;
+                width: 100%;
+                height: 100%;
+                background: #fff;
+            }
+
+            .upsell {
+                position: relative;
+                z-index: 100;
+                padding: 10px 15px;
+                border: 1px solid #1c8fc3;
+                background: #34a0d2;
+                color: #fff;
+                font-size: 14px;
+                text-align: center;
+
+                a {
+                    color: #e7f7ff;
+                }
+            }
+        }
+
+    }
+
+    .any-products-trigger-form {
+        margin-top: 10px;
+
+        .trigger-field-row {
+            margin-bottom: 10px; 
+            
+            &:after {
+                content: '';
+                display: table;
+                clear: both;
+            }
+
+            label {
+                margin: 0;
+            }
+
+            input {
+                max-width: 300px;
+            }
+
+            .radio-options {
+                float: left;
+
+                label {
+                    display: block;
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+
+    .any-products-apply-form.acfw-styled-table {
+        margin-top: 10px;
+
+        .quantity,
+        .type,
+        .price {
+            width: 33.33% !important;
+
+            input, select {
+                width: 100% !important;
+            }
+        }
+    }
+
+}

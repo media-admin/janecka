@@ -16,13 +16,55 @@ wp-content/*
 !wp-content/mu-plugins/
 !wp-content/mu-plugins/*
 !wp-content/plugins/
+!wp-content/plugins/*
 !wp-content/themes/
 
 
 # ignore these plugins
 wp-content/plugins/index.php
-// wp-content/plugins/hello.php
-!wp-content/plugins/*
+wp-content/plugins/advanced-coupons-for-woocommerce-free/
+wp-content/plugins/advanced-custom-fields/
+wp-content/plugins/advanced-woo-search/
+wp-content/plugins/cf7-conditional-fields/
+wp-content/plugins/cleverreach-wp/
+wp-content/plugins/contact-form-7/
+wp-content/plugins/contact-form-7-honeypot/
+wp-content/plugins/coupon-generator-for-woocommerce/
+wp-content/plugins/date-time-picker-for-contact-form-7/
+wp-content/plugins/duplicate-post/
+wp-content/plugins/flipbook-plugin/
+wp-content/plugins/hide-youtube-related-videos/
+wp-content/plugins/loco-translate/
+wp-content/plugins/media-cleaner/
+wp-content/plugins/post-types-order/
+wp-content/plugins/query-monitor/
+wp-content/plugins/regenerate-thumbnails/
+wp-content/plugins/responsive-lightbox/
+wp-content/plugins/search-and-replace/
+wp-content/plugins/shariff
+wp-content/plugins/simple-lightbox/
+wp-content/plugins/updraftplus/
+wp-content/plugins/wc-cash-on-pickup/
+wp-content/plugins/woocommerce/
+wp-content/plugins/woocommerce-admin/
+wp-content/plugins/woocommerce-gateway-stripe/
+wp-content/plugins/woocommerce-germanized/
+wp-content/plugins/woocommerce-payments/
+wp-content/plugins/woocommerce-paypal-payments/
+wp-content/plugins/wordpress-seo/
+wp-content/plugins/wp-all-export-pro/
+wp-content/plugins/wp-all-import-pro/
+wp-content/plugins/wp-fastest-cache/
+wp-content/plugins/wp-updates-notifier/
+wp-content/plugins/wpae-acf-add-on/
+wp-content/plugins/wpae-user-add-on-pro/
+wp-content/plugins/wpae-woocommerce-add-on/
+wp-content/plugins/wpai-acf-add-on/
+wp-content/plugins/wpai-woocommerce-add-on/
+wp-content/plugins/yith-infinite-scrolling-premium/
+wp-content/plugins/yith-woocommerce-ajax-search-premium/
+wp-content/plugins/yith-woocommerce-wishlist-premium/
+wp-content/plugins/yith-woocommerce-zoom-magnifier-premium/
 
 
 # ignore specific themes

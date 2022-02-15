@@ -1,0 +1,55 @@
+{
+  "name": "storeabill/storerabill-lib",
+  "description": "A package for hiding re-namespaced dependencies and executing them",
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.0"
+  },
+  "require-dev": {
+    "mpdf/mpdf": "8.*",
+    "mpdf/qrcode": "^1.1.1"
+  },
+  "config": {
+    "allow-plugins": true,
+    "platform": {
+      "php": "7.0"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "mkdir -p ./packages/mpdf/mpdf/data; cp -R vendor/mpdf/mpdf/data ./packages/mpdf/mpdf/",
+      "mkdir -p ./packages/mpdf/qrcode/data; cp -R vendor/mpdf/qrcode/data ./packages/mpdf/qrcode/",
+      "\"../bin/composer/strauss/vendor/bin/strauss\" compose",
+      "rm -rf ./vendor"
+    ],
+    "post-update-cmd": [
+      "mkdir -p ./packages/mpdf/mpdf/data; cp -R vendor/mpdf/mpdf/data ./packages/mpdf/mpdf/",
+      "mkdir -p ./packages/mpdf/qrcode/data; cp -R vendor/mpdf/qrcode/data ./packages/mpdf/qrcode/",
+      "\"../bin/composer/strauss/vendor/bin/strauss\" compose",
+      "rm -rf ./vendor"
+    ]
+  },
+  "extra": {
+    "strauss": {
+      "namespace_prefix": "Vendidero\\StoreaBill\\Vendor\\",
+      "target_directory": "/packages/",
+      "packages": [
+        "mpdf/mpdf",
+        "mpdf/qrcode"
+      ],
+      "exclude_from_prefix": {
+        "packages": [
+        ],
+        "namespaces": [
+        ],
+        "file_patterns": [
+        ]
+      },
+      "excluded_packages": [],
+      "classmap_prefix": "StoreaBill_Vendor_",
+      "delete_vendor_files": true,
+      "classmap_output": false
+    }
+  }
+}

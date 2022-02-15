@@ -1,0 +1,87 @@
+/**
+ * Custom WC Germanized CSS for Virtue
+ */
+
+/**
+ * LOOP
+ */
+.product_item .price-unit {
+  margin: 0;
+}
+
+.product_item p.shipping-costs-info, .product_item p.tax-info {
+  display: inline-block;
+}
+
+.product_item p.wc-gzd-additional-info {
+  font-size: 0.8em;
+  padding: 2px 0;
+  margin: 0;
+}
+
+.products div.product .button {
+  margin-top: 3px;
+}
+
+.products .virtual .tax-info, .products .downloadable .tax-info {
+  display: block;
+}
+
+/**
+ * SINGLE PRODUCT
+ */
+
+.single-product .product_price, .single-product .price-unit {
+  display: inline-block;
+}
+
+.single-product .price-unit {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.single-product .pricebox .wc-gzd-additional-info {
+  font-size: 11px;
+}
+
+.single-product p.delivery-time-info {
+  margin: 10px 0;
+}
+
+/**
+ * CART / CHECKOUT
+ */
+
+.woocommerce .price-shipping-costs-info {
+  font-size: 11px;
+  margin: 3px 0 5px 0 !important;
+}
+
+.woocommerce p.legal {
+  margin: 20px 0;
+}
+
+.woocommerce .legal label.checkbox {
+  padding-left: 0;
+  font-weight: normal;
+}
+
+.woocommerce .legal input[type=checkbox] {
+  margin-top: 5px;
+}
+
+/**
+ * FOOTER
+ */
+
+.footercredits p {
+  margin: 0;
+}
+
+p.footer-info {
+  text-align: left;
+}
+
+.footercredits p:last-child {
+  margin-bottom: 10px;
+}

@@ -1,0 +1,247 @@
+# Translation of YITH Infinite Scrolling in Dutch
+# This file is distributed under the same license as the YITH Infinite Scrolling package.
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH Infinite Scrolling\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/yith-infinite-"
+"scrolling.premium\n"
+"POT-Creation-Date: 2022-01-11 13:48:38+00:00\n"
+"PO-Revision-Date: 2021-03-15 20:34:26+0000\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+
+#: includes/class.yith-infs-admin-premium.php:67
+msgid "Navigation Selector"
+msgstr "Navigatie Muis"
+
+#: includes/class.yith-infs-admin-premium.php:68
+msgid ""
+"The selector that contains the navigation of this section. Selectors can be "
+"class or ID names: the first ones must have a dot in front (.class-name), "
+"while the second must have a hash (#id-name)."
+msgstr ""
+"De selector die de navigatie van deze sectie bevat. Selectoren kunnen "
+"klassen- of ID-namen zijn: de eerste moeten een punt vooraan hebben (.class-"
+"naam), terwijl de tweede een hash (#id-naam) moet hebben."
+
+#: includes/class.yith-infs-admin-premium.php:71
+msgid "Next Selector"
+msgstr "Volgende Muis"
+
+#: includes/class.yith-infs-admin-premium.php:72
+msgid ""
+"The selector of the link that redirects to the next page of this section. "
+"Selectors can be class or ID names: the first ones must have a dot in front "
+"(.class-name), while the second must have a hash (#id-name)."
+msgstr ""
+"De muis van de link die doorverwijst naar de volgende pagina van dit "
+"gedeelte. Muizen kunnen klassen- of ID-namen zijn: de eerste moeten een punt "
+"vooraan hebben (.class-naam), terwijl de tweede een hash (#id-naam) moet "
+"hebben."
+
+#: includes/class.yith-infs-admin-premium.php:75
+msgid "Item Selector"
+msgstr "Item Kiezer"
+
+#: includes/class.yith-infs-admin-premium.php:76
+msgid ""
+"The selector of the single item in the page. Selectors can be class or ID "
+"names: the first ones must have a dot in front (.class-name), while the "
+"second must have a hash (#id-name)."
+msgstr ""
+"De muis van het afzonderlijke item op de pagina. Selectoren kunnen klassen- "
+"of ID-namen zijn: de eerste moeten een punt vooraan hebben (.class-naam), "
+"terwijl de tweede een hash (#id-naam) moet hebben."
+
+#: includes/class.yith-infs-admin-premium.php:79
+msgid "Content Selector"
+msgstr "Inhoud Selecteur"
+
+#: includes/class.yith-infs-admin-premium.php:80
+msgid ""
+"The selector that contains your section content. Selectors can be class or "
+"ID names: the first ones must have a dot in front (.class-name), while the "
+"second must have a hash (#id-name)."
+msgstr ""
+"De selector die uw sectie-inhoud bevat. Selectoren kunnen klassen- of ID-"
+"namen zijn: de eerste moeten een punt vooraan hebben (.class-naam), terwijl "
+"de tweede een hash (# id-naam) moet hebben."
+
+#: includes/class.yith-infs-admin-premium.php:85
+msgid "Infinite Scrolling"
+msgstr "Infinite Scrolling"
+
+#: includes/class.yith-infs-admin-premium.php:86
+msgid "Load More Button"
+msgstr "Meer Laden Knop"
+
+#: includes/class.yith-infs-admin-premium.php:87
+msgid "Ajax Pagination"
+msgstr "Ajax Paginering"
+
+#: includes/class.yith-infs-admin-premium.php:89
+msgid "Event Type"
+msgstr "Event Type"
+
+#: includes/class.yith-infs-admin-premium.php:90
+msgid "Select the type of pagination"
+msgstr "Selecteer het type paginering"
+
+#: includes/class.yith-infs-admin-premium.php:94
+msgid "Button Label"
+msgstr "Knoplabel"
+
+#: includes/class.yith-infs-admin-premium.php:95
+msgid "Set button label"
+msgstr "Knoplabel instellen"
+
+#: includes/class.yith-infs-admin-premium.php:96
+msgid "Load More"
+msgstr "Laad Meer"
+
+#: includes/class.yith-infs-admin-premium.php:99
+msgid "Extra Class of the Button"
+msgstr "Extra klasse van de knop"
+
+#: includes/class.yith-infs-admin-premium.php:100
+msgid ""
+"Add a custom class to customize the button style. Use space for multiple "
+"classes."
+msgstr ""
+"Voeg een aangepaste klasse toe om de knopstijl aan te passen. Gebruik ruimte "
+"voor meerdere klassen."
+
+#: includes/class.yith-infs-admin-premium.php:105
+msgid "Choose a Loader"
+msgstr "Kies een lader"
+
+#: includes/class.yith-infs-admin-premium.php:106
+msgid "Choose a preset loader to use."
+msgstr "Kies een vooraf ingestelde lader om te gebruiken."
+
+#: includes/class.yith-infs-admin-premium.php:112
+msgid "Custom Loader"
+msgstr "Aangepaste Lader"
+
+#: includes/class.yith-infs-admin-premium.php:113
+msgid "Upload a custom loading image. This option overrides the previous one."
+msgstr "Upload een aangepaste laadafbeelding. Deze optie heft de vorige op."
+
+#: includes/class.yith-infs-admin-premium.php:118
+msgid "Zoom in"
+msgstr "Zoom in"
+
+#: includes/class.yith-infs-admin-premium.php:119
+msgid "Bounce in"
+msgstr "Stuiteren"
+
+#: includes/class.yith-infs-admin-premium.php:120
+msgid "Fade in"
+msgstr "Fade in"
+
+#: includes/class.yith-infs-admin-premium.php:121
+msgid "Fade in from top to down"
+msgstr "Van boven naar beneden faden"
+
+#: includes/class.yith-infs-admin-premium.php:122
+msgid "Fade in from right to left"
+msgstr "Van rechts naar links vervagen"
+
+#: includes/class.yith-infs-admin-premium.php:123
+msgid "Fade in from left to right"
+msgstr "Van links naar rechts infaden"
+
+#: includes/class.yith-infs-admin-premium.php:124
+msgid "Fade in from down to top"
+msgstr "Fade in van beneden naar boven"
+
+#: includes/class.yith-infs-admin-premium.php:126
+msgid "Load Effect"
+msgstr "Laad Effect"
+
+#: includes/class.yith-infs-admin-premium.php:127
+msgid "Type of animation for the loading of new contents."
+msgstr "Type animatie voor het laden van nieuwe inhoud."
+
+#: includes/class.yith-infs-admin-premium.php:181
+msgid "Please insert a name for the section"
+msgstr "Voer een naam in voor de sectie"
+
+#: includes/class.yith-infs-admin-premium.php:182
+msgid "Do you really want to delete this section?"
+msgstr "Wilt u dit gedeelte echt verwijderen?"
+
+#: includes/class.yith-infs-admin.php:165
+msgid "Settings"
+msgstr "Instellingen"
+
+#: includes/class.yith-infs-admin.php:169
+msgid "Premium Version"
+msgstr "Premium Versie"
+
+#: plugin-options/general-options.php:18
+msgid "General Settings"
+msgstr "Algemene Instellingen"
+
+#: plugin-options/general-options.php:31
+msgid "Enable Infinite Scrolling"
+msgstr "Schakel Infinite Scrolling in"
+
+#: plugin-options/general-options.php:39
+msgid "Enable Infinite Scrolling on mobile device"
+msgstr "Schakel oneindig scrollen in op mobiel apparaat"
+
+#: plugin-options/general-options.php:51
+msgid "Change the URL of the page whenever new items are loaded"
+msgstr "Wijzig de URL van de pagina wanneer nieuwe items worden geladen"
+
+#: plugin-options/general-options.php:63
+msgid "Add section and set options"
+msgstr "Voeg sectie toe en stel opties in"
+
+#: plugin-options/general-options.php:76
+msgid "Custom JavaScript"
+msgstr "Aangepast JavaScript"
+
+#. translators: %1$s and %2$s stand for the name of two JS plugin triggers to
+#. use for custom code.
+#: plugin-options/general-options.php:79
+msgid ""
+"Add here your custom JavaScript code. You can use two plugin triggers: %1$s "
+"is triggered before the new elements are appended to the current content, "
+"and %2$s is triggered after the AJAX call ends"
+msgstr ""
+"Voeg hier je aangepaste JavaScript code toe. Je kunt twee plugin triggers "
+"gebruiken:  %1$s i wordt getriggerd voordat de nieuwe elementen worden "
+"toegevoegd aan de huidige inhoud, en %2$s wordt getriggerd nadat de AJAX "
+"oproep is beëindigd"
+
+#: templates/admin/options-section-stamp.php:17
+#: templates/admin/options-section.php:31
+msgid "Options for "
+msgstr "Opties voor"
+
+#: templates/admin/options-section-stamp.php:70
+#: templates/admin/options-section.php:84
+msgid "Upload"
+msgstr "Upload"
+
+#: templates/admin/options-section.php:17
+msgid "Add section"
+msgstr "Voeg sectie toe"
+
+#. Description of the plugin/theme
+msgid ""
+"The <code><strong>YITH Infinite Scrolling</strong></code> plugin lets you "
+"easily add infinite scroll on your pages. <a href=\"https://yithemes.com/\" "
+"target=\"_blank\">Get more plugins for your e-commerce shop on <strong>YITH</"
+"strong></a>."
+msgstr ""
+"De <code> <strong> YITH onEindig scrollen </strong> </code> plugin u "
+"eenvoudig toevoegen oneindig scrollen op uw pagina's. <a href=\"https://"
+"yithemes.com/\" target=\"_blank\">Haal meer plugins voor uw e-commerce shop "
+"op <strong> YITH </strong> </a>."

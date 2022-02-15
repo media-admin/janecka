@@ -1,0 +1,11 @@
+.wp-block-storeabill-item-field {
+  border: 1px solid transparent;
+  width: 75%;
+  display: inline-block;
+
+  .field-placeholder {
+    padding: $global-margin * 3 $global-margin 0.3em $global-margin;
+    text-align: left;
+    display: block;
+  }
+}

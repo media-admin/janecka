@@ -1,0 +1,45 @@
+.rl-deactivation-modal {
+	max-height: 500px;
+	overflow: hidden;
+	top: 50% !important;
+	transform: translateY(-50%);
+}
+.rl-deactivation-modal #TB_title {
+	padding: 13px 16px;
+	background: #f3f3f3;
+}
+.rl-deactivation-modal #TB_title > div {
+	padding: 0;
+	color: #000;
+}
+.rl-deactivation-modal #TB_ajaxContent {
+	width: auto !important;
+	height: calc(100% - 112px) !important;
+	padding: 0;
+}
+.rl-deactivation-options p:first-child {
+	margin-top: 0;
+}
+.rl-deactivation-buttons .spinner {
+	float: none;
+	/* text-align: right; */
+}
+#rl-deactivation-container {
+	width: 100%;
+}
+#rl-deactivation-container textarea {
+	width: 100%;
+	min-height: 100px;
+}
+#rl-deactivation-body {
+	padding: 13px 16px;
+}
+#rl-deactivation-footer {
+	padding: 13px 16px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border-top: 1px solid #ddd;
+	background: #f3f3f3;
+}

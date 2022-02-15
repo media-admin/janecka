@@ -1,0 +1,50 @@
+.block-editor-block-list__layout .block-editor-block-list__block[data-type="storeabill/logo"] {
+  height: auto !important;
+
+  .editor-block-list__block-edit, .is-block-content {
+    float: none !important;
+  }
+
+  figure {
+    display: flex;
+    justify-content: flex-start;
+    float: none !important;
+    margin: 0;
+
+    &.aligncenter {
+      justify-content: center;
+    }
+    &.alignright {
+      justify-content: flex-end;
+    }
+  }
+
+  figcaption {
+    display: none !important;
+  }
+}
+
+.wp-block {
+  figure[data-type="storeabill/logo"] {
+    display: flex;
+    justify-content: flex-start;
+    float: none !important;
+    margin: 0;
+
+    figcaption {
+      display: none !important;
+    }
+  }
+
+  &[data-align="center"] {
+    figure[data-type="storeabill/logo"] {
+      justify-content: center;
+    }
+  }
+
+  &[data-align="right"] {
+    figure[data-type="storeabill/logo"] {
+      justify-content: flex-end;
+    }
+  }
+}

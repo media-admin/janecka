@@ -1,0 +1,647 @@
+# Translation of YITH WooCommerce Zoom Magnifier in Dutch
+# This file is distributed under the same license as the YITH WooCommerce Zoom Magnifier package.
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH WooCommerce Zoom Magnifier\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/yith-woocommerce-"
+"zoom-magnifier-premium\n"
+"POT-Creation-Date: 2021-11-03 11:20:37+00:00\n"
+"PO-Revision-Date: 2021-09-30 08:31:37+0000\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+
+#: init.php:52
+msgid ""
+"YITH WooCommerce Product Gallery & Image Zoom  is enabled but not effective. "
+"It requires WooCommerce in order to work."
+msgstr ""
+"YITH WooCommerce Product Gallery & Image Zoom is ingeschakeld maar werkt "
+"niet. Het heeft WooCommerce nodig om te werken."
+
+#: lib/class.yith-wcmg-admin.php:89 lib/class.yith-wcmg-admin.php:90
+#, fuzzy
+msgid "Add to the exclusion list"
+msgstr "Uitsluiting toevoegen aan lijst"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:58
+msgid "Remove"
+msgstr "Verwijderen"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:76
+msgid "Filter"
+msgstr "Filter"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:96
+msgid "All types"
+msgstr "Alle types"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:97
+msgid "Products"
+msgstr "Producten"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:98
+msgid "Categories"
+msgstr "Categorieën"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:99
+msgid "Tags"
+msgstr "Tags"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:193
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:207
+msgid "Name"
+msgstr "Name"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:208
+msgid "Type"
+msgstr "Type"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:403
+#: view/ywzm-exclusions-table.php:98
+msgid "Product"
+msgstr "Product"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:404
+#: view/ywzm-exclusions-table.php:100
+msgid "Category"
+msgstr "Categorie"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:405
+#: view/ywzm-exclusions-table.php:102
+msgid "Tag"
+msgstr "Tag"
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:136
+msgid "Main image options"
+msgstr "Hoofdafbeelding opties"
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:137
+#: plugin-options/gallery-options.php:19
+msgid "Product gallery options"
+msgstr "Product galerij opties"
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:138
+#: view/ywzm-exclusions-table.php:48
+msgid "Exclusion List"
+msgstr "Uitsluitingen lijst"
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:191
+msgid ""
+"YITH WooCommerce Product Gallery & Image Zoom  is available in an "
+"outstanding PREMIUM version with many new options, discover it now."
+msgstr ""
+"YITH WooCommerce Product Gallery & Image Zoom is beschikbaar in een "
+"uitstekende PREMIUM versie met vele nieuwe mogelijkheden, ontdek het nu."
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:192
+msgid "Premium version"
+msgstr "Premium versie"
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:200
+msgid "YITH WooCommerce Product Gallery & Image Zoom "
+msgstr "YITH WooCommerce Product Gallery & Image Zoom "
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:201
+#, fuzzy
+msgid ""
+"In YITH Plugins tab you can find  YITH WooCommerce Product Gallery & Image "
+"Zoom  options.<br> From this menu you can access all settings of the YITH "
+"plugins activated."
+msgstr ""
+"In de YIT Plugins tab kunt je de YITH WooCommerce Product Gallery & Image "
+"Zoom opties vinden. <br> Vanuit dit menu heb je toegang tot alle "
+"instellingen van de geactiveerde YITH plugins."
+
+#: lib/compatibility/elementor/class-yith-wczm-product-images-widget.php:37
+msgid "Zoom Product images"
+msgstr "Zoom productafbeeldingen"
+
+#: plugin-options/gallery-options.php:25
+msgid "Hide gallery thumbnails from single product page"
+msgstr "Galerij thumbnails verbergen van enkele product pagina"
+
+#: plugin-options/gallery-options.php:26
+msgid ""
+"Enable to hide the product gallery thumbs from the single product details "
+"page."
+msgstr ""
+"Inschakelen om de product galerij thumbnails van de enkele product details "
+"pagina te verbergen."
+
+#: plugin-options/gallery-options.php:33
+msgid "Change main image on"
+msgstr "Wijzig de afbeelding bij"
+
+#: plugin-options/gallery-options.php:34
+msgid "Choose how to change the main product image."
+msgstr "Bepaal wanneer de hoofdafbeelding wijzigt."
+
+#: plugin-options/gallery-options.php:39
+msgid ""
+"Click - the user has to click on the thumbnail to change the main product "
+"image."
+msgstr ""
+"Klikken - de gebruiker moet om de thumbnail klikken om de hoofdafbeelding te "
+"wijzigen."
+
+#: plugin-options/gallery-options.php:40
+msgid ""
+"Hover - the image will be replaced when the mouse hovers over the thumbnail."
+msgstr ""
+"Hoveren - de afbeelding wordt vervangen wanneer de cursor over de thumbnail "
+"hovert."
+
+#: plugin-options/gallery-options.php:49
+msgid "Add opacity on inactive thumbnails"
+msgstr "Onzichtbaarheid toepassen op inactieve thumbnails"
+
+#: plugin-options/gallery-options.php:50
+msgid "Enable to add opacity to inactive thumbnails."
+msgstr "Inschakelen om onzichtbaarheid toe te passen op inactieve thumbnails."
+
+#: plugin-options/gallery-options.php:61
+msgid "Apply grey scale on inactive thumbnails"
+msgstr "Grijze schaal toepassen op inactieve thumbnails"
+
+#: plugin-options/gallery-options.php:62
+msgid "Enable to apply a grey scale to inactive thumbnails."
+msgstr ""
+"Inschakelen om een grijze schaal toe te passen op inactieve thumbnails."
+
+#: plugin-options/gallery-options.php:73
+msgid "Add zoom effect to the thumbnails"
+msgstr "Zoom effect voor thumbnails toevoegen"
+
+#: plugin-options/gallery-options.php:74
+msgid "Enable to add a zoom effect when hovering over the thumbnails."
+msgstr ""
+"Inschakelen om een zoom effect toe te voegen wanneer je over de thumbnail "
+"hovert."
+
+#: plugin-options/gallery-options.php:85
+msgid "Active thumb border color"
+msgstr "Actieve thumbnail randkleur"
+
+#: plugin-options/gallery-options.php:86
+msgid "Set the color for the active thumbnail."
+msgstr "De kleur instellen voor de actieve thumbnail."
+
+#: plugin-options/gallery-options.php:99
+msgid "Enable Slider"
+msgstr "Slider inschakelen"
+
+#: plugin-options/gallery-options.php:100
+msgid "Enable the thumbnails slider."
+msgstr "De thumbnail slider inschakelen."
+
+#: plugin-options/gallery-options.php:112
+msgid "Thumbnails to show"
+msgstr "Thumbnails om weer te geven"
+
+#: plugin-options/gallery-options.php:113
+msgid "Set how many thumbnails to show. You can show max 10 thumbnails."
+msgstr ""
+"Instellen hoeveel thumbnails je wilt tonen. Je kunt max 10 thumbnails "
+"weergeven."
+
+#: plugin-options/gallery-options.php:129
+msgid "Slider colors"
+msgstr "Slider kleuren"
+
+#: plugin-options/gallery-options.php:136
+msgid "Background color"
+msgstr "Achtergrondkleur"
+
+#: plugin-options/gallery-options.php:141
+msgid "Border color"
+msgstr "Randkleur"
+
+#: plugin-options/gallery-options.php:146
+msgid "Arrow color"
+msgstr "Pijlkleur"
+
+#: plugin-options/gallery-options.php:156
+msgid "Set colors of the slider elements."
+msgstr "Kleuren instellen van slider elementen"
+
+#: plugin-options/gallery-options.php:163
+msgid "Background color hover"
+msgstr "Achtergrondkleur hoveren"
+
+#: plugin-options/gallery-options.php:168
+msgid "Border color hover"
+msgstr "Randkleur hoveren"
+
+#: plugin-options/gallery-options.php:173
+msgid "Arrow color hover"
+msgstr "Pijlkleur hoveren"
+
+#: plugin-options/gallery-options.php:184
+msgid "Slider sizes (px)"
+msgstr "Slider grootte (px)"
+
+#: plugin-options/gallery-options.php:185
+msgid "Set the size of the slider elements."
+msgstr "De grootte van slider elementen instellen."
+
+#: plugin-options/gallery-options.php:189
+msgid "Slider"
+msgstr "Slider"
+
+#: plugin-options/gallery-options.php:190
+msgid "Arrow"
+msgstr "Pijl"
+
+#: plugin-options/gallery-options.php:191
+msgid "Border"
+msgstr "Rand"
+
+#: plugin-options/gallery-options.php:210
+msgid "Border radius (%)"
+msgstr "Randradius (%)"
+
+#: plugin-options/gallery-options.php:211
+msgid "Set the border radius to change the shape of the slider."
+msgstr "Randradius instellen om de vorm van de slider te wijzigen."
+
+#: plugin-options/gallery-options.php:225
+msgid "Show slider arrows"
+msgstr "Toon slider pijlen"
+
+#: plugin-options/gallery-options.php:226
+msgid "Choose how to display the slider arrows."
+msgstr "Bepaal hoe je de slider pijlen wilt tonen."
+
+#: plugin-options/gallery-options.php:231
+#, fuzzy
+msgid "Fixed - keep the slider arrows displayed."
+msgstr "Vast - de slider pijlen altijd weergeven."
+
+#: plugin-options/gallery-options.php:232
+msgid ""
+"On Hover - display the slider arrows when hover over the thumbnails gallery."
+msgstr ""
+"Bij hoveren - de slider pijlen weergeven wanneer je over de thumbnail "
+"galerij hovert."
+
+#: plugin-options/gallery-options.php:241
+msgid "Infinite slider"
+msgstr "Oneindige slider"
+
+#: plugin-options/gallery-options.php:242
+msgid ""
+"Enable to set the slider as infinite. At the last thumbnail, the slider will "
+"start again from the 1st image."
+msgstr ""
+"Inschakelen om de slider in te stellen als oneindig. Bij de laatste "
+"thumbnail, zal de slider opnieuw beginnen bij de 1e afbeelding."
+
+#: plugin-options/gallery-options.php:254
+msgid "Infinite slider type"
+msgstr "Oneindige slider type"
+
+#: plugin-options/gallery-options.php:255
+msgid "Choose the infinite slider type to apply."
+msgstr "Kies welk oneindig slider type je wilt toepassen."
+
+#: plugin-options/gallery-options.php:260
+msgid ""
+"Circular - the thumbnail after the last one will be the 1st of the list and "
+"the slider will start again."
+msgstr ""
+"Circulair - de thumbnail na de laatste thumbnail is de 1e in de lijst, en de "
+"slider start opnieuw."
+
+#: plugin-options/gallery-options.php:261
+#, fuzzy
+msgid ""
+"Back to the 1st - after the last thumbnail the slider goes back and jumps to "
+"the 1st thumbnail."
+msgstr ""
+"Terug naar 1e - na de laatste thumbnail zal de slider terug gaan en naar de "
+"1e thumbnail springen."
+
+#: plugin-options/gallery-options.php:270
+msgid "Autoplay slider"
+msgstr "Autoplay slider"
+
+#: plugin-options/gallery-options.php:271
+msgid "Enable to set the slider in autoplay mode."
+msgstr "Inschakelen om de slider automatisch af te spelen."
+
+#: plugin-options/image/lightbox-options.php:25
+msgid "Enable lightbox on main product image"
+msgstr "Lightbox inschakelen op hoofd productafbeelding"
+
+#: plugin-options/image/lightbox-options.php:26
+msgid "Enable the lightbox feature on the main product image."
+msgstr "De lightbox optie inschakelen op de hoofd productafbeelding."
+
+#: plugin-options/image/lightbox-options.php:34
+msgid "Lightbox icon colors"
+msgstr "Lightbox pictogram kleuren"
+
+#: plugin-options/image/lightbox-options.php:41
+#: plugin-options/image/zoom-options.php:99
+msgid "Background"
+msgstr "Achtergrond"
+
+#: plugin-options/image/lightbox-options.php:46
+#: plugin-options/image/zoom-options.php:104
+msgid "Background hover"
+msgstr "Achtergrond hoveren"
+
+#: plugin-options/image/lightbox-options.php:56
+msgid "Set the lightbox icon colors."
+msgstr "Lightbox pictogram kleuren instellen."
+
+#: plugin-options/image/lightbox-options.php:63
+#: plugin-options/image/zoom-options.php:121
+msgid "Icon"
+msgstr "Pictogram"
+
+#: plugin-options/image/lightbox-options.php:68
+#: plugin-options/image/zoom-options.php:126
+msgid "Icon hover"
+msgstr "Pictogram hoveren"
+
+#: plugin-options/image/lightbox-options.php:78
+msgid "Lightbox icon size (px)"
+msgstr "Lightbox pictogram grootte (px)"
+
+#: plugin-options/image/lightbox-options.php:79
+msgid "Set the lightbox icon size."
+msgstr "Lightbox pictogram grootte instellen."
+
+#: plugin-options/image/lightbox-options.php:93
+msgid "Lightbox icon radius (%)"
+msgstr "Lightbox pictogram radius (%)"
+
+#: plugin-options/image/lightbox-options.php:94
+msgid "Set the border radius to change the shape of the lightbox background."
+msgstr ""
+"Randradius instellen om de vorm van de lightbox achtergrond te wijzigen."
+
+#: plugin-options/image/lightbox-options.php:108
+msgid "Lightbox icon position"
+msgstr "Lightbox pictogram positie"
+
+#: plugin-options/image/lightbox-options.php:109
+msgid "Choose in which position to show the lightbox icon."
+msgstr "Bepaal in welke positie je het lightbox pictogram wilt tonen."
+
+#: plugin-options/image/lightbox-options.php:117
+#: plugin-options/image/zoom-options.php:175
+msgid "Top left"
+msgstr "Bovenaan links"
+
+#: plugin-options/image/lightbox-options.php:118
+#: plugin-options/image/zoom-options.php:176
+msgid "Top right"
+msgstr "Bovenaan rechts"
+
+#: plugin-options/image/lightbox-options.php:119
+#: plugin-options/image/zoom-options.php:177
+msgid "Bottom left"
+msgstr "Onderaan links"
+
+#: plugin-options/image/lightbox-options.php:120
+#: plugin-options/image/zoom-options.php:178
+msgid "Bottom right"
+msgstr "Onderaan rechts"
+
+#: plugin-options/image/lightbox-options.php:128
+msgid "Lightbox overlay color"
+msgstr "Lightbox overlay kleur"
+
+#: plugin-options/image/lightbox-options.php:129
+msgid "Set the color for the lightbox overlay."
+msgstr "Kleur voor de lightbox overlay instellen."
+
+#: plugin-options/image/zoom-options.php:34
+msgid "Hide zoom on mobile devices"
+msgstr "Zoom verbergen op mobiele aparaten"
+
+#: plugin-options/image/zoom-options.php:35
+msgid "Enable to hide the zoom on mobile devices"
+msgstr "Inschakelen om de zoom te verbergen op mobiele aparaten"
+
+#: plugin-options/image/zoom-options.php:43
+msgid "Zoom window position"
+msgstr "Zoom scherm positie"
+
+#: plugin-options/image/zoom-options.php:44
+msgid "Choose on which position to open the zoom window."
+msgstr "Bepaal op welke positie het zoomscherm wordt geopend."
+
+#: plugin-options/image/zoom-options.php:52
+msgid "Right side"
+msgstr "Rechterkant"
+
+#: plugin-options/image/zoom-options.php:53
+msgid "Inside"
+msgstr "Binnenzijde"
+
+#: plugin-options/image/zoom-options.php:58
+msgid "Zoom window sizes (px)"
+msgstr "Zoom scherm afmetingen (px)"
+
+#: plugin-options/image/zoom-options.php:59
+msgid "Set the zoom window width and height."
+msgstr "Hoogte en breedte instellen voor het zoom scherm."
+
+#: plugin-options/image/zoom-options.php:63
+msgid "Width"
+msgstr "Breedte"
+
+#: plugin-options/image/zoom-options.php:64
+msgid "Height"
+msgstr "Hoogte"
+
+#: plugin-options/image/zoom-options.php:83
+msgid "Show zoom icon"
+msgstr "Toon zoom pictogram"
+
+#: plugin-options/image/zoom-options.php:84
+msgid "Enable to show an icon to identify the zoom feature."
+msgstr ""
+"Inschakelen om een pictogram te tonen om de zoom optie te identificeren."
+
+#: plugin-options/image/zoom-options.php:92
+msgid "Zoom icon colors"
+msgstr "Zoom pictogram kleuren"
+
+#: plugin-options/image/zoom-options.php:114
+msgid "Set the zoom icon colors."
+msgstr "Zoom pictogram kleuren instellen."
+
+#: plugin-options/image/zoom-options.php:136
+msgid "Zoom icon size (px)"
+msgstr "Zoom pictogram grootte (px)"
+
+#: plugin-options/image/zoom-options.php:137
+msgid "Set the zoom icon size."
+msgstr "De grootte van het zoom pictogram instellen."
+
+#: plugin-options/image/zoom-options.php:151
+msgid "Zoom icon radius (%)"
+msgstr "Zoom pictogram radius (%)"
+
+#: plugin-options/image/zoom-options.php:152
+msgid "Set the border radius to change the shape of the zoom background."
+msgstr "Randradius instellen om de vorm van de zoom achtergrond te wijzigen."
+
+#: plugin-options/image/zoom-options.php:166
+msgid "Zoom icon position"
+msgstr "Zoom pictogram positie"
+
+#: plugin-options/image/zoom-options.php:167
+msgid "Choose in which position to show the zoom icon."
+msgstr "Bepaal in welke positie je het zoom pictogram wilt tonen."
+
+#: plugin-options/image/zoom-options.php:186
+msgid "Loading label"
+msgstr "Laad label"
+
+#: plugin-options/image/zoom-options.php:187
+msgid "Choose the text to show when the zoom is loading."
+msgstr "Kies de tekst die je wilt tonen tijdens het laden van de zoom."
+
+#: plugin-options/image/zoom-options.php:189
+#: plugin-options/image/zoom-options.php:190
+msgid "Loading..."
+msgstr "Laden..."
+
+#: plugin-options/image/zoom-options.php:195
+msgid "Lens border opacity"
+msgstr "Lensrand doorzichtigheid"
+
+#: plugin-options/image/zoom-options.php:196
+msgid "Set the opacity of the zoom lens border."
+msgstr "Doorzichtigheid van de zoom lensrand instellen."
+
+#: plugin-options/image/zoom-options.php:209
+msgid "Blur main image"
+msgstr "Hoofdafbeelding vervagen"
+
+#: plugin-options/image/zoom-options.php:210
+msgid "Enable to blur the main image when zooming."
+msgstr "Inschakelen om de hoofdafbeelding te vervagen bij zoomen."
+
+#: view/ywzm-exclusions-table.php:51
+msgid "+ Add exclusion"
+msgstr "+ Uitsluiting toevoegen"
+
+#: view/ywzm-exclusions-table.php:81
+msgid "Remove item"
+msgstr "Item verwijderen"
+
+#: view/ywzm-exclusions-table.php:83
+msgid "This item will be removed from the list."
+msgstr "Dit item zal worden verwijderd van de lijst."
+
+#: view/ywzm-exclusions-table.php:85
+msgid "Do you wish to continue?"
+msgstr "Wil je doorgaan?"
+
+#: view/ywzm-exclusions-table.php:93
+msgid "Exclusion type"
+msgstr "Uitsluiting type"
+
+#: view/ywzm-exclusions-table.php:106
+msgid "Choose if you want to add a product, a category or a tag."
+msgstr "Bepaal of je een product, categorie of tag wilt toevoegen."
+
+#: view/ywzm-exclusions-table.php:111
+msgid "Choose products to add"
+msgstr "Producten om toe te voegen"
+
+#: view/ywzm-exclusions-table.php:120
+msgid "Search product..."
+msgstr "Product zoeken..."
+
+#: view/ywzm-exclusions-table.php:128
+msgid "Choose the products to add to the exclusion list"
+msgstr "Kies de producten die je wilt toevoegen aan de uitsluitingen lijst"
+
+#: view/ywzm-exclusions-table.php:133
+msgid "Choose categories to add"
+msgstr "Categorieën om toe te voegen"
+
+#: view/ywzm-exclusions-table.php:142
+msgid "Search category..."
+msgstr "Categorie zoeken..."
+
+#: view/ywzm-exclusions-table.php:150
+msgid "Choose the categories to add to the exclusion list"
+msgstr "Kies de categorieën die je wilt toevoegen aan de uitsluitingen lijst"
+
+#: view/ywzm-exclusions-table.php:155
+msgid "Choose tags to add"
+msgstr "Tags om toe te voegen"
+
+#: view/ywzm-exclusions-table.php:164
+msgid "Search tag..."
+msgstr "Tag zoeken..."
+
+#: view/ywzm-exclusions-table.php:172
+msgid "Choose the tags to add to the exclusion list"
+msgstr "Kies de tags die je wilt toevoegen aan de uitsluitingen lijst"
+
+#. Description of the plugin/theme
+msgid ""
+"<code><strong>YITH WooCommerce Product Gallery & Image Zoom </strong></code> "
+"allows you to add a zoom effect to product images and a thumbnail slider for "
+"the product image gallery. <a href=\"https://yithemes.com/\" target=\"_blank"
+"\">Get more plugins for your e-commerce shop on <strong>YITH</strong></a>."
+msgstr ""
+"<code><strong>YITH WooCommerce Product Gallery & Image Zoom </strong></code> "
+"laat je een zoom effect toevoegen op productafbeeldingen en een thumbnail "
+"slider voor de productafbeelding galerij. <a href=\"https://yithemes.com/\" "
+"target=\"_blank\">Verkrijg meer plugins voor je e-commerce winkel op "
+"<strong>YITH</strong></a>."
+
+#: lib/class.yith-wcmg-admin.php:91
+msgctxt "Label button of a dialog popup"
+msgid "Continue"
+msgstr "Doorgaan"
+
+#: lib/class.yith-wcmg-admin.php:92
+msgctxt "Label button of a dialog popup"
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: plugin-options/image-options.php:26
+msgctxt "Admin title of tab"
+msgid "Zoom options"
+msgstr "Zoom opties"
+
+#: plugin-options/image-options.php:32
+msgctxt "Admin title of tab"
+msgid "Lightbox"
+msgstr "Lightbox"
+
+#: view/ywzm-exclusions-table.php:62
+#, fuzzy
+msgctxt "Text showed when the list of exclusions is empty."
+msgid "You don't have any exclusion yet."
+msgstr "Je hebt nog geen uitsluitingen."
+
+#: view/ywzm-exclusions-table.php:64
+#, fuzzy
+msgctxt "Text showed when the list of exclusions is empty."
+msgid ""
+"Click on \"Add exclusion\" button to exclude a product, a category or a tag!"
+msgstr ""
+"Klik op de \"Uitsluiting toevoegen\" knop om een product, categorie of tag "
+"uit te sluiten!"
+
+#~ msgid "Add exclusion in list"
+#~ msgstr "Uitsluiting toevoegen aan lijst"

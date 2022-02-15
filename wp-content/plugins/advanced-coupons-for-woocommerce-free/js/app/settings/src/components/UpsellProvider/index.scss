@@ -1,0 +1,31 @@
+.ant-modal.acfw-upsell-modal {
+
+  .ant-modal-body {
+    text-align: center;
+    padding: 40px;
+
+    .anticon-lock {
+      margin-bottom: 20px;
+      color: #e1f0f2;
+      font-size: 5em;
+    }
+    
+    h2 {
+      color: #55a1b2;
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 1.1em;
+    }
+
+    button {
+      padding: 0 40px;
+      margin-top: 20px;
+      border-radius: 5px;
+      height: 45px;
+      font-size: 1.1em;
+    }
+  }
+}

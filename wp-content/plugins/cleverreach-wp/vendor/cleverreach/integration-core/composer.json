@@ -1,0 +1,34 @@
+{
+    "name": "cleverreach/integration-core",
+    "description": "CleverReach integrations core library",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "CleverReach\\BusinessLogic\\": "src/BusinessLogic",
+            "CleverReach\\Infrastructure\\": "src/Infrastructure",
+            "CleverReach\\Tests\\GenericTests\\": "generic_tests"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CleverReach\\Tests\\BusinessLogic\\": "tests/BusinessLogic",
+            "CleverReach\\Tests\\Infrastructure\\": "tests/Infrastructure",
+            "CleverReach\\Tests\\Common\\": "tests/Common"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "bash setup.sh"
+        ],
+        "post-update-cmd": [
+            "bash setup.sh"
+        ]
+    }
+}

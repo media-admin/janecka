@@ -1,0 +1,266 @@
+.storeabill-accounting {
+  .sab-bulk-action-wrapper {
+    float: none;
+  }
+
+  .wp-heading-inline {
+    margin-left: 8px;
+  }
+
+  .sab-nav-tab-wrapper {
+    margin-top: 5px;
+  }
+
+  ul.subsubsub {
+    li {
+      a {
+        padding: 0 .2em;
+      }
+    }
+  }
+
+  form#posts-filter {
+    p.search-box {
+      margin-top: 14px;
+    }
+
+    .tablenav {
+      .actions {
+        overflow: visible;
+      }
+      .tablenav-pages {
+        .displaying-num {
+          display: none;
+        }
+      }
+
+      .select2-container {
+        float: left;
+        width: 240px!important;
+        font-size: 14px;
+        vertical-align: middle;
+        margin: 1px 6px 4px 1px;
+
+        .select2-selection--single {
+          height: 32px;
+
+          .select2-selection__rendered {
+            line-height: 29px;
+          }
+
+          .select2-selection__arrow {
+            height: 30px;
+          }
+        }
+      }
+
+      select, input {
+        line-height: 1;
+        height: 32px;
+      }
+
+      input {
+        height: 31px;
+      }
+
+      #document-query-submit {
+        margin: 1px 8px 0 0;
+      }
+    }
+  }
+
+  .sab-action-notice-wrapper {
+    .notice:first-child {
+      margin-top: 15px;
+    }
+  }
+
+  .wp-list-table {
+    margin-top: 1em;
+
+    td, th {
+      padding: .5em 1em;
+      width: 10ch;
+      vertical-align: middle;
+    }
+
+    td, tbody th {
+      line-height: 26px;
+    }
+
+    thead {
+      th {
+        padding: .5em 1em;
+
+        &.sortable a, &.sorted a {
+          padding: 0;
+        }
+
+        &:last-child {
+          padding-right: 2em;
+        }
+      }
+    }
+
+    .check-column {
+      width: 16px;
+      white-space: nowrap;
+      padding: 1em 1em 1em 1em !important;
+      vertical-align: middle;
+
+      input {
+        vertical-align: text-top;
+        margin: 1px 0;
+      }
+    }
+
+    td.column-title {
+      font-weight: bold;
+    }
+
+    .column-title {
+      width: 20ch;
+    }
+
+    .column-actions {
+      width: 18ch;
+    }
+
+    .column-address {
+      width: 20ch;
+      line-height: 1.5em;
+    }
+
+    .column-order {
+      width: 8ch;
+    }
+
+    .column-date_due {
+      .past-due {
+        color: #a00;
+      }
+    }
+
+    .sab-status {
+      font-size: 1em;
+    }
+
+    .column-actions {
+      text-align: right;
+
+      a.sab-document-action-button {
+        margin: 2px 0 2px 4px;
+      }
+    }
+  }
+}
+
+.storeabill {
+  .sab-exporter-wrapper {
+    text-align: center;
+    max-width: 700px;
+    margin: 40px auto;
+
+    .spinner {
+      visibility: hidden;
+    }
+
+    .sab-exporter-progress {
+      margin: 0 auto 24px;
+    }
+
+    form.sab-exporter {
+      background: #fff;
+      overflow: hidden;
+      padding: 0;
+      margin: 0 0 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.13);
+      color: #555;
+      text-align: left;
+
+      &.sab-exporter__exporting {
+        .sab-progress-bar {
+          display: block;
+        }
+        .spinner {
+          visibility: visible;
+        }
+      }
+
+      header {
+        border-bottom: 1px solid #eee;
+        margin: 0;
+        padding: 24px 24px 0;
+
+        p {
+          line-height: 1.75em;
+          font-size: 16px;
+          color: #555;
+          margin: 0 0 24px;
+        }
+
+        h2 {
+          margin: 0 0 24px;
+          color: #555;
+          font-size: 24px;
+          font-weight: 400;
+          line-height: 1em;
+        }
+      }
+
+      section {
+        padding: 24px 24px 0;
+
+        .sab-exporter-options {
+          th, td {
+            vertical-align: middle;
+            line-height: 1.75em;
+            padding: 0 0 24px 0;
+          }
+
+          td#sab-exporter-date-range {
+            .sab-exporter-date-adjuster {
+              margin-top: 5px;
+              font-size: .9em;
+              margin-right: 5px;
+            }
+          }
+
+          th {
+            width: 35%;
+            padding-right: 20px;
+
+            label {
+              color: #555;
+              font-weight: 400;
+              position: relative;
+              display: block;
+            }
+          }
+        }
+      }
+
+      .sab-actions {
+        overflow: hidden;
+        border-top: 1px solid #eee;
+        margin: 0;
+        padding: 23px 24px 24px;
+        line-height: 3em;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+
+        .button {
+          font-size: 1.25em;
+          padding: .5em 1em !important;
+          line-height: 1.5em !important;
+          margin-right: .5em;
+          margin-bottom: 2px;
+          height: auto !important;
+          border-radius: 4px;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

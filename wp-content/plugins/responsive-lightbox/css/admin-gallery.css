@@ -1,0 +1,69 @@
+#rl-modal-gallery {
+	position: relative;
+}
+#rl-insert-modal-gallery-button {
+	padding-left: 5px;
+}
+#rl-insert-modal-gallery-button span {
+	font-size: 18px;
+}
+#rl-modal-gallery .rl-gallery-images-spinner {
+	margin-top: 20px;
+	float: none;
+}
+#rl-modal-gallery .rl-loading-content {
+	pointer-events: none;
+	opacity: 0.4;
+	transition: opacity 0.3s ease-in-out;
+}
+#rl-modal-gallery .rl-attachments-list .attachment,
+#rl-modal-gallery .rl-attachments-list .attachment-preview {
+	cursor: default;
+}
+#rl-modal-gallery .rl-galleries-list .attachment .format-landscape {
+	width: auto;
+	height: 100%;
+}
+#rl-modal-gallery .rl-galleries-list .attachment .format-portrait {
+	width: 100%;
+	height: auto;
+}
+#rl-modal-gallery .rl-status-active {
+	opacity: 1;
+}
+#rl-modal-gallery .rl-status-inactive {
+	opacity: 0.4;
+}
+.wrap .rl-reload-galleries,
+.wrap .rl-reload-galleries:active {
+	margin-left: 10px;
+}
+.media-frame .rl-gallery-reload-spinner {
+	float: none;
+	visibility: visible;
+	margin-left: 5px;
+	margin-top: -5px;
+}
+.rl-media-tag-select2 {
+	display: none;
+}
+.rl-media-tag-select2-dropdown {
+	z-index: 999999;
+}
+.compat-field-rl_media_tag {
+	min-height: 48px;
+}
+.compat-field-rl_media_folder select {
+	max-width: 100%;
+	margin-left: 0;
+}
+@media only screen and (min-width: 900px) {
+	.compat-field-rl_media_folder .label {
+		max-width: 30%;
+	}
+	.compat-field-rl_media_folder .label span {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+}

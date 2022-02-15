@@ -1,0 +1,112 @@
+/* Tab Icons */
+#woocommerce-coupon-data {
+
+    /* Add free products tab styling */
+    #acfw_add_free_products {
+        position: relative;
+
+        .product-search {
+
+            .field-control {
+                width: 25%;
+                float: left;
+                box-sizing: border-box;
+
+                &:first-child {
+                    width:50%;
+                }
+
+                label {
+                    margin: 0;
+                    float: none;
+                    display: block;
+                }
+
+                input, select {
+                    width: 100% !important;
+                }
+
+                button {
+                    margin-top: 22px;
+                }
+            }
+
+            &:after {
+                content: '';
+                clear: both;
+                display: table;
+            }
+        }
+
+        .add-free-products-list {
+
+            .table-wrap {
+                border-bottom: 1px solid #eee;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                border-bottom: 1px solid #eeeeee;
+                font-size: 12px;
+
+                tr th {
+                    border-bottom: 1px solid #eeeeee;
+                }
+
+                tr {
+
+                    th {
+                        border-bottom: 1px solid #eeeeee;
+                    }
+
+                    th,td {
+                        background: #fff;
+                        padding: 5px;
+                        text-align: center;
+
+                        &.pid,
+                        &.quantity {
+                            width: 40px;
+                        }
+                        &.pname {
+                            width: 40%;
+                            text-align: left;
+                        }
+                        &.ptype {
+                            width: 100px;
+                        }
+                        &.psku {
+                            width: 100px;
+                        }
+                        &.actions {
+                            width: 50px;
+
+                            .remove {
+                                color: #dc3232;
+
+                                &:hover {
+                                    opacity: 0.8;
+                                }
+                            }
+                        }
+
+                    }
+
+                    &:nth-child(2n) td {
+                        background: #f3f3f3;
+                    }
+
+                    &.editing-row td {
+                        background: #feffd9;
+                    }
+                }
+
+                &.editing td.actions * {
+                    visibility: hidden;
+                }
+            }
+        }
+    }
+
+}

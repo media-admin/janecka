@@ -1,0 +1,666 @@
+# Translation of YITH WooCommerce Ajax Search in Greek
+# This file is distributed under the same license as the YITH WooCommerce Ajax Search package.
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH WooCommerce Ajax Search\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/yith-woocommerce-"
+"ajax-search.premium\n"
+"POT-Creation-Date: 2021-10-27 14:21:39+00:00\n"
+"PO-Revision-Date: 2020-11-04 14:22:23+0000\n"
+"Language: el_GR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+
+#: includes/class.yith-wcas-admin.php:93
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: includes/class.yith-wcas-admin.php:94 plugin-options/settings-options.php:41
+msgid "Search"
+msgstr "Αναζήτηση"
+
+#: includes/class.yith-wcas-admin.php:95
+msgid "Output"
+msgstr "Παραγωγή"
+
+#: includes/class.yith-wcas.php:657
+msgid "sale"
+msgstr "έκπτωση"
+
+#: includes/class.yith-wcas.php:661
+msgid "Out of stock"
+msgstr "Εκτός αποθέματος"
+
+#: includes/class.yith-wcas.php:665
+msgid "featured"
+msgstr "επιλεγμένα"
+
+#: includes/class.yith-wcas.php:729 plugin-options/output-options.php:295
+msgid "No results"
+msgstr "Χωρίς αποτελέσματα"
+
+#: includes/class.yith-wcas.php:1126
+msgid "Search in product brands"
+msgstr "Αναζήτηση σε μάρκες προϊόντος"
+
+#: includes/class.yith-wcas.php:1127
+msgid "Extend search in product brands"
+msgstr "Επέκταση αναζήτησης σε μάρκες προϊόντος"
+
+#: includes/class.yith-wcas.php:1178
+msgid "Search by vendor"
+msgstr "Αναζήτηση κατα πωλητή"
+
+#: includes/class.yith-wcas.php:1179
+msgid "Extend search in vendors' products"
+msgstr "Επεκτείνετε την αναζήτηση στα προϊόντα πωλητών"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:40
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:77
+msgid "YITH WooCommerce Ajax Search"
+msgstr "YITH WooCommerce Ajax Search"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:87
+msgid ""
+"This widget inherits the style from the settings of YITH WooCommerce Ajax "
+"Search plugin that you can edit"
+msgstr ""
+"Αυτή η μικροεφαρμογή υιοθετεί το στυλ από τις ρυθμίσεις του πρόσθετου YITH "
+"WooCommerce Ajax Search τις οποίες μπορείτε να επεξεργαστείτε"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:89
+msgid "here"
+msgstr "εδώ"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:98
+msgid "Template"
+msgstr "Πρότυπο"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:102
+#: plugin-options/output-options.php:50
+msgid "Default"
+msgstr "Προεπιλεγμένο"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:103
+#: plugin-options/output-options.php:51
+msgid "Wide"
+msgstr "Πλατύ"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:111
+msgid "Class"
+msgstr "Κλάση"
+
+#: includes/widgets/class.yith-wcas-ajax-search.php:29
+msgid "An Ajax Search box for products only."
+msgstr "Κουτί Ajax Αναζήτησης μόνο για προϊόντα."
+
+#: includes/widgets/class.yith-wcas-ajax-search.php:31
+msgid "YITH WooCommerce Ajax Product Search"
+msgstr "YITH WooCommerce Ajax Product Search"
+
+#: includes/widgets/class.yith-wcas-ajax-search.php:108
+msgid "Title:"
+msgstr "Τίτλος:"
+
+#: includes/widgets/class.yith-wcas-ajax-search.php:113
+msgid "Template wide"
+msgstr "Πρότυπο πλατύ"
+
+#: includes/widgets/class.yith-wcas-ajax-search.php:118
+msgid "Filters above"
+msgstr "Φίλτρα πάνω"
+
+#: init.php:70
+msgid ""
+"YITH WooCommerce Ajax Search Premium is enabled but not effective. It "
+"requires WooCommerce in order to work."
+msgstr ""
+"Το YITH WooCommerce Ajax Search Premium είναι ενεργοποιημένο αλλά "
+"αναποτελεσματικό. Για σωστή λειτουργία απαιτείται WooCommerce."
+
+#: plugin-options/output-options.php:21
+msgid "Output Options"
+msgstr "Επιλογές Παραγωγής"
+
+#: plugin-options/output-options.php:27
+msgid "Show thumbnail"
+msgstr "Εμφάνιση μικρογραφίας"
+
+#: plugin-options/output-options.php:28
+msgid "Choose if you want show thumbnail and position"
+msgstr "Επιλέξτε αν θέλετε να εμφανίζονται η μικρογραφία και η θέση"
+
+#: plugin-options/output-options.php:35
+msgid "Hide thumbnail"
+msgstr "Απόκρυψη μικρογραφίας"
+
+#: plugin-options/output-options.php:36
+msgid "Show on the Left"
+msgstr "Εμφάνιση στα Αριστερά"
+
+#: plugin-options/output-options.php:37
+msgid "Show on the Right"
+msgstr "Εμφάνιση στα Δεξιά"
+
+#: plugin-options/output-options.php:42
+msgid "Search form default template"
+msgstr "Προεπιλεγμένο πρότυπο φόρμας αναζήτησης"
+
+#: plugin-options/output-options.php:43
+msgid "This option can be overridden by shortcode or widget"
+msgstr "Αυτή η επιλογή μπορεί να παρακαμφθεί με μικροκώδικα ή μικροεφαρμογή"
+
+#: plugin-options/output-options.php:56
+msgid "Size of thumbnails"
+msgstr "Μέγεθος μικρογραφιών"
+
+#: plugin-options/output-options.php:57
+msgid "Insert in px the dimension of thumbnails"
+msgstr "Εισάγετε τις διαστάσεις των μικρογραφιών σε px"
+
+#: plugin-options/output-options.php:66
+msgid "Show price"
+msgstr "Εμφάνιση τιμής"
+
+#: plugin-options/output-options.php:67
+msgid "Show price of product"
+msgstr "Εμφάνιση τιμής προϊόντος"
+
+#: plugin-options/output-options.php:75
+msgid "Price Label"
+msgstr "Επιγραφή Τιμής"
+
+#: plugin-options/output-options.php:76
+msgid "Show a label before the price"
+msgstr "Εμφάνιση επιγραφής πριν την τιμή"
+
+#: plugin-options/output-options.php:78
+msgid "Price:"
+msgstr "Τιμή:"
+
+#: plugin-options/output-options.php:82
+msgid "Include Product Variation"
+msgstr "Περιλαμβάνετε Παραλλαγή Προϊόντος"
+
+#: plugin-options/output-options.php:83
+msgid "Choose if include or not the product variations in the search results"
+msgstr ""
+"Επιλέξτε να περιλαμβάνετε ή όχι τις παραλλαγές προϊόντος στα αποτελέσματα "
+"αναζήτησης"
+
+#: plugin-options/output-options.php:90
+msgid "Loader"
+msgstr "Φορτωτής"
+
+#: plugin-options/output-options.php:91
+msgid "Loader gif"
+msgstr "Φορτωτής GIF"
+
+#: plugin-options/output-options.php:104
+msgid "Sales and Featured badges"
+msgstr "Εμβλήματα Έκπτωσης και Επιλεγμένων"
+
+#: plugin-options/output-options.php:110
+msgid "Show sale badge"
+msgstr "Εμφάνιση εμβλήματος έκπτωσης"
+
+#: plugin-options/output-options.php:111
+msgid "Show sale badge if the product is on sale"
+msgstr "Εμφάνιση εμβλήματος έκπτωσης αν το προϊόν είναι σε έκπτωση"
+
+#: plugin-options/output-options.php:119
+#, fuzzy
+msgid "Sale badge color"
+msgstr "Χρώμα φόντου εμβλήματος έκπτωσης"
+
+#: plugin-options/output-options.php:126 plugin-options/output-options.php:155
+#: plugin-options/output-options.php:184
+#, fuzzy
+msgid "Background color"
+msgstr "Χρώμα φόντου εμβλήματος έκπτωσης"
+
+#: plugin-options/output-options.php:131 plugin-options/output-options.php:160
+#: plugin-options/output-options.php:189
+#, fuzzy
+msgid "Text color"
+msgstr "Χρώμα τίτλου"
+
+#: plugin-options/output-options.php:139
+msgid "Show out of stock badge"
+msgstr "Εμφάνιση εμβλήματος εκτός αποθέματος"
+
+#: plugin-options/output-options.php:148
+#, fuzzy
+msgid "Out of stock badge color"
+msgstr "Χρώμα φόντου εμβλήματος εκτός αποθέματος"
+
+#: plugin-options/output-options.php:168
+msgid "Show featured badge"
+msgstr "Εμφάνιση εμβλήματος επιλεγμένων"
+
+#: plugin-options/output-options.php:177
+#, fuzzy
+msgid "Featured badge color"
+msgstr "Χρώμα φόντου εμβλήματος επιλεγμένων"
+
+#: plugin-options/output-options.php:197
+msgid "Hide featured bagde if the product is on sale"
+msgstr "Απόκρυψη εμβλήματος επιλεγμένων αν το προϊόν είναι σε έκπτωση"
+
+#: plugin-options/output-options.php:211
+msgid "Title & Excerpt"
+msgstr "Τίτλος & Απόσπασμα"
+
+#: plugin-options/output-options.php:217
+msgid "Title color"
+msgstr "Χρώμα τίτλου"
+
+#: plugin-options/output-options.php:226
+msgid "Show excerpt"
+msgstr "Εμφάνιση αποσπάσματος"
+
+#: plugin-options/output-options.php:227
+msgid "Show excerpt of product"
+msgstr "Εμφάνιση αποσπάσματος προϊόντος"
+
+#: plugin-options/output-options.php:235
+msgid "Number of words to show in excerpt"
+msgstr "Αριθμός λέξεων προς εμφάνιση σε απόσπασμα"
+
+#: plugin-options/output-options.php:251
+msgid "Show product categories"
+msgstr "Εμφάνιση κατηγοριών προϊόντος"
+
+#: plugin-options/output-options.php:264
+msgid "\"View All\" Link"
+msgstr "Σύνδεσμος “Προβολή Όλων”"
+
+#: plugin-options/output-options.php:270
+msgid "Show \"view all\" link"
+msgstr "Εμφάνιση συνδέσμου “προβολή όλων”"
+
+#: plugin-options/output-options.php:271
+msgid "Add a link to the bottom of results"
+msgstr "Προσθήκη συνδέσμου στο κάτω μέρος των αποτελεσμάτων"
+
+#: plugin-options/output-options.php:279
+msgid "Text of \"view all\" link"
+msgstr "Κείμενο για σύνδεσμο “προβολή όλων”"
+
+#: plugin-options/output-options.php:280
+msgid "Add a link at the bottom of results"
+msgstr "Προσθήκη συνδέσμου στο κάτω μέρος των αποτελεσμάτων"
+
+#: plugin-options/output-options.php:282
+msgid "View all"
+msgstr "Προβολή όλων"
+
+#: plugin-options/output-options.php:292
+msgid "Text of \"no results\""
+msgstr "Κείμενο για “χωρίς αποτελέσματα”"
+
+#: plugin-options/output-options.php:293
+msgid "Show this text for no results"
+msgstr "Εμφανίστε αυτό το κείμενο όταν δεν υπάρχουν αποτελέσματα"
+
+#: plugin-options/search-options.php:24
+msgid "Search settings"
+msgstr "Ρυθμίσεις αναζήτησης"
+
+#: plugin-options/search-options.php:30
+msgid "Choose element types to search"
+msgstr "Επιλέξτε τύπους στοιχείων για αναζήτηση"
+
+#: plugin-options/search-options.php:31
+msgid "Choose if you want to extend search also to posts and pages"
+msgstr "Επιλέξτε αν θέλετε να επεκτείνετε την αναζήτηση σε άρθρα και σελίδες"
+
+#: plugin-options/search-options.php:38
+#: templates/yith-woocommerce-ajax-search-wide.php:27
+#: templates/yith-woocommerce-ajax-search-wide.php:45
+#: templates/yith-woocommerce-ajax-search.php:31
+#: templates/yith-woocommerce-ajax-search.php:48
+msgid "All"
+msgstr "Όλα"
+
+#: plugin-options/search-options.php:39
+#: templates/yith-woocommerce-ajax-search-wide.php:26
+#: templates/yith-woocommerce-ajax-search.php:30
+msgid "Products"
+msgstr "Προϊόντα"
+
+#: plugin-options/search-options.php:44
+msgid "Search in title"
+msgstr "Αναζήτηση σε τίτλο"
+
+#: plugin-options/search-options.php:45
+msgid "Extend search in the title of the product"
+msgstr "Επέκταση αναζήτησης σε τίτλο προϊόντος"
+
+#: plugin-options/search-options.php:53
+msgid "Search in excerpt"
+msgstr "Αναζήτηση σε απόσπασμα"
+
+#: plugin-options/search-options.php:54
+msgid "Extend search in the excerpt of the product"
+msgstr "Επέκταση αναζήτησης σε απόσπασμα προϊόντος"
+
+#: plugin-options/search-options.php:62
+msgid "Search in content"
+msgstr "Αναζήτηση σε περιεχόμενο"
+
+#: plugin-options/search-options.php:63
+msgid "Extend search in the content of the product"
+msgstr "Επέκταση αναζήτησης σε περιεχόμενο προϊόντος"
+
+#: plugin-options/search-options.php:71
+msgid "Search in product categories"
+msgstr "Αναζήτηση σε κατηγορίες προϊόντος"
+
+#: plugin-options/search-options.php:72
+msgid "Extend search in product categories"
+msgstr "Επέκταση αναζήτησης σε κατηγορίες προϊόντος"
+
+#: plugin-options/search-options.php:80
+msgid "Search in product tags"
+msgstr "Αναζήτηση σε ετικέτες προϊόντων"
+
+#: plugin-options/search-options.php:81
+msgid "Extend search in product tags"
+msgstr "Επέκταση αναζήτησης σε ετικέτες προϊόντων"
+
+#: plugin-options/search-options.php:89
+msgid "Search in author"
+msgstr "Αναζήτηση σε συντάκτη"
+
+#: plugin-options/search-options.php:90
+msgid "Extend search in author"
+msgstr "Επέκταση αναζήτησης σε συντάκτη"
+
+#: plugin-options/search-options.php:98
+msgid "Multiple Word Search"
+msgstr "Αναζήτηση Πολλαπλών Λέξεων"
+
+#: plugin-options/search-options.php:105
+msgid "Show items containing all words typed"
+msgstr ""
+"Εμφάνιση αντικειμένων που περιέχουν όλες τις λέξεις που πληκτρολογήσατε"
+
+#: plugin-options/search-options.php:106
+msgid "Show items containing al least one of the words typed"
+msgstr ""
+"Εμφάνιση αντικειμένων που περιέχουν τουλάχιστον μία από τις λέξεις που "
+"πληκτρολογήσατε"
+
+#: plugin-options/search-options.php:111
+msgid "Hide out of stock products"
+msgstr "Απόκρυψη προϊόντων εκτός αποθέματος"
+
+#: plugin-options/search-options.php:112
+msgid ""
+"Enable this option if you don't want to show out of stock products in the "
+"results"
+msgstr ""
+"Ενεργοποιήστε αυτή την επιλογή εάν δεν θέλετε να εμφανίζονται τα προϊόντα "
+"εκτός αποθέματος στα αποτελέσματα"
+
+#: plugin-options/search-options.php:121
+msgid "Enable transients to cache autocomplete results"
+msgstr ""
+"Ενεργοποιήστε να γίνεται αποθήκευση σε κρυφή μνήμη από transients για "
+"αποτελέσματα αυτόματης συμπλήρωσης"
+
+#: plugin-options/search-options.php:122
+msgid "Save the results of a query in a transient"
+msgstr "Εισάγετε τα αποτελέσματα ενός αιτήματος σε transient"
+
+#: plugin-options/search-options.php:131
+msgid "Set the duration of transient"
+msgstr "Εισάγετε την διάρκεια μετάβασης"
+
+#: plugin-options/search-options.php:132
+msgid "(hours)"
+msgstr "(ώρες)"
+
+#: plugin-options/search-options.php:151
+msgid "Order Options"
+msgstr "Επιλογές Παραγγελίας"
+
+#: plugin-options/search-options.php:158
+msgid "Enable order by post type"
+msgstr "Ενεργοποίηση παραγγελίας κατα τύπο άρθρου"
+
+#: plugin-options/search-options.php:167
+msgid "Show first: "
+msgstr "Αρχική εμφάνιση: "
+
+#: plugin-options/search-options.php:174
+msgid "Product"
+msgstr "Προϊόν"
+
+#: plugin-options/search-options.php:175
+msgid "Post & Pages"
+msgstr "Άρθρο & Σελίδες"
+
+#: plugin-options/search-options.php:190
+msgid "Search by Custom Field"
+msgstr "Αναζήτηση κατα Προσαρμοσμένο Πεδίο"
+
+#: plugin-options/search-options.php:191
+msgid ""
+"Extend search functionality to custom fields. Enter custom fields comma "
+"separated. Attention: this feature may slow down the search process on some "
+"servers."
+msgstr ""
+"Επεκτείνετε την λειτουργικότητα αναζήτησης σε προσαρμοσμένα πεδία. Εισάγετε "
+"προσαρμοσμένα πεδία διαχωρίζοντας με κόμμα. Προσοχή: αυτό το χαρακτηριστικό "
+"μπορεί να επιβραδύνει την διαδικασία αναζήτησης για κάποιους διακομιστές."
+
+#: plugin-options/search-options.php:197
+msgid "Custom field name"
+msgstr "Όνομα προσαρμοσμένου πεδίου"
+
+#: plugin-options/search-options.php:210
+msgid "Search by Sku Settings"
+msgstr "Αναζήτηση κατα Ρυθμίσεις Sku"
+
+#: plugin-options/search-options.php:211
+msgid ""
+"Extend search functionality so that search includes also sku. Attention: "
+"this feature may slow down the search process on some servers."
+msgstr ""
+"Επεκτείνετε την λειτουργικότητα αναζήτησης έτσι ώστε η αναζήτηση να "
+"περιλαμβάνει sku. Προσοχή: αυτό το χαρακτηριστικό μπορεί να επιβραδύνει την "
+"διαδικασία αναζήτησης για κάποιους διακομιστές."
+
+#: plugin-options/search-options.php:217
+msgid "Search by sku"
+msgstr "Αναζήτηση κατα sku"
+
+#: plugin-options/search-options.php:218
+msgid "Extend search functionality so that search includes also sku"
+msgstr ""
+"Επεκτείνετε την λειτουργικότητα αναζήτησης έτσι ώστε η αναζήτηση να "
+"περιλαμβάνει sku"
+
+#: plugin-options/search-options.php:226
+msgid "Search by sku variable products"
+msgstr "Αναζήτηση προϊόντων παραλλαγής κατα sku"
+
+#: plugin-options/search-options.php:227
+msgid "Extend sku search including variable products."
+msgstr "Επεκτείνετε την αναζήτηση sku περιλαμβάνοντας προϊόντα παραλλαγών."
+
+#: plugin-options/settings-options.php:23
+msgid "General settings"
+msgstr "Γενικές ρυθμίσεις"
+
+#: plugin-options/settings-options.php:29
+msgid "Search input label"
+msgstr "Επιγραφή εισαγωγής Αναζήτησης"
+
+#: plugin-options/settings-options.php:31
+#: plugin-options/settings-options.php:39
+msgid "Label for Search input field."
+msgstr "Πεδίο εισαγωγής Επιγραφής Αναζήτησης."
+
+#: plugin-options/settings-options.php:33
+msgid "Search for products"
+msgstr "Αναζήτηση προϊόντων"
+
+#: plugin-options/settings-options.php:37
+msgid "Search submit label"
+msgstr "Αναζήτηση επιγραφής υποβολής"
+
+#: plugin-options/settings-options.php:45
+msgid "Minimum number of characters"
+msgstr "Ελάχιστος αριθμός χαρακτήρων"
+
+#: plugin-options/settings-options.php:46
+msgid "Minimum number of characters required to trigger autosuggest."
+msgstr ""
+"Ελάχιστος απαιτούμενος αριθμός χαρακτήρων για να λειτουργήσει το πλαίσιο "
+"αυτόματης εμφάνισης."
+
+#: plugin-options/settings-options.php:59
+msgid "Maximum number of results"
+msgstr "Μέγιστος αριθμός αποτελεσμάτων"
+
+#: plugin-options/settings-options.php:60
+msgid "Maximum number of results showed in autosuggest box."
+msgstr ""
+"Μέγιστος αριθμός αποτελεσμάτων που εμφανίζονται στο πλαίσιο αυτόματης "
+"εμφάνισης."
+
+#: plugin-options/settings-options.php:79
+msgid "Additional Features"
+msgstr "Επιπλέον Χαρακτηριστικά"
+
+#: plugin-options/settings-options.php:80
+msgid ""
+"If these options are not showed, your theme may not support these features. "
+"Please, contact the developer of theme to implement them."
+msgstr ""
+"Εάν αυτές οι επιλογές δεν εμφανίζονται, το θέμα σας ενδέχεται να μην "
+"υποστηρίζει αυτά τα χαρακτηριστικά. Παρακαλώ, επικοινωνήστε με τον "
+"προγραμματιστή του θέματος για να τα εφαρμόσετε."
+
+#: plugin-options/settings-options.php:86
+msgid "Show filter for search fields"
+msgstr "Εμφάνιση φίλτρου για πεδία αναζήτησης"
+
+#: plugin-options/settings-options.php:87
+msgid ""
+"Show filter for search fields (it allows searching the Whole site or only "
+"among products)"
+msgstr ""
+"Εμφάνιση φίλτρου για πεδία αναζήτησης (επιτρέπει την αναζήτηση ολόκληρου του "
+"ιστοτόπου ή μόνο μεταξύ προϊόντων)"
+
+#: plugin-options/settings-options.php:95
+msgid "Show the category list"
+msgstr "Εμφάνιση της λίστας κατηγοριών"
+
+#: plugin-options/settings-options.php:96
+msgid "This option lets you decide to show the categories dropdown"
+msgstr ""
+"Αυτή η επιλογή σας επιτρέπει να εμφανίσετε την αναδιπλούμενη λίστα κατηγοριών"
+
+#: plugin-options/settings-options.php:105
+msgid "Categories to show"
+msgstr "Κατηγορίες προς εμφάνιση"
+
+#: plugin-options/settings-options.php:106
+msgid ""
+"This option lets you decide to show all the categories or only the main ones"
+msgstr ""
+"Αυτή η επιλογή σας επιτρέπει να εμφανίσετε όλες τις κατηγορίες ή μόνο τις "
+"κύριες"
+
+#: plugin-options/settings-options.php:113
+msgid "Main Categories"
+msgstr "Βασικές Κατηγορίες"
+
+#: plugin-options/settings-options.php:114
+msgid "All Categories"
+msgstr "Όλες οι Κατηγορίες"
+
+#: templates/yith-woocommerce-ajax-search.php:63
+msgid "Search for:"
+msgstr "Αναζήτηση για:"
+
+#. Description of the plugin/theme
+msgid ""
+"<code><strong>YITH WooCommerce Ajax Search Premium</strong></code> is the "
+"plugin that allows you to search for a specific product by inserting a few "
+"characters. Thanks to <strong>Ajax Search</strong>, users can quickly find "
+"the contents they are interested in without wasting time among site pages. "
+"<a href=\"https://yithemes.com/\" target=\"_blank\">Get more plugins for "
+"your e-commerce shop on <strong>YITH</strong></a>."
+msgstr ""
+"Το <code><strong>YITH WooCommerce Ajax Search Premium</strong></code> είναι "
+"το πρόσθετο που σας επιτρέπει να κάνετε αναζήτηση ένα συγκεκριμένο προϊόν, "
+"εισάγοντας μερικούς χαρακτήρες. Χάρη στο <strong>Ajax Search</strong>, οι "
+"χρήστες μπορούν να βρουν γρήγορα τα περιεχόμενα που τους ενδιαφέρουν, χωρίς "
+"να χάνουν χρόνο άσκοπα μεταξύ σελίδων. <a href=\"https://yithemes.com/\" "
+"target=\"_blank\">Βρείτε περισσότερα πρόσθετα για το ηλεκτρονικό σας "
+"κατάστημα στο <strong>YITH</strong></a>."
+
+#: includes/class.yith-wcas-admin.php:101
+msgctxt "Plugin name, no translate"
+msgid "YITH WooCommerce Ajax Search"
+msgstr "YITH WooCommerce Ajax Search"
+
+#: includes/class.yith-wcas-admin.php:102
+msgctxt "Plugin name, no translate"
+msgid "Ajax Search"
+msgstr "Ajax Search"
+
+#: plugin-options/gutenberg/blocks.php:19
+msgctxt "[gutenberg]: block name"
+msgid "Ajax Search"
+msgstr "Ajax Search"
+
+#: plugin-options/gutenberg/blocks.php:20
+msgctxt "[gutenberg]: block description"
+msgid "Show Ajax Search Form"
+msgstr "Εμφάνιση Φόρμας Ajax Αναζήτησης"
+
+#: plugin-options/gutenberg/blocks.php:24
+msgctxt "[gutenberg]: keywords"
+msgid "Ajax Search"
+msgstr "Ajax Αναζήτηση"
+
+#: plugin-options/gutenberg/blocks.php:25
+msgctxt "[gutenberg]: keywords"
+msgid "Search"
+msgstr "Αναζήτηση"
+
+#: plugin-options/gutenberg/blocks.php:30
+msgctxt "[gutenberg]: show or hide the thumbnail"
+msgid "Template"
+msgstr "Πρότυπο"
+
+#: plugin-options/gutenberg/blocks.php:33
+msgctxt "[gutenberg]: Help to show thumbnail"
+msgid "Default"
+msgstr "Προεπιλεγμένο"
+
+#: plugin-options/gutenberg/blocks.php:34
+msgctxt "[gutenberg]: Help to hide thumbnail"
+msgid "Wide"
+msgstr "Πλατύ"
+
+#: plugin-options/gutenberg/blocks.php:39
+msgctxt "[gutenberg]: class of widget"
+msgid "Class"
+msgstr "Κλάση"
+
+#~ msgid "Hover color"
+#~ msgstr "Χρώμα αιώρησης"
+
+#~ msgid "Default color"
+#~ msgstr "Προεπιλεγμένο χρώμα"

@@ -1,0 +1,53 @@
+.acfw-settings-nav.ant-menu-vertical {
+    .ant-menu-item {
+        background: #fff;
+        margin: 0;
+        border-bottom: 1px solid #D5D5D5;
+
+        &.ant-menu-item-active,
+        &.ant-menu-item-selected,
+        &:hover {
+            
+            a,
+            button.buttonlink {
+                color: #1693A7;
+            }
+        }
+
+        &.premium_upgrade {
+            background: #C6CD2E;
+            font-weight: bold;
+
+            &:hover {
+                background: #cad22a;
+
+                a {
+                    color: #35380a;
+                }
+            }
+
+            &.ant-menu-item-selected {
+                
+                a {
+                    color: #35380a;
+                }
+            }
+        }
+
+        .anticon {
+            margin-right: 7px;
+        }
+    }
+}
+
+.settings-nav-skeleton {
+
+    .ant-skeleton {
+        padding: 0 20px;
+        border-bottom: 1px solid #d5d5d5;
+
+        .ant-skeleton-title {
+            margin: 12px 0
+        }
+    }
+}

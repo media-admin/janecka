@@ -1,0 +1,1247 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Woo Search\n"
+"Report-Msgid-Bugs-To: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: grunt-wp-i18n 0.5.0\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+
+
+#: advanced-woo-search.php:124
+msgid "Settings"
+msgstr ""
+
+#: advanced-woo-search.php:197
+msgid "Advanced Woo Search plugin is enabled but not effective. It requires WooCommerce in order to work."
+msgstr ""
+
+#: advanced-woo-search.php:208
+msgid "Advanced Woo Search PRO plugin is enabled but not effective. Please disable the lite version of plugin."
+msgstr ""
+
+msgid "Advanced Woo Search: Please go to the plugin setting page and start indexing your products. %s"
+msgstr ""
+
+msgid "In case you need to add plugin search form on your website, you can do it in several ways:"
+msgstr ""
+
+msgid "Enable a %s option ( may not work with some themes )"
+msgstr ""
+
+msgid "Using shortcode %s"
+msgstr ""
+
+msgid "Add search form as a widget. Go to %s and drag&drop 'AWS Widget' to one of your widget areas"
+msgstr ""
+
+msgid "Widgets Screen"
+msgstr ""
+
+msgid "Add PHP code to the necessary files of your theme: %s"
+msgstr ""
+
+msgid "Replace %s with ID of search form that you want to display"
+msgstr ""
+
+msgid "Reindex Table"
+msgstr ""
+
+msgid "This action only need for %s one time %s - after you activate this plugin. After this all products changes will be re-indexed automatically."
+msgstr ""
+
+msgid "Go to Settings Page"
+msgstr ""
+
+msgid "Advanced Woo Search: Please reindex table for proper work of new plugin features. %s"
+msgstr ""
+
+#: include/class-aws-admin.php:43
+msgid "Adv. Woo Search"
+msgstr ""
+
+#: include/class-aws-admin.php:59
+msgid "General"
+msgstr ""
+
+#: include/class-aws-admin.php:60
+msgid "Search Form"
+msgstr ""
+
+msgid "Mobile full screen"
+msgstr ""
+
+msgid "Full screen search on focus. Will not work if the search form is inside the block with position: fixed."
+msgstr ""
+
+#: include/class-aws-admin.php:61
+msgid "Search Results"
+msgstr ""
+
+#: include/class-aws-admin.php:141
+msgid "Back"
+msgstr ""
+
+#: include/class-aws-admin.php:167
+msgid "Save Changes"
+msgstr ""
+
+#: include/class-aws-admin.php:193
+msgid "Form Name"
+msgstr ""
+
+#: include/class-aws-admin.php:194
+msgid "Shortcode"
+msgstr ""
+
+#: include/class-aws-admin.php:218
+msgid "Delete"
+msgstr ""
+
+#: include/class-aws-admin.php:219
+msgid "Copy"
+msgstr ""
+
+#: include/class-aws-admin.php:220
+msgid "Edit"
+msgstr ""
+
+#: include/class-aws-admin.php:234
+msgid "Add New Form"
+msgstr ""
+
+#: include/class-aws-admin.php:256
+msgid "Update all data in plugins index table. Index table - table with products data where plugin is searching all typed terms.<br>Use this button if you think that plugin not shows last actual data in its search results.<br><strong>CAUTION:</strong> this can take large amount of time."
+msgstr ""
+
+msgid "Index table options can be found inside %s section."
+msgstr ""
+
+#: include/class-aws-admin.php:257
+msgid "Products in index:"
+msgstr ""
+
+#: include/class-aws-admin.php:269
+msgid "Clear cache"
+msgstr ""
+
+#: include/class-aws-admin.php:270
+msgid "Clear cache for all search results."
+msgstr ""
+
+msgid "Seamless integration"
+msgstr ""
+
+msgid "Replace all the standard search forms on your website ( may not work with some themes )."
+msgstr ""
+
+msgid "Stop words list"
+msgstr ""
+
+msgid "Comma separated list of words that will be excluded from search."
+msgstr ""
+
+msgid "Re-index required on change."
+msgstr ""
+
+msgid "Synonyms"
+msgstr ""
+
+msgid "Comma separated list of synonym words. Each group of synonyms must be on separated text line."
+msgstr ""
+
+#: include/class-aws-admin.php:296
+msgid "Filter Name"
+msgstr ""
+
+#: include/class-aws-admin.php:341
+msgid "Add New Filter"
+msgstr ""
+
+#: include/class-aws-admin-fields.php:200
+msgid "Active sources"
+msgstr ""
+
+#: include/class-aws-admin-fields.php:201
+msgid "Change order by drag&drop"
+msgstr ""
+
+#: include/class-aws-admin-fields.php:220
+msgid "Deactivated sources"
+msgstr ""
+
+#: include/class-aws-admin-fields.php:221
+msgid "Excluded from search results"
+msgstr ""
+
+#: include/class-aws-search.php:467
+msgid "1 Review"
+msgstr ""
+
+#: include/class-aws-search.php:467
+msgid "%1$s Reviews"
+msgstr ""
+
+#: include/widget:15
+msgid "Advanced WooCommerce search widget"
+msgstr ""
+
+#: include/widget:17
+msgid "&raquo; AWS Widget"
+msgstr ""
+
+#: include/widget:57
+msgid "Search..."
+msgstr ""
+
+#: include/widget:67
+msgid "Title:"
+msgstr ""
+
+#: include/widget:72
+msgid "Form ID:"
+msgstr ""
+
+#: include/options:21
+msgid "Text for search field"
+msgstr ""
+
+#: include/options:22
+msgid "Text for search field placeholder."
+msgstr ""
+
+#: include/options:24
+msgid "Search"
+msgstr ""
+
+msgid "Text for show more button"
+msgstr ""
+
+msgid "Text for link to search results page at the bottom of search results block."
+msgstr ""
+
+#: includes/options.php:29
+msgid "Nothing found field"
+msgstr ""
+
+#: includes/options.php:30
+msgid "Text when there is no search results."
+msgstr ""
+
+#: includes/options.php:32
+msgid "Nothing found"
+msgstr ""
+
+#: include/options:37
+msgid "Minimum number of characters"
+msgstr ""
+
+#: include/options:38
+msgid "Minimum number of characters required to run ajax search."
+msgstr ""
+
+#: include/options:37
+msgid "Show loader"
+msgstr ""
+
+#: include/options:38
+msgid "Show loader animation while searching."
+msgstr ""
+
+msgid "Show clear button"
+msgstr ""
+
+msgid "Show 'Clear search string' button for desktop devices ( for mobile it is always visible )."
+msgstr ""
+
+msgid "Show 'View All Results'"
+msgstr ""
+
+msgid "Show link to search results page at the bottom of search results block."
+msgstr ""
+
+msgid "Show title of hovered search result in the search input field."
+msgstr ""
+
+msgid "Form Styling"
+msgstr ""
+
+msgid "Choose search form layout"
+msgstr ""
+
+msgid "Filter button will be visible only if you have more than one active filter for current search form instance."
+msgstr ""
+
+#: include/options:61
+msgid "Filter name"
+msgstr ""
+
+#: include/options:62
+msgid "Name for current filter."
+msgstr ""
+
+#: include/options:69
+msgid "Style"
+msgstr ""
+
+#: include/options:70
+msgid "Set style for search results output."
+msgstr ""
+
+#: include/options:75
+msgid "Inline Style"
+msgstr ""
+
+#: include/options:76
+msgid "Grid Style"
+msgstr ""
+
+#: include/options:77
+msgid "Big Grid Style"
+msgstr ""
+
+msgid "Highlight words"
+msgstr ""
+
+msgid "Highlight search words inside products content."
+msgstr ""
+
+#: include/options:82
+msgid "Show image"
+msgstr ""
+
+#: include/options:83
+msgid "Show product image for each search result."
+msgstr ""
+
+#: include/options:94
+msgid "Show description"
+msgstr ""
+
+#: include/options:95
+msgid "Show product description for each search result."
+msgstr ""
+
+msgid "Show 'Add to cart'"
+msgstr ""
+
+msgid "Show 'Add to cart' button for each search result."
+msgstr ""
+
+#: include/options:130
+msgid "Show brands in products"
+msgstr ""
+
+#: include/options:131
+msgid "Show brands with all products in search results."
+msgstr ""
+
+#: include/options:118
+msgid "Show rating"
+msgstr ""
+
+#: include/options:119
+msgid "Show product rating."
+msgstr ""
+
+msgid "Show featured"
+msgstr ""
+
+msgid "Show featured badge near product title."
+msgstr ""
+
+msgid "Show variations attributes"
+msgstr ""
+
+msgid "Show attributes for parent variable products."
+msgstr ""
+
+#: include/options:130
+msgid "Description content"
+msgstr ""
+
+#: include/options:131
+msgid "What to show in product description?"
+msgstr ""
+
+#: include/options:136
+msgid "Smart scraping sentences with searching terms from product description."
+msgstr ""
+
+#: include/options:137
+msgid "First N words of product description ( number of words that you choose below. )"
+msgstr ""
+
+#: include/options:142
+msgid "Description length"
+msgstr ""
+
+#: include/options:143
+msgid "Maximal allowed number of words for product description."
+msgstr ""
+
+#: include/options:150
+msgid "Show price"
+msgstr ""
+
+#: include/options:151
+msgid "Show product price for each search result."
+msgstr ""
+
+msgid "Show price for out of stock"
+msgstr ""
+
+msgid "Show product price for out of stock products."
+msgstr ""
+
+#: include/options:162
+msgid "Show categories"
+msgstr ""
+
+#: include/options:163
+msgid "Include categories in search result."
+msgstr ""
+
+#: include/options:186
+msgid "Show sale badge"
+msgstr ""
+
+#: include/options:187
+msgid "Show sale badge for products in search results."
+msgstr ""
+
+#: include/options:198
+msgid "Show product SKU"
+msgstr ""
+
+#: include/options:199
+msgid "Show product SKU in search results."
+msgstr ""
+
+msgid "Show stock status"
+msgstr ""
+
+msgid "Show stock status for every product in search results."
+msgstr ""
+
+msgid "Show with product quantity"
+msgstr ""
+
+msgid "Show with quantity box"
+msgstr ""
+
+#: include/options:210
+msgid "Max number of results"
+msgstr ""
+
+#: include/options:211
+msgid "Maximum number of displayed search results."
+msgstr ""
+
+#: include/options:219
+msgid "Search in"
+msgstr ""
+
+#: include/options:220
+msgid "Search source: Drag&drop sources order to change priority, or exclude by moving to deactivated sources."
+msgstr ""
+
+msgid "Click on status icon to enable or disable search source."
+msgstr ""
+
+msgid "Archive pages"
+msgstr ""
+
+msgid "Search for taxonomies and displayed their archive pages in search results."
+msgstr ""
+
+msgid "Taxonomies"
+msgstr ""
+
+#: include/options:224
+msgid "Title"
+msgstr ""
+
+#: include/options:225
+msgid "Content"
+msgstr ""
+
+#: include/options:226
+msgid "SKU"
+msgstr ""
+
+msgid "Item added"
+msgstr ""
+
+#: include/options:227
+msgid "Short description"
+msgstr ""
+
+#: include/options:228
+msgid "Category"
+msgstr ""
+
+#: include/options:229
+msgid "Tag"
+msgstr ""
+
+msgid "ID"
+msgstr ""
+
+msgid "Attributes search"
+msgstr ""
+
+msgid "Choose product attributes that must be searchable."
+msgstr ""
+
+msgid "Taxonomies search"
+msgstr ""
+
+msgid "Choose product taxonomies that must be searchable."
+msgstr ""
+
+msgid "Custom fields search"
+msgstr ""
+
+msgid "Choose product custom fields that must be searchable. %s"
+msgstr ""
+
+msgid "Taxonomies archives"
+msgstr ""
+
+msgid "Choose taxonomies archive pages that must be searchable."
+msgstr ""
+
+msgid "Attributes archives"
+msgstr ""
+
+msgid "Choose attributes archive pages that must be searchable."
+msgstr ""
+
+msgid "Cache options"
+msgstr ""
+
+msgid "Cache results"
+msgstr ""
+
+msgid "Cache search results to increase search speed."
+msgstr ""
+
+msgid "Sync index table"
+msgstr ""
+
+msgid "Automatically update plugin index table when product content was changed. This means that in search there will be always latest product data."
+msgstr ""
+
+msgid "Turn this off if you have any problems with performance."
+msgstr ""
+
+#: include/options:263
+msgid "Turn off if you have old data in the search results after the content of products was changed."
+msgstr ""
+
+#: include/options:268
+msgid "On"
+msgstr ""
+
+#: include/options:269
+msgid "Off"
+msgstr ""
+
+msgid "Search logic"
+msgstr ""
+
+msgid "Search rules."
+msgstr ""
+
+msgid "OR. Show result if at least one word exists in product."
+msgstr ""
+
+msgid "AND. Show result if only all words exists in product."
+msgstr ""
+
+msgid "EXACT MATCH', 'Show result if product contains exact same phrase."
+msgstr ""
+
+msgid "Exact match"
+msgstr ""
+
+msgid "Search only for full word matching or display results even if they match only part of word."
+msgstr ""
+
+msgid "Yes. Search only for full words matching."
+msgstr ""
+
+msgid "No. Partial words match search."
+msgstr ""
+
+#: include/options:293
+msgid "Description source"
+msgstr ""
+
+#: include/options:294
+msgid "From where to take product description.<br>If first source is empty data will be taken from other sources."
+msgstr ""
+
+#: include/options:305
+msgid "Open product in new tab"
+msgstr ""
+
+#: include/options:306
+msgid "When user clicks on one of the search result new window will be opened."
+msgstr ""
+
+#: include/options:317
+msgid "Image source"
+msgstr ""
+
+#: include/options:318
+msgid "Source of image that will be shown with search results. Position of fields show the priority of each source."
+msgstr ""
+
+#: include/options:322
+msgid "Featured image"
+msgstr ""
+
+#: include/options:323
+msgid "Gallery first image"
+msgstr ""
+
+#: include/options:324
+msgid "Content first image"
+msgstr ""
+
+#: include/options:325
+msgid "Description first image"
+msgstr ""
+
+#: include/options:326
+#: include/options:332
+msgid "Default image"
+msgstr ""
+
+#: include/options:333
+msgid "Default image for search results."
+msgstr ""
+
+#: includes/options.php:280
+msgid "Products stock status"
+msgstr ""
+
+#: includes/options.php:281
+msgid "Search only for products with selected stock status"
+msgstr ""
+
+msgid "Variable products"
+msgstr ""
+
+msgid "How to show variable products."
+msgstr ""
+
+msgid "Show only parent products"
+msgstr ""
+
+msgid "Show parent and child products"
+msgstr ""
+
+msgid "Show only child products"
+msgstr ""
+
+msgid "Products sale status"
+msgstr ""
+
+msgid "Search only for products with selected sale status"
+msgstr ""
+
+msgid "Show on-sale and not on-sale products"
+msgstr ""
+
+msgid "Show only on-sale products"
+msgstr ""
+
+msgid "Show only not on-sale products"
+msgstr ""
+
+#: includes/options.php:398
+msgid "Use Google Analytics"
+msgstr ""
+
+#: includes/options.php:399
+msgid "Use google analytics to track searches. You need google analytics to be installed on your site."
+msgstr ""
+
+msgid "Data will be visible inside Google Analytics 'Site Search' report. Need to activate 'Site Search' feature inside GA. %s"
+msgstr ""
+
+msgid "More info"
+msgstr ""
+
+#: includes/options.php:399
+msgid "Also will send event with category - 'AWS search', action - 'AWS Search Form {form_id}' and label of value of search term."
+msgstr ""
+
+msgid "In stock"
+msgstr ""
+
+msgid "Out of stock"
+msgstr ""
+
+msgid "On Backorder"
+msgstr ""
+
+msgid "View all results"
+msgstr ""
+
+msgid "editing"
+msgstr ""
+
+msgid "To enable updates, please enter your license key on the %s updates %s page. If you don't have a licence key, please visit  %s plugin page %s."
+msgstr ""
+
+msgid "Updates"
+msgstr ""
+
+msgid "Deactivate License"
+msgstr ""
+
+msgid "Activate License"
+msgstr ""
+
+msgid "License Information"
+msgstr ""
+
+msgid "To unlock updates, please enter your license key below. You can find it inside an email that you receive after the purchase."
+msgstr ""
+
+msgid "Also, to manage your account information and license activations please visit %s. If you don\'t have a licence key, please visit %s."
+msgstr ""
+
+msgid "user portal"
+msgstr ""
+
+msgid "plugin page"
+msgstr ""
+
+msgid "License Key"
+msgstr ""
+
+msgid "Sorry, your license key is not valid."
+msgstr ""
+
+msgid "Your license key is active."
+msgstr ""
+
+msgid "Something goes wrong while getting plugin data."
+msgstr ""
+
+msgid "Update Information"
+msgstr ""
+
+msgid "Current Version"
+msgstr ""
+
+msgid "Latest Version"
+msgstr ""
+
+msgid "Update Available"
+msgstr ""
+
+msgid "Changelog"
+msgstr ""
+
+msgid "View all changelog"
+msgstr ""
+
+msgid "Sale!"
+msgstr ""
+
+msgid "All products"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "Update Plugin"
+msgstr ""
+
+msgid "Please enter your license key to unlock updates"
+msgstr ""
+
+msgid "Placeholder"
+msgstr ""
+
+msgid "Add placeholder text or leave empty to use default."
+msgstr ""
+
+msgid "Choose form id"
+msgstr ""
+
+msgid "Users"
+msgstr ""
+
+msgid "User Roles"
+msgstr ""
+
+msgid "Choose user roles that will be available for search."
+msgstr ""
+
+msgid "Welcome to %s"
+msgstr ""
+
+msgid "Powerful search plugin for WooCommerce."
+msgstr ""
+
+msgid "Get Started"
+msgstr ""
+
+msgid "In order to start using the plugin search form you need to take following steps:"
+msgstr ""
+
+msgid "Index plugin table."
+msgstr ""
+
+msgid "Click on the 'Reindex table' button and wait till the index process is finished."
+msgstr ""
+
+msgid "Set plugin settings."
+msgstr ""
+
+msgid "Leave it to default values or customize some of them."
+msgstr ""
+
+msgid "Add search form."
+msgstr ""
+
+msgid "There are several ways you can add a search form to your site. Use the 'Seamless integration' option, shortcode, widget or custom php function. Read more inside %s section or read %s."
+msgstr ""
+
+msgid "Activation"
+msgstr ""
+
+msgid "guide article"
+msgstr ""
+
+msgid "Finish!"
+msgstr ""
+
+msgid "Now all is set and you can check your search form on the pages where you add it."
+msgstr ""
+
+msgid "Documentation"
+msgstr ""
+
+msgid "Steps to Get Started"
+msgstr ""
+
+msgid "How to Add Search Form"
+msgstr ""
+
+msgid "Search Sources"
+msgstr ""
+
+msgid "Terms Pages Search"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Support Forums"
+msgstr ""
+
+msgid "Contact Form"
+msgstr ""
+
+msgid "WooCommerce search form"
+msgstr ""
+
+msgid "To configure your Advanced Woo Search form please visit %s."
+msgstr ""
+
+msgid "plugin settings page"
+msgstr ""
+
+msgid "Form ID"
+msgstr ""
+
+msgid "Please do not close the page."
+msgstr ""
+
+msgid "Performance"
+msgstr ""
+
+msgid "(index disabled)"
+msgstr ""
+
+msgid "(enable)"
+msgstr ""
+
+msgid "Source index disabled"
+msgstr ""
+
+msgid "Advanced Woo Search: In order to apply the changes in the index table you need to reindex. %s"
+msgstr ""
+
+msgid "Search options"
+msgstr ""
+
+msgid "Search rule"
+msgstr ""
+
+msgid "Search rule that will be used for terms search."
+msgstr ""
+
+msgid "( contains ). Search query can be inside any part of the product words ( beginning, end, middle ). Slow."
+msgstr ""
+
+msgid "( begins ). Search query can be only at the beginning of the product words. Fast."
+msgstr ""
+
+msgid "AJAX timeout"
+msgstr ""
+
+msgid "Time after user input that script is waiting before sending a search event to the server, ms."
+msgstr ""
+
+msgid "Index table options"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "To perform the search plugin use a special index table. This table contains normalized words of all your products from all available sources."
+msgstr ""
+
+msgid "Sometimes when there are too many products in your store index table can be very large and that can reflect on search speed."
+msgstr ""
+
+msgid "In this section you can use several options to change the table size by disabling some unused product data."
+msgstr ""
+
+msgid "Note:"
+msgstr ""
+
+msgid "Reindex is required after options changes."
+msgstr ""
+
+msgid "Data to index"
+msgstr ""
+
+msgid "Choose what products data to add inside the plugin index table."
+msgstr ""
+
+msgid "What to index"
+msgstr ""
+
+msgid "Index variations"
+msgstr ""
+
+msgid "Index or not content of product variations."
+msgstr ""
+
+msgid "Attributes index"
+msgstr ""
+
+msgid "Choose product attributes that must be indexed."
+msgstr ""
+
+msgid "Taxonomies index"
+msgstr ""
+
+msgid "Choose product taxonomies that must be indexed."
+msgstr ""
+
+msgid "Custom fields index"
+msgstr ""
+
+msgid "Choose product custom fields that must be indexed. %s"
+msgstr ""
+
+msgid "Include inner fields."
+msgstr ""
+
+msgid "Hide inner fields."
+msgstr ""
+
+msgid "Show BeRocket Labels?"
+msgstr ""
+
+msgid "Show or not BeRocket plugin product labels for all products inside search results."
+msgstr ""
+
+msgid "Show after content"
+msgstr ""
+
+msgid "Show after price"
+msgstr ""
+
+msgid "Show after title"
+msgstr ""
+
+msgid "Not show"
+msgstr ""
+
+msgid "Search results page"
+msgstr ""
+
+msgid "Enable results page"
+msgstr ""
+
+msgid "Show plugin search results on a separated search results page. Will use your current theme products search results page template."
+msgstr ""
+
+msgid "Maximal total number of search results. Larger values can lead to slower search speed."
+msgstr ""
+
+msgid "Results per page"
+msgstr ""
+
+msgid "Number of search results per page. Empty or 0 - use theme default value."
+msgstr ""
+
+msgid "Change query hook"
+msgstr ""
+
+msgid "If you have any problems with correct products results on the search results page - try to change this option."
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "AJAX search"
+msgstr ""
+
+msgid "Use or not live search feature."
+msgstr ""
+
+msgid "License key inactive"
+msgstr ""
+
+msgid "Please activate your license key in the box below to receive plugin updates. If you don't know your license key - please %s."
+msgstr ""
+
+msgid "contact support"
+msgstr ""
+
+msgid "License key expired"
+msgstr ""
+
+msgid "Looks like your license is expired. You still can use this plugin but the new plugin updates are not available for you. Please renew your license to continue receiving the latest updates."
+msgstr ""
+
+msgid "Renew License"
+msgstr ""
+
+msgid "Looks like you missed %s plugin updates. Please update the plugin to the latest version. It is very important to always use the latest plugin version as it can contain bugs/compatibility fixes and new cool features."
+msgstr ""
+
+msgid "Refresh"
+msgstr ""
+
+msgid "Refresh Plugin Info"
+msgstr ""
+
+msgid "Open Plugin Page"
+msgstr ""
+
+msgid "Dismiss"
+msgstr ""
+
+msgid "Looks like your license key is expired. Please renew first."
+msgstr ""
+
+msgid "Your license key is inactive. Please activate it to start receiving plugin updates."
+msgstr ""
+
+msgid "Important plugin updates missed"
+msgstr ""
+
+msgid "Filter Results"
+msgstr ""
+
+msgid "Filter search results. You can include/exclude search results based on different rules."
+msgstr ""
+
+msgid "Combine filter rules to AND or OR logical blocks to create advanced filter logic."
+msgstr ""
+
+msgid "Please try not to use too many filters overwise this can impact on search speed."
+msgstr ""
+
+msgid "Products results"
+msgstr ""
+
+msgid "Filter products search results"
+msgstr ""
+
+msgid "Terms results"
+msgstr ""
+
+msgid "Filter taxonomies archive pages results"
+msgstr ""
+
+msgid "Users results"
+msgstr ""
+
+msgid "Filter users archive pages search results"
+msgstr ""
+
+msgid "Add 'or' group"
+msgstr ""
+
+msgid "Add new rule"
+msgstr ""
+
+msgid "Remove rule"
+msgstr ""
+
+msgid "and"
+msgstr ""
+
+msgid "Current"
+msgstr ""
+
+msgid "Sale"
+msgstr ""
+
+msgid "Regular"
+msgstr ""
+
+msgid "Product variation"
+msgstr ""
+
+msgid "Super Admin"
+msgstr ""
+
+msgid "Visitor ( not logged-in )"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Number of items"
+msgstr ""
+
+msgid "Average items cost"
+msgstr ""
+
+msgid "Total sum of items"
+msgstr ""
+
+msgid "Orders number"
+msgstr ""
+
+msgid "Average order value"
+msgstr ""
+
+msgid "Total spend"
+msgstr ""
+
+msgid "Top parent"
+msgstr ""
+
+msgid "Child"
+msgstr ""
+
+msgid "all time"
+msgstr ""
+
+msgid "last 24 hours"
+msgstr ""
+
+msgid "last 7 days"
+msgstr ""
+
+msgid "last month"
+msgstr ""
+
+msgid "last year"
+msgstr ""
+
+msgid "Any product"
+msgstr ""
+
+msgid "Product"
+msgstr ""
+
+msgid "Current user"
+msgstr ""
+
+msgid "Terms pages"
+msgstr ""
+
+msgid "Users pages"
+msgstr ""
+
+msgid "equal to"
+msgstr ""
+
+msgid "not equal to"
+msgstr ""
+
+msgid "greater or equal to"
+msgstr ""
+
+msgid "less or equal to"
+msgstr ""
+
+msgid "less or equal to"
+msgstr ""
+
+msgid "Product is featured"
+msgstr ""
+
+msgid "Product category"
+msgstr ""
+
+msgid "Product tag"
+msgstr ""
+
+msgid "Product taxonomy"
+msgstr ""
+
+msgid "Product attributes"
+msgstr ""
+
+msgid "Product custom attributes"
+msgstr ""
+
+msgid "Product custom fields"
+msgstr ""
+
+msgid "Product shipping class"
+msgstr ""
+
+msgid "Term page taxonomy"
+msgstr ""
+
+msgid "Term products count"
+msgstr ""
+
+msgid "Term hierarchy type"
+msgstr ""
+
+msgid "Term has image"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "User role"
+msgstr ""
+
+msgid "User products count"
+msgstr ""

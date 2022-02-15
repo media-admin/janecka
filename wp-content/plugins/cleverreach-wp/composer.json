@@ -1,0 +1,34 @@
+{
+    "name": "cleverreach/wordpress",
+    "description": "CleverReach® WordPress plugin",
+    "type": "library",
+    "repositories": [
+        {
+            "type": "vcs",
+            "no-api": true,
+            "url":  "git@github.com:cleverreach/logeecore.git"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "cleverreach/integration-core": "1.14.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "CleverReach\\WordPress\\": "",
+            "CleverReach\\WordPress\\IntegrationCore\\": "vendor/cleverreach/integration-core/src",
+            "CleverReach\\WordPress\\Script\\": "../Script"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CleverReach\\WordPress\\IntegrationCore\\Tests\\": "vendor/cleverreach/integration-core/tests"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8.35"
+    },
+    "scripts": {
+        "post-update-cmd": "CleverReach\\WordPress\\Script\\Core::post_update"
+    }
+}

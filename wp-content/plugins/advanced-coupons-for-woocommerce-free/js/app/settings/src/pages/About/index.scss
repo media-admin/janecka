@@ -1,0 +1,103 @@
+.about-page {
+    max-width: 1211px;
+
+    .about-rymera-team {
+        border: 1px solid #D5D5D5;
+        margin-bottom: 20px;
+
+        .content {
+
+            .inner {
+                padding: 30px 39px 40px;
+            }
+    
+            h2 {
+                font-size: 16px;
+                font-weight: bold;
+            }
+    
+            p {
+                font-size: 15px;
+                color: #000;
+                line-height: 1.3em;
+            }
+        }
+    
+        .photo {
+    
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .plugin-cards {
+
+        .ant-card {
+            border-color: #D5D5D5;
+
+            .ant-avatar{
+                width: 50px;
+                height: 50px;
+                border-radius: 0;
+            }
+
+            .ant-card-meta-detail {
+                overflow: visible;
+            }
+
+            .ant-card-meta-title {
+                font-size: 16px;
+                font-weight: bold;
+                margin-top: 10px;
+                margin-bottom: 30px;
+            }
+
+            .ant-card-meta-description {
+                font-size: 15px;
+                color: #000;
+                line-height: 1.3em;
+            }
+        }
+
+        .ant-card-actions {
+            background-color: #F5F5F5;
+            border-color: #D5D5D5;
+
+            li:first-child {
+                text-align: left;
+                padding: 0 24px;
+
+                * {
+                    margin-top: 6px;
+                    color: #000;
+                    font-size: 16px;
+                }
+            
+            }
+
+            li:last-child {
+                text-align: right;
+                padding: 0 24px;
+
+                .ant-btn {
+                    padding-left: 22px;
+                    padding-right: 22px;
+                    height: 35px;
+                    background: #C6CD2E;
+                    border: 0;
+                    border-radius: 0;
+                    line-height: 34px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: #000;
+                    text-shadow: none;
+
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                }
+            }
+        }
+    }
+}

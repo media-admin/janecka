@@ -1,0 +1,42 @@
+.acfw-block-coupons-customer {
+
+  .components-placeholder__fieldset {
+
+    > div {
+      margin-bottom: 1em;
+    }
+  }
+
+  &.acfw-disabled-upsell {
+
+    .components-placeholder__fieldset {
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        display: block;
+        width: 100%;
+        height: calc(100% - 40px);
+        background: #ffffff69;
+      }
+    }
+  }
+
+  .acfw-upsell-message {
+    width: 100%;
+    padding: 5px 10px;
+    margin-bottom: 0 !important;
+    color: #fff;
+    background: #34a0d2;
+    border: 1px solid #1c8fc3;
+
+    a {
+      color: #e7f7ff;
+      text-decoration: underline;
+    }
+  }
+}

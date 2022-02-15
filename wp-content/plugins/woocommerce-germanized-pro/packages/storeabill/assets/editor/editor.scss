@@ -1,0 +1,341 @@
+@charset "UTF-8";
+
+.wp-block {
+  max-width: 100%;
+  width: 100%;
+  margin: $global-block-margin 0;
+  z-index: 1;
+}
+
+.editor-styles-wrapper {
+  .block-editor-block-list__block {
+    margin-top: 0;
+    margin-bottom: $global-block-margin;
+  }
+}
+
+mark {
+  background-color: transparent;
+}
+
+.sab-document-main {
+  .components-base-control .components-base-control__help {
+    font-size: 11px;
+    margin-top: 5px;
+  }
+}
+
+/**
+ * WP 4.9 column block fixing (e.g. footer)
+ */
+.wp-block-columns > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="core/column"] > .block-core-columns > .block-editor-inner-blocks {
+  margin-top: 0;
+}
+
+/*+
+ * Prevent tooltip overlapping
+ */
+.block-editor-block-list__layout {
+  .block-editor-block-list__block {
+    z-index: auto;
+  }
+}
+
+.editor-styles-wrapper.block-editor-writing-flow,
+.edit-post-visual-editor.editor-styles-wrapper,
+.edit-post-visual-editor > .editor-styles-wrapper,
+.edit-post-visual-editor__content-area > div:not([class]),
+.edit-post-visual-editor__content-area > div:not([class]) > .editor-styles-wrapper {
+  background-color: #535659 !important;
+  font-size: 13px;
+  line-height: 1.5;
+
+  ol, p, ul {
+    margin-bottom: $global-block-margin;
+    margin-top: 0;
+  }
+}
+
+.block-library-spacer__resize-container {
+  margin-bottom: 0;
+}
+
+/**
+ * Hide the preview dropdown (no mobile styles needed)
+ * and force to show the default preview link instead.
+ */
+.block-editor-post-preview__dropdown {
+  display: none !important;
+}
+
+.editor-post-preview {
+  display: inline-flex !important;
+}
+
+.editor-post-switch-to-draft {
+  display: none !important;
+}
+
+/**
+ * Hide the edit post status panel.
+ */
+.edit-post-post-status {
+  display: none !important;
+}
+
+/**
+ * Make sure the appender doesn't disturb headers nor footers
+ */
+.block-editor-block-list__block .block-list-appender {
+  margin: 0;
+}
+
+/**
+ * Hide document-styles first block
+ */
+.block-editor-block-navigation__container {
+  > ul.block-editor-block-navigation__list {
+    > li:first-of-type:not(:last-of-type) {
+      display: none;
+    }
+  }
+}
+
+/**
+ * Hide the block mover toolbar for header and footer
+ */
+.block-editor-block-contextual-toolbar[data-type="storeabill/header"], .block-editor-block-contextual-toolbar[data-type="storeabill/footer"]  {
+  .block-editor-block-mover {
+    display: none !important;
+  }
+}
+
+div:not(.block-editor-inner-blocks) > .block-editor-block-list__layout:not(.wp-block) {
+  background: #fff;
+  width: 21cm;
+  min-height: 29.7cm;
+  padding: 1cm;
+  margin: 0 auto;
+  box-shadow: 0 0 10px #171717;
+  display: flex;
+  flex-direction: column;
+  font-size: $normal-font-size;
+
+  &.sab-is-first-page {
+    height: 29.7cm;
+  }
+
+  &.has-background-image {
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .wp-block {
+    margin-top: 0;
+  }
+
+  .wp-block:last-child {
+    margin-bottom: 0;
+  }
+
+  > .wp-block[data-type="storeabill/header"] {
+    order: -1;
+    margin-top: 0;
+  }
+
+  > .wp-block[data-type="storeabill/footer"] {
+    margin-top: auto;
+    align-self: flex-end;
+    order: 100000;
+    margin-bottom: -$global-block-margin;
+  }
+}
+
+.block-editor-block-toolbar {
+  .sab-visibility-notice {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    line-height: 25px;
+  }
+}
+
+.wp-block {
+  .sab-visibility-notice {
+    position: absolute;
+    opacity: .3;
+    top: 0;
+    right: 0;
+    font-size: .9em;
+    margin: 0;
+    z-index: 0;
+  }
+
+  &.is-selected {
+    .sab-visibility-notice {
+      opacity: 1;
+    }
+  }
+}
+
+.wp-block-table.is-style-stripes {
+  border-bottom: none;
+
+  tbody {
+    tr:nth-child(odd) {
+      background: $default-bg-highlight-color;
+    }
+  }
+}
+
+  /**
+   * Make sure that placeholder/replacement content which is
+   * not editable within RichText can only be selected all at once.
+   */
+.document-shortcode, .placeholder-content {
+  user-select: all;
+}
+
+.placeholder-wrapper {
+  padding: 0 5px;
+  margin-left: -5px !important;
+  margin-right: -5px !important;
+}
+
+.sab-label {
+  background: #1e1e1e;
+  color: #FFF;
+  padding: 3px;
+  font-size: 10px;
+  border-radius: 2px;
+
+  &.sab-label-light {
+    background: #f3f4f5;
+    color: #191e23;
+    margin: 0 2px;
+  }
+}
+
+.sab-tooltip {
+  position: relative;
+
+  &::after {
+    content: attr(data-tooltip);
+    z-index: 100;
+    position: absolute;
+    bottom: -25px;
+    left: -10px;
+    font-weight: normal;
+    background: #1e1e1e;
+    border-radius: 2px;
+    box-sizing: border-box;
+    color: white;
+    display: inline-block;
+    font-size: 12px;
+    opacity: 0;
+    padding: 4px 8px;
+    pointer-events: none;
+    text-align: center;
+    transition: opacity 120ms ease;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    &::after, &::before {
+      opacity: 1;
+    }
+
+    &::after {
+      bottom: -25px;
+    }
+  }
+}
+
+/**
+ * Prevent height overlapping on floating blocks
+ */
+.block-editor-block-list__layout .block-editor-block-list__block[data-align=left],
+.block-editor-block-list__layout .block-editor-block-list__block[data-align=right] {
+  z-index: auto;
+  height: auto;
+
+  > .is-block-content::after {
+    clear: both;
+  }
+
+  > .is-block-content {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.editor-post-title {
+  display: none;
+}
+
+.editor-styles-wrapper {
+  .wp-block-columns {
+    .wp-block-column {
+      &:not(:first-child) {
+        margin-left: $global-margin;
+      }
+    }
+
+    /**
+     * Make sure to show width the same way our PDF document handles column width calculation
+     */
+    .wp-block-column[style*="flex-basis"] {
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.editor-styles-wrapper {
+  .has-large-font-size {
+    font-size: 18px;
+  }
+}
+
+.wp-block[data-type*="storeabill"] {
+  .is-bold {
+    font-weight: bold;
+  }
+  .is-italic {
+    font-style: italic;
+  }
+  .is-underlined {
+    text-decoration: underline;
+  }
+}
+
+.block-editor-block-list__block[data-type="core/separator"] {
+  margin-bottom: $global-block-margin !important;
+  border-bottom-width: 0 !important;
+}
+
+.wp-block[data-type="storeabill/footer"] {
+  .wp-block[data-type="core/separator"] {
+    margin-top: -1em !important;
+  }
+}
+
+.wp-block[data-type="storeabill/document-title"],
+.wp-block[data-type="storeabill/page-number"],
+.wp-block[data-type="storeabill/document-date"],
+.wp-block[data-type="storeabill/reverse-charge-notice"],
+.wp-block[data-type="storeabill/third-country-notice"],
+.wp-block[data-type="storeabill/differential-taxation-notice"] {
+  margin-bottom: 0;
+}
+
+/**
+ * Hide patterns from inserter
+ */
+.edit-post-layout__inserter-panel-content {
+  #tab-panel-1-patterns, #tab-panel-1-patterns-view {
+    display: none;
+  }
+}

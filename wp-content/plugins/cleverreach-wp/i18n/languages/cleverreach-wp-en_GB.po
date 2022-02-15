@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CleverReach® WordPress Integration\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-07 16:00+0000\n"
+"PO-Revision-Date: 2019-12-16 13:46+0000\n"
+"Last-Translator: CleverReach® <support@cleverreach.com>\n"
+"Language-Team: English (UK)\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.2.0; wp-4.9.8"
+
+#. Text in function
+#: class-plugin.php:166 resources/views/curl-not-enabled.php:19
+msgid ""
+"cURL is not installed or enabled in your PHP installation. This is required "
+"for background task to work. Please install it and then refresh this page."
+msgstr ""
+"cURL is not installed or enabled in your PHP installation. This is required "
+"for background task to work. Please install it and then refresh this page."
+
+#. Text in function
+#: cleverreach-wp/Controllers/class-clever-reach-integrations-controller.php:20
+msgid "Subscribe people that submit CF7 form to newsletter"
+msgstr "Subscribe people that submit CF7 form to newsletter"
+
+#. Text in function
+#: cleverreach-wp/Controllers/class-clever-reach-integrations-controller.php:29
+msgid "https://support.cleverreach.de/hc/en-us/articles/360010498020"
+msgstr "https://support.cleverreach.de/hc/en-us/articles/360010498020"
+
+#. Text in function
+#: Controllers/class-clever-reach-frontend-controller.php:150
+#: Controllers/class-clever-reach-frontend-controller.php:220
+msgid "hello"
+msgstr "hello"
+
+#. Text in function
+#: Controllers/class-clever-reach-article-search-controller.php:138
+msgid "Article ID"
+msgstr "Article ID"
+
+#. Text in function
+#: Controllers/class-clever-reach-article-search-controller.php:145
+msgid "Article Title"
+msgstr "Article Title"
+
+#. Text in function
+#: resources/views/initial-sync.php:16
+msgid "Create recipient list and form in CleverReach®"
+msgstr "Create recipient list and form in CleverReach®"
+
+#. Text in function
+#: resources/views/initial-sync.php:17
+msgid "Add data fields, segments and tags to recipient list"
+msgstr "Add data fields, segments and tags to recipient list"
+
+#. Text in function
+#: resources/views/initial-sync.php:22
+#, php-format
+msgid "Import recipients from %s to CleverReach®"
+msgstr "Import recipients from %s to CleverReach®"
+
+#. Text in function
+#: resources/views/register-form-newsletter.php:29
+msgid "Subscribe to newsletter"
+msgstr "Subscribe to newsletter"
+
+#. Text in function
+#: resources/views/dashboard.php:16
+msgid "Targeted email marketing for more revenue!"
+msgstr "Targeted email marketing for more revenue!"
+
+#. Text in function
+#: resources/views/dashboard.php:21
+msgid "Create appealing emails to showcase your articles to your readers."
+msgstr "Create appealing emails to showcase your articles to your readers."
+
+#. Text in function
+#: resources/views/dashboard.php:26
+msgid "Create your first newsletter →"
+msgstr "Create your first newsletter →"
+
+#. Text in function
+#: resources/views/dashboard.php:28
+msgid "Create your next newsletter now! →"
+msgstr "Create your next newsletter now! →"
+
+#. Text in function
+#: resources/views/dashboard.php:34 resources/views/curl-not-enabled.php:14
+msgid "An error occurred!"
+msgstr "An error occurred!"
+
+#. %s is replaced with error description
+#: resources/views/dashboard.php:39
+#, php-format
+msgid "Error description: %s. For more details please contact Help & Support."
+msgstr ""
+
+#. Text in function
+#: resources/views/dashboard.php:41
+msgid "Retry synchronization now"
+msgstr "Retry synchronization now"
+
+#. Text in function
+#: resources/views/dashboard.php:54
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#. Text in function
+#: cleverreach-wp/resources/views/dashboard.php:58
+msgid "https://support.cleverreach.de/hc/en-us"
+msgstr "https://support.cleverreach.de/hc/eu-us"
+
+#. Text in function
+#: resources/views/dashboard.php:59
+msgid "Help & Support"
+msgstr "Help & Support"
+
+#. Text in function
+#: resources/views/dashboard.php:60
+msgid "CleverReach® ID"
+msgstr "CleverReach® ID"
+
+#. Text in function
+#: resources/views/dashboard.php:98
+msgid "Import was successful!"
+msgstr "Import was successful!"
+
+#. Text in function
+#: resources/views/dashboard.php:110
+msgid "Recipients"
+msgstr "Recipients"
+
+#. Text in function
+#: resources/views/dashboard.php:125
+msgid "Recipient list"
+msgstr "Recipient list"
+
+#. Text in function
+#: resources/views/dashboard.php:136
+msgid "Segments"
+msgstr "Segments"
+
+#. Text in function
+#: resources/views/dashboard.php:143
+msgid ""
+"https://www.cleverreach.com/en/features/privacy-security/eu-general-data-"
+"protection-regulation-gdpr/"
+msgstr ""
+"https://www.cleverreach.com/en/features/privacy-security/eu-general-data-"
+"protection-regulation-gdpr/"
+
+#. Text in function
+#: resources/views/dashboard.php:145
+msgid "Observe notes on GDPR!"
+msgstr "Observe notes on GDPR!"
+
+#. Text in function
+#: resources/views/welcome.php:25 resources/views/token-expired.php:25
+msgid "Connecting..."
+msgstr "Connecting..."
+
+#. Text in function
+#: resources/views/initial-sync-settings.php:23
+msgid "Configuration"
+msgstr "Configuration"
+
+#: resources/views/initial-sync-settings.php:28
+msgid "Current users should NOT be synced as Subscribers"
+msgstr "Current users should NOT be synced as Subscribers"
+
+#. Text in function
+#: resources/views/initial-sync-settings.php:32
+msgid "Current users should be synced as Subscribers"
+msgstr "Current users should be synced as Subscribers"
+
+#: resources/views/initial-sync-settings.php:37
+msgid ""
+"Current users should be synced as Subscribers only if they have Subscriber "
+"role"
+msgstr ""
+"Current users should be synced as Subscribers only if they have Subscriber "
+"role"
+
+#: resources/views/initial-sync-settings.php:41
+msgid ""
+"CleverReach module adds newsletter subscription status so you can later set "
+"this per user."
+msgstr ""
+"CleverReach module adds newsletter subscription status so you can later set "
+"this per user."
+
+#. Text in function
+#: resources/views/initial-sync-settings.php:46
+msgid "Start synchronization now"
+msgstr "Start synchronization now"
+
+#. Text in function
+#: resources/views/token-expired.php:33
+msgid "Note: Oops,"
+msgstr "Note: Oops,"
+
+#. Text in function
+#: resources/views/token-expired.php:40
+msgid "please reconnect your CleverReach® account ID  %s."
+msgstr "please reconnect your CleverReach® account ID  %s."
+
+#: resources/views/token-expired.php:51
+msgid "Please note that you can only reconnect to the account that was used during the initial setup. If you want to connect to a different CleverReach account, please log in first and delete the app. Afterward, reinstall the app and log in with the new CleverReach account."
+msgstr "Please note that you can only reconnect to the account that was used during the initial setup. If you want to connect to a different CleverReach account, please log in first and delete the app. Afterward, reinstall the app and log in with the new CleverReach account."
+
+#: resources/views/token-expired.php:62
+msgid "API:"
+msgstr "API:"
+
+#. Text in function
+#: resources/views/token-expired.php:52
+msgid "Connect now"
+msgstr "Connect now"
+
+#. Name of the plugin
+msgid "CleverReach® WordPress integration"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Spotify, Levi’s and DHL create and send their newsletters with CleverReach®: "
+"easy to handle and at the same time all requirements for professional email "
+"marketing."
+msgstr ""
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/cleverreach-wp/"
+msgstr "https://wordpress.org/plugins/cleverreach-wp/"
+
+#. Author of the plugin
+msgid "CleverReach GmbH & Co. KG"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.cleverreach.com"
+msgstr "https://www.cleverreach.com"
+
+#: resources/views/widget-admin.php:42
+msgid "Choose an integration form:"
+msgstr "Choose an integration form:"
+
+#: Components/class-wp-clever-reach-widget.php:46
+msgid "Displays a CleverReach® Subscribe form"
+msgstr "Displays a CleverReach® Subscribe form"
+
+#: class-plugin.php:237
+msgid "Subscription form"
+msgstr "Subscription form"
+
+#: class-plugin.php:238
+#: Controllers/class-clever-reach-frontend-controller.php:421
+#: resources/views/widget-admin.php:61
+msgid "Edit in CleverReach®"
+msgstr "Edit in CleverReach®"
+
+#: Controllers/class-clever-reach-frontend-controller.php:475
+msgid "How to use?"
+msgstr "How to use?"
+
+#: class-plugin.php:239
+msgid "Select and display one of your forms."
+msgstr "Select and display one of your forms."
+
+#: class-plugin.php:240
+msgid "Form settings"
+msgstr "Form settings"
+
+#: class-plugin.php:241
+msgid "Form"
+msgstr "Form"
+
+#: resources/views/forms.php:13
+msgid "Form-name"
+msgstr "Form-name"
+
+#: resources/views/forms.php:16
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: resources/views/forms.php:8
+msgid "Signup-Forms"
+msgstr "Signup-Forms"
+
+#: resources/views/forms.php:10
+msgid ""
+"https://support.cleverreach.de/hc/en-us/articles/360033715253-Forms-of-"
+"CleverReach-in-WordPress"
+msgstr ""
+"https://support.cleverreach.de/hc/en-us/articles/360033715253-Forms-of-"
+"CleverReach-in-WordPress"
+
+#. Text in function
+#: cleverreach-wp/Controllers/class-clever-reach-cf7-controller.php:73
+msgid "CleverReach® Sign-Up"
+msgstr "CleverReach® Sign-Up"
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-tag-settings.php:4
+msgid "Generate a form-tag for CleverReach® Sign-Up checkbox."
+msgstr "Generate a form-tag for CleverReach® Sign-Up checkbox."
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-tag-settings.php:17
+msgid "Pre-select checkbox"
+msgstr "Pre-select checkbox"
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-settings-tab.php:14
+msgid "Enabled synchronization"
+msgstr "Enabled synchronization"
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-settings-tab.php:49
+msgid "Double opt-in form"
+msgstr "Double opt-in form"
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-settings-tab.php:58
+msgid "None"
+msgstr "None"
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-settings-tab.php:77
+msgid ""
+"If “None” is selected, recipients will not receive a confirmation email "
+"before subscribing to the newsletter. Please note the legal situation in "
+"your country, whether you want to use Single-Opt-In or Double-Opt-In. We "
+"suggest the use of Double-Opt-In to be GDPR compliant."
+msgstr ""
+"If “None” is selected, recipients will not receive a confirmation email "
+"before subscribing to the newsletter. Please note the legal situation in "
+"your country, whether you want to use Single-Opt-In or Double-Opt-In. We "
+"suggest the use of Double-Opt-In to be GDPR compliant."
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-settings-tab.php:79
+msgid ""
+"Double opt-in is disabled due to missing user data on your CleverReach "
+"account."
+msgstr ""
+"Double opt-in is disabled due to missing user data on your CleverReach "
+"account."
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-settings-tab.php:81
+msgid "Update data"
+msgstr "Update data"
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-settings-tab.php:84
+msgid "Recipient tags"
+msgstr "Recipient tags"
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-settings-tab.php:99
+msgid "Examples: visitor,applicant..."
+msgstr "Examples: visitor,applicant..."
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-settings-tab.php:102
+msgid ""
+"The listed tags will be applied to all recipients added by this form. Please "
+"enter comma-separated tags."
+msgstr ""
+"The listed tags will be applied to all recipients added by this form. Please "
+"enter comma-separated tags."
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-settings-tab.php:109
+msgid "Attribute mappings"
+msgstr "Attribute mappings"
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-settings-tab.php:115
+msgid "CF7 form field"
+msgstr "CF7 form field"
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-settings-tab.php:116
+msgid "CleverReach® Attribute"
+msgstr "CleverReach® Attribute"
+
+#. Text in function
+#: cleverreach-wp/resources/views/signup-form-settings-tab.php:131
+msgid "Empty"
+msgstr "Empty"
+
+#. Text in function
+#: cleverreach-wp/resources/views/integration.php:8
+msgid "Integrations"
+msgstr "Integrations"
+
+#. Text in function
+#: cleverreach-wp/resources/views/integration.php:13
+msgid "Integration name"
+msgstr "Integration name"
+
+#. Text in function
+#: cleverreach-wp/resources/views/integration.php:16
+msgid "Status"
+msgstr "Status"
+
+#. Text in function
+#: cleverreach-wp/resources/views/integration.php:37
+msgid "Installed"
+msgstr "Installed"
+
+#. Text in function
+#: cleverreach-wp/resources/views/integration.php:43
+msgid "Not installed"
+msgstr "Not installed"
+
+#. Text in function
+#: cleverreach-wp/Components/Utility/class-helper.php:168
+msgid "We have detected that the connection and synchronization with your CleverReach account has been interrupted."
+msgstr "We have detected that the connection and synchronization with your CleverReach account has been interrupted."
+
+#. Text in function
+#: cleverreach-wp/class-plugin.php:360
+msgid "Your connection between WordPress and CleverReach was interrupted!"
+msgstr "Your connection between WordPress and CleverReach was interrupted!"
+
+#. Text in function
+#: cleverreach-wp/class-plugin.php:361
+msgid "Re-authenticate now"
+msgstr "Re-authenticate now"

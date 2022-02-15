@@ -1,0 +1,54 @@
+.acfw-block-single-coupon {
+
+  .components-placeholder__fieldset {
+    flex-flow: column;
+
+    .acfw-single-block-fields {
+      display: flex;
+      flex-flow: row;
+      margin-top: 1em;
+      padding-top: 1em;
+      border-top: 1px solid #eee;
+
+      .acfw-block-current-coupon-selected {
+        width: 50%;
+        max-width: 220px;
+
+        span {
+          display: block;
+        }
+
+        .coupon-code {
+          display: inline-block;
+          width: calc(100% - 10px);
+          padding: 0.5em 1em;
+          margin-top: 0.5em;
+          font-weight: bold;
+          font-size: 1.2em;
+          line-height: 1.3em;
+          background:#e6e6e6;
+          border-radius: 5px;
+          overflow: hidden;
+        }
+      
+      }
+
+      .acfw-block-coupon__selection {
+        position: relative;
+        padding-right: 3em;
+        width: 50%;
+        max-width: 400px;
+  
+        ul.components-form-token-field__suggestions-list {
+          margin: 0;
+        }
+
+        span.components-spinner {
+          position: absolute;
+          top: 2.5em;
+          right: 0;
+        }
+      }
+    }
+  }
+}

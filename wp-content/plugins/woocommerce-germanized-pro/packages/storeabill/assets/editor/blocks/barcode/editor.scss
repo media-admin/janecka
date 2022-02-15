@@ -1,0 +1,80 @@
+$normal-barcode-size: 3cm;
+
+.sab-barcode {
+  display: flex;
+
+  &.has-text-align-center {
+    justify-content: center;
+  }
+
+  &.has-text-align-right {
+    justify-content: flex-end;
+  }
+
+  .sab-barcode-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0.5cm;
+  }
+
+  &.barcode-type-QR {
+    .sab-barcode-wrap {
+      padding: 0;
+    }
+  }
+
+  .sab-placeholder-warning {
+    background: #FFF;
+    color: #1e1e1e;
+    padding: 1px;
+    font-size: 10px;
+    position: absolute;
+    text-align: center;
+  }
+
+  svg {
+    fill: currentColor;
+    width: $normal-barcode-size;
+  }
+
+  &.barcode-type-QR {
+    svg {
+      height: $normal-barcode-size;
+    }
+  }
+
+  &.size-small {
+    svg {
+      width: $normal-barcode-size*0.8;
+    }
+
+    &.barcode-type-QR {
+      svg {
+        height: $normal-barcode-size*0.8;
+      }
+    }
+  }
+  &.size-medium {
+    svg {
+      width: $normal-barcode-size*1.5;
+    }
+
+    &.barcode-type-QR {
+      svg {
+        height: $normal-barcode-size*1.5;
+      }
+    }
+  }
+  &.size-big {
+    svg {
+      width: $normal-barcode-size*2;
+    }
+
+    &.barcode-type-QR {
+      svg {
+        height: $normal-barcode-size*2;
+      }
+    }
+  }
+}

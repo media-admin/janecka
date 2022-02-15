@@ -1,0 +1,250 @@
+# Translation of YITH Infinite Scrolling in Spanish (Spain)
+# This file is distributed under the same license as the YITH Infinite Scrolling package.
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH Infinite Scrolling\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/yith-infinite-"
+"scrolling.premium\n"
+"POT-Creation-Date: 2022-01-11 13:48:38+00:00\n"
+"PO-Revision-Date: 2021-03-15 15:17:14+0000\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+
+#: includes/class.yith-infs-admin-premium.php:67
+msgid "Navigation Selector"
+msgstr "Selector de Navegación"
+
+#: includes/class.yith-infs-admin-premium.php:68
+msgid ""
+"The selector that contains the navigation of this section. Selectors can be "
+"class or ID names: the first ones must have a dot in front (.class-name), "
+"while the second must have a hash (#id-name)."
+msgstr ""
+"El selector que contiene la navegación de esta sección. Los selectores "
+"pueden ser class o ID names: los primeros deben tener un punto al frente (."
+"clase-nombre), mientras que los segundos deben tener una almohadilla (#id-"
+"nombre)."
+
+#: includes/class.yith-infs-admin-premium.php:71
+msgid "Next Selector"
+msgstr "Siguiente Selector"
+
+#: includes/class.yith-infs-admin-premium.php:72
+msgid ""
+"The selector of the link that redirects to the next page of this section. "
+"Selectors can be class or ID names: the first ones must have a dot in front "
+"(.class-name), while the second must have a hash (#id-name)."
+msgstr ""
+"El selector del enlace que redirecciona a la siguiente página de esta "
+"sección. Los selectores pueden ser class o ID names: los primeros deben "
+"tener un punto al frente (.clase-nombre), mientras que los segundos deben "
+"tener una almohadilla (#id-nombre)."
+
+#: includes/class.yith-infs-admin-premium.php:75
+msgid "Item Selector"
+msgstr "Selector de elemento"
+
+#: includes/class.yith-infs-admin-premium.php:76
+msgid ""
+"The selector of the single item in the page. Selectors can be class or ID "
+"names: the first ones must have a dot in front (.class-name), while the "
+"second must have a hash (#id-name)."
+msgstr ""
+"El selector de cada elemento de la página. Los selectores pueden ser class o "
+"ID names: los primeros deben tener un punto al frente (.clase-nombre), "
+"mientras que los segundos deben tener una almohadilla (#id-nombre)."
+
+#: includes/class.yith-infs-admin-premium.php:79
+msgid "Content Selector"
+msgstr "Selector de Contenido"
+
+#: includes/class.yith-infs-admin-premium.php:80
+msgid ""
+"The selector that contains your section content. Selectors can be class or "
+"ID names: the first ones must have a dot in front (.class-name), while the "
+"second must have a hash (#id-name)."
+msgstr ""
+"El selector que contiene tu sección de contenido. Los selectores pueden ser "
+"class o ID names: los primeros deben tener un punto al frente (.clase-"
+"nombre), mientras que los segundos deben tener una almohadilla (#id-nombre)."
+
+#: includes/class.yith-infs-admin-premium.php:85
+msgid "Infinite Scrolling"
+msgstr "Infinite Scrolling"
+
+#: includes/class.yith-infs-admin-premium.php:86
+msgid "Load More Button"
+msgstr "Botón Cargar Más"
+
+#: includes/class.yith-infs-admin-premium.php:87
+msgid "Ajax Pagination"
+msgstr "Paginación de Ajax"
+
+#: includes/class.yith-infs-admin-premium.php:89
+msgid "Event Type"
+msgstr "Evento Tipo"
+
+#: includes/class.yith-infs-admin-premium.php:90
+msgid "Select the type of pagination"
+msgstr "Selecciona un tipo de paginación"
+
+#: includes/class.yith-infs-admin-premium.php:94
+msgid "Button Label"
+msgstr "Etiqueta del Botón"
+
+#: includes/class.yith-infs-admin-premium.php:95
+msgid "Set button label"
+msgstr "Establecer etiqueta del botón"
+
+#: includes/class.yith-infs-admin-premium.php:96
+msgid "Load More"
+msgstr "Cargar Más"
+
+#: includes/class.yith-infs-admin-premium.php:99
+msgid "Extra Class of the Button"
+msgstr "Clase Adicional del Botón"
+
+#: includes/class.yith-infs-admin-premium.php:100
+msgid ""
+"Add a custom class to customize the button style. Use space for multiple "
+"classes."
+msgstr ""
+"Añade una clase personalizada para personalizar el estilo del botón. Utiliza "
+"espacio para múltiples clases."
+
+#: includes/class.yith-infs-admin-premium.php:105
+msgid "Choose a Loader"
+msgstr "Elegir un Cargador"
+
+#: includes/class.yith-infs-admin-premium.php:106
+msgid "Choose a preset loader to use."
+msgstr "Elige un cargador preseleccionado para usar."
+
+#: includes/class.yith-infs-admin-premium.php:112
+msgid "Custom Loader"
+msgstr "Personalizar Cargador"
+
+#: includes/class.yith-infs-admin-premium.php:113
+msgid "Upload a custom loading image. This option overrides the previous one."
+msgstr "Sube una imagen de carga personalizada. Esta opción anula la anterior."
+
+#: includes/class.yith-infs-admin-premium.php:118
+msgid "Zoom in"
+msgstr "Acercar el zoom"
+
+#: includes/class.yith-infs-admin-premium.php:119
+msgid "Bounce in"
+msgstr "Rebotar"
+
+#: includes/class.yith-infs-admin-premium.php:120
+msgid "Fade in"
+msgstr "Desvanecer"
+
+#: includes/class.yith-infs-admin-premium.php:121
+msgid "Fade in from top to down"
+msgstr "Desvanecer de arriba hacia abajo"
+
+#: includes/class.yith-infs-admin-premium.php:122
+msgid "Fade in from right to left"
+msgstr "Desvanecer de derecha a izquierda"
+
+#: includes/class.yith-infs-admin-premium.php:123
+msgid "Fade in from left to right"
+msgstr "Desvanecer de izquierda a derecha"
+
+#: includes/class.yith-infs-admin-premium.php:124
+msgid "Fade in from down to top"
+msgstr "Desvanecer de abajo hacia arriba"
+
+#: includes/class.yith-infs-admin-premium.php:126
+msgid "Load Effect"
+msgstr "Cargar Efecto"
+
+#: includes/class.yith-infs-admin-premium.php:127
+msgid "Type of animation for the loading of new contents."
+msgstr "Tipo de animación para la carga de nuevos contenidos."
+
+#: includes/class.yith-infs-admin-premium.php:181
+msgid "Please insert a name for the section"
+msgstr "Por favor, inserta un nombre para esta sección"
+
+#: includes/class.yith-infs-admin-premium.php:182
+msgid "Do you really want to delete this section?"
+msgstr "¿Estás seguro de que quieres borrar esta sección?"
+
+#: includes/class.yith-infs-admin.php:165
+msgid "Settings"
+msgstr "Ajustes"
+
+#: includes/class.yith-infs-admin.php:169
+msgid "Premium Version"
+msgstr "Versión Premium"
+
+#: plugin-options/general-options.php:18
+msgid "General Settings"
+msgstr "Ajustes Generales"
+
+#: plugin-options/general-options.php:31
+msgid "Enable Infinite Scrolling"
+msgstr "Habilitar Infinite Scrolling"
+
+#: plugin-options/general-options.php:39
+msgid "Enable Infinite Scrolling on mobile device"
+msgstr "Habilitar Infinite Scrolling en dispositivos móviles"
+
+#: plugin-options/general-options.php:51
+msgid "Change the URL of the page whenever new items are loaded"
+msgstr ""
+"Cambia la dirección URL de la página cada vez que se cargan los nuevos "
+"artículos"
+
+#: plugin-options/general-options.php:63
+msgid "Add section and set options"
+msgstr "Añadir sección y establecer opciones"
+
+#: plugin-options/general-options.php:76
+msgid "Custom JavaScript"
+msgstr "JavaScript Personalizado"
+
+#. translators: %1$s and %2$s stand for the name of two JS plugin triggers to
+#. use for custom code.
+#: plugin-options/general-options.php:79
+msgid ""
+"Add here your custom JavaScript code. You can use two plugin triggers: %1$s "
+"is triggered before the new elements are appended to the current content, "
+"and %2$s is triggered after the AJAX call ends"
+msgstr ""
+"Añade aquí tu código personalizado de JavaScript. Puedes utilizar dos "
+"desencadenantes del plugin: %1$s es desencadenado antes de que nuevos "
+"elementos sean adjuntos al contenido actual y %2$s es desencadenado tras "
+"finalizar la llamada de AJAX"
+
+#: templates/admin/options-section-stamp.php:17
+#: templates/admin/options-section.php:31
+msgid "Options for "
+msgstr "Opciones de"
+
+#: templates/admin/options-section-stamp.php:70
+#: templates/admin/options-section.php:84
+msgid "Upload"
+msgstr "Cargar"
+
+#: templates/admin/options-section.php:17
+msgid "Add section"
+msgstr "Añadir sección"
+
+#. Description of the plugin/theme
+msgid ""
+"The <code><strong>YITH Infinite Scrolling</strong></code> plugin lets you "
+"easily add infinite scroll on your pages. <a href=\"https://yithemes.com/\" "
+"target=\"_blank\">Get more plugins for your e-commerce shop on <strong>YITH</"
+"strong></a>."
+msgstr ""
+"<code><strong>YITH Infinite Scrolling</strong></code> te permite añadir "
+"fácilmente desplazamiento infinito en tus páginas. <a href=\"https://"
+"yithemes.com/\" target=\"_blank\">Obtén más plugins para tu comercio "
+"electrónico en <strong>YITH</strong></a>."

@@ -1,0 +1,90 @@
+$primary-color: #3a87ad;
+$gray-color: #d4d4d4;
+$border-color: #d4d4d4;
+
+$unit-1: .2rem !default;
+$unit-2: .4rem !default;
+$unit-3: .6rem !default;
+
+@import "checkout-multistep-general.scss";
+
+.woocommerce-multistep-checkout {
+  ul.nav-wizard {
+    display: flex;
+    flex-wrap: nowrap;
+    list-style: none;
+    margin: $unit-1 0;
+    width: 100%;
+    margin-bottom: 2em;
+
+    .step-number {
+      display: none;
+    }
+
+    li {
+      flex: 1 1 0;
+      margin-top: 0;
+      min-height: 1rem;
+      text-align: center;
+      position: relative;
+
+      &:not(:first-child)::before {
+        background: $primary-color;
+        content: "";
+        height: 2px;
+        left: -50%;
+        position: absolute;
+        top: 9px;
+        width: 100%;
+      }
+
+      a {
+        color: $primary-color;
+        display: inline-block;
+        padding: 20px 10px 0;
+        text-decoration: none;
+
+        &:focus {
+          outline: none;
+          background: transparent;
+        }
+
+        &::before {
+          background: $primary-color;
+          border-radius: 50%;
+          content: "";
+          display: block;
+          height: 8px;
+          left: 50%;
+          position: absolute;
+          top: 5px;
+          transform: translateX(-50%);
+          width: 8px;
+          z-index: 99;
+        }
+      }
+
+      &.active {
+        a {
+          &::before {
+            border: 1px solid $primary-color;
+          }
+        }
+
+        & ~ li {
+          &::before {
+            background: $border-color;
+          }
+
+          a {
+            color: $gray-color;
+
+            &::before {
+              background: $border-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

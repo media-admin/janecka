@@ -1,0 +1,318 @@
+@import "~@wordpress/base-styles/colors";
+@import "~@wordpress/base-styles/variables";
+@import "~@wordpress/base-styles/breakpoints";
+@import "~@wordpress/base-styles/mixins";
+
+// These margins make sure that nested blocks stack/overlay with the parent block chrome
+// This is sort of an experiment at making sure the editor looks as much like the end result as possible
+// Potentially the rules here can apply to all nested blocks and enable stacking, in which case it should be moved elsewhere
+// When using CSS grid, margins do not collapse on the container.
+.wp-block-storeabill-item-table .block-editor-block-list__layout {
+  // This max-width is used to constrain the main editor column, it should not cascade into columns
+  .block-editor-block-list__block {
+    max-width: none;
+  }
+}
+
+// Ideally all block toolbars should be positioned the same.
+.components-popover.block-editor-block-list__block-popover
+.components-popover__content
+.block-editor-block-contextual-toolbar[data-type="storeabill/item-table-column"] {
+  margin-left: 0;
+}
+
+.wp-block-storeabill-item-table {
+  display: block;
+  border-color: $default-border-color;
+  border-style: solid;
+  border-width: 0;
+
+  > .block-editor-inner-blocks {
+    border-color: inherit;
+
+    > .block-editor-block-list__layout {
+      border-color: inherit;
+
+      > .wp-block {
+        border-color: inherit;
+      }
+    }
+  }
+
+  > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    display: flex;
+
+    // Responsiveness: Allow wrapping on mobile.
+    flex-wrap: wrap;
+
+    @include break-medium() {
+      flex-wrap: nowrap;
+    }
+    // Set full heights on Columns to enable vertical alignment preview
+    > [data-type="storeabill/item-table-column"],
+    > [data-type="storeabill/item-table-column"] .block-core-columns {
+      display: flex;
+      flex-direction: column;
+
+      // This flex rule fixes an issue in IE11.
+      flex: 1 1 auto;
+
+      // IE11 does not support `position: sticky`, so we use it here to serve correct Flex rules to modern browsers.
+      @supports (position: sticky) {
+        flex: 1;
+      }
+    }
+
+    // Adjust the individual column block.
+    > [data-type="storeabill/item-table-column"] {
+
+      // On mobile, only a single column is shown, so match adjacent block paddings.
+      padding-left: 0;
+      padding-right: 0;
+
+      // Zero out margins.
+      margin-top: 0;
+      margin-bottom: 0;
+
+      // Prevent the columns from growing wider than their distributed sizes.
+      min-width: 0;
+
+      // Prevent long unbroken words from overflowing.
+      word-break: break-word; // For back-compat.
+      overflow-wrap: break-word; // New standard.
+
+      // Responsiveness: Show at most one columns on mobile.
+      flex-basis: 0;
+      flex-grow: 1;
+
+      &[style*=flex-basis] {
+        flex-grow: 0;
+      }
+
+      // Remove Block "padding" so individual Column is flush with parent Columns
+      &::before {
+        left: 0;
+        right: 0;
+      }
+
+      > .wp-block-storeabill-item-table-column {
+        border-width: 0;
+        border-style: solid;
+        border-color: inherit;
+        justify-content: flex-start !important;
+
+        &.is-horizontally-aligned-right {
+          text-align: right;
+        }
+        &.is-horizontally-aligned-left {
+          text-align: left;
+        }
+        &.is-horizontally-aligned-center {
+          text-align: center;
+        }
+      }
+
+      > .wp-block-storeabill-item-table-column .item-column-heading {
+        border-color: inherit;
+        border-width: 0;
+        border-style: solid;
+        padding: 0 $item-table-padding;
+        // Necessary to prevent overlapping borders
+        margin-bottom: -1px;
+
+        .item-column-heading-text {
+          line-height: $item-table-line-height;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+
+      .block-editor-block-list__block:before {
+        right: -$item-table-padding;
+        left: -$item-table-padding;
+        top: -$item-table-padding;
+        bottom: -$item-table-padding;
+      }
+
+      > .wp-block-storeabill-item-table-column {
+        border-color: inherit;
+
+        .block-editor-inner-blocks {
+          padding: $item-table-padding;
+          border-color: inherit;
+          border-style: solid;
+          border-width: 0;
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          // Prevent border overlapping
+          margin-bottom: -1px;
+
+          .block-editor-block-list__block, p, ul {
+            margin-bottom: 0;
+          }
+
+          .wp-block:not(:first-child) {
+            margin-top: $item-table-block-margin;
+
+            p:first-child {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.has-dense-layout {
+    > .block-editor-inner-blocks > .block-editor-block-list__layout {
+      > [data-type="storeabill/item-table-column"] {
+        > .wp-block-storeabill-item-table-column .item-column-heading {
+          padding: 0 $item-table-padding-dense;
+
+          .item-column-heading-text {
+            line-height: $item-table-line-height-dense;
+          }
+        }
+
+        .block-editor-block-list__block:before {
+          right: -$item-table-padding-dense;
+          left: -$item-table-padding-dense;
+          top: -$item-table-padding-dense;
+          bottom: -$item-table-padding-dense;
+        }
+
+        > .wp-block-storeabill-item-table-column {
+          .block-editor-inner-blocks {
+            padding: $item-table-padding-dense;
+
+            .wp-block:not(:first-child) {
+              margin-top: $item-table-block-margin-dense;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.is-style-odd {
+    > .block-editor-inner-blocks > .block-editor-block-list__layout {
+      > [data-type="storeabill/item-table-column"] {
+        > .wp-block-storeabill-item-table-column {
+          .block-editor-inner-blocks {
+            background: #EEE;
+          }
+        }
+      }
+    }
+  }
+
+  &.has-border-outer {
+    border-width: 1px;
+
+    > .block-editor-inner-blocks > .block-editor-block-list__layout {
+      > [data-type="storeabill/item-table-column"] {
+        > .wp-block-storeabill-item-table-column {
+          .block-editor-inner-blocks {
+            border-bottom-width: 1px;
+          }
+        }
+      }
+    }
+  }
+
+  &.has-border-inner {
+    > .block-editor-inner-blocks > .block-editor-block-list__layout {
+      > [data-type="storeabill/item-table-column"] {
+        > .wp-block-storeabill-item-table-column {
+          .block-editor-inner-blocks {
+            border-left-width: 1px;
+          }
+
+          .item-column-heading {
+            border-left-width: 1px;
+            border-bottom-width: 1px;
+          }
+        }
+
+        &:first-child {
+          > .wp-block-storeabill-item-table-column {
+            .block-editor-inner-blocks {
+              border-left-width: 0;
+            }
+
+            .item-column-heading {
+              border-left-width: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.has-border-horizontal {
+    > .block-editor-inner-blocks > .block-editor-block-list__layout {
+      > [data-type="storeabill/item-table-column"] {
+        > .wp-block-storeabill-item-table-column {
+          .block-editor-inner-blocks {
+            border-bottom-width: 1px;
+          }
+
+          .item-column-heading {
+            border-bottom-width: 1px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Columns act as as a "passthrough container"
+ * and therefore has its vertical margins/padding removed via negative margins
+ * therefore we need to compensate for this here by doubling the spacing on the
+ * vertical to ensure there is equal visual spacing around the inserter. Note there
+ * is no formal API for a "passthrough" Block so this is an edge case overide
+ */
+[data-type="storeabill/item-table"] {
+
+  &::after {
+    box-shadow: none !important;
+  }
+
+  .block-list-appender {
+    margin-top: $item-table-padding*2;
+    margin-bottom: $item-table-padding*2;
+  }
+}
+
+/**
+ * Vertical Alignment Preview
+ * note: specificity is important here to ensure individual
+ * * columns alignment is prioritised over parent column alignment
+ *
+ */
+.are-vertically-aligned-top .block-core-columns,
+div.block-core-columns.is-vertically-aligned-top {
+  justify-content: flex-start;
+}
+
+.are-vertically-aligned-center .block-core-columns,
+div.block-core-columns.is-vertically-aligned-center {
+  justify-content: center;
+}
+
+.are-vertically-aligned-bottom .block-core-columns,
+div.block-core-columns.is-vertically-aligned-bottom {
+  justify-content: flex-end;
+}
+
+/**
+ * Make single Column overlay not extend past boundaries of parent
+ */
+.block-core-columns > .block-editor-inner-blocks.has-overlay::after {
+  left: 0;
+  right: 0;
+}

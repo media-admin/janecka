@@ -1,0 +1,72 @@
+.woocommerce-multistep-checkout {
+  .step-buttons {
+    display: block;
+    width: 100%;
+    clear: both;
+    margin-top: 1.5em;
+
+    .next-step-button {
+      float: right;
+    }
+  }
+
+  p.data-privacy {
+    clear: both;
+  }
+
+  .step-wrapper {
+    display: none;
+  }
+
+  .woocommerce-gzdp-checkout-verify-data {
+    clear: both;
+    margin: 1em 0;
+  }
+
+  form.checkout {
+    h3#order_payment_heading {
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    #order_review {
+      width: 100%;
+      padding-left: 0;
+      margin-left: 0;
+    }
+
+    #customer_details, #customer_details.col2-set {
+      width: 100%;
+      padding-right: 0;
+      margin-right: 0;
+
+      .woocommerce-billing-fields {
+        h3 {
+          padding-top: 0;
+          margin-top: 0;
+        }
+      }
+    }
+
+    #order_review {
+      width: 100%;
+
+      h3#order_review_heading {
+        width: 100%;
+        padding-left: 0;
+        float: none;
+        margin-top: 0;
+        clear: both;
+      }
+    }
+  }
+}
+
+/**
+ * Hide amazon details from second/third step
+ */
+.woocommerce-multistep-checkout-active-order, .woocommerce-multistep-checkout-active-payment {
+  #amazon_customer_details {
+    display: none;
+  }
+}

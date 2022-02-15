@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+rm -rf dist
+
+mkdir dist
+mkdir dist/resources
+mkdir dist/resources/js
+mkdir dist/resources/css
+mkdir dist/resources/img
+
+cp src/BusinessLogic/Resources/SurveyLibrary/css/* dist/resources/css/
+cp src/BusinessLogic/Resources/SurveyLibrary/img/* dist/resources/img/
+
+touch dist/resources/js/cleverreach.survey.js
+
+cat src/BusinessLogic/Resources/SurveyLibrary/js/Header.js >> dist/resources/js/cleverreach.survey.js
+cat src/BusinessLogic/Resources/SurveyLibrary/js/Models/*.js >> dist/resources/js/cleverreach.survey.js
+cat src/BusinessLogic/Resources/SurveyLibrary/js/Views/*.js >> dist/resources/js/cleverreach.survey.js
+cat src/BusinessLogic/Resources/SurveyLibrary/js/Views/Forms/*.js >> dist/resources/js/cleverreach.survey.js
+cat src/BusinessLogic/Resources/SurveyLibrary/js/SurveyFormFactory.js >> dist/resources/js/cleverreach.survey.js
+cat src/BusinessLogic/Resources/SurveyLibrary/js/AjaxService.js >> dist/resources/js/cleverreach.survey.js
+cat src/BusinessLogic/Resources/SurveyLibrary/js/SurveyController.js >> dist/resources/js/cleverreach.survey.js
+
+git add dist/*

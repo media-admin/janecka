@@ -1,0 +1,769 @@
+.sortable-container {
+    width: 200px;
+    padding: 0;
+    float: left;
+    margin-right: 10px;
+}
+
+.sortable-title {
+    padding: 8px 0;
+    margin-right: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 17px;
+}
+
+.sti-sortable {
+    border: 1px solid #C7C4C4;
+    background: #fff7f7;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+    margin-right: 10px;
+    min-height: 180px;
+}
+
+.sti-sortable.enabled {
+    background: #ddf0dc;
+}
+
+.sti-sortable li.sti-btn,
+.sti-sortable li.highlight,
+.sti-sortable li#excerpt {
+    display: inline-block;
+    /*float: left;*/
+    width: 100%;
+    height: auto;
+    margin: 0 3px 3px 0;
+    cursor: pointer;
+    background: #F1F1F1;
+    border: 1px solid #C7C4C4;
+    text-align: center;
+    padding: 8px 0;
+    text-transform: capitalize;
+}
+
+.sti-sortable li.highlight {
+    background: #fff;
+    width: 100%;
+    height: 36px;
+    padding: 0;
+    border: 1px dotted #ccc;
+}
+
+
+.image-preview {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Table */
+.aws-table {
+    margin: 20px 0 10px;
+}
+
+.aws-table tr:nth-child(odd) td {
+    background: #f9f9f9;
+}
+
+.aws-table .aws-name {
+    font-weight: 700;
+}
+
+.aws-table .aws-current-filter {
+    color: #b00000;
+    margin-left: 8px;
+    font-size: 12px;
+}
+
+.aws-table th {
+    padding: 9px 7px!important;
+    vertical-align: middle;
+}
+
+.aws-table td,
+.form-table .aws-table td {
+    vertical-align: middle;
+    padding: 7px !important;
+    line-height: 2em;
+}
+
+.aws-table .aws-actions a {
+    display: block;
+    text-indent: -9999px;
+    position: relative;
+    padding: 0!important;
+    height: 2em!important;
+    min-height: 2em!important;
+    width: 2em;
+    margin-left: 10px;
+}
+
+.aws-table .aws-actions a:after {
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-family: Dashicons;
+    line-height: 1.85;
+}
+
+.aws-table .aws-actions a.edit:after {
+    content: "";
+}
+
+.aws-table .aws-actions a.delete:after {
+    content: "";
+}
+
+.aws-table .aws-actions a.delete:hover:after {
+    background: rgba(255, 0, 0, 0.2);
+}
+
+.aws-table .aws-actions a.copy:after {
+    content: "";
+}
+
+.aws-insert-instance {
+    margin: 20px 0;
+
+}
+
+.aws-table.aws-table-sources {
+    margin: 10px 0 10px;
+    width: 500px;
+}
+
+.aws-table.aws-table-sources th.aws-actions {
+    width: 60px;
+}
+.aws-table.aws-table-sources th.aws-active {
+    width: 30px;
+}
+
+.aws-table.aws-table-sources td.aws-active {
+    text-align: center;
+}
+
+.aws-table.aws-table-sources td.aws-active .aws-yes,
+.aws-table.aws-table-sources td.aws-active .aws-no,
+.aws-table.aws-table-sources td.aws-active .aws-disabled {
+    background-color: #26CC06;
+    padding: 1px 7px;
+    color: #fff;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+}
+
+.aws-table.aws-table-sources td.aws-active .aws-disabled {
+    background-color: #808080;
+    cursor: default;
+}
+
+.aws-table.aws-table-sources td.aws-active .aws-no {
+    background-color: #CC0606;
+}
+
+.aws-table.aws-table-sources td.aws-active .aws-yes,
+.aws-table.aws-table-sources td.aws-active .aws-disabled,
+.aws-table.aws-table-sources td.aws-active.active .aws-no {
+    display: none;
+}
+
+.aws-table.aws-table-sources td.aws-active.active .aws-yes {
+    display: inline;
+}
+
+.aws-table.aws-table-sources td.aws-active.disabled .aws-disabled {
+    display: inline !important;
+}
+
+.aws-table.aws-table-sources td.aws-active.disabled .aws-yes,
+.aws-table.aws-table-sources td.aws-active.disabled .aws-no {
+    display: none;
+}
+
+.aws-table.aws-table-sources td.aws-active:after {
+    content: "";
+    display: none;
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
+    background: url('../img/loader-2.gif') no-repeat 50% 50%;
+}
+
+.aws-table.aws-table-sources td.aws-active.loading .aws-yes,
+.aws-table.aws-table-sources td.aws-active.loading .aws-no {
+    display: none;
+}
+
+.aws-table.aws-table-sources td.aws-active.loading:after {
+    display: block;
+}
+
+.aws-table.aws-table-sources td.aws-name {
+    font-weight: 400;
+}
+
+
+/* Settings page */
+h1.aws-instance-name {
+    position: relative;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+h1.aws-instance-name:after {
+    display: none;
+
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    text-indent: 0;
+    position: absolute;
+    top: 17px;
+    right: -1px;
+    text-align: center;
+    font-family: Dashicons;
+    content: '';
+    line-height: 1;
+    font-size: 18px;
+    color: #9C9C9C;
+}
+
+h1.aws-instance-name:hover:after {
+    display: block;
+}
+
+h2.aws-instance-filter {
+    position: relative;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    padding-left: 8px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+
+}
+h2.aws-instance-filter:before {
+    content: '->';
+    font-weight: 400;
+    font-size: 18px;
+    color: #000;
+    line-height: 1;
+    margin-right: 22px;
+    position: relative;
+    top: -2px;
+}
+
+.aws-instance-shortcode {
+    display: inline-block;
+    background: #fff;
+    padding: 4px;
+    margin-left: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    top: -4px;
+}
+
+.aws-back {
+    display: block;
+    text-indent: -9999px;
+    position: relative;
+    padding: 0!important;
+    height: 24px!important;
+    min-height: 24px!important;
+    width: 24px;
+    margin-right: 40px!important;
+    margin-top: 11px!important;
+}
+
+.aws-back:after {
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-family: Dashicons;
+    line-height: 24px;
+    content: '';
+}
+
+.aws-back-to-filters {
+    display: block;
+    position: relative;
+    padding: 0 8px!important;
+    height: 28px!important;
+    margin-right: 40px!important;
+    margin-top: 21px!important;
+}
+.aws-back-to-filters:before {
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    padding-right: 8px;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    text-indent: 0;
+    text-align: center;
+    font-family: Dashicons;
+    line-height: 24px;
+    content: "\f474";
+    position: relative;
+    top: 3px;
+}
+
+#aws_form .aws-heading {
+    margin-right: -40px;
+}
+
+#aws_form .img-select {
+    position: relative;
+    font-size: 0;
+    list-style: none;
+    max-width: 400px;
+}
+
+#aws_form .img-select .option {
+    display: block;
+    position: relative;
+    vertical-align: top;
+    height: 36px;
+    width: 400px;
+    margin: 0 0 16px;
+}
+
+#aws_form .img-select .option input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    cursor: pointer;
+    opacity: 0;
+}
+#aws_form .img-select .option input:before,
+#aws_form .img-select .option input:checked:before{
+    display: none;
+}
+
+#aws_form .img-select .option .ico {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background-size: contain !important;
+    border:2px solid transparent;
+    border-radius: 5px;
+}
+
+#aws_form .img-select .option input:checked + .ico {
+    border-color: rgba(0,0,0,0.6);
+}
+
+#aws_form select {
+    min-width: 170px;
+    display: block;
+}
+
+
+.form-table .description.activation {
+    font-size: 14px;
+    line-height: 1.6;
+    font-style: normal;
+}
+
+.form-table .description.activation .list {
+    padding-top: 2px;
+}
+
+
+/* Filters tabs */
+.aws-form-filters {
+    width: 100%;
+    max-width: 720px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.aws-form-filters .aws-filter-item {
+    width: 100%;
+}
+
+.aws-form-filters .aws-filter-item.ui-sortable-helper {
+    background: #f9f9f9;
+}
+
+.aws-form-filters .aws-sort {
+    width: 30px;
+}
+.aws-form-filters .aws-name {
+    width: 400px;
+}
+.aws-form-filters .aws-actions {
+    width: 140px;
+}
+
+.aws-form-filters td.aws-sort {
+    padding: 0 7px !important;
+    cursor: move;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.aws-form-filters td.aws-sort:before {
+    content: '';
+    font-family: Dashicons;
+    color: #ccc;
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    text-indent: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 2;
+    font-size: 20px;
+}
+
+.aws-form-filters .aws-name a.active {
+    color: #000;
+}
+
+.aws-insert-filter-box {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 40px;
+    max-width: 720px;
+    margin: 0;
+}
+
+.aws-sub {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    font-size: 13px;
+    float: left;
+    color: #666;
+}
+.aws-sub li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+.aws-sub li a {
+    line-height: 2;
+    padding: .2em .2em .2em .4em;
+    text-decoration: none;
+}
+.aws-sub li:first-child a {
+    padding-left: 0;
+}
+
+
+/* Reindex button */
+#aws-reindex {
+    display: inline-block;
+}
+
+#aws-reindex .loader {
+    display: none;
+    width: 20px;
+    height: 20px;
+    background: url('../img/loader-1.GIF') no-repeat 50% 50%;
+    margin-left: 15px;
+    margin-top: 4px;
+}
+
+#aws-reindex .reindex-progress,
+#aws-reindex .reindex-notice {
+    display: none;
+    margin-left: 15px;
+    position: relative;
+    top: -5px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#aws-reindex .reindex-notice {
+    font-weight: normal;
+}
+
+#aws-reindex.loading .loader,
+#aws-reindex.loading .reindex-progress,
+#aws-reindex.loading .reindex-notice {
+    display: inline-block;
+}
+
+/* Advanced filters */
+#aws_form .aws-rules,
+#aws_form .aws-rules * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#aws_form .aws-rules .aws-rules-desc {
+    padding: 8px 4px 8px;
+    font-weight: 600;
+}
+
+#aws_form .aws-rules .aws-rules-table {
+    background: transparent;
+    border-spacing: 0;
+    border-radius: 0;
+    table-layout: auto;
+    padding: 0 60px 0 0;
+    margin: 0;
+    width: 100%;
+    max-width: 1000px;
+    clear: both;
+    border: 0 none;
+}
+
+#aws_form .aws-rules .aws-rules-table:after {
+    content: 'or';
+    display: block;
+    font-weight: 600;
+    padding: 10px 4px 10px 0;
+}
+
+#aws_form .aws-rules .aws-rules-table tr {
+    z-index: 1;
+}
+
+#aws_form .aws-rules .aws-rules-table td {
+    vertical-align: top;
+    /*background: #fff;*/
+    text-align: left;
+    font-weight: normal;
+    border: 0 none;
+    padding: 4px 8px 4px 0;
+}
+
+#aws_form .aws-rules .aws-rules-table td.aws-hide {
+    visibility: hidden;
+}
+
+#aws_form .aws-rules .aws-rules-table td select,
+#aws_form .aws-rules .aws-rules-table td input {
+    width: 100%;
+    max-width: none;
+    resize: none;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 2px 8px;
+}
+
+#aws_form .aws-rules .aws-rules-table td {
+    position: relative;
+}
+
+#aws_form .aws-rules .aws-rules-table .aws-pending td {
+    visibility: hidden;
+}
+
+#aws_form .aws-rules .aws-rules-table td.param:after {
+    content: "";
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: -40px;
+    width: 20px;
+    height: 20px;
+    background: url('../img/loader-3.gif') no-repeat 50% 50%;
+}
+
+#aws_form .aws-rules .aws-rules-table .aws-pending td.param {
+    visibility: visible;
+}
+
+#aws_form .aws-rules .aws-rules-table .aws-pending td.param:after {
+    display: block;
+}
+
+#aws_form .aws-rules .aws-rules-table td.param {
+    width: 40%;
+}
+
+#aws_form .aws-rules .aws-rules-table td.operator {
+    width: 20%;
+}
+
+#aws_form .aws-rules .aws-rules-table td.add {
+    width: 40px;
+}
+
+#aws_form .aws-rules .aws-rules-table td.remove {
+    width: 28px;
+    vertical-align: middle;
+}
+
+#aws_form .aws-rules .aws-rules-table td.remove a.remove-rule {
+    visibility: hidden;
+    padding-left: 12px;
+    padding-right: 12px;
+    transition: opacity .3s ease-in-out;
+}
+
+#aws_form .aws-rules .aws-rules-table tr.adv td.param select {
+    width: 50%;
+    display: inline-block;
+}
+
+#aws_form .aws-rules .aws-rules-table tr.adv td.param select.suboption-val,
+#aws_form .aws-rules .aws-rules-table tr.adv td.param select.suboption-val+.select2-container{
+    width: calc(50% - 8px);
+    float: right;
+}
+
+#aws_form .aws-rules .aws-rules-table tr.adv td.param select:first-child:after {
+    content: 'd';
+    padding-right: 2px;
+    display: block;
+    width: 5px;
+}
+
+#aws_form .aws-rules .aws-rules-table .aws-rule:hover td.remove a.remove-rule {
+    visibility: visible;
+}
+
+#aws_form .aws-rules .aws-rules-table .aws-rule.aws-pending:hover td.remove a.remove-rule {
+    visibility: hidden;
+}
+
+#aws_form .aws-rules .aws-rules-table td.remove a.remove-rule:hover {
+    background-color: #F55E4F;
+    border-color: #F55E4F;
+    color: #fff;
+}
+
+#aws_form .aws-rules .add-first-filter {
+    display: none;
+}
+#aws_form .aws-rules.aws-rules-empty .add-rule-group {
+    display: none;
+}
+#aws_form .aws-rules.aws-rules-empty .add-first-filter {
+    display: inline-block;
+}
+
+/* Select2 */
+.wp-admin .select2-container--default .select2-search--dropdown .select2-search__field {
+    height: 26px;
+    min-height: 26px;
+}
+.wp-admin .select2-container--default .select2-search--dropdown .select2-search__field:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #7e8993;
+}
+.wp-admin .select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #1E90FF;
+    color: white;
+}
+.wp-admin .select2-results__option {
+    margin: 0;
+    padding: 3px 6px;
+}
+.wp-admin .select2-container--default .select2-results > .select2-results__options {
+    overflow-x: hidden;
+    word-break: break-word;
+}
+
+#aws_form .aws-rules .select2-container--default .select2-selection--single {
+    border-color: #7e8993;
+    box-shadow: none;
+    border-radius: 3px;
+    font-size: 14px;
+    min-height: 30px;
+    background: #fff url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E) no-repeat right 5px top 55%;
+    background-size: 16px 16px;
+}
+#aws_form .aws-rules .select2-container--default .select2-selection--single:focus {
+    outline-color: #007cba;
+}
+#aws_form .aws-rules .select2-container--default .select2-selection--single .select2-selection__arrow {
+    display: none;
+}
+
+
+/* Advanced filter */
+
+#aws_form .adv-filter-group {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: stretch;
+}
+
+#aws_form .adv-filter-add {
+}
+
+#aws_form .adv-filter-group .chosen-container {
+    margin-right: 5px;
+}
+
+#aws_form .adv-filter-remove {
+    display: inline-block;
+    min-width: 25px;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    font-size: 20px;
+    color: #aaa;
+    margin-left: 5px;
+    margin-top: 3px;
+    vertical-align: top;
+    cursor: pointer;
+}
+#aws_form .adv-filter-remove:hover {
+    background-color: #F55E4F;
+    border-color: #F55E4F;
+    color: #fff;
+}
+
+/* Welcome message */
+
+.welcome-panel .welcome-panel-column:first-child {
+    width: 60%;
+}
+.welcome-panel .welcome-panel-column {
+    width: 20%;
+}

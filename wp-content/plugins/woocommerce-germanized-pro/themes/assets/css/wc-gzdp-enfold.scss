@@ -1,0 +1,241 @@
+/**
+ * Custom WC Germanized CSS for Enfold
+ */
+
+/**
+ * LOOP
+ */
+
+ul.products .product .inner_product_header {
+  padding-bottom: 0 !important;
+}
+
+ul.products .product .inner_product_header_legal {
+  padding-top: 0;
+}
+
+ul.products .product .inner_product_header_legal a {
+  display: inline;
+}
+
+ul.products .product p.price-unit {
+  display: block;
+}
+
+ul.products .product p.price-unit, ul.products .product p.price-unit span {
+  font-size: 12px !important;
+}
+
+ul.product_list_widget li p.wc-gzd-additional-info {
+  font-size: 10px !important;
+  line-height: 20px !important;
+  margin: 0;
+}
+
+ul.product_list_widget li p.wc-gzd-additional-info a {
+  font-size: 10px !important;
+  font-weight: normal !important;
+  line-height: 20px !important;
+  display: inline !important;
+}
+
+ul.product_list_widget li p.price-unit {
+  display: block !important;
+  font-weight: normal !important;
+  font-size: 10px !important;
+  line-height: 16px !important;
+  margin: 0 !important;
+  margin-bottom: 5px !important;
+}
+
+ul.product_list_widget li p.price-unit span {
+  font-weight: normal !important;
+  font-size: 10px !important;
+  line-height: 16px !important;
+}
+
+ul.products .product p.price-unit .unit, ul.product_list_widget li p.price-unit .unit, ul.products .product p.product-units .unit, ul.product_list_widget li p.product-units .unit {
+  display: inline;
+  float: none;
+  margin: 0;
+}
+
+.product-units .unit {
+  display: inline;
+  float: none;
+  margin: 0;
+}
+
+/**
+ * MASONRY
+ */
+
+.enfold-gzd-loop-info p.price-unit {
+  display: block;
+}
+
+.enfold-gzd-loop-info p.price-unit .unit {
+  display: inline;
+  float: none;
+  margin: 0;
+}
+
+.enfold-gzd-loop-info p.price-unit, .enfold-gzd-loop-info p.price-unit span {
+  font-size: 12px !important;
+}
+
+.enfold-gzd-loop-info p.wc-gzd-additional-info {
+  margin: 0;
+}
+
+/**
+ * Widgets
+ */
+
+.product_list_widget .unit-price {
+  display: block;
+}
+
+.product_list_widget .unit-price .unit {
+  display: inline;
+  float: none;
+  margin: 0;
+}
+
+.product_list_widget p.units-info, .product_list_widget p.delivery-time-info, .product_list_widget .wc-gzd-item-desc p {
+  padding: 0 !important;
+  font-weight: normal;
+}
+
+.product_list_widget .wc-gzd-item-desc p {
+  padding-top: 1em !important;
+}
+
+ul.products .product .inner_product_header_legal {
+  border-color: transparent;
+  padding-top: 0;
+  min-height: 0 !important;
+  padding-bottom: 15px !important;
+}
+
+ul.products .product p.tax-info, ul.products .product p.shipping-costs-info {
+  display: inline;
+}
+
+ul.products .product p.delivery-time-info {
+  display: block;
+}
+
+ul.products li.virtual .tax-info, ul.products li.downloadable .tax-info {
+  display: block;
+}
+
+/**
+ * LOOP MINIMAL OVERLAY
+ */
+
+ul.products .product .av-product-class-minimal-overlay .wc-gzd-additional-info {
+  display: block;
+  color: #FFF;
+  margin: 0;
+}
+
+/**
+ * SINGLE PRODUCT
+ */
+
+.single-product .single-product-summary div[itemprop="offers"] {
+  display: inline;
+}
+
+.single-product .price-unit {
+  margin-left: 1em;
+}
+
+.single-product .price-unit, .single-product .price-unit span {
+  font-size: 12px !important;
+}
+
+.single-product .price-unit .unit {
+  display: inline;
+  float: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Shortcode */
+
+.av-woo-purchase-button .product-units {
+  font-size: 0.9em;
+}
+
+.av-woo-purchase-button form {
+  margin-top: 20px;
+}
+
+/**
+ * CART / CHECKOUT
+ */
+
+.woocommerce .cart_totals .small-business-info {
+  border-top: none;
+  width: 100%;
+  text-align: left;
+}
+
+.woocommerce .unit-price .unit, .woocommerce .units-info .unit {
+  margin: 0;
+  display: inline;
+  float: none;
+  padding: 0;
+}
+
+#order_review_heading {
+  margin: 1em 0;
+}
+
+.single-product .product-units-wrapper {
+  display: block;
+}
+
+/**
+ * Mini Cart
+ */
+
+#top .dropdown_widget p.total {
+  padding: 3px 10px;
+}
+
+#top .dropdown_widget p.wc-gzd-total-mini-cart {
+  font-size: 11px;
+}
+
+/**
+ * Multistep Checkout
+ */
+
+.woocommerce-gzdp-checkout-verify-data {
+  margin-bottom: 1em;
+}
+
+#step-wrapper-order .step-buttons {
+  float: left;
+}
+
+/**
+ * Customer Account
+ */
+
+form.register p.form-row label.inline {
+  display: inline !important;
+}
+
+/**
+ * FOOTER
+ */
+
+.copyright .footer-info {
+  text-align: left;
+  margin: 0;
+  display: inline;
+}

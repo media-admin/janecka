@@ -1,0 +1,648 @@
+# Translation of YITH WooCommerce Zoom Magnifier in Spanish (Spain)
+# This file is distributed under the same license as the YITH WooCommerce Zoom Magnifier package.
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH WooCommerce Zoom Magnifier\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/yith-woocommerce-"
+"zoom-magnifier-premium\n"
+"POT-Creation-Date: 2021-11-03 11:20:37+00:00\n"
+"PO-Revision-Date: 2021-09-16 15:42:37+0000\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+
+#: init.php:52
+msgid ""
+"YITH WooCommerce Product Gallery & Image Zoom  is enabled but not effective. "
+"It requires WooCommerce in order to work."
+msgstr ""
+"YITH WooCommerce Product Gallery & Image Zoom está activo pero no es "
+"funcional. Requiere WooCommerce para funcionar."
+
+#: lib/class.yith-wcmg-admin.php:89 lib/class.yith-wcmg-admin.php:90
+#, fuzzy
+msgid "Add to the exclusion list"
+msgstr "Añadir a la lista de exclusión"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:58
+msgid "Remove"
+msgstr "Quitar"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:76
+msgid "Filter"
+msgstr "Filtrar"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:96
+msgid "All types"
+msgstr "Todos los tipos"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:97
+msgid "Products"
+msgstr "Productos"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:98
+msgid "Categories"
+msgstr "Categorías "
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:99
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:193
+msgid "Delete"
+msgstr "Borrar"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:207
+msgid "Name"
+msgstr "Nombre"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:208
+msgid "Type"
+msgstr "Tipo"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:403
+#: view/ywzm-exclusions-table.php:98
+msgid "Product"
+msgstr "Producto"
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:404
+#: view/ywzm-exclusions-table.php:100
+msgid "Category"
+msgstr "Categoría "
+
+#: lib/class.yith-ywzm-exclusions-list-table.php:405
+#: view/ywzm-exclusions-table.php:102
+msgid "Tag"
+msgstr "Etiqueta"
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:136
+msgid "Main image options"
+msgstr "Opciones de la imagen principal"
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:137
+#: plugin-options/gallery-options.php:19
+msgid "Product gallery options"
+msgstr "Opciones de la galería de productos"
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:138
+#: view/ywzm-exclusions-table.php:48
+msgid "Exclusion List"
+msgstr "Lista de exclusión"
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:191
+msgid ""
+"YITH WooCommerce Product Gallery & Image Zoom  is available in an "
+"outstanding PREMIUM version with many new options, discover it now."
+msgstr ""
+"YITH WooCommerce Product Gallery & Image Zoom está disponible en una "
+"espectacular versión PREMIUM con muchas nuevas opciones, descúbrela ahora."
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:192
+msgid "Premium version"
+msgstr "Versión premium"
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:200
+msgid "YITH WooCommerce Product Gallery & Image Zoom "
+msgstr "YITH WooCommerce Product Gallery & Image Zoom"
+
+#: lib/class.yith-ywzm-plugin-fw-loader.php:201
+#, fuzzy
+msgid ""
+"In YITH Plugins tab you can find  YITH WooCommerce Product Gallery & Image "
+"Zoom  options.<br> From this menu you can access all settings of the YITH "
+"plugins activated."
+msgstr ""
+"En la pestaña YITH Plugins puedes encontrar opciones de YITH WooCommerce "
+"Product Gallery & Image Zoom options. <br> Desde este menú puedes acceder a "
+"todos los ajustes de los plugin YITH activados."
+
+#: lib/compatibility/elementor/class-yith-wczm-product-images-widget.php:37
+msgid "Zoom Product images"
+msgstr "Aumentar imágenes de producto"
+
+#: plugin-options/gallery-options.php:25
+msgid "Hide gallery thumbnails from single product page"
+msgstr "Ocultar las miniaturas de la galería en la página de un solo producto"
+
+#: plugin-options/gallery-options.php:26
+msgid ""
+"Enable to hide the product gallery thumbs from the single product details "
+"page."
+msgstr ""
+"Activar para ocultar las miniaturas de la galería de productos de la página "
+"de detalles de productos individuales."
+
+#: plugin-options/gallery-options.php:33
+msgid "Change main image on"
+msgstr "Cambiar la imagen principal cuando"
+
+#: plugin-options/gallery-options.php:34
+msgid "Choose how to change the main product image."
+msgstr "Elige cómo cambiar la imagen principal del producto."
+
+#: plugin-options/gallery-options.php:39
+msgid ""
+"Click - the user has to click on the thumbnail to change the main product "
+"image."
+msgstr ""
+"Clic - el usuario tiene que hacer clic en la miniatura para cambiar la "
+"imagen principal del producto."
+
+#: plugin-options/gallery-options.php:40
+msgid ""
+"Hover - the image will be replaced when the mouse hovers over the thumbnail."
+msgstr ""
+"Al pasar por encima - la imagen será reemplazada cuando el ratón pase por "
+"encima de la miniatura."
+
+#: plugin-options/gallery-options.php:49
+msgid "Add opacity on inactive thumbnails"
+msgstr "Añadir opacidad a las miniaturas inactivas"
+
+#: plugin-options/gallery-options.php:50
+msgid "Enable to add opacity to inactive thumbnails."
+msgstr "Activar para añadir opacidad a las miniaturas inactivas."
+
+#: plugin-options/gallery-options.php:61
+msgid "Apply grey scale on inactive thumbnails"
+msgstr "Aplicar escala de grises en las miniaturas inactivas"
+
+#: plugin-options/gallery-options.php:62
+msgid "Enable to apply a grey scale to inactive thumbnails."
+msgstr "Activar para aplicar una escala de grises a las miniaturas inactivas."
+
+#: plugin-options/gallery-options.php:73
+msgid "Add zoom effect to the thumbnails"
+msgstr "Añadir efecto de zoom a las miniaturas"
+
+#: plugin-options/gallery-options.php:74
+msgid "Enable to add a zoom effect when hovering over the thumbnails."
+msgstr ""
+"Activar para añadir un efecto de zoom al pasar el cursor por encima de las "
+"miniaturas."
+
+#: plugin-options/gallery-options.php:85
+msgid "Active thumb border color"
+msgstr "Color del borde de la miniatura activa"
+
+#: plugin-options/gallery-options.php:86
+msgid "Set the color for the active thumbnail."
+msgstr "Establezca el color de la miniatura activa."
+
+#: plugin-options/gallery-options.php:99
+msgid "Enable Slider"
+msgstr "Activar el control deslizante"
+
+#: plugin-options/gallery-options.php:100
+msgid "Enable the thumbnails slider."
+msgstr "Activar el control deslizante de las miniaturas."
+
+#: plugin-options/gallery-options.php:112
+msgid "Thumbnails to show"
+msgstr "Miniaturas a mostrar"
+
+#: plugin-options/gallery-options.php:113
+msgid "Set how many thumbnails to show. You can show max 10 thumbnails."
+msgstr ""
+"Establece el número de miniaturas a mostrar. Puede mostrar un máximo de 10 "
+"miniaturas."
+
+#: plugin-options/gallery-options.php:129
+msgid "Slider colors"
+msgstr "Colores del control deslizante"
+
+#: plugin-options/gallery-options.php:136
+msgid "Background color"
+msgstr "Color del fondo"
+
+#: plugin-options/gallery-options.php:141
+msgid "Border color"
+msgstr "Color del borde"
+
+#: plugin-options/gallery-options.php:146
+msgid "Arrow color"
+msgstr "Color de la flecha"
+
+#: plugin-options/gallery-options.php:156
+msgid "Set colors of the slider elements."
+msgstr "Establece los colores de los elementos del control deslizante."
+
+#: plugin-options/gallery-options.php:163
+msgid "Background color hover"
+msgstr "Color de fondo al pasar el cursor por encima"
+
+#: plugin-options/gallery-options.php:168
+msgid "Border color hover"
+msgstr "Color del borde al pasar el cursor por encima"
+
+#: plugin-options/gallery-options.php:173
+msgid "Arrow color hover"
+msgstr "Color de la flecha al pasar el cursor por encima"
+
+#: plugin-options/gallery-options.php:184
+msgid "Slider sizes (px)"
+msgstr "Tamaños de los controles deslizantes (px)"
+
+#: plugin-options/gallery-options.php:185
+msgid "Set the size of the slider elements."
+msgstr "Establece el tamaño de los elementos del control deslizante."
+
+#: plugin-options/gallery-options.php:189
+msgid "Slider"
+msgstr "Control deslizante"
+
+#: plugin-options/gallery-options.php:190
+msgid "Arrow"
+msgstr "Flecha"
+
+#: plugin-options/gallery-options.php:191
+msgid "Border"
+msgstr "Borde"
+
+#: plugin-options/gallery-options.php:210
+msgid "Border radius (%)"
+msgstr "Radio del borde (%)"
+
+#: plugin-options/gallery-options.php:211
+msgid "Set the border radius to change the shape of the slider."
+msgstr ""
+"Establece el radio del borde para cambiar la forma del control deslizante."
+
+#: plugin-options/gallery-options.php:225
+msgid "Show slider arrows"
+msgstr "Mostrar flechas deslizantes"
+
+#: plugin-options/gallery-options.php:226
+msgid "Choose how to display the slider arrows."
+msgstr "Elige cómo mostrar las flechas deslizantes."
+
+#: plugin-options/gallery-options.php:231
+#, fuzzy
+msgid "Fixed - keep the slider arrows displayed."
+msgstr "Fijo - mantener las flechas deslizantes visibles."
+
+#: plugin-options/gallery-options.php:232
+msgid ""
+"On Hover - display the slider arrows when hover over the thumbnails gallery."
+msgstr ""
+"Al pasar el cursor por encima - mostrar las flechas deslizantes al pasar el "
+"cursor por encima de la galería de miniaturas."
+
+#: plugin-options/gallery-options.php:241
+msgid "Infinite slider"
+msgstr "Control deslizante infinito"
+
+#: plugin-options/gallery-options.php:242
+msgid ""
+"Enable to set the slider as infinite. At the last thumbnail, the slider will "
+"start again from the 1st image."
+msgstr ""
+"Activar para establecer el deslizador como infinito. En la última miniatura, "
+"el deslizador comenzará de nuevo desde la primera imagen."
+
+#: plugin-options/gallery-options.php:254
+msgid "Infinite slider type"
+msgstr "Tipo del control deslizante infinito"
+
+#: plugin-options/gallery-options.php:255
+msgid "Choose the infinite slider type to apply."
+msgstr "Elige que tipo de control deslizante infinito a aplicar."
+
+#: plugin-options/gallery-options.php:260
+msgid ""
+"Circular - the thumbnail after the last one will be the 1st of the list and "
+"the slider will start again."
+msgstr ""
+"Circular - la miniatura después de la última será la primera de la lista y "
+"el deslizador comenzará de nuevo."
+
+#: plugin-options/gallery-options.php:261
+#, fuzzy
+msgid ""
+"Back to the 1st - after the last thumbnail the slider goes back and jumps to "
+"the 1st thumbnail."
+msgstr ""
+"Volver a la primera - después de la última miniatura el control deslizante "
+"retrocede y salta a la primera miniatura."
+
+#: plugin-options/gallery-options.php:270
+msgid "Autoplay slider"
+msgstr "Desplazamiento automático"
+
+#: plugin-options/gallery-options.php:271
+msgid "Enable to set the slider in autoplay mode."
+msgstr ""
+"Activar para poner el control deslizante en modo de reproducción automática."
+
+#: plugin-options/image/lightbox-options.php:25
+msgid "Enable lightbox on main product image"
+msgstr "Activar la caja de luz en la imagen principal del producto"
+
+#: plugin-options/image/lightbox-options.php:26
+msgid "Enable the lightbox feature on the main product image."
+msgstr "Activar la función de caja de luz en la imagen principal del producto."
+
+#: plugin-options/image/lightbox-options.php:34
+msgid "Lightbox icon colors"
+msgstr "Colores de los iconos de la caja de luz"
+
+#: plugin-options/image/lightbox-options.php:41
+#: plugin-options/image/zoom-options.php:99
+msgid "Background"
+msgstr "Fondo"
+
+#: plugin-options/image/lightbox-options.php:46
+#: plugin-options/image/zoom-options.php:104
+msgid "Background hover"
+msgstr "Fondo al pasar el cursor por encima"
+
+#: plugin-options/image/lightbox-options.php:56
+msgid "Set the lightbox icon colors."
+msgstr "Establece los colores de los iconos de la caja de luz."
+
+#: plugin-options/image/lightbox-options.php:63
+#: plugin-options/image/zoom-options.php:121
+msgid "Icon"
+msgstr "Icono"
+
+#: plugin-options/image/lightbox-options.php:68
+#: plugin-options/image/zoom-options.php:126
+msgid "Icon hover"
+msgstr "Icono al pasar el cursor por encima"
+
+#: plugin-options/image/lightbox-options.php:78
+msgid "Lightbox icon size (px)"
+msgstr "Tamaño del icono de la caja de luz (px)"
+
+#: plugin-options/image/lightbox-options.php:79
+msgid "Set the lightbox icon size."
+msgstr "Establece el tamaño del icono de la caja de luz."
+
+#: plugin-options/image/lightbox-options.php:93
+msgid "Lightbox icon radius (%)"
+msgstr "Radio del icono de la caja de luz (%)"
+
+#: plugin-options/image/lightbox-options.php:94
+msgid "Set the border radius to change the shape of the lightbox background."
+msgstr ""
+"Establece el radio del borde para cambiar la forma del fondo de la caja de "
+"luz."
+
+#: plugin-options/image/lightbox-options.php:108
+msgid "Lightbox icon position"
+msgstr "Posición del icono de la caja de luz"
+
+#: plugin-options/image/lightbox-options.php:109
+msgid "Choose in which position to show the lightbox icon."
+msgstr "Elige en qué posición mostrar el icono de la caja de luz."
+
+#: plugin-options/image/lightbox-options.php:117
+#: plugin-options/image/zoom-options.php:175
+msgid "Top left"
+msgstr "Arriba a la izquierda"
+
+#: plugin-options/image/lightbox-options.php:118
+#: plugin-options/image/zoom-options.php:176
+msgid "Top right"
+msgstr "Arriba a la derecha"
+
+#: plugin-options/image/lightbox-options.php:119
+#: plugin-options/image/zoom-options.php:177
+msgid "Bottom left"
+msgstr "Abajo a la izquierda"
+
+#: plugin-options/image/lightbox-options.php:120
+#: plugin-options/image/zoom-options.php:178
+msgid "Bottom right"
+msgstr "Abajo a la derecha"
+
+#: plugin-options/image/lightbox-options.php:128
+msgid "Lightbox overlay color"
+msgstr "Color de superposición de la caja de luz"
+
+#: plugin-options/image/lightbox-options.php:129
+msgid "Set the color for the lightbox overlay."
+msgstr "Establece el color para la superposición de la caja de luz."
+
+#: plugin-options/image/zoom-options.php:34
+msgid "Hide zoom on mobile devices"
+msgstr "Ocultar el zoom en los dispositivos móviles"
+
+#: plugin-options/image/zoom-options.php:35
+msgid "Enable to hide the zoom on mobile devices"
+msgstr "Activar para ocultar el zoom en los dispositivos móviles"
+
+#: plugin-options/image/zoom-options.php:43
+msgid "Zoom window position"
+msgstr "Posición de la ventana de zoom"
+
+#: plugin-options/image/zoom-options.php:44
+msgid "Choose on which position to open the zoom window."
+msgstr "Elige en qué posición abrir la ventana de zoom."
+
+#: plugin-options/image/zoom-options.php:52
+msgid "Right side"
+msgstr "Lado derecho"
+
+#: plugin-options/image/zoom-options.php:53
+msgid "Inside"
+msgstr "Dentro"
+
+#: plugin-options/image/zoom-options.php:58
+msgid "Zoom window sizes (px)"
+msgstr "Tamaños de las ventanas de zoom (px)"
+
+#: plugin-options/image/zoom-options.php:59
+msgid "Set the zoom window width and height."
+msgstr "Establece la anchura y la altura de la ventana de zoom."
+
+#: plugin-options/image/zoom-options.php:63
+msgid "Width"
+msgstr "Anchura"
+
+#: plugin-options/image/zoom-options.php:64
+msgid "Height"
+msgstr "Altura"
+
+#: plugin-options/image/zoom-options.php:83
+msgid "Show zoom icon"
+msgstr "Mostrar el icono del zoom"
+
+#: plugin-options/image/zoom-options.php:84
+msgid "Enable to show an icon to identify the zoom feature."
+msgstr "Activar para mostrar un icono que identifique la función de zoom."
+
+#: plugin-options/image/zoom-options.php:92
+msgid "Zoom icon colors"
+msgstr "Colores del icono del zoom"
+
+#: plugin-options/image/zoom-options.php:114
+msgid "Set the zoom icon colors."
+msgstr "Establece los colores del icono del zoom."
+
+#: plugin-options/image/zoom-options.php:136
+msgid "Zoom icon size (px)"
+msgstr "Tamaño del icono del zoom (px)"
+
+#: plugin-options/image/zoom-options.php:137
+msgid "Set the zoom icon size."
+msgstr "Establece el tamaño del icono del zoom."
+
+#: plugin-options/image/zoom-options.php:151
+msgid "Zoom icon radius (%)"
+msgstr "Radio del icono del zoom (%)"
+
+#: plugin-options/image/zoom-options.php:152
+msgid "Set the border radius to change the shape of the zoom background."
+msgstr "Establece el radio del borde para cambiar la forma del fondo del zoom."
+
+#: plugin-options/image/zoom-options.php:166
+msgid "Zoom icon position"
+msgstr "Posición del icono del zoom"
+
+#: plugin-options/image/zoom-options.php:167
+msgid "Choose in which position to show the zoom icon."
+msgstr "Elige en qué posición mostrar el icono del zoom."
+
+#: plugin-options/image/zoom-options.php:186
+msgid "Loading label"
+msgstr "Etiqueta de cargando"
+
+#: plugin-options/image/zoom-options.php:187
+msgid "Choose the text to show when the zoom is loading."
+msgstr "Elige el texto que se mostrará cuando el zoom se esté cargando."
+
+#: plugin-options/image/zoom-options.php:189
+#: plugin-options/image/zoom-options.php:190
+msgid "Loading..."
+msgstr "Cargando..."
+
+#: plugin-options/image/zoom-options.php:195
+msgid "Lens border opacity"
+msgstr "Opacidad del borde de la lente"
+
+#: plugin-options/image/zoom-options.php:196
+msgid "Set the opacity of the zoom lens border."
+msgstr "Establece la opacidad del borde de la lente de zoom."
+
+#: plugin-options/image/zoom-options.php:209
+msgid "Blur main image"
+msgstr "Desenfocar la imagen principal"
+
+#: plugin-options/image/zoom-options.php:210
+msgid "Enable to blur the main image when zooming."
+msgstr "Activar el desenfoque de la imagen principal al hacer zoom."
+
+#: view/ywzm-exclusions-table.php:51
+msgid "+ Add exclusion"
+msgstr "+ Añadir exclusión"
+
+#: view/ywzm-exclusions-table.php:81
+msgid "Remove item"
+msgstr "Quitar artículo"
+
+#: view/ywzm-exclusions-table.php:83
+msgid "This item will be removed from the list."
+msgstr "Este artículo será retirado de la lista."
+
+#: view/ywzm-exclusions-table.php:85
+msgid "Do you wish to continue?"
+msgstr "¿Deseas continuar?"
+
+#: view/ywzm-exclusions-table.php:93
+msgid "Exclusion type"
+msgstr "Tipo de exclusión"
+
+#: view/ywzm-exclusions-table.php:106
+msgid "Choose if you want to add a product, a category or a tag."
+msgstr "Elige si quieres añadir un producto, una categoría o una etiqueta."
+
+#: view/ywzm-exclusions-table.php:111
+msgid "Choose products to add"
+msgstr "Elige los productos que quieres añadir"
+
+#: view/ywzm-exclusions-table.php:120
+msgid "Search product..."
+msgstr "Buscar producto..."
+
+#: view/ywzm-exclusions-table.php:128
+msgid "Choose the products to add to the exclusion list"
+msgstr "Elige los productos que quieres añadir a la lista de exclusión"
+
+#: view/ywzm-exclusions-table.php:133
+msgid "Choose categories to add"
+msgstr "Elige las categorías a añadir"
+
+#: view/ywzm-exclusions-table.php:142
+msgid "Search category..."
+msgstr "Buscar categoría..."
+
+#: view/ywzm-exclusions-table.php:150
+msgid "Choose the categories to add to the exclusion list"
+msgstr "Elige las categorías que quieres añadir a la lista de exclusión"
+
+#: view/ywzm-exclusions-table.php:155
+msgid "Choose tags to add"
+msgstr "Elige las etiquetas que quieres añadir"
+
+#: view/ywzm-exclusions-table.php:164
+msgid "Search tag..."
+msgstr "Buscar etiqueta..."
+
+#: view/ywzm-exclusions-table.php:172
+msgid "Choose the tags to add to the exclusion list"
+msgstr "Elige las etiquetas que quieres añadir a la lista de exclusión"
+
+#. Description of the plugin/theme
+msgid ""
+"<code><strong>YITH WooCommerce Product Gallery & Image Zoom </strong></code> "
+"allows you to add a zoom effect to product images and a thumbnail slider for "
+"the product image gallery. <a href=\"https://yithemes.com/\" target=\"_blank"
+"\">Get more plugins for your e-commerce shop on <strong>YITH</strong></a>."
+msgstr ""
+"<code><strong>YITH WooCommerce Product Gallery & Image Zoom </strong></code> "
+"te permite añadir un efecto zoom a las imágenes del producto y al carrusel "
+"de miniaturas de la galería de imágenes del producto. <a href=\"https://"
+"yithemes.com/\" target=\"_blank\">Obtén más plugins para tu comercio "
+"electrónico en <strong>YITH</strong></a>."
+
+#: lib/class.yith-wcmg-admin.php:91
+msgctxt "Label button of a dialog popup"
+msgid "Continue"
+msgstr "Continuar"
+
+#: lib/class.yith-wcmg-admin.php:92
+msgctxt "Label button of a dialog popup"
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: plugin-options/image-options.php:26
+msgctxt "Admin title of tab"
+msgid "Zoom options"
+msgstr "Opciones de zoom"
+
+#: plugin-options/image-options.php:32
+msgctxt "Admin title of tab"
+msgid "Lightbox"
+msgstr "Caja de luz"
+
+#: view/ywzm-exclusions-table.php:62
+#, fuzzy
+msgctxt "Text showed when the list of exclusions is empty."
+msgid "You don't have any exclusion yet."
+msgstr "Aún no tienes ninguna exclusión."
+
+#: view/ywzm-exclusions-table.php:64
+#, fuzzy
+msgctxt "Text showed when the list of exclusions is empty."
+msgid ""
+"Click on \"Add exclusion\" button to exclude a product, a category or a tag!"
+msgstr ""
+"Haz clic en el botón \"Añadir exclusión\" para excluir un producto, una "
+"categoría o una etiqueta."
+
+#~ msgid "Add exclusion in list"
+#~ msgstr "Añadir en la lista de exclusión"

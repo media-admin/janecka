@@ -1,0 +1,34 @@
+<wpml-config>
+    <custom-types>
+        <custom-type translate="1" display-as-translated="1">document_template</custom-type>
+    </custom-types>
+    <custom-fields>
+        <custom-field action="copy">_document_type</custom-field>
+        <custom-field action="copy-once">_pdf_template_id</custom-field>
+        <custom-field action="copy-once">_margins</custom-field>
+        <custom-field action="copy">_template_name</custom-field>
+        <custom-field action="copy-once">_fonts</custom-field>
+        <custom-field action="copy-once">_font_size</custom-field>
+        <custom-field action="copy-once">_color</custom-field>
+    </custom-fields>
+    <key name="woocommerce_sab_simple_invoice_settings">
+        <key name="subject" />
+        <key name="heading" />
+        <key name="additional_content" />
+    </key>
+    <key name="woocommerce_sab_cancellation_invoice_settings">
+        <key name="subject" />
+        <key name="heading" />
+        <key name="additional_content" />
+    </key>
+    <key name="woocommerce_sab_document_admin_settings">
+        <key name="subject" />
+        <key name="heading" />
+        <key name="additional_content" />
+    </key>
+    <key name="woocommerce_sab_document_settings">
+        <key name="subject" />
+        <key name="heading" />
+        <key name="additional_content" />
+    </key>
+</wpml-config>

@@ -1,0 +1,71 @@
+.setting-tooltip-icon {
+    float: right;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.setting-tooltip-content {
+    max-width: 300px;
+}
+.setting-field-column {
+
+    .ant-input {
+        width: calc(100% - 30px);
+    }
+    .ant-spin {
+        float: right;
+    }
+    
+    .invalid-input {
+        overflow: hidden;
+        max-height: 0;
+        transition-property: all;
+        transition-duration: .5s;
+        transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    }
+    .invalid-input.show {
+        max-height: 20px;
+    }
+}
+
+.setting-title-column {
+    
+    .premium-tag {
+        background-color: #f5fcfc;
+        color: #6a6a6a;
+        border: 0;
+    }
+}
+
+p.acfw-dyk-notice {
+    position: relative;
+    display: block;
+    margin: 30px 12px 5px;
+    padding: 10px 135px 10px 15px;
+    background: #f5fcfc;
+    border-left: 3px solid #1693a7;
+    line-height: 1.3em;
+
+    .title {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .acfw-button {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+    }
+}
+
+.acfw-license-field {
+    p {
+        font-size: 1.01em;
+        margin-bottom: 7px;
+
+        em {
+            font-style: normal;
+            font-weight: bold;
+            color: green;
+        }
+    }
+}

@@ -1,0 +1,123 @@
+.acfw-admin-notice {
+    position: relative;
+    margin: 15px;
+    padding: 1px 12px;
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-left-color: #46b450;
+    border-left-width: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+.acfw-admin-notice p {
+    max-width: 1000px;
+}
+.acfw-admin-notice p:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+.acfw-admin-notice .heading img {
+    float: left;
+    margin-right: 15px;
+    max-width: 195px;
+}
+.acfw-admin-notice .heading span {
+    float: left;
+    display: block;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #035E6B;
+}
+.acfw-settings-notice {
+    display: none;
+}
+.acfw-settings-notice.acfw-admin-notice {
+    margin-left: 0;
+}
+.acfw-admin-notice .action-wrap .action-button {
+    display: inline-block;
+    padding: 8px 23px;
+    margin-right: 10px;
+    background: #C6CD2E;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    color: #000000;
+}
+.acfw-admin-notice .action-wrap .action-button.disabled {
+    opacity: 0.7 !important;
+    pointer-events: none;
+}
+.acfw-admin-notice .action-wrap .action-button.gray {
+    background: #cccccc;
+}
+.acfw-admin-notice .action-wrap .action-button:hover {
+    opacity: 0.8;
+}
+.acfw-admin-notice .action-wrap a {
+    text-decoration: none;
+}
+.acfw-admin-notice .action-wrap .plugin-detected {
+    color: #00556b;
+}
+
+.acfw-admin-notice.acfwf-upgrade-premium p {
+    font-size: 16px;
+    margin: .5em 0;
+    padding: 2px;
+}
+.acfw-admin-notice.acfwf-upgrade-premium p a {
+    font-family: "Lato", 'Lato', Helvetica, Arial, Sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #f7941d;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #A85E06;
+    padding: 10px 20px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+.acfw-admin-notice.acfwf-upgrade-premium p a:active {
+    top: 1px;
+    position: relative;
+}
+.acfw-admin-notice.acfwf-promote-wws-notice {
+    padding-bottom: 15px;
+}
+.acfw-admin-notice.acfwf-promote-wws-notice p {
+    max-width: 1060px;
+    font-family: "Lato", 'Lato', Helvetica, Arial, Sans-serif;
+}
+.acfw-admin-notice.acfwf-promote-wws-notice .heading span {
+    color: inherit;
+    margin-top: 11px;
+}
+.acfw-admin-notice.acfwf-promote-wws-notice .action-wrap .acfw-notice-dismiss {
+    color: #32BA8F;
+}
+.acfw-admin-notice.acfwf-promote-wws-notice .action-wrap .action-button {
+    background: #32BA8F;
+    color: #ffffff;
+}
+.vex.acfw-review-request .vex-content {
+    width: 502px;
+}
+.vex.acfw-review-request .vex-dialog-button-primary {
+    font-weight: bold;
+}
+.vex.acfw-review-request .vex-dialog-button-snooze,
+.vex.acfw-review-request .vex-dialog-dismiss {
+    background: transparent;
+}
+.vex.acfw-review-request .vex-dialog-message > p { 
+    font-size: 14px;
+}
+.vex.acfw-review-request .vex-dialog-message .acfw-logo {
+    text-align: center;
+}

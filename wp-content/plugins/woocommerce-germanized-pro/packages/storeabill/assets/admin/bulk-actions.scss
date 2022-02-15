@@ -1,0 +1,41 @@
+@import "progress-bar";
+
+.sab-bulk-action-wrapper {
+  display: none;
+  margin: 1em 0;
+  float: left;
+  clear: both;
+  width: 50%;
+
+  h4 {
+    margin-top: 0;
+  }
+}
+
+.sab-bulk-action-wrapper {
+  display: none;
+
+  &.processing {
+    display: block;
+
+    .sab-progress-bar {
+      display: block;
+    }
+  }
+}
+
+.sab-payment-views {
+  margin: 8px 0 0;
+  float: left;
+  padding-left: 1em;
+
+  span.payment-title {
+    margin-right: 5px;
+    line-height: 2;
+    float: left;
+  }
+
+  ul.subsubsub {
+    margin: 0;
+  }
+}

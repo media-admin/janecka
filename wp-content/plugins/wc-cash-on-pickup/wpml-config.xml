@@ -1,0 +1,9 @@
+<wpml-config>
+  <admin-texts>
+    <key name="woocommerce_cop_settings">
+      <key name="title"/>
+      <key name="description"/>
+      <key name="instructions"/>
+    </key>
+  </admin-texts>
+</wpml-config>

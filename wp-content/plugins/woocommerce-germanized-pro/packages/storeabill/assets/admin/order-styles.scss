@@ -1,0 +1,173 @@
+#storeabill-invoices {
+  .inside {
+    margin: 0;
+    padding: 0;
+    display: block !important;
+  }
+  .handlediv, .hndle, .postbox-header {
+    display: none;
+  }
+}
+
+.wc-order-preview  {
+  .sab-order-preview-invoices {
+    width: 100%;
+    display: block;
+    clear: both;
+
+    .sab-order-preview-invoice-wrapper {
+      width: 50%;
+      float: left;
+      padding: 1.5em 1.5em 0;
+      box-sizing: border-box;
+      word-wrap: break-word;
+
+      strong {
+        display: block;
+      }
+    }
+  }
+}
+
+.sab-order-documents {
+  * {
+    box-sizing: border-box;
+  }
+  padding: 23px 0 0;
+
+  .sab-toggle-wrapper {
+    .sab-input-toggle {
+      height: 20px;
+    }
+  }
+
+  .panel-inner {
+    padding: 0 24px;
+  }
+
+  .spread {
+    display: flex;
+    flex-wrap: nowrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+  }
+
+  .panel-title {
+    margin-bottom: 1.5em;
+
+    h2.order-documents-title {
+      margin: 0 !important;
+      font-family: HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",sans-serif;
+      font-size: 21px !important;
+      font-weight: 400 !important;
+      line-height: 1.2 !important;
+      text-shadow: 1px 1px 1px #fff;
+      padding: 0 !important;
+    }
+  }
+
+  .panel-footer {
+    background: #f8f8f8;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #dfdfdf;
+
+    .panel-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .panel-actions-right, .panel-actions-left {
+        display: flex;
+        flex-wrap: wrap;
+
+        > div {
+          margin-right: 10px;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .document-header {
+    color: #999;
+    background: #f8f8f8;
+    margin: 1em 0;
+    padding: .5em 1em;
+    height: 40px;
+
+    h3 {
+      margin: 0;
+    }
+
+    .cancellation-parent {
+      font-size: 13px;
+      font-weight: normal;
+      color: #999;
+    }
+
+    .invoice-total {
+      min-width: 70px;
+      text-align: right;
+    }
+
+    > div {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      align-items: center;
+
+      > * {
+        margin-right: 10px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .document-locked {
+      font-size: 15px;
+      vertical-align: middle;
+      line-height: 15px;
+      width: 15px;
+      height: 15px;
+    }
+
+    .document-status {
+      font-size: 11px;
+      min-height: 18px;
+      line-height: 18px;
+      padding: 0 5px;
+    }
+
+    .document-actions {
+      display: flex;
+
+      .sab-action-button {
+        margin: 2px 7px 2px 0;
+        height: 24px;
+        font-size: 12px;
+        min-height: auto;
+        width: 24px;
+        position: relative;
+
+        &::after {
+          font-size: 12px;
+        }
+
+        &.document-cancel {
+          &::after {
+            font-size: 14px;
+            line-height: 1.6;
+          }
+        }
+      }
+    }
+  }
+}

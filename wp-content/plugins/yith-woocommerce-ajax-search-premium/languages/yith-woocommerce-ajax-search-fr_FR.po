@@ -1,0 +1,663 @@
+# Translation of YITH WooCommerce Ajax Search in French (France)
+# This file is distributed under the same license as the YITH WooCommerce Ajax Search package.
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH WooCommerce Ajax Search\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/yith-woocommerce-"
+"ajax-search.premium\n"
+"POT-Creation-Date: 2021-10-27 14:21:39+00:00\n"
+"PO-Revision-Date: 2020-11-27 22:27:48+0000\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+
+#: includes/class.yith-wcas-admin.php:93
+msgid "Settings"
+msgstr "Paramètres"
+
+#: includes/class.yith-wcas-admin.php:94 plugin-options/settings-options.php:41
+msgid "Search"
+msgstr "Chercher"
+
+#: includes/class.yith-wcas-admin.php:95
+msgid "Output"
+msgstr "Sortie"
+
+#: includes/class.yith-wcas.php:657
+msgid "sale"
+msgstr "promotion"
+
+#: includes/class.yith-wcas.php:661
+msgid "Out of stock"
+msgstr "En rupture de stock"
+
+#: includes/class.yith-wcas.php:665
+msgid "featured"
+msgstr "En vedette"
+
+#: includes/class.yith-wcas.php:729 plugin-options/output-options.php:295
+msgid "No results"
+msgstr "Aucun résultat"
+
+#: includes/class.yith-wcas.php:1126
+msgid "Search in product brands"
+msgstr "Rechercher dans les marques de produits"
+
+#: includes/class.yith-wcas.php:1127
+msgid "Extend search in product brands"
+msgstr "Étendre la recherche dans les marques de produits"
+
+#: includes/class.yith-wcas.php:1178
+msgid "Search by vendor"
+msgstr "Recherche par vendeur"
+
+#: includes/class.yith-wcas.php:1179
+msgid "Extend search in vendors' products"
+msgstr "Étendre la recherche dans les produits des vendeurs"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:40
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:77
+msgid "YITH WooCommerce Ajax Search"
+msgstr "YITH WooCommerce Recherche Ajax"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:87
+msgid ""
+"This widget inherits the style from the settings of YITH WooCommerce Ajax "
+"Search plugin that you can edit"
+msgstr ""
+"Ce widget hérite du style des paramètres du plugin YITH WooCommerce "
+"Recherche Ajax que vous pouvez modifier"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:89
+msgid "here"
+msgstr "ici"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:98
+msgid "Template"
+msgstr "Modèle"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:102
+#: plugin-options/output-options.php:50
+msgid "Default"
+msgstr "Défaut"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:103
+#: plugin-options/output-options.php:51
+msgid "Wide"
+msgstr "Large"
+
+#: includes/compatibility/elementor/class.yith-wcas-search-form-elementor.php:111
+msgid "Class"
+msgstr "Classe"
+
+#: includes/widgets/class.yith-wcas-ajax-search.php:29
+msgid "An Ajax Search box for products only."
+msgstr "Un champ de recherche Ajax pour les produits uniquement."
+
+#: includes/widgets/class.yith-wcas-ajax-search.php:31
+msgid "YITH WooCommerce Ajax Product Search"
+msgstr "YITH WooCommerce Recherche de produit Ajax"
+
+#: includes/widgets/class.yith-wcas-ajax-search.php:108
+msgid "Title:"
+msgstr "Titre:"
+
+#: includes/widgets/class.yith-wcas-ajax-search.php:113
+msgid "Template wide"
+msgstr "Modèle large"
+
+#: includes/widgets/class.yith-wcas-ajax-search.php:118
+msgid "Filters above"
+msgstr "Filtres ci-dessus"
+
+#: init.php:70
+msgid ""
+"YITH WooCommerce Ajax Search Premium is enabled but not effective. It "
+"requires WooCommerce in order to work."
+msgstr ""
+"YITH WooCommerce Recherche Ajax Premium est activé mais pas efficace. Il "
+"nécessite WooCommerce pour fonctionner."
+
+#: plugin-options/output-options.php:21
+msgid "Output Options"
+msgstr "Options de sortie"
+
+#: plugin-options/output-options.php:27
+msgid "Show thumbnail"
+msgstr "Afficher la vignette"
+
+#: plugin-options/output-options.php:28
+msgid "Choose if you want show thumbnail and position"
+msgstr "Choisissez si vous souhaitez afficher la vignette et la position"
+
+#: plugin-options/output-options.php:35
+msgid "Hide thumbnail"
+msgstr "Masquer la vignette"
+
+#: plugin-options/output-options.php:36
+msgid "Show on the Left"
+msgstr "Afficher sur la gauche"
+
+#: plugin-options/output-options.php:37
+msgid "Show on the Right"
+msgstr "Afficher à droite"
+
+#: plugin-options/output-options.php:42
+msgid "Search form default template"
+msgstr "Modèle par défaut du formulaire de recherche"
+
+#: plugin-options/output-options.php:43
+msgid "This option can be overridden by shortcode or widget"
+msgstr "Cette option peut être remplacée par un shortcode ou un widget"
+
+#: plugin-options/output-options.php:56
+msgid "Size of thumbnails"
+msgstr "Taille des miniatures"
+
+#: plugin-options/output-options.php:57
+msgid "Insert in px the dimension of thumbnails"
+msgstr "Insérer en px la dimension des miniatures"
+
+#: plugin-options/output-options.php:66
+msgid "Show price"
+msgstr "Afficher le prix"
+
+#: plugin-options/output-options.php:67
+msgid "Show price of product"
+msgstr "Afficher le prix du produit"
+
+#: plugin-options/output-options.php:75
+msgid "Price Label"
+msgstr "Étiquette de prix"
+
+#: plugin-options/output-options.php:76
+msgid "Show a label before the price"
+msgstr "Afficher une étiquette avant le prix"
+
+#: plugin-options/output-options.php:78
+msgid "Price:"
+msgstr "Prix:"
+
+#: plugin-options/output-options.php:82
+msgid "Include Product Variation"
+msgstr "Inclure la variation de produit"
+
+#: plugin-options/output-options.php:83
+msgid "Choose if include or not the product variations in the search results"
+msgstr ""
+"Choisissez d'inclure ou non les variations de produit dans les résultats de "
+"recherche"
+
+#: plugin-options/output-options.php:90
+msgid "Loader"
+msgstr "Chargement"
+
+#: plugin-options/output-options.php:91
+msgid "Loader gif"
+msgstr "GIF du chargement"
+
+#: plugin-options/output-options.php:104
+msgid "Sales and Featured badges"
+msgstr "Ventes et badges en vedette"
+
+#: plugin-options/output-options.php:110
+msgid "Show sale badge"
+msgstr "Afficher le badge de vente"
+
+#: plugin-options/output-options.php:111
+msgid "Show sale badge if the product is on sale"
+msgstr "Afficher le badge de vente si le produit est en solde"
+
+#: plugin-options/output-options.php:119
+#, fuzzy
+msgid "Sale badge color"
+msgstr "Couleur de fond de badge de vente"
+
+#: plugin-options/output-options.php:126 plugin-options/output-options.php:155
+#: plugin-options/output-options.php:184
+#, fuzzy
+msgid "Background color"
+msgstr "Couleur de fond de badge de vente"
+
+#: plugin-options/output-options.php:131 plugin-options/output-options.php:160
+#: plugin-options/output-options.php:189
+#, fuzzy
+msgid "Text color"
+msgstr "Couleur du titre"
+
+#: plugin-options/output-options.php:139
+msgid "Show out of stock badge"
+msgstr "Afficher le badge en rupture de stock"
+
+#: plugin-options/output-options.php:148
+#, fuzzy
+msgid "Out of stock badge color"
+msgstr "Couleur de fond du badge en rupture de stock"
+
+#: plugin-options/output-options.php:168
+msgid "Show featured badge"
+msgstr "Afficher le badge en vedette"
+
+#: plugin-options/output-options.php:177
+#, fuzzy
+msgid "Featured badge color"
+msgstr "Couleur d'arrière-plan du badge en vedette"
+
+#: plugin-options/output-options.php:197
+msgid "Hide featured bagde if the product is on sale"
+msgstr "Masquer le bagde en vedette si le produit est en solde"
+
+#: plugin-options/output-options.php:211
+msgid "Title & Excerpt"
+msgstr "Titre et extrait"
+
+#: plugin-options/output-options.php:217
+msgid "Title color"
+msgstr "Couleur du titre"
+
+#: plugin-options/output-options.php:226
+msgid "Show excerpt"
+msgstr "Afficher un extrait"
+
+#: plugin-options/output-options.php:227
+msgid "Show excerpt of product"
+msgstr "Afficher un extrait de produit"
+
+#: plugin-options/output-options.php:235
+msgid "Number of words to show in excerpt"
+msgstr "Nombre de mots à afficher dans l'extrait"
+
+#: plugin-options/output-options.php:251
+msgid "Show product categories"
+msgstr "Afficher les catégories de produits"
+
+#: plugin-options/output-options.php:264
+msgid "\"View All\" Link"
+msgstr "Lien \"Afficher tout\""
+
+#: plugin-options/output-options.php:270
+msgid "Show \"view all\" link"
+msgstr "Afficher le lien \"afficher tout\""
+
+#: plugin-options/output-options.php:271
+msgid "Add a link to the bottom of results"
+msgstr "Ajouter un lien au bas des résultats"
+
+#: plugin-options/output-options.php:279
+msgid "Text of \"view all\" link"
+msgstr "Texte du lien \"Afficher tout\""
+
+#: plugin-options/output-options.php:280
+msgid "Add a link at the bottom of results"
+msgstr "Ajouter un lien en bas des résultats"
+
+#: plugin-options/output-options.php:282
+msgid "View all"
+msgstr "Voir tout"
+
+#: plugin-options/output-options.php:292
+msgid "Text of \"no results\""
+msgstr "Texte de \"aucun résultat\""
+
+#: plugin-options/output-options.php:293
+msgid "Show this text for no results"
+msgstr "Afficher ce texte pour aucun résultat"
+
+#: plugin-options/search-options.php:24
+msgid "Search settings"
+msgstr "Paramètres de recherche"
+
+#: plugin-options/search-options.php:30
+msgid "Choose element types to search"
+msgstr "Choisissez les types d'éléments à rechercher"
+
+#: plugin-options/search-options.php:31
+msgid "Choose if you want to extend search also to posts and pages"
+msgstr ""
+"Choisissez si vous souhaitez étendre la recherche également aux articles et "
+"aux pages"
+
+#: plugin-options/search-options.php:38
+#: templates/yith-woocommerce-ajax-search-wide.php:27
+#: templates/yith-woocommerce-ajax-search-wide.php:45
+#: templates/yith-woocommerce-ajax-search.php:31
+#: templates/yith-woocommerce-ajax-search.php:48
+msgid "All"
+msgstr "Tout"
+
+#: plugin-options/search-options.php:39
+#: templates/yith-woocommerce-ajax-search-wide.php:26
+#: templates/yith-woocommerce-ajax-search.php:30
+msgid "Products"
+msgstr "Produits"
+
+#: plugin-options/search-options.php:44
+msgid "Search in title"
+msgstr "Rechercher dans le titre"
+
+#: plugin-options/search-options.php:45
+msgid "Extend search in the title of the product"
+msgstr "Étendre la recherche dans le titre du produit"
+
+#: plugin-options/search-options.php:53
+msgid "Search in excerpt"
+msgstr "Rechercher dans l'extrait"
+
+#: plugin-options/search-options.php:54
+msgid "Extend search in the excerpt of the product"
+msgstr "Étendre la recherche dans l'extrait du produit"
+
+#: plugin-options/search-options.php:62
+msgid "Search in content"
+msgstr "Rechercher dans le contenu"
+
+#: plugin-options/search-options.php:63
+msgid "Extend search in the content of the product"
+msgstr "Étendre la recherche dans le contenu du produit"
+
+#: plugin-options/search-options.php:71
+msgid "Search in product categories"
+msgstr "Rechercher dans les catégories de produits"
+
+#: plugin-options/search-options.php:72
+msgid "Extend search in product categories"
+msgstr "Étendre la recherche dans les catégories de produits"
+
+#: plugin-options/search-options.php:80
+msgid "Search in product tags"
+msgstr "Rechercher dans les étiquettes de produits"
+
+#: plugin-options/search-options.php:81
+msgid "Extend search in product tags"
+msgstr "Étendre la recherche dans les étiquettes de produit"
+
+#: plugin-options/search-options.php:89
+msgid "Search in author"
+msgstr "Rechercher dans l'auteur"
+
+#: plugin-options/search-options.php:90
+msgid "Extend search in author"
+msgstr "Étendre la recherche dans l'auteur"
+
+#: plugin-options/search-options.php:98
+msgid "Multiple Word Search"
+msgstr "Recherche de mots multiples"
+
+#: plugin-options/search-options.php:105
+msgid "Show items containing all words typed"
+msgstr "Afficher les éléments contenant tous les mots saisis"
+
+#: plugin-options/search-options.php:106
+msgid "Show items containing al least one of the words typed"
+msgstr "Afficher les éléments contenant au moins un des mots tapés"
+
+#: plugin-options/search-options.php:111
+msgid "Hide out of stock products"
+msgstr "Masquer les produits en rupture de stock"
+
+#: plugin-options/search-options.php:112
+msgid ""
+"Enable this option if you don't want to show out of stock products in the "
+"results"
+msgstr ""
+"Activez cette option si vous ne souhaitez pas afficher les produits en "
+"rupture de stock dans les résultats"
+
+#: plugin-options/search-options.php:121
+msgid "Enable transients to cache autocomplete results"
+msgstr ""
+"Activer les transitoires pour mettre en cache les résultats de la saisie "
+"semi-automatique"
+
+#: plugin-options/search-options.php:122
+msgid "Save the results of a query in a transient"
+msgstr "Enregistrer les résultats d'une requête dans un transitoire"
+
+#: plugin-options/search-options.php:131
+msgid "Set the duration of transient"
+msgstr "Définir la durée du transitoire"
+
+#: plugin-options/search-options.php:132
+msgid "(hours)"
+msgstr "(heures)"
+
+#: plugin-options/search-options.php:151
+msgid "Order Options"
+msgstr "Options de commande"
+
+#: plugin-options/search-options.php:158
+msgid "Enable order by post type"
+msgstr "Activer la commande par type de publication"
+
+#: plugin-options/search-options.php:167
+msgid "Show first: "
+msgstr "Afficher en premier:"
+
+#: plugin-options/search-options.php:174
+msgid "Product"
+msgstr "Produit"
+
+#: plugin-options/search-options.php:175
+msgid "Post & Pages"
+msgstr "Articles et pages"
+
+#: plugin-options/search-options.php:190
+msgid "Search by Custom Field"
+msgstr "Recherche par champ personnalisé"
+
+#: plugin-options/search-options.php:191
+msgid ""
+"Extend search functionality to custom fields. Enter custom fields comma "
+"separated. Attention: this feature may slow down the search process on some "
+"servers."
+msgstr ""
+"Étendez la fonctionnalité de recherche aux champs personnalisés. Entrez les "
+"champs personnalisés séparés par des virgules. Attention: cette "
+"fonctionnalité peut ralentir le processus de recherche sur certains serveurs."
+
+#: plugin-options/search-options.php:197
+msgid "Custom field name"
+msgstr "Nom du champ personnalisé"
+
+#: plugin-options/search-options.php:210
+msgid "Search by Sku Settings"
+msgstr "Recherche par paramètres ugs"
+
+#: plugin-options/search-options.php:211
+msgid ""
+"Extend search functionality so that search includes also sku. Attention: "
+"this feature may slow down the search process on some servers."
+msgstr ""
+"Étendez la fonctionnalité de recherche afin que la recherche inclue "
+"également ugs. Attention: cette fonctionnalité peut ralentir le processus de "
+"recherche sur certains serveurs."
+
+#: plugin-options/search-options.php:217
+msgid "Search by sku"
+msgstr "Recherche par ugs"
+
+#: plugin-options/search-options.php:218
+msgid "Extend search functionality so that search includes also sku"
+msgstr ""
+"Étendez la fonctionnalité de recherche pour que la recherche inclue "
+"également les ugs"
+
+#: plugin-options/search-options.php:226
+msgid "Search by sku variable products"
+msgstr "Recherche par UGS des produits variable"
+
+#: plugin-options/search-options.php:227
+msgid "Extend sku search including variable products."
+msgstr "Étendre la recherche de UGS, y compris les produits variables."
+
+#: plugin-options/settings-options.php:23
+msgid "General settings"
+msgstr "Réglages généraux"
+
+#: plugin-options/settings-options.php:29
+msgid "Search input label"
+msgstr "Libellé de l'entrée recherche"
+
+#: plugin-options/settings-options.php:31
+#: plugin-options/settings-options.php:39
+msgid "Label for Search input field."
+msgstr "Libellé du champ de saisie Recherche."
+
+#: plugin-options/settings-options.php:33
+msgid "Search for products"
+msgstr "Rechercher des produits"
+
+#: plugin-options/settings-options.php:37
+msgid "Search submit label"
+msgstr "Etiquette du champ recherche"
+
+#: plugin-options/settings-options.php:45
+msgid "Minimum number of characters"
+msgstr "Nombre minimum de caractères"
+
+#: plugin-options/settings-options.php:46
+msgid "Minimum number of characters required to trigger autosuggest."
+msgstr "Nombre minimum de caractères requis pour déclencher l'autosuggestion."
+
+#: plugin-options/settings-options.php:59
+msgid "Maximum number of results"
+msgstr "Nombre maximum de résultats"
+
+#: plugin-options/settings-options.php:60
+msgid "Maximum number of results showed in autosuggest box."
+msgstr ""
+"Nombre maximum de résultats affichés dans la boîte de suggestion automatique."
+
+#: plugin-options/settings-options.php:79
+msgid "Additional Features"
+msgstr "Caractéristiques supplémentaires"
+
+#: plugin-options/settings-options.php:80
+msgid ""
+"If these options are not showed, your theme may not support these features. "
+"Please, contact the developer of theme to implement them."
+msgstr ""
+"Si ces options ne sont pas affichées, votre thème peut ne pas prendre en "
+"charge ces fonctionnalités. Veuillez contacter le développeur du thème pour "
+"les implémenter."
+
+#: plugin-options/settings-options.php:86
+msgid "Show filter for search fields"
+msgstr "Afficher le filtre pour les champs de recherche"
+
+#: plugin-options/settings-options.php:87
+msgid ""
+"Show filter for search fields (it allows searching the Whole site or only "
+"among products)"
+msgstr ""
+"Afficher le filtre pour les champs de recherche (il permet de rechercher sur "
+"l'ensemble du site ou uniquement parmi les produits)"
+
+#: plugin-options/settings-options.php:95
+msgid "Show the category list"
+msgstr "Afficher la liste des catégories"
+
+#: plugin-options/settings-options.php:96
+msgid "This option lets you decide to show the categories dropdown"
+msgstr ""
+"Cette option vous permet de décider d'afficher la liste déroulante des "
+"catégories"
+
+#: plugin-options/settings-options.php:105
+msgid "Categories to show"
+msgstr "Catégories à afficher"
+
+#: plugin-options/settings-options.php:106
+msgid ""
+"This option lets you decide to show all the categories or only the main ones"
+msgstr ""
+"Cette option vous permet de décider d'afficher toutes les catégories ou "
+"seulement les principales"
+
+#: plugin-options/settings-options.php:113
+msgid "Main Categories"
+msgstr "Catégories principales"
+
+#: plugin-options/settings-options.php:114
+msgid "All Categories"
+msgstr "Toutes les catégories"
+
+#: templates/yith-woocommerce-ajax-search.php:63
+msgid "Search for:"
+msgstr "Rechercher:"
+
+#. Description of the plugin/theme
+msgid ""
+"<code><strong>YITH WooCommerce Ajax Search Premium</strong></code> is the "
+"plugin that allows you to search for a specific product by inserting a few "
+"characters. Thanks to <strong>Ajax Search</strong>, users can quickly find "
+"the contents they are interested in without wasting time among site pages. "
+"<a href=\"https://yithemes.com/\" target=\"_blank\">Get more plugins for "
+"your e-commerce shop on <strong>YITH</strong></a>."
+msgstr ""
+"<code><strong>YITH WooCommerce Recherche Ajax Premium</strong></code> est le "
+"plugin qui vous permet de rechercher un produit spécifique en insérant "
+"quelques caractères. Grâce à la <strong>recherche Ajax</strong>, les "
+"utilisateurs peuvent trouver rapidement les contenus qui les intéressent "
+"sans perdre de temps entre les pages du site. <a href=\"https://yithemes.com/"
+"\" target=\"_blank\"> Obtenez plus de plug-ins pour votre boutique en ligne "
+"sur <strong>YITH</strong></a>."
+
+#: includes/class.yith-wcas-admin.php:101
+msgctxt "Plugin name, no translate"
+msgid "YITH WooCommerce Ajax Search"
+msgstr "YITH WooCommerce Ajax Search"
+
+#: includes/class.yith-wcas-admin.php:102
+msgctxt "Plugin name, no translate"
+msgid "Ajax Search"
+msgstr "Recherche Ajax"
+
+#: plugin-options/gutenberg/blocks.php:19
+msgctxt "[gutenberg]: block name"
+msgid "Ajax Search"
+msgstr "Recherche Ajax"
+
+#: plugin-options/gutenberg/blocks.php:20
+msgctxt "[gutenberg]: block description"
+msgid "Show Ajax Search Form"
+msgstr "Afficher le formulaire de recherche Ajax"
+
+#: plugin-options/gutenberg/blocks.php:24
+msgctxt "[gutenberg]: keywords"
+msgid "Ajax Search"
+msgstr "Recherche Ajax"
+
+#: plugin-options/gutenberg/blocks.php:25
+msgctxt "[gutenberg]: keywords"
+msgid "Search"
+msgstr "Chercher"
+
+#: plugin-options/gutenberg/blocks.php:30
+msgctxt "[gutenberg]: show or hide the thumbnail"
+msgid "Template"
+msgstr "Modèle"
+
+#: plugin-options/gutenberg/blocks.php:33
+msgctxt "[gutenberg]: Help to show thumbnail"
+msgid "Default"
+msgstr "Défaut"
+
+#: plugin-options/gutenberg/blocks.php:34
+msgctxt "[gutenberg]: Help to hide thumbnail"
+msgid "Wide"
+msgstr "Large"
+
+#: plugin-options/gutenberg/blocks.php:39
+msgctxt "[gutenberg]: class of widget"
+msgid "Class"
+msgstr "Classe"
+
+#~ msgid "Hover color"
+#~ msgstr "Couleur de survol"
+
+#~ msgid "Default color"
+#~ msgstr "Couleur par défaut"

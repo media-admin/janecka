@@ -1,0 +1,13 @@
+.acfw-recommend-extensions-upsell {
+  margin: 0 auto 70px;
+
+  &.max-width {
+    max-width: 1032px;
+  }
+
+  .components-card {
+    .sub-label {
+      font-size: 15px !important;
+    }
+  }
+}

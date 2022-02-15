@@ -1,0 +1,193 @@
+/*  ACFW premium page */
+.acfwf-upgrade-settings-block {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 30px 40px;
+    background: #fff;
+    box-sizing: border-box;
+    -webkit-box-shadow: -1px 2px 18px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 2px 18px -10px rgba(0,0,0,0.75);
+    box-shadow: -1px 2px 18px -10px rgba(0,0,0,0.75);
+}
+
+.acfwf-upgrade-settings-block * {
+    font-family: "Lato", 'Lato', Helvetica, Arial, Sans-serif;
+}
+
+.acfwf-upgrade-settings-block .logo {
+    max-width: 100%;
+}
+
+.acfwf-upgrade-settings-block h2 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0 0 1em;
+}
+
+.acfwf-upgrade-settings-block h3 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: normal;
+    margin: 10px 0;
+}
+
+.form-table .acfwf-upgrade-settings-block p {
+    text-align: center;
+    font-size: 18px !important;
+    margin: 0 0 1em;
+}
+
+.acfwf-upgrade-settings-block .responsive-table {
+    overflow-x: auto;
+}
+
+.acfwf-upgrade-settings-block table {
+    min-width: 630px;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #d5d5d5;
+    border-spacing: 0;
+}
+.acfwf-upgrade-settings-block table tr > * {
+    border-right: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d5d5d5;
+    font-size: 17px;
+    box-sizing: border-box;
+    display: table-cell !important;
+}
+.acfwf-upgrade-settings-block table tr > *:last-child {
+    border-right: 0;
+}
+.acfwf-upgrade-settings-block table tbody tr:last-child td {
+    border-bottom: 0;
+}
+.acfwf-upgrade-settings-block table tr th {
+    padding: 15px;
+    text-align: center;
+    font-weight: normal;
+    background: #f5f5f5;
+    border-collapse: collapse;
+}
+.acfwf-upgrade-settings-block table tr th.premium {
+    font-weight: bold;
+}
+.acfwf-upgrade-settings-block table tr .feature {
+    width: 38%;
+    text-align: left;
+}
+.acfwf-upgrade-settings-block table tr .free,
+.acfwf-upgrade-settings-block table tr .premium {
+    width: 32%;
+}
+.acfwf-upgrade-settings-block table tr .free:before {
+    color: red;
+    margin-right: 3px;
+}
+.acfwf-upgrade-settings-block table tr .premium:before {
+    color: #6abd45;
+    margin-right: 3px;
+}
+.acfwf-upgrade-settings-block table tr td {
+    padding: 20px 25px 45px 15px;
+    vertical-align: top;
+    
+}
+.acfwf-upgrade-settings-block .cta-block {
+    padding: 30px 0 20px;
+    border: 1px solid #d5d5d5;
+    border-top: 0;
+}
+.acfwf-upgrade-settings-block .cta-block h3 {
+    margin: 0 0 10px;
+}
+.acfwf-upgrade-settings-block .acfw-upgrade-button,
+.acfwf-upgrade-settings-block .acfw-upgrade-button:hover {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #f7941d;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #A85E06;
+    padding: 10px 20px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/*  License placeholder page */
+#license-placeholder {
+    max-width: 860px;
+}
+#license-placeholder * {
+    font-family: "Lato", 'Lato', Helvetica, Arial, Sans-serif;
+}
+#license-placeholder .action-button {
+    display: inline-block;
+    background: #ccc;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: inherit;
+}
+#license-placeholder .action-button:hover,
+#license-placeholder .action-button:focus {
+    opacity: 0.8;
+}
+#license-placeholder .overview {
+    margin-bottom: 20px;
+}
+#license-placeholder .overview h1 {
+    padding: 0;
+    margin-bottom: 25px;
+    font-size: 22px;
+    line-height: 40px;
+}
+#license-placeholder .overview p {
+    margin-bottom: 15px;
+}
+#license-placeholder .overview .feature-comparison {
+    background: #035E6B;
+    color: #ffffff;
+}
+#license-placeholder .license-info {
+    border: 1px solid #D5D5D5;
+}
+#license-placeholder .license-info .heading {
+    padding: 10px 10px 10px 30px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #D5D5D5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#license-placeholder .license-info .heading:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+#license-placeholder .license-info .heading .left {
+    width: calc(100% - 221px);
+}
+#license-placeholder .license-info .heading .upgrade-premium {
+    background: #C6CD2E;
+    color: #000000;
+}
+#license-placeholder .license-info .content {
+    background: #ffffff;
+    padding: 35px 30px;
+}
+#license-placeholder .license-info .content h2 {
+    margin: 0 0 10px;
+}
+#license-placeholder .license-info .content table {
+    margin-top: 25px;
+    max-width: 230px;
+}
+#license-placeholder .license-info .content table * {
+    padding: 0;
+}

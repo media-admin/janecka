@@ -1,0 +1,22 @@
+.acfw-coupon-categories {
+  margin-top: 10px;
+}
+
+.acfw-coupon-categories__spinner {
+  text-align: center;
+}
+
+.acfw-coupon-categories__list {
+  margin-bottom: 1em;
+  padding: 5px 15px;
+  max-height: 200px;
+  overflow: auto;
+  border: 1px solid #ccc;
+}
+
+.acfw-coupon-categories__item {
+  .components-checkbox-control__label {
+    display:inline-block;
+    width: calc(100% - 40px);
+  }
+}

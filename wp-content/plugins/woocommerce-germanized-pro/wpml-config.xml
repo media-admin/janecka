@@ -1,0 +1,50 @@
+<wpml-config>
+    <custom-types>
+        <custom-type translate="1" display-as-translated="1">document_template</custom-type>
+    </custom-types>
+    <custom-fields>
+        <custom-field action="copy">_document_type</custom-field>
+        <custom-field action="copy-once">_pdf_template_id</custom-field>
+        <custom-field action="copy-once">_margins</custom-field>
+        <custom-field action="copy">_template_name</custom-field>
+        <custom-field action="copy-once">_fonts</custom-field>
+        <custom-field action="copy-once">_font_size</custom-field>
+        <custom-field action="copy-once">_color</custom-field>
+    </custom-fields>
+    <admin-texts>
+    	<key name="woocommerce_gzdp_checkout_step_title_address" />
+    	<key name="woocommerce_gzdp_checkout_step_title_payment" />
+    	<key name="woocommerce_gzdp_checkout_step_title_order" />
+        <key name="woocommerce_gzdp_checkout_privacy_policy_text" />
+        <key name="woocommerce_gzdp_contract_helper_email_order_processing_text" />
+        <key name="woocommerce_gzdp_legal_page_revocation_pdf" />
+        <key name="woocommerce_gzdp_legal_page_terms_pdf" />
+        <key name="woocommerce_gzdp_legal_page_data_security_pdf" />
+        <key name="woocommerce_gzdp_legal_page_imprint_pdf" />
+        <key name="woocommerce_customer_order_confirmation_settings">
+            <key name="subject" />
+            <key name="heading" />
+            <key name="additional_content" />
+        </key>
+        <key name="woocommerce_sab_simple_invoice_settings">
+            <key name="subject" />
+            <key name="heading" />
+            <key name="additional_content" />
+        </key>
+        <key name="woocommerce_sab_cancellation_invoice_settings">
+            <key name="subject" />
+            <key name="heading" />
+            <key name="additional_content" />
+        </key>
+        <key name="woocommerce_sab_document_admin_settings">
+            <key name="subject" />
+            <key name="heading" />
+            <key name="additional_content" />
+        </key>
+        <key name="woocommerce_sab_document_settings">
+            <key name="subject" />
+            <key name="heading" />
+            <key name="additional_content" />
+        </key>
+    </admin-texts>
+</wpml-config>
