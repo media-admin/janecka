@@ -8,7 +8,7 @@
  * Version: 1.0
  ************/
 
-  class Bulma_Navwalker extends Walker_Nav_Menu {
+  class MegaMenu_Navwalker extends Walker_Nav_Menu {
     /**
      * [private stored in start_el and used in start_lvl to pass custom classes on ]
      * @var [array]
@@ -31,7 +31,7 @@
 
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
       $indent = str_repeat( "\t", $depth );
-        $output .= $indent."<div class=\"navbar-dropdown is-mega";
+        $output .= $indent."<div class=\"navbar-link flex";
         if( in_array( 'is-right', $this->right_class ) ){
             $output .= " is-right ";
           }
@@ -129,7 +129,7 @@
 
       else {//if does have children
         $item_output = $args['before'];//stat outputting
-        $item_output .= $indent . '<div class="navbar-item has-dropdown is-hoverable level-1" data-target="dropdown"><!-- START DROPDOWN-->' . "\n";
+        $item_output .= $indent . '<div class="navbar-item navbar-dropdown has-dropdown is-hoverable is-mega level-1" data-target="dropdown"><!-- START DROPDOWN-->' . "\n";
           if ( ! empty( $fa ) ) {//if fa  is not empty
             $item_output .= '<a' . $class_names . $attributes . '><i class="' . $fa . '"></i>';
 

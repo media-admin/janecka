@@ -244,8 +244,8 @@ add_action( 'init', 'medialab_register_menu' );
 
 
 /* Navigation Walker für Hauptnavigation */
-
 require_once('classes/bulma-navwalker.php');
+require_once('classes/bulma-mega-menu-navwalker.php');
 
 
 

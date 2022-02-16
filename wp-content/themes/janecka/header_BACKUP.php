@@ -578,118 +578,17 @@
 
 				<nav class="navbar-brand">
 
-					<div role="button" class="navbar-burger burger column column--menu" aria-label="menu" aria-expanded="false" data-target="navbar-main">
+					<a role="button" class="navbar-burger burger column column--menu" aria-label="menu" aria-expanded="false" data-target="navbar-main">
 						<span aria-hidden="true"></span>
 						<span aria-hidden="true"></span>
 						<span aria-hidden="true"></span>
-					</div>
+					</a>
 
 
 						<div id="navbar-main" class="navbar-menu">
 
-							<div class="navbar-start">
-
-								<div class="navbar-item has-dropdown is-hoverable is-mega">
-									<div class="navbar-link flex">
-										Uhren
-									</div>
-									<div id="blogDropdown" class="navbar-dropdown " data-style="width: 18rem;">
-										<div class="container is-fluid">
-											<div class="columns">
-												<div class="column">
-													<div class="title is-6 is-mega-menu-title">
-														<a class="navbar-item" href="#">Marken</a>
-													</div>
-													<div class="title is-6 is-mega-menu-title">
-														<a class="navbar-item" href="#">Damenuhren</a>
-													</div>
-												</div>
-												<div class="column">
-													<div class="title is-6 is-mega-menu-title">
-														<a class="navbar-item" href="#">Herrenuhren</a>
-													</div>
-													<div class="title is-6 is-mega-menu-title">
-														<a class="navbar-item" href="#">Gutscheine</a>
-													</div>
-												</div>
-												<div class="column">
-													<img src="<?php bloginfo( 'template_directory' ); ?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-												</div>
-											</div>
-
-												<div class="column">
-													<h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
-													<a class="navbar-item" href="/2017/08/03/list-of-tags/">
-														<div class="navbar-content">
-
-															<p>
-																<small class="has-text-info">03 Aug 2017</small>
-															</p>
-															<p>New feature: list of tags</p>
-														</div>
-													</a>
-													<a class="navbar-item " href="/documentation/overview/start/">
-														Overview
-													</a>
-													<a class="navbar-item " href="http://bulma.io/documentation/modifiers/syntax/">
-														Modifiers
-													</a>
-													<a class="navbar-item " href="http://bulma.io/documentation/columns/basics/">
-														Columns
-													</a>
-												</div>
-												<div class="column">
-													<h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
-													<a class="navbar-item" href="/2017/08/03/list-of-tags/">
-														<div class="navbar-content">
-															<p>
-																<small class="has-text-info">03 Aug 2017</small>
-															</p>
-															<p>New feature: list of tags</p>
-														</div>
-													</a>
-													<a class="navbar-item" href="/2017/08/03/list-of-tags/">
-														<div class="navbar-content">
-															<p>
-																<small class="has-text-info">03 Aug 2017</small>
-															</p>
-															<p>New feature: list of tags</p>
-														</div>
-													</a>
-													<a class="navbar-item" href="/2017/08/03/list-of-tags/">
-														<div class="navbar-content">
-															<p>
-																<small class="has-text-info">03 Aug 2017</small>
-															</p>
-															<p>New feature: list of tags</p>
-														</div>
-													</a>
-
-												</div>
-												<div class="column">
-													<h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
-													<a class="navbar-item " href="/documentation/overview/start/">
-														Overview
-													</a>
-													<a class="navbar-item " href="http://bulma.io/documentation/modifiers/syntax/">
-														Modifiers
-													</a>
-													<a class="navbar-item " href="http://bulma.io/documentation/columns/basics/">
-														Columns
-													</a>
-													<a class="navbar-item " href="http://bulma.io/documentation/layout/container/">
-														Layout
-													</a>
-												</div>
-											</div>
-										</div>
-
-
-									</div>
-								</div>
-
 							<?php
-							/* Navigation Walker für Hauptnavigation
+							/* Navigation Walker für Hauptnavigation */
 
 								$defaults = array(
 									'theme-location' => 'nav-menu-main', //change it according to your register_nav_menus() function
@@ -702,9 +601,7 @@
 									 'fallback_cb'		=>	'MegaMenu_Navwalker::fallback'
 								);
 								wp_nav_menu( $defaults );
-								*/
 							?>
-
 
 					</div>
 
