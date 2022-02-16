@@ -3466,7 +3466,15 @@ input[type=checkbox]:checked:after {
 		width: 50px;
 		height: 50px;
 		font-size: 2.2rem;
-		margin-top: -25px;
+
+		width: 30px;
+		height: 30px;
+		font-size: 1.2rem;
+		line-height: 3.2rem !important;
+
+		background-color: red;
+
+		margin-top: -25px !important;
 		padding: 0.25rem 0.4rem .202rem 0.4rem !important;
 	}
 }
@@ -3921,6 +3929,7 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 }
 
 
+/*
 .single-product div.product form.cart .quantity-section {
 	position: relative !important;
 	display: block !important;
@@ -3950,7 +3959,7 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 	float: none;
 	margin: 0;
 }
-
+*/
 
 
 .single-product #wc-stripe-payment-request-wrapper,
@@ -4032,10 +4041,14 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 	background-color: transparent!important;
 	opacity: 100%!important;
 	margin-top: 25px!important;
+	margin-top: 0px !important;
 	margin-bottom: 25px!important;
-	margin-left: 0!important;
+	margin-left: 0 !important;
 	padding: .4rem 1.0rem!important;
 	padding: .6rem 1.5rem!important;
+	padding-top: 0.0rem !important;
+	padding-left: 0.2rem !important;
+
 }
 
 
@@ -4045,11 +4058,11 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 }
 
 
+/*
 .single-product .quantity {
 	position: relative !important;
 	width: auto !important;
 	font-family: 'Source Sans Pro Regular' !important;
-	/* font-size: 1.0rem !important; */
 	font-size: 0.9rem !important;
 	line-height: 1.0rem !important;
 	text-transform: uppercase;
@@ -4094,6 +4107,7 @@ button.minus {
 }
 
 
+
 .woocommerce .quantity .qty {
 	position: relative !important;
 	width: 50% !important;
@@ -4108,18 +4122,43 @@ input.qty {
 	width: 50% !important;
 	margin-left: -8px !important;
 }
-
+*/
 
 .woocommerce div.product form.cart .single_add_to_cart_button {
 	position: relative !important;
 	width: 50% !important;
+	min-height: 45px !important;
 	clear: all !important;
-	display: block !important;
-	text-align: center !important;
+
 	left: -0.5rem !important;
+	/*
 	margin-top: 25px !important;
 	margin-bottom: 15px !important;
+	*/
+	border-radius: 0px !important;
+	font-size: 1.0rem !important;
+	line-height: 1.2rem !important;
+	color: #ffffff !important;
+	background-color: #707070 !important;
+
+	padding: 0.8rem auto !important;
+
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
 }
+
+
+
+
+.single_add_to_cart_button:before {
+	display: inline-block !important;
+	content: url(https://janecka.dev/wp-content/themes/janecka/assets/img/icons/icon-bag-light.svg);
+	padding-right: 10px !important;
+	margin-left: -20px !important;
+}
+
+
 
 
 .single-product .tinvwl_add_to_wishlist-text {

@@ -868,6 +868,10 @@ remove_action(
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 
 
+// remove Price
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+
+
 // remove Product Meta
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
 
@@ -921,16 +925,6 @@ add_action( 'woocommerce_single_product_summary', 'janecka_single_product_show_s
 
 
 
-
-
-
-
-
-
-
-
-
-
 /* Adding the Delivery Time ---------------------------> Backup after Initializing Additional Delivery time if not on stock
 
 function janecka_single_product_display_delivery_time() {
@@ -942,14 +936,6 @@ function janecka_single_product_display_delivery_time() {
 add_action( 'woocommerce_catalog_ordering', 'janecka_single-product_display_delivery_time', 10 );
 
 <--------------------------- */
-
-
-
-
-
-
-
-
 
 
 
@@ -982,8 +968,6 @@ function janecka_single_product_display_engraving() {
 add_action( 'woocommerce_single_product_summary', 'janecka_single_product_display_engraving', 20 );
 
 */
-
-
 
 
 /* Adding the Price */
@@ -1023,11 +1007,11 @@ woocommerce_before_single_variation
 woocommerce_single_variation
 woocommerce_after_single_variation
 
-
 */
 
-add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 
+
+add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 
 add_filter( "woocommerce_is_sold_individually" , "woocommerce_is_sold_individually_callback", 20, 2 );
 function woocommerce_is_sold_individually_callback( $status, $product ){
@@ -1039,6 +1023,7 @@ function woocommerce_is_sold_individually_callback( $status, $product ){
 
 
 
+/* Adding the Quantity Field
 
 function janecka_quantity_minus_sign() {
 	echo '<div class="quantity-section">';
@@ -1061,7 +1046,7 @@ add_action( 'woocommerce_after_add_to_cart_quantity', 'janecka_quantity_plus_sig
 
 
 
-/* Adding the Quantity Field */
+
 
 function janecka_quantity_inputs_for_woocommerce_loop_add_to_cart_link( $html, $product ) {
 	if ( $product && $product->is_type( 'simple' ) && $product->is_purchasable() && $product->is_in_stock() && ! $product->is_sold_individually() ) {
@@ -1077,7 +1062,7 @@ add_filter( 'woocommerce_loop_add_to_cart_link', 'janecka_quantity_inputs_for_wo
 
 
 
-/* Adding Quantity Buttons "Plus" and "Minus" */
+/* Adding Quantity Buttons "Plus" and "Minus"
 
 function janecka_quantity_plus_minus() {
 	 // To run this on the single product page
@@ -1127,7 +1112,7 @@ function janecka_quantity_plus_minus() {
 
 add_action( 'wp_footer', 'janecka_quantity_plus_minus' );
 
-
+*/
 
 
 
