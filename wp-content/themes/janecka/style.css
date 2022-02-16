@@ -3563,7 +3563,8 @@ input[type=checkbox]:checked:after {
 
 
 .products .product .tinvwl_add_to_wishlist_button {
-	margin-top: -1.0rem !important;
+	/* margin-top: -1.0rem !important; */
+	margin-top: 0.9rem !important;
 }
 
 
@@ -3576,6 +3577,18 @@ input[type=checkbox]:checked:after {
 	font-weight: 500;
 	margin-top: -2.0rem !important;
 }
+
+
+.product .tinv-wishlist .tinvwl_add_to_wishlist_button.tinvwl-icon-heart-plus.no-txt,
+.product .tinv-wishlist .tinvwl_add_to_wishlist_button.tinvwl-icon-heart.no-txt {
+	position: absolute !important;
+	top: 1.0rem !important;
+	left: 1.0rem !important;
+}
+
+
+
+
 
 
 .product p.wc-gzd-additional-info {
@@ -3659,6 +3672,8 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 .yith-wcwl-wishlistexistsbrowse a:hover {
 	border-bottom: 1px solid #707070 !important;
 }
+
+
 
 
 
@@ -4277,12 +4292,12 @@ div.product form.cart .variations td.product_value select {
 
 
 
-.mein-wunschzettel {
+.meine-wunschliste {
 		font-size: 0.9rem !important;
 	}
 
 
-.mein-wunschzettel .tbody {
+.meine-wunschliste .tbody {
 	vertical-align: middle !important;
 }
 
@@ -4322,7 +4337,7 @@ div.product form.cart .variations td.product_value select {
 }
 
 
-.mein-wunschzettel button a {
+.meine-wunschliste button a {
 	font-size: 0.9rem !important;
 }
 
@@ -4537,9 +4552,14 @@ div.product form.cart .variations td.product_value select {
 
 
 
-/* --- SEITE WUNSCHZETTEL --- */
+/* --- SEITE MEINE WUNSCHLISTE --- */
 
-.mein-wunschzettel .add_to_cart_button {
+.meine-wunschliste .tinv-header {
+	display: none !important;
+}
+
+
+.meine-wunschliste .add_to_cart_button {
 	position: flex !important;
 	margin: 0px auto !important;
 }
@@ -4582,6 +4602,10 @@ td.product-action {
 	margin-top: 2px !important;
 }
 
+
+.meine-wunschliste .tinv-wishlist .tinvwl-table-manage-list tfoot {
+	display: none	!important;
+}
 
 
 

@@ -553,7 +553,7 @@
 								</li>
 
 								<li>
-									<a href="/mein-wunschzettel">
+									<a href="/meine-wunschliste">
 										<img class="" src="<?php bloginfo( 'template_directory' ); ?>/assets/img/icons/icon-heart.svg" alt="Wunschzettel Icon">
 									</a>
 								</li>
