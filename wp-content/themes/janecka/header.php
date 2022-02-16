@@ -588,19 +588,27 @@
 						<div id="navbar-main" class="navbar-menu">
 
 							<?php
-							/* Navigation Walker für Hauptnavigation */
+							/* Navigation Walker for MegaMenu */
+							$walk = new MegaMenu_Nav_Walker();
 
-								$defaults = array(
-									'theme-location' => 'nav-menu-main', //change it according to your register_nav_menus() function
-									 'depth'		=>	3,
-									 'menu'			=>	'Hauptnavigation',
-									 'container'		=>	'',
-									 'menu_class'		=>	'',
-									 'items_wrap'		=>	'%3$s',
-									 'walker'		=>	new Bulma_NavWalker(),
-									 'fallback_cb'		=>	'Bulma_NavWalker::fallback'
-								);
-								wp_nav_menu( $defaults );
+							$defaults = array(
+								'theme_location' => 'nav-menu-main',
+								'menu'			=>	'Hauptnavigation',
+								'menu_class' => 'nav navbar-nav navbar-right',
+								'items_wrap' => '<ul>%3$s</ul>',
+								'walker' => $walk
+							);
+
+							wp_nav_menu( $defaults );
+
+
+
+
+
+
+
+
+
 							?>
 
 					</div>

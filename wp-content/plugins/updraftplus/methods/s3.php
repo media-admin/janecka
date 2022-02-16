@@ -1127,11 +1127,11 @@ class UpdraftPlus_BackupModule_s3 extends UpdraftPlus_BackupModule {
 
 					// We don't put this in a separate catch block which names the exception, since we need to remain compatible with PHP 5.2
 					if (is_a($storage, 'UpdraftPlus_S3_Compat') && is_a($e, 'Aws\S3\Exception\S3Exception')) {
-						$xml = $e->getResponse()->xml();
+						$xml = new SimpleXMLElement((string) $e->getResponse()->getBody(), LIBXML_NONET);
 
-						if (!empty($xml->Code) && 'AuthorizationHeaderMalformed' == $xml->Code && !empty($xml->Region)) {
+						if (!empty($xml->Code) && 'AuthorizationHeaderMalformed' == $xml->Code->__toString() && !empty($xml->Region)) {
 
-							$this->set_region($storage, $xml->Region);
+							$this->set_region($storage, $xml->Region->__toString());
 							$storage->setExceptions(false);
 							
 							if (false !== @$storage->getBucket($bucket, $path, null, 1)) {// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged

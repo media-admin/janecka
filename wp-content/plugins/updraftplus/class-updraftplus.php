@@ -670,6 +670,11 @@ class UpdraftPlus {
 		return $allow_override ? apply_filters('updraftplus_get_table_prefix', $prefix) : $prefix;
 	}
 
+	/**
+	 * Get the site's identifier
+	 *
+	 * @return String
+	 */
 	public function siteid() {
 		$sid = get_site_option('updraftplus-addons_siteid');
 		if (!is_string($sid) || empty($sid)) {
@@ -3720,7 +3725,6 @@ class UpdraftPlus {
 
 		$this->attachments = apply_filters('updraft_report_attachments', $attachments);
 
-		if (count($this->attachments) > 0) add_action('phpmailer_init', array($this, 'phpmailer_init'));
 		add_action('phpmailer_init', array($this, 'set_sender_email_address'), 9);
 
 		$attach_size = 0;
@@ -3763,7 +3767,7 @@ class UpdraftPlus {
 					$this->log("Sending email ('$backup_contains') report (attachments: ".count($attachments).", size: ".round($attach_size/1024, 1)." KB) to: ".substr($sendmail_addr, 0, 5)."...");
 					try {
 						add_action('wp_mail_failed', array($this, 'log_email_delivery_failure'));
-						wp_mail(trim($sendmail_addr), $subject, $body, array("X-UpdraftPlus-Backup-ID: ".$this->nonce));
+						wp_mail(trim($sendmail_addr), $subject, $body, array("X-UpdraftPlus-Backup-ID: ".$this->nonce), is_array($this->attachments) ? $this->attachments : array());
 						remove_action('wp_mail_failed', array($this, 'log_email_delivery_failure'));
 					} catch (Exception $e) {
 						$this->log("Exception occurred when sending mail (".get_class($e)."): ".$e->getMessage());
@@ -3776,7 +3780,6 @@ class UpdraftPlus {
 
 		do_action('updraft_report_finished');
 		remove_action('phpmailer_init', array($this, 'set_sender_email_address'), 9);
-		if (count($this->attachments) > 0) remove_action('phpmailer_init', array($this, 'phpmailer_init'));
 
 	}
 
@@ -3787,23 +3790,6 @@ class UpdraftPlus {
 	 */
 	public function log_email_delivery_failure($error) {
 		$this->log("An error occurred when sending a backup report email and/or backup file(s) via email (".$error->get_error_code()."): ".$error->get_error_message());
-	}
-
-	/**
-	 * Called upon the WP action phpmailer_init
-	 *
-	 * @param Object $phpmailer
-	 */
-	public function phpmailer_init($phpmailer) {
-		if (empty($this->attachments) || !is_array($this->attachments)) return;
-		foreach ($this->attachments as $attach) {
-			$mime_type = preg_match('/\.gz$/i', $attach) ? 'application/x-gzip' : 'text/plain';
-			try {
-				$phpmailer->AddAttachment($attach, '', 'base64', $mime_type);
-			} catch (Exception $e) {
-				$this->log("Exception occurred when adding attachment (".get_class($e)."): ".$e->getMessage());
-			}
-		}
 	}
 
 	/**
@@ -5773,16 +5759,33 @@ class UpdraftPlus {
 	/**
 	 * Wipe state-related data (e.g. on wiping settings, or on a restore). Note that there is some internal knowledge within the method below of how it is being used (if not including locks, then check for an active job)
 	 *
-	 * @param Boolean $include_locks
+	 * @param Boolean $include_locks Whether to also wipe out data other than just updraft_jobdata (e.g. updraft semaphore, lock, schedule, etc.)
+	 * @param String  $table         What table the data is in. It recognises only two tables ('options', 'sitemeta'), the default is 'options'
 	 */
-	public function wipe_state_data($include_locks = false) {
+	public function wipe_state_data($include_locks = false, $table = 'options') {
 		// These aren't in get_settings_keys() because they are always in the options table, regardless of context
 		global $wpdb;
+		switch ($table) {
+			case 'sitemeta':
+				$table = $wpdb->sitemeta;
+				$field = 'meta_key';
+				break;
+			default:
+				$table = $wpdb->options;
+				$field = 'option_name';
+				// if multisite do we need site_id column in the where clause?
+				break;
+		}
+		if (!class_exists('UpdraftPlus_Database_Utility')) include_once(UPDRAFTPLUS_DIR.'/includes/class-database-utility.php');
 		if ($include_locks) {
-			$wpdb->query("DELETE FROM $wpdb->options WHERE (option_name LIKE 'updraftplus_unlocked_%' OR option_name LIKE 'updraftplus_locked_%' OR option_name LIKE 'updraftplus_last_lock_time_%' OR option_name LIKE 'updraftplus_semaphore_%' OR option_name LIKE 'updraft_jobdata_%' OR option_name LIKE 'updraft_last_scheduled_%' )");
+			$wpdb->query($wpdb->prepare("DELETE FROM $table WHERE ($field LIKE %s OR $field LIKE %s OR $field LIKE %s OR $field LIKE %s OR $field LIKE %s OR $field LIKE %s)", UpdraftPlus_Database_Utility::esc_like('updraftplus_unlocked_').'%', UpdraftPlus_Database_Utility::esc_like('updraftplus_locked_').'%', UpdraftPlus_Database_Utility::esc_like('updraftplus_last_lock_time_').'%', UpdraftPlus_Database_Utility::esc_like('updraftplus_semaphore_').'%', UpdraftPlus_Database_Utility::esc_like('updraft_jobdata_').'%', UpdraftPlus_Database_Utility::esc_like('updraft_last_scheduled_').'%'));
 		} else {
-			$sql = "DELETE FROM $wpdb->options WHERE option_name LIKE 'updraft_jobdata_%'";
-			if (!empty($this->nonce)) $sql .= " AND option_name != 'updraft_jobdata_".$this->nonce."'";
+			$sql = '';
+			if (!empty($this->nonce)) {
+				$sql = $wpdb->prepare("DELETE FROM $table WHERE $field LIKE %s AND $field != %s", UpdraftPlus_Database_Utility::esc_like('updraft_jobdata_').'%', "updraft_jobdata_{$this->nonce}");
+			} else {
+				$sql = $wpdb->prepare("DELETE FROM $table WHERE $field LIKE %s", UpdraftPlus_Database_Utility::esc_like('updraft_jobdata_').'%');
+			}
 			$wpdb->query($sql);
 		}
 	}

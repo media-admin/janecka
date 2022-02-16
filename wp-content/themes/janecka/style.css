@@ -1977,6 +1977,71 @@ img.brand-logo {
 
 
 
+
+
+
+
+
+
+/* === Mega Menu === */
+.dropdown_1column,
+.dropdown_2columns,
+.dropdown_3columns,
+.dropdown_4columns,
+.dropdown_5columns,
+.dropdown_fullwidth {
+	margin:-3px auto;
+	position:absolute;
+	left:-999em; /* Hides the drop down */
+	text-align:left;
+	padding:10px 5px 10px 5px;
+	border:1px solid #777777;
+	border-top: 2px solid #960000;
+
+	/* Gradient background */
+	background:#FFF;
+
+	/* Rounded Corners */
+	-moz-border-radius: 0px 0px 5px 5px;
+	-webkit-border-radius: 0px 0px 5px 5px;
+	border-radius: 0px 0px 5px 5px;
+}
+
+.dropdown_1column {width: 140px;}
+.dropdown_2columns {width: 280px;}
+.dropdown_3columns {width: 420px;}
+.dropdown_4columns {width: 560px;}
+.dropdown_5columns {width: 700px;}
+.dropdown_fullwidth{width: 80%;}
+
+ul.navbar-nav > li:hover > .dropdown_1column,
+ul.navbar-nav > li:hover >.dropdown_2columns,
+ul.navbar-nav > li:hover > .dropdown_3columns,
+ul.navbar-nav > li:hover >.dropdown_4columns,
+ul.navbar-nav > li:hover >.dropdown_5columns {
+	left:-1px;top:auto;
+}
+
+ul.navbar-nav > li:hover >.dropdown_fullwidth{
+	position: fixed;
+	left:10%;top:auto;
+	z-index: 99;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Breadcrumb Bar */
 
 .woocommerce-breadcrumb {

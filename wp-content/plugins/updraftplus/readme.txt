@@ -3,7 +3,7 @@ Contributors: Backup with UpdraftPlus, DavidAnderson, DNutbourne, aporter, snigh
 Tags: backup, restore, database backup, wordpress backup, cloud backup, s3, dropbox, google drive, onedrive, ftp, backups
 Requires at least: 3.2
 Tested up to: 5.9
-Stable tag: 1.22.1
+Stable tag: 1.22.3
 Author URI: https://updraftplus.com
 Donate link: https://david.dw-perspective.org.uk/donate
 License: GPLv3 or later
@@ -168,11 +168,27 @@ The <a href="https://updraftplus.com/news/">UpdraftPlus backup blog</a> is the b
 
 N.B. Paid versions of UpdraftPlus Backup / Restore have a version number which is 1 higher in the first digit, and has an extra component on the end, but the changelog below still applies. i.e. changes listed for 1.16.32.x of the free version correspond to changes made in 2.16.32.x of the paid version.
 
+
+
+= 1.22.3 - 15/Feb/2022 =
+
+* SECURITY: Thanks to Marc-Alexandre Montpas of Automattic for this report. All versions of UpdraftPlus from March 2019 onwards have contained a vulnerability caused by a missing permissions-level check. If your site does not have non-admin users, or if your non-admin users are all trusted (and your site does not allow users to sign up themselves), then you are not vulnerable (but we always recommend updating to the latest version in any case). Fuller details will be released after a short time interval allowing users to update.
+* FIX: Unexpected 'Backup History' array structure during the rescanning of the new backup sets that changed the type of the database associative keys from string to array format
+* FIX: Failure in excluding and wiping out jobdata during backup and restore causing the same backup to repeat under certain circumstances
+* REFACTOR: Upgrade AWS SDK from version 2.8 to 3
+* TWEAK: Improve how log file and backup file attachments are handled through mail-related functions, so they don't get omitted by some 3rd party SMTP plugins
+* TWEAK: Overcome PHP 8 'Only the first byte will be assigned to the string offset' warning when rescanning local folder and/or remote storage for new backup sets
+* TWEAK: On Windows, when mysqldump.exe binary is in use for backing up database, it failed to exclude updraft_jobdata_* entries due to 'escapeshellarg' function that replaces % char to white space
+* TWEAK: Switch to official jstree release now that our patch is included
+* TWEAK: Update updater library in paid version to current release
+* TWEAK: In the multisite add-on, store the last log message separately to perform better with binary logging together with large backups
+* TWEAK: Add Google branding to the Google Drive authentication link
+* TWEAK: Change complex formatting string to avoid translator errors resulting in PHP errors
+
 = 1.22.1 - 14/Jan/2022 =
 
 * TWEAK: New versionning scheme; the second part of the version number was previously not used very meaningfully/systematically; together with the third, it now indicates the year of release and number within that year
 * TWEAK: Adjust run-time performance check, removing one test that was no longer appropriate
-* TWEAK: In the multisite add-on, store the last log message separately to perform better with binary logging together with large backups
 * TWEAK: Adjust next resumption display message if there isn't one
 * TWEAK: Cache the UpdraftVault quota to reduce the amount of network calls made during long backups
 
@@ -1435,4 +1451,4 @@ Reliance upon any non-English translation is at your own risk; UpdraftPlus can g
 We recognise and thank those mentioned at https://updraftplus.com/acknowledgements/ for code and/or libraries used and/or modified under the terms of their open source licences.
 
 == Upgrade Notice ==
-* 1.22.1: Adjust run-time performance check, removing one test that was no longer appropriate. In the multisite add-on, store the last log message separately to perform better with binary logging together with large backups. Adjust next resumption display message if there isn't one. Cache the UpdraftVault quota to reduce the amount of network calls made during long backups. A recommended update for all.
+* 1.22.3: Fixes a security issue (see the changelog for more info). Fix potential issues with scanning of backup history. Update AWS SDK version. Various other small tweaks and fixes. A recommended update for all.

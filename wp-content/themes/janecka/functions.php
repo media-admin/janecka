@@ -249,50 +249,54 @@ require_once('classes/bulma-navwalker.php');
 
 
 
-/* Navigation Walker für Footernavigation */
 
-class Footer_Nav_Walker extends Walker_Nav_Menu {
 
-	public function start_lvl( &$output, $depth = 0, $args = array() ) {
 
-			$output .= "<li class='parent-link'>";
-	}
 
-	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 
-			$liClasses = 'navbar-item '.$item->title;
 
-			$hasChildren = $args->walker->has_children;
-			$liClasses .= $hasChildren? " columns top-level-item": "";
 
-			if($hasChildren){
-					$output .= "<div class=' sub-menu ".$liClasses."'>";
-					$output .= "\n<a class='navbar-link' href='".$item->url."'>".$item->title."</a>";
-			}
-			else {
-					$output .= "<a class='".$liClasses."' href='".$item->url."'>".$item->title;
-			}
+/* Nav Walker for Mega Menu */
 
-			// Adds has_children class to the item so end_el can determine if the current element has children
-			if ( $hasChildren ) {
-					$item->classes[] = 'has_children';
-			}
-	}
+class MegaMenu_Nav_Walker extends Walker_Nav_Menu
+{
+		function start_el(&$output, $item, $depth = 0, $args, $id = 0) {
+				global $wp_query;
+				$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
-	public function end_el(&$output, $item, $depth = 0, $args = array(), $id = 0 ){
+				$class_names = $value = '';
 
-			if(in_array("has_children", $item->classes)) {
+				$classes = empty( $item->classes ) ? array() : (array) $item->classes;
 
-					$output .= "</div>";
-			}
-			$output .= "</a>";
-	}
+				$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
+				$class_names = ' class="' . esc_attr( $class_names ) . '"';
 
-	public function end_lvl (&$output, $depth = 0, $args = array()) {
+				$output .= $indent . '<li id="menu-item-'. $item->ID . '"' . $value . $class_names .'>';
 
-			$output .= "</div>";
-	}
+				$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+				$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+				$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+				$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+
+				$item_output = $args->before;
+				$item_output .= '<a'. $attributes .'>';
+				$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+				$item_output .= '</a>';
+				$item_output .= $item->subtitle;
+				$item_output .= $args->after;
+
+				$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args, $id );
+		}
 }
+
+
+function my_wp_nav_menu_args( $args = '' ) {
+	$args['walker'] = new MegaMenu_Nav_Walker();
+	return $args;
+}
+add_filter( 'wp_nav_menu_args', 'my_wp_nav_menu_args' );
+
+
 
 
 
@@ -656,8 +660,7 @@ add_filter( 'woocommerce_breadcrumb_defaults', 'janecka_change_breadcrumb_delimi
 
 
 
-/* Repairing the Ajax Product Filter Functionality */
-add_filter ('yith_wcan_use_wp_the_query_object', '__return_true');
+
 
 
 
@@ -1319,8 +1322,37 @@ function janecka_cart_info_shipping_costs( $args ){
 
 add_filter( 'woocommerce_after_cart_contents', 'janecka_cart_info_shipping_costs',99,1 );
 
-
-
-
-
 add_filter( 'yith_wcan_suppress_cache', '__return_true' );
+
+
+
+/* Repairing the Ajax Product Filter Functionality */
+add_filter ('yith_wcan_use_wp_the_query_object', '__return_true');
+
+
+/* Making the Ajac Product Filter Auto Completion work again  */
+
+if ( ! function_exists( 'yith_wcan_set_query_vars' ) ) {
+ function yith_wcan_set_query_vars() {
+ if ( ! function_exists( 'YITH_WCAN_Query' ) ) {
+ return;
+			}
+
+			$qo = get_queried_object();
+
+			$query_vars = YITH_WCAN_Query()->get_query_vars();
+
+ if ( is_product_taxonomy() && $qo instanceof WP_Term && ! isset( $query_vars[ $qo->taxonomy ] ) ) {
+ YITH_WCAN_Query()->set( $qo->taxonomy, $qo->slug );
+			} elseif ( is_page() && $qo instanceof WP_Post && ! isset( $query_vars['product_cat'] ) ) {
+				 $page_slug    = $qo->post_name;
+				 $related_term = get_term_by( 'slug', $page_slug, 'product_cat' );
+
+ if ( $related_term && ! is_wp_error( $related_term ) ) {
+ YITH_WCAN_Query()->set( 'product_cat', $related_term->slug );
+				 }
+			}
+	 }
+
+ add_action( 'wp', 'yith_wcan_set_query_vars' );
+}

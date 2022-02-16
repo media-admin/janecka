@@ -593,7 +593,7 @@ class UpdraftPlus_BackupModule_updraftvault extends UpdraftPlus_BackupModule_s3 
 				if (is_string($quota_via_transient) && $quota_via_transient) return $quota_via_transient;
 			} elseif ('numeric' == $format) {
 				$quota_via_transient = get_transient('updraftvault_quota_numeric');
-				if (is_numeric($quota_via_transient) && $quota_via_transient && round($quota - $quota_via_transient, 1048576, 1) >= 1024) {
+				if (is_numeric($quota_via_transient) && $quota_via_transient && round($quota - $quota_via_transient, 1048576) >= 1024) {
 					$this->quota_transient_used = true;
 					if (!defined('UPDRAFTVAULT_COUNT_QUOTA_ANYWAY') || !UPDRAFTVAULT_COUNT_QUOTA_ANYWAY) {
 						return $quota_via_transient;
