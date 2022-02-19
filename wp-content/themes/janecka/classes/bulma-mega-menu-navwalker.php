@@ -31,16 +31,18 @@
 
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
       $indent = str_repeat( "\t", $depth );
-        $output .= $indent."<div class=\"";
+        $output .= $indent."<div class=\"navbar-dropdown";
         if( in_array( 'is-right', $this->right_class ) ){
             $output .= " is-right ";
           }
         $output .= "\">";
     }
 
+
+
     public function end_lvl( &$output, $depth = 0, $args = array() ) {
       $indent = str_repeat( "\t", $depth );
-      $output .= "$indent</div><!-- END LEVEL -->\n";
+      $output .= "$indent</div><!-- END DROPDOWN -->\n";
     }
 
     /**
@@ -75,7 +77,7 @@
         'link_after'      => '',
         'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
         'item_spacing'    => 'preserve',
-        'depth'           => 3,
+        'depth'           => 2,
         'walker'          => '',
         'theme_location'  => '',
       );
@@ -90,61 +92,61 @@
       $show_title_class = 'fa-show-title';
       // we're going to show the title of the link by default
       $show_title = true;
-      //Pattern for working out how to find font awesome classes
+      // Pattern for working out how to find font awesome classes
       $pattern = '/(fa-.*|^fas|^fab)/m';
-      //First find the classes and assign them to a new variable
+      // First find the classes and assign them to a new variable
       $fa = preg_grep($pattern, $item->classes);
-      //Create string of font awesome classes
+      // Create string of font awesome classes
       $fa = implode(" ",$fa);
-      //Look for fa-show-title class
+      // Look for fa-show-title class
       $the_title = strstr($fa, $show_title_class);
-      ///Remove class fa-show-title
+      /// Remove class fa-show-title
       $fa = str_replace($show_title_class,"",$fa);
-      //Remove font awesome and is-right classes from navbar-item string
+      // Remove font awesome and is-right classes from navbar-item string
       $class_names = str_replace(array($fa,$show_title_class,"is-right"),"",$class_names);
       $classes = empty( $item->classes ) ? array() : (array) $item->classes;
       $this->right_class = $classes;
 
-      if ( ! $args['has_children'] ) {//if doesn't have children
-            if ( ! in_array( 'navbar-divider', $classes ) ) {//if doesnt contains a navbar divider
-              $item_output = $args['before'];//start outputting
-              if ( ! empty( $fa ) ) {//if item title is not empty
-                    $item_output .= '<div class="navbar-content"><a' . $class_names . $attributes . '><i class="' . $fa . '"></i>';
+      if ( ! $args['has_children'] ) { // if doesn't have children
+            if ( ! in_array( 'navbar-divider', $classes ) ) { // if doesnt contains a navbar divider
+              $item_output = $args['before']; // start outputting
+              if ( ! empty( $fa ) ) { // if item title is not empty
+                    $item_output .= '<a' . $class_names . $attributes . '><i class="' . $fa . '"></i>';
                     if (is_bool($the_title)) {
-                          $show_title = false;//don't display text
+                          $show_title = false; // don't display text
                     }
               }
-              else{
-                $item_output .= '<div class="navbar-content"><a' . $class_names . $attributes . '></div>';//item empty use defaults
+              else {
+                $item_output .= '<a' . $class_names . $attributes . '>'; // item empty use defaults
               }
             $link_title = $show_title ? apply_filters( 'the_title', $item->title, $item->ID ) : '';
             $item_output .= $args['link_before'] . trim($link_title). $args['link_after'];
             $item_output .= $args['after'];
           }
           else {
-            $item_output = '<hr class="navbar-divider">';//output navbar divider
+            $item_output = '<hr class="navbar-divider">'; // output navbar divider
           }
         $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
       }
 
-      else {//if does have children
-        $item_output = $args['before'];//stat outputting
-        $item_output .= $indent . '<div class="navbar-item has-dropdown is-hoverable is-mega"><div class="navbar-link flex"><!-- START DROPDOWN-->' . "\n";
-          if ( ! empty( $fa ) ) {//if fa  is not empty
-            $item_output .= '<div class="navbar-content"><a' . $class_names . $attributes . '><i class="' . $fa . '"></i>';
+      else { // if does have children
+        $item_output = $args['before']; // stat outputting
+        $item_output .= $indent . '<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">' . "\n";
+          if ( ! empty( $fa ) ) { // if fa  is not empty
+            $item_output .= '<a' . $class_names . $attributes . '><i class="' . $fa . '"></i>';
 
               if (is_bool($the_title)) {
-                    $show_title = false;//don't display text
+                    $show_title = false; // don't display text
               }
           }
-          else{
-            $item_output .= '<div class="navbar-content"><a' . $class_names . $attributes . $id . '></div>';//output standard
+          else {
+            $item_output .= '<a' . $class_names . $attributes . $id . ' >'; // output standard
           }
 
         $link_title = $show_title ? apply_filters( 'the_title', $item->title, $item->ID ) : '';//if show title is true hook in the title or leave blank
         $item_output .= $args['link_before'] .trim($link_title) . $args['link_after'];//remove link
         $item_output .= $args['after'];
-        $item_output .= '</a></div>';
+        $item_output .= '</a>';
         $output      .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
       }
 
@@ -152,9 +154,9 @@
 
     public function end_el( &$output, $item, $depth = 0, $args = array() ) {
       if ( ! in_array( 'menu-item-has-children', $item->classes ) ) {
-        $output .= "</a></div>\n";
+        $output .= '</a>';
       } else {
-        $output .= "</div><!-- END DROPDOWN-->\n";
+        $output .= '</div>';
       }
     }
 
@@ -199,7 +201,7 @@
       $classes[]   = 'navbar-item';
       $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
       if ( $args['has_children'] ) {
-        $class_names .= ' dropdown ';
+        $class_names .= ' navbar-link';
       }
       if ( in_array( 'current-menu-item', $classes, true ) ) {
         $class_names .= ' is-active';

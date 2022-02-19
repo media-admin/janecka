@@ -585,556 +585,63 @@
 					</div>
 
 
-						<div id="navbar-main" class="navbar-menu">
-
-							<div class="navbar-start">
-
-
-
-
-								<section>
-								<?php
-								/* Navigation Walker für Hauptnavigation
-
-									$defaults = array(
-										'theme-location' => 'nav-menu-main', //change it according to your register_nav_menus() function
-										 'depth'		=>	3,
-										 'menu'			=>	'Hauptnavigation',
-										 'container'		=>	'',
-										 'menu_class'		=>	'',
-										 'items_wrap'		=>	'%3$s',
-										 'walker'		=>	new MegaMenu_Navwalker(),
-										 'fallback_cb'		=>	'MegaMenu_Navwalker::fallback'
-									);
-									wp_nav_menu( $defaults );
-								*/
-								?>
-								</section>
-
-
-
-
-
-								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
-									<a class="navbar-link navbar-item" href="/Uhren">
-										Uhren
-									</a>
-
-									<div class="navbar-dropdown">
-										<a class="dropdown-content navbar-item" href="#">Marken</a>
-										<a class="dropdown-content navbar-item" href="#">Damenuhren</a>
-										<a class="dropdown-content navbar-item" href="#">Herrenuhren</a>
-										<a class="dropdown-content navbar-item" href="#">Gutscheine</a>
-										<div class="mega-menu__img-container dropdown-content">
-											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-										</div>
-									</div>
-
-								</div>
-
-
-								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
-
-									<a class="navbar-link navbar-item" href="/Schmuck">
-										Schmuck
-									</a>
-
-									<div class="navbar-dropdown">
-										<a class="dropdown-content navbar-item" href="#">Marken</a>
-										<a class="dropdown-content navbar-item" href="#">Ringe</a>
-										<a class="dropdown-content navbar-item" href="#">Halsschmuck</a>
-										<a class="dropdown-content navbar-item" href="#">Anhänger</a>
-										<a class="dropdown-content navbar-item" href="#">Ohrschmuck</a>
-										<a class="dropdown-content navbar-item" href="#">Armschmuck</a>
-										<a class="dropdown-content navbar-item" href="#">Charms</a>
-										<a class="dropdown-content navbar-item" href="#">Solitärschmuck</a>
-										<div class="mega-menu__img-container">
-											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-										</div>
-									</div>
-
-								</div>
-
-
-								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
-
-									<a class="navbar-link navbar-item" href="/Liebe-und-Hochzeit">
-										Liebe & Hochzeit
-									</a>
-
-									<div class="navbar-dropdown">
-										<a class="dropdown-content navbar-item" href="#">Marken</a>
-										<a class="dropdown-content navbar-item" href="#">Eheringe</a>
-										<a class="dropdown-content navbar-item" href="#">Verlobungsringe</a>
-										<a class="dropdown-content navbar-item" href="#">Morgengabe</a>
-										<div class="mega-menu__img-container">
-											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-										</div>
-									</div>
-
-								</div>
-
-
-								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
-
-									<a class="navbar-link navbar-item" href="/Service">
-										Service
-									</a>
-
-									<div class="navbar-dropdown ">
-										<a class="dropdown-content navbar-item" href="#">Marken</a>
-										<a class="dropdown-content navbar-item" href="#">Damenuhren</a>
-										<a class="dropdown-content navbar-item" href="#">Herrenuhren</a>
-										<a class="dropdown-content navbar-item" href="#">Gutscheine</a>
-										<div class="mega-menu__img-container">
-											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-										</div>
-									</div>
-
-								</div>
-
-
-								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
-
-									<a class="navbar-link navbar-item" href="/Sale">
-										Sale
-									</a>
-
-									<div class="navbar-dropdown">
-										<a class="dropdown-content navbar-item" href="#">Uhren</a>
-										<a class="dropdown-content navbar-item" href="#">Schmuck</a>
-										<div class="mega-menu__img-container">
-											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-										</div>
-									</div>
-
-								</div>
-
-
-								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
-
-									<a class="navbar-link navbar-item" href="/News">
-										News
-									</a>
-
-									<div class="navbar-dropdown">
-										<a class="dropdown-content navbar-item" href="#">Journal</a>
-										<a class="dropdown-content navbar-item" href="#">Messen</a>
-										<a class="dropdown-content navbar-item" href="#">Aktuelles & Downloads</a>
-										<a class="dropdown-content navbar-item" href="#">Newsletter</a>
-										<div class="mega-menu__img-container">
-											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-										</div>
-									</div>
-
-								</div>
-
-
-								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
-
-									<a class="navbar-link navbar-item" href="/Filialen">
-										Filialen
-									</a>
-
-									<div class="navbar-dropdown">
-										<a class="dropdown-content navbar-item" href="#">Janecka 1140</a>
-										<a class="dropdown-content navbar-item" href="#">Janecka 1010</a>
-										<a class="dropdown-content navbar-item" href="#">Janecka 1060</a>
-										<a class="dropdown-content navbar-item" href="#">Janecka 1100</a>
-										<a class="dropdown-content navbar-item" href="#">Über uns</a>
-										<div class="mega-menu__img-container">
-											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-										</div>
-									</div>
-
-								</div>
-
-							</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-								<!--
-
-								<div class="navbar-item has-dropdown is-hoverable is-mega">
-									<div class="navbar-link flex">
-										<a class="navbar-item" href="/Uhren">
-											<div class="navbar-content">
-												Uhren
-											</div>
-										</a>
-									</div>
-
-									<div class="navbar-dropdown">
-										<div class="container is-fluid">
-											<div class="columns">
-
-												<div class="column">
-													<div class="dropdown-content is-mega-menu-title">
-														<a class="navbar-item" href="#">Marken</a>
-													</div>
-													<div class="dropdown-content is-mega-menu-title">
-														<a class="navbar-item" href="#">Damenuhren</a>
-													</div>
-												</div>
-
-												<div class="column">
-													<div class="dropdown-content is-mega-menu-title">
-														<a class="navbar-item" href="#">Herrenuhren</a>
-													</div>
-													<div class="dropdown-content is-mega-menu-title">
-														<a class="navbar-item" href="#">Gutscheine</a>
-													</div>
-												</div>
-
-												<div class="column">
-													<div class="mega-menu__img-container">
-														<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="navbar-item has-dropdown is-hoverable is-mega">
-									<div class="navbar-link flex">
-										<a class="navbar-item" href="/Schmuck">
-											<div class="navbar-content">
-												Schmuck
-											</div>
-										</a>
-									</div>
-
-										<div class="navbar-dropdown">
-											<div class="container is-fluid">
-												<div class="columns">
-
-													<div class="column">
-														<div class="is-mega-menu-title">
-															<a class="navbar-item" href="#">Marken</a>
-														</div>
-														<div class="is-mega-menu-title">
-															<a class="navbar-item" href="#">Ringe</a>
-														</div>
-														<div class="is-mega-menu-title">
-															<a class="navbar-item" href="#">Halsschmuck</a>
-														</div>
-														<div class="is-mega-menu-title">
-															<a class="navbar-item" href="#">Anhänger</a>
-														</div>
-													</div>
-
-													<div class="column">
-														<div class="is-mega-menu-title">
-															<a class="navbar-item" href="#">Ohrschmuck</a>
-														</div>
-														<div class="is-mega-menu-title">
-															<a class="navbar-item" href="#">Armschmuck</a>
-														</div>
-														<div class="is-mega-menu-title">
-															<a class="navbar-item" href="#">Charms</a>
-														</div>
-														<div class="is-mega-menu-title">
-															<a class="navbar-item" href="#">Solitärschmuck</a>
-														</div>
-													</div>
-
-													<div class="column">
-														<div class="mega-menu__img-container">
-															<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-														</div>
-													</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="navbar-item has-dropdown is-hoverable is-mega">
-									<div class="navbar-link flex">
-										<a class="navbar-item" href="/Liebe-und-Hochzeit">
-											<div class="navbar-content">
-												Liebe & Hochzeit
-											</div>
-										</a>
-									</div>
-
-									<div class="navbar-dropdown">
-										<div class="container is-fluid">
-											<div class="columns">
-
-														<div class="column">
-															<div class="is-mega-menu-title">
-																<a class="navbar-item" href="#">Marken</a>
-															</div>
-															<div class="is-mega-menu-title">
-																<a class="navbar-item" href="#">Eheringe</a>
-															</div>
-														</div>
-
-														<div class="column">
-															<div class="is-mega-menu-title">
-																<a class="navbar-item" href="#">Verlobungsringe</a>
-															</div>
-															<div class="is-mega-menu-title">
-																<a class="navbar-item" href="#">Morgengabe</a>
-															</div>
-														</div>
-
-														<div class="column">
-															<div class="mega-menu__img-container">
-																<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-															</div>
-														</div>
-
-													</div>
-												</div>
-											</div>
-										</div>
-
-											<div class="navbar-item has-dropdown is-hoverable is-mega">
-												<div class="navbar-link flex">
-													<a class="navbar-item" href="/Service">
-														<div class="navbar-content">
-															Service
-														</div>
-													</a>
-												</div>
-
-												<div class="navbar-dropdown ">
-													<div class="container is-fluid">
-														<div class="columns">
-
-															<div class="column">
-																<div class="is-mega-menu-title">
-																	<a class="navbar-item" href="#">Marken</a>
-																</div>
-																<div class="is-mega-menu-title">
-																	<a class="navbar-item" href="#">Damenuhren</a>
-																</div>
-															</div>
-
-															<div class="column">
-																<div class="is-mega-menu-title">
-																	<a class="navbar-item" href="#">Herrenuhren</a>
-																</div>
-																<div class="is-mega-menu-title">
-																	<a class="navbar-item" href="#">Gutscheine</a>
-																</div>
-															</div>
-
-															<div class="column">
-																<div class="mega-menu__img-container">
-																	<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-																</div>
-															</div>
-
-														</div>
-													</div>
-												</div>
-											</div>
-
-												<div class="navbar-item has-dropdown is-hoverable is-mega">
-													<div class="navbar-link flex">
-														<a class="navbar-item" href="/Sale">
-															<div class="navbar-content">
-																Sale
-															</div>
-														</a>
-													</div>
-
-													<div class="navbar-dropdown">
-														<div class="container is-fluid">
-															<div class="columns">
-
-																<div class="column">
-																	<div class="is-mega-menu-title">
-																		<a class="navbar-item" href="#">Uhren</a>
-																	</div>
-																</div>
-
-																<div class="column">
-																	<div class="is-mega-menu-title">
-																		<a class="navbar-item" href="#">Schmuck</a>
-																	</div>
-																</div>
-
-																<div class="column">
-																	<div class="mega-menu__img-container">
-																		<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-																	</div>
-																</div>
-
-															</div>
-														</div>
-													</div>
-												</div>
-
-													<div class="navbar-item has-dropdown is-hoverable is-mega">
-														<div class="navbar-link flex">
-															<a class="navbar-item" href="/News">
-																<div class="navbar-content">
-																	News
-																</div>
-															</a>
-														</div>
-
-														<div class="navbar-dropdown">
-															<div class="container is-fluid">
-																<div class="columns">
-
-																	<div class="column">
-																		<div class="is-mega-menu-title">
-																			<a class="navbar-item" href="#">Journal</a>
-																		</div>
-																		<div class="is-mega-menu-title">
-																			<a class="navbar-item" href="#">Messen</a>
-																		</div>
-																	</div>
-
-																	<div class="column">
-																		<div class="is-mega-menu-title">
-																			<a class="navbar-item" href="#">Aktuelles & Downloads</a>
-																		</div>
-																		<div class="is-mega-menu-title">
-																			<a class="navbar-item" href="#">Newsletter</a>
-																		</div>
-																	</div>
-
-																	<div class="column">
-																		<div class="mega-menu__img-container">
-																			<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-																		</div>
-																	</div>
-
-																</div>
-															</div>
-														</div>
-													</div>
-
-														<div class="navbar-item has-dropdown is-hoverable is-mega">
-															<div class="navbar-link flex">
-																<a class="navbar-item" href="/Filialen">
-																	<div class="navbar-content">
-																		Filialen
-																	</div>
-																</a>
-															</div>
-
-															<div class="navbar-dropdown ">
-																<div class="container is-fluid">
-																	<div class="columns">
-
-																		<div class="column">
-																			<div class="is-mega-menu-title">
-																				<a class="navbar-item" href="#">Janecka 1140</a>
-																			</div>
-																			<div class="is-mega-menu-title">
-																				<a class="navbar-item" href="#">Janecka 1010</a>
-																			</div>
-																			<div class="is-mega-menu-title">
-																				<a class="navbar-item" href="#">Janecka 1060</a>
-																			</div>
-																		</div>
-
-																		<div class="column">
-																			<div class="is-mega-menu-title">
-																				<a class="navbar-item" href="#">Janecka 1100</a>
-																			</div>
-																			<div class="is-mega-menu-title">
-																				<a class="navbar-item" href="#">Über uns</a>
-																			</div>
-																		</div>
-
-																		<div class="column">
-																			<div class="mega-menu__img-container">
-																				<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
-																			</div>
-																		</div>
-
-														</div>
-													</div>
-												</div>
-											</div>
-
-									</div>
-								</div>
-
-
-
-
-							-->
-
-
-
-
-
-
-
-
-					<!-- Make the MegaMenu appear -->
-					<script>
-						document.addEventListener('DOMContentLoaded', function () {
-
-							// Get all "navbar-burger" elements
-							var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-							// Check if there are any nav burgers
-							if ($navbarBurgers.length > 0) {
-
-								// Add a click event on each of them
-								$navbarBurgers.forEach(function ($el) {
-									$el.addEventListener('click', function () {
-
-										// Get the target from the "data-target" attribute
-										var target = $el.dataset.target;
-										var $target = document.getElementById(target);
-
-										// Toggle the class on both the "navbar-burger" and the "navbar-menu"
-										$el.classList.toggle('is-active');
-										$target.classList.toggle('is-active');
-
+					<div id="navbar-main" class="navbar-menu">
+
+						<div class="navbar-start">
+
+							<?php
+							/* Navigation Walker für Hauptnavigation */
+
+								$defaults = array(
+									'theme-location' => 'nav-menu-main', //change it according to your register_nav_menus() function
+									 'depth'		=>	2,
+									 'menu'			=>	'Hauptnavigation',
+									 'container'		=>	'',
+									 'menu_class'		=>	'',
+									 'items_wrap'		=>	'%3$s',
+									 'link_after'	=> '',
+									 'walker'		=>	new MegaMenu_Navwalker(),
+									 'fallback_cb'		=>	'MegaMenu_Navwalker::fallback'
+								);
+								wp_nav_menu( $defaults );
+							?>
+
+							<!-- Make the MegaMenu appear -->
+							<script>
+								document.addEventListener('DOMContentLoaded', function () {
+
+									// Get all "navbar-burger" elements
+									var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+									// Check if there are any nav burgers
+									if ($navbarBurgers.length > 0) {
+
+									// Add a click event on each of them
+									$navbarBurgers.forEach(function ($el) {
+										$el.addEventListener('click', function () {
+
+											// Get the target from the "data-target" attribute
+											var target = $el.dataset.target;
+											var $target = document.getElementById(target);
+
+											// Toggle the class on both the "navbar-burger" and the "navbar-menu"
+											$el.classList.toggle('is-active');
+											$target.classList.toggle('is-active');
+
+										});
 									});
-								});
-							}
+								}
 
-						});
-					</script>
+							});
+						</script>
 
-
-
-
-
-					<div class="navbar-end"></div>
-
+						<div class="navbar-end"></div>
 
 				</nav>
 
 			</div>
 
 		</header>
-
-
-
-
-
-
 
 
 		<?php if (is_front_page() ) : ?>
@@ -1177,7 +684,6 @@
 		<!-- End Hero Carousel -->
 
 		<?php endif; ?>
-
 
 
 
