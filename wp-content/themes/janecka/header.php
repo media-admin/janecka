@@ -594,7 +594,7 @@
 
 								<section>
 								<?php
-								/* Navigation Walker für Hauptnavigation */
+								/* Navigation Walker für Hauptnavigation
 
 									$defaults = array(
 										'theme-location' => 'nav-menu-main', //change it according to your register_nav_menus() function
@@ -607,12 +607,168 @@
 										 'fallback_cb'		=>	'MegaMenu_Navwalker::fallback'
 									);
 									wp_nav_menu( $defaults );
-
+								*/
 								?>
 								</section>
 
 
 
+
+
+								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
+									<a class="navbar-link navbar-item" href="/Uhren">
+										Uhren
+									</a>
+
+									<div class="navbar-dropdown">
+										<a class="dropdown-content navbar-item" href="#">Marken</a>
+										<a class="dropdown-content navbar-item" href="#">Damenuhren</a>
+										<a class="dropdown-content navbar-item" href="#">Herrenuhren</a>
+										<a class="dropdown-content navbar-item" href="#">Gutscheine</a>
+										<div class="mega-menu__img-container dropdown-content">
+											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
+
+									<a class="navbar-link navbar-item" href="/Schmuck">
+										Schmuck
+									</a>
+
+									<div class="navbar-dropdown">
+										<a class="dropdown-content navbar-item" href="#">Marken</a>
+										<a class="dropdown-content navbar-item" href="#">Ringe</a>
+										<a class="dropdown-content navbar-item" href="#">Halsschmuck</a>
+										<a class="dropdown-content navbar-item" href="#">Anhänger</a>
+										<a class="dropdown-content navbar-item" href="#">Ohrschmuck</a>
+										<a class="dropdown-content navbar-item" href="#">Armschmuck</a>
+										<a class="dropdown-content navbar-item" href="#">Charms</a>
+										<a class="dropdown-content navbar-item" href="#">Solitärschmuck</a>
+										<div class="mega-menu__img-container">
+											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
+
+									<a class="navbar-link navbar-item" href="/Liebe-und-Hochzeit">
+										Liebe & Hochzeit
+									</a>
+
+									<div class="navbar-dropdown">
+										<a class="dropdown-content navbar-item" href="#">Marken</a>
+										<a class="dropdown-content navbar-item" href="#">Eheringe</a>
+										<a class="dropdown-content navbar-item" href="#">Verlobungsringe</a>
+										<a class="dropdown-content navbar-item" href="#">Morgengabe</a>
+										<div class="mega-menu__img-container">
+											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
+
+									<a class="navbar-link navbar-item" href="/Service">
+										Service
+									</a>
+
+									<div class="navbar-dropdown ">
+										<a class="dropdown-content navbar-item" href="#">Marken</a>
+										<a class="dropdown-content navbar-item" href="#">Damenuhren</a>
+										<a class="dropdown-content navbar-item" href="#">Herrenuhren</a>
+										<a class="dropdown-content navbar-item" href="#">Gutscheine</a>
+										<div class="mega-menu__img-container">
+											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
+
+									<a class="navbar-link navbar-item" href="/Sale">
+										Sale
+									</a>
+
+									<div class="navbar-dropdown">
+										<a class="dropdown-content navbar-item" href="#">Uhren</a>
+										<a class="dropdown-content navbar-item" href="#">Schmuck</a>
+										<div class="mega-menu__img-container">
+											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
+
+									<a class="navbar-link navbar-item" href="/News">
+										News
+									</a>
+
+									<div class="navbar-dropdown">
+										<a class="dropdown-content navbar-item" href="#">Journal</a>
+										<a class="dropdown-content navbar-item" href="#">Messen</a>
+										<a class="dropdown-content navbar-item" href="#">Aktuelles & Downloads</a>
+										<a class="dropdown-content navbar-item" href="#">Newsletter</a>
+										<div class="mega-menu__img-container">
+											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="navbar-item has-dropdown is-hoverable is-mega navbar-burger">
+
+									<a class="navbar-link navbar-item" href="/Filialen">
+										Filialen
+									</a>
+
+									<div class="navbar-dropdown">
+										<a class="dropdown-content navbar-item" href="#">Janecka 1140</a>
+										<a class="dropdown-content navbar-item" href="#">Janecka 1010</a>
+										<a class="dropdown-content navbar-item" href="#">Janecka 1060</a>
+										<a class="dropdown-content navbar-item" href="#">Janecka 1100</a>
+										<a class="dropdown-content navbar-item" href="#">Über uns</a>
+										<div class="mega-menu__img-container">
+											<img class="mega-menu__img" src="<?php bloginfo( 'template_directory' );?>/assets/img/menu/DAU.jpg" alt="Menü Foto">
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+								<!--
 
 								<div class="navbar-item has-dropdown is-hoverable is-mega">
 									<div class="navbar-link flex">
@@ -923,10 +1079,10 @@
 
 
 
+							-->
 
 
 
-					</div>
 
 
 
