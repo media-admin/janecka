@@ -8,7 +8,7 @@
  * Version: 1.0
  ************/
 
-  class Bulma_Navwalker extends Walker_Nav_Menu {
+  class MegaMenu_Navwalker extends Walker_Nav_Menu {
     /**
      * [private stored in start_el and used in start_lvl to pass custom classes on ]
      * @var [array]
@@ -31,7 +31,7 @@
 
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
       $indent = str_repeat( "\t", $depth );
-        $output .= $indent."<div class=\"navbar-dropdown is-mega";
+        $output .= $indent."<div class=\"";
         if( in_array( 'is-right', $this->right_class ) ){
             $output .= " is-right ";
           }
@@ -65,7 +65,7 @@
         'container'       => 'div',
         'container_class' => '',
         'container_id'    => '',
-        'menu_class'      => 'menu',
+        'menu_class'      => '',
         'menu_id'         => '',
         'echo'            => true,
         'fallback_cb'     => 'wp_page_menu',
@@ -75,7 +75,7 @@
         'link_after'      => '',
         'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
         'item_spacing'    => 'preserve',
-        'depth'           => 0,
+        'depth'           => 3,
         'walker'          => '',
         'theme_location'  => '',
       );
@@ -109,13 +109,13 @@
             if ( ! in_array( 'navbar-divider', $classes ) ) {//if doesnt contains a navbar divider
               $item_output = $args['before'];//start outputting
               if ( ! empty( $fa ) ) {//if item title is not empty
-                    $item_output .= '<a' . $class_names . $attributes . '><i class="' . $fa . '"></i>';
+                    $item_output .= '<div class="navbar-content"><a' . $class_names . $attributes . '><i class="' . $fa . '"></i>';
                     if (is_bool($the_title)) {
                           $show_title = false;//don't display text
                     }
               }
               else{
-                $item_output .= '<a' . $class_names . $attributes . '>';//item empty use defaults
+                $item_output .= '<div class="navbar-content"><a' . $class_names . $attributes . '></div>';//item empty use defaults
               }
             $link_title = $show_title ? apply_filters( 'the_title', $item->title, $item->ID ) : '';
             $item_output .= $args['link_before'] . trim($link_title). $args['link_after'];
@@ -129,22 +129,22 @@
 
       else {//if does have children
         $item_output = $args['before'];//stat outputting
-        $item_output .= $indent . '<div class="navbar-item has-dropdown is-hoverable level-1" data-target="dropdown"><!-- START DROPDOWN-->' . "\n";
+        $item_output .= $indent . '<div class="navbar-item has-dropdown is-hoverable is-mega"><div class="navbar-link flex"><!-- START DROPDOWN-->' . "\n";
           if ( ! empty( $fa ) ) {//if fa  is not empty
-            $item_output .= '<a' . $class_names . $attributes . '><i class="' . $fa . '"></i>';
+            $item_output .= '<div class="navbar-content"><a' . $class_names . $attributes . '><i class="' . $fa . '"></i>';
 
               if (is_bool($the_title)) {
                     $show_title = false;//don't display text
               }
           }
           else{
-            $item_output .= '<a' . $class_names . $attributes . $id . '>';//output standard
+            $item_output .= '<div class="navbar-content"><a' . $class_names . $attributes . $id . '></div>';//output standard
           }
 
         $link_title = $show_title ? apply_filters( 'the_title', $item->title, $item->ID ) : '';//if show title is true hook in the title or leave blank
         $item_output .= $args['link_before'] .trim($link_title) . $args['link_after'];//remove link
         $item_output .= $args['after'];
-        $item_output .= '</a>';
+        $item_output .= '</a></div>';
         $output      .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
       }
 
@@ -152,7 +152,7 @@
 
     public function end_el( &$output, $item, $depth = 0, $args = array() ) {
       if ( ! in_array( 'menu-item-has-children', $item->classes ) ) {
-        $output .= "</a>\n";
+        $output .= "</a></div>\n";
       } else {
         $output .= "</div><!-- END DROPDOWN-->\n";
       }
