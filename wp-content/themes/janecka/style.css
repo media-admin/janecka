@@ -1353,8 +1353,8 @@ header {
 	border-top: 1px solid #6f6f6f !important;
 	border-bottom: 1px solid #6f6f6f !important;
 	*/
-	margin: 10px auto !important;
-	padding-top: 0.5em;
+	margin: 0px auto !important;
+	padding-top: 0.0em;
 }
 
 @media screen and (min-width: 768px) {
@@ -1504,7 +1504,7 @@ a.navbar-item:hover {
 }
 
 @media screen and (min-width: 768px) {
-	#navbar-main .menu-item:hover {
+	#navbar-main > .menu-item:hover {
 		color: #ffffff !important;
 		background: #707070 !important;
 		text-transform: uppercase;
@@ -1774,18 +1774,13 @@ a.navbar-item:hover {
 
 
 
-		.dropdown-content {
-			background-color: transparent !important;
-			border-radius: 0px !important;
-			box-shadow: none !important;
-			align-self: start;
-		}
+
 
 
 	/* Show the dropdown menu on hover */
 	 .has-dropdown:hover .navbar-dropdown {
 		display: grid !important;
-		grid-template-columns: 1fr 3fr;
+		grid-template-columns: 1fr 3fr !important;
 
 		column-gap: 5%;
 		row-gap: 5%;
@@ -1801,11 +1796,20 @@ a.navbar-item:hover {
 	}
 
 
-	.dropdown-content.navbar-item:hover {
-		text-decoration: underline;
-		text-underline-offset: 0.3em;
+	.has-dropdown .navbar-dropdown .navbar-item {
+		background-color: transparent !important;
+		border-radius: 0px !important;
+		box-shadow: none !important;
+		align-self: start !important;
+	}
+
+
+	.has-dropdown .navbar-dropdown a.navbar-item:hover,
+	.has-dropdown .navbar-dropdown a.navbar-item:focus {
+		text-decoration: underline !important;
+		text-underline-offset: 0.3em !important;
 		color: #707070 !important;
-		background-color: none !important;
+		background-color: transparent !important;
 	}
 
 
@@ -1824,7 +1828,7 @@ a.navbar-item:hover {
 		padding: 0 !important;
 		justify-self: end;
 
-		grid-column: 3;
+		grid-column: 3 !important;
 		grid-row: 1 / span 5 !important;
 
 	}
@@ -1840,6 +1844,12 @@ a.navbar-item:hover {
 		border: 1px solid #707070 !important;
 		margin: 0.5rem !important;
 		padding: 0 !important;
+	}
+
+	.navbar-item img:hover,
+	.mega-menu__img:hover {
+		cursor: default !important;
+		background: none !important;
 	}
 
 }
