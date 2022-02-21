@@ -1416,20 +1416,28 @@ header {
 }
 
 
+.navbar-burger span:nth-child(1) {
+	top: calc(50% - 9px) !important;
+}
+
+.navbar-burger span:nth-child(3) {
+	top: calc(50% + 7px) !important;
+}
+
+
 .navbar-burger.is-active span:nth-child(1) {
 	transform: translateY(5px) rotate(45deg);
 }
 
 
-.navbar-burger span:nth-child(1) {
-	top: calc(50% - 6px);
+.navbar-burger.is-active span:nth-child(1) {
+	top: calc(50% - 5px) !important;
 }
 
-
-.navbar-burger.is-active {
-	color: #5a5a5a !important;
-	z-index: 10 !important;
+.navbar-burger.is-active span:nth-child(3) {
+	top: calc(50% + 5px) !important;
 }
+
 
 
 .navbar-menu.is-active {
@@ -1437,12 +1445,14 @@ header {
 	left: 0px !important;
 	top: 65px !important;
 	right: 0 !important;
-	z-index: 10;
+	z-index: 10 !important;
 	width: 80% !important;
 	height: 100% !important;
+	color: #5a5a5a !important;
 	background: #ffffff !important;
 	opacity: 0.95;
 	transition: 0.5s;
+	overflow: scroll;
 	margin: 0 !important;
 	padding-top: 15px !important;
 }
@@ -1451,24 +1461,34 @@ header {
 .navbar-menu.is-active .navbar-start {
 	position: relative;
 	width: 100% !important;
+	padding-right: 0.5rem !important;
+}
+
+
+@media screen and (min-width: 768px) {
+	.navbar-menu.is-active .navbar-start {
+		padding-right: inherit !important;
+	}
 }
 
 
 .navbar-menu.is-active .navbar-start .has-dropdown {
 	position: relative !important;
 	display: block !important;
-	width: 80% !important;
+	width: 100% !important;
+	height: auto !important;
 	text-align: left !important;
+	line-height: 1.8rem !important;
 	margin-left: 0px !important;
 	padding-left: 0px !important;
 }
 
 
 .navbar-menu.is-active .navbar-start .has-dropdown a {
+	width: 80% !important;
 	font-family: 'Aalto Sans Pro Light';
 	font-size: 1.5rem !important;
 	font-weight: 500 !important;
-	line-height: 1.0rem !important;
 	letter-spacing: 2px;
 	color: #707070;
 	text-align: left !important;
@@ -1476,20 +1496,52 @@ header {
 }
 
 
+.navbar-menu.is-active .navbar-item.has-dropdown > a.navbar-item {
+	padding-top: 1.25rem !important;
+	padding-bottom: 1.25rem !important;
+}
+
+
+.navbar-menu.is-active .navbar-item.has-dropdown > a.navbar-item:first {
+	padding-top: 0.0rem !important;
+}
+
+
 .navbar-menu.is-active .navbar-start .has-dropdown > a:after {
+	position: relative !important;
+	display: block !important;
 	font-family: 'FontAwesome Solid' !important;
 	content: '\f107' !important;
 	font-size: 0.5em !important;
 	color: #92918D !important;
 	transform: rotate(0deg);
-	margin-top: -10px !important;
-	padding-top: -8px !important;
-	padding-left: 25px !important;
+	margin-top: -25px !important;
+	padding-left: 255px !important;
 }
 
 
+.navbar-menu.is-active .navbar-start .navbar-dropdown {
+	display: none !important;
+}
 
-.navbar-menu.is-active .navbar-start .navbar-dropdown a {
+
+.navbar-menu.is-active .navbar-start .has-dropdown.is-active-dropdown .navbar-dropdown {
+	position: relative !important;
+	display: block !important;
+	padding-left: 0.5rem !important;
+
+}
+
+
+.navbar-menu.is-active .navbar-start .has-dropdown.is-active-dropdown .navbar-dropdown a {
+	color: #707070 !important;
+	font-size: 1.2rem !important;
+	line-height: 1.5rem !important;
+}
+
+
+.navbar-item img,
+.mega-menu__img {
 	display: none !important;
 }
 
@@ -1502,22 +1554,10 @@ header {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 /* --- Search Button */
-
 .search-area {
 	position: absolute !important;
-	top: 12px;
+	top: 10px;
 	left: 50px;
 	padding-top: 5px;
 }
@@ -1994,6 +2034,13 @@ a.navbar-item:hover {
 
 
 
+
+.mega-menu__img-container {
+	display: none !important;
+}
+
+
+
 /* Mega Menu */
 
 @media screen and (min-width: 768px) {
@@ -2028,11 +2075,6 @@ a.navbar-item:hover {
 		border-radius: 0px !important;
 		z-index: 1 !important;
 	}
-
-
-
-
-
 
 
 	/* Show the dropdown menu on hover */
@@ -2074,14 +2116,6 @@ a.navbar-item:hover {
 	}
 
 
-
-
-
-
-	.navbar-item img {
-		max-height: inherit !important;
-	}
-
 	.mega-menu__img-container {
 		min-height: 100px !important;
 		width: 60% !important;
@@ -2096,7 +2130,9 @@ a.navbar-item:hover {
 
 	.navbar-item img,
 	.mega-menu__img {
+		display: block !important;
 		position: relative !important;
+		max-height: inherit !important;
 		min-width: 100% !important;
 		width: auto !important;
 		height: 100% !important;
@@ -2139,13 +2175,12 @@ a.navbar-item:hover {
 
 
 
-/* Webshop Navbar */
-
+/* --- Webshop Navbar --- */
 
 .navbar-shop {
-	position: absolute;
-	right: 10px;
-	top: 10px;
+	position: absolute !important;
+	right: 10px !important;
+	top: 10px !important;
 }
 
 
@@ -2160,7 +2195,7 @@ a.navbar-item:hover {
 
 .webshop-navbar {
 	position: relative !important;
-	display: block !important;
+	display: inline-block !important;
 	width: auto !important;
 	padding: 0px auto !important;
 }
@@ -2299,19 +2334,20 @@ img.brand-logo {
 .woocommerce-breadcrumb {
 	position: relative;
 	font-family: 'Roboto Slab Light', serif !important ;
-	font-size: 0.9rem;
 	color: #707070 !important;
+	font-size: 0.9rem;
 	text-align: left;
-	margin: 2.5rem 1.5rem;
-	padding-left: 1.0rem;
+	margin: 0.5rem;
+	padding-left: 0.0rem;
 }
 
 @media screen and (min-width: 768px) {
 	.woocommerce-breadcrumb {
-		font-size: 16px;
+		font-size: 1.0rem;
 		margin: 0.75em !important;
 		margin-top: 50px !important;
 		margin-bottom: 50px !important;
+		padding-left: 1.0rem;
 	}
 }
 
@@ -2510,7 +2546,6 @@ article h2 {
 
 .site-title {
 	width: 100% !important;
-	margin-bottom: 1.5rem !important;
 	padding-left: 0.0rem !important;
 }
 
@@ -2527,6 +2562,10 @@ article h2 {
 
 
 @media screen and (min-width: 768px) {
+	.site-title {
+		margin-bottom: 1.5rem !important;
+	}
+
 	.site-hero {
 		margin-top: 25px !important;
 		margin-bottom: 25px !important;
