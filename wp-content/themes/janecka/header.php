@@ -629,7 +629,7 @@
 											$target.classList.toggle('is-active');
 
 										});
->>>>>>> megamenu
+
 									});
 								}
 
