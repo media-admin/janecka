@@ -12,42 +12,27 @@ Text Domain: janecka
 
 
 /* --- FARB-DEFINITIONEN ---
-
-Dunkelgrau - #707070
-Mittelgrau - #979797 (Footer-Background)
-Hellgrau - #92918D
-
+	Dunkelgrau - #707070
+	Mittelgrau - #979797 (Footer-Background)
+	Hellgrau - #92918D
 */
 
 
 /* --- FONTS ---
-
-Überschriften Zeile 1 - Roboto Slab Light - 48px
-
-Navigationsmenü - Links 1. Ordnung  - Aalto Sans Pro Light - 24px
-Navigationsmenü - Links 2. Ordnung  - Aalto Sans Pro Regular - 20px
-
-Breadcrumb Standard - Roboto Slab Light - 16px
-Breadcrumb Standard - Roboto Slab Regular - 16px
-
-H2 - Hero Überschrift - Roboto Slab Light - 48px
-
-H3 - Überschriften im Fließtext - Aalto Sans Pro Light IT - 58px
-
-Standard-Fließtext - Source Sans Pro Regular - 28px
-Links im Fließtext - Source Sans Pro Bold - 28px
-
-
-Button Regular State - Aalot Sans Pro Bold - 27px
-
-
-Footer-Navigationsmenü - Links 1. Ordnung  - Aalto Sans Pro Bold - 24px
-Footer-Navigationsmenü - Links 2. Ordnung  - Aalto Sans Pro Regular - 20px
-
-Footermenü - Links  - Aalto Sans Pro Semibold - 18px
-
-Copyright - Aalto Sans Pro Regular - 18px
-
+	Überschriften Zeile 1 - Roboto Slab Light - 48px
+	Navigationsmenü - Links 1. Ordnung  - Aalto Sans Pro Light - 24px
+	Navigationsmenü - Links 2. Ordnung  - Aalto Sans Pro Regular - 20px
+	Breadcrumb Standard - Roboto Slab Light - 16px
+	Breadcrumb Standard - Roboto Slab Regular - 16px
+	H2 - Hero Überschrift - Roboto Slab Light - 48px
+	H3 - Überschriften im Fließtext - Aalto Sans Pro Light IT - 58px
+	Standard-Fließtext - Source Sans Pro Regular - 28px
+	Links im Fließtext - Source Sans Pro Bold - 28px
+	Button Regular State - Aalot Sans Pro Bold - 27px
+	Footer-Navigationsmenü - Links 1. Ordnung  - Aalto Sans Pro Bold - 24px
+	Footer-Navigationsmenü - Links 2. Ordnung  - Aalto Sans Pro Regular - 20px
+	Footermenü - Links  - Aalto Sans Pro Semibold - 18px
+	Copyright - Aalto Sans Pro Regular - 18px
 */
 
 
@@ -634,6 +619,59 @@ p.text-center {
 	text-align: center;
 	margin-top: 10px;
 }
+
+
+
+
+
+
+
+
+
+/* Read More / Read Less Functionality */
+.sidebar-box {
+	max-height: 80px;
+	position: relative;
+	overflow: hidden;
+}
+
+
+.sidebar-box .read-more {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	margin: 0;
+	padding: 30px 0;
+	border-width: 0px !important;
+	opacity: 0.7 !important;
+	background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, rgba(255, 0, 0, 0)),
+	color-stop(1, rgba(255, 255, 255, 100)));
+}
+
+
+.read-more__button {
+	margin-top: 30px !important;
+}
+
+
+.read-more__img {
+	position: absolute;
+	top: 5px;
+	opacity: 0.7;
+	text-align: center;
+}
+
+
+
+
+
+
 
 
 
@@ -2718,7 +2756,7 @@ section.hero {
 	position: absolute !important;
 	width: 25px !important;
 	height: 55px !important;
-	background: #ffffff !important;
+	background: #707070 !important;
 	opacity: 0.7 !important;
 	border-radius: 0px !important;
 }
@@ -2730,7 +2768,7 @@ section.hero {
 
 
 .slick-prev:before {
-	color: #707070 !important;
+	color: #ffffff !important;
 }
 
 
@@ -2740,7 +2778,7 @@ section.hero {
 
 
 .slick-next:before {
-	color: #707070 !important;
+	color: #ffffff !important;
 }
 
 
@@ -2902,10 +2940,21 @@ section.hero {
 
 .brand-slider {
 	width: 100% !important;
-	max-height: 210px !important;
+	max-height: 180px !important;
 	height: auto !important;
 	padding: 0px 1.5rem !important;
-	padding-left: 40px !important;
+}
+
+
+
+@media screen and (min-width: 768px) {
+	.brand-slider {
+		width: 100% !important;
+		max-height: 210px !important;
+		height: auto !important;
+		padding: 0px 1.5rem !important;
+		padding-left: 40px !important;
+	}
 }
 
 
@@ -2916,19 +2965,64 @@ section.hero {
 
 .brand-slider .slick-prev,
 .brand-slider .slick-next {
-	top: 50% !important
+	top: 60% !important;
+}
+
+
+@media screen and (min-width: 768px) {
+	.brand-slider .slick-prev,
+	.brand-slider .slick-next {
+		top: 40% !important;
+	}
 }
 
 
 .brand-slider__item {
 	position: relative !important;
-	width: 80% !important;
-	height: 100% !important;
+	width: 100% !important;
+	height: auto !important;
 	text-align: center !important;
 	vertical-align: middle !important;
 	padding: 0px 1.5rem !important;
 	margin: 0 auto !important;
 }
+
+@media screen and (min-width: 768px) {
+	.brand-slider__item {
+		position: relative !important;
+		width: 80% !important;
+		height: 100% !important;
+		text-align: center !important;
+		vertical-align: middle !important;
+		padding: 0px 1.5rem !important;
+		margin: 0 auto !important;
+	}
+}
+
+
+
+.brand-slider__item.has-background  {
+	width: 90% !important;
+	height: auto !important;
+	background-position: center !important;
+	background-size: cover !important;
+	text-align: center !important;
+	margin: 0px auto !important;
+	padding-left: 20% !important;
+}
+
+
+@media screen and (min-width: 768px) {
+	.brand-slider__item.has-background  {
+		height: inherit !important;
+		width: 80% !important;
+		height: auto !important;
+	}
+}
+
+
+
+
 
 
 .brand-slider__link-text {
@@ -3800,12 +3894,18 @@ input[type=checkbox]:checked:after {
 
 .woocommerce ul.products li.product a img {
 	position: relative !important;
-	height: 300px !important;
 	width: auto !important;
 	object-fit: contain !important;
 	overflow: auto !important;
 	margin: 10px auto !important;
 	/* border: 1px solid rgba(0,0,0,0.1); */
+}
+
+
+@media screen and (min-width: 768px) {
+	.woocommerce ul.products li.product a img {
+		height: 300px !important;
+	}
 }
 
 
@@ -3965,13 +4065,27 @@ input[type=checkbox]:checked:after {
 
 
 .product .tinv-wishlist .tinvwl_add_to_wishlist_button.tinvwl-icon-heart-plus.no-txt,
-.product .tinv-wishlist .tinvwl_add_to_wishlist_button.tinvwl-icon-heart.no-txt {
+.product .tinv-wishlist .tinvwl_add_to_wishlist_button.tinvwl-icon-heart.no-txt,
+.tinv-wishlist .tinvwl_add_to_wishlist_button.tinvwl-icon-heart.no-txt {
 	position: absolute !important;
-	top: 1.0rem !important;
-	left: 1.0rem !important;
+	top: 5px !important;
+	left: 5px !important;
+	width: 0px !important;
+	height: 0px !important;
 }
 
 
+@media screen and (min-width: 768px) {
+	.product .tinv-wishlist .tinvwl_add_to_wishlist_button.tinvwl-icon-heart-plus.no-txt,
+	.product .tinv-wishlist .tinvwl_add_to_wishlist_button.tinvwl-icon-heart.no-txt,
+	.tinv-wishlist .tinvwl_add_to_wishlist_button.tinvwl-icon-heart.no-txt {
+		position: absolute !important;
+		top: 1.0rem !important;
+		left: 1.0rem !important;
+		width: 36px !important;
+		height: 36px !important;
+	}
+}
 
 
 
