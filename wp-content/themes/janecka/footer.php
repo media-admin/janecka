@@ -151,6 +151,21 @@
 
 
 
+<script>
+	window.onscroll = function() {stickyHeader()};
+
+	var navbar = document.getElementById("site-header");
+	var sticky = navbar.offsetTop;
+
+	function stickyHeader() {
+		if (window.pageYOffset >= sticky) {
+			navbar.classList.add("sticky")
+		} else {
+			navbar.classList.remove("sticky");
+		}
+	}
+</script>
+
 
 
 </body>

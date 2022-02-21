@@ -30,7 +30,7 @@
 
     margin: 0;
     padding: 0;
-    
+
     z-index: -1 !important;
 }
 .slick-list:focus
@@ -58,7 +58,7 @@
     position: relative;
     top: 0;
     left: 0;
-    
+
     /* min-height: 700px; */
     height: auto;
 
@@ -86,8 +86,8 @@
 {
     display: none;
     float: left;
-    
-    /* min-height: 700px; */
+
+    min-height: 300px;
     height: 100%;
 
 }
