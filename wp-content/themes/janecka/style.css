@@ -1477,7 +1477,6 @@ header {
 }
 
 
-
 .navbar-menu.is-active {
 	position: fixed !important;
 	left: 0px !important;
@@ -1555,6 +1554,8 @@ header {
 	transform: rotate(0deg);
 	margin-top: -25px !important;
 	padding-left: 255px !important;
+	padding-left: 120% !important;
+	pointer-events: none; //enables click-through
 }
 
 
@@ -6674,13 +6675,18 @@ nav.footer-navigation	{
 		color: #ffffff !important;
 	}
 
-
 	.footer-navigation .navbar-item.top-level-item a.navbar-link {
 		font-family: 'Aalto Sans Pro Light IT', serif !important;
 		font-size: 1.2em !important;
 		font-weight: 700 !important;
 		line-height: 1.2rem;
 	}
+}
+
+
+
+.footer-navigation .navbar-start {
+	display: none !important;
 }
 
 
@@ -6693,6 +6699,7 @@ nav.footer-navigation	{
 	}
 
 	.footer-navigation .navbar-start {
+		display: block !important;
 		position: relative !important;
 		width: 100% !important;
 		display: flex !important;
@@ -6729,6 +6736,79 @@ nav.footer-navigation	{
 		padding-left: 0.5rem !important;
 	}
 }
+
+
+
+
+
+
+
+/* Footer Navigation - Mobile */
+.footer-navigation-mobile {
+	color: #ffffff !important;
+}
+
+.footer-navigation-mobile a {
+	color: #ffffff !important;
+	font-size: 1.2rem !important;
+	line-height: 1.0rem !important;
+}
+
+
+.footer-navigation-mobile a.navbar-item:hover,
+.footer-navigation-mobile a.navbar-item.is-active {
+	background-color: transparent !important;
+}
+
+
+.footer-navigation-mobile .has-dropdown {
+	width: 100% !important;
+	line-height: 1.0rem !important;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+
+
+.footer-navigation-mobile .has-dropdown .dropdown {
+	width: 70% !important;
+	padding-right: 25px !important;
+}
+
+
+.footer-navigation-mobile .has-dropdown > a:after {
+	position: relative !important;
+	display: block !important;
+	font-family: 'FontAwesome Solid' !important;
+	content: '\f107' !important;
+	font-size: 0.5em !important;
+	color: #ffffff !important;
+	transform: rotate(0deg);
+	margin-top: -25px !important;
+	margin-left: 140% !important;
+	pointer-events: none; //enables click-through
+}
+
+
+.footer-navigation-mobile .has-dropdown .navbar-dropdown {
+	display: none !important;
+}
+
+
+.footer-navigation-mobile .has-dropdown.is-active .navbar-dropdown {
+	position: relative !important;
+	display: block !important;
+	padding-left: 0.5rem !important;
+}
+
+
+.footer-navigation-mobile .has-dropdown.is-active .navbar-dropdown a {
+	color: #ffffff !important;
+	font-size: 1.2rem !important;
+	line-height: 1.5rem !important;
+	margin-left: 1.0rem !important;
+}
+
 
 
 

@@ -8,7 +8,7 @@
  * Version: 1.0
  ************/
 
-  class Bulma_Navwalker extends Walker_Nav_Menu {
+  class Bulma_Navwalker_Backup extends Walker_Nav_Menu {
     /**
      * [private stored in start_el and used in start_lvl to pass custom classes on ]
      * @var [array]
@@ -114,7 +114,7 @@
                           $show_title = false;//don't display text
                     }
               }
-              else {
+              else{
                 $item_output .= '<a' . $class_names . $attributes . '>';//item empty use defaults
               }
             $link_title = $show_title ? apply_filters( 'the_title', $item->title, $item->ID ) : '';
@@ -137,8 +137,8 @@
                     $show_title = false;//don't display text
               }
           }
-          else {
-            $item_output .= '<a' . $class_names . $attributes . $id . ' >';//output standard
+          else{
+            $item_output .= '<a' . $class_names . $attributes . $id . '>';//output standard
           }
 
         $link_title = $show_title ? apply_filters( 'the_title', $item->title, $item->ID ) : '';//if show title is true hook in the title or leave blank
@@ -152,9 +152,9 @@
 
     public function end_el( &$output, $item, $depth = 0, $args = array() ) {
       if ( ! in_array( 'menu-item-has-children', $item->classes ) ) {
-        $output .= '</a>';
+        $output .= "</a>\n";
       } else {
-        $output .= '</div>';
+        $output .= "</div><!-- END DROPDOWN-->\n";
       }
     }
 

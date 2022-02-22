@@ -10,7 +10,6 @@
 
 			<div class="navbar-start columns">
 
-
 				<?php
 					wp_nav_menu(array(
 						'menu' => 'Footernavigation',
@@ -27,7 +26,63 @@
 					));
 				?>
 
+
+
 			</div> <!-- navbar-start -->
+
+			<div class="footer-navigation-mobile">
+
+				<?php
+				/* Navigation Walker for Footer Navigation */
+
+					$defaults = array(
+						'theme-location' => 'footer-navigation', //change it according to your register_nav_menus() function
+						 'depth'		=>	2,
+						 'menu'			=>	'Footernavigation',
+						 'container'		=>	'',
+						 'menu_class'		=>	'',
+						 'items_wrap'		=>	'%3$s',
+						 'link_after'	=> '',
+						 'walker'		=>	new Bulma_Navwalker(),
+						 'fallback_cb'		=>	'Bulma_Navwalker::fallback'
+					);
+					wp_nav_menu( $defaults );
+				?>
+
+
+				<!-- Make the Dropdown Navigation work -->
+				<script>
+
+					document.addEventListener('DOMContentLoaded', function () {
+
+						// Get all "navbar-burger" elements
+						var $footernavDropdowns = Array.prototype.slice.call(document.querySelectorAll('.has-dropdown'), 0);
+
+						// Check if there are any nav burgers
+						if ($footernavDropdowns.length > 0) {
+
+						// Add a click event on each of them
+						$footernavDropdowns.forEach(function ($el) {
+							$el.addEventListener('click', function () {
+
+								// Get the target from the "data-target" attribute
+								var target = $el.dataset.target;
+								var $target = document.getElementById(target);
+
+								// Toggle the class on both the "navbar-burger" and the "navbar-menu"
+								$el.classList.toggle('is-active');
+								$target.classList.toggle('is-active');
+
+								});
+
+							});
+						}
+
+					});
+
+				</script>
+
+			</div>
 
 			<div class="navbar-end"></div>
 
@@ -85,6 +140,7 @@
 
 <?php wp_footer();?>
 
+<!-- Header Slider Carousel -->
 <script>
 
 	jQuery(document).ready(function(){
@@ -105,7 +161,7 @@
 </script>
 
 
-
+<!-- Brand Slider Carousels -->
 <script>
 
 	jQuery(document).ready(function(){
@@ -150,7 +206,7 @@
 </script>
 
 
-
+<!-- Makes the Site Header sticky -->
 <script>
 	window.onscroll = function() {stickyHeader()};
 
