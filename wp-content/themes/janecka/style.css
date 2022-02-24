@@ -6810,8 +6810,11 @@ nav.footer-navigation	{
 }
 
 
-
-
+@media screen and (min-width: 768px) {
+	.footer-navigation-mobile {
+		display: none !important;
+	}
+}
 
 
 /*
@@ -6865,6 +6868,10 @@ nav.footer-navigation	{
 
 
 */
+
+
+
+
 
 
 

@@ -36,15 +36,18 @@
 				/* Navigation Walker for Footer Navigation */
 
 					$defaults = array(
+						'menu'			=>	'Footernavigation',
 						'theme-location' => 'footer-navigation', //change it according to your register_nav_menus() function
-						 'depth'		=>	2,
-						 'menu'			=>	'Footernavigation',
-						 'container'		=>	'',
-						 'menu_class'		=>	'',
-						 'items_wrap'		=>	'%3$s',
-						 'link_after'	=> '',
-						 'walker'		=>	new Bulma_Navwalker(),
-						 'fallback_cb'		=>	'Bulma_Navwalker::fallback'
+						'depth'		=>	2,
+
+						'container'		=>	false,
+						'container_class'		=>	false,
+
+						'items_wrap'		=>	'%3$s',
+						'link_after'	=> '',
+
+						'walker'		=>	new Bulma_Navwalker(),
+						'fallback_cb'		=>	false
 					);
 					wp_nav_menu( $defaults );
 				?>
