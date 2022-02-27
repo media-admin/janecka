@@ -969,11 +969,14 @@ function wc_gzd_maybe_disable_checkout_adjustments() {
 		}
 	} elseif ( ! wp_doing_ajax() && wc_gzd_checkout_adjustments_disabled() ) {
 		add_action( 'woocommerce_review_order_before_payment', function() {
-			echo '<input type="hidden" name="wc_gzd_checkout_disabled" value="1" />';
+			echo '<input type="checkbox" name="wc_gzd_checkout_disabled" id="wc_gzd_checkout_disabled" value="1" checked="checked" style="display: none !important; visibility: hidden !important;" />';
 		}, 50 );
 	}
 
 	if ( wc_gzd_checkout_adjustments_disabled() ) {
+		remove_action( 'woocommerce_review_order_before_cart_contents', 'woocommerce_gzd_template_checkout_table_content_replacement' );
+		remove_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_gzd_template_checkout_table_product_hide_filter_removal' );
+
 		remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 20 );
 		remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 10 );
 

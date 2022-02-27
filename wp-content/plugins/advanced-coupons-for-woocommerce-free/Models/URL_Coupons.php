@@ -286,7 +286,7 @@ class URL_Coupons implements Model_Interface
                 array('{acfw_coupon_code}', '{acfw_coupon_is_applied}', '{acfw_coupon_error_message}')
             );
 
-            $coupon_code             = isset($coupon_args['code']) ? rawurlencode($coupon_args['code']) : '';
+            $coupon_code             = $coupon->get_code();
             $coupon_error_message    = rawurlencode($this->_hackish_fetch_coupon_error_message());
             $is_applied_response     = $is_applied ? 'true' : 'false';
             $query_args_replacements = apply_filters(
@@ -358,7 +358,7 @@ class URL_Coupons implements Model_Interface
             array('{acfw_coupon_code}', '{acfw_coupon_error_message}')
         );
 
-        $coupon_code          = isset($coupon_args['code']) ? rawurlencode($coupon_args['code']) : '';
+        $coupon_code          = $coupon->get_code();
         $coupon_error_message = rawurlencode($coupon->get_advanced_error_message());
 
         $query_args_replacements = apply_filters(

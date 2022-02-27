@@ -1,6 +1,6 @@
 (window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[32],{
 
-/***/ 508:
+/***/ 509:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58,13 +58,13 @@ ReportError.propTypes = {
 
 /***/ }),
 
-/***/ 513:
+/***/ 514:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export ALLOWED_TAGS */
 /* unused harmony export ALLOWED_ATTR */
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(55);
+/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(56);
 /* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * External dependencies
@@ -111,7 +111,7 @@ var external_wp_element_ = __webpack_require__(0);
 var external_wp_i18n_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: external ["wp","compose"]
-var external_wp_compose_ = __webpack_require__(14);
+var external_wp_compose_ = __webpack_require__(13);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(1);
@@ -129,9 +129,6 @@ var external_wc_components_ = __webpack_require__(21);
 // EXTERNAL MODULE: external ["wc","data"]
 var external_wc_data_ = __webpack_require__(11);
 
-// EXTERNAL MODULE: ./packages/wc-admin-settings/build-module/index.js
-var build_module = __webpack_require__(13);
-
 // EXTERNAL MODULE: external ["wc","tracks"]
 var external_wc_tracks_ = __webpack_require__(16);
 
@@ -142,10 +139,10 @@ var external_wc_navigation_ = __webpack_require__(12);
 var external_wc_experimental_ = __webpack_require__(17);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-error/index.js
-var report_error = __webpack_require__(508);
+var report_error = __webpack_require__(509);
 
 // EXTERNAL MODULE: ./client/lib/sanitize-html/index.js
-var sanitize_html = __webpack_require__(513);
+var sanitize_html = __webpack_require__(514);
 
 // EXTERNAL MODULE: ./client/analytics/components/leaderboard/style.scss
 var style = __webpack_require__(617);
@@ -309,6 +306,9 @@ leaderboard_Leaderboard.defaultProps = {
   const leaderboardData = Object(external_wc_data_["getLeaderboard"])(leaderboardQuery);
   return leaderboardData;
 }))(leaderboard_Leaderboard));
+// EXTERNAL MODULE: ./client/utils/admin-settings.js
+var admin_settings = __webpack_require__(22);
+
 // EXTERNAL MODULE: ./client/dashboard/leaderboards/style.scss
 var leaderboards_style = __webpack_require__(618);
 
@@ -327,10 +327,10 @@ var leaderboards_style = __webpack_require__(618);
 
 
 
-
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -470,7 +470,7 @@ Leaderboards.propTypes = {
   } = select(external_wc_data_["ITEMS_STORE_NAME"]);
   const {
     leaderboards: allLeaderboards
-  } = Object(build_module["f" /* getSetting */])('dataEndpoints', {
+  } = Object(admin_settings["d" /* getAdminSetting */])('dataEndpoints', {
     leaderboards: []
   });
   return {

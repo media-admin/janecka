@@ -1,6 +1,6 @@
 (window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[48],{
 
-/***/ 509:
+/***/ 510:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29,7 +29,7 @@ function createNoticesFromResponse(response) {
 
 /***/ }),
 
-/***/ 541:
+/***/ 543:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89,14 +89,14 @@ var external_wc_experimental_ = __webpack_require__(17);
 var external_wc_data_ = __webpack_require__(11);
 
 // EXTERNAL MODULE: ./node_modules/gridicons/dist/external.js
-var external = __webpack_require__(541);
+var external = __webpack_require__(543);
 var external_default = /*#__PURE__*/__webpack_require__.n(external);
 
 // EXTERNAL MODULE: external ["wp","components"]
 var external_wp_components_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: ./client/lib/notices/index.js
-var notices = __webpack_require__(509);
+var notices = __webpack_require__(510);
 
 // EXTERNAL MODULE: external ["wc","components"]
 var external_wc_components_ = __webpack_require__(21);
@@ -181,8 +181,8 @@ const DismissableList = ({
     value: dismissOptionName
   }, children));
 };
-// EXTERNAL MODULE: ./packages/wc-admin-settings/build-module/index.js
-var build_module = __webpack_require__(13);
+// EXTERNAL MODULE: external ["wc","wcSettings"]
+var external_wc_wcSettings_ = __webpack_require__(14);
 
 // EXTERNAL MODULE: ./client/shipping/woocommerce-services-item.scss
 var woocommerce_services_item = __webpack_require__(609);
@@ -190,6 +190,9 @@ var woocommerce_services_item = __webpack_require__(609);
 // EXTERNAL MODULE: ./client/shipping/woo-icon.svg
 var woo_icon = __webpack_require__(610);
 var woo_icon_default = /*#__PURE__*/__webpack_require__.n(woo_icon);
+
+// EXTERNAL MODULE: ./client/utils/admin-settings.js
+var admin_settings = __webpack_require__(22);
 
 // CONCATENATED MODULE: ./client/shipping/woocommerce-services-item.tsx
 
@@ -210,11 +213,12 @@ var woo_icon_default = /*#__PURE__*/__webpack_require__.n(woo_icon);
 
 
 
+
 const WooCommerceServicesItem = ({
   onSetupClick,
   pluginsBeingSetup
 }) => {
-  const wcAdminAssetUrl = Object(build_module["f" /* getSetting */])('wcAdminAssetUrl', '');
+  const wcAdminAssetUrl = Object(admin_settings["d" /* getAdminSetting */])('wcAdminAssetUrl', '');
   const {
     createSuccessNotice
   } = Object(external_wp_data_["useDispatch"])('core/notices');
@@ -226,7 +230,7 @@ const WooCommerceServicesItem = ({
 
       if (!isSiteConnectedToJetpack) {
         actions.push({
-          url: Object(build_module["e" /* getAdminLink */])('plugins.php'),
+          url: Object(external_wc_wcSettings_["getAdminLink"])('plugins.php'),
           label: Object(external_wp_i18n_["__"])('Finish the setup by connecting your store to Jetpack.', 'woocommerce-admin')
         });
       }

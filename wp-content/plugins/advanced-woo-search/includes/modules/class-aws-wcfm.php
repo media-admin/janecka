@@ -82,7 +82,7 @@ if ( ! class_exists( 'AWS_WCFM' ) ) :
                                 $logo = '<img style="margin-right:4px;" width="24px" src="' . $store_logo . '" />';
                             }
 
-                            $excerpt .= '<br><span style="margin-top:4px;display:block;" data-link="' . $store_url . '">' . $logo . $store_name . '</span>';
+                            $excerpt .= '<br><a style="margin-top:4px;display:block;" href="' . $store_url . '">' . $logo . $store_name . '</a>';
 
                         }
 

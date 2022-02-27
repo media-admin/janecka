@@ -4,7 +4,7 @@
 
 /**
  *
- * Copyright (c) 2012-9, David Anderson (https://www.simbahosting.co.uk).  All rights reserved.
+ * Copyright (c) 2012-22, David Anderson (https://www.simbahosting.co.uk).  All rights reserved.
  * Portions copyright (c) 2011, Donovan Schönknecht.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -32,13 +32,16 @@
  */
 // @codingStandardsIgnoreEnd
 
-require_once(UPDRAFTPLUS_DIR.'/vendor/autoload.php');
-
 // SDK requires PHP 5.5+
 use Aws\Common\RulesEndpointProvider;
 use Aws\Credentials\Credentials;
 use Aws\S3\Exception\NoSuchBucketException;
 use Aws\S3\S3MultiRegionClient;
+
+global $updraftplus;
+$updraftplus->potentially_remove_composer_autoloaders(array('GuzzleHttp\\', 'Aws\\'));
+include(UPDRAFTPLUS_DIR.'/vendor/autoload.php');
+$updraftplus->mitigate_guzzle_autoloader_conflicts();
 
 /**
  * Amazon S3 PHP class
@@ -105,7 +108,11 @@ class UpdraftPlus_S3_Compat {
 	 * @param Null|String    $region        Region. Currently unused, but harmonised with UpdraftPlus_S3 class
 	 * @return void
 	 */
-	public function __construct($access_key = null, $secret_key = null, $use_ssl = true, $ssl_ca_cert = true, $endpoint = null, $session_token = null, $region = null) {// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- $region is unused 
+	public function __construct($access_key = null, $secret_key = null, $use_ssl = true, $ssl_ca_cert = true, $endpoint = null, $session_token = null, $region = null) {// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- $region is unused
+		
+		global $updraftplus;
+		$updraftplus->mitigate_guzzle_autoloader_conflicts();
+		
 		if (null !== $access_key && null !== $secret_key)
 			$this->setAuth($access_key, $secret_key, $session_token);
 

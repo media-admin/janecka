@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["paymentMethodPromotions"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 474);
+/******/ 	return __webpack_require__(__webpack_require__.s = 475);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -129,14 +129,14 @@ this["wc"] = this["wc"] || {}; this["wc"]["paymentMethodPromotions"] =
 
 /***/ }),
 
-/***/ 462:
+/***/ 463:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
 
-/***/ 474:
+/***/ 475:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -162,13 +162,13 @@ var external_wc_tracks_ = __webpack_require__(16);
 var external_wp_data_ = __webpack_require__(7);
 
 // EXTERNAL MODULE: ./node_modules/dompurify/dist/purify.js
-var purify = __webpack_require__(55);
+var purify = __webpack_require__(56);
 
 // EXTERNAL MODULE: external ["wp","i18n"]
 var external_wp_i18n_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./client/wp-admin-scripts/payment-method-promotions/payment-promotion-row.scss
-var payment_promotion_row = __webpack_require__(462);
+var payment_promotion_row = __webpack_require__(463);
 
 // CONCATENATED MODULE: ./client/wp-admin-scripts/payment-method-promotions/payment-promotion-row.tsx
 
@@ -377,7 +377,7 @@ PAYMENT_METHOD_PROMOTIONS.forEach(paymentMethod => {
 
 /***/ }),
 
-/***/ 55:
+/***/ 56:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*! @license DOMPurify | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.2.2/LICENSE */

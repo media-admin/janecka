@@ -39,10 +39,6 @@ function medialab_register_styles() {
 	wp_enqueue_style( 'normalize' );
 
 
-	// Import FontAwesome Styles
-	wp_register_style( 'fontawesome', get_template_directory_uri() . '/assets/css/fontawesome-all.css' );
-	wp_enqueue_style( 'fontawesome' );
-
 
 	// Import Bulma Framework
 	wp_register_style( 'bulma', get_template_directory_uri() . '/vendor/bulma-0.9.0/css/bulma.min.css' );

@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["printShippingLabelBanner"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 468);
+/******/ 	return __webpack_require__(__webpack_require__.s = 469);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -107,7 +107,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["printShippingLabelBanner"] =
 if (false) { var throwOnDirectAccess, ReactIs; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(48)();
+  module.exports = __webpack_require__(49)();
 }
 
 
@@ -120,7 +120,7 @@ if (false) { var throwOnDirectAccess, ReactIs; } else {
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -141,7 +141,7 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-var objectWithoutPropertiesLoose = __webpack_require__(22);
+var objectWithoutPropertiesLoose = __webpack_require__(23);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
 
@@ -208,136 +208,16 @@ function Icon(_ref) {
 /***/ }),
 
 /***/ 13:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-/* unused harmony export ADMIN_URL */
-/* unused harmony export COUNTRIES */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CURRENCY; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return LOCALE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ORDER_STATUSES; });
-/* unused harmony export SITE_TITLE */
-/* unused harmony export WC_ASSET_URL */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getSetting; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return setSetting; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return getAdminLink; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return enqueueScript; });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/**
- * External dependencies
- */
- // Remove mutable data from settings object to prevent access. Data stores should be used instead.
-
-const mutableSources = ['wcAdminSettings', 'preloadSettings'];
-const settings = typeof wcSettings === 'object' ? wcSettings : {};
-const SOURCE = Object.keys(settings).reduce((source, key) => {
-  if (!mutableSources.includes(key)) {
-    source[key] = settings[key];
-  }
-
-  return source;
-}, {});
-Object.keys(settings.admin || {}).forEach(key => {
-  if (!mutableSources.includes(key)) {
-    SOURCE[key] = settings.admin[key];
-  }
-});
-const ADMIN_URL = SOURCE.adminUrl;
-const COUNTRIES = SOURCE.countries;
-const CURRENCY = SOURCE.currency;
-const LOCALE = SOURCE.locale;
-const ORDER_STATUSES = SOURCE.orderStatuses;
-const SITE_TITLE = SOURCE.siteTitle;
-const WC_ASSET_URL = SOURCE.wcAssetUrl;
-/**
- * Retrieves a setting value from the setting state.
- *
- * @param {string}   name                         The identifier for the setting.
- * @param {*}    [fallback=false]             The value to use as a fallback
- *                                                if the setting is not in the
- *                                                state.
- * @param {Function} [filter=( val ) => val]  	  A callback for filtering the
- *                                                value before it's returned.
- *                                                Receives both the found value
- *                                                (if it exists for the key) and
- *                                                the provided fallback arg.
- *
- * @return {*}  The value present in the settings state for the given
- *                   name.
- */
-
-function getSetting(name, fallback = false, filter = val => val) {
-  if (mutableSources.includes(name)) {
-    throw new Error(Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Mutable settings should be accessed via data store.'));
-  }
-
-  const value = SOURCE.hasOwnProperty(name) ? SOURCE[name] : fallback;
-  return filter(value, fallback);
-}
-/**
- * Sets a value to a property on the settings state.
- *
- * NOTE: This feature is to be removed in favour of data stores when a full migration
- * is complete.
- *
- * @deprecated
- *
- * @param {string}   name                        The setting property key for the
- *                                               setting being mutated.
- * @param {*}    value                       The value to set.
- * @param {Function} [filter=( val ) => val]     Allows for providing a callback
- *                                               to sanitize the setting (eg.
- *                                               ensure it's a number)
- */
-
-function setSetting(name, value, filter = val => val) {
-  if (mutableSources.includes(name)) {
-    throw new Error(Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Mutable settings should be mutated via data store.'));
-  }
-
-  SOURCE[name] = filter(value);
-}
-/**
- * Returns a string with the site's wp-admin URL appended. JS version of `admin_url`.
- *
- * @param {string} path Relative path.
- * @return {string} Full admin URL.
- */
-
-function getAdminLink(path) {
-  return (ADMIN_URL || '') + path;
-}
-/**
- * Adds a script to the page if it has not already been loaded. JS version of `wp_enqueue_script`.
- *
- * @param {Object} script WP_Script
- * @param {string} script.handle Script handle.
- * @param {string} script.src Script URL.
- */
-
-function enqueueScript(script) {
-  return new Promise((resolve, reject) => {
-    if (document.querySelector(`#${script.handle}-js`)) {
-      resolve();
-    }
-
-    const domElement = document.createElement('script');
-    domElement.src = script.src;
-    domElement.id = `${script.handle}-js`;
-    domElement.async = true;
-    domElement.onload = resolve;
-    domElement.onerror = reject;
-    document.body.appendChild(domElement);
-  });
-}
+(function() { module.exports = window["wp"]["compose"]; }());
 
 /***/ }),
 
 /***/ 14:
 /***/ (function(module, exports) {
 
-(function() { module.exports = window["wp"]["compose"]; }());
+(function() { module.exports = window["wc"]["wcSettings"]; }());
 
 /***/ }),
 
@@ -379,11 +259,11 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactAddonsCreateFragment = __webpack_require__(71);
+var _reactAddonsCreateFragment = __webpack_require__(72);
 
 var _reactAddonsCreateFragment2 = _interopRequireDefault(_reactAddonsCreateFragment);
 
-var _tokenize = __webpack_require__(74);
+var _tokenize = __webpack_require__(75);
 
 var _tokenize2 = _interopRequireDefault(_tokenize);
 
@@ -533,6 +413,96 @@ exports.default = interpolate;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getAdminSetting; });
+/* unused harmony export ADMIN_URL */
+/* unused harmony export COUNTRIES */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CURRENCY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return LOCALE; });
+/* unused harmony export SITE_TITLE */
+/* unused harmony export WC_ASSET_URL */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ORDER_STATUSES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return setAdminSetting; });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _woocommerce_settings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(14);
+/* harmony import */ var _woocommerce_settings__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_settings__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * External dependencies
+ */
+
+ // Remove mutable data from settings object to prevent access. Data stores should be used instead.
+
+const mutableSources = ['wcAdminSettings', 'preloadSettings'];
+const adminSettings = Object(_woocommerce_settings__WEBPACK_IMPORTED_MODULE_1__["getSetting"])('admin', {});
+const ADMIN_SETTINGS_SOURCE = Object.keys(adminSettings).reduce((source, key) => {
+  if (!mutableSources.includes(key)) {
+    source[key] = adminSettings[key];
+  }
+
+  return source;
+}, {});
+/**
+ * Retrieves a setting value from the setting state.
+ *
+ * @param {string}   name                         The identifier for the setting.
+ * @param {*}    [fallback=false]             The value to use as a fallback
+ *                                                if the setting is not in the
+ *                                                state.
+ * @param {Function} [filter=( val ) => val]  	  A callback for filtering the
+ *                                                value before it's returned.
+ *                                                Receives both the found value
+ *                                                (if it exists for the key) and
+ *                                                the provided fallback arg.
+ *
+ * @return {*}  The value present in the settings state for the given
+ *                   name.
+ */
+
+function getAdminSetting(name, fallback = false, filter = val => val) {
+  if (mutableSources.includes(name)) {
+    throw new Error(Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Mutable settings should be accessed via data store.'));
+  }
+
+  const value = ADMIN_SETTINGS_SOURCE.hasOwnProperty(name) ? ADMIN_SETTINGS_SOURCE[name] : fallback;
+  return filter(value, fallback);
+}
+const ADMIN_URL = Object(_woocommerce_settings__WEBPACK_IMPORTED_MODULE_1__["getSetting"])('adminUrl');
+const COUNTRIES = Object(_woocommerce_settings__WEBPACK_IMPORTED_MODULE_1__["getSetting"])('countries');
+const CURRENCY = Object(_woocommerce_settings__WEBPACK_IMPORTED_MODULE_1__["getSetting"])('currency');
+const LOCALE = Object(_woocommerce_settings__WEBPACK_IMPORTED_MODULE_1__["getSetting"])('locale');
+const SITE_TITLE = Object(_woocommerce_settings__WEBPACK_IMPORTED_MODULE_1__["getSetting"])('siteTitle');
+const WC_ASSET_URL = Object(_woocommerce_settings__WEBPACK_IMPORTED_MODULE_1__["getSetting"])('wcAssetUrl');
+const ORDER_STATUSES = getAdminSetting('orderStatuses');
+/**
+ * Sets a value to a property on the settings state.
+ *
+ * NOTE: This feature is to be removed in favour of data stores when a full migration
+ * is complete.
+ *
+ * @deprecated
+ *
+ * @param {string}   name                        The setting property key for the
+ *                                               setting being mutated.
+ * @param {*}    value                       The value to set.
+ * @param {Function} [filter=( val ) => val]     Allows for providing a callback
+ *                                               to sanitize the setting (eg.
+ *                                               ensure it's a number)
+ */
+
+function setAdminSetting(name, value, filter = val => val) {
+  if (mutableSources.includes(name)) {
+    throw new Error(Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Mutable settings should be mutated via data store.'));
+  }
+
+  ADMIN_SETTINGS_SOURCE[name] = filter(value);
+}
+
+/***/ }),
+
+/***/ 23:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _objectWithoutPropertiesLoose; });
 function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
@@ -551,7 +521,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 /***/ }),
 
-/***/ 254:
+/***/ 255:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
@@ -565,7 +535,14 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 /***/ }),
 
-/***/ 39:
+/***/ 4:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["lodash"]; }());
+
+/***/ }),
+
+/***/ 40:
 /***/ (function(module, exports) {
 
 function _defineProperty(obj, key, value) {
@@ -588,14 +565,7 @@ module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
 
-/***/ 4:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["lodash"]; }());
-
-/***/ }),
-
-/***/ 468:
+/***/ 469:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -608,11 +578,8 @@ var external_wp_element_ = __webpack_require__(0);
 // EXTERNAL MODULE: external ["wc","data"]
 var external_wc_data_ = __webpack_require__(11);
 
-// EXTERNAL MODULE: ./packages/wc-admin-settings/build-module/index.js
-var build_module = __webpack_require__(13);
-
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__(39);
+var defineProperty = __webpack_require__(40);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
 // EXTERNAL MODULE: external ["wp","i18n"]
@@ -622,7 +589,7 @@ var external_wp_i18n_ = __webpack_require__(2);
 var external_wp_components_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: external ["wp","compose"]
-var external_wp_compose_ = __webpack_require__(14);
+var external_wp_compose_ = __webpack_require__(13);
 
 // EXTERNAL MODULE: ./node_modules/interpolate-components/lib/index.js
 var lib = __webpack_require__(19);
@@ -642,7 +609,7 @@ var external_wp_data_ = __webpack_require__(7);
 var external_wc_tracks_ = __webpack_require__(16);
 
 // EXTERNAL MODULE: ./client/wp-admin-scripts/print-shipping-label-banner/style.scss
-var style = __webpack_require__(254);
+var style = __webpack_require__(255);
 
 // CONCATENATED MODULE: ./client/wp-admin-scripts/print-shipping-label-banner/dismiss-modal/index.js
 
@@ -736,7 +703,7 @@ class dismiss_modal_DismissModal extends external_wp_element_["Component"] {
   };
 }))(dismiss_modal_DismissModal));
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/icon/index.js + 2 modules
-var icon = __webpack_require__(117);
+var icon = __webpack_require__(118);
 
 // EXTERNAL MODULE: external ["wp","primitives"]
 var external_wp_primitives_ = __webpack_require__(8);
@@ -825,6 +792,9 @@ function getWcsAssets() {
     method: 'GET'
   });
 }
+// EXTERNAL MODULE: ./client/utils/admin-settings.js
+var admin_settings = __webpack_require__(22);
+
 // CONCATENATED MODULE: ./client/wp-admin-scripts/print-shipping-label-banner/shipping-banner/index.js
 
 
@@ -832,7 +802,6 @@ function getWcsAssets() {
 /**
  * External dependencies
  */
-
 
 
 
@@ -851,7 +820,8 @@ function getWcsAssets() {
 
 
 
-const wcAdminAssetUrl = Object(build_module["f" /* getSetting */])('wcAdminAssetUrl', '');
+
+const wcAdminAssetUrl = Object(admin_settings["d" /* getAdminSetting */])('wcAdminAssetUrl', '');
 const wcsPluginSlug = 'woocommerce-services';
 class shipping_banner_ShippingBanner extends external_wp_element_["Component"] {
   constructor(props) {
@@ -1252,17 +1222,17 @@ shipping_banner_ShippingBanner.propTypes = {
  */
 
 
-
 /**
  * Internal dependencies
  */
 
 
+
 const metaBox = document.getElementById('wc-admin-shipping-banner-root');
 const print_shipping_label_banner_args = metaBox.dataset.args && JSON.parse(metaBox.dataset.args) || {}; // Render the header.
 
-const HydratedShippingBanner = Object(external_wc_data_["withPluginsHydration"])({ ...Object(build_module["f" /* getSetting */])('plugins'),
-  jetpackStatus: Object(build_module["f" /* getSetting */])('dataEndpoints', {}).jetpackStatus
+const HydratedShippingBanner = Object(external_wc_data_["withPluginsHydration"])({ ...Object(admin_settings["d" /* getAdminSetting */])('plugins'),
+  jetpackStatus: Object(admin_settings["d" /* getAdminSetting */])('dataEndpoints', {}).jetpackStatus
 })(shipping_banner);
 Object(external_wp_element_["render"])(Object(external_wp_element_["createElement"])(HydratedShippingBanner, {
   itemsCount: print_shipping_label_banner_args.items
@@ -1270,7 +1240,7 @@ Object(external_wp_element_["render"])(Object(external_wp_element_["createElemen
 
 /***/ }),
 
-/***/ 48:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1283,7 +1253,7 @@ Object(external_wp_element_["render"])(Object(external_wp_element_["createElemen
 
 
 
-var ReactPropTypesSecret = __webpack_require__(49);
+var ReactPropTypesSecret = __webpack_require__(50);
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -1342,7 +1312,14 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 49:
+/***/ 5:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["React"]; }());
+
+/***/ }),
+
+/***/ 50:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1362,14 +1339,7 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ 5:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["React"]; }());
-
-/***/ }),
-
-/***/ 50:
+/***/ 51:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1419,7 +1389,7 @@ module.exports = emptyFunction;
 
 /***/ }),
 
-/***/ 71:
+/***/ 72:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1438,9 +1408,9 @@ var REACT_ELEMENT_TYPE =
   (typeof Symbol === 'function' && Symbol.for && Symbol.for('react.element')) ||
   0xeac7;
 
-var emptyFunction = __webpack_require__(50);
-var invariant = __webpack_require__(72);
-var warning = __webpack_require__(73);
+var emptyFunction = __webpack_require__(51);
+var invariant = __webpack_require__(73);
+var warning = __webpack_require__(74);
 
 var SEPARATOR = '.';
 var SUBSEPARATOR = ':';
@@ -1748,7 +1718,7 @@ module.exports = createReactFragment;
 
 /***/ }),
 
-/***/ 72:
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1802,7 +1772,7 @@ module.exports = invariant;
 
 /***/ }),
 
-/***/ 73:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1816,7 +1786,7 @@ module.exports = invariant;
 
 
 
-var emptyFunction = __webpack_require__(50);
+var emptyFunction = __webpack_require__(51);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -1833,7 +1803,7 @@ module.exports = warning;
 
 /***/ }),
 
-/***/ 74:
+/***/ 75:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

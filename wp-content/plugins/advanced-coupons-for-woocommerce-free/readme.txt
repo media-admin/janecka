@@ -1,10 +1,10 @@
 === Advanced Coupons for WooCommerce Coupons ===
 Contributors: jkohlbach, RymeraWebCo, Rymera01
 Donate link:
-Tags: coupons, woocommerce coupons, coupon plugin, bogo, url coupons, advanced coupons
+Tags: coupons, woocommerce coupons, bogo, url coupons, coupon plugin, advanced coupons
 Requires at least: 5.2
-Tested up to: 5.8
-Stable tag: 3.1.2
+Tested up to: 5.9
+Stable tag: 3.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,24 +12,24 @@ Smart WooCommerce coupons with Advanced Coupons for WooCommerce. Add extra WooCo
 
 == DESCRIPTION ==
 
-Get extra smart WooCommerce coupons features with Advanced Coupons for WooCommerce! The free plugin that makes your WooCommerce coupons better.
+Add extra smart WooCommerce coupons features with Advanced Coupons! It's the free WooCommerce coupon plugin that makes your WooCommerce coupons better.
 
-= Best & Smartest WooCommerce Coupons Plugin =
+= Best WooCommerce Coupons Plugin =
 
-Every store owner deserves to have the best features on their WooCommerce coupons - it's the key to marketing your store better!
+Every store owner deserves to have the best coupon features on their WooCommerce coupons - it's the key to marketing your store better!
 
-That's why we built this 100% free WooCommerce coupon plugin.
+That's why we built this 100% free WooCommerce coupon plugin so you can get features like BOGO, url coupons, cart conditions, coupon role restrictions and more totally free.
 
-**WOOCOMMERCE ADVANCED COUPONS – FREE COUPON PLUGIN**
+**ADVANCED COUPONS – THE FREE WOOCOMMERCE COUPON PLUGIN**
 
 ***<a href="https://advancedcouponsplugin.com/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Advanced Coupons for WooCommerce</a> (Free Version)*** gives you extra features on your WooCommerce coupons so they can market your store better.
 
 = ADVANCED COUPONS MAKES YOUR WOOCOMMERCE COUPONS BETTER =
 
-We've made WooCommerce coupons better so you can:
+We made WooCommerce coupons better so you can:
 
 1. Run WooCommerce BOGO deals (new BOGO coupon type)
-1. Protect against accidental discount usage with Cart Conditions (coupon rules)
+1. Protect against accidental discount coupon usage with Cart Conditions (coupon rules)
 1. Organize your WooCommerce coupons with coupon categories
 1. Apply coupons with a URL easily (WooCommerce URL coupons)
 1. Restrict WooCommerce coupons by user role
@@ -38,11 +38,11 @@ We've made WooCommerce coupons better so you can:
 > <strong>ADVANCED COUPONS PREMIUM ADD-ON</strong><br />
 > This plugin is the free version of the highly rated Advanced Coupons Premium plugin. The premium version adds EVEN MORE WooCommerce coupon enhancements and features.<br /><br />Click here to compare features and purchase the <a href="https://advancedcouponsplugin.com/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Advanced Coupons for WooCommerce Premium Add-on</a>.
 
-Here are some FREE VERSION features at a glance:
+Here are some FREE VERSION coupon features at a glance:
 
-= Make WooCommerce BOGO Deal Coupons Easily =
+= WooCommerce BOGO Coupon Deals =
 
-***WooCommerce BOGO coupons***, otherwise known as Buy One Get One deals, are VERY common in the offline world. So why can't you run those kinds of deals on your WooCommerce store as well?!
+***WooCommerce BOGO coupons***, otherwise known as Buy One Get One coupon deals, are VERY common in the offline world. So why can't you run those kinds of deals on your WooCommerce store as well?!
 
 Now you can – Advanced Coupons WooCommerce BOGO coupons let you easily run a BOGO deal (Buy One Get One deal) on your store.
 
@@ -60,7 +60,7 @@ For example:
 
 And there's dozens more! You can also combine and mix and match cart conditions to create more specific coupon rules.
 
-= WooCommerce URL Coupons (Apply WooCommerce Coupons With A Link) =
+= WooCommerce URL Coupons (Easily Apply WooCommerce Coupons With A Link) =
 
 ***WooCommerce URL coupons*** let you give your customers a coupon link to apply a coupon.
 
@@ -204,9 +204,10 @@ In the free version you can only run WooCommerce BOGO deals with a single produc
 
 In the premium version you get much more advanced WooCommerce BOGO functionality with the ability to apply BOGO deals across multiple products as the trigger and apply type and even whole product categories.
 
-* BOGO Deal Coupons (Specific Products)
-* BOGO Deal Coupons (Any Combination Of Products)
-* BOGO Deal Coupons (Product Categories)
+* WooCommerce BOGO using a Specific Product
+* WooCommerce BOGO using Any Combination Of Products
+* WooCommerce BOGO using Product Categories
+* WooCommerce BOGO using Any Product
 
 Combined, these different BOGO features can make running WooCommerce BOGO deals across large amounts of products a breeze.
 
@@ -238,7 +239,7 @@ Purchasing an Advanced Coupons Premium license gives you access to the full feat
 
 == Notes ==
 
-Advanced Coupons is absolutely, positively the best <a href="https://advancedcouponsplugin.com/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend" title="Best WooCommerce Coupons Plugin">WooCommerce coupons plugin</a> on the market. It is both easy and powerful.
+Advanced Coupons is absolutely, positively the <a href="https://advancedcouponsplugin.com/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend" title="Best WooCommerce Coupons Plugin">best WooCommerce coupons plugin</a> on the market. It is both easy and powerful.
 
 We took the pain out of creating advanced coupon deals in WooCommerce and made it easy. Check out all <a href="https://advancedcouponsplugin.com/pricing/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Advanced Coupons features</a>.
 
@@ -248,6 +249,10 @@ Thanks,
 Josh Kohlbach
 
 == Changelog ==
+
+= 3.1.3 =
+* Bug Fix: The "acfw_coupon_code" tag from URL Coupons "Redirect To URL" setting is replaced with URL slug instead of coupon code
+* Bug Fix: BOGO: the discounted is calculated wrong when currency is converted (Aelia, WPML)
 
 = 3.1.2 =
 * Bug Fix: Admin notices won't show up on the new settings app pages.

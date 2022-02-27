@@ -3,7 +3,7 @@ Contributors: Backup with UpdraftPlus, DavidAnderson, DNutbourne, aporter, snigh
 Tags: backup, restore, database backup, wordpress backup, cloud backup, s3, dropbox, google drive, onedrive, ftp, backups
 Requires at least: 3.2
 Tested up to: 5.9
-Stable tag: 1.22.3
+Stable tag: 1.22.6
 Author URI: https://updraftplus.com
 Donate link: https://david.dw-perspective.org.uk/donate
 License: GPLv3 or later
@@ -170,9 +170,32 @@ N.B. Paid versions of UpdraftPlus Backup / Restore have a version number which i
 
 
 
+
+= 1.22.6 - 26/Feb/2022 =
+
+* FIX: Internal S3 library had regressed in its ability to detect bucket location on AWS when using v4 signatures
+* TWEAK: When using S3 APIs, log the class used for easier debugging
+* TWEAK: Change S3 SDK selection algorithm
+
+= 1.22.5 - 24/Feb/2022 =
+
+* FIX: An issue that prevented being able to browse the contents of an already downloaded backup zip file
+* FIX: Add previously unbundled AWS SDK file for IAM service description which prevented S3 wizard in the Premium version working correctly
+* FIX: Prevent a fatal error when handling some S3 errors, caused by a format change
+* TWEAK: When loading AWS SDK at upload time, apply some work-arounds for plugins with buggy or old versions of related libraries
+* TWEAK: Update to latest AWS SDK toolkit, fixing an error with error-reporting in some situations in the previous version
+* TWEAK: Remove vendor/aws/aws-crt-php/run_tests.bat from build (apparently one user's hosting does not allow .bat files), plus other unnecessary files from that package
+* TWEAK: Enable PHP 8.1 in UpdraftClone (N.B. not yet officially supported by WordPress, so, made available for testing/development purposes)
+* TWEAK: Prevent error emitted on the browser console when 'Images' filter is selected on UpdraftCentral's media module
+
+= 1.22.4 - 17/Feb/2022 =
+
+* TWEAK: Prevent a couple of possible fatal errors when printing autobackup options on PHP 8
+* TWEAK: Work around a bug in the JetPack autoloader that was triggered when projects using that also used Guzzle in a different namespace
+
 = 1.22.3 - 15/Feb/2022 =
 
-* SECURITY: Thanks to Marc-Alexandre Montpas of Automattic for this report. All versions of UpdraftPlus from March 2019 onwards have contained a vulnerability caused by a missing permissions-level check. If your site does not have non-admin users, or if your non-admin users are all trusted (and your site does not allow users to sign up themselves), then you are not vulnerable (but we always recommend updating to the latest version in any case). Fuller details will be released after a short time interval allowing users to update.
+* SECURITY: Thanks to Marc-Alexandre Montpas of Automattic for this report (CVE: CVE-2022-23303). All versions of UpdraftPlus from March 2019 onwards have contained a vulnerability caused by a missing permissions-level check, allowing untrusted users access to backups. If your site does not have non-admin users, or if your non-admin users are all trusted (and your site does not allow users to sign up themselves), then you are not vulnerable (but we always recommend updating to the latest version in any case). Please see https://updraftplus.com/updraftplus-security-release-1-22-3-2-22-3/ for more details.
 * FIX: Unexpected 'Backup History' array structure during the rescanning of the new backup sets that changed the type of the database associative keys from string to array format
 * FIX: Failure in excluding and wiping out jobdata during backup and restore causing the same backup to repeat under certain circumstances
 * REFACTOR: Upgrade AWS SDK from version 2.8 to 3
@@ -1451,4 +1474,4 @@ Reliance upon any non-English translation is at your own risk; UpdraftPlus can g
 We recognise and thank those mentioned at https://updraftplus.com/acknowledgements/ for code and/or libraries used and/or modified under the terms of their open source licences.
 
 == Upgrade Notice ==
-* 1.22.3: Fixes a security issue (see the changelog for more info). Fix potential issues with scanning of backup history. Update AWS SDK version. Various other small tweaks and fixes. A recommended update for all.
+* 1.22.6: Various tweaks/fixes to work better with buggy third-party plugins wrt S3/compatible. N.B. 1.22.3 fixed a security issue (see the changelog for more info) on sites that have non-trusted logins. A recommended update for all.

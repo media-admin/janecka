@@ -1,6 +1,6 @@
 (window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[13],{
 
-/***/ 484:
+/***/ 485:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18,28 +18,28 @@ var prop_types = __webpack_require__(1);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // EXTERNAL MODULE: ./client/analytics/report/revenue/config.js
-var config = __webpack_require__(532);
+var config = __webpack_require__(534);
 
 // EXTERNAL MODULE: ./client/lib/get-selected-chart/index.js
-var get_selected_chart = __webpack_require__(514);
+var get_selected_chart = __webpack_require__(515);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-chart/index.js + 1 modules
-var report_chart = __webpack_require__(512);
+var report_chart = __webpack_require__(513);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-summary/index.js
-var report_summary = __webpack_require__(515);
+var report_summary = __webpack_require__(516);
 
 // EXTERNAL MODULE: external ["wp","i18n"]
 var external_wp_i18n_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: external ["wp","date"]
-var external_wp_date_ = __webpack_require__(63);
+var external_wp_date_ = __webpack_require__(62);
 
 // EXTERNAL MODULE: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7);
 
 // EXTERNAL MODULE: external ["wp","compose"]
-var external_wp_compose_ = __webpack_require__(14);
+var external_wp_compose_ = __webpack_require__(13);
 
 // EXTERNAL MODULE: external "lodash"
 var external_lodash_ = __webpack_require__(4);
@@ -48,10 +48,7 @@ var external_lodash_ = __webpack_require__(4);
 var external_wc_components_ = __webpack_require__(21);
 
 // EXTERNAL MODULE: external ["wc","number"]
-var external_wc_number_ = __webpack_require__(121);
-
-// EXTERNAL MODULE: ./packages/wc-admin-settings/build-module/index.js
-var build_module = __webpack_require__(13);
+var external_wc_number_ = __webpack_require__(122);
 
 // EXTERNAL MODULE: external ["wc","data"]
 var external_wc_data_ = __webpack_require__(11);
@@ -60,13 +57,16 @@ var external_wc_data_ = __webpack_require__(11);
 var external_wc_date_ = __webpack_require__(20);
 
 // EXTERNAL MODULE: ./node_modules/qs/lib/index.js
-var lib = __webpack_require__(27);
+var lib = __webpack_require__(29);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-table/index.js + 2 modules
-var report_table = __webpack_require__(511);
+var report_table = __webpack_require__(512);
+
+// EXTERNAL MODULE: ./client/utils/admin-settings.js
+var admin_settings = __webpack_require__(22);
 
 // EXTERNAL MODULE: ./client/lib/currency-context.js
-var currency_context = __webpack_require__(505);
+var currency_context = __webpack_require__(506);
 
 // CONCATENATED MODULE: ./client/analytics/report/revenue/table.js
 
@@ -85,10 +85,10 @@ var currency_context = __webpack_require__(505);
 
 
 
-
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -163,7 +163,7 @@ class table_RevenueReportTable extends external_wp_element_["Component"] {
   }
 
   getRowsContent(data = []) {
-    const dateFormat = Object(build_module["f" /* getSetting */])('dateFormat', external_wc_date_["defaultTableDateFormat"]);
+    const dateFormat = Object(admin_settings["d" /* getAdminSetting */])('dateFormat', external_wc_date_["defaultTableDateFormat"]);
     const {
       formatAmount,
       render: renderCurrency,
@@ -364,7 +364,7 @@ const formatTableQuery = Object(external_lodash_["memoize"])( // @todo Support h
   return formatProps(isError, isRequesting, tableQuery, revenueData);
 }))(table_RevenueReportTable));
 // EXTERNAL MODULE: ./client/analytics/components/report-filters/index.js
-var report_filters = __webpack_require__(510);
+var report_filters = __webpack_require__(511);
 
 // CONCATENATED MODULE: ./client/analytics/report/revenue/index.js
 
@@ -426,7 +426,7 @@ revenue_RevenueReport.propTypes = {
 
 /***/ }),
 
-/***/ 532:
+/***/ 534:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -435,7 +435,7 @@ revenue_RevenueReport.propTypes = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return filters; });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(31);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(28);
 /* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * External dependencies
@@ -471,14 +471,16 @@ const charts = Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__["applyFilter
   label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Net sales', 'woocommerce-admin'),
   orderby: 'net_revenue',
   type: 'currency',
-  isReverseTrend: false
+  isReverseTrend: false,
+  labelTooltipText: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Full refunds are not deducted from tax or net sales totals', 'woocommerce-admin')
 }, {
   key: 'taxes',
   label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Taxes', 'woocommerce-admin'),
   order: 'desc',
   orderby: 'taxes',
   type: 'currency',
-  isReverseTrend: false
+  isReverseTrend: false,
+  labelTooltipText: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Full refunds are not deducted from tax or net sales totals', 'woocommerce-admin')
 }, {
   key: 'shipping',
   label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Shipping', 'woocommerce-admin'),

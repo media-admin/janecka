@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit7716aaf81beee387df516bcef1059f29
+class ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747
 {
     public static $prefixLengthsPsr4 = array (
         'C' => 
@@ -519,6 +519,7 @@ class ComposerStaticInit7716aaf81beee387df516bcef1059f29
         'Yoast\\WP\\SEO\\Actions\\Configuration\\Configuration_Workout_Action' => __DIR__ . '/../..' . '/src/actions/configuration/configuration-workout-action.php',
         'Yoast\\WP\\SEO\\Actions\\Importing\\Abstract_Aioseo_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/abstract-aioseo-settings-importing-action.php',
         'Yoast\\WP\\SEO\\Actions\\Importing\\Abstract_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/abstract-importing-action.php',
+        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo_Cleanup_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo-cleanup-action.php',
         'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo_Custom_Archive_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo-custom-archive-settings-importing-action.php',
         'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo_Default_Archive_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo-default-archive-settings-importing-action.php',
         'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo_General_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo-general-settings-importing-action.php',
@@ -943,6 +944,7 @@ class ComposerStaticInit7716aaf81beee387df516bcef1059f29
         'Yoast\\WP\\SEO\\Services\\Importing\\Aioseo_Replacevar_Handler' => __DIR__ . '/../..' . '/src/services/importing/aioseo-replacevar-handler.php',
         'Yoast\\WP\\SEO\\Services\\Importing\\Aioseo_Robots_Provider_Service' => __DIR__ . '/../..' . '/src/services/importing/aioseo-robots-provider-service.php',
         'Yoast\\WP\\SEO\\Services\\Importing\\Aioseo_Robots_Transformer_Service' => __DIR__ . '/../..' . '/src/services/importing/aioseo-robots-transformer-service.php',
+        'Yoast\\WP\\SEO\\Services\\Importing\\Aioseo_Social_Images_Provider_Service' => __DIR__ . '/../..' . '/src/services/importing/aioseo-social-images-provider-service.php',
         'Yoast\\WP\\SEO\\Services\\Importing\\Conflicting_Plugins_Service' => __DIR__ . '/../..' . '/src/services/importing/conflicting-plugins-service.php',
         'Yoast\\WP\\SEO\\Services\\Importing\\Importable_Detector' => __DIR__ . '/../..' . '/src/services/importing/importable-detector.php',
         'Yoast\\WP\\SEO\\Services\\Importing\\Importer_Action_Filter_Trait' => __DIR__ . '/../..' . '/src/services/importing/importer-action-filter-trait.php',
@@ -987,9 +989,9 @@ class ComposerStaticInit7716aaf81beee387df516bcef1059f29
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit7716aaf81beee387df516bcef1059f29::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit7716aaf81beee387df516bcef1059f29::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit7716aaf81beee387df516bcef1059f29::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -1071,6 +1071,14 @@ class UpdraftPlus_S3 {
 		$rest = new UpdraftPlus_S3Request('GET', $bucket, '', $this->endpoint, $this->use_dns_bucket_name, $this);
 		$rest->setParameter('location', null);
 		$rest = $rest->getResponse();
+		
+		global $updraftplus;
+		
+		if (false !== $rest->error && 200 !== $rest->code && 'AuthorizationHeaderMalformed' == $rest->error['code'] && !empty($rest->error['region'])) {
+			// The location request was sent to the wrong region... but the response tells us the correct region, which is all we wanted.
+			return $rest->error['region'];
+		}
+		
 		if (false === $rest->error && 200 !== $rest->code) {
 			$rest->error = array('code' => $rest->code, 'message' => 'Unexpected HTTP status');
 		}
@@ -1764,6 +1772,7 @@ final class UpdraftPlus_S3Request {
 				$this->response->error = array(
 					'code' => (string)$this->response->body->Code,
 				);
+				if (isset($this->response->body->Region)) $this->response->error['region'] = $this->response->body->Region;
 				$this->response->error['message'] = isset($this->response->body->Message) ? $this->response->body->Message : '';
 				if (isset($this->response->body->Resource))
 					$this->response->error['resource'] = (string)$this->response->body->Resource;

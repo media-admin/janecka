@@ -204,7 +204,7 @@ class UpdraftPlus_Backup {
 	 * @param Integer		  $index                Index of zip in the sequence
 	 * @param Integer|Boolean $first_linked_index   First linked index in the sequence, or false
 	 *
-	 * @return Boolean
+	 * @return Boolean|Array - list of files, or false for failure
 	 */
 	public function create_zip($create_from_dir, $whichone, $backup_file_basename, $index, $first_linked_index = false) {
 		// Note: $create_from_dir can be an array or a string

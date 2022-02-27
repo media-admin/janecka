@@ -82,12 +82,12 @@ this["wc"] = this["wc"] || {}; this["wc"]["explat"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 465);
+/******/ 	return __webpack_require__(__webpack_require__.s = 466);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 268:
+/***/ 269:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -297,15 +297,22 @@ function tryDecode(str, decode) {
 
 /***/ }),
 
-/***/ 27:
+/***/ 28:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["hooks"]; }());
+
+/***/ }),
+
+/***/ 29:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var stringify = __webpack_require__(58);
-var parse = __webpack_require__(59);
-var formats = __webpack_require__(34);
+var stringify = __webpack_require__(59);
+var parse = __webpack_require__(60);
+var formats = __webpack_require__(36);
 
 module.exports = {
     formats: formats,
@@ -316,7 +323,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 34:
+/***/ 36:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -347,13 +354,13 @@ module.exports = {
 
 /***/ }),
 
-/***/ 41:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var formats = __webpack_require__(34);
+var formats = __webpack_require__(36);
 
 var has = Object.prototype.hasOwnProperty;
 var isArray = Array.isArray;
@@ -606,7 +613,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 465:
+/***/ 466:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1476,12 +1483,16 @@ const logError = error => {
   }
 };
 // EXTERNAL MODULE: ./node_modules/qs/lib/index.js
-var lib = __webpack_require__(27);
+var lib = __webpack_require__(29);
+
+// EXTERNAL MODULE: external ["wp","hooks"]
+var external_wp_hooks_ = __webpack_require__(28);
 
 // CONCATENATED MODULE: ./packages/explat/build-module/assignment.js
 /**
  * External dependencies
  */
+
 
 const EXPLAT_VERSION = '0.1.0';
 const assignment_fetchExperimentAssignment = async ({
@@ -1493,17 +1504,32 @@ const assignment_fetchExperimentAssignment = async ({
   if (!((_a = window.wcTracks) === null || _a === void 0 ? void 0 : _a.isEnabled)) {
     throw new Error(`Tracking is disabled, can't fetch experimentAssignment`);
   }
+  /**
+   * List of URL query parameters to be sent to the server.
+   *
+   * @filter woocommerce_explat_request_args
+   * @example
+   * addFilter(
+   * 	'woocommerce_explat_request_args',
+   * 	'woocommerce_explat_request_args',
+   * ( args ) => {
+   * 	args.experimentName = 'my-experiment';
+   * 	return args;
+   * });
+   *
+   */
 
-  const params = Object(lib["stringify"])({
+
+  const params = Object(external_wp_hooks_["applyFilters"])('woocommerce_explat_request_args', {
     experiment_name: experimentName,
     anon_id: anonId !== null && anonId !== void 0 ? anonId : undefined,
     woo_country_code: ((_d = (_c = (_b = window.wcSettings) === null || _b === void 0 ? void 0 : _b.preloadSettings) === null || _c === void 0 ? void 0 : _c.general) === null || _d === void 0 ? void 0 : _d.woocommerce_default_country) || ((_h = (_g = (_f = (_e = window.wcSettings) === null || _e === void 0 ? void 0 : _e.admin) === null || _f === void 0 ? void 0 : _f.preloadSettings) === null || _g === void 0 ? void 0 : _g.general) === null || _h === void 0 ? void 0 : _h.woocommerce_default_country)
   });
-  const response = await window.fetch(`https://public-api.wordpress.com/wpcom/v2/experiments/${EXPLAT_VERSION}/assignments/woocommerce?${params}`);
+  const response = await window.fetch(`https://public-api.wordpress.com/wpcom/v2/experiments/${EXPLAT_VERSION}/assignments/woocommerce?${Object(lib["stringify"])(params)}`);
   return await response.json();
 };
 // EXTERNAL MODULE: ./packages/explat/node_modules/cookie/index.js
-var cookie = __webpack_require__(268);
+var cookie = __webpack_require__(269);
 var cookie_default = /*#__PURE__*/__webpack_require__.n(cookie);
 
 // CONCATENATED MODULE: ./packages/explat/build-module/anon.js
@@ -1621,14 +1647,14 @@ const {
 
 /***/ }),
 
-/***/ 58:
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(41);
-var formats = __webpack_require__(34);
+var utils = __webpack_require__(42);
+var formats = __webpack_require__(36);
 var has = Object.prototype.hasOwnProperty;
 
 var arrayPrefixGenerators = {
@@ -1907,13 +1933,13 @@ module.exports = function (object, opts) {
 
 /***/ }),
 
-/***/ 59:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(41);
+var utils = __webpack_require__(42);
 
 var has = Object.prototype.hasOwnProperty;
 var isArray = Array.isArray;

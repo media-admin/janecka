@@ -17,7 +17,7 @@ class UpdraftPlus_Admin {
 
 	private $auth_instance_ids = array('dropbox' => array(), 'onedrive' => array(), 'googledrive' => array(), 'googlecloud' => array());
 
-	private $php_versions = array('5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0');
+	private $clone_php_versions = array('5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1');
 
 	private $storage_service_without_settings;
 
@@ -1608,10 +1608,11 @@ class UpdraftPlus_Admin {
 					$updraftplus->close_browser_connection(json_encode($msg));
 				}
 				UpdraftPlus_Storage_Methods_Interface::get_remote_file($services, $file, $timestamp);
+				$needs_downloading = false;
 			}
 
 			// Now, be ready to spool the thing to the browser
-			if (is_file($fullpath) && is_readable($fullpath) && $needs_downloading) {
+			if (is_file($fullpath) && is_readable($fullpath) && !$needs_downloading) {
 
 				// That message is then picked up by the AJAX listener
 				$updraftplus->jobdata_set('dlfile_'.$timestamp.'_'.$type.'_'.$findex, 'downloaded:'.filesize($fullpath).":$fullpath");
@@ -5952,7 +5953,7 @@ ENDHERE;
 
 		$output = '<p class="updraftplus-option updraftplus-option-inline php-version">';
 		$output .= '<span class="updraftplus-option-label">'.sprintf(__('%s version:', 'updraftplus'), 'PHP').'</span> ';
-		$output .= $this->output_select_data($this->php_versions, 'php');
+		$output .= $this->output_select_data($this->clone_php_versions, 'php');
 		$output .= '</p>';
 		$output .= '<p class="updraftplus-option updraftplus-option-inline wp-version">';
 		$output .= ' <span class="updraftplus-option-label">'.sprintf(__('%s version:', 'updraftplus'), 'WordPress').'</span> ';

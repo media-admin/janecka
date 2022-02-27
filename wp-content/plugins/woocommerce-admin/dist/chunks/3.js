@@ -1,6 +1,89 @@
 (window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[3],{
 
-/***/ 520:
+/***/ 518:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport */ getPluginSlug; });
+__webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport */ getPluginTrackKey; });
+__webpack_require__.d(__webpack_exports__, "d", function() { return /* binding */ getUrlParams; });
+__webpack_require__.d(__webpack_exports__, "c", function() { return /* binding */ getScreenName; });
+
+// UNUSED EXPORTS: sift
+
+// CONCATENATED MODULE: ./client/utils/plugins.ts
+function getPluginSlug(id) {
+  return (id || '').split(':', 1)[0];
+}
+function getPluginTrackKey(id) {
+  const slug = getPluginSlug(id);
+  const key = /^woocommerce(-|_)payments$/.test(slug) ? 'wcpay' : `${slug.replace(/-/g, '_')}`.split(':', 1)[0];
+  return key;
+}
+// CONCATENATED MODULE: ./client/utils/index.js
+
+/**
+ * Get the URL params.
+ *
+ * @param {string} locationSearch - Querystring part of a URL, including the question mark (?).
+ * @return {Object} - URL params.
+ */
+
+function getUrlParams(locationSearch) {
+  if (locationSearch) {
+    return locationSearch.substr(1).split('&').reduce((params, query) => {
+      const chunks = query.split('=');
+      const key = chunks[0];
+      let value = decodeURIComponent(chunks[1]);
+      value = isNaN(Number(value)) ? value : Number(value);
+      return params[key] = value, params;
+    }, {});
+  }
+
+  return {};
+}
+/**
+ * Get the current screen name.
+ *
+ * @return {string} - Screen name.
+ */
+
+function getScreenName() {
+  let screenName = '';
+  const {
+    page,
+    path,
+    post_type: postType
+  } = getUrlParams(window.location.search);
+
+  if (page) {
+    const currentPage = page === 'wc-admin' ? 'home_screen' : page;
+    screenName = path ? path.replace(/\//g, '_').substring(1) : currentPage;
+  } else if (postType) {
+    screenName = postType;
+  }
+
+  return screenName;
+}
+/**
+ * Similar to filter, but return two arrays separated by a partitioner function
+ *
+ * @param {Array} arr - Original array of values.
+ * @param {Function} partitioner - Function to return truthy/falsy values to separate items in array.
+ *
+ * @return {Array} - Array of two arrays, first including truthy values, and second including falsy.
+ */
+
+const sift = (arr, partitioner) => arr.reduce((all, curr) => {
+  all[!!partitioner(curr) ? 0 : 1].push(curr);
+  return all;
+}, [[], []]);
+
+/***/ }),
+
+/***/ 522:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17,7 +100,7 @@ var classnames = __webpack_require__(6);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/gridicons/dist/notice-outline.js
-var notice_outline = __webpack_require__(68);
+var notice_outline = __webpack_require__(69);
 var notice_outline_default = /*#__PURE__*/__webpack_require__.n(notice_outline);
 
 // EXTERNAL MODULE: external "moment"
@@ -35,7 +118,7 @@ var external_wc_components_ = __webpack_require__(21);
 var external_wp_components_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: ./client/activity-panel/activity-card/style.scss
-var style = __webpack_require__(554);
+var style = __webpack_require__(555);
 
 // EXTERNAL MODULE: external "lodash"
 var external_lodash_ = __webpack_require__(4);
@@ -212,71 +295,6 @@ activity_card_ActivityCard.defaultProps = {
 
 /***/ }),
 
-/***/ 544:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getUrlParams; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getScreenName; });
-/* unused harmony export sift */
-/**
- * Get the URL params.
- *
- * @param {string} locationSearch - Querystring part of a URL, including the question mark (?).
- * @return {Object} - URL params.
- */
-function getUrlParams(locationSearch) {
-  if (locationSearch) {
-    return locationSearch.substr(1).split('&').reduce((params, query) => {
-      const chunks = query.split('=');
-      const key = chunks[0];
-      let value = decodeURIComponent(chunks[1]);
-      value = isNaN(Number(value)) ? value : Number(value);
-      return params[key] = value, params;
-    }, {});
-  }
-
-  return {};
-}
-/**
- * Get the current screen name.
- *
- * @return {string} - Screen name.
- */
-
-function getScreenName() {
-  let screenName = '';
-  const {
-    page,
-    path,
-    post_type: postType
-  } = getUrlParams(window.location.search);
-
-  if (page) {
-    const currentPage = page === 'wc-admin' ? 'home_screen' : page;
-    screenName = path ? path.replace(/\//g, '_').substring(1) : currentPage;
-  } else if (postType) {
-    screenName = postType;
-  }
-
-  return screenName;
-}
-/**
- * Similar to filter, but return two arrays separated by a partitioner function
- *
- * @param {Array} arr - Original array of values.
- * @param {Function} partitioner - Function to return truthy/falsy values to separate items in array.
- *
- * @return {Array} - Array of two arrays, first including truthy values, and second including falsy.
- */
-
-const sift = (arr, partitioner) => arr.reduce((all, curr) => {
-  all[!!partitioner(curr) ? 0 : 1].push(curr);
-  return all;
-}, [[], []]);
-
-/***/ }),
-
 /***/ 547:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -304,10 +322,10 @@ var external_wp_data_ = __webpack_require__(7);
 var external_wc_tracks_ = __webpack_require__(16);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/TransitionGroup.js + 2 modules
-var TransitionGroup = __webpack_require__(173);
+var TransitionGroup = __webpack_require__(174);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/CSSTransition.js + 3 modules
-var CSSTransition = __webpack_require__(169);
+var CSSTransition = __webpack_require__(170);
 
 // EXTERNAL MODULE: external ["wc","experimental"]
 var external_wc_experimental_ = __webpack_require__(17);
@@ -317,13 +335,13 @@ var external_moment_ = __webpack_require__(9);
 var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
 
 // EXTERNAL MODULE: ./client/activity-panel/activity-card/index.js + 1 modules
-var activity_card = __webpack_require__(520);
+var activity_card = __webpack_require__(522);
 
 // EXTERNAL MODULE: ./client/inbox-panel/utils.js
-var utils = __webpack_require__(176);
+var utils = __webpack_require__(177);
 
-// EXTERNAL MODULE: ./client/utils/index.js
-var client_utils = __webpack_require__(544);
+// EXTERNAL MODULE: ./client/utils/index.js + 1 modules
+var client_utils = __webpack_require__(518);
 
 // CONCATENATED MODULE: ./client/inbox-panel/dissmiss-all-modal.js
 
@@ -394,7 +412,7 @@ const DissmissAllModal = ({
 
 /* harmony default export */ var dissmiss_all_modal = (DissmissAllModal);
 // EXTERNAL MODULE: ./client/inbox-panel/index.scss
-var inbox_panel = __webpack_require__(558);
+var inbox_panel = __webpack_require__(559);
 
 // CONCATENATED MODULE: ./client/inbox-panel/index.js
 
@@ -462,7 +480,7 @@ const renderNotes = ({
     hasFiredPanelViewTrack = true;
   }
 
-  const screen = Object(client_utils["a" /* getScreenName */])();
+  const screen = Object(client_utils["c" /* getScreenName */])();
 
   const onNoteVisible = note => {
     Object(external_wc_tracks_["recordEvent"])('inbox_note_view', {
@@ -579,7 +597,7 @@ const InboxPanel = ({
   const [showDismissAllModal, setShowDismissAllModal] = Object(external_wp_element_["useState"])(false);
 
   const onDismiss = note => {
-    const screen = Object(client_utils["a" /* getScreenName */])();
+    const screen = Object(client_utils["c" /* getScreenName */])();
     Object(external_wc_tracks_["recordEvent"])('inbox_action_dismiss', {
       note_name: note.name,
       note_title: note.title,
@@ -608,7 +626,7 @@ const InboxPanel = ({
 
   const onNoteActionClick = (note, action) => {
     triggerNoteAction(note.id, action.id);
-    const screen = Object(client_utils["a" /* getScreenName */])();
+    const screen = Object(client_utils["c" /* getScreenName */])();
     Object(external_wc_tracks_["recordEvent"])('inbox_action_click', {
       note_content: note.content,
       note_name: note.name,
@@ -662,21 +680,21 @@ const InboxPanel = ({
 
 /***/ }),
 
-/***/ 554:
+/***/ 555:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
 
-/***/ 558:
+/***/ 559:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
 
-/***/ 68:
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -135,12 +135,27 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 
           $('body > .tinv-wishlist').append($msg);
           FocusTrap('body > .tinv-wishlist');
+
+          if (!s.redirectTimer) {
+            s.removeTimer = window.setTimeout(function () {
+              $msg.remove();
+
+              if (s.redirectTimer) {
+                clearTimeout(s.redirectTimer);
+              }
+            }, 6000);
+          }
+
           $msg.on('click', '.tinv-close-modal, .tinvwl_button_close, .tinv-overlay', function (e) {
             e.preventDefault();
             $msg.remove();
 
             if (s.redirectTimer) {
               clearTimeout(s.redirectTimer);
+            }
+
+            if (s.removeTimer) {
+              clearTimeout(s.removeTimer);
             }
           });
         },
@@ -172,6 +187,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 
       if (tinvwl_add_to_wishlist.wpml) {
         data.lang = tinvwl_add_to_wishlist.wpml;
+      }
+
+      if (tinvwl_add_to_wishlist.wpml_default) {
+        data.lang_default = tinvwl_add_to_wishlist.wpml_default;
       }
 
       $('form.cart[method=post][data-product_id="' + $(this).attr('data-tinv-wl-product') + '"], form.vtajaxform[method=post][data-product_id="' + $(this).attr('data-tinv-wl-product') + '"]').each(function () {
@@ -500,6 +519,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           params.lang = tinvwl_add_to_wishlist.wpml;
         }
 
+        if (tinvwl_add_to_wishlist.wpml_default) {
+          params.lang_default = tinvwl_add_to_wishlist.wpml_default;
+        }
+
         $.ajax({
           url: tinvwl_add_to_wishlist.rest_root + 'wishlist/v1/products',
           method: 'POST',
@@ -520,6 +543,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 
         if (tinvwl_add_to_wishlist.wpml) {
           params.lang = tinvwl_add_to_wishlist.wpml;
+        }
+
+        if (tinvwl_add_to_wishlist.wpml_default) {
+          params.lang_default = tinvwl_add_to_wishlist.wpml_default;
         }
 
         $.ajax({

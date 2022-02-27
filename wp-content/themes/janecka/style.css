@@ -10,7 +10,6 @@ Text Domain: janecka
 */
 
 
-
 /* --- FARB-DEFINITIONEN ---
 	Dunkelgrau - #707070
 	Mittelgrau - #979797 (Footer-Background)
@@ -2775,6 +2774,13 @@ section.hero {
 
 .slick-next {
 	right: 0px !important;
+}
+
+
+@media screen and (min-width: 768px) {
+	.slick-next {
+		right: 15px !important;
+	}
 }
 
 

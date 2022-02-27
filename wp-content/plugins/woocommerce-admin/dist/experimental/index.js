@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["experimental"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 466);
+/******/ 	return __webpack_require__(__webpack_require__.s = 467);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -107,13 +107,13 @@ this["wc"] = this["wc"] || {}; this["wc"]["experimental"] =
 if (false) { var throwOnDirectAccess, ReactIs; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(48)();
+  module.exports = __webpack_require__(49)();
 }
 
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -134,7 +134,7 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-var objectWithoutPropertiesLoose = __webpack_require__(22);
+var objectWithoutPropertiesLoose = __webpack_require__(23);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
 
@@ -200,19 +200,19 @@ function Icon(_ref) {
 
 /***/ }),
 
-/***/ 169:
+/***/ 170:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
-var esm_extends = __webpack_require__(23);
+var esm_extends = __webpack_require__(24);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-var objectWithoutPropertiesLoose = __webpack_require__(22);
+var objectWithoutPropertiesLoose = __webpack_require__(23);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js + 1 modules
-var inheritsLoose = __webpack_require__(25);
+var inheritsLoose = __webpack_require__(26);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(1);
@@ -266,7 +266,7 @@ var external_React_ = __webpack_require__(5);
 var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/Transition.js + 1 modules
-var Transition = __webpack_require__(69);
+var Transition = __webpack_require__(70);
 
 // CONCATENATED MODULE: ./node_modules/react-transition-group/esm/CSSTransition.js
 
@@ -555,16 +555,16 @@ CSSTransition_CSSTransition.propTypes =  false ? undefined : {};
 
 /***/ }),
 
-/***/ 173:
+/***/ 174:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-var objectWithoutPropertiesLoose = __webpack_require__(22);
+var objectWithoutPropertiesLoose = __webpack_require__(23);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
-var esm_extends = __webpack_require__(23);
+var esm_extends = __webpack_require__(24);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
 function _assertThisInitialized(self) {
@@ -575,7 +575,7 @@ function _assertThisInitialized(self) {
   return self;
 }
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js + 1 modules
-var inheritsLoose = __webpack_require__(25);
+var inheritsLoose = __webpack_require__(26);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(1);
@@ -585,7 +585,7 @@ var external_React_ = __webpack_require__(5);
 var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/TransitionGroupContext.js
-var TransitionGroupContext = __webpack_require__(33);
+var TransitionGroupContext = __webpack_require__(34);
 
 // CONCATENATED MODULE: ./node_modules/react-transition-group/esm/utils/ChildMapping.js
 
@@ -878,7 +878,7 @@ TransitionGroup_TransitionGroup.defaultProps = defaultProps;
 
 /***/ }),
 
-/***/ 22:
+/***/ 23:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -900,7 +900,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 /***/ }),
 
-/***/ 23:
+/***/ 24:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -925,7 +925,7 @@ function _extends() {
 
 /***/ }),
 
-/***/ 25:
+/***/ 26:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -952,12 +952,12 @@ function _inheritsLoose(subClass, superClass) {
 
 /***/ }),
 
-/***/ 267:
+/***/ 268:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(5), __webpack_require__(29));
+		module.exports = factory(__webpack_require__(5), __webpack_require__(31));
 	else {}
 })(this, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__) {
 return /******/ (function(modules) { // webpackBootstrap
@@ -1548,7 +1548,7 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ 280:
+/***/ 281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1573,7 +1573,7 @@ var chevronUp = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createEl
 
 /***/ }),
 
-/***/ 281:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1598,13 +1598,6 @@ var chevronDown = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["create
 
 /***/ }),
 
-/***/ 29:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["ReactDOM"]; }());
-
-/***/ }),
-
 /***/ 3:
 /***/ (function(module, exports) {
 
@@ -1612,14 +1605,21 @@ var chevronDown = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["create
 
 /***/ }),
 
-/***/ 30:
+/***/ 31:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["ReactDOM"]; }());
+
+/***/ }),
+
+/***/ 32:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["keycodes"]; }());
 
 /***/ }),
 
-/***/ 33:
+/***/ 34:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1630,7 +1630,7 @@ var chevronDown = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["create
 
 /***/ }),
 
-/***/ 466:
+/***/ 467:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1658,13 +1658,13 @@ __webpack_require__.d(__webpack_exports__, "VerticalCSSTransition", function() {
 var external_wp_components_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/CSSTransition.js + 3 modules
-var CSSTransition = __webpack_require__(169);
+var CSSTransition = __webpack_require__(170);
 
 // EXTERNAL MODULE: external ["wp","element"]
 var external_wp_element_ = __webpack_require__(0);
 
 // EXTERNAL MODULE: external ["wp","keycodes"]
-var external_wp_keycodes_ = __webpack_require__(30);
+var external_wp_keycodes_ = __webpack_require__(32);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__(6);
@@ -1724,7 +1724,7 @@ const ExperimentalListItem = ({
   }), children));
 };
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/TransitionGroup.js + 2 modules
-var TransitionGroup = __webpack_require__(173);
+var TransitionGroup = __webpack_require__(174);
 
 // CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/experimental-list.js
 /**
@@ -1769,16 +1769,16 @@ const ExperimentalList = ({
   }));
 };
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/icon/index.js + 2 modules
-var icon = __webpack_require__(117);
+var icon = __webpack_require__(118);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/chevron-down.js
-var chevron_down = __webpack_require__(281);
+var chevron_down = __webpack_require__(282);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/chevron-up.js
-var chevron_up = __webpack_require__(280);
+var chevron_up = __webpack_require__(281);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/Transition.js + 1 modules
-var Transition = __webpack_require__(69);
+var Transition = __webpack_require__(70);
 
 // CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/collapsible-list/index.js
 /**
@@ -2007,17 +2007,17 @@ const ExperimentalCollapsibleList = ({
 var external_wp_i18n_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/check.js
-var check = __webpack_require__(478);
+var check = __webpack_require__(480);
 
 // EXTERNAL MODULE: ./node_modules/gridicons/dist/notice-outline.js
-var notice_outline = __webpack_require__(68);
+var notice_outline = __webpack_require__(69);
 var notice_outline_default = /*#__PURE__*/__webpack_require__.n(notice_outline);
 
 // EXTERNAL MODULE: external ["wc","components"]
 var external_wc_components_ = __webpack_require__(21);
 
 // EXTERNAL MODULE: ./node_modules/dompurify/dist/purify.js
-var purify = __webpack_require__(55);
+var purify = __webpack_require__(56);
 
 // CONCATENATED MODULE: ./packages/experimental/build-module/vertical-css-transition/vertical-css-transition.js
 /**
@@ -2333,7 +2333,7 @@ const TaskItem = ({
   }));
 };
 // EXTERNAL MODULE: ./node_modules/react-visibility-sensor/dist/visibility-sensor.js
-var visibility_sensor = __webpack_require__(267);
+var visibility_sensor = __webpack_require__(268);
 var visibility_sensor_default = /*#__PURE__*/__webpack_require__.n(visibility_sensor);
 
 // EXTERNAL MODULE: external "moment"
@@ -2537,7 +2537,6 @@ const InboxNoteCard = ({
   }
 
   const unread = is_read === false;
-  const date = dateCreated;
   const hasImage = layout === 'thumbnail';
   const cardClassName = classnames_default()('woocommerce-inbox-message', className, layout, {
     'message-is-unread': unread && status === 'unactioned'
@@ -2560,9 +2559,9 @@ const InboxNoteCard = ({
     className: "woocommerce-inbox-message__content"
   }, unread && Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-inbox-message__unread-indicator"
-  }), date && Object(external_wp_element_["createElement"])("span", {
+  }), dateCreatedGmt && Object(external_wp_element_["createElement"])("span", {
     className: "woocommerce-inbox-message__date"
-  }, external_moment_default.a.utc(date).fromNow()), Object(external_wp_element_["createElement"])(external_wc_components_["H"], {
+  }, external_moment_default.a.utc(dateCreatedGmt).fromNow()), Object(external_wp_element_["createElement"])(external_wc_components_["H"], {
     className: "woocommerce-inbox-message__title"
   }, note.actions && note.actions.length === 1 && Object(external_wp_element_["createElement"])(InboxNoteActionButton, {
     key: note.actions[0].id,
@@ -2688,7 +2687,7 @@ const useSlot = external_wp_components_["useSlot"] || external_wp_components_["_
 
 /***/ }),
 
-/***/ 478:
+/***/ 480:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2713,7 +2712,7 @@ var check = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElemen
 
 /***/ }),
 
-/***/ 48:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2726,7 +2725,7 @@ var check = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElemen
 
 
 
-var ReactPropTypesSecret = __webpack_require__(49);
+var ReactPropTypesSecret = __webpack_require__(50);
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -2785,7 +2784,14 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 49:
+/***/ 5:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["React"]; }());
+
+/***/ }),
+
+/***/ 50:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2805,14 +2811,7 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ 5:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["React"]; }());
-
-/***/ }),
-
-/***/ 55:
+/***/ 56:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*! @license DOMPurify | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.2.2/LICENSE */
@@ -4239,7 +4238,7 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ 68:
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4248,7 +4247,7 @@ var _extends=Object.assign||function(a){for(var c,b=1;b<arguments.length;b++)for
 
 /***/ }),
 
-/***/ 69:
+/***/ 70:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4256,10 +4255,10 @@ var _extends=Object.assign||function(a){for(var c,b=1;b<arguments.length;b++)for
 // UNUSED EXPORTS: UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-var objectWithoutPropertiesLoose = __webpack_require__(22);
+var objectWithoutPropertiesLoose = __webpack_require__(23);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js + 1 modules
-var inheritsLoose = __webpack_require__(25);
+var inheritsLoose = __webpack_require__(26);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(1);
@@ -4269,7 +4268,7 @@ var external_React_ = __webpack_require__(5);
 var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
 
 // EXTERNAL MODULE: external "ReactDOM"
-var external_ReactDOM_ = __webpack_require__(29);
+var external_ReactDOM_ = __webpack_require__(31);
 var external_ReactDOM_default = /*#__PURE__*/__webpack_require__.n(external_ReactDOM_);
 
 // CONCATENATED MODULE: ./node_modules/react-transition-group/esm/config.js
@@ -4277,7 +4276,7 @@ var external_ReactDOM_default = /*#__PURE__*/__webpack_require__.n(external_Reac
   disabled: false
 });
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/TransitionGroupContext.js
-var TransitionGroupContext = __webpack_require__(33);
+var TransitionGroupContext = __webpack_require__(34);
 
 // CONCATENATED MODULE: ./node_modules/react-transition-group/esm/Transition.js
 

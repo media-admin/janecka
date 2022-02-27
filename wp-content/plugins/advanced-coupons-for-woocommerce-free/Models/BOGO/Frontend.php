@@ -290,7 +290,7 @@ class Frontend implements Model_Interface
             $discounted_prices = array(); // list new prices per coupon discount and quantity.
 
             foreach ($deals as $deal) {
-                $discount = $deal['discount'];
+                $discount        = \ACFWF()->Helper_Functions->calculate_discount_by_type($deal['discount_type'], $deal['discount'], $price);
                 $total_discount += $discount * $deal['quantity'];
 
                 if (!isset($discounted_prices[$discount])) {

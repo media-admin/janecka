@@ -116,6 +116,7 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
 
                 if ( 'Woodmart' === $this->current_theme ) {
                     add_action( 'wp_head', array( $this, 'woodmart_head_action' ) );
+                    add_filter( 'aws_seamless_search_form_filter', array( $this, 'woodmart_seamless_search_form_filter' ), 10, 2 );
                 }
 
                 if ( 'Astra' === $this->current_theme ) {
@@ -859,6 +860,17 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
              </style>
 
         <?php }
+
+        /*
+         * Woodmart theme: Filter default search form markup
+         */
+        public function woodmart_seamless_search_form_filter( $markup, $search_form ) {
+            if ( strpos( $search_form, 'wd-search-full-screen' ) !== false ) {
+                $pattern = '/(<form[\s\S]*?<\/form>)/i';
+                $markup = preg_replace( $pattern, $markup, $search_form );
+            }
+            return $markup;
+        }
 
         /*
          * Astra theme form markup

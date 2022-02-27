@@ -1,13 +1,13 @@
 (window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[52],{
 
-/***/ 516:
+/***/ 517:
 /***/ (function(module, exports) {
 
 module.exports = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPG1hc2sgaWQ9Im1hc2swIiBzdHlsZT0ibWFzay10eXBlOmFscGhhIiBtYXNrVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSIyIiB5PSIxIiB3aWR0aD0iMTIiIGhlaWdodD0iMTQiPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTYgMS4wMDI5M0gxMFYyLjMzNjI2SDZWMS4wMDI5M1pNNy4zMzMzMyA5LjY2OTZWNS42Njk2SDguNjY2NjdWOS42Njk2SDcuMzMzMzNaTTEyLjY4NjcgNS4yNTYyNkwxMy42MzMzIDQuMzA5NkMxMy4zNDY3IDMuOTY5NiAxMy4wMzMzIDMuNjQ5NiAxMi42OTMzIDMuMzY5NkwxMS43NDY3IDQuMzE2MjZDMTAuNzEzMyAzLjQ4OTYgOS40MTMzMyAyLjk5NjI2IDggMi45OTYyNkM0LjY4NjY3IDIuOTk2MjYgMiA1LjY4MjkzIDIgOC45OTYyNkMyIDEyLjMwOTYgNC42OCAxNC45OTYzIDggMTQuOTk2M0MxMS4zMiAxNC45OTYzIDE0IDEyLjMwOTYgMTQgOC45OTYyNkMxNCA3LjU4OTYgMTMuNTA2NyA2LjI4OTYgMTIuNjg2NyA1LjI1NjI2Wk0zLjMzMzMzIDkuMDAyOTNDMy4zMzMzMyAxMS41ODI5IDUuNDIgMTMuNjY5NiA4IDEzLjY2OTZDMTAuNTggMTMuNjY5NiAxMi42NjY3IDExLjU4MjkgMTIuNjY2NyA5LjAwMjkzQzEyLjY2NjcgNi40MjI5MyAxMC41OCA0LjMzNjI2IDggNC4zMzYyNkM1LjQyIDQuMzM2MjYgMy4zMzMzMyA2LjQyMjkzIDMuMzMzMzMgOS4wMDI5M1oiIGZpbGw9IndoaXRlIi8+CjwvbWFzaz4KPGcgbWFzaz0idXJsKCNtYXNrMCkiPgo8cmVjdCB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IiM3ODdDODIiLz4KPC9nPgo8L3N2Zz4K"
 
 /***/ }),
 
-/***/ 542:
+/***/ 544:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49,7 +49,7 @@ var external_wp_data_ = __webpack_require__(7);
 var external_wc_data_ = __webpack_require__(11);
 
 // EXTERNAL MODULE: ./client/tasks/tasks.scss
-var tasks_tasks = __webpack_require__(529);
+var tasks_tasks = __webpack_require__(531);
 
 // EXTERNAL MODULE: ./client/two-column-tasks/style.scss
 var style = __webpack_require__(545);
@@ -74,14 +74,14 @@ var classnames = __webpack_require__(6);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./client/tasks/task-list.scss
-var task_list = __webpack_require__(522);
+var task_list = __webpack_require__(524);
 
 // EXTERNAL MODULE: ./client/two-column-tasks/headers/timer.svg
-var timer = __webpack_require__(516);
+var timer = __webpack_require__(517);
 var timer_default = /*#__PURE__*/__webpack_require__.n(timer);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/extends.js
-var helpers_extends = __webpack_require__(36);
+var helpers_extends = __webpack_require__(37);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
 // CONCATENATED MODULE: ./client/two-column-tasks/headers/illustrations/add-tax-rates.js
@@ -216,7 +216,7 @@ const TaxHeader = ({
   return Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task-header__contents-container"
   }, Object(external_wp_element_["createElement"])(add_tax_rates, {
-    class: "svg-background"
+    className: "svg-background"
   }), Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task-header__contents"
   }, Object(external_wp_element_["createElement"])("h1", null, Object(external_wp_i18n_["__"])('Next up, add your tax rates', 'woocommerce-admin')), Object(external_wp_element_["createElement"])("p", null, task.content), Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
@@ -342,7 +342,7 @@ const MarketingHeader = ({
   return Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task-header__contents-container"
   }, Object(external_wp_element_["createElement"])(get_more_sales, {
-    class: "svg-background"
+    className: "svg-background"
   }), Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task-header__contents"
   }, Object(external_wp_element_["createElement"])("h1", null, Object(external_wp_i18n_["__"])('Get more sales', 'woocommerce-admin')), Object(external_wp_element_["createElement"])("p", null, Object(external_wp_i18n_["__"])('Add tools to grow your store such as email, social, and in-person selling', 'woocommerce-admin')), Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
@@ -586,7 +586,7 @@ const AppearanceHeader = ({
   return Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task-header__contents-container"
   }, Object(external_wp_element_["createElement"])(personalize_my_store, {
-    class: "svg-background"
+    className: "svg-background"
   }), Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task-header__contents"
   }, Object(external_wp_element_["createElement"])("h1", null, Object(external_wp_i18n_["__"])('Personalize my store', 'woocommerce-admin')), Object(external_wp_element_["createElement"])("p", null, Object(external_wp_i18n_["__"])('Add your logo, create a homepage, and start designing your store', 'woocommerce-admin')), Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
@@ -711,7 +711,7 @@ const ShippingHeader = ({
   return Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task-header__contents-container"
   }, Object(external_wp_element_["createElement"])(shipping, {
-    class: "svg-background"
+    className: "svg-background"
   }), Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task-header__contents"
   }, Object(external_wp_element_["createElement"])("h1", null, Object(external_wp_i18n_["__"])('Set up shipping for your store', 'woocommerce-admin')), Object(external_wp_element_["createElement"])("p", null, Object(external_wp_i18n_["__"])('Configure shipping zones and rates', 'woocommerce-admin')), Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
@@ -1404,7 +1404,7 @@ const ProductsHeader = ({
   return Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task-header__contents-container"
   }, Object(external_wp_element_["createElement"])(add_products, {
-    class: "svg-background"
+    className: "svg-background"
   }), Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task-header__contents"
   }, Object(external_wp_element_["createElement"])("h1", null, Object(external_wp_i18n_["__"])('Add products to start selling')), Object(external_wp_element_["createElement"])("p", null, Object(external_wp_i18n_["__"])('Add your first products and see them shine on your store! You can add your products manually or import them.')), Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
@@ -1587,7 +1587,7 @@ const WoocommercePaymentsHeader = ({
   return Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task-header__contents-container"
   }, Object(external_wp_element_["createElement"])(get_paid, {
-    class: "svg-background"
+    className: "svg-background"
   }), Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task-header__contents"
   }, Object(external_wp_element_["createElement"])("h1", null, Object(external_wp_i18n_["__"])("It's time to get paid", 'woocommerce-admin')), Object(external_wp_element_["createElement"])("p", null, Object(external_wp_i18n_["__"])("You're only one step away from getting paid. Verify your business details to start managing transactions with WooCommerce Payments.", 'woocommerce-admin')), Object(external_wp_element_["createElement"])("p", null, lib_default()({
@@ -2017,10 +2017,10 @@ const TaskListPlaceholder = props => {
 
 /* harmony default export */ var placeholder = (TaskListPlaceholder);
 // EXTERNAL MODULE: ./client/tasks/task.tsx + 1 modules
-var tasks_task = __webpack_require__(543);
+var tasks_task = __webpack_require__(548);
 
 // EXTERNAL MODULE: ./client/two-column-tasks/allowed-tasks.js
-var allowed_tasks = __webpack_require__(542);
+var allowed_tasks = __webpack_require__(544);
 
 // CONCATENATED MODULE: ./client/two-column-tasks/index.js
 
@@ -2117,7 +2117,14 @@ const TaskDashboard = ({
   // Any other remaining tasks will be moved to the extended task list.
 
 
-  const setupTasks = taskLists[0].tasks.filter(setupTask => allowed_tasks["a" /* default */].includes(setupTask.id));
+  const setupTasks = taskLists[0].tasks.filter(setupTask => {
+    if (setupTask.id === 'woocommerce-payments' && setupTask.isComplete) {
+      // filter out woocommerce payments task if complete.
+      return false;
+    }
+
+    return allowed_tasks["a" /* default */].includes(setupTask.id);
+  });
   const completedTasks = setupTasks.filter(setupTask => setupTask.isComplete);
   const isTaskListComplete = setupTasks.length === completedTasks.length;
   const dismissedTasks = setupTasks.filter(setupTask => setupTask.isDismissed);

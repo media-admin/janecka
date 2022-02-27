@@ -18,7 +18,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inbox_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(606);
 /* harmony import */ var _inbox_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inbox_scss__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _inbox_panel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(547);
-/* harmony import */ var _abbreviated_notifications_panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(256);
+/* harmony import */ var _abbreviated_notifications_panel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(257);
 
 
 /**

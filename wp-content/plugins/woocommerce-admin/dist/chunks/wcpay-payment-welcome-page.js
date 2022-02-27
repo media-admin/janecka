@@ -1,6 +1,6 @@
 (window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[54],{
 
-/***/ 601:
+/***/ 602:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
@@ -15,7 +15,7 @@
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/extends.js
-var helpers_extends = __webpack_require__(36);
+var helpers_extends = __webpack_require__(37);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
 // EXTERNAL MODULE: external ["wp","element"]
@@ -29,9 +29,6 @@ var external_wc_tracks_ = __webpack_require__(16);
 
 // EXTERNAL MODULE: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7);
-
-// EXTERNAL MODULE: ./packages/wc-admin-settings/build-module/index.js
-var build_module = __webpack_require__(13);
 
 // EXTERNAL MODULE: external ["wc","data"]
 var external_wc_data_ = __webpack_require__(11);
@@ -59,11 +56,11 @@ var external_wp_i18n_ = __webpack_require__(2);
   limitedTimeOffer: Object(external_wp_i18n_["__"])('Limited time offer', 'woocommerce-admin'),
   heading: Object(external_wp_i18n_["__"])('WooCommerce Payments', 'woocommerce-admin'),
   bannerHeading: Object(external_wp_i18n_["__"])('Save big with WooCommerce Payments', 'woocommerce-admin'),
-  bannerCopy: Object(external_wp_i18n_["__"])('50% transaction fee discount for up to $125,000 in payments or six months', 'woocommerce-admin'),
+  bannerCopy: Object(external_wp_i18n_["__"])('No card transaction fees for up to 3 months (or $25,000 in payments)', 'woocommerce-admin'),
   discountCopy: Object(external_wp_i18n_["__"])('Discount will be applied upon install and completed setup of WooCommerce Payments', 'woocommerce-admin'),
   learnMore: Object(external_wp_i18n_["__"])('Learn more', 'woocommerce-admin'),
   onboarding: {
-    description: Object(external_wp_i18n_["__"])("Save 50% on transaction fees by managing transactions with WooCommerce Payments. With WooCommerce Payments, you can securely accept major cards, Apple Pay, and payments in over 100 currencies. Track cash flow and manage recurring revenue directly from your store's dashboard - with no setup costs or monthly fees.", 'woocommerce-admin')
+    description: Object(external_wp_i18n_["__"])("Save up to $800 in fees by managing transactions with WooCommerce Payments. With WooCommerce Payments, you can securely accept major cards, Apple Pay, and payments in over 100 currencies. Track cash flow and manage recurring revenue directly from your store's dashboard - with no setup costs or monthly fees.", 'woocommerce-admin')
   },
   paymentMethodsHeading: Object(external_wp_i18n_["__"])('Accepted payment methods', 'woocommerce-admin'),
   surveyTitle: Object(external_wp_i18n_["__"])('Remove WooCommerce Payments', 'woocommerce-admin'),
@@ -850,13 +847,13 @@ Object(external_wp_element_["createElement"])("svg", {
   fill: "#2E4F7D"
 })));
 // EXTERNAL MODULE: ./client/payments-welcome/style.scss
-var style = __webpack_require__(601);
+var style = __webpack_require__(602);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/icon/index.js + 2 modules
-var icon = __webpack_require__(117);
+var icon = __webpack_require__(118);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/help.js
-var help = __webpack_require__(503);
+var help = __webpack_require__(504);
 
 // CONCATENATED MODULE: ./client/payments-welcome/faq.tsx
 
@@ -1028,6 +1025,9 @@ function ExitSurveyModal({
 }
 
 /* harmony default export */ var exit_survey_modal = (ExitSurveyModal);
+// EXTERNAL MODULE: ./client/utils/admin-settings.js
+var admin_settings = __webpack_require__(22);
+
 // CONCATENATED MODULE: ./client/payments-welcome/index.tsx
 
 
@@ -1035,7 +1035,6 @@ function ExitSurveyModal({
 /**
  * External dependencies
  */
-
 
 
 
@@ -1061,7 +1060,8 @@ function ExitSurveyModal({
 
 
 
-const PROMO_NAME = 'wcpay-promo-2021-6-incentive-2';
+
+const PROMO_NAME = 'wcpay-promo-2022-3-incentive-100-off';
 
 const LearnMore = () => {
   const handleClick = () => {
@@ -1192,7 +1192,7 @@ const ConnectAccountPage = () => {
     pageViewTimestamp = typeof pageViewTimestamp === 'undefined' || typeof pageViewTimestamp === 'string' ? true : false;
     return {
       isJetpackConnected: select('wc/admin/plugins').isJetpackConnected(),
-      connectUrl: 'admin.php?wcpay-connect=1&_wpnonce=' + Object(build_module["f" /* getSetting */])('wcpay_welcome_page_connect_nonce'),
+      connectUrl: 'admin.php?wcpay-connect=1&_wpnonce=' + Object(admin_settings["d" /* getAdminSetting */])('wcpay_welcome_page_connect_nonce'),
       hasViewedWelcomePage: pageViewTimestamp
     };
   });

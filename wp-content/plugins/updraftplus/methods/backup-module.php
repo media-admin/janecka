@@ -445,7 +445,7 @@ abstract class UpdraftPlus_BackupModule {
 				}
 				
 				// UpdraftPlus_BackupModule::get_options() is for getting the current instance's options. So, this branch (going via the job option) is a legacy route, and hence we just give back the first one. The non-legacy route is to call the set_options() method externally.
-				$options = reset($options_full['settings']);
+				$options = (isset($options_full['settings']) && is_array($options_full['settings'])) ? reset($options_full['settings']) : false;
 
 				if (false === $options) {
 					$updraftplus->log("Options retrieval failure (no options set)");

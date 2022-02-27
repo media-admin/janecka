@@ -1,6 +1,6 @@
 (window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[49],{
 
-/***/ 475:
+/***/ 476:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25,7 +25,7 @@ var chevronRight = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["creat
 
 /***/ }),
 
-/***/ 477:
+/***/ 478:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50,13 +50,13 @@ var chevronLeft = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["create
 
 /***/ }),
 
-/***/ 513:
+/***/ 514:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export ALLOWED_TAGS */
 /* unused harmony export ALLOWED_ATTR */
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(55);
+/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(56);
 /* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * External dependencies
@@ -75,7 +75,7 @@ const ALLOWED_ATTR = ['target', 'href', 'rel', 'name', 'download'];
 
 /***/ }),
 
-/***/ 548:
+/***/ 549:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
@@ -110,7 +110,7 @@ var lib = __webpack_require__(19);
 var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 // EXTERNAL MODULE: external ["wp","compose"]
-var external_wp_compose_ = __webpack_require__(14);
+var external_wp_compose_ = __webpack_require__(13);
 
 // EXTERNAL MODULE: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7);
@@ -120,16 +120,13 @@ var external_moment_ = __webpack_require__(9);
 var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/icon/index.js + 2 modules
-var icon = __webpack_require__(117);
+var icon = __webpack_require__(118);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/chevron-left.js
-var chevron_left = __webpack_require__(477);
+var chevron_left = __webpack_require__(478);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/chevron-right.js
-var chevron_right = __webpack_require__(475);
-
-// EXTERNAL MODULE: ./packages/wc-admin-settings/build-module/index.js
-var build_module = __webpack_require__(13);
+var chevron_right = __webpack_require__(476);
 
 // EXTERNAL MODULE: external ["wc","data"]
 var external_wc_data_ = __webpack_require__(11);
@@ -141,7 +138,7 @@ var external_wc_tracks_ = __webpack_require__(16);
 var external_wc_experimental_ = __webpack_require__(17);
 
 // EXTERNAL MODULE: ./client/lib/sanitize-html/index.js
-var sanitize_html = __webpack_require__(513);
+var sanitize_html = __webpack_require__(514);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(1);
@@ -197,8 +194,11 @@ placeholder_StoreAlertsPlaceholder.propTypes = {
 placeholder_StoreAlertsPlaceholder.defaultProps = {
   hasMultipleAlerts: false
 };
+// EXTERNAL MODULE: ./client/utils/admin-settings.js
+var admin_settings = __webpack_require__(22);
+
 // EXTERNAL MODULE: ./client/layout/store-alerts/style.scss
-var style = __webpack_require__(548);
+var style = __webpack_require__(549);
 
 // CONCATENATED MODULE: ./client/layout/store-alerts/index.js
 
@@ -218,10 +218,10 @@ var style = __webpack_require__(548);
 
 
 
-
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -339,7 +339,7 @@ class store_alerts_StoreAlerts extends external_wp_element_["Component"] {
 
   render() {
     const alerts = this.getAlerts();
-    const preloadAlertCount = Object(build_module["f" /* getSetting */])('alertCount', 0, count => parseInt(count, 10));
+    const preloadAlertCount = Object(admin_settings["d" /* getAdminSetting */])('alertCount', 0, count => parseInt(count, 10));
 
     if (preloadAlertCount > 0 && this.props.isLoading) {
       return Object(external_wp_element_["createElement"])(placeholder, {

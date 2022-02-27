@@ -89,8 +89,21 @@ class UpdraftPlus_BackupModule_s3 extends UpdraftPlus_BackupModule {
 		$class_to_use = 'UpdraftPlus_S3';
 		
 		// If on a PHP version supported by the AWS SDK, and if the constant forcing the internal toolkit is not set, then consider using it. The 3.x branch of the AWS SDK requires PHP 5.5+
+		// The "old" in the define is a legacy reference to a time before v4 signatures were in that library.
 		if (version_compare(PHP_VERSION, '5.5', '>=') && $this->provider_can_use_aws_sdk && (!defined('UPDRAFTPLUS_S3_OLDLIB') || !UPDRAFTPLUS_S3_OLDLIB)) {
-			$class_to_use = 'UpdraftPlus_S3_Compat';
+			
+			// From 0 to 255. Not intended to be perfectly evenly distributed.
+			$site_based_num = hexdec(substr(md5(network_site_url()), 0, 2));
+			
+			$days_since_24feb2022 = floor((time() - 1645700793)/86400);
+			
+			// Starts at 0 and hits 255 after 51 days
+			$day_score = $days_since_24feb2022 * 5;
+			
+			// Switch to AWS SDK increasingly less over time
+			if (!function_exists('curl_init') || $day_score <= $site_based_num || (defined('UPDRAFTPLUS_FORCE_S3_AWS_SDK') && UPDRAFTPLUS_FORCE_S3_AWS_SDK) || apply_filters('updraftplus_indicate_s3_class_prefer_aws_sdk', false)) {
+				$class_to_use = 'UpdraftPlus_S3_Compat';
+			}
 		}
 
 		if (!class_exists($class_to_use)) {
@@ -291,7 +304,7 @@ class UpdraftPlus_BackupModule_s3 extends UpdraftPlus_BackupModule {
 		}
 
 		if (isset($endpoint)) {
-			$this->log("Set region: $region");
+			$this->log("Set region (".get_class($obj)."): $region");
 			$obj->setRegion($region);
 
 			if (!is_a($obj, 'UpdraftPlus_S3_Compat')) {
@@ -1127,19 +1140,26 @@ class UpdraftPlus_BackupModule_s3 extends UpdraftPlus_BackupModule {
 
 					// We don't put this in a separate catch block which names the exception, since we need to remain compatible with PHP 5.2
 					if (is_a($storage, 'UpdraftPlus_S3_Compat') && is_a($e, 'Aws\S3\Exception\S3Exception')) {
-						$xml = new SimpleXMLElement((string) $e->getResponse()->getBody(), LIBXML_NONET);
-
-						if (!empty($xml->Code) && 'AuthorizationHeaderMalformed' == $xml->Code->__toString() && !empty($xml->Region)) {
-
-							$this->set_region($storage, $xml->Region->__toString());
-							$storage->setExceptions(false);
-							
-							if (false !== @$storage->getBucket($bucket, $path, null, 1)) {// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-								$bucket_exists = true;
-							}
-							
-						} else {
+						
+						$response = $e->getResponse();
+						
+						if (is_null($response)) {
 							$this->s3_exception = $e;
+						} else {
+							$xml = new SimpleXMLElement((string) $response->getBody(), LIBXML_NONET);
+
+							if (!empty($xml->Code) && 'AuthorizationHeaderMalformed' == $xml->Code->__toString() && !empty($xml->Region)) {
+	
+								$this->set_region($storage, $xml->Region->__toString());
+								$storage->setExceptions(false);
+								
+								if (false !== @$storage->getBucket($bucket, $path, null, 1)) {// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+									$bucket_exists = true;
+								}
+								
+							} else {
+								$this->s3_exception = $e;
+							}
 						}
 					} else {
 						$this->s3_exception = $e;

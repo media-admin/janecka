@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["data"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 464);
+/******/ 	return __webpack_require__(__webpack_require__.s = 465);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -108,7 +108,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["data"] =
 
 /***/ }),
 
-/***/ 14:
+/***/ 13:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["compose"]; }());
@@ -143,7 +143,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["data"] =
 
 /***/ }),
 
-/***/ 253:
+/***/ 254:
 /***/ (function(module, exports) {
 
 var charenc = {
@@ -183,7 +183,7 @@ module.exports = charenc;
 
 /***/ }),
 
-/***/ 269:
+/***/ 270:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*! @license DOMPurify 2.3.3 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.3.3/LICENSE */
@@ -1587,33 +1587,14 @@ module.exports = charenc;
 
 /***/ }),
 
-/***/ 27:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var stringify = __webpack_require__(58);
-var parse = __webpack_require__(59);
-var formats = __webpack_require__(34);
-
-module.exports = {
-    formats: formats,
-    parse: parse,
-    stringify: stringify
-};
-
-
-/***/ }),
-
-/***/ 270:
+/***/ 271:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function(){
-  var crypt = __webpack_require__(450),
-      utf8 = __webpack_require__(253).utf8,
-      isBuffer = __webpack_require__(451),
-      bin = __webpack_require__(253).bin,
+  var crypt = __webpack_require__(451),
+      utf8 = __webpack_require__(254).utf8,
+      isBuffer = __webpack_require__(452),
+      bin = __webpack_require__(254).bin,
 
   // The core
   md5 = function (message, options) {
@@ -1773,14 +1754,33 @@ module.exports = {
 
 /***/ }),
 
-/***/ 31:
+/***/ 28:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["hooks"]; }());
 
 /***/ }),
 
-/***/ 34:
+/***/ 29:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var stringify = __webpack_require__(59);
+var parse = __webpack_require__(60);
+var formats = __webpack_require__(36);
+
+module.exports = {
+    formats: formats,
+    parse: parse,
+    stringify: stringify
+};
+
+
+/***/ }),
+
+/***/ 36:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1818,20 +1818,20 @@ module.exports = {
 
 /***/ }),
 
-/***/ 40:
+/***/ 41:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["deprecated"]; }());
 
 /***/ }),
 
-/***/ 41:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var formats = __webpack_require__(34);
+var formats = __webpack_require__(36);
 
 var has = Object.prototype.hasOwnProperty;
 var isArray = Array.isArray;
@@ -2084,14 +2084,14 @@ module.exports = {
 
 /***/ }),
 
-/***/ 449:
+/***/ 450:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["coreData"]; }());
 
 /***/ }),
 
-/***/ 450:
+/***/ 451:
 /***/ (function(module, exports) {
 
 (function() {
@@ -2194,7 +2194,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 451:
+/***/ 452:
 /***/ (function(module, exports) {
 
 /*!
@@ -2222,7 +2222,7 @@ function isSlowBuffer (obj) {
 
 /***/ }),
 
-/***/ 464:
+/***/ 465:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2251,6 +2251,7 @@ __webpack_require__.d(__webpack_exports__, "REPORTS_STORE_NAME", function() { re
 __webpack_require__.d(__webpack_exports__, "ITEMS_STORE_NAME", function() { return /* reexport */ ITEMS_STORE_NAME; });
 __webpack_require__.d(__webpack_exports__, "getLeaderboard", function() { return /* reexport */ getLeaderboard; });
 __webpack_require__.d(__webpack_exports__, "searchItemsByString", function() { return /* reexport */ searchItemsByString; });
+__webpack_require__.d(__webpack_exports__, "COUNTRIES_STORE_NAME", function() { return /* reexport */ COUNTRIES_STORE_NAME; });
 __webpack_require__.d(__webpack_exports__, "NAVIGATION_STORE_NAME", function() { return /* reexport */ NAVIGATION_STORE_NAME; });
 __webpack_require__.d(__webpack_exports__, "withNavigationHydration", function() { return /* reexport */ withNavigationHydration; });
 __webpack_require__.d(__webpack_exports__, "PAYMENT_GATEWAYS_STORE_NAME", function() { return /* reexport */ PAYMENT_GATEWAYS_STORE_NAME; });
@@ -2548,6 +2549,24 @@ __webpack_require__.d(items_resolvers_namespaceObject, "getItems", function() { 
 __webpack_require__.d(items_resolvers_namespaceObject, "getReviewsTotalCount", function() { return items_resolvers_getReviewsTotalCount; });
 __webpack_require__.d(items_resolvers_namespaceObject, "getItemsTotalCount", function() { return resolvers_getItemsTotalCount; });
 
+// NAMESPACE OBJECT: ./packages/data/build-module/countries/selectors.js
+var countries_selectors_namespaceObject = {};
+__webpack_require__.r(countries_selectors_namespaceObject);
+__webpack_require__.d(countries_selectors_namespaceObject, "getLocales", function() { return getLocales; });
+__webpack_require__.d(countries_selectors_namespaceObject, "getLocale", function() { return getLocale; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/countries/actions.js
+var countries_actions_namespaceObject = {};
+__webpack_require__.r(countries_actions_namespaceObject);
+__webpack_require__.d(countries_actions_namespaceObject, "getLocalesSuccess", function() { return getLocalesSuccess; });
+__webpack_require__.d(countries_actions_namespaceObject, "getLocalesError", function() { return getLocalesError; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/countries/resolvers.js
+var countries_resolvers_namespaceObject = {};
+__webpack_require__.r(countries_resolvers_namespaceObject);
+__webpack_require__.d(countries_resolvers_namespaceObject, "getLocale", function() { return resolvers_getLocale; });
+__webpack_require__.d(countries_resolvers_namespaceObject, "getLocales", function() { return resolvers_getLocales; });
+
 // NAMESPACE OBJECT: ./packages/data/build-module/navigation/selectors.js
 var navigation_selectors_namespaceObject = {};
 __webpack_require__.r(navigation_selectors_namespaceObject);
@@ -2650,7 +2669,7 @@ __webpack_require__.d(import_resolvers_namespaceObject, "getImportStatus", funct
 __webpack_require__.d(import_resolvers_namespaceObject, "getImportTotals", function() { return resolvers_getImportTotals; });
 
 // EXTERNAL MODULE: external ["wp","coreData"]
-var external_wp_coreData_ = __webpack_require__(449);
+var external_wp_coreData_ = __webpack_require__(450);
 
 // CONCATENATED MODULE: ./packages/data/build-module/types/wp-data.js
 
@@ -3080,7 +3099,7 @@ Object(external_wp_data_["registerStore"])(STORE_NAME, {
 });
 const SETTINGS_STORE_NAME = STORE_NAME;
 // EXTERNAL MODULE: external ["wp","compose"]
-var external_wp_compose_ = __webpack_require__(14);
+var external_wp_compose_ = __webpack_require__(13);
 
 // EXTERNAL MODULE: external ["wp","element"]
 var external_wp_element_ = __webpack_require__(0);
@@ -3281,6 +3300,14 @@ function isWPError(error) {
   return error.errors !== undefined;
 }
 
+class PluginError extends Error {
+  constructor(message, data) {
+    super(message);
+    this.data = data;
+  }
+
+}
+
 function formatErrors(response) {
   if (isWPError(response)) {
     // Replace the slug with a plugin name if a constant exists.
@@ -3380,7 +3407,7 @@ function* installPlugins(plugins) {
     }
 
     yield setError('installPlugins', error);
-    throw new Error(formatErrorMessage(error));
+    throw new PluginError(formatErrorMessage(error), error);
   }
 }
 function* activatePlugins(plugins) {
@@ -3414,14 +3441,18 @@ function* activatePlugins(plugins) {
     }
 
     yield setError('activatePlugins', error);
-    throw new Error(formatErrorMessage(error, 'activate'));
+    throw new PluginError(formatErrorMessage(error, 'activate'), error);
   }
 }
 function* installAndActivatePlugins(plugins) {
   try {
-    yield actions_dispatch(constants_STORE_NAME, 'installPlugins', plugins);
+    const installations = yield actions_dispatch(constants_STORE_NAME, 'installPlugins', plugins);
     const activations = yield actions_dispatch(constants_STORE_NAME, 'activatePlugins', plugins);
-    return activations;
+    return { ...activations,
+      data: { ...activations.data,
+        ...installations.data
+      }
+    };
   } catch (error) {
     throw error;
   }
@@ -4144,13 +4175,13 @@ const onboarding_action_types_TYPES = {
 };
 /* harmony default export */ var onboarding_action_types = (onboarding_action_types_TYPES);
 // EXTERNAL MODULE: external ["wp","hooks"]
-var external_wp_hooks_ = __webpack_require__(31);
+var external_wp_hooks_ = __webpack_require__(28);
 
 // EXTERNAL MODULE: ./node_modules/qs/lib/index.js
-var lib = __webpack_require__(27);
+var lib = __webpack_require__(29);
 
 // EXTERNAL MODULE: external ["wp","deprecated"]
-var external_wp_deprecated_ = __webpack_require__(40);
+var external_wp_deprecated_ = __webpack_require__(41);
 var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_);
 
 // CONCATENATED MODULE: ./packages/data/build-module/onboarding/deprecated-tasks.js
@@ -6158,7 +6189,7 @@ function notes_actions_setIsRequesting(selector, isRequesting) {
   };
 }
 // EXTERNAL MODULE: ./packages/data/node_modules/dompurify/dist/purify.js
-var purify = __webpack_require__(269);
+var purify = __webpack_require__(270);
 
 // CONCATENATED MODULE: ./packages/data/build-module/notes/resolvers.js
 /**
@@ -6972,6 +7003,128 @@ Object(external_wp_data_["registerStore"])(items_constants_STORE_NAME, {
   resolvers: items_resolvers_namespaceObject
 });
 const ITEMS_STORE_NAME = items_constants_STORE_NAME;
+// CONCATENATED MODULE: ./packages/data/build-module/countries/constants.js
+const countries_constants_STORE_NAME = 'wc/admin/countries';
+// CONCATENATED MODULE: ./packages/data/build-module/countries/selectors.js
+const getLocales = state => {
+  return state.locales;
+};
+const getLocale = (state, id) => {
+  const country = id.split(':')[0];
+  return state.locales[country];
+};
+// CONCATENATED MODULE: ./packages/data/build-module/countries/action-types.js
+var countries_action_types_TYPES;
+
+(function (TYPES) {
+  TYPES["GET_LOCALES_ERROR"] = "GET_LOCALES_ERROR";
+  TYPES["GET_LOCALES_SUCCESS"] = "GET_LOCALES_SUCCESS";
+})(countries_action_types_TYPES || (countries_action_types_TYPES = {}));
+
+/* harmony default export */ var countries_action_types = (countries_action_types_TYPES);
+// CONCATENATED MODULE: ./packages/data/build-module/countries/actions.js
+/**
+ * Internal dependencies
+ */
+
+function getLocalesSuccess(locales) {
+  return {
+    type: countries_action_types.GET_LOCALES_SUCCESS,
+    locales
+  };
+}
+function getLocalesError(error) {
+  return {
+    type: countries_action_types.GET_LOCALES_ERROR,
+    error
+  };
+}
+// CONCATENATED MODULE: ./packages/data/build-module/countries/resolvers.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+const countries_resolvers_resolveSelect = external_wp_data_["controls"] && external_wp_data_["controls"].resolveSelect ? external_wp_data_["controls"].resolveSelect : external_wp_dataControls_["select"];
+function* resolvers_getLocale() {
+  yield countries_resolvers_resolveSelect(countries_constants_STORE_NAME, 'getLocales');
+}
+function* resolvers_getLocales() {
+  try {
+    const url = NAMESPACE + '/data/countries/locales';
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: url,
+      method: 'GET'
+    });
+    return getLocalesSuccess(results);
+  } catch (error) {
+    return getLocalesError(error);
+  }
+}
+// CONCATENATED MODULE: ./packages/data/build-module/countries/reducer.js
+/**
+ * Internal dependencies
+ */
+
+
+const countries_reducer_reducer = (state = {
+  errors: {},
+  locales: {}
+}, {
+  type,
+  error,
+  locales
+}) => {
+  switch (type) {
+    case countries_action_types.GET_LOCALES_SUCCESS:
+      state = { ...state,
+        locales
+      };
+      break;
+
+    case countries_action_types.GET_LOCALES_ERROR:
+      state = { ...state,
+        errors: { ...state.errors,
+          locales: error
+        }
+      };
+      break;
+  }
+
+  return state;
+};
+
+/* harmony default export */ var countries_reducer = (countries_reducer_reducer);
+// CONCATENATED MODULE: ./packages/data/build-module/countries/index.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+Object(external_wp_data_["registerStore"])(countries_constants_STORE_NAME, {
+  reducer: countries_reducer,
+  actions: countries_actions_namespaceObject,
+  controls: external_wp_dataControls_["controls"],
+  selectors: countries_selectors_namespaceObject,
+  resolvers: countries_resolvers_namespaceObject
+});
+const COUNTRIES_STORE_NAME = countries_constants_STORE_NAME;
 // CONCATENATED MODULE: ./packages/data/build-module/navigation/constants.js
 const navigation_constants_STORE_NAME = 'woocommerce-navigation';
 // CONCATENATED MODULE: ./packages/data/build-module/navigation/selectors.js
@@ -7856,10 +8009,11 @@ function getRequestQuery(options) {
     endpoint,
     dataType,
     query,
-    fields
+    fields,
+    defaultDateRange
   } = options;
-  const datesFromQuery = Object(external_wc_date_["getCurrentDates"])(query, options.defaultDateRange);
-  const interval = Object(external_wc_date_["getIntervalForQuery"])(query);
+  const datesFromQuery = Object(external_wc_date_["getCurrentDates"])(query, defaultDateRange);
+  const interval = Object(external_wc_date_["getIntervalForQuery"])(query, defaultDateRange);
   const filterQuery = getFilterQuery(options);
   const end = datesFromQuery[dataType].before;
   const noIntervals = Object(external_lodash_["includes"])(noIntervalEndpoints, endpoint);
@@ -8229,7 +8383,7 @@ function getReportTableData(options) {
  */
 const export_constants_STORE_NAME = 'wc/admin/export';
 // EXTERNAL MODULE: ./node_modules/md5/md5.js
-var md5 = __webpack_require__(270);
+var md5 = __webpack_require__(271);
 var md5_default = /*#__PURE__*/__webpack_require__.n(md5);
 
 // CONCATENATED MODULE: ./packages/data/build-module/export/utils.js
@@ -8746,16 +8900,17 @@ const IMPORT_STORE_NAME = import_constants_STORE_NAME;
 
 
 
+
 /***/ }),
 
-/***/ 58:
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(41);
-var formats = __webpack_require__(34);
+var utils = __webpack_require__(42);
+var formats = __webpack_require__(36);
 var has = Object.prototype.hasOwnProperty;
 
 var arrayPrefixGenerators = {
@@ -9034,13 +9189,13 @@ module.exports = function (object, opts) {
 
 /***/ }),
 
-/***/ 59:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(41);
+var utils = __webpack_require__(42);
 
 var has = Object.prototype.hasOwnProperty;
 var isArray = Array.isArray;

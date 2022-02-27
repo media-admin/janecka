@@ -72,6 +72,8 @@ class UpdraftPlus {
 
 	public $no_checkin_last_time;
 	
+	private $removed_autoloaders = array();
+	
 	/**
 	 * Class constructor
 	 */
@@ -3456,6 +3458,8 @@ class UpdraftPlus {
 		if (!empty($this->semaphore)) $this->semaphore->unlock();
 		if (!empty($this->backup_semaphore)) $this->backup_semaphore->release();
 
+		$this->restore_composer_autoloaders();
+		
 		$delete_jobdata = false;
 
 		$clone_job = $this->jobdata_get('clone_job');
@@ -5745,6 +5749,69 @@ class UpdraftPlus {
 		$log_message = 'Effective/real user IDs of the current process: '.posix_geteuid().'/'.posix_getuid().'. ';
 		$log_message .= 'Effective/real group IDs of the current process: '.posix_getegid().'/'.posix_getgid().'. ';
 		return $log_message;
+	}
+	
+	/**
+	 * Restore any previously-removed autoloaders
+	 */
+	public function restore_composer_autoloaders() {
+		foreach ($this->removed_autoloaders as $callable) {
+			if (is_callable($callable, false, $callable_name)) {
+				$this->log("Clean-up: re-registering composer autoloader: $callable_name");
+				spl_autoload_register($callable, false);
+			}
+		}
+		$this->removed_autoloaders = array();
+	}
+	
+	/**
+	 * Remove any potentially clashing composer PSR4 autoloaders. Only to be used inside a backup when no other plugins' libraries should be needed
+	 *
+	 * @param Array $prefixes
+	 */
+	public function potentially_remove_composer_autoloaders($prefixes) {
+		
+		if (!defined('UPDRAFTPLUS_REMOVE_COMPOSER_AUTOLOADERS') || !UPDRAFTPLUS_REMOVE_COMPOSER_AUTOLOADERS) return;
+		
+		$functions = spl_autoload_functions();
+		foreach ($functions as $callable) {
+			if (!is_array($callable) || !isset($callable[0]) || !is_object($callable[0])) continue;
+			if (!is_a($callable[0], 'Composer\Autoload\ClassLoader') || !is_callable(array($callable[0], 'getPrefixesPsr4'))) continue;
+			$prefixes_psr4 = $callable[0]->getPrefixesPsr4();
+			if (!is_array($prefixes_psr4)) continue;
+			foreach ($prefixes as $prefix) {
+				if (!isset($prefixes_psr4[$prefix])) continue;
+				$is_ud = false;
+				if (is_array($prefixes_psr4[$prefix])) {
+					foreach ($prefixes_psr4[$prefix] as $path) {
+						if (false !== strpos(UpdraftPlus_Manipulation_Functions::wp_normalize_path($path), '/'.basename(UpdraftPlus_Manipulation_Functions::wp_normalize_path(UPDRAFTPLUS_DIR)).'/vendor/')) {
+							$is_ud = true;
+						}
+					}
+				}
+				if ($is_ud) continue;
+				if (is_callable($callable, false, $callable_name)) {
+					$this->log("Conflict prevention: de-registering composer autoloader: $callable_name");
+				}
+				$this->removed_autoloaders[] = $callable;
+				spl_autoload_unregister($callable);
+				break;
+			}
+		}
+	}
+	
+	/**
+	 * Try to deal with other plugins with incompatible versions and bugs
+	 */
+	public function mitigate_guzzle_autoloader_conflicts() {
+		// Work round bug in the JetPack autoloader which loads a file in a different namespace
+		$potentially_include_in = array('guzzlehttp/guzzle', 'guzzlehttp/promises', 'guzzlehttp/psr7');
+		foreach ($potentially_include_in as $package) {
+			$file = UPDRAFTPLUS_DIR.'/vendor/'.$package.'/src/functions_include.php';
+			// Avoid conflicting with Google Ads and Listings which has already loaded this function
+			if ('guzzlehttp/guzzle' == $package && function_exists('\GuzzleHttp\choose_handler')) continue;
+			if (file_exists($file)) include_once($file);
+		}
 	}
 	
 	/**

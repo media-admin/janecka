@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["onboarding"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 274);
+/******/ 	return __webpack_require__(__webpack_require__.s = 275);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -122,7 +122,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["onboarding"] =
 
 /***/ }),
 
-/***/ 274:
+/***/ 275:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -922,7 +922,7 @@ const RecommendedRibbon = ({
 // CONCATENATED MODULE: ./packages/onboarding/build-module/components/RecommendedRibbon/index.js
 
 // EXTERNAL MODULE: ./node_modules/gridicons/dist/notice-outline.js
-var notice_outline = __webpack_require__(68);
+var notice_outline = __webpack_require__(69);
 var notice_outline_default = /*#__PURE__*/__webpack_require__.n(notice_outline);
 
 // CONCATENATED MODULE: ./packages/onboarding/build-module/components/SetupRequired.js
@@ -1132,7 +1132,7 @@ WooOnboardingTaskListItem.Slot = ({
 
 /***/ }),
 
-/***/ 68:
+/***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -29,6 +29,7 @@ if ( ! function_exists( 'aws_is_plugin_installed' ) ) {
 delete_option( 'aws_settings' );
 delete_option( 'aws_plugin_ver' );
 delete_option( 'aws_reindex_version' );
+delete_option( 'aws_activation_time' );
 
 if ( ! aws_is_plugin_installed( 'advanced-woo-search-pro/advanced-woo-search-pro.php' ) ) {
     $wpdb->query( "DROP TABLE IF EXISTS " . $wpdb->prefix . "aws_index" );

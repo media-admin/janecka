@@ -369,23 +369,23 @@ msgstr ""
 msgid "Failed to open directory for reading:"
 msgstr ""
 
-#: src/admin.php:6217
+#: src/admin.php:6219
 msgid "The download link is broken or the backup file is no longer available"
 msgstr ""
 
-#: src/admin.php:6215
+#: src/admin.php:6217
 msgid "The download link is broken, you may have clicked the link from untrusted source"
 msgstr ""
 
-#: src/admin.php:6200
+#: src/admin.php:6202
 msgid "Due to the restriction, some settings can be automatically adjusted, disabled or not available."
 msgstr ""
 
-#: src/admin.php:6199
+#: src/admin.php:6201
 msgid "%s permits UpdraftPlus to perform only one backup per month. Thus, we recommend you choose a full backup when performing a manual backup and to use that option when creating a scheduled backup."
 msgstr ""
 
-#: src/admin.php:6198
+#: src/admin.php:6200
 msgid "Your website is hosted with %s (%s)."
 msgstr ""
 
@@ -558,27 +558,27 @@ msgstr ""
 msgid "The key provided is encrypted. You need to provide the unencrypted key (see: https://updraftplus.com/faqs/why-must-i-use-a-non-encrypted-sftp-key/)."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:385
+#: src/addons/s3-enhanced.php:391
 msgid "China (Ningxia) (restricted)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:383
+#: src/addons/s3-enhanced.php:389
 msgid "Asia Pacific (Hong Kong)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:382
+#: src/addons/s3-enhanced.php:388
 msgid "Asia Pacific (Osaka-Local) (restricted)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:376
+#: src/addons/s3-enhanced.php:382
 msgid "Africa (Cape Town)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:373
+#: src/addons/s3-enhanced.php:379
 msgid "Europe (Milan)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:363
+#: src/addons/s3-enhanced.php:369
 msgid "US East (N. Virginia) (default)"
 msgstr ""
 
@@ -1334,11 +1334,11 @@ msgstr ""
 msgid "Error: Failed to upload"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:375
+#: src/addons/s3-enhanced.php:381
 msgid "Middle East (Bahrain)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:374
+#: src/addons/s3-enhanced.php:380
 msgid "Europe (Stockholm)"
 msgstr ""
 
@@ -2477,7 +2477,7 @@ msgstr "Forøgelser eksisterer ved: %s"
 msgid "(latest increment: %s)"
 msgstr "(seneste stigning: %s)"
 
-#: src/addons/s3-enhanced.php:371
+#: src/addons/s3-enhanced.php:377
 msgid "Europe (Paris)"
 msgstr "Europa (Paris)"
 
@@ -3214,15 +3214,15 @@ msgstr "Rediger"
 msgid "If using it, select a path from the directory tree below and then press confirm selection."
 msgstr "Hvis du bruger det, skal du vælge en sti fra mappe-træet herunder og derefter trykke på bekræft valg."
 
-#: src/addons/s3-enhanced.php:372
+#: src/addons/s3-enhanced.php:378
 msgid "Europe (Frankfurt)"
 msgstr "Europa (Frankfurt)"
 
-#: src/addons/s3-enhanced.php:370
+#: src/addons/s3-enhanced.php:376
 msgid "Europe (London)"
 msgstr "Europa (London)"
 
-#: src/addons/s3-enhanced.php:369
+#: src/addons/s3-enhanced.php:375
 msgid "Europe (Ireland)"
 msgstr "Europa (Irland)"
 
@@ -3381,7 +3381,7 @@ msgstr "UpdraftPlus Premium:"
 msgid "Then, try out our \"Migrator\" add-on which can perform a direct site-to-site migration. After using it once, you'll have saved the purchase price compared to the time needed to copy a site by hand."
 msgstr "Så prøv vores \"Migrator\" add-on, som kan udføre en direkte flytning fra websted til websted. Når du har brugt det en gang, har du sparet købsprisen i forhold til den tid, det tager at kopiere et websted manuelt."
 
-#: src/addons/s3-enhanced.php:368
+#: src/addons/s3-enhanced.php:374
 msgid "Canada (Central)"
 msgstr ""
 
@@ -3509,7 +3509,7 @@ msgstr "Din eksportfil vil være af dine viste indstillinger, ikke dine gemte in
 msgid "template not found"
 msgstr "skabelon blev ikke fundet"
 
-#: src/addons/s3-enhanced.php:364
+#: src/addons/s3-enhanced.php:370
 msgid "US East (Ohio)"
 msgstr "US East (Ohio)"
 
@@ -3598,7 +3598,7 @@ msgstr "Indstillinger blev ikke fundet - Gå venligst til Indstillinger knappen 
 msgid "Backup using %s?"
 msgstr "Bakcup ved hjælp af %s?"
 
-#: src/addons/s3-enhanced.php:380
+#: src/addons/s3-enhanced.php:386
 msgid "Asia Pacific (Mumbai)"
 msgstr "Asia Pacific (Mumbai)"
 
@@ -3880,7 +3880,7 @@ msgstr "Fejl: Serveren sendte et uforståeligt svar."
 msgid "Fetching..."
 msgstr "Henter..."
 
-#: src/addons/s3-enhanced.php:377
+#: src/addons/s3-enhanced.php:383
 msgid "Asia Pacific (Seoul)"
 msgstr "Asia Pacific (Seoul)"
 
@@ -4548,19 +4548,19 @@ msgstr "Sletning mislykkedes:"
 msgid "The zip engine returned the message: %s."
 msgstr "Zip returnerede denne besked: %s."
 
-#: src/addons/s3-enhanced.php:402, src/addons/s3-enhanced.php:404
+#: src/addons/s3-enhanced.php:408, src/addons/s3-enhanced.php:410
 msgid "Without this permission, UpdraftPlus cannot delete backups - you should also set your 'retain' settings very high to prevent seeing deletion errors."
 msgstr "Uden denne tilladelse, kan UpdraftPlus ikke slette backups - Du skal også sætte din 'behold' indstillinger meget høj for at forhindre at se sletningsfejl."
 
-#: src/addons/s3-enhanced.php:402, src/addons/s3-enhanced.php:402
+#: src/addons/s3-enhanced.php:408, src/addons/s3-enhanced.php:408
 msgid "Allow deletion"
 msgstr "Tillad sletning"
 
-#: src/addons/s3-enhanced.php:398, src/addons/s3-enhanced.php:400
+#: src/addons/s3-enhanced.php:404, src/addons/s3-enhanced.php:406
 msgid "Without this permission, you cannot directly download or restore using UpdraftPlus, and will instead need to visit the AWS website."
 msgstr "Uden denne tilladelse, kan du ikke downloade eller gendanne direkte ved hjælp UpdraftPlus, og vil i stedet være nødt til at besøge AWS's hjemmeside."
 
-#: src/addons/s3-enhanced.php:398, src/addons/s3-enhanced.php:398
+#: src/addons/s3-enhanced.php:404, src/addons/s3-enhanced.php:404
 msgid "Allow download"
 msgstr "Tillad download"
 
@@ -4846,108 +4846,108 @@ msgstr "konfigurer her"
 msgid "To remove the block, please go here."
 msgstr "Klik her for at fjerne block'en."
 
-#: src/addons/s3-enhanced.php:481
+#: src/addons/s3-enhanced.php:487
 msgid "Do remember to save your settings."
 msgstr "Husk at gemme dine indstillinger."
 
-#: src/addons/s3-enhanced.php:481
+#: src/addons/s3-enhanced.php:487
 msgid "You are now using a IAM user account to access your bucket."
 msgstr "Du benytter nu en IAM brugerkonto for adgang til din bucket."
 
-#: src/addons/s3-enhanced.php:396
+#: src/addons/s3-enhanced.php:402
 msgid "S3 bucket"
 msgstr "S3 Bucket"
 
-#: src/addons/s3-enhanced.php:386
+#: src/addons/s3-enhanced.php:392
 msgid "China (Beijing) (restricted)"
 msgstr "Kina (Beijing) (begrænset)"
 
-#: src/addons/s3-enhanced.php:384
+#: src/addons/s3-enhanced.php:390
 msgid "South America (São Paulo)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:381
+#: src/addons/s3-enhanced.php:387
 msgid "Asia Pacific (Tokyo)"
 msgstr "Asien (Tokyo)"
 
-#: src/addons/s3-enhanced.php:379
+#: src/addons/s3-enhanced.php:385
 msgid "Asia Pacific (Sydney)"
 msgstr "Asien (Sydney)"
 
-#: src/addons/s3-enhanced.php:378
+#: src/addons/s3-enhanced.php:384
 msgid "Asia Pacific (Singapore)"
 msgstr "Asien (Singapore)"
 
-#: src/addons/s3-enhanced.php:367
+#: src/addons/s3-enhanced.php:373
 msgid "US Government West (restricted)"
 msgstr "US Government West (begrænset)"
 
-#: src/addons/s3-enhanced.php:366
+#: src/addons/s3-enhanced.php:372
 msgid "US West (N. California)"
 msgstr "US West (N. California)"
 
-#: src/addons/s3-enhanced.php:365
+#: src/addons/s3-enhanced.php:371
 msgid "US West (Oregon)"
 msgstr "US West (Oregon)"
 
-#: src/addons/s3-enhanced.php:359
+#: src/addons/s3-enhanced.php:365
 msgid "S3 storage region"
 msgstr "S3 storage region"
 
-#: src/addons/s3-enhanced.php:357
+#: src/addons/s3-enhanced.php:363
 msgid "New IAM username"
 msgstr "Nyt IAM brugernavn"
 
-#: src/addons/s3-enhanced.php:356
+#: src/addons/s3-enhanced.php:362
 msgid "Admin secret key"
 msgstr "Admin hemmelig nøgle"
 
-#: src/addons/s3-enhanced.php:355
+#: src/addons/s3-enhanced.php:361
 msgid "Admin access key"
 msgstr "Admin adgangs nøgle"
 
-#: src/addons/s3-enhanced.php:348
+#: src/addons/s3-enhanced.php:354
 msgid "Then, these lower-powered access credentials can be used, instead of storing your administrative keys."
 msgstr "Derefter kan disse lavere-drevne adgang legitimationsoplysninger bruges, i stedet for at gemme dine administrative nøgler."
 
-#: src/addons/s3-enhanced.php:348
+#: src/addons/s3-enhanced.php:354
 msgid "These will be used to create a new user and key pair with an IAM policy attached which will only allow it to access the indicated bucket."
 msgstr "Disse vil blive brugt til at oprette en ny bruger og nøglepar med et IAM politik vedhæftet, som kun vil gøre det muligt af få adgang til den angivne spand."
 
-#: src/addons/s3-enhanced.php:348
+#: src/addons/s3-enhanced.php:354
 msgid "Enter your administrative Amazon S3 access/secret keys (this needs to be a key pair with enough rights to create new users and buckets), and a new (unique) username for the new user and a bucket name."
 msgstr "Indtast dit Amazon S3 adgang / hemmelige nøgler (dette skal være et nøglepar med nok rettigheder til at oprette nye brugere og spande), og et nyt (unikt) brugernavn til den nye bruger og en spand navn."
 
-#: src/addons/s3-enhanced.php:433
+#: src/addons/s3-enhanced.php:439
 msgid "Create new IAM user and S3 bucket"
 msgstr "Opret ny IAM bruger og S3 bucket"
 
-#: src/addons/s3-enhanced.php:334
+#: src/addons/s3-enhanced.php:340
 msgid "Secret Key: %s"
 msgstr "Fortrolig nøgle: %s"
 
-#: src/addons/s3-enhanced.php:334
+#: src/addons/s3-enhanced.php:340
 msgid "Access Key: %s"
 msgstr "Adgangs-nøgle: %s"
 
-#: src/addons/s3-enhanced.php:322
+#: src/addons/s3-enhanced.php:328
 msgid "Failed to apply User Policy"
 msgstr "Det lykkedes ikke at anvende User Policy"
 
-#: src/addons/s3-enhanced.php:263, src/addons/s3-enhanced.php:267
+#: src/addons/s3-enhanced.php:269, src/addons/s3-enhanced.php:273
 msgid "Operation to create user Access Key failed"
 msgstr "Kunne ikke oprette bruger adgangsnøgle"
 
-#: src/addons/s3-enhanced.php:261
+#: src/addons/s3-enhanced.php:267
 msgid "Failed to create user Access Key"
 msgstr "Kunne ikke oprette bruger adgangskode"
 
-#: src/addons/s3-enhanced.php:243, src/addons/s3-enhanced.php:246,
-#: src/addons/s3-enhanced.php:250
+#: src/addons/s3-enhanced.php:249, src/addons/s3-enhanced.php:252,
+#: src/addons/s3-enhanced.php:256
 msgid "IAM operation failed (%s)"
 msgstr "IAM operation mislykkedes (%s)"
 
-#: src/addons/s3-enhanced.php:241
+#: src/addons/s3-enhanced.php:247
 msgid "Conflict: that user already exists"
 msgstr "Konflikt: Denne bruger findes allerede"
 
@@ -5079,7 +5079,7 @@ msgstr "Før du køber FAQ's"
 msgid "Full feature list"
 msgstr "Komplet liste over funktioner"
 
-#: src/addons/autobackup.php:1168
+#: src/addons/autobackup.php:1172
 msgid "Backup (where relevant) plugins, themes and the WordPress database with UpdraftPlus before updating"
 msgstr "Lav backup (hvis relevant) af plugins, temaer og WordPress database med UpdraftPlus før du opdaterer"
 
@@ -5150,7 +5150,7 @@ msgstr "For endnu flere funktioner og personlig support, tjek"
 msgid "Database decryption phrase"
 msgstr "Database dekryptering sætning"
 
-#: src/addons/autobackup.php:157, src/addons/autobackup.php:1114,
+#: src/addons/autobackup.php:157, src/addons/autobackup.php:1115,
 #: src/admin.php:917
 msgid "Automatic backup before update"
 msgstr "Automatisk backup inden opdatering"
@@ -6238,7 +6238,7 @@ msgstr "API Key: %s"
 msgid "Password: %s"
 msgstr "Password: %s"
 
-#: src/addons/cloudfiles-enhanced.php:205, src/addons/s3-enhanced.php:334
+#: src/addons/cloudfiles-enhanced.php:205, src/addons/s3-enhanced.php:340
 msgid "Username: %s"
 msgstr "Brugernavn: %s"
 
@@ -6344,7 +6344,7 @@ msgstr "US eller UK baseret Rackspace konto"
 msgid "Accounts created at rackspacecloud.com are US accounts; accounts created at rackspace.co.uk are UK accounts."
 msgstr "Konti oprettet på rackspacecloud.com er US konti; konti oprettet på rackspace.co.uk er UK konti."
 
-#: src/addons/cloudfiles-enhanced.php:160, src/addons/s3-enhanced.php:239,
+#: src/addons/cloudfiles-enhanced.php:160, src/addons/s3-enhanced.php:245,
 #: src/methods/cloudfiles-new.php:37, src/methods/openstack-base.php:489,
 #: src/methods/openstack-base.php:491, src/methods/openstack-base.php:512,
 #: src/methods/openstack2.php:33
@@ -6818,7 +6818,7 @@ msgstr "Fjernlager muligheder"
 msgid "(logs can be found in the UpdraftPlus settings page as normal)..."
 msgstr "(logs kan findes i UpdraftPlus indstillinger som normalt)..."
 
-#: src/addons/autobackup.php:326, src/addons/autobackup.php:1173
+#: src/addons/autobackup.php:326, src/addons/autobackup.php:1177
 msgid "Remember this choice for next time (you will still have the chance to change it)"
 msgstr "Husk dette valg til næste gang (du vil stadig have mulighed for at ændre det)"
 
@@ -6835,7 +6835,7 @@ msgstr ""
 msgid "Note: the progress bar below is based on stages, NOT time. Do not stop the backup simply because it seems to have remained in the same place for a while - that is normal."
 msgstr "Note: Tidslinjen nedenfor er baseret på stadier, IKKE tid. Stop ikke backup'en kun på grund af, at den tilsyneladende har stået på det samme sted i et stykke tid - dette er normalt."
 
-#: src/addons/autobackup.php:327, src/addons/autobackup.php:1178,
+#: src/addons/autobackup.php:327, src/addons/autobackup.php:1182,
 #: src/addons/lockadmin.php:160
 msgid "Read more about how this works..."
 msgstr "Læs mere om, hvordan dette virker..."
@@ -6983,15 +6983,15 @@ msgstr "%s godkendelsen kunne ikke fuldføres, fordi noget andet på dit site ø
 msgid "Your PHP memory limit (set by your web hosting company) is very low. UpdraftPlus attempted to raise it but was unsuccessful. This plugin may struggle with a memory limit of less than 64 Mb  - especially if you have very large files uploaded (though on the other hand, many sites will be successful with a 32Mb limit - your experience may vary)."
 msgstr "Din PHP hukommelsesgrænse (bestemt af din web hosting udbyder) er meget lav. UpdraftPlus forsøgte uden held at øge denne grænse. Dette plugin har problemer med grænser mindre end 64 Mb - specielt hvis du har upload'et meget store filer (selv om mange sider vil fungere med en 32Mb grænse)."
 
-#: src/addons/autobackup.php:1192, src/admin.php:913
+#: src/addons/autobackup.php:1196, src/admin.php:913
 msgid "Proceed with update"
 msgstr "Fortsæt med opdateringen"
 
-#: src/addons/autobackup.php:1185
+#: src/addons/autobackup.php:1189
 msgid "Do not abort after pressing Proceed below - wait for the backup to complete."
 msgstr "Afbryd ikke efter klik på Fortsæt nedenfor - Vent på at backup'en er færdig."
 
-#: src/addons/autobackup.php:139, src/addons/autobackup.php:1134
+#: src/addons/autobackup.php:139, src/addons/autobackup.php:1138
 msgid "UpdraftPlus Automatic Backups"
 msgstr "UpdraftPlus Automatisk Backup's"
 
@@ -7079,7 +7079,7 @@ msgstr "%s version: %s"
 msgid "The database is too small to be a valid WordPress database (size: %s Kb)."
 msgstr "Databasen er for lille til at være en godkendt WordPress database (størrelse: %s Kb)."
 
-#: src/addons/autobackup.php:322, src/addons/autobackup.php:1160
+#: src/addons/autobackup.php:322, src/addons/autobackup.php:1164
 msgid "Be safe with an automatic backup"
 msgstr "Vær på den sikre side med en automatisk backup"
 
@@ -8888,7 +8888,7 @@ msgstr "Du har mindre end %s ledig plads på disken, som UpdraftPlus er konfigur
 #: src/admin.php:1312, src/admin.php:1318, src/admin.php:1322,
 #: src/admin.php:1326, src/admin.php:1335, src/admin.php:4280,
 #: src/admin.php:4287, src/admin.php:4289, src/admin.php:5924,
-#: src/admin.php:6202, src/methods/cloudfiles-new.php:96,
+#: src/admin.php:6204, src/methods/cloudfiles-new.php:96,
 #: src/methods/cloudfiles.php:455, src/methods/ftp.php:344,
 #: src/methods/openstack-base.php:576, src/methods/s3.php:893,
 #: src/methods/s3.php:897, src/methods/updraftvault.php:345,

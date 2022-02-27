@@ -53,10 +53,6 @@ class AWS_Admin {
 
         add_action( 'admin_enqueue_scripts', array( &$this, 'admin_enqueue_scripts' ) );
 
-        add_action( 'admin_notices', array( $this, 'display_welcome_header' ), 1 );
-
-        add_action( 'admin_notices', array( $this, 'display_reindex_message' ), 1 );
-
         add_filter( 'submenu_file', array( $this, 'submenu_file' ), 10, 2 );
 
         add_filter( 'aws_admin_page_options_current', array( $this, 'check_sources_in_index' ), 1 );
@@ -223,48 +219,6 @@ class AWS_Admin {
                 $settings['search_in'][$option] = 0;
                 update_option( 'aws_settings', $settings );
             }
-        }
-
-    }
-
-    /*
-     * Add welcome notice
-     */
-    public function display_welcome_header() {
-
-        if ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'aws-options' ) {
-            return;
-        }
-
-        if ( ! current_user_can( 'manage_options' ) ) {
-            return;
-        }
-
-        $hide_notice = get_option( 'aws_hide_welcome_notice' );
-
-        if ( ! $hide_notice || $hide_notice === 'true' ) {
-            return;
-        }
-
-        echo AWS_Admin_Meta_Boxes::get_welcome_notice();
-
-    }
-
-    /*
-     * Add reindex notice after index options change
-     */
-    public function display_reindex_message() {
-
-        if ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'aws-options' ) {
-            return;
-        }
-
-        if ( ! isset( $_POST["Submit"] ) || ! current_user_can( 'manage_options' ) ) {
-            return;
-        }
-
-        if ( isset( $_POST["index_variations"] ) || isset( $_POST["search_rule"] ) ) {
-            echo AWS_Admin_Meta_Boxes::get_reindex_notice();
         }
 
     }

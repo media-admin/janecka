@@ -1,6 +1,6 @@
 (window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[10],{
 
-/***/ 489:
+/***/ 490:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18,7 +18,7 @@ var prop_types = __webpack_require__(1);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // EXTERNAL MODULE: ./client/analytics/report/downloads/config.js
-var config = __webpack_require__(540);
+var config = __webpack_require__(542);
 
 // EXTERNAL MODULE: external ["wp","i18n"]
 var external_wp_i18n_ = __webpack_require__(2);
@@ -40,10 +40,10 @@ var external_wc_components_ = __webpack_require__(21);
 var external_wc_navigation_ = __webpack_require__(12);
 
 // EXTERNAL MODULE: external ["wc","number"]
-var external_wc_number_ = __webpack_require__(121);
+var external_wc_number_ = __webpack_require__(122);
 
-// EXTERNAL MODULE: ./packages/wc-admin-settings/build-module/index.js
-var build_module = __webpack_require__(13);
+// EXTERNAL MODULE: external ["wc","wcSettings"]
+var external_wc_wcSettings_ = __webpack_require__(14);
 
 // EXTERNAL MODULE: external ["wc","data"]
 var external_wc_data_ = __webpack_require__(11);
@@ -52,10 +52,13 @@ var external_wc_data_ = __webpack_require__(11);
 var external_wc_date_ = __webpack_require__(20);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-table/index.js + 2 modules
-var report_table = __webpack_require__(511);
+var report_table = __webpack_require__(512);
 
 // EXTERNAL MODULE: ./client/lib/currency-context.js
-var currency_context = __webpack_require__(505);
+var currency_context = __webpack_require__(506);
+
+// EXTERNAL MODULE: ./client/utils/admin-settings.js
+var admin_settings = __webpack_require__(22);
 
 // CONCATENATED MODULE: ./client/analytics/report/downloads/table.js
 
@@ -77,6 +80,7 @@ var currency_context = __webpack_require__(505);
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -123,7 +127,7 @@ class table_DownloadsReportTable extends external_wp_element_["Component"] {
       query
     } = this.props;
     const persistedQuery = Object(external_wc_navigation_["getPersistedQuery"])(query);
-    const dateFormat = Object(build_module["f" /* getSetting */])('dateFormat', external_wc_date_["defaultTableDateFormat"]);
+    const dateFormat = Object(admin_settings["d" /* getAdminSetting */])('dateFormat', external_wc_date_["defaultTableDateFormat"]);
     return Object(external_lodash_["map"])(downloads, download => {
       const {
         _embedded,
@@ -174,7 +178,7 @@ class table_DownloadsReportTable extends external_wp_element_["Component"] {
         value: fileName
       }, {
         display: Object(external_wp_element_["createElement"])(external_wc_components_["Link"], {
-          href: Object(build_module["e" /* getAdminLink */])(`post.php?post=${orderId}&action=edit`),
+          href: Object(external_wc_wcSettings_["getAdminLink"])(`post.php?post=${orderId}&action=edit`),
           type: "wp-admin"
         }, orderNumber),
         value: orderNumber
@@ -245,16 +249,16 @@ table_DownloadsReportTable.contextType = currency_context["a" /* CurrencyContext
   };
 })(table_DownloadsReportTable));
 // EXTERNAL MODULE: ./client/lib/get-selected-chart/index.js
-var get_selected_chart = __webpack_require__(514);
+var get_selected_chart = __webpack_require__(515);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-chart/index.js + 1 modules
-var report_chart = __webpack_require__(512);
+var report_chart = __webpack_require__(513);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-summary/index.js
-var report_summary = __webpack_require__(515);
+var report_summary = __webpack_require__(516);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-filters/index.js
-var report_filters = __webpack_require__(510);
+var report_filters = __webpack_require__(511);
 
 // CONCATENATED MODULE: ./client/analytics/report/downloads/index.js
 
@@ -315,7 +319,7 @@ downloads_DownloadsReport.propTypes = {
 
 /***/ }),
 
-/***/ 506:
+/***/ 507:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -338,8 +342,8 @@ downloads_DownloadsReport.propTypes = {
 /* harmony import */ var _woocommerce_navigation__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_navigation__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _woocommerce_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(11);
 /* harmony import */ var _woocommerce_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_data__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(13);
-/* harmony import */ var _analytics_report_taxes_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(507);
+/* harmony import */ var _analytics_report_taxes_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(508);
+/* harmony import */ var _utils_admin_settings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(22);
 /**
  * External dependencies
  */
@@ -348,10 +352,10 @@ downloads_DownloadsReport.propTypes = {
 
 
 
-
 /**
  * Internal dependencies
  */
+
 
 
 /**
@@ -403,7 +407,7 @@ const getProductLabels = getRequestByIdString(_woocommerce_data__WEBPACK_IMPORTE
 }));
 const getTaxRateLabels = getRequestByIdString(_woocommerce_data__WEBPACK_IMPORTED_MODULE_4__["NAMESPACE"] + '/taxes', taxRate => ({
   key: taxRate.id,
-  label: Object(_analytics_report_taxes_utils__WEBPACK_IMPORTED_MODULE_6__[/* getTaxCode */ "a"])(taxRate)
+  label: Object(_analytics_report_taxes_utils__WEBPACK_IMPORTED_MODULE_5__[/* getTaxCode */ "a"])(taxRate)
 }));
 /**
  * Create a variation name by concatenating each of the variation's
@@ -419,7 +423,7 @@ function getVariationName({
   attributes,
   name
 }) {
-  const separator = Object(_woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_5__[/* getSetting */ "f"])('variationTitleAttributesSeparator', ' - ');
+  const separator = Object(_utils_admin_settings__WEBPACK_IMPORTED_MODULE_6__[/* getAdminSetting */ "d"])('variationTitleAttributesSeparator', ' - ');
 
   if (name && name.indexOf(separator) > -1) {
     return name;
@@ -448,7 +452,7 @@ const getVariationLabels = getRequestByIdString(({
 
 /***/ }),
 
-/***/ 507:
+/***/ 508:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -465,7 +469,7 @@ function getTaxCode(tax) {
 
 /***/ }),
 
-/***/ 540:
+/***/ 542:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -474,9 +478,9 @@ function getTaxCode(tax) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return advancedFilters; });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(31);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(28);
 /* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _lib_async_requests__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(506);
+/* harmony import */ var _lib_async_requests__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(507);
 /**
  * External dependencies
  */

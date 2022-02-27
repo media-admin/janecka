@@ -569,20 +569,19 @@ class Calculation
                 ) {
                     $allowed_qty = $this->_bogo_deal->get_allowed_deal_quantity($entry_id);
                     $quantity    = min($allowed_qty, $this->calculate_cart_item_spare_quantity($cart_item));
-                    $price       = \ACFWF()->Helper_Functions->get_price($cart_item['data']);
-                    $discount    = \ACFWF()->Helper_Functions->calculate_discount_by_type($deal['type'], $deal['discount'], $price);
 
                     if ($quantity) {
                         $this->_bogo_deal->set_allowed_deal_quantity($entry_id, max(0, $allowed_qty - $quantity));
                         $this->update_entry(
                             array(
-                                'key'      => $cart_item['key'],
-                                'coupon'   => $this->_bogo_deal->get_coupon()->get_code(),
-                                'entry_id' => $entry_id,
-                                'type'     => 'deal',
-                                'quantity' => $quantity,
-                                'discount' => $discount,
-                                'name'     => $cart_item['data']->get_name(),
+                                'key'           => $cart_item['key'],
+                                'coupon'        => $this->_bogo_deal->get_coupon()->get_code(),
+                                'entry_id'      => $entry_id,
+                                'type'          => 'deal',
+                                'quantity'      => $quantity,
+                                'discount_type' => $deal['type'],
+                                'discount'      => $deal['discount'],
+                                'name'          => $cart_item['data']->get_name(),
                             ),
                             'temp'
                         );

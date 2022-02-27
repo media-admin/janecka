@@ -1,6 +1,6 @@
 (window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[11],{
 
-/***/ 486:
+/***/ 487:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18,10 +18,10 @@ var prop_types = __webpack_require__(1);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // EXTERNAL MODULE: ./client/analytics/report/orders/config.js
-var config = __webpack_require__(537);
+var config = __webpack_require__(539);
 
 // EXTERNAL MODULE: ./client/lib/get-selected-chart/index.js
-var get_selected_chart = __webpack_require__(514);
+var get_selected_chart = __webpack_require__(515);
 
 // EXTERNAL MODULE: external ["wp","i18n"]
 var external_wp_i18n_ = __webpack_require__(2);
@@ -33,10 +33,7 @@ var external_lodash_ = __webpack_require__(4);
 var external_wc_components_ = __webpack_require__(21);
 
 // EXTERNAL MODULE: external ["wc","number"]
-var external_wc_number_ = __webpack_require__(121);
-
-// EXTERNAL MODULE: ./packages/wc-admin-settings/build-module/index.js
-var build_module = __webpack_require__(13);
+var external_wc_number_ = __webpack_require__(122);
 
 // EXTERNAL MODULE: external ["wc","navigation"]
 var external_wc_navigation_ = __webpack_require__(12);
@@ -45,13 +42,13 @@ var external_wc_navigation_ = __webpack_require__(12);
 var external_wc_date_ = __webpack_require__(20);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-table/index.js + 2 modules
-var report_table = __webpack_require__(511);
+var report_table = __webpack_require__(512);
+
+// EXTERNAL MODULE: ./client/utils/admin-settings.js
+var admin_settings = __webpack_require__(22);
 
 // EXTERNAL MODULE: ./client/lib/currency-context.js
-var currency_context = __webpack_require__(505);
-
-// EXTERNAL MODULE: ./client/analytics/report/orders/style.scss
-var style = __webpack_require__(602);
+var currency_context = __webpack_require__(506);
 
 // CONCATENATED MODULE: ./client/analytics/report/orders/table.js
 
@@ -59,7 +56,6 @@ var style = __webpack_require__(602);
 /**
  * External dependencies
  */
-
 
 
 
@@ -159,7 +155,7 @@ class table_OrdersReportTable extends external_wp_element_["Component"] {
       query
     } = this.props;
     const persistedQuery = Object(external_wc_navigation_["getPersistedQuery"])(query);
-    const dateFormat = Object(build_module["f" /* getSetting */])('dateFormat', external_wc_date_["defaultTableDateFormat"]);
+    const dateFormat = Object(admin_settings["d" /* getAdminSetting */])('dateFormat', external_wc_date_["defaultTableDateFormat"]);
     const {
       render: renderCurrency,
       getCurrencyConfig
@@ -215,7 +211,8 @@ class table_OrdersReportTable extends external_wp_element_["Component"] {
           order: {
             status
           },
-          orderStatusMap: Object(build_module["f" /* getSetting */])('orderStatuses', {})
+          labelPositionToLeft: true,
+          orderStatusMap: Object(admin_settings["d" /* getAdminSetting */])('orderStatuses', {})
         }),
         value: status
       }, {
@@ -323,13 +320,13 @@ class table_OrdersReportTable extends external_wp_element_["Component"] {
 table_OrdersReportTable.contextType = currency_context["a" /* CurrencyContext */];
 /* harmony default export */ var table = (table_OrdersReportTable);
 // EXTERNAL MODULE: ./client/analytics/components/report-chart/index.js + 1 modules
-var report_chart = __webpack_require__(512);
+var report_chart = __webpack_require__(513);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-summary/index.js
-var report_summary = __webpack_require__(515);
+var report_summary = __webpack_require__(516);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-filters/index.js
-var report_filters = __webpack_require__(510);
+var report_filters = __webpack_require__(511);
 
 // CONCATENATED MODULE: ./client/analytics/report/orders/index.js
 
@@ -391,7 +388,7 @@ orders_OrdersReport.propTypes = {
 
 /***/ }),
 
-/***/ 506:
+/***/ 507:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -414,8 +411,8 @@ orders_OrdersReport.propTypes = {
 /* harmony import */ var _woocommerce_navigation__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_navigation__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _woocommerce_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(11);
 /* harmony import */ var _woocommerce_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_data__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(13);
-/* harmony import */ var _analytics_report_taxes_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(507);
+/* harmony import */ var _analytics_report_taxes_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(508);
+/* harmony import */ var _utils_admin_settings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(22);
 /**
  * External dependencies
  */
@@ -424,10 +421,10 @@ orders_OrdersReport.propTypes = {
 
 
 
-
 /**
  * Internal dependencies
  */
+
 
 
 /**
@@ -479,7 +476,7 @@ const getProductLabels = getRequestByIdString(_woocommerce_data__WEBPACK_IMPORTE
 }));
 const getTaxRateLabels = getRequestByIdString(_woocommerce_data__WEBPACK_IMPORTED_MODULE_4__["NAMESPACE"] + '/taxes', taxRate => ({
   key: taxRate.id,
-  label: Object(_analytics_report_taxes_utils__WEBPACK_IMPORTED_MODULE_6__[/* getTaxCode */ "a"])(taxRate)
+  label: Object(_analytics_report_taxes_utils__WEBPACK_IMPORTED_MODULE_5__[/* getTaxCode */ "a"])(taxRate)
 }));
 /**
  * Create a variation name by concatenating each of the variation's
@@ -495,7 +492,7 @@ function getVariationName({
   attributes,
   name
 }) {
-  const separator = Object(_woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_5__[/* getSetting */ "f"])('variationTitleAttributesSeparator', ' - ');
+  const separator = Object(_utils_admin_settings__WEBPACK_IMPORTED_MODULE_6__[/* getAdminSetting */ "d"])('variationTitleAttributesSeparator', ' - ');
 
   if (name && name.indexOf(separator) > -1) {
     return name;
@@ -524,7 +521,7 @@ const getVariationLabels = getRequestByIdString(({
 
 /***/ }),
 
-/***/ 507:
+/***/ 508:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -541,7 +538,7 @@ function getTaxCode(tax) {
 
 /***/ }),
 
-/***/ 537:
+/***/ 539:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -550,19 +547,19 @@ function getTaxCode(tax) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return advancedFilters; });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(31);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(28);
 /* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(13);
-/* harmony import */ var _lib_async_requests__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(506);
+/* harmony import */ var _lib_async_requests__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(507);
+/* harmony import */ var _utils_admin_settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(22);
 /**
  * External dependencies
  */
 
 
-
 /**
  * Internal dependencies
  */
+
 
 
 const ORDERS_REPORT_CHARTS_FILTER = 'woocommerce_admin_orders_report_charts';
@@ -630,9 +627,9 @@ const advancedFilters = Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__["ap
       }],
       input: {
         component: 'SelectControl',
-        options: Object.keys(_woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_2__[/* ORDER_STATUSES */ "c"]).map(key => ({
+        options: Object.keys(_utils_admin_settings__WEBPACK_IMPORTED_MODULE_3__[/* ORDER_STATUSES */ "c"]).map(key => ({
           value: key,
-          label: _woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_2__[/* ORDER_STATUSES */ "c"][key]
+          label: _utils_admin_settings__WEBPACK_IMPORTED_MODULE_3__[/* ORDER_STATUSES */ "c"][key]
         }))
       }
     },
@@ -661,7 +658,7 @@ const advancedFilters = Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__["ap
       input: {
         component: 'Search',
         type: 'products',
-        getLabels: _lib_async_requests__WEBPACK_IMPORTED_MODULE_3__[/* getProductLabels */ "d"]
+        getLabels: _lib_async_requests__WEBPACK_IMPORTED_MODULE_2__[/* getProductLabels */ "d"]
       }
     },
     variation: {
@@ -689,7 +686,7 @@ const advancedFilters = Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__["ap
       input: {
         component: 'Search',
         type: 'variations',
-        getLabels: _lib_async_requests__WEBPACK_IMPORTED_MODULE_3__[/* getVariationLabels */ "g"]
+        getLabels: _lib_async_requests__WEBPACK_IMPORTED_MODULE_2__[/* getVariationLabels */ "g"]
       }
     },
     coupon: {
@@ -717,7 +714,7 @@ const advancedFilters = Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__["ap
       input: {
         component: 'Search',
         type: 'coupons',
-        getLabels: _lib_async_requests__WEBPACK_IMPORTED_MODULE_3__[/* getCouponLabels */ "b"]
+        getLabels: _lib_async_requests__WEBPACK_IMPORTED_MODULE_2__[/* getCouponLabels */ "b"]
       }
     },
     customer_type: {
@@ -793,7 +790,7 @@ const advancedFilters = Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__["ap
       input: {
         component: 'Search',
         type: 'taxes',
-        getLabels: _lib_async_requests__WEBPACK_IMPORTED_MODULE_3__[/* getTaxRateLabels */ "f"]
+        getLabels: _lib_async_requests__WEBPACK_IMPORTED_MODULE_2__[/* getTaxRateLabels */ "f"]
       }
     },
     attribute: {
@@ -826,13 +823,6 @@ const advancedFilters = Object(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__["ap
   }
 });
 /*eslint-enable max-len*/
-
-/***/ }),
-
-/***/ 602:
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ })
 

@@ -82,12 +82,12 @@ this["wc"] = this["wc"] || {}; this["wc"]["number"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 447);
+/******/ 	return __webpack_require__(__webpack_require__.s = 448);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 447:
+/***/ 448:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -95,7 +95,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numberFormat", function() { return numberFormat; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatValue", function() { return formatValue; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calculateDelta", function() { return calculateDelta; });
-const numberFormatter = __webpack_require__(448);
+const numberFormatter = __webpack_require__(449);
 /**
  * Formats a number using site's current locale
  *
@@ -177,7 +177,7 @@ function calculateDelta(primaryValue, secondaryValue) {
 
 /***/ }),
 
-/***/ 448:
+/***/ 449:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

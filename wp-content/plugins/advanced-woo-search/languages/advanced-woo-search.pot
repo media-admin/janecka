@@ -794,3 +794,24 @@ msgstr ""
 
 msgid "Use or not live search feature."
 msgstr ""
+
+msgid "Hi! Looks like you are using some plugins that have the advanced integration with %s. Please find more details below."
+msgstr ""
+
+msgid "WCFM Multivendor Marketplace plugin."
+msgstr ""
+
+msgid "Advanced Custom Fields ( ACF ) plugin."
+msgstr ""
+
+msgid "Integrations for your plugins"
+msgstr ""
+
+msgid "All PRO Features"
+msgstr ""
+
+msgid "View Pricing"
+msgstr ""
+
+msgid "Dismiss"
+msgstr ""

@@ -82,12 +82,12 @@ this["wc"] = this["wc"] || {}; this["wc"]["notices"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 467);
+/******/ 	return __webpack_require__(__webpack_require__.s = 468);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 128:
+/***/ 129:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["notices"]; }());
@@ -101,7 +101,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["notices"] =
 
 /***/ }),
 
-/***/ 467:
+/***/ 468:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -124,7 +124,7 @@ __webpack_require__.r(selectors_namespaceObject);
 __webpack_require__.d(selectors_namespaceObject, "getNotices", function() { return getNotices; });
 
 // EXTERNAL MODULE: external ["wp","notices"]
-var external_wp_notices_ = __webpack_require__(128);
+var external_wp_notices_ = __webpack_require__(129);
 
 // EXTERNAL MODULE: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7);
