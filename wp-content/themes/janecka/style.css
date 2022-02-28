@@ -2120,6 +2120,7 @@ a.navbar-item:hover {
 		border-radius: 0px !important;
 		box-shadow: none !important;
 		align-self: start !important;
+		justify-content: left !important;
 	}
 
 
@@ -2706,7 +2707,7 @@ article h2 {
 @media screen and (min-width: 768px) {
 	.home main {
 		position: relative !important;
-		margin-top: 10px !important;
+		margin-top: 230px !important;
 	}
 
 	.home main .columns {
