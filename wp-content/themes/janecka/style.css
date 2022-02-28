@@ -2099,18 +2099,24 @@ a.navbar-item:hover {
 
 		top: 230px !important;
 
-		grid-template-columns: 1fr 3fr !important;
+		grid-template-columns: 1fr 1fr 3fr !important;
 
-		column-gap: 5%;
-		row-gap: 5%;
+		column-gap: 5% !important;
+		row-gap: 5% !important;
 
-		align-items: start;
-		justify-items: start;
+		align-items: start !important;
+		justify-items: start !important;
 
 		flex-flow: column wrap;
 
 		font-size: 1.0rem !important;
-		padding: 1.0rem 1.6rem !important;
+		line-height: 1.2rem !important;
+
+		/* padding: 1.0rem 1.6rem !important; */
+
+		padding-top: 1.0rem !important;
+		padding-left: 1.6rem !important;
+		padding-bottom: 0.0rem !important;
 
 	}
 
@@ -2134,14 +2140,21 @@ a.navbar-item:hover {
 
 
 	.mega-menu__img-container {
+		position: relative !important;
+
 		min-height: 100px !important;
-		width: 60% !important;
-		margin: 0rem !important;
-		padding: 0 !important;
-		justify-self: end;
+
+		width: 315px !important;
+		height: auto !important;
 
 		grid-column: 3 !important;
 		grid-row: 1 / span 5 !important;
+
+		justify-self: end;
+
+		margin: 0rem !important;
+
+		padding: 0 !important;
 
 	}
 
@@ -2150,16 +2163,19 @@ a.navbar-item:hover {
 		display: block !important;
 		position: relative !important;
 		max-height: inherit !important;
-		/* min-width: 100% !important;
-		width: auto !important;
-		height: 100% !important; */
-		min-width: 50% !important;
-		width: 50% !important;
-		height: auto !important;
+
+		width: 315px !important;
+		height: 315px !important;
+
+
 		object-fit: cover !important;
 		overflow: hidden !important;
+
+		margin-bottom: 15px !important;
+		/*
 		border: 1px solid #707070 !important;
-		/* margin: 0.5rem !important; */
+		margin: 0.5rem !important;
+		*/
 		padding: 0 !important;
 	}
 
