@@ -514,8 +514,8 @@
 
 		<script>
 			jQuery(document).ready(() => {
-				const modal = $('.modal');
-				$('#showModal').click(function(){
+				const modal = jQuery('.modal');
+				jQuery('#showModal').click(function(){
 					modal.addClass('is-active');
 			});
 			jQuery('.modal-close').click(function(){
@@ -526,7 +526,7 @@
 
 		<header class="site-header is-fixed-top" id="site-header">
 
-			<div class="container fullwidth ">
+			<div class="header-container container fullwidth">
 
 				<nav class="navbar-brand">
 
@@ -702,7 +702,7 @@
 				</section>
 
 
-				<section class="container fullwidth">
+				<section class="logo-container container fullwidth">
 
 					<a class="logo" href="<?php echo get_home_url(); ?>">
 						<img class="brand-logo" src="<?php bloginfo( 'template_directory' ); ?>/assets/img/logos/janecka-logos/logo-Janecka-2lines.svg" alt="Logo JANECKA - Juweliere seit 1924">

@@ -211,19 +211,65 @@
 
 <!-- Makes the Site Header sticky -->
 <script>
-	window.onscroll = function() {stickyHeader()};
 
-	var navbar = document.getElementById("site-header");
-	var sticky = navbar.offsetTop;
+	(function(){
 
-	function stickyHeader() {
-		if (window.pageYOffset >= sticky) {
-			navbar.classList.add("sticky")
-		} else {
-			navbar.classList.remove("sticky");
-		}
-	}
+		var doc = document.documentElement;
+		var w = window;
+
+		var prevScroll = w.scrollY || doc.scrollTop;
+		var curScroll;
+		var direction = 0;
+		var prevDirection = 0;
+
+		var header = document.getElementById('site-header');
+
+		var checkScroll = function() {
+
+			/*
+			** Find the direction of scroll
+			** 0 - initial, 1 - up, 2 - down
+			*/
+
+			curScroll = w.scrollY || doc.scrollTop;
+			if (curScroll > prevScroll) {
+				//scrolled up
+				direction = 2;
+			}
+			else if (curScroll < prevScroll) {
+				//scrolled down
+				direction = 1;
+			}
+
+			if (direction !== prevDirection) {
+				toggleHeader(direction, curScroll);
+			}
+
+			prevScroll = curScroll;
+		};
+
+		var toggleHeader = function(direction, curScroll) {
+			if (direction === 2 && curScroll > 240) {
+
+				header.classList.add('sticky');
+				prevDirection = direction;
+			}
+			else if (direction === 1 && curScroll < 240) {
+				header.classList.remove('sticky');
+				prevDirection = direction;
+			}
+		};
+
+		window.addEventListener('scroll', checkScroll, 200);
+
+	})();
+
+
 </script>
+
+
+
+
 
 
 

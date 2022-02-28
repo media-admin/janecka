@@ -97,7 +97,6 @@ function medialab_register_scripts() {
 	wp_enqueue_script( 'jquery--migrate-1-2-1' );
 
 
-
 	// Import Button Back-to-Top
 	wp_register_script( 'button-back-to-top', get_template_directory_uri() . '/assets/js/button-back-to-top.js', '', null, true );
 	wp_enqueue_script( 'button-back-to-top' );
