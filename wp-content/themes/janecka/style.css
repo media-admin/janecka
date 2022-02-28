@@ -2150,13 +2150,16 @@ a.navbar-item:hover {
 		display: block !important;
 		position: relative !important;
 		max-height: inherit !important;
-		min-width: 100% !important;
+		/* min-width: 100% !important;
 		width: auto !important;
-		height: 100% !important;
+		height: 100% !important; */
+		min-width: 50% !important;
+		width: 50% !important;
+		height: auto !important;
 		object-fit: cover !important;
 		overflow: hidden !important;
 		border: 1px solid #707070 !important;
-		margin: 0.5rem !important;
+		/* margin: 0.5rem !important; */
 		padding: 0 !important;
 	}
 
