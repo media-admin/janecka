@@ -2908,6 +2908,7 @@ section.hero {
 	.hero {
 		position: relative !important;
 		display: block;
+		top: 230px !important;
 		width: 100%2.0em !important;
 		height: auto !important;
 		overflow: hidden !important;
