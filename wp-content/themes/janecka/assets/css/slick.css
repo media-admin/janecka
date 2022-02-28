@@ -86,8 +86,8 @@
 {
     display: none;
     float: left;
-
-    min-height: 300px;
+    /* min-height: 300px */
+    min-height: 400px;
     height: 100%;
 
 }

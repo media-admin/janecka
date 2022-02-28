@@ -1400,14 +1400,14 @@ header {
 .navbar-burger {
 	position: absolute !important;
 	top: 0px;
-	left: 10px;
+	left: 25px;
 	width: 35px !important;
 	color: #5a5a5a;
 	font-family: 'Aalto Sans Pro Light';
 	background-color: #707070;
 	background-color: transparent !important;
 	margin-top: 0px !important;
-	padding-top: 5px;
+	padding-top: 3px;
 }
 
 @media screen and (min-width: 768px) {
@@ -1442,14 +1442,15 @@ header {
 .navbar-burger span {
 	background-color: #5a5a5a !important;
 	display: block;
-	height: 2px;
+	height: 1.5px;
 	left: calc(50% - 16px);
 	position: absolute;
 	transform-origin: center;
 	transition-duration: 86ms;
 	transition-property: background-color,opacity,transform;
 	transition-timing-function: ease-out;
-	width: 25px !important;
+	/* width: 25px !important; */
+	width: 20px !important;
 }
 
 
@@ -1523,7 +1524,8 @@ header {
 .navbar-menu.is-active .navbar-start .has-dropdown a {
 	width: 80% !important;
 	font-family: 'Aalto Sans Pro Light';
-	font-size: 1.5rem !important;
+	/* font-size: 1.5rem !important; */
+	font-size: 1.2rem !important;
 	font-weight: 500 !important;
 	letter-spacing: 2px;
 	color: #707070;
@@ -1574,6 +1576,7 @@ header {
 .navbar-menu.is-active .navbar-start .has-dropdown.is-active-dropdown .navbar-dropdown a {
 	color: #707070 !important;
 	font-size: 1.2rem !important;
+	font-size: 1.0rem !important;
 	line-height: 1.5rem !important;
 }
 
@@ -1596,10 +1599,13 @@ header {
 .search-area {
 	position: absolute !important;
 	top: 10px;
-	left: 50px;
-	padding-top: 5px;
+	left: 65px;
+	padding-top: 6px;
 }
 
+.search-area img {
+	width: 80% !important;
+}
 
 @media screen and (min-width: 768px) {
 	.search-area {
@@ -1609,7 +1615,10 @@ header {
 		border-right: 1px solid #707070;
 		padding-top: 5px;
 		padding-right: 15px;
+	}
 
+	.search-area img {
+		width: 100% !important;
 	}
 }
 
@@ -1777,7 +1786,8 @@ header {
 		*/
 		display: flex !important;
 		flex-grow: 1 !important;
-		justify-content: left !important;
+		/* justify-content: left !important; */
+		justify-content: space-around !important;
 		font-family: 'Aalto Sans Pro Light' !important;
 		align-items: center !important;
 		border-right: none !important;
@@ -2238,6 +2248,17 @@ a.navbar-item:hover {
 	padding: 0px auto !important;
 }
 
+
+.webshop-navbar img {
+	width: 80% !important;
+}
+
+
+
+
+
+
+
 @media screen and (min-width: 768px) {
 	.webshop-navbar {
 		position: relative !important;
@@ -2247,6 +2268,10 @@ a.navbar-item:hover {
 		margin: inherit !important;
 		margin-right: 25px !important;
 		margin-top: -65px !important;
+	}
+
+	.webshop-navbar img {
+		width: 100% !important;
 	}
 }
 
@@ -2373,19 +2398,21 @@ img.brand-logo {
 	position: relative;
 	font-family: 'Roboto Slab Light', serif !important ;
 	color: #707070 !important;
-	font-size: 0.9rem;
+	font-size: 0.9rem !important;
 	text-align: left;
-	margin: 0.5rem;
-	padding-left: 0.0rem;
+	margin: 0.0rem 0.5rem !important;
+	padding-left: 0.5rem !important;
+	padding-right: 0.5rem !important;
 }
 
 @media screen and (min-width: 768px) {
 	.woocommerce-breadcrumb {
-		font-size: 1.0rem;
-		margin: 0.75em !important;
+		font-size: 1.0rem !important;
+		margin: 0.75rem !important;
 		margin-top: 50px !important;
 		margin-bottom: 50px !important;
-		padding-left: 1.0rem;
+		padding-left: 1.0rem !important;
+		padding-right: inherit !important;
 	}
 }
 
@@ -2689,7 +2716,8 @@ section.hero {
 
 
 .hero-slider {
-	min-height: 300px !important;
+	/* min-height: 300px !important; */
+	min-height: 400px !important;
 	width: 100% !important;
 	height: auto !important;
 }
@@ -2699,7 +2727,8 @@ section.hero {
 .hero-slider {
 	position: relative !important;
 	display: block !important;
-	min-height: 300px !important;
+	/* min-height: 300px !important; */
+	min-height: 400px !important;
 	width: 100% !important;
 	height: auto !important;
 }
@@ -2708,7 +2737,8 @@ section.hero {
 .carousel-item img {
 	position: relative !important;
 	top: 0px;
-	min-height: 300px !important;
+	/* min-height: 300px !important; */
+	min-height: 400px !important;
 	height: 100% !important;
 	width: auto !important;
 	object-fit: cover !important;
@@ -2755,7 +2785,8 @@ section.hero {
 .slick-next {
 	position: absolute !important;
 	width: 25px !important;
-	height: 55px !important;
+	/* height: 55px !important; */
+	height: 75px !important;
 	background: #707070 !important;
 	opacity: 0.7 !important;
 	border-radius: 0px !important;
@@ -4002,6 +4033,7 @@ input[type=checkbox]:checked:after {
 	color: #707070 !important;
 	font-family: 'Roboto Slab Regular', serif !important ;
 	font-size: 1.2rem;
+	font-size: 1.0rem;
 	margin-bottom: 0.0rem !important;
 
 }
@@ -4273,7 +4305,7 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 
 .single-product .woocommerce-product-gallery__image {
 	border: 1px solid rgba(0,0,0,0.1);
-
+	border: 0.5px solid rgba(0,0,0,0.1);
 }
 
 
@@ -4327,12 +4359,13 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 .woocommerce div.product .product_title {
 	font-family: 'Source Sans Pro Bold' !important;
 	font-size: 1.6rem !important;
-	line-height: 1.0rem !important;
+	line-height: 1.6rem !important;
 	text-align: left !important;
 	margin-top: 0.25rem !important;
 	margin-left: 0.0rem !important;
 	border-bottom: 1px solid rgba(0,0,0,0.1);
 	padding-bottom: 1.5rem !important;
+	padding-bottom: 1.0rem !important;
 }
 
 
@@ -4421,11 +4454,13 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 	color: #707070 !important;
 	font-family: 'Roboto Slab Bold', serif !important ;
 	font-size: 1.4rem;
+	font-size: 1.2rem;
 }
 
 
 .single-product .product p.wc-gzd-additional-info {
 	display: inherit !important;
+	font-size: .9rem !important;
 }
 
 
@@ -4647,7 +4682,7 @@ input.qty {
 
 .woocommerce div.product form.cart .single_add_to_cart_button {
 	position: relative !important;
-	width: 50% !important;
+	width: 100% !important;
 	min-height: 45px !important;
 	clear: all !important;
 
@@ -4669,7 +4704,11 @@ input.qty {
 	justify-content: center !important;
 }
 
-
+@media screen and (min-width: 768px) {
+	.woocommerce div.product form.cart .single_add_to_cart_button {
+		width: 50% !important;
+	}
+}
 
 
 .single_add_to_cart_button:before {
