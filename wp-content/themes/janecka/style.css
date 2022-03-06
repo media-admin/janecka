@@ -2465,8 +2465,9 @@ img.brand-logo {
 	.woocommerce-breadcrumb {
 		font-size: 1.0rem !important;
 		margin: 0.75rem !important;
-		margin-top: 50px !important;
+		/* margin-top: 50px !important; */
 		margin-bottom: 50px !important;
+		padding-top: 280px !important;
 		padding-left: 1.0rem !important;
 		padding-right: inherit !important;
 	}
@@ -2618,6 +2619,7 @@ main {
 	position: relative;
 	max-width: 100%;
 	width: 100% !important;
+	top: 0px !important;
 	text-align: left;
 	margin-top: 0px;
 	padding-top: 15px;
@@ -2629,6 +2631,7 @@ main {
 
 @media screen and (min-width: 768px) {
 	main {
+		top: 0px !important;
 		padding-top: 0.0em;
 		padding-left: 2.5em;
 		padding-right: 2.5em;
@@ -4280,6 +4283,22 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* --- SEITE SHOP EHERINGE --- */
 
 .products__ring-diamonds {
@@ -4302,6 +4321,53 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 	margin-top: 0px !important;
 	padding-top: 0px !important;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- SEITE SHOP ONE COLUMN --- */
+
+.shop-overview__columns--one-column .yith-wcan-filters.horizontal:not(.filters-modal) .yith-wcan-filter {
+	min-width: inherit !important;
+}
+
+
+.shop-overview__columns--one-column .yith-wcan-filters .yith-wcan-filter {
+	border-bottom: 0px !important;
+}
+
+
+.shop-overview__columns--one-column h4.filter-title {
+	font-size: 1.0rem !important;
+	line-height: 1.2rem !important;
+	padding-top: 0.25rem !important;
+}
+
+
+.shop-overview__columns--one-column .yith-wcan-filters .apply-filters {
+	width: auto !important;
+	display: inline-block !important;
+	margin: 0 !important;
+}
+
+
+.shop-overview__columns--one-column .filters-container {
+	border-bottom: 1px solid #707070;
+	margin-bottom: 0px !important;
+	padding-bottom: 0px !important;
+}
+
+
+
 
 
 
