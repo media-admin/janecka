@@ -91,13 +91,14 @@ class Calculation
      * @var array
      */
     private $_default_entry = array(
-        'key'      => '',
-        'coupon'   => '',
-        'entry_id' => '',
-        'type'     => 'deal',
-        'quantity' => 0,
-        'discount' => 0,
-        'name'     => '',
+        'key'           => '',
+        'coupon'        => '',
+        'entry_id'      => '',
+        'type'          => 'deal',
+        'quantity'      => 0,
+        'discount'      => 0,
+        'discount_type' => '',
+        'name'          => '',
     );
 
     /*
@@ -558,7 +559,7 @@ class Calculation
         $cart_items = $this->get_sorted_cart_items_by_price('deal'); // sort prices from lowest to highest.
 
         foreach ($this->_bogo_deal->deals as $deal) {
-
+            
             $entry_id = $deal['entry_id'];
 
             foreach ($cart_items as $cart_item) {

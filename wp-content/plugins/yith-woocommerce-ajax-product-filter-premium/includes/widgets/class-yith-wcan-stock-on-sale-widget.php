@@ -311,9 +311,9 @@ if ( ! class_exists( 'YITH_WCAN_Stock_On_Sale_Widget' ) ) {
 			$instance = $old_instance;
 
 			$instance['title']         = wp_strip_all_tags( $new_instance['title'] );
-			$instance['onsale']        = isset( $new_instance['onsale'] ) ? 1 : 0;
-			$instance['instock']       = isset( $new_instance['instock'] ) ? 1 : 0;
-			$instance['dropdown']      = isset( $new_instance['dropdown'] ) ? 1 : 0;
+			$instance['onsale']        = ( isset( $new_instance['onsale'] ) && yith_plugin_fw_is_true( $new_instance['onsale'] ) ) ? 1 : 0;
+			$instance['instock']       = ( isset( $new_instance['instock'] ) && yith_plugin_fw_is_true( $new_instance['instock'] ) ) ? 1 : 0;
+			$instance['dropdown']      = ( isset( $new_instance['dropdown'] ) && yith_plugin_fw_is_true( $new_instance['dropdown'] ) ) ? 1 : 0;
 			$instance['dropdown_type'] = $new_instance['dropdown_type'];
 
 			return $instance;

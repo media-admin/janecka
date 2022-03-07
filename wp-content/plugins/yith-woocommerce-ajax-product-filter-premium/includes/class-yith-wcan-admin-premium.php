@@ -381,6 +381,10 @@ if ( ! class_exists( 'YITH_WCAN_Admin_Premium' ) ) {
 		public function add_seo_options( $settings ) {
 			$options = $settings['seo'];
 
+			if ( ! isset( $options['change_url'] ) ) {
+				return $settings;
+			}
+
 			// add premium options to existing settings.
 			$options['change_url']['options'] = yith_wcan_merge_in_array(
 				$options['change_url']['options'],

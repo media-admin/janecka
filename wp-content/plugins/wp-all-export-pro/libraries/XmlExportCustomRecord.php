@@ -35,7 +35,7 @@ if (!class_exists('XmlExportCustomRecord')) {
             }
         }
 
-        public static function prepare_data($record, $exportOptions, $xmlWriter = false, $implode_delimiter, $preview) {
+        public static function prepare_data($record, $exportOptions, $xmlWriter, $implode_delimiter, $preview) {
             $article = array();
 
             if (wp_all_export_is_compatible() && isset($exportOptions['is_generate_import']) && $exportOptions['is_generate_import'] && $exportOptions['import_id']) {

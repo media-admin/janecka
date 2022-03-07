@@ -113,9 +113,36 @@ if (!class_exists('AWS_Woobewoo_Filters')) :
                 elseif ( strpos( $key, 'pr_onsale' ) !== false ) {
                     $filters['on_sale'] = true;
                 }
+                elseif ( strpos( $key, 'pr_stock' ) !== false ) {
+                    $filters['in_status'] = $param === 'instock';
+                }
+                elseif ( strpos( $key, 'pr_rating' ) !== false ) {
+                    switch ( $param ) {
+                        case '1-5':
+                            $rating = array( 1, 2, 3, 4, 5 );
+                            break;
+                        case '2-5':
+                            $rating = array( 2, 3, 4, 5 );
+                            break;
+                        case '3-5':
+                            $rating = array( 3, 4, 5 );
+                            break;
+                        case '4-5':
+                            $rating = array( 4, 5 );
+                            break;
+                        default:
+                            $rating = array( 5 );
+                    }
+                    $filters['rating'] = $rating;
+                }
                 elseif ( strpos( $key, 'filter_' ) === 0 ) {
 
-                    $taxonomy = str_replace( 'filter_', '', $key );
+                    if ( strpos( $key, 'filter_pwb_' ) === 0 ) {
+                        $taxonomy = 'pwb-brand';
+                    } else {
+                        $taxonomy = str_replace( 'filter_', '', $key );
+                    }
+
                     if ( preg_match( '/([a-z]+?)_[\d]/', $taxonomy, $matches )  ) {
                         $taxonomy = $matches[1];
                     }

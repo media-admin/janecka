@@ -4,7 +4,7 @@ Donate link:
 Tags: coupons, woocommerce coupons, bogo, url coupons, coupon plugin, advanced coupons
 Requires at least: 5.2
 Tested up to: 5.9
-Stable tag: 3.1.3
+Stable tag: 3.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,7 +48,7 @@ Now you can – Advanced Coupons WooCommerce BOGO coupons let you easily run a B
 
 It's a much more flexible WooCommerce coupon type compared to straight discounts that your customers will love! It's also much more profitable for your store as well when compared to standard discount coupons (read on).
 
-= Protect Your Profits With Cart Conditions (Coupon Rules) =
+= Protection For Your Profits With Cart Conditions (Advance Coupon Rules) =
 
 WooCommerce coupon misuse is a huge problem for store owners worldwide. Smart store owners are using coupon rules, what we call "Cart Conditions", to reduce this significantly. By setting the right conditions on your WooCommerce coupons you can control exactly when they are allowed to be used.
 
@@ -163,11 +163,11 @@ That said, there are a few features that are designed specifically to help devel
 
 = What extra things can I do with my WooCommerce coupons with Advanced Coupons? =
 
-Advanced Coupons lets you create lots of new and interesting WooCommerce deals. Here are some extra features you can expect on your WooCommerce coupons:
+Advanced Coupons lets you create lots of new and interesting WooCommerce deals. Here are some extra features you can expect on your WooCommerce coupons with our full range of tools:
 
 * WooCommerce BOGO coupons
 * Add Products on apply
-* Cart conditions (coupon rules)
+* Cart conditions (advance coupon rules)
 * Schedule coupons
 * Auto apply coupons
 * URL coupons
@@ -249,6 +249,12 @@ Thanks,
 Josh Kohlbach
 
 == Changelog ==
+
+= 3.1.4 =
+Min Version Compatibility Update: Advanced Coupons Premium 3.1.3 (if present)
+
+* Bug Fix: BOGO Fixed Discount and Percentage Discount Get types were overriding product price
+* Bug Fix: Discount amount not have adaptive value based on product price and discount
 
 = 3.1.3 =
 * Bug Fix: The "acfw_coupon_code" tag from URL Coupons "Redirect To URL" setting is replaced with URL slug instead of coupon code

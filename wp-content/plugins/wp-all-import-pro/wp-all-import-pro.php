@@ -3,7 +3,7 @@
 Plugin Name: WP All Import Pro
 Plugin URI: http://www.wpallimport.com/
 Description: The most powerful solution for importing XML and CSV files to WordPress. Import to Posts, Pages, and Custom Post Types. Support for imports that run on a schedule, ability to update existing imports, and much more.
-Version: 4.7.1
+Version: 4.7.2
 Author: Soflyy
 */
 
@@ -25,7 +25,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
     /**
      *
      */
-    define('PMXI_VERSION', '4.7.1');
+    define('PMXI_VERSION', '4.7.2');
 
     /**
      *
@@ -852,13 +852,13 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 				$filePathAlt = $className . '.php';
 			}
 			foreach ($is_prefix ? array('models', 'controllers', 'shortcodes', 'classes') : array('libraries') as $subdir) {
-				$path = self::ROOT_DIR . '/' . $subdir . '/' . $filePath;				
+				$path = self::ROOT_DIR . '/' . $subdir . '/' . $filePath;
 				if (strlen($filePath) < 40 && is_file($path)) {
 					require $path;
 					return TRUE;
 				}
 				if ( ! $is_prefix) {
-					$pathAlt = self::ROOT_DIR . '/' . $subdir . '/' . $filePathAlt;					
+					$pathAlt = self::ROOT_DIR . '/' . $subdir . '/' . $filePathAlt;
 					if (strlen($filePathAlt) < 40 && is_file($pathAlt)) {
 						require $pathAlt;
 						return TRUE;
@@ -962,7 +962,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
             $salt = defined('AUTH_SALT') ? AUTH_SALT : wp_salt();
 			return preg_match('/^[a-f0-9]{32}$/', $encoded) ? $encoded : str_replace(array(md5($salt), md5(md5($salt))), '', base64_decode($encoded));
 		}
-		
+
 		/**
 		 * Plugin activation logic
 		 */
@@ -981,7 +981,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
                 }
             }
 
-			// uncaught exception doesn't prevent plugin from being activated, therefore replace it with fatal error so it does      
+			// uncaught exception doesn't prevent plugin from being activated, therefore replace it with fatal error so it does
 			set_exception_handler(function($e){trigger_error($e->getMessage(), E_USER_ERROR);});
 
 			// create plugin options
@@ -1016,11 +1016,11 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 						// sync data between plugin tables and wordpress (mostly for the case when plugin is reactivated)
 						$pmxi_post = new PMXI_Post_Record();
 						$pmxi_import = new PMXI_Import_Record();
-						
+
 						$imports_list = $wpdb->get_results('SELECT id FROM ' . $pmxi_import->getTable() . '');
-						
+
 						if ( ! empty($imports_list) ) {
-							
+
 							$user_imports = array();
 							$comment_imports = array();
 							$post_imports = array();
@@ -1044,7 +1044,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 									$post_imports[] = $import_id;
 								}
 							}
-								
+
 							if ( ! empty($user_imports) ) {
 								$user_table = $wpdb->base_prefix . 'users';
 								$user_query = 'DELETE FROM ' . $pmxi_post->getTable() . ' WHERE import_id IN (' . implode(',', $user_imports) . ') AND post_id NOT IN (SELECT ID FROM ' . $user_table . ')';
@@ -1068,7 +1068,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 								$entries_query = 'DELETE FROM ' . $pmxi_post->getTable() . ' WHERE import_id IN (' . implode(',', $gf_imports) . ') AND post_id NOT IN (SELECT id FROM ' . $entries_table . ')';
 								$wpdb->query($entries_query);
 							}
-							
+
 							if ( ! empty($post_imports) ) {
 								$post_query = 'DELETE FROM ' . $pmxi_post->getTable() . ' WHERE import_id IN (' . implode(',', $post_imports) . ') AND post_id NOT IN (SELECT ID FROM ' . $wpdb->posts . ')';
 								$wpdb->query($post_query);
@@ -1084,13 +1084,13 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 
 			// sync data between plugin tables and wordpress (mostly for the case when plugin is reactivated)
 			$pmxi_post = new PMXI_Post_Record();
-			
+
 			$pmxi_import = new PMXI_Import_Record();
-			
+
 			$imports_list = $wpdb->get_results('SELECT id FROM ' . $pmxi_import->getTable() . '');
-			
+
 			if ( ! empty($imports_list) ) {
-				
+
 				$user_imports = array();
                 $comment_imports = array();
 				$post_imports = array();
@@ -1114,7 +1114,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 						$post_imports[] = $import_id;
 					}
 				}
-					
+
 				if ( ! empty($user_imports) ) {
 					$user_table = $wpdb->base_prefix . 'users';
 					$user_query = 'DELETE FROM ' . $pmxi_post->getTable() . ' WHERE import_id IN (' . implode(',', $user_imports) . ') AND post_id NOT IN (SELECT ID FROM ' . $user_table . ')';
@@ -1138,7 +1138,7 @@ if ( is_plugin_active('wp-all-import/plugin.php') ){
 					$entries_query = 'DELETE FROM ' . $pmxi_post->getTable() . ' WHERE import_id IN (' . implode(',', $entries_table) . ') AND post_id NOT IN (SELECT id FROM ' . $entries_table . ')';
 					$wpdb->query($entries_query);
 				}
-				
+
 				if ( ! empty($post_imports) ) {
 					$post_query = 'DELETE FROM ' . $pmxi_post->getTable() . ' WHERE import_id IN (' . implode(',', $post_imports) . ') AND post_id NOT IN (SELECT ID FROM ' . $wpdb->posts . ')';
 					$wpdb->query($post_query);

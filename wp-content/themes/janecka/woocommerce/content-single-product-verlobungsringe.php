@@ -19,16 +19,13 @@ defined( 'ABSPATH' ) || exit;
 
 global $product;
 
-
-/* Remove unused Data */
+/* --- Remove unused Data --- */
 
 // Remove the Delivery Time
 remove_action( 'summary entry-summary', 'janecka_single-product_display_delivery_time', 10, 0 );
 
-
 // Remove the Stock Information
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_template_single_meta', 40, 0);
-
 
 
 /**

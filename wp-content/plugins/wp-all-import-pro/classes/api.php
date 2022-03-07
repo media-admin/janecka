@@ -451,7 +451,7 @@ class PMXI_API
 
 		$is_base64_images_allowed = apply_filters("wp_all_import_is_base64_images_allowed", true, $url, false);
 
-		if ( $file_type == 'images' && base64_encode(base64_decode($url)) == $url && $is_base64_images_allowed ) {
+		if ( $file_type == 'images' && wp_all_import_is_base64_encoded($url) && $is_base64_images_allowed ) {
 			$image_name = md5($url) . '.jpg';
 			// Search existing attachment.
 			$attch = wp_all_import_get_image_from_gallery($image_name, $targetDir, $file_type);
@@ -472,7 +472,7 @@ class PMXI_API
 			}
 
 			if ("yes" == $download_images) {
-				$img = @imagecreatefromstring(base64_decode($url));
+				$img = @imagecreatefromstring(wp_all_import_base64_decode_image($url));
 				if ($img) {
 					$image_filename = $image_name;
 					$logger and call_user_func($logger, __('- found base64_encoded image', 'wp_all_import_plugin'));

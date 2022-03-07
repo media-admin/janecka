@@ -377,7 +377,7 @@ function pmxe_pmxe_after_export($export_id, $export)
 				'export_name' => $export->friendly_name,
 				'file_name' => basename($filepath),
 				'file_type' => wp_all_export_get_export_format($export->options),
-				'post_types_exported' => empty($export->options['cpt']) ? $export->options['wp_query'] : implode($export->options['cpt'], ','),
+				'post_types_exported' => empty($export->options['cpt']) ? $export->options['wp_query'] : implode(',', $export->options['cpt']),
 				'export_created_date' => $export->registered_on,
 				'export_last_run_date' => date('Y-m-d H:i:s'),
 				'export_trigger_type' => empty($_GET['export_key']) ? 'manual' : 'cron',

@@ -74,8 +74,7 @@ if ( ! class_exists( 'AWS_YITH_WISHLIST' ) ) :
                 if ( $show_wishlist !== 'no' ) {
                     foreach( $products_array as $key => $product_item ) {
                         $wishlist = '<div class="woocommerce aws-wishlist">' . do_shortcode( '[yith_wcwl_add_to_wishlist parent_product_id="' . $product_item['parent_id'] . '" product_id="' . $product_item['id'] . '"]' ) . '</div>';
-                        $wishlist = preg_replace( '/<a([\s\S]*?add_to_wishlist[\s\S]*?)<\/a>/', '<button$1</button>', $wishlist );
-                        $wishlist = preg_replace( '/<a([\s\S]*?)<\/a>/', '<span style="text-decoration: underline;"$1</span>', $wishlist );
+                        $wishlist = preg_replace( '/<a( href="[?|#]add_to_wishlist[\s\S]*?)<\/a>/', '<button style="z-index:2;" $1</button>', $wishlist );
                         $products_array[$key][$show_wishlist] .= $wishlist;
                     }
                 }

@@ -4,15 +4,17 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit5f8a535cab56f9307bff46d869d583bc
+class ComposerStaticInit67b44fe7c35a8c302b78e218a0018012
 {
     public static $files = array (
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'W' => 
         array (
+            'WpOop\\WordPress\\' => 16,
             'WooCommerce\\WooCommerce\\Logging\\' => 32,
             'WooCommerce\\PayPalCommerce\\Webhooks\\' => 36,
             'WooCommerce\\PayPalCommerce\\WcGateway\\' => 37,
@@ -28,6 +30,10 @@ class ComposerStaticInit5f8a535cab56f9307bff46d869d583bc
             'WooCommerce\\PayPalCommerce\\' => 27,
             'Wikimedia\\Composer\\' => 19,
         ),
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Php80\\' => 23,
+        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
@@ -39,6 +45,10 @@ class ComposerStaticInit5f8a535cab56f9307bff46d869d583bc
         ),
         'D' => 
         array (
+            'Dhii\\Versions\\' => 14,
+            'Dhii\\Validation\\' => 16,
+            'Dhii\\Util\\String\\' => 17,
+            'Dhii\\Package\\' => 13,
             'Dhii\\Modular\\Module\\' => 20,
             'Dhii\\Container\\' => 15,
             'Dhii\\Collection\\' => 16,
@@ -46,6 +56,10 @@ class ComposerStaticInit5f8a535cab56f9307bff46d869d583bc
     );
 
     public static $prefixDirsPsr4 = array (
+        'WpOop\\WordPress\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/wp-oop/wordpress-interface/src',
+        ),
         'WooCommerce\\WooCommerce\\Logging\\' => 
         array (
             0 => __DIR__ . '/../..' . '/modules/woocommerce-logging/src',
@@ -102,6 +116,10 @@ class ComposerStaticInit5f8a535cab56f9307bff46d869d583bc
         array (
             0 => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src',
         ),
+        'Symfony\\Polyfill\\Php80\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -113,6 +131,22 @@ class ComposerStaticInit5f8a535cab56f9307bff46d869d583bc
         'Interop\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/container-interop/service-provider/src',
+        ),
+        'Dhii\\Versions\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dhii/versions/src',
+        ),
+        'Dhii\\Validation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dhii/validation-interface/src',
+        ),
+        'Dhii\\Util\\String\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dhii/human-readable-interface/src',
+        ),
+        'Dhii\\Package\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dhii/package-interface/src',
         ),
         'Dhii\\Modular\\Module\\' => 
         array (
@@ -128,11 +162,19 @@ class ComposerStaticInit5f8a535cab56f9307bff46d869d583bc
         ),
     );
 
+    public static $classMap = array (
+        'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
+        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit5f8a535cab56f9307bff46d869d583bc::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit5f8a535cab56f9307bff46d869d583bc::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit67b44fe7c35a8c302b78e218a0018012::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit67b44fe7c35a8c302b78e218a0018012::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit67b44fe7c35a8c302b78e218a0018012::$classMap;
 
         }, null, ClassLoader::class);
     }

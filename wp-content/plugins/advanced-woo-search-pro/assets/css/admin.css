@@ -760,10 +760,94 @@ h2.aws-instance-filter:before {
 }
 
 /* Welcome message */
+.aws-welcome-notice {
+}
 
-.welcome-panel .welcome-panel-column:first-child {
+.aws-welcome-panel {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 16px 0 0;
+    background: transparent;
+    font-size: 13px;
+    line-height: 1.7;
+    position: relative;
+    overflow: auto;
+}
+
+.aws-welcome-panel h2 {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.aws-welcome-panel p {
+    color: #646970;
+}
+
+.aws-welcome-panel .aws-welcome-panel-content {
+    margin-left: 13px;
+    max-width: 1500px;
+}
+
+.aws-welcome-panel .aws-welcome-panel-column-container {
+    clear: both;
+    position: relative;
+}
+
+.aws-welcome-panel .aws-welcome-panel-column:first-child {
     width: 60%;
 }
-.welcome-panel .welcome-panel-column {
+.aws-welcome-panel .aws-welcome-panel-column {
     width: 20%;
+    min-width: 200px;
+    float: left;
+}
+
+.aws-welcome-panel .aws-welcome-panel-column p {
+    margin-top: 7px;
+    color: #3c434a;
+}
+
+.aws-welcome-panel .about-description {
+    font-size: 16px;
+    margin: 0;
+}
+
+.aws-welcome-panel li {
+    font-size: 14px;
+}
+
+.aws-welcome-panel li a {
+    text-decoration: none;
+    padding-bottom: 2px;
+}
+
+.aws-welcome-panel .aws-welcome-icon {
+    background: 0 0!important;
+}
+
+.aws-welcome-panel .aws-welcome-icon:before {
+    color: #646970;
+    font: normal 20px/1 dashicons;
+    speak: never;
+    display: inline-block;
+    padding: 0 10px 0 0;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none!important;
+    vertical-align: top;
+}
+
+.aws-welcome-panel .aws-welcome-edit-page:before,
+.aws-welcome-panel .aws-welcome-write-blog:before {
+    content: "\f119";
+    top: -3px;
+}
+
+.aws-welcome-panel .aws-welcome-widgets-menus:before {
+    content: "\f116";
+    top: -2px;
 }

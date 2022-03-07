@@ -1289,10 +1289,12 @@ if ( ! class_exists( 'AWS_Admin_Options' ) ) :
             $options['product'][] = array(
                 "name" => __( "Product", "advanced-woo-search" ),
                 "id"   => "product",
-                "type" => "callback",
+                "type" => "callback_ajax",
+                "ajax" => "aws-searchForProducts",
+                "placeholder" => __( "Search for a product...", "advanced-woo-search" ),
                 "operators" => "equals",
                 "choices" => array(
-                    'callback' => 'AWS_Admin_Filters_Helpers::get_products',
+                    'callback' => 'AWS_Admin_Filters_Helpers::get_product',
                     'params'   => array()
                 ),
             );

@@ -536,15 +536,17 @@ if ( ! class_exists( 'YITH_WCAN_Filter_Tax' ) ) {
 		 * Checks whether term should be hidden
 		 *
 		 * @param array $term_options Array describing term and its options.
-		 * @return bool Whther to hide term or not
+		 * @return bool Whether to hide term or not
 		 */
 		protected function is_term_hidden( $term_options ) {
+			$hidden = false;
+
 			// hide when term doesn't match current selection.
 			if ( 'hide' === $this->get_adoptive() && ! $term_options['count'] && empty( $term_options['children'] ) ) {
-				return true;
+				$hidden = true;
 			}
 
-			return false;
+			return apply_filters( 'yith_wcan_filter_tax_is_term_hidden', $hidden, $term_options );
 		}
 	}
 }

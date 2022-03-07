@@ -3,7 +3,7 @@
 Plugin Name: WP Fastest Cache
 Plugin URI: http://wordpress.org/plugins/wp-fastest-cache/
 Description: The simplest and fastest WP Cache system
-Version: 0.9.8
+Version: 0.9.9
 Author: Emre Vona
 Author URI: http://tr.linkedin.com/in/emrevona
 Text Domain: wp-fastest-cache
@@ -86,6 +86,7 @@ GNU General Public License for more details.
 		private $options = array();
 		public $noscript = "";
 		public $content_url = "";
+		public $deleted_before = false;
 
 		public function __construct(){
 			$this->set_content_url();
@@ -247,6 +248,9 @@ GNU General Public License for more details.
 				$this->options = $this->getOptions();
 
 				add_action('transition_post_status',  array($this, 'on_all_status_transitions'), 10, 3 );
+				
+				// when the regular price is updated, the "transition_post_status" action cannot catch it
+				add_action('woocommerce_update_product',  array($this, 'clear_cache_after_woocommerce_update_product'), 10, 1);
 
 				$this->commentHooks();
 
@@ -1065,7 +1069,15 @@ GNU General Public License for more details.
 			}
 		}
 
+		public function clear_cache_after_woocommerce_update_product($product_id){
+			if(!$this->deleted_before){
+				$this->singleDeleteCache(false, $product_id);
+			}
+		}
+
 		public function on_all_status_transitions($new_status, $old_status, $post){
+			$this->deleted_before = true;
+
 			if(!wp_is_post_revision($post->ID)){
 				if(isset($post->post_type)){
 					if($post->post_type == "nf_sub"){

@@ -45,7 +45,7 @@
 	        </p>
 
 	        <p id="wpfc-single-preload-process" style="display: none;">
-	        	<label>Status: <span id="wpfc-single-preload-status-runnig">Running...</span><span id="wpfc-single-preload-status-completed" style="display: none; color: #33CD32; font-weight: bold;">Completed</span></label><br>
+	        	<label>Status: <span id="wpfc-single-preload-status-runnig">Running</span><span id="wpfc-single-preload-status-completed" style="display: none; color: #33CD32; font-weight: bold;">Completed</span></label><br>
 		        <label>Total: <span id="wpfc-single-preload-total-number"><?php echo count(self::$urls); ?></span></label><br>
 		        <label>Cached: <span id="wpfc-single-preload-cached-number">0</span></label><br>
 		        <label>Errors: <span id="wpfc-single-preload-error-number">0</span></label>
@@ -226,30 +226,82 @@
 
 	        			WpfcSinglePreload.change_status();
 	        		},
-	        		create_cache: function(url, user_agent){
-	        			var self = this;
-	        			jQuery("#wpfc-single-preload").show();
+	        		running_animation: function(){
+	        			let label = jQuery("#wpfc-single-preload-status-runnig");
+						let text = label.text();
+						let dot = 0;
 
-		        		jQuery.ajax({
-							type: 'GET',
-							url: ajaxurl,
-							data: {"action": "wpfc_preload_single", "url": url, "user_agent": user_agent},
-							dataType: "html",
-							timeout: 10000,
-							cache: false, 
-							success: function(data){
-								if(data == "true"){
-									WpfcSinglePreload.increase_cached();
+						label.text(text + ".");
+
+						self.interval = setInterval(function(){
+							text = label.text();
+							dot = text.match(/\./g);
+
+							if(dot){
+								if(dot.length < 3){
+									label.text(text + ".");
 								}else{
-									self.error_message = data;
-									WpfcSinglePreload.increase_error();
+									label.text(text.replace(/\.+$/, ""));
 								}
-							},
-							error: function(error){
-								self.error_message = error.statusText;
-								WpfcSinglePreload.increase_error();
+							}else{
+								label.text(text + ".");
 							}
-						});
+						}, 300);
+	        		},
+	        		create_cache: function(list){
+	        			var action = function(url, user_agent, list){
+		        			var self = this;
+		        			jQuery("#wpfc-single-preload").show();
+
+			        		jQuery.ajax({
+								type: 'GET',
+								url: ajaxurl,
+								data: {"action": "wpfc_preload_single", "url": url, "user_agent": user_agent},
+								dataType: "html",
+								timeout: 10000,
+								cache: false, 
+								success: function(data){
+									if(data == "true"){
+										WpfcSinglePreload.increase_cached();
+									}else{
+										self.error_message = data;
+										WpfcSinglePreload.increase_error();
+									}
+
+									if(typeof list == "object"){
+										WpfcSinglePreload.create_cache(list);
+									}
+								},
+								error: function(error){
+									self.error_message = error.statusText;
+									WpfcSinglePreload.increase_error();
+
+									if(typeof list == "object"){
+										WpfcSinglePreload.create_cache(list);
+									}
+								}
+							});
+
+	        			};
+
+	        			let number_to_used = 3;
+	        			let sliced = list.slice(0, number_to_used);
+
+	        			list.splice(0, number_to_used);
+
+	        			jQuery.each(sliced, function( index, value ) {
+	        				console.log( value["url"] );
+
+	        				if(index == (number_to_used-1)){
+	        					setTimeout(function(){
+		        					action(value["url"], value["user-agent"], list);
+		        				}, 500);
+	        				}else{
+		        				setTimeout(function(){
+		        					action(value["url"], value["user-agent"], false);
+		        				}, 500);
+	        				}
+	        			});
 	        		}
 	        	};
 
@@ -261,16 +313,8 @@
 	        		
 	        		if(jQuery("#message").find("a").attr("href")){
 			        	WpfcSinglePreload.init();
-
-			        	<?php
-			        		foreach (self::$urls as $key => $value) {
-			        			?>
-			        			setTimeout(function(){
-			        				WpfcSinglePreload.create_cache("<?php echo $value["url"]; ?>", "<?php echo $value["user-agent"]; ?>");
-								}, <?php echo $key*500;?>);
-			        			<?php
-			        		}
-			        	?>
+			        	WpfcSinglePreload.running_animation();
+			        	WpfcSinglePreload.create_cache(<?php echo json_encode(self::$urls); ?>);
 	        		}
 	        	});
 	        </script>

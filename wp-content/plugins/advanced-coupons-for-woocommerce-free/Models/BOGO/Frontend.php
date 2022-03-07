@@ -471,12 +471,17 @@ class Frontend implements Model_Interface
 
         foreach ($deals as $deal) {
 
-            $discount = $deal['discount'] * $deal['quantity'] * -1;
-            $data     = isset($this->_price_display[$deal['key']]) ? $this->_price_display[$deal['key']] : null;
+            $data              = isset($this->_price_display[$deal['key']]) ? $this->_price_display[$deal['key']] : array();
+            $discounted_prices = isset($data['discounted_prices']) ? $data['discounted_prices'] : array();
 
+            // calculate total discount value for matched deal item, by looping on all applied discount prices.
+            $discount = array_reduce($discounted_prices, function($c, $d) {
+                return $c - ($d['discount'] * $d['quantity']);
+            }, 0.0);
+            
             // if discount is not negative, then skip showing it in the summary.
             // also skip if $data is null.
-            if (!$data || 0 < $discount || $data['new_price'] >= $data['price']) {
+            if (empty($data) || 0 < $discount || $data['new_price'] >= $data['price']) {
                 continue;
             }
 

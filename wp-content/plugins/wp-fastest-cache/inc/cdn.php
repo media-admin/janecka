@@ -161,7 +161,13 @@
 			}
 
 
-			$hostname = preg_replace("/^(https?\:\/\/)?(www\d*\.)?/", "", $_SERVER["HTTP_HOST"]);
+			if(substr_count($_SERVER["HTTP_HOST"], ".") == 1){
+				// to exclude if the url is like https://www1.co
+				$hostname = preg_replace("/^(https?\:\/\/)/", "", $_SERVER["HTTP_HOST"]);
+			}else{
+				$hostname = preg_replace("/^(https?\:\/\/)?(www\d*\.)?/", "", $_SERVER["HTTP_HOST"]);
+			}
+
 
 			if(function_exists("idn_to_utf8")){
 				$hostname = idn_to_utf8($hostname);

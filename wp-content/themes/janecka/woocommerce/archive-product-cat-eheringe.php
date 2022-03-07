@@ -22,10 +22,7 @@ defined( 'ABSPATH' ) || exit;
 <?php
 	get_header();
 
-	/* Remove unused Data */
-
-	// Remove the Price
-	remove_action('woocommerce_after_shop_loop_item_title','woocommerce_template_loop_price', 10, 0);
+	/* --- Remove unused Data --- */
 
 	// Remove the SKU
 	remove_action('woocommerce_after_shop_loop_item', 'janecka_shop_display_skus', 8, 0);
@@ -33,7 +30,7 @@ defined( 'ABSPATH' ) || exit;
 	// Remove the Add to Cart Button
 	remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10, 0);
 
-	/* Adding additional Data */
+	/* --- Adding additional Data --- */
 
 	/* Adding the Diamond
 	function janecka_shop_display_diamonds() {
@@ -65,7 +62,7 @@ defined( 'ABSPATH' ) || exit;
 	add_action( 'woocommerce_shop_loop_item_title', 'janecka_shop_display_diamonds', 10 );
 	*/
 
-	/* Adding the Material Attributes */
+	/* Adding the Material Attributes
 	function janecka_shop_display_material_and_width() {
 
 		global $product;
@@ -92,7 +89,7 @@ defined( 'ABSPATH' ) || exit;
 	}
 
 	add_action( 'woocommerce_after_shop_loop_item_title', 'janecka_shop_display_material_and_width', 12 );
-
+	*/
 
 	// Query Variables
 	$brand_tag = get_terms(array('taxonomy' => 'product_tag', 'hide_empty' => false));

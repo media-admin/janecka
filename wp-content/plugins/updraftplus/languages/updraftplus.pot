@@ -152,7 +152,7 @@ msgstr ""
 msgid "Upload failed"
 msgstr ""
 
-#: src/addons/azure.php:443, src/addons/backblaze.php:564, src/addons/googlecloud.php:1024, src/methods/s3.php:1307
+#: src/addons/azure.php:443, src/addons/backblaze.php:564, src/addons/googlecloud.php:1024, src/methods/s3.php:1330
 msgid "Delete failed:"
 msgstr ""
 
@@ -272,7 +272,7 @@ msgstr ""
 msgid "Invalid bucket name"
 msgstr ""
 
-#: src/addons/backblaze.php:533, src/methods/s3.php:1275
+#: src/addons/backblaze.php:533, src/methods/s3.php:1298
 msgid "Failure: We could not successfully access or create such a bucket. Please check your access credentials, and if those are correct then try another bucket name (as another %s user may already have taken your name)."
 msgstr ""
 
@@ -620,7 +620,7 @@ msgstr ""
 msgid "Frankfurt"
 msgstr ""
 
-#: src/addons/googlecloud.php:140, src/addons/googlecloud.php:974, src/methods/s3.php:1226
+#: src/addons/googlecloud.php:140, src/addons/googlecloud.php:974, src/methods/s3.php:1249
 msgid "Failure: No bucket details were given."
 msgstr ""
 
@@ -692,7 +692,7 @@ msgstr ""
 msgid "However, subsequent access attempts failed:"
 msgstr ""
 
-#: src/addons/googlecloud.php:894, src/addons/googlecloud.php:1020, src/addons/onedrive.php:980, src/addons/sftp.php:629, src/addons/sftp.php:633, src/addons/webdav.php:341, src/addons/wp-cli.php:494, src/methods/addon-base-v2.php:370, src/methods/cloudfiles.php:590, src/methods/googledrive.php:613, src/methods/openstack-base.php:535, src/methods/s3.php:1290
+#: src/addons/googlecloud.php:894, src/addons/googlecloud.php:1020, src/addons/onedrive.php:980, src/addons/sftp.php:629, src/addons/sftp.php:633, src/addons/webdav.php:341, src/addons/wp-cli.php:494, src/methods/addon-base-v2.php:370, src/methods/cloudfiles.php:590, src/methods/googledrive.php:613, src/methods/openstack-base.php:535, src/methods/s3.php:1313
 msgid "Success"
 msgstr ""
 
@@ -712,15 +712,15 @@ msgstr ""
 msgid "Failed"
 msgstr ""
 
-#: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028, src/methods/s3.php:1288, src/methods/s3.php:1300
+#: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028, src/methods/s3.php:1311, src/methods/s3.php:1323
 msgid "Failure"
 msgstr ""
 
-#: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028, src/methods/s3.php:1288, src/methods/s3.php:1300
+#: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028, src/methods/s3.php:1311, src/methods/s3.php:1323
 msgid "We successfully accessed the bucket, but the attempt to create a file in it failed."
 msgstr ""
 
-#: src/addons/googlecloud.php:1020, src/methods/s3.php:1290
+#: src/addons/googlecloud.php:1020, src/methods/s3.php:1313
 msgid "We accessed the bucket, and were able to create files within it."
 msgstr ""
 
@@ -1056,7 +1056,7 @@ msgstr ""
 msgid "Replace with"
 msgstr ""
 
-#: src/addons/migrator.php:341, src/addons/moredatabase.php:113, src/addons/moredatabase.php:115, src/addons/moredatabase.php:117, src/addons/sftp.php:560, src/addons/sftp.php:564, src/addons/sftp.php:568, src/addons/webdav.php:316, src/admin.php:934, src/includes/class-remote-send.php:576, src/methods/addon-base-v2.php:348, src/methods/cloudfiles-new.php:181, src/methods/cloudfiles-new.php:186, src/methods/cloudfiles.php:534, src/methods/cloudfiles.php:539, src/methods/ftp.php:426, src/methods/ftp.php:430, src/methods/openstack2.php:180, src/methods/openstack2.php:185, src/methods/openstack2.php:190, src/methods/openstack2.php:195, src/methods/s3.php:1200, src/methods/s3.php:1204
+#: src/addons/migrator.php:341, src/addons/moredatabase.php:113, src/addons/moredatabase.php:115, src/addons/moredatabase.php:117, src/addons/sftp.php:560, src/addons/sftp.php:564, src/addons/sftp.php:568, src/addons/webdav.php:316, src/admin.php:934, src/includes/class-remote-send.php:576, src/methods/addon-base-v2.php:348, src/methods/cloudfiles-new.php:181, src/methods/cloudfiles-new.php:186, src/methods/cloudfiles.php:534, src/methods/cloudfiles.php:539, src/methods/ftp.php:426, src/methods/ftp.php:430, src/methods/openstack2.php:180, src/methods/openstack2.php:185, src/methods/openstack2.php:190, src/methods/openstack2.php:195, src/methods/s3.php:1223, src/methods/s3.php:1227
 msgid "Failure: No %s was given."
 msgstr ""
 
@@ -2019,7 +2019,7 @@ msgstr ""
 msgid "Failure: We could not successfully access or create such a bucket. Please check your access credentials, and if those are correct then try another bucket name (as another AWS user may already have taken your name)."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:219, src/methods/s3.php:1277
+#: src/addons/s3-enhanced.php:219, src/methods/s3.php:1300
 msgid "The error reported by %s was:"
 msgstr ""
 
@@ -2195,15 +2195,15 @@ msgstr ""
 msgid "Without this permission, UpdraftPlus cannot delete backups - you should also set your 'retain' settings very high to prevent seeing deletion errors."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:447
+#: src/addons/s3-enhanced.php:448
 msgid "Create new IAM user and S3 bucket"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:495
+#: src/addons/s3-enhanced.php:498
 msgid "You are now using a IAM user account to access your bucket."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:495
+#: src/addons/s3-enhanced.php:498
 msgid "Do remember to save your settings."
 msgstr ""
 
@@ -5884,7 +5884,7 @@ msgstr ""
 msgid "Cloud Files API Key"
 msgstr ""
 
-#: src/methods/cloudfiles-new.php:181, src/methods/cloudfiles.php:534, src/methods/s3.php:1200
+#: src/methods/cloudfiles-new.php:181, src/methods/cloudfiles.php:534, src/methods/s3.php:1223
 msgid "API key"
 msgstr ""
 
@@ -6245,7 +6245,7 @@ msgstr ""
 msgid "Tenant"
 msgstr ""
 
-#: src/methods/openstack2.php:150, src/methods/s3.php:1269
+#: src/methods/openstack2.php:150, src/methods/s3.php:1292
 msgid "Region"
 msgstr ""
 
@@ -6262,15 +6262,15 @@ msgctxt "\"tenant\" is a term used with OpenStack storage - Google for \"OpenSta
 msgid "tenant"
 msgstr ""
 
-#: src/methods/s3.php:159
+#: src/methods/s3.php:161
 msgid "No settings were found - please go to the Settings tab and check your settings"
 msgstr ""
 
-#: src/methods/s3.php:214, src/methods/s3.php:215, src/methods/s3.php:227, src/methods/s3.php:228
+#: src/methods/s3.php:215, src/methods/s3.php:216, src/methods/s3.php:227, src/methods/s3.php:228
 msgid "Error: Failed to initialise"
 msgstr ""
 
-#: src/methods/s3.php:216, src/methods/s3.php:229
+#: src/methods/s3.php:217, src/methods/s3.php:229
 msgid "%s Error: Failed to initialise"
 msgstr ""
 
@@ -6346,27 +6346,27 @@ msgstr ""
 msgid "Enter only a bucket name or a bucket and path. Examples: mybucket, mybucket/mypath"
 msgstr ""
 
-#: src/methods/s3.php:1204
+#: src/methods/s3.php:1227
 msgid "API secret"
 msgstr ""
 
-#: src/methods/s3.php:1231
+#: src/methods/s3.php:1254
 msgid "Failure: No endpoint details were given."
 msgstr ""
 
-#: src/methods/s3.php:1279
+#: src/methods/s3.php:1302
 msgid "The AWS access key looks to be wrong (valid %s access keys begin with \"AK\")"
 msgstr ""
 
-#: src/methods/s3.php:1293
+#: src/methods/s3.php:1316
 msgid "The communication with %s was encrypted."
 msgstr ""
 
-#: src/methods/s3.php:1295
+#: src/methods/s3.php:1318
 msgid "The communication with %s was not encrypted."
 msgstr ""
 
-#: src/methods/s3.php:1300
+#: src/methods/s3.php:1323
 msgid "Please check your access credentials."
 msgstr ""
 

@@ -11,7 +11,7 @@ msgstr ""
 "Language: fa\n"
 "Project-Id-Version: UpdraftPlus\n"
 
-#: src/admin.php:3631
+#: src/admin.php:3632
 msgid "file %d of %d"
 msgstr ""
 
@@ -23,11 +23,11 @@ msgstr ""
 msgid "Sign in with %s"
 msgstr ""
 
-#: src/admin.php:3711
+#: src/admin.php:3712
 msgid "(after %ss)"
 msgstr ""
 
-#: src/admin.php:3711
+#: src/admin.php:3712
 msgid "next resumption: %d"
 msgstr ""
 
@@ -39,7 +39,7 @@ msgstr ""
 msgid "Old ABSPATH:"
 msgstr ""
 
-#: src/admin.php:2779
+#: src/admin.php:2780
 msgid "Enjoyed %s? Please leave us a %s rating. We really appreciate your support!"
 msgstr ""
 
@@ -156,7 +156,7 @@ msgstr ""
 msgid "Bucket access style"
 msgstr ""
 
-#: src/methods/s3.php:1211
+#: src/methods/s3.php:1231
 msgid "Failure: No endpoint details were given."
 msgstr ""
 
@@ -261,47 +261,47 @@ msgstr ""
 msgid "If you have an existing backup that you wish to upload and restore from, then please use the \"Upload backup files\" link above."
 msgstr ""
 
-#: src/class-updraftplus.php:5344
+#: src/class-updraftplus.php:5348
 msgid "Include all tables not listed below"
 msgstr ""
 
-#: src/class-updraftplus.php:5342
+#: src/class-updraftplus.php:5346
 msgid "The amount of database tables scanned is near or over the php_max_input_vars value so some tables maybe truncated. This option will ensure all tables not found will be backed up."
 msgstr ""
 
-#: src/class-updraftplus.php:5341
+#: src/class-updraftplus.php:5345
 msgid "The database scan was taking too long and consequently the list of all tables in the database could not be completed. This option will ensure all tables not found will be backed up."
 msgstr ""
 
-#: src/class-updraftplus.php:5331
+#: src/class-updraftplus.php:5335
 msgid "Therefore, affected tables on the current site which already exist will not be replaced by default, to avoid corrupting them (you can review this in the list of tables below)."
 msgstr ""
 
-#: src/class-updraftplus.php:5329
+#: src/class-updraftplus.php:5333
 msgid "Therefore it is advised that you take a fresh backup on the source site, using a later version."
 msgstr ""
 
-#: src/class-updraftplus.php:5329, src/class-updraftplus.php:5331
+#: src/class-updraftplus.php:5333, src/class-updraftplus.php:5335
 msgid "This backup was created on a previous UpdraftPlus version (%s) which did not correctly backup tables with composite primary keys (such as the term_relationships table, which records tags and product attributes)."
 msgstr ""
 
-#: src/class-updraftplus.php:5282
+#: src/class-updraftplus.php:5286
 msgid "This backup is of a site with an empty table prefix, which WordPress does not officially support; the results may be unreliable."
 msgstr ""
 
-#: src/class-updraftplus.php:3854
+#: src/class-updraftplus.php:3858
 msgid "View log"
 msgstr ""
 
-#: src/class-updraftplus.php:3848
+#: src/class-updraftplus.php:3852
 msgid "You can view the log by pressing the 'View log' button."
 msgstr ""
 
-#: src/class-updraftplus.php:3806
+#: src/class-updraftplus.php:3810
 msgid "UpdraftPlus on %s"
 msgstr ""
 
-#: src/class-updraftplus.php:3159
+#: src/class-updraftplus.php:3161
 msgid " Your hosting provider only allows you to take one incremental backup per day."
 msgstr ""
 
@@ -369,51 +369,51 @@ msgstr ""
 msgid "Failed to open directory for reading:"
 msgstr ""
 
-#: src/admin.php:6219
+#: src/admin.php:6220
 msgid "The download link is broken or the backup file is no longer available"
 msgstr ""
 
-#: src/admin.php:6217
+#: src/admin.php:6218
 msgid "The download link is broken, you may have clicked the link from untrusted source"
 msgstr ""
 
-#: src/admin.php:6202
+#: src/admin.php:6203
 msgid "Due to the restriction, some settings can be automatically adjusted, disabled or not available."
 msgstr ""
 
-#: src/admin.php:6201
+#: src/admin.php:6202
 msgid "%s permits UpdraftPlus to perform only one backup per month. Thus, we recommend you choose a full backup when performing a manual backup and to use that option when creating a scheduled backup."
 msgstr ""
 
-#: src/admin.php:6200
+#: src/admin.php:6201
 msgid "Your website is hosted with %s (%s)."
 msgstr ""
 
-#: src/admin.php:6134
+#: src/admin.php:6135
 msgid "The following remote storage (%s) have only been partially configured, if you are having problems you can try to manually authorise at the UpdraftPlus settings page."
 msgstr ""
 
-#: src/admin.php:6128
+#: src/admin.php:6129
 msgid "The following remote storage (%s) have only been partially configured, manual authorization is not supported with this remote storage, please try again and if the problem persists contact support."
 msgstr ""
 
-#: src/admin.php:5992
+#: src/admin.php:5993
 msgid "more info"
 msgstr ""
 
-#: src/admin.php:5381
+#: src/admin.php:5382
 msgid "The following remote storage options are configured."
 msgstr ""
 
-#: src/admin.php:5378
+#: src/admin.php:5379
 msgid "No remote storage locations with valid options found."
 msgstr ""
 
-#: src/admin.php:4972
+#: src/admin.php:4973
 msgid "This may prevent the restore procedure from being able to proceed."
 msgstr ""
 
-#: src/admin.php:4199
+#: src/admin.php:4200
 msgid "(the asterisk character matches zero or more characters)"
 msgstr ""
 
@@ -469,20 +469,20 @@ msgstr ""
 msgid "Your hosting provider only allows you to take one incremental backup per day."
 msgstr ""
 
-#: src/admin.php:1056, src/class-updraftplus.php:3159
+#: src/admin.php:1056, src/class-updraftplus.php:3161
 msgid "You have reached the daily limit for the number of incremental backups you can create at this time."
 msgstr ""
 
-#: src/admin.php:1055, src/admin.php:1056, src/class-updraftplus.php:3159,
-#: src/class-updraftplus.php:3162
+#: src/admin.php:1055, src/admin.php:1056, src/class-updraftplus.php:3161,
+#: src/class-updraftplus.php:3164
 msgid "Please contact your hosting company (%s) if you require further support."
 msgstr ""
 
-#: src/admin.php:1055, src/class-updraftplus.php:3162
+#: src/admin.php:1055, src/class-updraftplus.php:3164
 msgid "Your hosting provider only allows you to take one backup per month."
 msgstr ""
 
-#: src/admin.php:1055, src/class-updraftplus.php:3162
+#: src/admin.php:1055, src/class-updraftplus.php:3164
 msgid "You have reached the monthly limit for the number of backups you can create at this time."
 msgstr ""
 
@@ -502,7 +502,7 @@ msgstr ""
 msgid "Exit full-screen"
 msgstr ""
 
-#: src/admin.php:911, src/admin.php:5004
+#: src/admin.php:911, src/admin.php:5005
 msgid "Full-screen"
 msgstr ""
 
@@ -558,27 +558,27 @@ msgstr ""
 msgid "The key provided is encrypted. You need to provide the unencrypted key (see: https://updraftplus.com/faqs/why-must-i-use-a-non-encrypted-sftp-key/)."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:391
+#: src/addons/s3-enhanced.php:399
 msgid "China (Ningxia) (restricted)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:389
+#: src/addons/s3-enhanced.php:397
 msgid "Asia Pacific (Hong Kong)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:388
+#: src/addons/s3-enhanced.php:396
 msgid "Asia Pacific (Osaka-Local) (restricted)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:382
+#: src/addons/s3-enhanced.php:390
 msgid "Africa (Cape Town)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:379
+#: src/addons/s3-enhanced.php:387
 msgid "Europe (Milan)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:369
+#: src/addons/s3-enhanced.php:377
 msgid "US East (N. Virginia) (default)"
 msgstr ""
 
@@ -870,8 +870,8 @@ msgstr "آیا قبلا فضا گرفته‌اید؟"
 msgid "Need to get space?"
 msgstr "آیا به فضا نیاز دارید؟"
 
-#: src/methods/s3.php:201, src/methods/s3.php:202, src/methods/s3.php:214,
-#: src/methods/s3.php:215
+#: src/methods/s3.php:214, src/methods/s3.php:215, src/methods/s3.php:227,
+#: src/methods/s3.php:228
 msgid "Error: Failed to initialise"
 msgstr "خطا: مقدار دهی اولیه انجام نشد"
 
@@ -999,31 +999,31 @@ msgstr ""
 msgid "No backup will be started. The creation of your clone should now begin, and your WordPress username and password will be displayed below when ready."
 msgstr ""
 
-#: src/class-updraftplus.php:5336
+#: src/class-updraftplus.php:5340
 msgid "If you do not want to restore all your database tables, then choose some to exclude here."
 msgstr ""
 
-#: src/class-updraftplus.php:5036
+#: src/class-updraftplus.php:5040
 msgid "You should only proceed if you have checked and are confident (or willing to risk) that your plugins/themes/etc. are compatible with the new %s version."
 msgstr ""
 
-#: src/class-updraftplus.php:5036
+#: src/class-updraftplus.php:5040
 msgid "This is older than the server which you are now restoring onto (version %s)."
 msgstr ""
 
-#: src/class-updraftplus.php:3625
+#: src/class-updraftplus.php:3629
 msgid "Incomplete"
 msgstr "نا تمام"
 
-#: src/class-updraftplus.php:2390
+#: src/class-updraftplus.php:2392
 msgid "The backup is being aborted for a repeated failure to progress."
 msgstr "به دلیل شکست های پشت سر هم در انجام فرآیند، گرفتن نسخه پشتیبان بی نتیجه ماند."
 
-#: src/class-updraftplus.php:652
+#: src/class-updraftplus.php:654
 msgid "Briefly unavailable for scheduled maintenance. Check back in a minute."
 msgstr ""
 
-#: src/class-updraftplus.php:652
+#: src/class-updraftplus.php:654
 msgid "Under Maintenance"
 msgstr "درحال تعمیر..."
 
@@ -1075,125 +1075,125 @@ msgstr ""
 msgid "Unable to connect to the filesystem"
 msgstr ""
 
-#: src/admin.php:6143, src/admin.php:6145
+#: src/admin.php:6144, src/admin.php:6146
 msgid "You have requested saving to remote storage (%s), but without entering any settings for that storage."
 msgstr "شما درخواست ذخیره کردن بر روی محل ذخیره سازی ریموت (%s) را داده اید، اما هیچ تنظیماتی را برای محل ذخیره سازی مورد نظر، وارد نکرده اید. "
 
-#: src/admin.php:5992
+#: src/admin.php:5993
 msgid "Clone package"
 msgstr ""
 
-#: src/admin.php:5979
+#: src/admin.php:5980
 msgid "An empty WordPress install"
 msgstr ""
 
-#: src/admin.php:5978
+#: src/admin.php:5979
 msgid "This current site"
 msgstr "این سایت فعلی"
 
-#: src/admin.php:5976
+#: src/admin.php:5977
 msgid "Clone:"
 msgstr "کلُون:"
 
-#: src/admin.php:5012,
+#: src/admin.php:5013,
 #: src/templates/wp-admin/settings/delete-and-restore-modals.php:98
 msgid "3. Restoration"
 msgstr "3. بازگردانی"
 
-#: src/admin.php:5011,
+#: src/admin.php:5012,
 #: src/templates/wp-admin/settings/delete-and-restore-modals.php:97
 msgid "2. Verifications"
 msgstr ""
 
-#: src/admin.php:5010,
+#: src/admin.php:5011,
 #: src/templates/wp-admin/settings/delete-and-restore-modals.php:96
 msgid "1. Component selection"
 msgstr ""
 
-#: src/admin.php:5004
+#: src/admin.php:5005
 msgid "Activity log"
 msgstr ""
 
-#: src/admin.php:4997
+#: src/admin.php:4998
 msgid "Cleaning"
 msgstr "درحال تمیز کردن"
 
-#: src/admin.php:4988
+#: src/admin.php:4989
 msgid "Verifying"
 msgstr ""
 
-#: src/admin.php:4985
+#: src/admin.php:4986
 msgid "Restoration progress:"
 msgstr "پیشرفت بازگردانی:"
 
-#: src/admin.php:4984
+#: src/admin.php:4985
 msgid "The restore operation has begun (%s). Do not close this page until it reports itself as having finished."
 msgstr "فرایند بازگردانی شروع شده است (%s). تا زمانیکه پیام پایان کار را دریافت نکرده‌اید، اقدام به بستن این صفحه نفرمایید."
 
-#: src/admin.php:4975,
+#: src/admin.php:4976,
 #: src/templates/wp-admin/settings/delete-and-restore-modals.php:30
 msgid "UpdraftPlus Restoration"
 msgstr "بازگردانی آپ‌درفت‌پلاس"
 
-#: src/admin.php:4470
+#: src/admin.php:4471
 msgid "(%d archive(s) in set, total %s)."
 msgstr "(بایگانی‌(های) %d در مجموعه، کل %s)."
 
-#: src/admin.php:3319
+#: src/admin.php:3320
 msgid "Learn more about UpdraftCentral"
 msgstr "درباره آپ‌درفت‌سنترال بیشتر بیاموزید"
 
-#: src/admin.php:3319
+#: src/admin.php:3320
 msgid "Add this website to UpdraftCentral (remote, centralised control) - free for up to 5 sites."
 msgstr "اضافه کردن این وبسایت به آپ‌درفت‌سنترال (کنترل متمرکز و از راه دور) - برای حداکثر 5 سایت رایگان است."
 
-#: src/admin.php:2859, src/admin.php:3784, src/admin.php:4917,
-#: src/admin.php:4929, src/admin.php:4940, src/admin.php:5178,
-#: src/admin.php:6134, src/admin.php:6145
+#: src/admin.php:2860, src/admin.php:3785, src/admin.php:4918,
+#: src/admin.php:4930, src/admin.php:4941, src/admin.php:5179,
+#: src/admin.php:6135, src/admin.php:6146
 msgid "Return to UpdraftPlus configuration"
 msgstr "بازگشت به پیکربندی آپ‌درفت‌پلاس"
 
-#: src/admin.php:2355
+#: src/admin.php:2356
 msgid "No suitable backup set (that already contains a full backup of all the requested file component types) was found, to add increments to. Aborting this backup."
 msgstr ""
 
-#: src/admin.php:2116
+#: src/admin.php:2117
 msgid "An error occurred while attempting to delete from '%s'."
 msgstr ""
 
-#: src/admin.php:2113
+#: src/admin.php:2114
 msgid "The file may no longer exist or you may not have permission to delete."
 msgstr ""
 
-#: src/admin.php:2113
+#: src/admin.php:2114
 msgid "We were unable to delete a file on '%s'."
 msgstr ""
 
-#: src/admin.php:2110
+#: src/admin.php:2111
 msgid "We were unable to access a file on '%s'."
 msgstr ""
 
-#: src/admin.php:2107, src/admin.php:2110
+#: src/admin.php:2108, src/admin.php:2111
 msgid "Please check your permissions."
 msgstr ""
 
-#: src/admin.php:2107
+#: src/admin.php:2108
 msgid "We were unable to access the folder/container for '%s'."
 msgstr ""
 
-#: src/admin.php:2104
+#: src/admin.php:2105
 msgid "Service unavailable."
 msgstr ""
 
-#: src/admin.php:2104
+#: src/admin.php:2105
 msgid "We were unable to access '%s'."
 msgstr ""
 
-#: src/admin.php:2101
+#: src/admin.php:2102
 msgid "Please check your credentials."
 msgstr ""
 
-#: src/admin.php:2101
+#: src/admin.php:2102
 msgid "The authentication failed for '%s'."
 msgstr ""
 
@@ -1233,7 +1233,7 @@ msgstr "دانلود فایل‌های پشتیبان در صورت لزوم"
 msgid "Begun"
 msgstr "شروع شده"
 
-#: src/admin.php:1045, src/admin.php:4998
+#: src/admin.php:1045, src/admin.php:4999
 msgid "Finished"
 msgstr "تمام شده"
 
@@ -1289,7 +1289,7 @@ msgstr "کلید ساخته شد، در حال اضافه کردن سایت به
 msgid "Connected. Requesting UpdraftCentral Key."
 msgstr "اتصال برقرار شد. در حال درخواست کلید از UpdraftCentral ."
 
-#: src/admin.php:882, src/admin.php:2184,
+#: src/admin.php:882, src/admin.php:2185,
 #: src/templates/wp-admin/settings/downloading-and-restoring.php:21,
 #: src/templates/wp-admin/settings/tab-backups.php:21,
 #: src/templates/wp-admin/settings/tab-backups.php:44
@@ -1333,11 +1333,11 @@ msgstr ""
 msgid "Error: Failed to upload"
 msgstr "خطا: بارگذاری انجام نشد"
 
-#: src/addons/s3-enhanced.php:381
+#: src/addons/s3-enhanced.php:389
 msgid "Middle East (Bahrain)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:380
+#: src/addons/s3-enhanced.php:388
 msgid "Europe (Stockholm)"
 msgstr ""
 
@@ -1475,7 +1475,7 @@ msgstr ""
 msgid "Azure China"
 msgstr ""
 
-#: src/admin.php:5962
+#: src/admin.php:5963
 msgid "Clone region:"
 msgstr "کپی گرفتن ناحیه: "
 
@@ -1537,7 +1537,7 @@ msgstr "آپدیت‌های خودکار"
 msgid "Your database user does not have permission to drop tables"
 msgstr "کاربر پایگاه‌داده شما اجازه حذف جدول‌ها را ندارد"
 
-#: src/admin.php:3308
+#: src/admin.php:3309
 msgid "Ask WordPress to update UpdraftPlus automatically when an update is available"
 msgstr "از وردپرس بخواهید هنگام بروزرسانی، به طور خودکار آپ‌درفت‌پلاس را آپدیت کند (آپدیت خودکار توصیه نمی‌شود)"
 
@@ -1701,11 +1701,11 @@ msgstr "در حال دریافت داده های سایت"
 msgid "WordPress installed"
 msgstr "وردپرس نصب شد"
 
-#: src/admin.php:6067
+#: src/admin.php:6068
 msgid "Your clone has started, network information is not yet available but will be displayed here and at your updraftplus.com account once it is ready."
 msgstr "کپی شما شروع شده است، اطلاعات شبکه هنوز در دسترس نیست اما اینجا نمایش داده خواهد شد و همچنین در اکانت شما در سایت updraftplus.com آماده خواهد بود. "
 
-#: src/admin.php:4199
+#: src/admin.php:4200
 msgid "Exclude these from"
 msgstr "به استثنای این موارد"
 
@@ -1753,15 +1753,15 @@ msgstr "سؤالات متداول را اینجا بخوانید."
 msgid "failed to upload file to %s (see log file for more)"
 msgstr "بارگذاری فایل در %s انجام نشد (برای اطلاعات بیشتر فایل گزارش را مشاهده کنید)"
 
-#: src/admin.php:6063
+#: src/admin.php:6064
 msgid "Dashboard:"
 msgstr "پیشخوان:"
 
-#: src/admin.php:6062
+#: src/admin.php:6063
 msgid "Front page:"
 msgstr "صفحه اول:"
 
-#: src/admin.php:6061
+#: src/admin.php:6062
 msgid "Your clone has started and will be available at the following URLs once it is ready."
 msgstr ""
 
@@ -1773,7 +1773,7 @@ msgstr "مدیریت کردن"
 msgid "Current clones"
 msgstr "کلُون‌های فعلی"
 
-#: src/class-updraftplus.php:3543
+#: src/class-updraftplus.php:3547
 msgid "Your clone will now deploy this data to re-create your site."
 msgstr ""
 
@@ -2075,7 +2075,7 @@ msgstr "بازگشت"
 msgid "You can buy more temporary clone tokens here."
 msgstr ""
 
-#: src/admin.php:6015
+#: src/admin.php:6016
 msgid "Forbid non-administrators to login to WordPress on your clone"
 msgstr ""
 
@@ -2095,19 +2095,19 @@ msgstr "افزونه‌های فوق‌العاده‌ی دیگر"
 msgid "The creation of your data for creating the clone should now begin."
 msgstr ""
 
-#: src/admin.php:6065, src/admin.php:6068
+#: src/admin.php:6066, src/admin.php:6069
 msgid "You can find your temporary clone information in your updraftplus.com account here."
 msgstr "می‌توانید اطلاعات کلُون موقت خود را در حساب updateraftplus.com خود در اینجا پیدا کنید."
 
-#: src/class-updraftplus.php:5241
+#: src/class-updraftplus.php:5245
 msgid "Choose a default for each table"
 msgstr ""
 
-#: src/admin.php:3624
+#: src/admin.php:3625
 msgid "Sending files to remote site"
 msgstr "در حال ارسال فایل‌ها به سایت از راه دور"
 
-#: src/admin.php:3619
+#: src/admin.php:3620
 msgid "Clone server being provisioned and booted (can take several minutes)"
 msgstr ""
 
@@ -2119,11 +2119,11 @@ msgstr ""
 msgid "To import a backup set, go to the \"Existing backups\" section in the \"Backup/Restore\" tab"
 msgstr ""
 
-#: src/admin.php:3098
+#: src/admin.php:3099
 msgid "Backup / Restore"
 msgstr "پشتیبان‌گیری / بازگردانی"
 
-#: src/admin.php:708, src/admin.php:4975
+#: src/admin.php:708, src/admin.php:4976
 msgid "Backup"
 msgstr "پشتیبان‌گیری"
 
@@ -2195,11 +2195,11 @@ msgstr ""
 msgid "More information here."
 msgstr "اطلاعات بیشتر در اینجا می‌باشد."
 
-#: src/admin.php:716, src/admin.php:3099
+#: src/admin.php:716, src/admin.php:3100
 msgid "Migrate / Clone"
 msgstr "مهاجرت / کلُون"
 
-#: src/admin.php:4330, src/templates/wp-admin/settings/backupnow-modal.php:60,
+#: src/admin.php:4331, src/templates/wp-admin/settings/backupnow-modal.php:60,
 #: src/templates/wp-admin/settings/existing-backups-table.php:76,
 #: src/templates/wp-admin/settings/existing-backups-table.php:79
 msgid "Only allow this backup to be deleted manually (i.e. keep it even if retention limits are hit)."
@@ -2221,15 +2221,15 @@ msgstr ""
 msgid "Run this command to see the log file for this restoration (needed for any support requests)."
 msgstr ""
 
-#: src/class-updraftplus.php:216
+#: src/class-updraftplus.php:218
 msgid "A version of UpdraftPlus is already installed. WordPress will only allow you to install your new version after first de-installing the existing one. That is safe - all your settings and backups will be retained. So, go to the \"Plugins\" page, de-activate and de-install UpdraftPlus, and then try again."
 msgstr ""
 
-#: src/admin.php:5997, src/admin.php:6041
+#: src/admin.php:5998, src/admin.php:6042
 msgid "(current version)"
 msgstr "(نسخه فعلی)"
 
-#: src/admin.php:4108
+#: src/admin.php:4109
 msgid "press here"
 msgstr "اینجا را فشار دهید"
 
@@ -2251,7 +2251,7 @@ msgstr ""
 msgid "And then add an incremental backup"
 msgstr ""
 
-#: src/addons/incremental.php:339, src/admin.php:4081, src/updraftplus.php:100
+#: src/addons/incremental.php:339, src/admin.php:4082, src/updraftplus.php:100
 msgid "Every hour"
 msgstr "هر ساعت"
 
@@ -2263,7 +2263,7 @@ msgstr "ايجاد کلُون"
 msgid "Available temporary clone tokens:"
 msgstr "توکن‌های کلُون موقت موجود:"
 
-#: src/admin.php:3232, src/includes/class-commands.php:1027,
+#: src/admin.php:3233, src/includes/class-commands.php:1027,
 #: src/includes/class-commands.php:1081, src/includes/class-commands.php:1083,
 #: src/methods/backup-module.php:677,
 #: src/templates/wp-admin/settings/temporary-clone.php:83,
@@ -2283,7 +2283,7 @@ msgstr ""
 msgid "I consent to %s"
 msgstr ""
 
-#: src/admin.php:3345,
+#: src/admin.php:3346,
 #: src/templates/wp-admin/settings/updraftcentral-connect.php:56
 msgid "One Time Password (check your OTP app to get this password)"
 msgstr ""
@@ -2332,7 +2332,7 @@ msgstr "همه‌ی سایت‌های وردپرسی خود را از یک دا�
 msgid "An error has occurred while processing your request. The server might be busy or you have lost your connection to the internet at the time of the request. Please try again later."
 msgstr ""
 
-#: src/admin.php:5924
+#: src/admin.php:5925
 msgid "The file %s has a \"byte order mark\" (BOM) at its beginning."
 msgid_plural "The files %s have a \"byte order mark\" (BOM) at their beginning."
 msgstr[0] ""
@@ -2435,7 +2435,7 @@ msgstr ""
 msgid "Upload backup"
 msgstr "بارگذاری پشتیبان"
 
-#: src/admin.php:4587
+#: src/admin.php:4588
 msgid "After pressing this button, you can select where to upload your backup from a list of your currently saved remote storage locations"
 msgstr ""
 
@@ -2447,7 +2447,7 @@ msgstr "(قبلا بارگذاری شده است)"
 msgid "Local backup upload has started; please check the log file to see the upload progress"
 msgstr ""
 
-#: src/admin.php:909, src/admin.php:4587
+#: src/admin.php:909, src/admin.php:4588
 msgid "Upload"
 msgstr "بارگذاری"
 
@@ -2475,7 +2475,7 @@ msgstr ""
 msgid "(latest increment: %s)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:377
+#: src/addons/s3-enhanced.php:385
 msgid "Europe (Paris)"
 msgstr ""
 
@@ -2565,11 +2565,11 @@ msgstr ""
 msgid "Ensure you are logged into the correct account before continuing."
 msgstr "قبل از اینکه ادامه دهید، اطمینان حاصل نمایید که با یک حساب کاربری معتبر وارد شده اید."
 
-#: src/admin.php:5568
+#: src/admin.php:5569
 msgid "Remote storage method and instance id are required for authentication."
 msgstr "روش ذخیره سازی از راه دور و شناسه نمونه برای احراز هویت لازم است."
 
-#: src/admin.php:5564
+#: src/admin.php:5565
 msgid "authentication error"
 msgstr "خطای احراز هویت"
 
@@ -2638,15 +2638,15 @@ msgid "Requested table collation (%1$s) is not present - changing to %2$s."
 msgid_plural "Requested table collations (%1$s) are not present - changing to %2$s."
 msgstr[0] ""
 
-#: src/class-updraftplus.php:5218
+#: src/class-updraftplus.php:5222
 msgid "Your chosen replacement collation"
 msgstr ""
 
-#: src/class-updraftplus.php:5195
+#: src/class-updraftplus.php:5199
 msgid "You can choose another suitable collation instead and continue with the restoration (at your own risk)."
 msgstr ""
 
-#: src/class-updraftplus.php:5195
+#: src/class-updraftplus.php:5199
 msgid "The database server that this WordPress site is running on doesn't support the collation (%s) used in the database which you are trying to import."
 msgid_plural "The database server that this WordPress site is running on doesn't support multiple collations (%s) used in the database which you are trying to import."
 msgstr[0] ""
@@ -2712,15 +2712,15 @@ msgstr[0] ""
 msgid "Requested table character set (%s) is not present - changing to %s."
 msgstr ""
 
-#: src/class-updraftplus.php:5171
+#: src/class-updraftplus.php:5175
 msgid "Your chosen character set to use instead:"
 msgstr ""
 
-#: src/class-updraftplus.php:5161
+#: src/class-updraftplus.php:5165
 msgid "You can choose another suitable character set instead and continue with the restoration at your own risk."
 msgstr ""
 
-#: src/class-updraftplus.php:5161
+#: src/class-updraftplus.php:5165
 msgid "The database server that this WordPress site is running on doesn't support the character set (%s) which you are trying to import."
 msgid_plural "The database server that this WordPress site is running on doesn't support the character sets (%s) which you are trying to import."
 msgstr[0] ""
@@ -2812,23 +2812,23 @@ msgstr ""
 msgid "Account ID"
 msgstr ""
 
-#: src/class-updraftplus.php:4986
+#: src/class-updraftplus.php:4990
 msgid "As long as your web hosting allows http (i.e. non-SSL access) or will forward requests to https (which is almost always the case), this is no problem. If that is not yet set up, then you should set it up, or use %s so that the non-https links are automatically replaced."
 msgstr ""
 
-#: src/class-updraftplus.php:4984, src/class-updraftplus.php:4986
+#: src/class-updraftplus.php:4988, src/class-updraftplus.php:4990
 msgid "the migrator add-on"
 msgstr ""
 
-#: src/class-updraftplus.php:4984
+#: src/class-updraftplus.php:4988
 msgid "This restoration will work if you still have an SSL certificate (i.e. can use https) to access the site. Otherwise, you will want to use %s to search/replace the site address so that the site can be visited without https."
 msgstr ""
 
-#: src/class-updraftplus.php:4982
+#: src/class-updraftplus.php:4986
 msgid "This backup set is of this site, but at the time of the backup you were using %s, whereas the site now uses %s."
 msgstr ""
 
-#: src/class-updraftplus.php:4977
+#: src/class-updraftplus.php:4981
 msgid "The website address in the backup set (%s) is slightly different from that of the site now (%s). This is not expected to be a problem for restoring the site, as long as visits to the former address still reach the site."
 msgstr ""
 
@@ -2844,14 +2844,14 @@ msgstr "برای حذف این تنظیمات برای %s، این لینک را
 msgid "Error: The chosen file is corrupt. Please choose a valid UpdraftPlus export file."
 msgstr "خطا: فایل انتخاب شده خراب است. لطفاً یک فایل اکسپورت (برون‌بری) معتبر آپ‌درفت‌پلاس را انتخاب کنید."
 
-#: src/backup.php:514, src/backup.php:2771, src/class-updraftplus.php:2454,
-#: src/class-updraftplus.php:2521, src/includes/class-search-replace.php:291,
+#: src/backup.php:514, src/backup.php:2771, src/class-updraftplus.php:2456,
+#: src/class-updraftplus.php:2523, src/includes/class-search-replace.php:291,
 #: src/includes/class-storage-methods-interface.php:381, src/restorer.php:611
 msgid "A PHP fatal error (%s) has occurred: %s"
 msgstr "یک خطای جدی (%s) رخ داده است: %s"
 
-#: src/backup.php:508, src/backup.php:2762, src/class-updraftplus.php:2445,
-#: src/class-updraftplus.php:2514, src/includes/class-search-replace.php:284,
+#: src/backup.php:508, src/backup.php:2762, src/class-updraftplus.php:2447,
+#: src/class-updraftplus.php:2516, src/includes/class-search-replace.php:284,
 #: src/includes/class-storage-methods-interface.php:372, src/restorer.php:599
 msgid "A PHP exception (%s) has occurred: %s"
 msgstr "یک استثناء پی‌اچ‌پی (%s) رخ داده است: %s"
@@ -2902,7 +2902,7 @@ msgstr "فایل‌ها را انتخاب کنید"
 msgid "Rackspace Storage Region"
 msgstr ""
 
-#: src/admin.php:5771
+#: src/admin.php:5772
 msgid "Value"
 msgstr ""
 
@@ -2918,11 +2918,11 @@ msgstr ""
 msgid "Cloud Files"
 msgstr ""
 
-#: src/admin.php:5516
+#: src/admin.php:5517
 msgid "Your settings failed to save. Please refresh the settings page and try again"
 msgstr ""
 
-#: src/admin.php:5475
+#: src/admin.php:5476
 msgid "UpdraftPlus seems to have been updated to version (%s), which is different to the version running when this settings page was loaded. Please reload the settings page before trying to save settings."
 msgstr ""
 
@@ -2939,7 +2939,7 @@ msgstr "بایگانی"
 msgid "Extra database"
 msgstr ""
 
-#: src/admin.php:4469
+#: src/admin.php:4470
 msgid "Press here to download or browse"
 msgstr ""
 
@@ -2983,7 +2983,7 @@ msgstr "مرور محتواها"
 msgid "Skipped tables:"
 msgstr ""
 
-#: src/class-updraftplus.php:5301
+#: src/class-updraftplus.php:5305
 msgid "This database backup has the following WordPress tables excluded: %s"
 msgstr ""
 
@@ -3206,15 +3206,15 @@ msgstr "ویرایش"
 msgid "If using it, select a path from the directory tree below and then press confirm selection."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:378
+#: src/addons/s3-enhanced.php:386
 msgid "Europe (Frankfurt)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:376
+#: src/addons/s3-enhanced.php:384
 msgid "Europe (London)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:375
+#: src/addons/s3-enhanced.php:383
 msgid "Europe (Ireland)"
 msgstr ""
 
@@ -3373,7 +3373,7 @@ msgstr "آپ‌درفت‌پلاس پریمیوم:"
 msgid "Then, try out our \"Migrator\" add-on which can perform a direct site-to-site migration. After using it once, you'll have saved the purchase price compared to the time needed to copy a site by hand."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:374
+#: src/addons/s3-enhanced.php:382
 msgid "Canada (Central)"
 msgstr ""
 
@@ -3453,11 +3453,11 @@ msgstr ""
 msgid "You have selected a remote storage option which has an authorization step to complete:"
 msgstr ""
 
-#: src/admin.php:2128
+#: src/admin.php:2129
 msgid "Remote files deleted:"
 msgstr ""
 
-#: src/admin.php:2127
+#: src/admin.php:2128
 msgid "Local files deleted:"
 msgstr ""
 
@@ -3501,7 +3501,7 @@ msgstr "فایل برون‌بری شما از تنظیمات نمایش داد�
 msgid "template not found"
 msgstr "الگو پیدا نشد"
 
-#: src/addons/s3-enhanced.php:370
+#: src/addons/s3-enhanced.php:378
 msgid "US East (Ohio)"
 msgstr ""
 
@@ -3538,11 +3538,11 @@ msgstr "یا برای بازگردانی دستی"
 msgid "This makes time-outs much more likely. You are recommended to turn safe_mode off, or to restore only one entity at a time"
 msgstr ""
 
-#: src/admin.php:2896
+#: src/admin.php:2897
 msgid "To fix this problem go here."
 msgstr ""
 
-#: src/admin.php:2896
+#: src/admin.php:2897
 msgid "OptimizePress 2.0 encodes its contents, so search/replace does not work."
 msgstr ""
 
@@ -3578,11 +3578,11 @@ msgstr ""
 msgid "No response data was received. This usually indicates a network connectivity issue (e.g. an outgoing firewall or overloaded network) between this site and UpdraftPlus.com."
 msgstr ""
 
-#: src/methods/s3.php:1259
+#: src/methods/s3.php:1279
 msgid "The AWS access key looks to be wrong (valid %s access keys begin with \"AK\")"
 msgstr ""
 
-#: src/methods/s3.php:146
+#: src/methods/s3.php:159
 msgid "No settings were found - please go to the Settings tab and check your settings"
 msgstr ""
 
@@ -3590,7 +3590,7 @@ msgstr ""
 msgid "Backup using %s?"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:386
+#: src/addons/s3-enhanced.php:394
 msgid "Asia Pacific (Mumbai)"
 msgstr ""
 
@@ -3692,7 +3692,7 @@ msgstr "آگاه باشید که سرورهای ایمیل معمولاً محد
 msgid "This backup archive is %s MB in size - the attempt to send this via email is likely to fail (few email servers allow attachments of this size). If so, you should switch to using a different remote storage method."
 msgstr "این فایل پشتیبان  %s  مگابایت حجم دارد - تلاش برای ارسال آن از طریق ایمیل به احتمال زیاد با شکست روبه رو خواهد شد. ( تعداد اندکی از سرویس های ارائه دهنده ی ایمیل پیوست ها با این حجم را پشتیبانی میکنند) بنابر این بهتر است از سایر روش های ذخیره سازی استفاده کنید "
 
-#: src/class-updraftplus.php:1989
+#: src/class-updraftplus.php:1991
 msgid "Size: %s MB"
 msgstr "اندازه: %s مگابایت"
 
@@ -3700,7 +3700,7 @@ msgstr "اندازه: %s مگابایت"
 msgid "UpdraftPlus will split up backup archives when they exceed this file size. The default value is %s megabytes. Be careful to leave some margin if your web-server has a hard size limit (e.g. the 2 GB / 2048 MB limit on some 32-bit servers/file systems)."
 msgstr "وقتی اندازه‌ی فایل بایگانی پشتیبان‌ها بیشتر از این مقدار باشد، آپ‌درفت‌پلاس آن‌ها را تقسیم می‌کند. مقدار پیش‌فرض %s مگابایت است. مراقب باشید که اگر وب سرور شما محدودیت حافظه‌ی شدیدی دارد (مثلاً محدودیت 2 گیگابایت / 2048 مگابایت در برخی از سرورها / سیستم‌های فایل 32 بیتی)، برای احتیاط مقداری فضای خالی بگذارید."
 
-#: src/class-updraftplus.php:5004, src/restorer.php:1710
+#: src/class-updraftplus.php:5008, src/restorer.php:1710
 msgid "You should enable %s to make any pretty permalinks (e.g. %s) work"
 msgstr "شما قادر خواهید بود %s  برای ساخت پیوند های یکتا زیبا برای کار هایتان (به عنوان مثال  %s )"
 
@@ -3722,7 +3722,7 @@ msgstr "یا (تخفیف سالانه)"
 msgid "No Vault connection was found for this site (has it moved?); please disconnect and re-connect."
 msgstr ""
 
-#: src/class-updraftplus.php:617, src/class-updraftplus.php:699
+#: src/class-updraftplus.php:619, src/class-updraftplus.php:701
 msgid "The given file was not found, or could not be read."
 msgstr ""
 
@@ -3806,23 +3806,23 @@ msgstr ""
 msgid "UpdraftCentral Connection"
 msgstr ""
 
-#: src/class-updraftplus.php:3524, src/class-updraftplus.php:3616
+#: src/class-updraftplus.php:3528, src/class-updraftplus.php:3620
 msgid "The backup was aborted by the user"
 msgstr ""
 
-#: src/admin.php:5511
+#: src/admin.php:5512
 msgid "Your settings have been saved."
 msgstr "پیکربندی شما ذخیره شد . "
 
-#: src/admin.php:4378
+#: src/admin.php:4379
 msgid "Total backup size:"
 msgstr ""
 
-#: src/admin.php:3767
+#: src/admin.php:3768
 msgid "stop"
 msgstr "توقف"
 
-#: src/admin.php:971, src/admin.php:3554
+#: src/admin.php:971, src/admin.php:3555
 msgid "The backup has finished running"
 msgstr "پشتیبان‌گیری به پایان رسید"
 
@@ -3872,7 +3872,7 @@ msgstr "خطا: سرور پاسخی برای ما ارسال نموده است �
 msgid "Fetching..."
 msgstr "در حال بازخوانی..."
 
-#: src/addons/s3-enhanced.php:383
+#: src/addons/s3-enhanced.php:391
 msgid "Asia Pacific (Seoul)"
 msgstr ""
 
@@ -3884,19 +3884,19 @@ msgstr "URL آپلود"
 msgid "The required %s PHP module is not installed - ask your web hosting company to enable it."
 msgstr ""
 
-#: src/class-updraftplus.php:5059, src/restorer.php:2902
+#: src/class-updraftplus.php:5063, src/restorer.php:2902
 msgid "To import an ordinary WordPress site into a multisite installation requires %s."
 msgstr ""
 
-#: src/class-updraftplus.php:5055
+#: src/class-updraftplus.php:5059
 msgid "Please read this link for important information on this process."
 msgstr "لطفا این پیوند را برای اطلاعات مهمی در این فرایند بخوانید."
 
-#: src/class-updraftplus.php:5055
+#: src/class-updraftplus.php:5059
 msgid "It will be imported as a new site."
 msgstr "این به عنوان یک سایت جدید وارد می شود."
 
-#: src/admin.php:3185, src/templates/wp-admin/notices/autobackup-notice.php:16,
+#: src/admin.php:3186, src/templates/wp-admin/notices/autobackup-notice.php:16,
 #: src/templates/wp-admin/notices/autobackup-notice.php:18,
 #: src/templates/wp-admin/notices/horizontal-notice.php:48,
 #: src/templates/wp-admin/notices/horizontal-notice.php:50
@@ -3996,23 +3996,23 @@ msgstr "سپس باید دوباره تمام تنظیمات خود را وار�
 msgid "This button will delete all UpdraftPlus settings and progress information for in-progress backups (but not any of your existing backups from your cloud storage)."
 msgstr "این دکمه تمام تنظیمات آپ‌درفت‌پلاس و اطلاعات پیشرفت برای پشتیبان‌گیری‌های در حال اجرا را حذف می‌کند (اما هیچ یک از پشتیبان‌های موجود شما در فضای ذخیره ابری را حذف نمی‌کند)."
 
-#: src/admin.php:5381
+#: src/admin.php:5382
 msgid "Send this backup to remote storage"
 msgstr "این نسخه پشتیبان را برای حافظه ذخیره‌سازی از راه دور ارسال کنید"
 
-#: src/admin.php:5374
+#: src/admin.php:5375
 msgid "Check out UpdraftPlus Vault."
 msgstr "UpdraftPlus Vault را بررسی کنید."
 
-#: src/admin.php:5374
+#: src/admin.php:5375
 msgid "Not got any remote storage?"
 msgstr "آیا فضای ذخیره‌ی از راه دور ندارید؟"
 
-#: src/admin.php:5374
+#: src/admin.php:5375
 msgid "settings"
 msgstr "تنظیمات"
 
-#: src/admin.php:5374
+#: src/admin.php:5375
 msgid "Backup won't be sent to any remote storage - none has been saved in the %s"
 msgstr "نسخه پشتیبان به هیچ فضای ذخیره‌سازی از راه دور ارسال نمی‌شود - هیچ کدام در %s ذخیره نشده‌اند"
 
@@ -4024,31 +4024,31 @@ msgstr "فایل‌ها خود را به نسخه پشتیبان اضافه کن
 msgid "Include your database in the backup"
 msgstr "پایگاه‌داده خود را به نسخه پشتیبان اضافه کنید"
 
-#: src/admin.php:3181, src/admin.php:3183
+#: src/admin.php:3182, src/admin.php:3184
 msgid "Continue restoration"
 msgstr ""
 
-#: src/admin.php:3173
+#: src/admin.php:3174
 msgid "You have an unfinished restoration operation, begun %s ago."
 msgstr ""
 
-#: src/admin.php:3172
+#: src/admin.php:3173
 msgid "Unfinished restoration"
 msgstr ""
 
-#: src/admin.php:3169
+#: src/admin.php:3170
 msgid "%s minutes, %s seconds"
 msgstr ""
 
-#: src/admin.php:2999
+#: src/admin.php:3000
 msgid "Backup Contents And Schedule"
 msgstr ""
 
-#: src/admin.php:3102
+#: src/admin.php:3103
 msgid "Premium / Extensions"
 msgstr "نسخه پریمیوم / افزودنی‌ها"
 
-#: src/admin.php:4867, src/admin.php:4876
+#: src/admin.php:4868, src/admin.php:4877
 msgid "Sufficient information about the in-progress restoration operation could not be found."
 msgstr ""
 
@@ -4065,7 +4065,7 @@ msgstr "شما نسخه پشتیبان تهیه کرده‌اید ، اما هی
 msgid "Extensions"
 msgstr "افزودنی ها"
 
-#: src/admin.php:732, src/admin.php:3101
+#: src/admin.php:732, src/admin.php:3102
 msgid "Advanced Tools"
 msgstr "ابزارهای پیشرفته"
 
@@ -4185,7 +4185,7 @@ msgstr ""
 msgid "Could not access container"
 msgstr ""
 
-#: src/class-updraftplus.php:3543
+#: src/class-updraftplus.php:3547
 msgid "To complete your migration/clone, you should now log in to the remote site and restore the backup set."
 msgstr ""
 
@@ -4313,7 +4313,7 @@ msgstr ""
 msgid "Press here to look inside your remote storage methods for any existing backup sets (from any site, if they are stored in the same folder)."
 msgstr ""
 
-#: src/admin.php:2126
+#: src/admin.php:2127
 msgid "Backup sets removed:"
 msgstr ""
 
@@ -4365,15 +4365,15 @@ msgstr ""
 msgid "You do not currently have any UpdraftPlus Vault quota"
 msgstr ""
 
-#: src/class-updraftplus.php:5136
+#: src/class-updraftplus.php:5140
 msgid "You must upgrade MySQL to be able to use this database."
 msgstr ""
 
-#: src/class-updraftplus.php:5136
+#: src/class-updraftplus.php:5140
 msgid "The database backup uses MySQL features not available in the old MySQL version (%s) that this site is running on."
 msgstr ""
 
-#: src/admin.php:2881
+#: src/admin.php:2882
 msgid "The UpdraftPlus directory in wp-content/plugins has white-space in it; WordPress does not like this. You should rename the directory to wp-content/plugins/updraftplus to fix this problem."
 msgstr ""
 
@@ -4532,7 +4532,7 @@ msgid "Updraft Vault"
 msgstr ""
 
 #: src/addons/azure.php:443, src/addons/backblaze.php:564,
-#: src/addons/googlecloud.php:1024, src/methods/s3.php:1287
+#: src/addons/googlecloud.php:1024, src/methods/s3.php:1307
 msgid "Delete failed:"
 msgstr "حذف انجام نشد:"
 
@@ -4540,19 +4540,19 @@ msgstr "حذف انجام نشد:"
 msgid "The zip engine returned the message: %s."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:408, src/addons/s3-enhanced.php:410
+#: src/addons/s3-enhanced.php:416, src/addons/s3-enhanced.php:418
 msgid "Without this permission, UpdraftPlus cannot delete backups - you should also set your 'retain' settings very high to prevent seeing deletion errors."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:408, src/addons/s3-enhanced.php:408
+#: src/addons/s3-enhanced.php:416, src/addons/s3-enhanced.php:416
 msgid "Allow deletion"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:404, src/addons/s3-enhanced.php:406
+#: src/addons/s3-enhanced.php:412, src/addons/s3-enhanced.php:414
 msgid "Without this permission, you cannot directly download or restore using UpdraftPlus, and will instead need to visit the AWS website."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:404, src/addons/s3-enhanced.php:404
+#: src/addons/s3-enhanced.php:412, src/addons/s3-enhanced.php:412
 msgid "Allow download"
 msgstr ""
 
@@ -4617,7 +4617,7 @@ msgstr ""
 msgid "This storage method does not allow downloading"
 msgstr ""
 
-#: src/admin.php:4520
+#: src/admin.php:4521
 msgid "(backup set imported from remote location)"
 msgstr ""
 
@@ -4838,144 +4838,144 @@ msgstr ""
 msgid "To remove the block, please go here."
 msgstr "برای حذف بلوک، لطفاً به اینجا بروید."
 
-#: src/addons/s3-enhanced.php:487
+#: src/addons/s3-enhanced.php:498
 msgid "Do remember to save your settings."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:487
+#: src/addons/s3-enhanced.php:498
 msgid "You are now using a IAM user account to access your bucket."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:402
+#: src/addons/s3-enhanced.php:410
 msgid "S3 bucket"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:392
+#: src/addons/s3-enhanced.php:400
 msgid "China (Beijing) (restricted)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:390
+#: src/addons/s3-enhanced.php:398
 msgid "South America (São Paulo)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:387
+#: src/addons/s3-enhanced.php:395
 msgid "Asia Pacific (Tokyo)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:385
+#: src/addons/s3-enhanced.php:393
 msgid "Asia Pacific (Sydney)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:384
+#: src/addons/s3-enhanced.php:392
 msgid "Asia Pacific (Singapore)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:373
+#: src/addons/s3-enhanced.php:381
 msgid "US Government West (restricted)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:372
+#: src/addons/s3-enhanced.php:380
 msgid "US West (N. California)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:371
+#: src/addons/s3-enhanced.php:379
 msgid "US West (Oregon)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:365
+#: src/addons/s3-enhanced.php:373
 msgid "S3 storage region"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:363
+#: src/addons/s3-enhanced.php:371
 msgid "New IAM username"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:362
+#: src/addons/s3-enhanced.php:370
 msgid "Admin secret key"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:361
+#: src/addons/s3-enhanced.php:369
 msgid "Admin access key"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:354
+#: src/addons/s3-enhanced.php:362
 msgid "Then, these lower-powered access credentials can be used, instead of storing your administrative keys."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:354
+#: src/addons/s3-enhanced.php:362
 msgid "These will be used to create a new user and key pair with an IAM policy attached which will only allow it to access the indicated bucket."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:354
+#: src/addons/s3-enhanced.php:362
 msgid "Enter your administrative Amazon S3 access/secret keys (this needs to be a key pair with enough rights to create new users and buckets), and a new (unique) username for the new user and a bucket name."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:439
+#: src/addons/s3-enhanced.php:448
 msgid "Create new IAM user and S3 bucket"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:340
+#: src/addons/s3-enhanced.php:348
 msgid "Secret Key: %s"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:340
+#: src/addons/s3-enhanced.php:348
 msgid "Access Key: %s"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:328
+#: src/addons/s3-enhanced.php:336
 msgid "Failed to apply User Policy"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:269, src/addons/s3-enhanced.php:273
+#: src/addons/s3-enhanced.php:277, src/addons/s3-enhanced.php:281
 msgid "Operation to create user Access Key failed"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:267
+#: src/addons/s3-enhanced.php:275
 msgid "Failed to create user Access Key"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:249, src/addons/s3-enhanced.php:252,
-#: src/addons/s3-enhanced.php:256
+#: src/addons/s3-enhanced.php:257, src/addons/s3-enhanced.php:260,
+#: src/addons/s3-enhanced.php:264
 msgid "IAM operation failed (%s)"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:247
+#: src/addons/s3-enhanced.php:255
 msgid "Conflict: that user already exists"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:207
+#: src/addons/s3-enhanced.php:218
 msgid "Failure: We could not successfully access or create such a bucket. Please check your access credentials, and if those are correct then try another bucket name (as another AWS user may already have taken your name)."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:164
+#: src/addons/s3-enhanced.php:171
 msgid "AWS authentication failed"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:157
+#: src/addons/s3-enhanced.php:164
 msgid "Cannot create new AWS user, since the old AWS toolkit is being used."
 msgstr ""
 
-#: src/addons/s3-enhanced.php:130
+#: src/addons/s3-enhanced.php:133
 msgid "You need to enter a bucket"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:126
+#: src/addons/s3-enhanced.php:129
 msgid "You need to enter a new IAM username"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:122
+#: src/addons/s3-enhanced.php:125
 msgid "You need to enter an admin secret key"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:118
+#: src/addons/s3-enhanced.php:121
 msgid "You need to enter an admin access key"
 msgstr ""
 
-#: src/addons/s3-enhanced.php:91
+#: src/addons/s3-enhanced.php:94
 msgid "If you have an AWS admin user, then you can use this wizard to quickly create a new AWS (IAM) user with access to only this bucket (rather than your whole account)"
 msgstr ""
 
-#: src/methods/s3.php:958
+#: src/methods/s3.php:971
 msgid "To create a new IAM sub-user and access key that has access only to this bucket, upgrade to Premium."
 msgstr ""
 
@@ -5042,7 +5042,7 @@ msgstr "بست ( برای %s  ماه)"
 msgid "(at same time as files backup)"
 msgstr "(در همان زمانی که از فایل ها پشتیبان تهیه میشود )"
 
-#: src/admin.php:4056
+#: src/admin.php:4057
 msgid "No backup has been completed"
 msgstr "هیچ پشیبانی هنوز کامل نشده"
 
@@ -5075,7 +5075,7 @@ msgstr "لیست کامل امکانات"
 msgid "Backup (where relevant) plugins, themes and the WordPress database with UpdraftPlus before updating"
 msgstr "پشتیبان گیری از پلاگین ها ,قالب ها ها و پایگاه داده وردپرس با UpdraftPlus قبل از به روز رسانی"
 
-#: src/methods/s3.php:203, src/methods/s3.php:216
+#: src/methods/s3.php:216, src/methods/s3.php:229
 msgid "%s Error: Failed to initialise"
 msgstr "%s خطا: مقدار دهی اولیه با شکست روبرور شد"
 
@@ -5116,7 +5116,7 @@ msgstr "آدرس مدیریت سایت شما"
 msgid "Check this box to have a basic report sent to"
 msgstr "برای ارسال گزارش به شما این گزینه را انتخاب کنید"
 
-#: src/admin.php:4075, src/admin.php:4080
+#: src/admin.php:4076, src/admin.php:4081
 msgctxt "i.e. Non-automatic"
 msgid "Manual"
 msgstr "دستی "
@@ -5134,7 +5134,7 @@ msgstr "تغییر تنظیمات قفل"
 msgid "Any other file/directory on your server that you wish to backup"
 msgstr ""
 
-#: src/admin.php:2898
+#: src/admin.php:2899
 msgid "For even more features and personal support, check out "
 msgstr "برای ویژگی های بیشتر و پشتیبانی شخصی , انتخاب شود "
 
@@ -5228,7 +5228,7 @@ msgstr "(اطلاعات بیشتر در مورد این گزینه)"
 msgid "Note that after you have claimed your add-ons, you can remove your password (but not the email address) from the settings below, without affecting this site's access to updates."
 msgstr ""
 
-#: src/admin.php:3554, src/admin.php:4617
+#: src/admin.php:3555, src/admin.php:4618
 msgid "View Log"
 msgstr "مشاهده گزارش"
 
@@ -5247,7 +5247,7 @@ msgstr "تاریخ پشتیبان"
 msgid "and retain this many scheduled backups"
 msgstr "و تعداد پشتیبان‌های زمان‌بندی‌شده که باید نگهداری شوند"
 
-#: src/admin.php:4026
+#: src/admin.php:4027
 msgid "incremental backup; base backup: %s"
 msgstr ""
 
@@ -5265,11 +5265,11 @@ msgstr "آپلود فایل ها به UpdraftPlus ."
 msgid "The 'Backup Now' button is disabled as your backup directory is not writable (go to the 'Settings' tab and find the relevant option)."
 msgstr ""
 
-#: src/class-updraftplus.php:5044
+#: src/class-updraftplus.php:5048
 msgid "Backup label:"
 msgstr "عنوان پشتیبان :"
 
-#: src/addons/backblaze.php:198, src/admin.php:2429
+#: src/addons/backblaze.php:198, src/admin.php:2430
 msgid "Error: unexpected file read fail"
 msgstr "خطا: خواندن پرونده‌ی غیرمنتظره انجام نشد"
 
@@ -5305,11 +5305,11 @@ msgstr "آدرس ایمیل شما معتبر است، ولی رمز عبور ش
 msgid "You need to supply both an email address and a password"
 msgstr "باید آدرس ایمیل و رمز عبور را تامین نمائید."
 
-#: src/class-updraftplus.php:5063
+#: src/class-updraftplus.php:5067
 msgid "If you want to restore a multisite backup, you should first set up your WordPress installation as a multisite."
 msgstr "اگر می خواهید پشتیبان multisite را بازیابی کنید، اول نیاز دارید که وردپرس را به صورت multisite تنظیم نمائید."
 
-#: src/class-updraftplus.php:5063
+#: src/class-updraftplus.php:5067
 msgid "Your backup is of a WordPress multisite install; but this site is not. Only the first site of the network will be accessible."
 msgstr ""
 
@@ -5346,19 +5346,19 @@ msgstr "شما هنوز به اکانت UpdraftPlus.Com متصل نشده اید
 msgid "You need to connect to receive future updates to UpdraftPlus."
 msgstr "برای دریافت بروزرسانی ها در آینده نیاز به اتصال به UpdraftPlus دارید."
 
-#: src/class-updraftplus.php:5034, src/class-updraftplus.php:5036
+#: src/class-updraftplus.php:5038, src/class-updraftplus.php:5040
 msgid "Any support requests to do with %s should be raised with your web hosting company."
 msgstr "هر درخواست پشتیبانی با %s باید از ظریق شرکت هاستینگ سایت مطرح گردد."
 
-#: src/class-updraftplus.php:5034
+#: src/class-updraftplus.php:5038
 msgid "You should only proceed if you cannot update the current server and are confident (or willing to risk) that your plugins/themes/etc. are compatible with the older %s version."
 msgstr "اگر نمی توانید سرور موجود را بروزرسانی کنید، باید ادامه دهید و مطمئن باشید که plugins/themes/etc. با ورژن قدیمی %s سازگاری دارد."
 
-#: src/class-updraftplus.php:5034
+#: src/class-updraftplus.php:5038
 msgid "This is significantly newer than the server which you are now restoring onto (version %s)."
 msgstr "این جدیدتر از سروری است که در حال بازسازی درون آن هستید (نسخه %s)"
 
-#: src/class-updraftplus.php:5034, src/class-updraftplus.php:5036
+#: src/class-updraftplus.php:5038, src/class-updraftplus.php:5040
 msgid "The site in this backup was running on a webserver with version %s of %s. "
 msgstr "سایت این پشتیبان در حال اجرا بر روی وب سرور با نسخه %s از %s است."
 
@@ -5391,15 +5391,15 @@ msgstr "محل این دایرکتوری در تنظیمات پیشرفته در
 msgid "Press here to look inside your UpdraftPlus directory (in your web hosting space) for any new backup sets that you have uploaded."
 msgstr "اینجا را فشار دهید تا درون دایرکتوری UpdraftPlus (بر روی فضای میزبانی خود) را برای هر پشتیبان جدیدی که آپلود کرده اید، مشاهده نمائید."
 
-#: src/admin.php:2348, src/admin.php:2371, src/includes/class-commands.php:937
+#: src/admin.php:2349, src/admin.php:2372, src/includes/class-commands.php:937
 msgid "Start backup"
 msgstr "شروع پشتیبان گیری"
 
-#: src/class-updraftplus.php:5004, src/restorer.php:1710
+#: src/class-updraftplus.php:5008, src/restorer.php:1710
 msgid "You are using the %s webserver, but do not seem to have the %s module loaded."
 msgstr "شما در حال استفاده از وب سرور %s هستید، ولی به نظر می رسد که ماژول %s بارگذاری نگردیده است."
 
-#: src/admin.php:3924
+#: src/admin.php:3925
 msgid "You will need to consult with your web hosting provider to find out how to set permissions for a WordPress plugin to write to the directory."
 msgstr "شما باید با ارائه دهنده سرویس هاست وب سایت خود تماس گرفته و در مورد چگونگی ایجاد دسترسی نوشتن یک افزونه وردپرس به دایرکتوری کمک بخواهید."
 
@@ -5407,11 +5407,11 @@ msgstr "شما باید با ارائه دهنده سرویس هاست وب سا
 msgid "Unless you have a problem, you can completely ignore everything here."
 msgstr "تا زمانی که شما دچار مشکل شده اید، می توانید هرچیزی که در اینجا وجود دارد را نادیده بگیرید."
 
-#: src/admin.php:2612
+#: src/admin.php:2613
 msgid "This file could not be uploaded"
 msgstr "فایل نمی تواند آپلود شود."
 
-#: src/admin.php:2575
+#: src/admin.php:2576
 msgid "You will find more information about this in the Settings section."
 msgstr "شما می توانید اطلاعات بیشتری از این قسمت را در بخش تنظیمات پیدا کنید."
 
@@ -5435,11 +5435,11 @@ msgstr "محدودیت حافظه"
 msgid "restoration"
 msgstr "بازسازی"
 
-#: src/class-updraftplus.php:3611
+#: src/class-updraftplus.php:3615
 msgid "Incremental"
 msgstr "افزایشی"
 
-#: src/class-updraftplus.php:3611
+#: src/class-updraftplus.php:3615
 msgid "Full backup"
 msgstr "پشتیبان گیری کامل"
 
@@ -5457,8 +5457,8 @@ msgstr "پشتیبان گیری با موفقیت به اتمام رسید"
 
 #: src/addons/incremental.php:340, src/addons/incremental.php:341,
 #: src/addons/incremental.php:342, src/addons/incremental.php:343,
-#: src/admin.php:4082, src/admin.php:4083, src/admin.php:4084,
-#: src/admin.php:4085, src/updraftplus.php:101, src/updraftplus.php:102,
+#: src/admin.php:4083, src/admin.php:4084, src/admin.php:4085,
+#: src/admin.php:4086, src/updraftplus.php:101, src/updraftplus.php:102,
 #: src/updraftplus.php:103
 msgid "Every %s hours"
 msgstr "هر %s ساعت"
@@ -5502,11 +5502,11 @@ msgstr "شرایط جستجو"
 msgid "Too many database errors have occurred - aborting"
 msgstr "خطاهای بسیار زیادی مربوط به دیتابیس بوجود آمد - درحال خاتمه دادن"
 
-#: src/class-updraftplus.php:3679
+#: src/class-updraftplus.php:3683
 msgid "read more at %s"
 msgstr "در %s بیشتر بخوانید"
 
-#: src/class-updraftplus.php:3679
+#: src/class-updraftplus.php:3683
 msgid "Email reports created by UpdraftPlus (free edition) bring you the latest UpdraftPlus.com news"
 msgstr "گزارش‌های ایمیلی ایجاد شده توسط نسخه رایگان UpdraftPlus آخرین اخبار وبسایت UpdraftPlus.com را برایتان ارائه می‌کند"
 
@@ -5530,7 +5530,7 @@ msgstr "%s (%s استفاده شده)"
 msgid "Free disk space in account:"
 msgstr "فضای دیسک خالی موجود در این اکانت:"
 
-#: src/admin.php:5482, src/templates/wp-admin/settings/take-backup.php:52
+#: src/admin.php:5483, src/templates/wp-admin/settings/take-backup.php:52
 msgid "This button is disabled because your backup directory is not writable (see the settings)."
 msgstr "این کلید غیرفعال است چون پوشه پشتیبان گیری شما غیر قابل نوشتن است (تنظیمات را مشاهده کنید)."
 
@@ -5614,7 +5614,7 @@ msgstr "میزبان"
 msgid "user"
 msgstr "کاربر"
 
-#: src/class-updraftplus.php:1986
+#: src/class-updraftplus.php:1988
 msgid "External database (%s)"
 msgstr "دیتابیس خارجی (%s)"
 
@@ -5632,7 +5632,7 @@ msgstr "دسترسی به پوشه ی مادر با مشکل مواجه شد"
 msgid "However, subsequent access attempts failed:"
 msgstr "اما , تلاش برای دسترسی بعدی با مشکل مواجه شد."
 
-#: src/addons/wp-cli.php:434, src/admin.php:4403
+#: src/addons/wp-cli.php:434, src/admin.php:4404
 msgid "External database"
 msgstr "دیتابیس خارجی"
 
@@ -5664,7 +5664,7 @@ msgstr "نمیخواید جاسوسی کنید ؟ UpdraftPlus پرمیوم می�
 msgid "use UpdraftPlus Premium"
 msgstr "استفاده از UpdraftPlus تجاری"
 
-#: src/class-updraftplus.php:4874
+#: src/class-updraftplus.php:4878
 msgid "Decryption failed. The database file is encrypted."
 msgstr "رمزگشایی با شکست مواجه شد . فایل دیتابیس رمزگذاری شده است."
 
@@ -5719,7 +5719,7 @@ msgstr "اگر خالی بماند، یک پیشفرض برایش انتخاب �
 msgid "Tenant"
 msgstr "مستاجر"
 
-#: src/admin.php:1051, src/admin.php:5924, src/methods/openstack2.php:144,
+#: src/admin.php:1051, src/admin.php:5925, src/methods/openstack2.php:144,
 #: src/restorer.php:289, src/restorer.php:291,
 #: src/templates/wp-admin/settings/downloading-and-restoring.php:27,
 #: src/templates/wp-admin/settings/tab-backups.php:27,
@@ -5864,7 +5864,7 @@ msgstr "این امکانات نیازمند  %s نسخه  %s یا جدیدتر 
 msgid "Failed to unpack the archive"
 msgstr "ناموفق در بازگشایی آرشیو"
 
-#: src/class-updraftplus.php:1578, src/methods/cloudfiles.php:428
+#: src/class-updraftplus.php:1580, src/methods/cloudfiles.php:428
 msgid "Error - failed to download the file"
 msgstr "خطا - ناموفق در دانلود فایل"
 
@@ -5890,7 +5890,7 @@ msgid "password/key"
 msgstr "رمز/کلید"
 
 #: src/addons/migrator.php:1415, src/addons/sftp.php:504, src/admin.php:933,
-#: src/admin.php:5771, src/templates/wp-admin/settings/temporary-clone.php:63
+#: src/admin.php:5772, src/templates/wp-admin/settings/temporary-clone.php:63
 msgid "Key"
 msgstr "کلید"
 
@@ -5906,24 +5906,24 @@ msgstr "فرمت کلید ارائه شده صحیح نیست یا اینکه خ
 msgid "SCP/SFTP password/key"
 msgstr "رمز/ کلید SCP/SFTP"
 
-#: src/addons/wp-cli.php:445, src/admin.php:4447
+#: src/addons/wp-cli.php:445, src/admin.php:4448
 msgid "Files backup (created by %s)"
 msgstr "فایل پشتیبان ایجاد شد ( توسط %s) "
 
-#: src/addons/wp-cli.php:445, src/admin.php:4447
+#: src/addons/wp-cli.php:445, src/admin.php:4448
 msgid "Files and database WordPress backup (created by %s)"
 msgstr "فایل ها و دیتابیس وردپرس پشتیبان گیری شد .( توسط %s)"
 
-#: src/addons/importer.php:276, src/admin.php:4441,
+#: src/addons/importer.php:276, src/admin.php:4442,
 #: src/includes/class-backup-history.php:507
 msgid "Backup created by: %s."
 msgstr "بوسیله ی %s پشتیبان ایجاد شد. "
 
-#: src/addons/wp-cli.php:428, src/admin.php:4401
+#: src/addons/wp-cli.php:428, src/admin.php:4402
 msgid "Database (created by %s)"
 msgstr "دیتابیس ( ایجاد شده توسط %s)"
 
-#: src/addons/wp-cli.php:426, src/admin.php:4395, src/admin.php:4443
+#: src/addons/wp-cli.php:426, src/admin.php:4396, src/admin.php:4444
 msgid "unknown source"
 msgstr "منبع نامشخص"
 
@@ -5938,7 +5938,7 @@ msgstr "اسکن دوباره فضا"
 msgid "Upload backup files"
 msgstr "آپلود فایل های پشتیبان"
 
-#: src/admin.php:2627
+#: src/admin.php:2628
 msgid "This backup was created by %s, and can be imported."
 msgstr "این پشتیبان ایجاد شده توسط %s و میتواند بارگزای شود ."
 
@@ -5963,7 +5963,7 @@ msgstr "اگر چه , فایل فایل های آرشیو  UpdraftPlus از فر
 msgid "This file does not appear to be an UpdraftPlus backup archive (such files are .zip or .gz files which have a name like: backup_(time)_(site name)_(code)_(type).(zip|gz))."
 msgstr "این فایل به نظر میرسد از فایل های پشتیبان UpdraftPlus نمیباشد ( فایل هایی با فرمت هایی مثل :  zip یا gz  با نام هایی مثل : backup_(time)_(site name)_(code)_(type).(zip|gz) )"
 
-#: src/admin.php:4444, src/includes/class-wpadmin-commands.php:159,
+#: src/admin.php:4445, src/includes/class-wpadmin-commands.php:159,
 #: src/restorer.php:2596
 msgid "Backup created by unknown source (%s) - cannot be restored."
 msgstr "فایل پشتیبان توسط منبع نامشخصی ایجاد شده (%s) است و نمیتواند بازیابی شود ."
@@ -6016,7 +6016,7 @@ msgstr ""
 msgid "Remove"
 msgstr "حذف"
 
-#: src/methods/s3.php:907
+#: src/methods/s3.php:920
 msgid "Other %s FAQs."
 msgstr "  %s سوالات متداول دیگر"
 
@@ -6024,7 +6024,7 @@ msgstr "  %s سوالات متداول دیگر"
 msgid "Check this to receive more information and emails on the backup process - useful if something is going wrong."
 msgstr "این گزینه را برای دریافت اطلاعات و ایمیل های فرآیند پشتیبان گیری انتخاب کنید  - برای زمانی که فرایند با مشکل مواجه می شوند مفید هست ."
 
-#: src/addons/morefiles.php:357, src/admin.php:4202
+#: src/addons/morefiles.php:357, src/admin.php:4203
 msgid "If entering multiple files/directories, then separate them with commas. For entities at the top level, you can use a * at the start or end of the entry as a wildcard."
 msgstr "اگر چندین فایل یا مسیر را وارد کردید آنها را با کاما از یک دیگر جدا کنید . برای دسترسی به سطوح بالاتر شما میتوانید با قرار دادن * در شروع یا انتها, آنها را تعریف کنید ."
 
@@ -6145,7 +6145,7 @@ msgstr "حساب کاربری پر شده است: حساب کاربری %s شم�
 msgid "Errors occurred:"
 msgstr "خطایی رخ داده است:"
 
-#: src/addons/wp-cli.php:752, src/admin.php:5001
+#: src/addons/wp-cli.php:752, src/admin.php:5002
 msgid "Follow this link to download the log file for this restoration (needed for any support requests)."
 msgstr "از طریق این لینک می توانید فایل سوابق بازیابی را دانلود نمائید (برای درخواست های پشتیبانی نیاز دارید)."
 
@@ -6169,7 +6169,7 @@ msgstr "تنظیمات PHP بر روی این سرور فقط اجازه می د
 msgid "Existing unremoved folders from a previous restore exist (please use the \"Delete Old Directories\" button to delete them before trying again): %s"
 msgstr ""
 
-#: src/admin.php:1307, src/class-updraftplus.php:970
+#: src/admin.php:1307, src/class-updraftplus.php:972
 msgid "The amount of time allowed for WordPress plugins to run is very low (%s seconds) - you should increase it to avoid backup failures due to time-outs (consult your web hosting company for more help - it is the max_execution_time PHP setting; the recommended value is %s seconds or more)"
 msgstr "مقدار زمانی که  برای اجرای افزونه های وردپرس اجازه داده شده است (%s ثانیه) خیلی کم است - شما برای اجتناب از رخ دادن خطا در پشتیبان گیری باید آن را افزایش دهید (با شرکت هاست خود صحبت کنید تا به شما کمک کنند - تنظیمات PHP در max_execution_time است؛ پیشنهاد می شود آن را به %s ثانیه و یا بیشتر تغییر دهید)"
 
@@ -6182,7 +6182,7 @@ msgstr "این افزونه غیر فعال گردید: %s: هر زمان که �
 msgid "The %s connection timed out; if you entered the server correctly, then this is usually caused by a firewall blocking the connection - you should check with your web hosting company."
 msgstr "زمان اتصال %s منقضی شد؛ اگر سرور را درست وارد کرده اید، ممکن است به خاطر بلوکه کردن توسط فایروال اتفاق افتاده باشد- باید با شرکت هاست خود کنترل نمائید."
 
-#: src/addons/moredatabase.php:168, src/admin.php:1829
+#: src/addons/moredatabase.php:168, src/admin.php:1830
 msgid "Messages:"
 msgstr "پیغام:"
 
@@ -6230,7 +6230,7 @@ msgstr "کلید API: %s"
 msgid "Password: %s"
 msgstr "رمز عبور: %s"
 
-#: src/addons/cloudfiles-enhanced.php:205, src/addons/s3-enhanced.php:340
+#: src/addons/cloudfiles-enhanced.php:205, src/addons/s3-enhanced.php:348
 msgid "Username: %s"
 msgstr "نام کاربری: %s"
 
@@ -6336,7 +6336,7 @@ msgstr "حساب کاربری US یا UK-based Rackspace"
 msgid "Accounts created at rackspacecloud.com are US accounts; accounts created at rackspace.co.uk are UK accounts."
 msgstr "حساب های کاربری ساخته شده در rackspacecloud.com حساب های آمریکا هستند؛ حساب های کاربری ساخته شده در rackspace.co.uk حساب های انگلیس هستند."
 
-#: src/addons/cloudfiles-enhanced.php:160, src/addons/s3-enhanced.php:245,
+#: src/addons/cloudfiles-enhanced.php:160, src/addons/s3-enhanced.php:253,
 #: src/methods/cloudfiles-new.php:37, src/methods/openstack-base.php:489,
 #: src/methods/openstack-base.php:491, src/methods/openstack-base.php:512,
 #: src/methods/openstack2.php:33
@@ -6364,11 +6364,11 @@ msgstr "رمز عبور کاربر جدید کنسول RackSpace این است (
 msgid "Error data:"
 msgstr "داده خطا:"
 
-#: src/admin.php:5094
+#: src/admin.php:5095
 msgid "Backup does not exist in the backup history"
 msgstr "پشتیبان در تاریخچه پشتیبان وجود ندارد"
 
-#: src/admin.php:3486
+#: src/admin.php:3487
 msgid "Your WordPress install has old directories from its state before you restored/migrated (technical information: these are suffixed with -old). You should press this button to delete them as soon as you have verified that the restoration worked."
 msgstr ""
 
@@ -6404,11 +6404,11 @@ msgstr "آدرس دیگری اضافه نمائید..."
 msgid "Enter addresses here to have a report sent to them when a backup job finishes."
 msgstr "آدرس ها را در این قسمت وارد کن تا زمانی که عملیات پشتیبان گیری به پایان رسید، گزارش به آن ارسال شود."
 
-#: src/class-updraftplus.php:1994, src/class-updraftplus.php:1999
+#: src/class-updraftplus.php:1996, src/class-updraftplus.php:2001
 msgid "%s checksum: %s"
 msgstr "کنترلی %s: %s"
 
-#: src/class-updraftplus.php:1926, src/class-updraftplus.php:1928
+#: src/class-updraftplus.php:1928, src/class-updraftplus.php:1930
 msgid "files: %s"
 msgstr "فایل: %s"
 
@@ -6420,7 +6420,7 @@ msgstr "از بخش \"گزارشگیری\" برای تنظیم آدرس ایمی
 msgid "Debugging information"
 msgstr "اطلاعات مشکل زدایی"
 
-#: src/addons/reporting.php:238, src/admin.php:4361
+#: src/addons/reporting.php:238, src/admin.php:4362
 msgid "Uploaded to:"
 msgstr "آپلود شده در:"
 
@@ -6465,7 +6465,7 @@ msgstr "%d خطا، %d هشدار"
 msgid "%s authentication"
 msgstr "احراز هویت %s"
 
-#: src/addons/onedrive.php:891, src/class-updraftplus.php:565,
+#: src/addons/onedrive.php:891, src/class-updraftplus.php:567,
 #: src/methods/dropbox.php:267, src/methods/dropbox.php:757,
 #: src/methods/dropbox.php:814, src/methods/dropbox.php:828,
 #: src/methods/dropbox.php:848, src/methods/dropbox.php:1005
@@ -6480,7 +6480,7 @@ msgstr "لوگو %s"
 msgid "did not return the expected response - check your log file for more details"
 msgstr ""
 
-#: src/methods/s3.php:354
+#: src/methods/s3.php:367
 msgid "The required %s PHP module is not installed - ask your web hosting company to enable it"
 msgstr "ماژول PHP %s لازم نصب نشده است - از شرکت هاست خود برای فعالسازی آن درخواست کنید."
 
@@ -6488,13 +6488,13 @@ msgstr "ماژول PHP %s لازم نصب نشده است - از شرکت هاس
 msgid "Your site's admin email address (%s) will be used."
 msgstr "آدرس ایمیل ادمین شما (%s) استفاده خواهد شد."
 
-#: src/admin.php:920, src/admin.php:3222, src/methods/updraftvault.php:358,
+#: src/admin.php:920, src/admin.php:3223, src/methods/updraftvault.php:358,
 #: src/methods/updraftvault.php:413,
 #: src/templates/wp-admin/settings/temporary-clone.php:82
 msgid "Connect"
 msgstr "اتصال"
 
-#: src/class-updraftplus.php:4963
+#: src/class-updraftplus.php:4967
 msgid "(version: %s)"
 msgstr "(نسخه: %s)"
 
@@ -6502,44 +6502,44 @@ msgstr "(نسخه: %s)"
 msgid "Be aware that mail servers tend to have size limits; typically around %s Mb; backups larger than any limits will likely not arrive."
 msgstr "آگاه باشید که سرورهای ایمیل معمولاً محدودیت حجم دارند؛ معمولاً %s مگابایت؛ پشتیبان های بزرگتر از این مقدار نخواهند رسید."
 
-#: src/addons/reporting.php:197, src/class-updraftplus.php:3714
+#: src/addons/reporting.php:197, src/class-updraftplus.php:3718
 msgid "Latest status:"
 msgstr "آخرین وضعیت:"
 
-#: src/class-updraftplus.php:3713
+#: src/class-updraftplus.php:3717
 msgid "Backup contains:"
 msgstr "محتویات پشتیبان:"
 
-#: src/class-updraftplus.php:3670
+#: src/class-updraftplus.php:3674
 msgid "Backed up: %s"
 msgstr "پشتیان گیری شده: %s"
 
-#: src/addons/reporting.php:280, src/class-updraftplus.php:3664,
-#: src/class-updraftplus.php:3820
+#: src/addons/reporting.php:280, src/class-updraftplus.php:3668,
+#: src/class-updraftplus.php:3824
 msgid "The log file has been attached to this email."
 msgstr "فایل سوابق به این ایمیل الصاق شده است."
 
-#: src/class-updraftplus.php:3628
+#: src/class-updraftplus.php:3632
 msgid "Unknown/unexpected error - please raise a support request"
 msgstr "خطای ناشناخته - لطفاً درخواست پشتیبانی ثبت نمائید"
 
-#: src/class-updraftplus.php:3623
+#: src/class-updraftplus.php:3627
 msgid "Database only (files were not part of this particular schedule)"
 msgstr "فقط پایگاه داده (فایل ها شامل این زمانبندی خاص نمی شود)"
 
-#: src/class-updraftplus.php:3623
+#: src/class-updraftplus.php:3627
 msgid "Database (files backup has not completed)"
 msgstr "پایگاه داده (پشتیبان گیری از فایل ها کامل نشده است)"
 
-#: src/class-updraftplus.php:3620
+#: src/class-updraftplus.php:3624
 msgid "Files only (database was not part of this particular schedule)"
 msgstr ""
 
-#: src/class-updraftplus.php:3620
+#: src/class-updraftplus.php:3624
 msgid "Files (database backup has not completed)"
 msgstr "فایل (پشتیبان گیری از پایگاه داده کامل نشده است)"
 
-#: src/admin.php:391, src/class-updraftplus.php:3618
+#: src/admin.php:391, src/class-updraftplus.php:3622
 msgid "Files and database"
 msgstr "فایل ها و پایگاه داده"
 
@@ -6627,7 +6627,7 @@ msgstr " ما نتوانستیم به سایت UpdraftPlus.Com متصل شویم
 msgid "Reporting"
 msgstr "گزارش "
 
-#: src/admin.php:5768
+#: src/admin.php:5769
 msgid "Options (raw)"
 msgstr "گزینه ها (خام)"
 
@@ -6643,11 +6643,11 @@ msgstr "لینک محتویات "
 msgid "You should check the file ownerships and permissions in your WordPress installation"
 msgstr "شما باید مجوز های دسترسی فایل را درنصب و راه اندازی وردپرس خود  بررسی کنید"
 
-#: src/backup.php:4172, src/class-updraftplus.php:983
+#: src/backup.php:4172, src/class-updraftplus.php:985
 msgid "Your free space in your hosting account is very low - only %s Mb remain"
 msgstr "میزان فضای خالی در حساب هاست شما اندک است  فقط  %s  مگابایت باقی مانده "
 
-#: src/class-updraftplus.php:967
+#: src/class-updraftplus.php:969
 msgid "The amount of memory (RAM) allowed for PHP is very low (%s Mb) - you should increase it to avoid failures due to insufficient memory (consult your web hosting company for more help)"
 msgstr "مقدار حافظه (RAM) برای پی اچ پی بسیار کم است (%s مگابایت) - شما باید آن را برای جلوگیری از خرابی  افزایش دهید (از اونی که ازش هاست خریدی کمک بگیر )"
 
@@ -6723,19 +6723,19 @@ msgstr "اگر شما افزونه های جدیدی خریداری نموده �
 msgid "You are presently <strong class=\"success\">connected</strong> to an UpdraftPlus.Com account."
 msgstr ""
 
-#: src/admin.php:3220
+#: src/admin.php:3221
 msgid "Interested in knowing about your UpdraftPlus.Com password security? Read about it here."
 msgstr "مشتاقید درباره ی امنیت پسورد خود در UpdraftPlus.com بیشتر بدانید؟ اینجا پیرامون آن بخوانید."
 
-#: src/admin.php:3296
+#: src/admin.php:3297
 msgid "Forgotten your details?"
 msgstr "جزئیات خود را فراموش کرده اید؟"
 
-#: src/admin.php:3209
+#: src/admin.php:3210
 msgid "Not yet got an account (it's free)? Go get one!"
 msgstr "هنوز اکانت ندارید (رایگان است)؟ یکی برای خود ثبت کنید!"
 
-#: src/admin.php:3275
+#: src/admin.php:3276
 msgid "Connect with your UpdraftPlus.Com account"
 msgstr "در حال اتصال به اکانت UpdraftPlus.com شما"
 
@@ -6823,7 +6823,7 @@ msgstr "آپلود ناموفق بود"
 msgid "You can send a backup to more than one destination with Premium."
 msgstr ""
 
-#: src/admin.php:3767
+#: src/admin.php:3768
 msgid "Note: the progress bar below is based on stages, NOT time. Do not stop the backup simply because it seems to have remained in the same place for a while - that is normal."
 msgstr "توجه: خط پروسه زیر بر مبنای مرحله است، نه بر مبنای زمان. بک آپ را تنها به این دلیل که به نظر میرسد برای مدتی در یک جا ثابت ایستاده است متوقف نکنید. این کاملا عادی است."
 
@@ -6864,11 +6864,11 @@ msgstr "پشتیبان گیری از: %s."
 msgid "%s settings test result:"
 msgstr "نتیجه آزمایش %s تنظیمات:"
 
-#: src/admin.php:4493, src/admin.php:4495
+#: src/admin.php:4494, src/admin.php:4496
 msgid "(Not finished)"
 msgstr "(تمام نشده است)"
 
-#: src/admin.php:4495
+#: src/admin.php:4496
 msgid "If you are seeing more backups than you expect, then it is probably because the deletion of old backup sets does not happen until a fresh backup completes."
 msgstr "اگر شما بک آپ هایی بیش از حد انتظار می بینید، این احتمالا به این دلیل است که پاک کردن بک آپ های قدیمی پس از تکمیل یک بک آپ جدید در تنظیمات غیر فعال است."
 
@@ -6880,65 +6880,65 @@ msgstr "این را درون مسیر آپلودها یا پلاگین ها <b>�
 msgid "This is where UpdraftPlus will write the zip files it creates initially.  This directory must be writable by your web server. It is relative to your content directory (which by default is called wp-content)."
 msgstr "این مکانی است که افزونه فایل های فشرده ای که در ابتدا ساخته است را در آن خواهد نوشت. این مسیر باید توسط وب سرور شما قابل نوشتن باشد. این مکان با مسیر محتوای شما در ارتباط است (به صورت پیش فرض wp-content نام دارد)."
 
-#: src/admin.php:3732
+#: src/admin.php:3733
 msgid "Job ID: %s"
 msgstr "شناسه کار: %s"
 
-#: src/admin.php:3712
+#: src/admin.php:3713
 msgid "last activity: %ss ago"
 msgstr "آخرین فعالیت: %ss قبل"
 
-#: src/admin.php:3694, src/central/translations-updraftplus.php:28,
+#: src/admin.php:3695, src/central/translations-updraftplus.php:28,
 #: src/methods/updraftvault.php:461, src/methods/updraftvault.php:508,
 #: src/methods/updraftvault.php:627
 msgid "Unknown"
 msgstr "ناشناخته"
 
-#: src/admin.php:3645
+#: src/admin.php:3646
 msgid "Backup finished"
 msgstr "بک آپ به پایان رسید"
 
-#: src/admin.php:3640
+#: src/admin.php:3641
 msgid "Waiting until scheduled time to retry because of errors"
 msgstr "بدلیل بروز خطا تا موعد زمانبندی شده منتظر بمانید"
 
-#: src/admin.php:3636
+#: src/admin.php:3637
 msgid "Pruning old backup sets"
 msgstr "در حال هرس کردن بک آپ های قدیمی"
 
-#: src/admin.php:3623
+#: src/admin.php:3624
 msgid "Uploading files to remote storage"
 msgstr "در حال آپلود فایل ها در حافظه ی خارجی"
 
-#: src/admin.php:3692
+#: src/admin.php:3693
 msgid "Encrypted database"
 msgstr "دیتابیس رمزگذاری شده"
 
-#: src/admin.php:3684
+#: src/admin.php:3685
 msgid "Encrypting database"
 msgstr "رمزگذاری دیتابیس"
 
-#: src/admin.php:3658
+#: src/admin.php:3659
 msgid "Created database backup"
 msgstr "دیتابیس بک آپ ساخته شده"
 
-#: src/admin.php:3671
+#: src/admin.php:3672
 msgid "table: %s"
 msgstr "جدول: %s"
 
-#: src/admin.php:3669
+#: src/admin.php:3670
 msgid "Creating database backup"
 msgstr "در حال ساخت بک آپ دیتابیس"
 
-#: src/admin.php:3614
+#: src/admin.php:3615
 msgid "Created file backup zips"
 msgstr "فایل های زیپ بک آپ ساخته شد"
 
-#: src/admin.php:3601
+#: src/admin.php:3602
 msgid "Creating file backup zips"
 msgstr "در حال ساخت فایل های زیپ بک آپ"
 
-#: src/admin.php:3596
+#: src/admin.php:3597
 msgid "Backup begun"
 msgstr "بک آپ شروع شد"
 
@@ -6958,11 +6958,11 @@ msgstr "فولدر"
 msgid "UpdraftPlus needed to create a %s in your content directory, but failed - please check your file permissions and enable the access (%s)"
 msgstr "افزونه در صدد ساخت یک %s در پوشه ی محتوای شما بود، اما موفق نشد - لطفا مجوزهای فایل خود را چک کنید و به آن اجازه ی دسترسی دهید. (%s)"
 
-#: src/class-updraftplus.php:3558
+#: src/class-updraftplus.php:3562
 msgid "The backup has not finished; a resumption is scheduled"
 msgstr "بک آپ به پایان نرسید، از سرگیری زمانبندی شد"
 
-#: src/class-updraftplus.php:2288
+#: src/class-updraftplus.php:2290
 msgid "Your website is visited infrequently and UpdraftPlus is not getting the resources it hoped for; please read this page:"
 msgstr "وب سایت شما به ندرت بازدید می شود و این افزونه منابعی که به آن امیدوار بود دریافت نمی کند، لطفا این صفحه را بخوانید:"
 
@@ -6971,7 +6971,7 @@ msgstr "وب سایت شما به ندرت بازدید می شود و این ا
 msgid "The %s authentication could not go ahead, because something else on your site is breaking it. Try disabling your other plugins and switching to a default theme. (Specifically, you are looking for the component that sends output (most likely PHP warnings/errors) before the page begins. Turning off any debugging settings may also help)."
 msgstr "معتبرسازی %s نمی تواند انجام شود، زیرا چیز دیگر در سایت شما مانع آن می شود. سعی کنید افزونه های دیگر را غیرفعال کنید و پوسته ی خود را به حالت پیش فرض برگردانید. (به طور مشخص، شما به دنبال مولفه ای هستید که خروجی ارسال می کند (مانند ارور/خطاهای PHP) قبل از اینکه صفحه لود شود. خاموش کردن تنظیمات دیباگ میتواند ثمربخش باشد)."
 
-#: src/admin.php:2938
+#: src/admin.php:2939
 msgid "Your PHP memory limit (set by your web hosting company) is very low. UpdraftPlus attempted to raise it but was unsuccessful. This plugin may struggle with a memory limit of less than 64 Mb  - especially if you have very large files uploaded (though on the other hand, many sites will be successful with a 32Mb limit - your experience may vary)."
 msgstr "محدودیت حافظه ی PHP شما (که توسط شرکت ارائه کننده هاست تنظیم شده) بسیار کم است. این افزونه تلاش نمود آن را افزایش دهد اما موفق نشد. این افزونه ممکن است با محدودیت حافظه کمتر از 64 مگابایت به مشکل بر بخورد - مخصوصا هنگامی که شما فایل های آپلود شده ی بسیار حجیمی دارید (از طرف دیگر، خیلی از سایت ها با محدودیت 32 مگابایت موفق می شوند - تجربه شما ممکن است متفاوت باشد)."
 
@@ -7051,23 +7051,23 @@ msgstr "افزونه های بیشتر"
 msgid "Support"
 msgstr "پشتیبانی"
 
-#: src/class-updraftplus.php:5306
+#: src/class-updraftplus.php:5310
 msgid "UpdraftPlus was unable to find the table prefix when scanning the database backup."
 msgstr "افزونه هنگامی که بک آپ دیتابیس را اسکن می کرد قادر به یافتن پیشوند جدول نبود."
 
-#: src/class-updraftplus.php:5298
+#: src/class-updraftplus.php:5302
 msgid "This database backup is missing core WordPress tables: %s"
 msgstr "این بک آپ از دیتابیس فاقد جدول های هسته ی وردپرس است: %s"
 
-#: src/class-updraftplus.php:5027
+#: src/class-updraftplus.php:5031
 msgid "You are importing from a newer version of WordPress (%s) into an older one (%s). There are no guarantees that WordPress can handle this."
 msgstr "شما از نسخه ی جدیدتر وردپرس %s به نسخه ی قدیمی تر آن %s ایمپورت (درون ریزی) می کنید. تضمینی وجود ندارد که وردپرس بتواند این کار را انجام بدهد."
 
-#: src/class-updraftplus.php:5026, src/class-updraftplus.php:5033
+#: src/class-updraftplus.php:5030, src/class-updraftplus.php:5037
 msgid "%s version: %s"
 msgstr "%s نسخه: %s"
 
-#: src/class-updraftplus.php:4891
+#: src/class-updraftplus.php:4895
 msgid "The database is too small to be a valid WordPress database (size: %s Kb)."
 msgstr "حجم دیتابیس بسیار کمتر از آنست که یک دیتابیس وردپرسی معتبر باشد (سایز: %s کیلوبایت)."
 
@@ -7075,7 +7075,7 @@ msgstr "حجم دیتابیس بسیار کمتر از آنست که یک دیت
 msgid "Be safe with an automatic backup"
 msgstr "با پشتیبان گیری خودکار امن باشید"
 
-#: src/admin.php:2878
+#: src/admin.php:2879
 msgid "If you can still read these words after the page finishes loading, then there is a JavaScript or jQuery problem in the site."
 msgstr "اگر پس از کامل لود شدن صفحه شما کماکان می توانید این جمله را بخوانید، پس یک مشکل جاوا اسکریپت یا جی کوئری در سایت وجود دارد."
 
@@ -7127,7 +7127,7 @@ msgstr "از وب سرور خود حذف کنید"
 msgid "Examples of S3-compatible storage providers:"
 msgstr "مثال هایی از ارائه دهندگان حافظه ی سازگار با S3 "
 
-#: src/admin.php:4471
+#: src/admin.php:4472
 msgid "You appear to be missing one or more archives from this multi-archive set."
 msgstr "به نظر می رسد شما یک یا چند آرشیو از این مجموعه ی چند آرشیوی را در اختیار ندارید."
 
@@ -7147,7 +7147,7 @@ msgstr "اخطارها:"
 msgid "Error: the server sent an empty response."
 msgstr "خطا: سرور پاسخی خالی ارسال کرد."
 
-#: src/admin.php:2641
+#: src/admin.php:2642
 msgid "This looks like a file created by UpdraftPlus, but this install does not know about this type of object: %s. Perhaps you need to install an add-on?"
 msgstr "به نظر میرسد که این فایل توسط این افزونه ایجاد شده است، اما این افزونه ی نصب شده این نوع از فایل را نمی شناسد: %s . شاید شما نیاز به نصب پلاگین دارید."
 
@@ -7234,7 +7234,7 @@ msgstr "پس از اتمام پشتیبان گیری، برای حذف فایل 
 msgid "Drop encrypted database files (db.gz.crypt files) here to upload them for decryption"
 msgstr "فایل های کد شده ی دیتابیس (فایل های db.gz.crypt) را برای آپلود و رمزگشایی به اینجا بکشید."
 
-#: src/admin.php:4188
+#: src/admin.php:4189
 msgid "Your wp-content directory server path: %s"
 msgstr "مسیر پوشه ی wp-content شما: %s"
 
@@ -7255,11 +7255,11 @@ msgstr "در حال پردازش فایل ها - لطفا منتظر بمانی�
 msgid "Your WordPress installation has a problem with outputting extra whitespace. This can corrupt backups that you download from here."
 msgstr "وردپرس نصب شده ی شما مشکلی با خروجی فضای خالی دارد. این مسئله می تواند باعث شکسته شدن بک آپ هایی که از اینجا دانلود می کنید شود."
 
-#: src/class-updraftplus.php:4905
+#: src/class-updraftplus.php:4909
 msgid "Failed to open database file."
 msgstr "ناموفق در گشودن فایل دیتابیس."
 
-#: src/admin.php:5733
+#: src/admin.php:5734
 msgid "Known backups (raw)"
 msgstr "بک آپ های شناخته شده (ناقص)"
 
@@ -7281,13 +7281,13 @@ msgstr "حجم فایل:"
 
 #: src/addons/googlecloud.php:1234, src/addons/migrator.php:497,
 #: src/addons/migrator.php:500, src/addons/migrator.php:503,
-#: src/admin.php:1312, src/admin.php:2883, src/admin.php:4973,
-#: src/backup.php:4179, src/class-updraftplus.php:5161,
-#: src/class-updraftplus.php:5161, src/updraftplus.php:158
+#: src/admin.php:1312, src/admin.php:2884, src/admin.php:4974,
+#: src/backup.php:4179, src/class-updraftplus.php:5165,
+#: src/class-updraftplus.php:5165, src/updraftplus.php:158
 msgid "Go here for more information."
 msgstr "برای اطلاعات بیشتر به اینجا بروید."
 
-#: src/admin.php:4972
+#: src/admin.php:4973
 msgid "Warning: If you can still read these words after the page finishes loading, then there is a JavaScript or jQuery problem in the site."
 msgstr ""
 
@@ -7295,7 +7295,7 @@ msgstr ""
 msgid "Some files are still downloading or being processed - please wait."
 msgstr "چندین فایل کماکان در حال دانلود یا پردازش می باشند - لطفا منتظر باشید."
 
-#: src/class-updraftplus.php:4996, src/class-updraftplus.php:5017
+#: src/class-updraftplus.php:5000, src/class-updraftplus.php:5021
 msgid "This backup set is from a different site (%s) - this is not a restoration, but a migration. You need the Migrator add-on in order to make this work."
 msgstr ""
 
@@ -7337,7 +7337,7 @@ msgstr "%s خطا"
 msgid "%s error - failed to upload file"
 msgstr "%s خطا - ناموفق در آپلود فایل"
 
-#: src/class-updraftplus.php:1467
+#: src/class-updraftplus.php:1469
 msgid "%s error - failed to re-assemble chunks"
 msgstr "%s خطا - ناموفق در دوباره بهم متصل کردن تکه ها"
 
@@ -7349,24 +7349,24 @@ msgid "%s authentication failed"
 msgstr "%s ناموفق در احراز هویت"
 
 #: src/addons/googlecloud.php:507, src/addons/migrator.php:592,
-#: src/admin.php:2612, src/admin.php:2633, src/admin.php:2641,
-#: src/class-updraftplus.php:1170, src/class-updraftplus.php:1176,
-#: src/class-updraftplus.php:4872, src/class-updraftplus.php:4874,
-#: src/class-updraftplus.php:5052, src/class-updraftplus.php:5059,
-#: src/class-updraftplus.php:5136, src/methods/googledrive.php:534,
-#: src/methods/s3.php:383
+#: src/admin.php:2613, src/admin.php:2634, src/admin.php:2642,
+#: src/class-updraftplus.php:1172, src/class-updraftplus.php:1178,
+#: src/class-updraftplus.php:4876, src/class-updraftplus.php:4878,
+#: src/class-updraftplus.php:5056, src/class-updraftplus.php:5063,
+#: src/class-updraftplus.php:5140, src/methods/googledrive.php:534,
+#: src/methods/s3.php:396
 msgid "Error: %s"
 msgstr "خطا: %s"
 
-#: src/admin.php:4106
+#: src/admin.php:4107
 msgid "Backup directory specified exists, but is <b>not</b> writable."
 msgstr "مسیر مشخص شده برای بک آپ وجود دارد، اما قابل نوشتن <b>نیست</b>."
 
-#: src/admin.php:4104
+#: src/admin.php:4105
 msgid "Backup directory specified does <b>not</b> exist."
 msgstr "مسیر مشخص شده برای بک آپ وجود <b>ندارد</b>."
 
-#: src/admin.php:3746, src/admin.php:4038
+#: src/admin.php:3747, src/admin.php:4039
 msgid "Warning: %s"
 msgstr "اخطار: %s"
 
@@ -7386,15 +7386,15 @@ msgstr ""
 msgid "An error occurred whilst closing the final database file"
 msgstr "خطایی رخ داد در حالیکه آخرین فایل دیتابیس بسته میشد"
 
-#: src/class-updraftplus.php:3655
+#: src/class-updraftplus.php:3659
 msgid "Warnings encountered:"
 msgstr "مواجهه با اخطار:"
 
-#: src/class-updraftplus.php:3537
+#: src/class-updraftplus.php:3541
 msgid "The backup apparently succeeded (with warnings) and is now complete"
 msgstr "پشتیبان گیری ظاهرا موفقیت آمیز بود (با اخطارهایی) و هم اکنون به پایان رسید"
 
-#: src/class-updraftplus.php:996
+#: src/class-updraftplus.php:998
 msgid "Your free disk space is very low - only %s Mb remain"
 msgstr "فضای خالی دیسک شما بسیار کم است - فقط %s مگابایت باقی مانده"
 
@@ -7430,15 +7430,15 @@ msgstr "اجازه دسترسی فایل خود را بررسی کنید: نمی
 msgid "Some servers advertise encrypted FTP as available, but then time-out (after a long time) when you attempt to use it. If you find this happening, then go into the \"Expert Options\" (below) and turn off SSL there."
 msgstr ""
 
-#: src/methods/s3.php:893
+#: src/methods/s3.php:906
 msgid "Your web server's PHP installation does not included a required module (%s). Please contact your web hosting provider's support and ask for them to enable it."
 msgstr "ماژول مورد نیاز در PHP نصب شده در وب سرور شما وجود ندارد (%s). لطفا با پشتیبانی شرکت هاستینگ خود تماس بگیرید و از آنها بخواهید که آن را فعال کنند."
 
-#: src/methods/s3.php:1280
+#: src/methods/s3.php:1300
 msgid "Please check your access credentials."
 msgstr "لطفا اختیارات دسترسی خود را بررسی کنید."
 
-#: src/addons/s3-enhanced.php:208, src/methods/s3.php:1257
+#: src/addons/s3-enhanced.php:219, src/methods/s3.php:1277
 msgid "The error reported by %s was:"
 msgstr "خطای گزارش شده با %s:"
 
@@ -7446,7 +7446,7 @@ msgstr "خطای گزارش شده با %s:"
 msgid "Please supply the requested information, and then continue."
 msgstr "لطفا اطلاعات خواسته شده را ارائه کنید و سپس ادامه دهید."
 
-#: src/class-updraftplus.php:5070, src/restorer.php:2908
+#: src/class-updraftplus.php:5074, src/restorer.php:2908
 msgid "Site information:"
 msgstr "اطلاعات سایت:"
 
@@ -7454,12 +7454,12 @@ msgstr "اطلاعات سایت:"
 msgid "Your database user does not have permission to create tables. We will attempt to restore by simply emptying the tables; this should work as long as a) you are restoring from a WordPress version with the same database structure, and b) Your imported database does not contain any tables which are not already present on the importing site."
 msgstr "کاربر دیتابیس شما مجوز لازم برای ایجاد جداول را ندارد. ما برای بازگردانی تلاش خواهیم کرد تا جداول را خالی کنیم; این کار مشکل گشا خواهد بود مادامی که الف) شما بازگردانی کنید از یک نسخه ی وردپرس با ساختار مشابه دیتابیس و ب) دیتابیس درون ریزی شده ی شما شامل جداولی که هم اینک در سایت درون ریزی شده است نباشد."
 
-#: src/admin.php:1051, src/admin.php:2878, src/class-updraftplus.php:5063,
+#: src/admin.php:1051, src/admin.php:2879, src/class-updraftplus.php:5067,
 #: src/restorer.php:3615
 msgid "Warning:"
 msgstr "اخطارها:"
 
-#: src/class-updraftplus.php:5052, src/class-updraftplus.php:5055,
+#: src/class-updraftplus.php:5056, src/class-updraftplus.php:5059,
 #: src/restorer.php:754
 msgid "You are running on WordPress multisite - but your backup is not of a multisite site."
 msgstr "شما در حال اجرا بر روی وردپرس چند سایته (مولتی سایت) هستید - اما پشتیبان شما برای مولتی سایت نیست."
@@ -7468,7 +7468,7 @@ msgstr "شما در حال اجرا بر روی وردپرس چند سایته (
 msgid "Skipping restoration of WordPress core when importing a single site into a multisite installation. If you had anything necessary in your WordPress directory then you will need to re-add it manually from the zip file."
 msgstr "نادیده گرفتن بازگردانی هسته وردپرس در زمان درون ریزی از تک سایت به مولتی سایت. اگر چیزی ضروری در پوشه ی وردپرس خود دارید پس باید بصورت دستی آنها را از فایل زیپ دوباره اضافه کنید."
 
-#: src/addons/azure.php:604, src/admin.php:4280,
+#: src/addons/azure.php:604, src/admin.php:4281,
 #: src/methods/updraftvault.php:345
 msgid "Your web server's PHP installation does not included a <strong>required</strong> (for %s) module (%s). Please contact your web hosting provider's support and ask for them to enable it."
 msgstr "نصب PHP وب سرور شما شامل ماژول <strong>ضروری</strong> (برای %s) نمی باشد (%s). لطفا با شرکت هاستینگ خود تماس گرفته و از آنها بخواهید آن را فعال کنند."
@@ -7512,7 +7512,7 @@ msgstr ""
 msgid "Also delete from remote storage"
 msgstr "همچنین از روی حافظه جانبی حذف گردد"
 
-#: src/admin.php:3416
+#: src/admin.php:3417
 msgid "Latest UpdraftPlus.com news:"
 msgstr "آخرین اخبار UpdraftPlus.com:"
 
@@ -7525,7 +7525,7 @@ msgstr "پریمیوم"
 msgid "News"
 msgstr "اخبار"
 
-#: src/admin.php:1884, src/includes/class-wpadmin-commands.php:597
+#: src/admin.php:1885, src/includes/class-wpadmin-commands.php:597
 msgid "Backup set not found"
 msgstr "مجموعه پشتیبان ها پیدا نشد."
 
@@ -7564,7 +7564,7 @@ msgstr "حالت رفع عیب UpdraftPlus فعال است. ممکن است شا
 msgid "Notice"
 msgstr "توجه"
 
-#: src/class-updraftplus.php:3637
+#: src/class-updraftplus.php:3641
 msgid "Errors encountered:"
 msgstr "خطاهایی رخ داده است:"
 
@@ -7576,11 +7576,11 @@ msgstr "اسکن مجدد (در حال جستجوی پشتیبان هایی که
 msgid "Begun looking for this entity"
 msgstr "شروع به جستجوی این ورودی کرده است"
 
-#: src/methods/s3.php:530, src/methods/s3.php:717, src/methods/s3.php:827
+#: src/methods/s3.php:543, src/methods/s3.php:730, src/methods/s3.php:840
 msgid "Error: Failed to access bucket %s. Check your permissions and credentials."
 msgstr "خطا: دسترسی به باکت %s انجام نشد. سطوح دسترسی و اعتبارنامه خود را بررسی نمائید."
 
-#: src/methods/s3.php:808, src/methods/s3.php:852
+#: src/methods/s3.php:821, src/methods/s3.php:865
 msgid "Error: Failed to download %s. Check your permissions and credentials."
 msgstr "خطا: دانلود %s انجام نشد. سطوح دسترسی و اعتبارنامه خود را بررسی نمائید."
 
@@ -7702,7 +7702,7 @@ msgstr "مسیر دایرکتوری"
 
 #: src/addons/lockadmin.php:171, src/addons/moredatabase.php:265,
 #: src/addons/sftp.php:496, src/addons/webdav.php:248, src/admin.php:1039,
-#: src/admin.php:3291, src/methods/openstack2.php:164,
+#: src/admin.php:3292, src/methods/openstack2.php:164,
 #: src/methods/updraftvault.php:412,
 #: src/templates/wp-admin/settings/updraftcentral-connect.php:50
 msgid "Password"
@@ -7771,8 +7771,8 @@ msgstr "ناموفق: قادر به قرار دادن فایل در دایرکت
 
 #: src/addons/googlecloud.php:957, src/addons/googlecloud.php:991,
 #: src/addons/googlecloud.php:997, src/addons/sftp.php:591,
-#: src/addons/webdav.php:325, src/admin.php:3817, src/admin.php:3853,
-#: src/admin.php:3863, src/methods/addon-base-v2.php:356
+#: src/addons/webdav.php:325, src/admin.php:3818, src/admin.php:3854,
+#: src/admin.php:3864, src/methods/addon-base-v2.php:356
 msgid "Failed"
 msgstr "ناموفق"
 
@@ -7855,90 +7855,90 @@ msgstr "خطا: %s (برای اطلاعات بیشتر فایل گزارش را 
 msgid "You do not appear to be authenticated with Dropbox"
 msgstr "به نظر تایید اعتبار توسط دراپ باکس صورت نپذیرفته است"
 
-#: src/methods/s3.php:1275
+#: src/methods/s3.php:1295
 msgid "The communication with %s was not encrypted."
 msgstr "ارتباطات با %s رمگذاری نشده است."
 
-#: src/methods/s3.php:1273
+#: src/methods/s3.php:1293
 msgid "The communication with %s was encrypted."
 msgstr "ارتباطات با %s رمگذاری شده است."
 
-#: src/addons/googlecloud.php:1020, src/methods/s3.php:1270
+#: src/addons/googlecloud.php:1020, src/methods/s3.php:1290
 msgid "We accessed the bucket, and were able to create files within it."
 msgstr "ما به باکت دسترسی پیدا کردیم و توانستیم پرونده هایی درون آن ایجاد کنیم."
 
 #: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028,
-#: src/methods/s3.php:1268, src/methods/s3.php:1280
+#: src/methods/s3.php:1288, src/methods/s3.php:1300
 msgid "We successfully accessed the bucket, but the attempt to create a file in it failed."
 msgstr "ما با موفقیت به باکت دسترسی پیدا کردیم، اما تلاش برای ایجاد پرونده در آن ناموفق بود."
 
 #: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028,
-#: src/methods/s3.php:1268, src/methods/s3.php:1280
+#: src/methods/s3.php:1288, src/methods/s3.php:1300
 msgid "Failure"
 msgstr "شکست"
 
-#: src/addons/backblaze.php:533, src/methods/s3.php:1255
+#: src/addons/backblaze.php:533, src/methods/s3.php:1275
 msgid "Failure: We could not successfully access or create such a bucket. Please check your access credentials, and if those are correct then try another bucket name (as another %s user may already have taken your name)."
 msgstr "خطا: ما نتوانستیم با موفقیت دسترسی پیدا کنیم یا چنین باکتی را ایجاد کنیم. لطفاً اعتبارنامه دسترسی خود را بررسی کنید، و اگر این موارد صحیح است ، یک نام باکت دیگر را امتحان کنید (زیرا ممکن است کاربر %s دیگری نام شما را قبلاً گرفته باشد)."
 
-#: src/methods/openstack2.php:150, src/methods/s3.php:1249
+#: src/methods/openstack2.php:150, src/methods/s3.php:1269
 msgid "Region"
 msgstr "ناحیه"
 
 #: src/addons/googlecloud.php:140, src/addons/googlecloud.php:974,
-#: src/methods/s3.php:1206
+#: src/methods/s3.php:1226
 msgid "Failure: No bucket details were given."
 msgstr "خطا: جزئیات باکت داده نشده است."
 
-#: src/methods/s3.php:1184
+#: src/methods/s3.php:1204
 msgid "API secret"
 msgstr "رمز API"
 
-#: src/methods/s3.php:976
+#: src/methods/s3.php:989
 msgid "Enter only a bucket name or a bucket and path. Examples: mybucket, mybucket/mypath"
 msgstr ""
 
-#: src/methods/s3.php:975
+#: src/methods/s3.php:988
 msgid "%s location"
 msgstr "مکان %s"
 
-#: src/methods/s3.php:971
+#: src/methods/s3.php:984
 msgid "%s secret key"
 msgstr "کلید مخفی %s"
 
-#: src/methods/s3.php:967
+#: src/methods/s3.php:980
 msgid "%s access key"
 msgstr "کلید دسترسی %s"
 
-#: src/methods/s3.php:905
+#: src/methods/s3.php:918
 msgid "If you see errors about SSL certificates, then please go here for help."
 msgstr "اگر شما خطاهای مرتبط با گواهینامه SSL مشاهده نموده اید، لطفاً برای کمک به این قسمت بروید."
 
-#: src/methods/s3.php:903
+#: src/methods/s3.php:916
 msgid "Get your access key and secret key from your <a href=\"%s\">%s console</a>, then pick a (globally unique - all %s users) bucket name (letters and numbers) (and optionally a path) to use for storage. This bucket will be created for you if it does not already exist."
 msgstr ""
 
-#: src/methods/s3.php:820
+#: src/methods/s3.php:833
 msgid "%s Error: Failed to download %s. Check your permissions and credentials."
 msgstr "خطای %s: دانلود %s ناموفق. دسترسی خود را بررسی نمائید."
 
-#: src/methods/s3.php:508
+#: src/methods/s3.php:521
 msgid "%s re-assembly error (%s): (see log file for more)"
 msgstr ""
 
-#: src/methods/s3.php:504
+#: src/methods/s3.php:517
 msgid "upload (%s): re-assembly failed (see log for more details)"
 msgstr ""
 
-#: src/methods/s3.php:488
+#: src/methods/s3.php:501
 msgid "chunk %s: upload failed"
 msgstr "جداسازی %s: بارگذاری انجام نشد"
 
-#: src/methods/s3.php:478
+#: src/methods/s3.php:491
 msgid "error: file %s was shortened unexpectedly"
 msgstr ""
 
-#: src/methods/s3.php:456
+#: src/methods/s3.php:469
 msgid "%s upload: getting uploadID for multipart upload failed - see log file for more details"
 msgstr ""
 
@@ -7970,7 +7970,7 @@ msgid "Username"
 msgstr "نام کاربری"
 
 #: src/methods/cloudfiles-new.php:181, src/methods/cloudfiles.php:534,
-#: src/methods/s3.php:1180
+#: src/methods/s3.php:1200
 msgid "API key"
 msgstr "کلید API"
 
@@ -7984,12 +7984,12 @@ msgstr "کلید API"
 #: src/methods/ftp.php:426, src/methods/ftp.php:430,
 #: src/methods/openstack2.php:180, src/methods/openstack2.php:185,
 #: src/methods/openstack2.php:190, src/methods/openstack2.php:195,
-#: src/methods/s3.php:1180, src/methods/s3.php:1184
+#: src/methods/s3.php:1200, src/methods/s3.php:1204
 msgid "Failure: No %s was given."
 msgstr "شکست: هیچ %s داده نشده است."
 
 #: src/methods/cloudfiles-new.php:96, src/methods/cloudfiles.php:455,
-#: src/methods/openstack-base.php:576, src/methods/s3.php:897
+#: src/methods/openstack-base.php:576, src/methods/s3.php:910
 msgid "UpdraftPlus's %s module <strong>requires</strong> %s. Please do not file any support requests; there is no alternative."
 msgstr ""
 
@@ -8024,17 +8024,17 @@ msgstr ""
 msgid "Test %s Settings"
 msgstr "تست تنظیمات %s"
 
-#: src/addons/webdav.php:638, src/class-updraftplus.php:1510,
-#: src/class-updraftplus.php:1554, src/methods/cloudfiles.php:398
+#: src/addons/webdav.php:638, src/class-updraftplus.php:1512,
+#: src/class-updraftplus.php:1556, src/methods/cloudfiles.php:398
 msgid "Error opening local file: Failed to download"
 msgstr "خطا در باز کردن فایل محلی: ناموفق در دانلود"
 
 #: src/addons/sftp.php:188, src/methods/openstack-base.php:314,
-#: src/methods/s3.php:421, src/methods/s3.php:433, src/methods/s3.php:434
+#: src/methods/s3.php:434, src/methods/s3.php:446, src/methods/s3.php:447
 msgid "%s Error: Failed to upload"
 msgstr "خطای %s: آپلود ناموفق"
 
-#: src/class-updraftplus.php:1352
+#: src/class-updraftplus.php:1354
 msgid "%s Error: Failed to open local file"
 msgstr "خطای %s: باز کردن فایل لوکال ناموفق"
 
@@ -8107,7 +8107,7 @@ msgstr "شما موفق به احراز هویت حساب کاربری %s شدی
 #: src/addons/sftp.php:633, src/addons/webdav.php:341,
 #: src/addons/wp-cli.php:494, src/methods/addon-base-v2.php:370,
 #: src/methods/cloudfiles.php:590, src/methods/googledrive.php:613,
-#: src/methods/openstack-base.php:535, src/methods/s3.php:1270
+#: src/methods/openstack-base.php:535, src/methods/s3.php:1290
 msgid "Success"
 msgstr "موفق"
 
@@ -8143,7 +8143,7 @@ msgstr "شما افزونه %s UpdraftPlus  را نصب نکرده اید - از
 msgid "You need to re-authenticate with %s, as your existing credentials are not working."
 msgstr "شما نیاز به احراز هویت مجدد %s دارید چون هویت فعلی شما کار نمی کند."
 
-#: src/admin.php:3821, src/admin.php:3856, src/admin.php:3860,
+#: src/admin.php:3822, src/admin.php:3857, src/admin.php:3861,
 #: src/includes/class-remote-send.php:441,
 #: src/includes/class-storage-methods-interface.php:323, src/restorer.php:436,
 #: src/restorer.php:3979, src/restorer.php:4099
@@ -8162,13 +8162,13 @@ msgstr "گزارش‌گیری از پایگاه‌داده در حال اجرا�
 msgid "will restore as:"
 msgstr "بازنشانی خواهد شد به عنوان:"
 
-#: src/class-updraftplus.php:5041, src/restorer.php:2263,
+#: src/class-updraftplus.php:5045, src/restorer.php:2263,
 #: src/restorer.php:2891, src/restorer.php:3059
 msgid "Old table prefix:"
 msgstr "پیشوند جداول قدیم:"
 
 #: src/addons/reporting.php:87, src/addons/reporting.php:196,
-#: src/class-updraftplus.php:3711, src/class-updraftplus.php:4963
+#: src/class-updraftplus.php:3715, src/class-updraftplus.php:4967
 msgid "Backup of:"
 msgstr "پشتیبان از:"
 
@@ -8252,11 +8252,11 @@ msgstr ""
 msgid "Archive is expected to be size:"
 msgstr "سایز مورد انتظار آرشیو:"
 
-#: src/admin.php:5130
+#: src/admin.php:5131
 msgid "If making a request for support, please include this information:"
 msgstr "اگر درخواست پشتیبانی دارید، لطفاً این اطلاعات را تامین کنید:"
 
-#: src/admin.php:5130
+#: src/admin.php:5131
 msgid "ABORT: Could not find the information on which entities to restore."
 msgstr ""
 
@@ -8264,32 +8264,32 @@ msgstr ""
 msgid "UpdraftPlus Restoration: Progress"
 msgstr "بازسازی UpdraftPlus : در حال انجام"
 
-#: src/admin.php:5093
+#: src/admin.php:5094
 msgid "This backup does not exist in the backup history - restoration aborted. Timestamp:"
 msgstr ""
 
-#: src/admin.php:4523
+#: src/admin.php:4524
 msgid "After pressing this button, you will be given the option to choose which components you wish to restore"
 msgstr "بعد از فشردن این دکمه، شما می توانید انتخاب کنید که کدام کامپوننت را می خواهید بازسازی کنید"
 
-#: src/admin.php:4607
+#: src/admin.php:4608
 msgid "Delete this backup set"
 msgstr "حذف این مجموعه پشتیبان"
 
-#: src/admin.php:4292
+#: src/admin.php:4293
 msgid "Good news: Your site's communications with %s can be encrypted. If you see any errors to do with encryption, then look in the 'Expert Settings' for more help."
 msgstr "خبر خوب: ارتباطات سایت شما با %s می‌تواند رمزگذاری شود. اگر خطایی در رابطه با رمزگذاری مشاهده می‌کنید ، برای راهنمایی بیشتر به \"تنظیمات تخصصی\" مراجعه کنید."
 
-#: src/admin.php:4289
+#: src/admin.php:4290
 msgid "Your web server's PHP/Curl installation does not support https access. We cannot access %s without this support. Please contact your web hosting provider's support. %s <strong>requires</strong> Curl+https. Please do not file any support requests; there is no alternative."
 msgstr ""
 
-#: src/admin.php:4287
+#: src/admin.php:4288
 msgid "Your web server's PHP/Curl installation does not support https access. Communications with %s will be unencrypted. Ask your web host to install Curl/SSL in order to gain the ability for encryption (via an add-on)."
 msgstr ""
 
 #: src/methods/cloudfiles-new.php:96, src/methods/cloudfiles.php:455,
-#: src/methods/openstack-base.php:576, src/methods/s3.php:897
+#: src/methods/openstack-base.php:576, src/methods/s3.php:910
 msgid "Your web server's PHP installation does not included a required module (%s). Please contact your web hosting provider's support."
 msgstr "نصب PHP وب سرور شما یک ماژول مورد نیاز (%s) را ندارد. لطفا با پشتیبانی شرکت هاستینگ خود تماس بگیرید."
 
@@ -8325,19 +8325,19 @@ msgstr "به طور پیش‌فرض آپ‌درفت‌پلاس از فروشگا
 msgid "Use the server's SSL certificates"
 msgstr "از سروری با گواهینامه های SSL استفاده نمائید."
 
-#: src/admin.php:4108
+#: src/admin.php:4109
 msgid "If that is unsuccessful check the permissions on your server or change it to another directory that is writable by your web server process."
 msgstr ""
 
-#: src/admin.php:4108
+#: src/admin.php:4109
 msgid "or, to reset this option"
 msgstr "یا برای ریست کردن این گزینه"
 
-#: src/admin.php:4108
+#: src/admin.php:4109
 msgid "Follow this link to attempt to create the directory and set the permissions"
 msgstr "برای ایجاد دایرکتوری و تعریف سطح دسترسی آن بر روی اینجا کلیک کنید"
 
-#: src/admin.php:4100
+#: src/admin.php:4101
 msgid "Backup directory specified is writable, which is good."
 msgstr "دایرکتوری مشخص شده برای پشتیبان گیری قابل نوشتن است."
 
@@ -8379,7 +8379,7 @@ msgid "Cancel"
 msgstr "لغو"
 
 #: src/addons/incremental.php:330, src/addons/incremental.php:338,
-#: src/addons/reporting.php:260, src/admin.php:4373
+#: src/addons/reporting.php:260, src/admin.php:4374
 msgid "None"
 msgstr "هیچکدام"
 
@@ -8395,7 +8395,7 @@ msgstr "رمزگشایی فایل پشتیبان پایگاه داده به صو
 msgid "Database encryption phrase"
 msgstr "عبارت رمزگذاری پایگاه داده"
 
-#: src/admin.php:3281, src/methods/updraftvault.php:411,
+#: src/admin.php:3282, src/methods/updraftvault.php:411,
 #: src/templates/wp-admin/settings/form-contents.php:256,
 #: src/templates/wp-admin/settings/updraftcentral-connect.php:44
 msgid "Email"
@@ -8409,7 +8409,7 @@ msgstr ""
 msgid "Exclude these:"
 msgstr "شامل این موارد نمی شود:"
 
-#: src/admin.php:4188
+#: src/admin.php:4189
 msgid "Any other directories found inside wp-content"
 msgstr "یک پوشه ی دیگر در مسیر wp-content یافت شد"
 
@@ -8430,22 +8430,22 @@ msgid "Database backup interval"
 msgstr ""
 
 #: src/addons/incremental.php:334, src/addons/incremental.php:347,
-#: src/admin.php:4076, src/admin.php:4089
+#: src/admin.php:4077, src/admin.php:4090
 msgid "Monthly"
 msgstr "ماهانه"
 
 #: src/addons/incremental.php:333, src/addons/incremental.php:346,
-#: src/admin.php:4088
+#: src/admin.php:4089
 msgid "Fortnightly"
 msgstr "هر دو هفته یکبار"
 
 #: src/addons/incremental.php:332, src/addons/incremental.php:345,
-#: src/admin.php:4087
+#: src/admin.php:4088
 msgid "Weekly"
 msgstr "هفتگی"
 
 #: src/addons/incremental.php:331, src/addons/incremental.php:344,
-#: src/admin.php:4086
+#: src/admin.php:4087
 msgid "Daily"
 msgstr "روزانه"
 
@@ -8453,30 +8453,30 @@ msgstr "روزانه"
 msgid "Files backup interval"
 msgstr ""
 
-#: src/admin.php:916, src/admin.php:4052
+#: src/admin.php:916, src/admin.php:4053
 msgid "Download log file"
 msgstr "دانلود فایل سوابق"
 
-#: src/admin.php:3924
+#: src/admin.php:3925
 msgid "The folder exists, but your webserver does not have permission to write to it."
 msgstr "فولدر وجود دارد، ولی وب سرور دسترسی نوشتن در آن را ندارد."
 
-#: src/admin.php:3919
+#: src/admin.php:3920
 msgid "The folder was created, but we had to change its file permissions to 777 (world-writable) to be able to write to it. You should check with your hosting provider that this will not cause any problems"
 msgstr "پوشه ایجاد شد اما ما برای نوشن در آن نیاز مندیم که سطح دسترسی آن را به 777 تغییر دهیم . شما باید این مورد رابا اائه دهنده ی میزبان خود درمیان بزارید تا از بروز مشکل جلوگیری کنید . "
 
-#: src/admin.php:3905
+#: src/admin.php:3906
 msgid "The request to the filesystem to create the directory failed."
 msgstr "درخواست دسترسی به فایل های سیستمی به منظور ایجاد پوشه با شکست روبرو شد ."
 
-#: src/admin.php:907, src/admin.php:3814, src/admin.php:3848,
-#: src/admin.php:4607, src/includes/class-remote-send.php:692,
+#: src/admin.php:907, src/admin.php:3815, src/admin.php:3849,
+#: src/admin.php:4608, src/includes/class-remote-send.php:692,
 #: src/templates/wp-admin/settings/existing-backups-table.php:167,
 #: src/templates/wp-admin/settings/file-backup-exclude.php:11
 msgid "Delete"
 msgstr "حذف"
 
-#: src/admin.php:3766
+#: src/admin.php:3767
 msgid "show log"
 msgstr "نمایش فایل سوابق"
 
@@ -8541,7 +8541,7 @@ msgstr "خیر"
 msgid "Yes"
 msgstr "بله"
 
-#: src/admin.php:5954, src/admin.php:5958,
+#: src/admin.php:5955, src/admin.php:5959,
 #: src/templates/wp-admin/advanced/site-info.php:58,
 #: src/templates/wp-admin/advanced/site-info.php:64,
 #: src/templates/wp-admin/advanced/site-info.php:72,
@@ -8573,7 +8573,7 @@ msgstr "چند سایتی"
 msgid "Do read this helpful article of useful things to know before restoring."
 msgstr "آیا مطالعه ی این راهنما قبل از بازیابی برای شما مفید بود ."
 
-#: src/class-updraftplus.php:4999
+#: src/class-updraftplus.php:5003
 msgid "You can search and replace your database (for migrating a website to a new location/URL) with the Migrator add-on - follow this link for more information"
 msgstr ""
 
@@ -8617,8 +8617,8 @@ msgstr "خطای دانلود: سرور پاسخی برای ما ارسال نم
 #: src/addons/backblaze.php:205, src/addons/backblaze.php:230,
 #: src/addons/cloudfiles-enhanced.php:123, src/addons/migrator.php:924,
 #: src/addons/migrator.php:1229, src/addons/migrator.php:1307,
-#: src/addons/s3-enhanced.php:160, src/addons/s3-enhanced.php:165,
-#: src/addons/s3-enhanced.php:167, src/addons/sftp.php:962,
+#: src/addons/s3-enhanced.php:167, src/addons/s3-enhanced.php:172,
+#: src/addons/s3-enhanced.php:174, src/addons/sftp.php:962,
 #: src/addons/webdav.php:258, src/admin.php:91, src/admin.php:880,
 #: src/includes/class-remote-send.php:359,
 #: src/includes/class-remote-send.php:405,
@@ -8688,7 +8688,7 @@ msgstr "مرورگر اینترنتی اپرا"
 msgid "More tasks:"
 msgstr "وظایف بیشتر:"
 
-#: src/admin.php:3443
+#: src/admin.php:3444
 msgid "Download most recently modified log file"
 msgstr "دانلود فایل گزارش آخرین تغییرات"
 
@@ -8697,13 +8697,13 @@ msgid "(Nothing yet logged)"
 msgstr "(هیچ گزارشی هنوز ثبت نشده)"
 
 #: src/addons/autobackup.php:368, src/addons/autobackup.php:463,
-#: src/admin.php:3399, src/admin.php:3405,
+#: src/admin.php:3400, src/admin.php:3406,
 #: src/templates/wp-admin/settings/take-backup.php:72
 msgid "Last log message"
 msgstr "آخرین پیام ثبت شده"
 
 #: src/addons/migrator.php:275, src/admin.php:708, src/admin.php:915,
-#: src/admin.php:4523
+#: src/admin.php:4524
 msgid "Restore"
 msgstr "بازنشانی"
 
@@ -8716,8 +8716,8 @@ msgid "Time now"
 msgstr "زمان الان"
 
 #: src/addons/moredatabase.php:266, src/addons/reporting.php:275,
-#: src/addons/wp-cli.php:428, src/admin.php:401, src/admin.php:4348,
-#: src/admin.php:4401, src/admin.php:4991,
+#: src/addons/wp-cli.php:428, src/admin.php:401, src/admin.php:4349,
+#: src/admin.php:4402, src/admin.php:4992,
 #: src/includes/class-remote-send.php:445,
 #: src/includes/class-wpadmin-commands.php:154,
 #: src/includes/class-wpadmin-commands.php:612, src/restorer.php:576,
@@ -8727,7 +8727,7 @@ msgstr "زمان الان"
 msgid "Database"
 msgstr "دیتابیس"
 
-#: src/admin.php:391, src/admin.php:5740,
+#: src/admin.php:391, src/admin.php:5741,
 #: src/templates/wp-admin/settings/take-backup.php:24
 msgid "Files"
 msgstr "فایل ها"
@@ -8753,15 +8753,15 @@ msgstr "رابط مدیر از جاوااسکریپت بصورت سنگین اس
 msgid "JavaScript warning"
 msgstr "اخطار جاوا اسکریپت"
 
-#: src/admin.php:891, src/admin.php:3492
+#: src/admin.php:891, src/admin.php:3493
 msgid "Delete Old Directories"
 msgstr "حذف پوشه های قدیمی"
 
-#: src/admin.php:2938
+#: src/admin.php:2939
 msgid "Current limit is:"
 msgstr "محدودیت کنونی:"
 
-#: src/admin.php:2900
+#: src/admin.php:2901
 msgid "Your backup has been restored."
 msgstr "پشتیبان شما بازنشانی شد."
 
@@ -8773,27 +8773,27 @@ msgstr "نسخه"
 msgid "Lead developer's homepage"
 msgstr "رفتن به صفحه توسعه دهنده"
 
-#: src/admin.php:5634
+#: src/admin.php:5635
 msgid "Your settings have been wiped."
 msgstr "تنظیمات شما پاک شد."
 
-#: src/admin.php:2857
+#: src/admin.php:2858
 msgid "Backup directory successfully created."
 msgstr "فایل پشتیبان با موفقیت ایجاد شد ."
 
-#: src/admin.php:2850
+#: src/admin.php:2851
 msgid "Backup directory could not be created"
 msgstr "فایل پشتیان نمیتواند ایجاد شود ."
 
-#: src/admin.php:3782
+#: src/admin.php:3783
 msgid "Old directory removal failed for some reason. You may want to do this manually."
 msgstr "پوشه های قدیمی به دلایلی حذف نشدند . شما باید دستی عمل کنید."
 
-#: src/admin.php:3780
+#: src/admin.php:3781
 msgid "Old directories successfully removed."
 msgstr "پوشه های قدیمی باموفقیت حذف شدند."
 
-#: src/admin.php:3777, src/admin.php:3777
+#: src/admin.php:3778, src/admin.php:3778
 msgid "Remove old directories"
 msgstr "حذف پوشه های قدیمی"
 
@@ -8801,39 +8801,39 @@ msgstr "حذف پوشه های قدیمی"
 msgid "Return to UpdraftPlus Configuration"
 msgstr "بازگشت به تنظیمات UpdraftPlus ."
 
-#: src/admin.php:884, src/admin.php:2859, src/admin.php:3784,
-#: src/admin.php:4917, src/admin.php:4929, src/admin.php:4940,
+#: src/admin.php:884, src/admin.php:2860, src/admin.php:3785,
+#: src/admin.php:4918, src/admin.php:4930, src/admin.php:4941,
 #: src/templates/wp-admin/settings/existing-backups-table.php:19,
 #: src/templates/wp-admin/settings/existing-backups-table.php:142
 msgid "Actions"
 msgstr "فعالیت ها"
 
-#: src/admin.php:2744
+#: src/admin.php:2745
 msgid "Bad filename format - this does not look like an encrypted database file created by UpdraftPlus"
 msgstr "فرمت نام فایل مناسب نیست . رمز نگاری فایل دیتابیس ایجاد شده توسط UpdraftPlus مناسب نیست."
 
-#: src/admin.php:2633
+#: src/admin.php:2634
 msgid "Bad filename format - this does not look like a file created by UpdraftPlus"
 msgstr "فرمت نام مناسب نیست - به نظر نمی رسد این فایل توسط UpdraftPlus ایجاد شده باشد"
 
-#: src/admin.php:2521
+#: src/admin.php:2522
 msgid "No local copy present."
 msgstr "هیچ کپی محلیی وجود ندارد ."
 
-#: src/admin.php:2518
+#: src/admin.php:2519
 msgid "Download in progress"
 msgstr "در حال دانلود نمودن"
 
-#: src/admin.php:883, src/admin.php:2507
+#: src/admin.php:883, src/admin.php:2508
 msgid "File ready."
 msgstr "فایل آماده است."
 
-#: src/admin.php:2488
+#: src/admin.php:2489
 msgid "Download failed"
 msgstr "دانلود ناموفق"
 
 #: src/addons/webdav.php:584, src/addons/wp-cli.php:497, src/admin.php:881,
-#: src/class-updraftplus.php:1510, src/class-updraftplus.php:1554,
+#: src/class-updraftplus.php:1512, src/class-updraftplus.php:1556,
 #: src/includes/class-filesystem-functions.php:437,
 #: src/includes/class-storage-methods-interface.php:332,
 #: src/methods/addon-base-v2.php:93, src/methods/addon-base-v2.php:98,
@@ -8844,15 +8844,15 @@ msgstr "دانلود ناموفق"
 msgid "Error"
 msgstr "خطا"
 
-#: src/admin.php:2232
+#: src/admin.php:2233
 msgid "Could not find that job - perhaps it has already finished?"
 msgstr "هیچ کاری یافت نشد - احتمالا آن تمام شده ؟"
 
-#: src/admin.php:2225
+#: src/admin.php:2226
 msgid "Job deleted"
 msgstr "عملیات پاک شد"
 
-#: src/admin.php:2348, src/includes/class-commands.php:937
+#: src/admin.php:2349, src/includes/class-commands.php:937
 msgid "OK. You should soon see activity in the \"Last log message\" field below."
 msgstr "بسیار خوب . شما به زودی فعالیت هایی را در \" آخرین گزارش ها \" در فیلد زیر خواهید دید."
 
@@ -8878,19 +8878,19 @@ msgstr "شما کمتر از %s فضای خالی دارید تا UpdraftPlus ب
 
 #: src/addons/azure.php:604, src/addons/migrator.php:978, src/admin.php:1307,
 #: src/admin.php:1312, src/admin.php:1318, src/admin.php:1322,
-#: src/admin.php:1326, src/admin.php:1335, src/admin.php:4280,
-#: src/admin.php:4287, src/admin.php:4289, src/admin.php:5924,
-#: src/admin.php:6204, src/methods/cloudfiles-new.php:96,
+#: src/admin.php:1326, src/admin.php:1335, src/admin.php:4281,
+#: src/admin.php:4288, src/admin.php:4290, src/admin.php:5925,
+#: src/admin.php:6205, src/methods/cloudfiles-new.php:96,
 #: src/methods/cloudfiles.php:455, src/methods/ftp.php:344,
-#: src/methods/openstack-base.php:576, src/methods/s3.php:893,
-#: src/methods/s3.php:897, src/methods/updraftvault.php:345,
+#: src/methods/openstack-base.php:576, src/methods/s3.php:906,
+#: src/methods/s3.php:910, src/methods/updraftvault.php:345,
 #: src/templates/wp-admin/settings/downloading-and-restoring.php:27,
 #: src/templates/wp-admin/settings/tab-backups.php:27,
 #: src/udaddons/updraftplus-addons.php:303
 msgid "Warning"
 msgstr "اخطار"
 
-#: src/admin.php:724, src/admin.php:1229, src/admin.php:3100
+#: src/admin.php:724, src/admin.php:1229, src/admin.php:3101
 msgid "Settings"
 msgstr "تنظیمات"
 
@@ -8902,8 +8902,8 @@ msgstr "%s فایل زیپ ایجاد نشده . برای دریافت اطلا�
 msgid "Infinite recursion: consult your log for more information"
 msgstr "حلقه ی تکرار بینهایت . برای دریافت اطلاعات بیشتر به فایل گزارش مراجعه کنید"
 
-#: src/addons/azure.php:267, src/class-updraftplus.php:4659,
-#: src/methods/googledrive.php:1343, src/methods/s3.php:383
+#: src/addons/azure.php:267, src/class-updraftplus.php:4663,
+#: src/methods/googledrive.php:1343, src/methods/s3.php:396
 msgid "File not found"
 msgstr "فایل یافت نشد"
 
@@ -8911,12 +8911,12 @@ msgstr "فایل یافت نشد"
 msgid "The decryption key used:"
 msgstr "کلید رمزگشایی استفاده شده :"
 
-#: src/class-updraftplus.php:4884,
+#: src/class-updraftplus.php:4888,
 #: src/includes/class-updraftplus-encryption.php:354, src/restorer.php:1073
 msgid "Decryption failed. The most likely cause is that you used the wrong key."
 msgstr "رمزگشایی با مشکل مواجه شد . دلیل معمول اشتباه وارد کردن کلید رمزگذاری میباشد . "
 
-#: src/class-updraftplus.php:4872,
+#: src/class-updraftplus.php:4876,
 #: src/includes/class-updraftplus-encryption.php:336, src/restorer.php:1060
 msgid "Decryption failed. The database file is encrypted, but you have no encryption key entered."
 msgstr "رمزگشایی با مشکل مواجه شد . فایل دیتابیس  رمزگذاری شد اما شما هیچ کلید رمزگذاریی وارد نکردید ."
@@ -8925,27 +8925,27 @@ msgstr "رمزگشایی با مشکل مواجه شد . فایل دیتابیس
 msgid "Could not open the backup file for writing"
 msgstr "نمیتوان فایل پشتیبان برای نگارش باز کرد ."
 
-#: src/class-updraftplus.php:4374
+#: src/class-updraftplus.php:4378
 msgid "Could not save backup history because we have no backup array. Backup probably failed."
 msgstr "به دلیل نبود هیچ آرایه ای از فایل پشتیبان تاریخچه ای از پشتیبان گیری ذخیره نشده . احتمالا پشتیبان گیری با مشکل مواجه شده است ."
 
-#: src/class-updraftplus.php:4358
+#: src/class-updraftplus.php:4362
 msgid "Could not read the directory"
 msgstr "ناتوان از خواندن مسیر"
 
-#: src/admin.php:2575, src/backup.php:1262
+#: src/admin.php:2576, src/backup.php:1262
 msgid "Backup directory (%s) is not writable, or does not exist."
 msgstr "پوشه ی پشتیبان گیری (%s) غیر قابل نوشتن می باشد یا موجود نیست . "
 
-#: src/class-updraftplus.php:3712
+#: src/class-updraftplus.php:3716
 msgid "WordPress backup is complete"
 msgstr "ایجاد پشتیبان از وردپرس انجام شد"
 
-#: src/class-updraftplus.php:3554
+#: src/class-updraftplus.php:3558
 msgid "The backup attempt has finished, apparently unsuccessfully"
 msgstr "تلاش برای ایجاد پشتیبان گیری انجام شد , اما ظاهرا نا موفق بوده ."
 
-#: src/class-updraftplus.php:3531
+#: src/class-updraftplus.php:3535
 msgid "The backup apparently succeeded and is now complete"
 msgstr "پشتیبان گیری ظاهرا با موفقیت انجام و کامل شد ."
 
@@ -8953,37 +8953,37 @@ msgstr "پشتیبان گیری ظاهرا با موفقیت انجام و کا�
 msgid "Encryption error occurred when encrypting database. Encryption aborted."
 msgstr "هنگام رمزگذاری دیتابیس مشکل رمزگذاری رخ داد . رمزگذاری لغو شد ."
 
-#: src/class-updraftplus.php:3177
+#: src/class-updraftplus.php:3179
 msgid "Could not create files in the backup directory. Backup aborted - check your UpdraftPlus settings."
 msgstr "فایل در پوشه ی پشتیبان گیری نمیتواند ساخته شود . پشتیبان گیری لغو شد - تنظیمات پلاگین را چک کنید."
 
-#: src/class-updraftplus.php:2046
+#: src/class-updraftplus.php:2048
 msgid "Others"
 msgstr "سایرین"
 
-#: src/addons/multisite.php:526, src/class-updraftplus.php:2031
+#: src/addons/multisite.php:526, src/class-updraftplus.php:2033
 msgid "Uploads"
 msgstr "آپلودها"
 
-#: src/class-updraftplus.php:2030
+#: src/class-updraftplus.php:2032
 msgid "Themes"
 msgstr "پوسته ها"
 
-#: src/class-updraftplus.php:2029
+#: src/class-updraftplus.php:2031
 msgid "Plugins"
 msgstr "افزونه ها"
 
-#: src/class-updraftplus.php:694
+#: src/class-updraftplus.php:696
 msgid "No log files were found."
 msgstr "فایل رخداد یافت نشد."
 
-#: src/admin.php:2437, src/admin.php:2441, src/class-updraftplus.php:689
+#: src/admin.php:2438, src/admin.php:2442, src/class-updraftplus.php:691
 msgid "The log file could not be read."
 msgstr "فایل رخداد قابل خواندن نمی باشد."
 
 #: src/admin.php:1355, src/admin.php:1376, src/admin.php:1414,
-#: src/class-updraftplus.php:617, src/class-updraftplus.php:689,
-#: src/class-updraftplus.php:694, src/class-updraftplus.php:699
+#: src/class-updraftplus.php:619, src/class-updraftplus.php:691,
+#: src/class-updraftplus.php:696, src/class-updraftplus.php:701
 msgid "UpdraftPlus notice:"
 msgstr "توجه UpdraftPlus:"
 

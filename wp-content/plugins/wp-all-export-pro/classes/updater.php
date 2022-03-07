@@ -189,6 +189,10 @@ if (!class_exists('PMXE_Updater')) {
 
                 global $wpdb;
 
+                if(!is_object($update_cache)) {
+                    $update_cache = new stdClass();
+                }
+
                 $cache_key = md5('edd_plugin_' . sanitize_key($this->name) . '_version_info');
 
                 $version_info = get_transient($cache_key);

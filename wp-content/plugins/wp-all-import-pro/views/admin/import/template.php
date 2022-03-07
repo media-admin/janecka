@@ -53,7 +53,7 @@
                                     <?php if ( !in_array($post_type, ['comments', 'woo_reviews']) ): ?>
 									<div id="titlediv" style="margin-bottom:20px;">
 										<div id="titlewrap">
-											<input id="wpallimport-title" class="widefat" type="text" name="title" value="<?php echo esc_attr(wp_all_import_filter_html_kses($post['title'])) ?>" placeholder="<?php _e('Drag & drop any element on the right to set the title.', 'wp_all_import_plugin'); ?>"/>
+											<input id="wpallimport-title" class="widefat" type="text" name="title" value="<?php echo esc_attr($post['title']) ?>" placeholder="<?php _e('Drag & drop any element on the right to set the title.', 'wp_all_import_plugin'); ?>"/>
 										</div>
 									</div>
                                     <?php endif; ?>
@@ -61,11 +61,11 @@
 									<div id="poststuff" style="margin-top:-25px;">
 										<div id="<?php echo user_can_richedit() ? 'postdivrich' : 'postdiv'; ?>" class="postarea">
 
-											<?php wp_editor(wp_all_import_filter_html_kses($post['content']), 'content', array(
+											<?php wp_editor($post['content'], 'content', array(
 													//'teeny' => true,	
 													'editor_class' => 'wpallimport-plugin-editor',
 													'media_buttons' => false,
-													'editor_height' => 200)); 
+													'editor_height' => 200));
 											?>
 											
 										</div>

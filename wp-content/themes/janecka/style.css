@@ -1489,7 +1489,7 @@ header {
 	height: 100% !important;
 	color: #5a5a5a !important;
 	background: #ffffff !important;
-	opacity: 0.95;
+	/* opacity: 0.95; */
 	transition: 0.5s;
 	overflow: scroll;
 	margin: 0 !important;
@@ -2331,10 +2331,11 @@ img.brand-logo {
 	min-width: 180px;
 	min-width: 200px !important;
 	width: 50% !important;
+	height: auto !important;
 	margin: 0px auto !important;;
-	margin-bottom: 10px;
-	padding-top: 15px;
-	padding-bottom: 10px;
+	margin-bottom: 10px !important;
+	padding-top: 20px !important;
+	padding-bottom: 10px !important;
 }
 
 @media screen and (min-width: 768px) {
@@ -2344,6 +2345,8 @@ img.brand-logo {
 		display: inline-block;
 		min-width: 180px !important;
 		width: 20% !important;
+		min-height: 65px !important;
+		height: auto !important;
 		margin: 25px auto 20px;
 	}
 }
@@ -2384,7 +2387,8 @@ img.brand-logo {
 		top: 0;
 		width: 100% !important;
 		height: 150px !important;
-		background-color: rgba(255,255,255,0.95) !important;
+		/* background-color: rgba(255,255,255,0.95) !important; */
+		background-color: rgba(255,255,255,1.00) !important;
 	}
 
 	/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
@@ -2937,11 +2941,22 @@ section.hero {
 		overflow: hidden !important;
 	}
 
+
+	.stores-template .hero {
+		top: 0px !important;
+	}
+
+
+
+	/*
 	.home .hero,
 	section.hero {
-		/* max-height: 580px !important; */
-
+		max-height: 580px !important;
 	}
+	*/
+
+
+
 
 	.slider-navigation-next,
 	.slider-navigation-previous,
@@ -3857,7 +3872,7 @@ h4.filter-title {
 
 .filter-item.checkbox a.term-label {
 	font-family: 'Source Sans Pro Regular', sans-serif !important;
-	font-size: 18px !important;
+	font-size: 1.0rem !important;
 	font-weight: 400 !important;
 	line-height: 1rem !important;
 	color: #707070 !important;
@@ -4395,6 +4410,14 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 
 
 
+
+
+
+
+
+
+
+
 /* --- SEITE SINGLE PRODUCT --- */
 
 .single-product .woocommerce div.product {
@@ -4569,7 +4592,7 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 
 
 .single-product p.price {
-	margin-top: 2.0rem !important;
+	margin-top: 1.0rem !important;
 	margin-bottom: 0.0rem !important;
 }
 
@@ -4803,29 +4826,60 @@ input.qty {
 }
 */
 
+
+
+.woocommerce div.product p.stock {
+	display: none	 !important;
+}
+
+
+
 .woocommerce div.product form.cart .single_add_to_cart_button {
 	position: relative !important;
 	width: 100% !important;
-	min-height: 45px !important;
+	/* min-height: 45px !important; */
 	clear: all !important;
 
 	left: -0.5rem !important;
 	/*
 	margin-top: 25px !important;
 	margin-bottom: 15px !important;
-	*/
+
 	border-radius: 0px !important;
 	font-size: 1.0rem !important;
 	line-height: 1.2rem !important;
 	color: #ffffff !important;
 	background-color: #707070 !important;
 
-	padding: 0.8rem auto !important;
+	*/
 
 	display: flex !important;
 	align-items: center !important;
 	justify-content: center !important;
+
+	/* font-size: 1.0rem !important; */
+	font-size: 0.9rem !important;
+	color: #707070 !important;
+	background-color: #ffffff !important;
+
+	border: 2px solid;
+	border-radius: 9999px;
+	box-shadow: none;
+
+	cursor: pointer;
+
+	/* padding: 0.8rem auto !important; */
+	padding: 0.5rem auto !important;
+
 }
+
+
+.woocommerce div.product form.cart .single_add_to_cart_button button.button {
+	text-transform: none !important;
+}
+
+
+
 
 @media screen and (min-width: 768px) {
 	.woocommerce div.product form.cart .single_add_to_cart_button {
@@ -4836,7 +4890,7 @@ input.qty {
 
 .single_add_to_cart_button:before {
 	display: inline-block !important;
-	content: url(https://janecka.dev/wp-content/themes/janecka/assets/img/icons/icon-bag-light.svg);
+	/* content: url('/wp-content/themes/janecka/assets/img/icons/icon-bag-light.svg'); */
 	padding-right: 10px !important;
 	margin-left: -20px !important;
 }
@@ -4866,6 +4920,7 @@ input.qty {
 
 
 
+/* --- Single Page / Related Products --- */
 
 .single-product-description {
 	clear: both !important;
@@ -4875,20 +4930,23 @@ input.qty {
 }
 
 
-
-
 .single-product .related.products {
 	clear: both !important;
 	position: relative !important;
 	display: block !important;
 	text-align: left;
 	margin-top: 4.0rem !important;
-	margin-bottom: 2.0rem !important;
+	margin-bottom: 0.0rem !important;
 }
 
 
 .single-product .related.products .shipping-costs-info a {
 	color: #707070 !important;
+}
+
+
+.single-product .related.products p.wc-gzd-additional-info.delivery-time-info {
+	display: none !important;
 }
 
 
@@ -5162,6 +5220,38 @@ div.product form.cart .variations td.product_value select {
 
 
 
+/* --- SEITE SINGLE PRODUCT SCHMUCK --- */
+
+.woocommerce.single-product.product_cat_schmuck div.product div.summary {
+	float: none !important;
+	width: 100% !important;
+	clear: both !important;
+	margin-bottom: 0.0rem !important;
+}
+
+
+.woocommerce.single-product.product_cat_schmuck .product-container {
+	width: 100%;
+	clear: none;
+}
+
+@media screen and (min-width: 768px) {
+	.woocommerce.single-product.product_cat_schmuck .product-container {
+		float: right;
+		width: 48%;
+		clear: none;
+	}
+}
+
+
+.woocommerce.single-product.product_cat_schmuck .product-container .single-product-description {
+	position: relative !important;
+	margin-top: 0.0rem !important;
+	padding: 1rem !important;
+
+}
+
+
 
 
 
@@ -5178,23 +5268,19 @@ div.product form.cart .variations td.product_value select {
 .product_cat_verlobungsringe-liebe-hochzeit .wc-gzd-additional-info,
 .product_cat_verlobungsringe-liebe-hochzeit .wc-gzd-additional-info:before,
 .product_cat_verlobungsringe-liebe-hochzeit .wc-gzd-additional-info:after {
-	color: orange !important;
 	display: none !important;
 }
-
-
-
 
 
 .single-product .product_cat_verlobungsringe-liebe-hochzeit .legal-price-info {
 	display: none !important;
 }
 
-
+/*
 .product_cat_verlobungsringe-liebe-hochzeit .single-product-description {
 	display: none !important;
 }
-
+*/
 
 .product_cat_verlobungsringe-liebe-hochzeit .wc-gzd-additional-info {
 	display: none !important;
@@ -6746,12 +6832,18 @@ footer {
 	text-align: center;
 	font-weight: 700;
 	margin-bottom: 0px;
-	padding-bottom: 35px;
+	padding-bottom: 15px;
 }
 
 
-
-
+@media screen and (min-width: 768px) {
+	footer {
+		text-align: center;
+		font-weight: 700;
+		margin-bottom: 0px;
+		padding-bottom: 35px;
+	}
+}
 
 
 
@@ -7137,11 +7229,11 @@ nav.footer-navigation	{
 
 .footer__copyright {
 	position: relative !important;
-	width: 80%;
+	width: 90% !important;
 	color:  #707070;
-	font-size: 0.9em !important;
+	font-size: 0.7rem !important;
 	text-align: center !important;
-	margin: 15px auto 15px auto !important;
+	margin: 25px auto 10px auto !important;
 	padding: 0.5rem 1.0rem !important;
 }
 

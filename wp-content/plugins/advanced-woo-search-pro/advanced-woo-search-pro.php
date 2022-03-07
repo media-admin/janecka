@@ -3,12 +3,12 @@
 /*
 Plugin Name: Advanced Woo Search PRO
 Description: Advance ajax WooCommerce product search.
-Version: 2.46
+Version: 2.48
 Author: ILLID
 Author URI: https://advanced-woo-search.com/
 Text Domain: advanced-woo-search
 WC requires at least: 3.0.0
-WC tested up to: 6.1.0
+WC tested up to: 6.2.0
 */
 
 
@@ -83,8 +83,8 @@ final class AWS_PRO_Main {
         add_filter( 'wcml_multi_currency_ajax_actions', array( $this, 'add_wpml_ajax_actions' ) );
 
         if ( get_option( 'aws_pro_seamless' ) && get_option( 'aws_pro_seamless' ) === 'true' ) {
-            add_filter( 'get_search_form', array( $this, 'markup' ), 999999 );
-            add_filter( 'get_product_search_form', array( $this, 'markup' ), 999999 );
+            add_filter( 'get_search_form', array( $this, 'markup_filter' ), 999999 );
+            add_filter( 'get_product_search_form', array( $this, 'markup_filter' ), 999999 );
         }
 
     }
@@ -94,7 +94,7 @@ final class AWS_PRO_Main {
      */
     private function define_constants() {
 
-        $this->define( 'AWS_PRO_VERSION', '2.46' );
+        $this->define( 'AWS_PRO_VERSION', '2.48' );
         $this->define( 'AWS_PRO_DIR', plugin_dir_path( AWS_PRO_FILE ) );
         $this->define( 'AWS_PRO_URL', plugin_dir_url( AWS_PRO_FILE ) );
         $this->define( 'AWS_PRO_BASENAME', plugin_basename( AWS_PRO_FILE ) );
@@ -166,6 +166,23 @@ final class AWS_PRO_Main {
 
 		return $markup->markup();
 	}
+
+    /*
+     * Filter search box markup
+     */
+    public function markup_filter( $search_form = '' ) {
+
+        $markup = $this->markup();
+
+        /**
+         * Filter search form markup for seamless integration
+         * @since 2.48
+         * @param string $markup New search form markup
+         * @param string $search_form Old search form markup
+         */
+        return apply_filters( 'aws_seamless_search_form_filter', $markup, $search_form );
+
+    }
 
     /*
 	 * Sort products

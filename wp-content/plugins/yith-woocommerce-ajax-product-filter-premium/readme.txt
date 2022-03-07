@@ -5,11 +5,28 @@ Tags: woocommerce, widget, ajax, ajax filtered nav, ajax navigation, ajax filter
 Requires at least: 5.7
 Tested up to: 5.9
 
-Stable tag: 4.6.0
+Stable tag: 4.8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog =
+
+= 4.8.0 - Released on 03 March 2022 =
+
+* New: support for WooCommerce 6.3
+* Tweak: minor improvement to label filters appearance
+* Update: YITH Plugin Framework
+* Fix: fixed save of checkboxes for the Legacy Widgets
+* Fix: reload on history change now only happens when history was pushed by filters
+
+= 4.7.0 - Released on 09 February 2022 =
+
+* New: support for WooCommerce 6.2
+* Tweak: reload location on popstate, to work with browser navigation
+* Tweak: improved history handling
+* Tweak: hide SEO url option, when Ajax filtering is disabled
+* Update: YITH Plugin Framework
+* Dev: added yith_wcan_filter_tax_is_term_hidden filter
 
 = 4.6.0 - Released on 03 January 2022 =
 

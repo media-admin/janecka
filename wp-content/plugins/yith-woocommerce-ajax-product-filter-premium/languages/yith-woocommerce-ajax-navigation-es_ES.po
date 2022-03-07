@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: YITH WooCommerce Ajax Product Filter\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/yith-woocommerce-"
 "ajax-product-filter.premium\n"
-"POT-Creation-Date: 2022-01-03 13:19:18+00:00\n"
+"POT-Creation-Date: 2022-03-03 13:37:53+00:00\n"
 "PO-Revision-Date: 2021-08-27 21:02:53+0000\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -461,51 +461,51 @@ msgctxt "[ADMIN] General settings page"
 msgid "Inline with active filters"
 msgstr "Alineado con los filtros activos"
 
-#: includes/class-yith-wcan-admin-premium.php:476
+#: includes/class-yith-wcan-admin-premium.php:480
 msgctxt "[ADMIN] General settings page"
 msgid "Filter by price using AJAX"
 msgstr "Filtrar por precio usando AJAX"
 
-#: includes/class-yith-wcan-admin-premium.php:477
-#: includes/class-yith-wcan-admin-premium.php:495
+#: includes/class-yith-wcan-admin-premium.php:481
+#: includes/class-yith-wcan-admin-premium.php:499
 msgctxt "[ADMIN] General settings page"
 msgid "Filter products via AJAX when using WooCommerce price filter widget"
 msgstr ""
 "Filtrar producto vía AJAX cuando se usa el widget de filtro de precio de "
 "WooCommerce"
 
-#: includes/class-yith-wcan-admin-premium.php:485
+#: includes/class-yith-wcan-admin-premium.php:489
 msgctxt "[ADMIN] General settings page"
 msgid "Use slider for price filtering"
 msgstr "Usar deslizante para el filtrado de precio"
 
-#: includes/class-yith-wcan-admin-premium.php:486
+#: includes/class-yith-wcan-admin-premium.php:490
 msgctxt "[ADMIN] General settings page"
 msgid "Transform default WooCommerce price filter into a slider"
 msgstr ""
 "Transforma el filtro de precio predeterminado de WooCommerce en un deslizante"
 
-#: includes/class-yith-wcan-admin-premium.php:494
+#: includes/class-yith-wcan-admin-premium.php:498
 msgctxt "[ADMIN] General settings page"
 msgid "Filter by price using AJAX slider"
 msgstr "Filtrar por precio usando deslizante de AJAX"
 
-#: includes/class-yith-wcan-admin-premium.php:503
+#: includes/class-yith-wcan-admin-premium.php:507
 msgctxt "[ADMIN] General settings page"
 msgid "Add toggle for price filter widget"
 msgstr "Añadir desplegable para widget de filtro de precio"
 
-#: includes/class-yith-wcan-admin-premium.php:504
+#: includes/class-yith-wcan-admin-premium.php:508
 msgctxt "[ADMIN] General settings page"
 msgid "Show price filtering widget as a toggle"
 msgstr "Mostrar el widget de filtro de precio como un desplegable"
 
-#: includes/class-yith-wcan-admin-premium.php:512
+#: includes/class-yith-wcan-admin-premium.php:516
 msgctxt "[ADMIN] General settings page"
 msgid "Chose how to show price filter toggle"
 msgstr "Escoge como mostrar el desplegable de filtro de precio"
 
-#: includes/class-yith-wcan-admin-premium.php:513
+#: includes/class-yith-wcan-admin-premium.php:517
 msgctxt "[ADMIN] General settings page"
 msgid ""
 "Choose whether to show price filtering widget as an open or closed toggle"
@@ -513,24 +513,24 @@ msgstr ""
 "Escoge si mostrar el widget de filtrado de precio como un desplegable "
 "abierto o cerrado"
 
-#: includes/class-yith-wcan-admin-premium.php:525
+#: includes/class-yith-wcan-admin-premium.php:529
 msgctxt "[ADMIN] General settings page"
 msgid "Enable ajax pagination"
 msgstr "Activar paginación de AJAX"
 
-#: includes/class-yith-wcan-admin-premium.php:526
+#: includes/class-yith-wcan-admin-premium.php:530
 msgctxt "[ADMIN] General settings page"
 msgid "Make shop pagination anchors load new page via ajax"
 msgstr ""
 "Hacer que los anclajes de paginación de tienda carguen una nueva página vía "
 "AJAX"
 
-#: includes/class-yith-wcan-admin-premium.php:543
+#: includes/class-yith-wcan-admin-premium.php:547
 msgctxt "[ADMIN] General settings page"
 msgid "Show current categories"
 msgstr "Mostrar categorías actuales"
 
-#: includes/class-yith-wcan-admin-premium.php:544
+#: includes/class-yith-wcan-admin-premium.php:548
 msgctxt "[ADMIN] General settings page"
 msgid ""
 "Enable if you want to show link to current category in the filter, when "
@@ -539,12 +539,12 @@ msgstr ""
 "Activa si quieres mostrar el enlace a la categoría actual en el filtro al "
 "visitar la página de categoría"
 
-#: includes/class-yith-wcan-admin-premium.php:552
+#: includes/class-yith-wcan-admin-premium.php:556
 msgctxt "[ADMIN] General settings page"
 msgid "Show \"All categories\" anchor"
 msgstr "Mostrar ancla de \"Todas las categorías\""
 
-#: includes/class-yith-wcan-admin-premium.php:553
+#: includes/class-yith-wcan-admin-premium.php:557
 msgctxt "[ADMIN] General settings page"
 msgid ""
 "Enable if you want to show a link to retrieve products from all categories, "
@@ -553,12 +553,12 @@ msgstr ""
 "Activa si quieres mostrar un enlace para recuperar productos de todas las "
 "categorías tras añadir un filtro de categoría"
 
-#: includes/class-yith-wcan-admin-premium.php:570
+#: includes/class-yith-wcan-admin-premium.php:574
 msgctxt "[ADMIN] General settings page"
 msgid "Show \"All tags\" anchor"
 msgstr "Mostrar anclaje de \"Todas las etiquetas\""
 
-#: includes/class-yith-wcan-admin-premium.php:571
+#: includes/class-yith-wcan-admin-premium.php:575
 msgctxt "[ADMIN] General settings page"
 msgid ""
 "Enable if you want to show a link to retrieve products from all tags, after "
@@ -1359,7 +1359,7 @@ msgctxt "[Admin] Filter edit form"
 msgid "Add range"
 msgstr "Añadir rango"
 
-#: includes/class-yith-wcan-admin-premium.php:388
+#: includes/class-yith-wcan-admin-premium.php:392
 msgctxt "[ADMIN] Seo settings page"
 msgid "Use plugin customized permalinks"
 msgstr "Usar enlaces permanentes personalizados del plugins"
@@ -1412,32 +1412,32 @@ msgstr ""
 "Cuando está activado, añade re=\"nofollow\" atributos a todas las anclas de "
 "filtro del plugin"
 
-#: plugin-options/seo-options.php:63
+#: plugin-options/seo-options.php:64
 msgctxt "[ADMIN] Seo settings page"
 msgid "URL permalinks"
 msgstr "Enlaces permanentes de URL"
 
-#: plugin-options/seo-options.php:64
+#: plugin-options/seo-options.php:65
 msgctxt "[ADMIN] Seo settings page"
 msgid "Choose how to manage browser URL during filtering"
 msgstr "Escoge cómo gestionar la búsqueda de la URL durante el filtrado"
 
-#: plugin-options/seo-options.php:70
+#: plugin-options/seo-options.php:71
 msgctxt "[ADMIN] Seo settings page"
 msgid "Add filters parameters to default URL"
 msgstr "Añadir parámetros de filtro para la URL predeterminada"
 
-#: plugin-options/seo-options.php:71
+#: plugin-options/seo-options.php:72
 msgctxt "[ADMIN] Seo settings page"
 msgid "Don't change URL"
 msgstr "No cambiar la URL"
 
-#: includes/class-yith-wcan-admin-premium.php:410
+#: includes/class-yith-wcan-admin-premium.php:414
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Scroll to top after filtering"
 msgstr "Deslizar hacia arriba tras el filtrado"
 
-#: includes/class-yith-wcan-admin-premium.php:411
+#: includes/class-yith-wcan-admin-premium.php:415
 msgctxt "[ADMIN] Legacy settings page"
 msgid ""
 "Choose whether you want to enable the \"Scroll to top\" option on Desktop, "
@@ -1446,143 +1446,143 @@ msgstr ""
 "Selecciona si quieres activar la opción ‘’Deslizar hacia arriba’’ en el "
 "escritorio, en dispositivos móviles o en ambos"
 
-#: includes/class-yith-wcan-admin-premium.php:417
+#: includes/class-yith-wcan-admin-premium.php:421
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Disabled"
 msgstr "Desactivado"
 
-#: includes/class-yith-wcan-admin-premium.php:418
+#: includes/class-yith-wcan-admin-premium.php:422
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Mobile"
 msgstr "Móvil"
 
-#: includes/class-yith-wcan-admin-premium.php:419
+#: includes/class-yith-wcan-admin-premium.php:423
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Desktop"
 msgstr "Escritorio"
 
-#: includes/class-yith-wcan-admin-premium.php:420
+#: includes/class-yith-wcan-admin-premium.php:424
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Mobile and Desktop"
 msgstr "Dispositivos móviles y escritorio"
 
-#: includes/class-yith-wcan-admin-premium.php:425
+#: includes/class-yith-wcan-admin-premium.php:429
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Widget title selector"
 msgstr "Selector de título del widget"
 
-#: includes/class-yith-wcan-admin-premium.php:426
+#: includes/class-yith-wcan-admin-premium.php:430
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Enter here the CSS selector (class or ID) of the widget title"
 msgstr "Introduce aquí el selector CSS (clase o ID) para el título del widget"
 
-#: includes/class-yith-wcan-admin-premium.php:434
+#: includes/class-yith-wcan-admin-premium.php:438
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Widget container"
 msgstr "Contenedor del widget"
 
-#: includes/class-yith-wcan-admin-premium.php:435
+#: includes/class-yith-wcan-admin-premium.php:439
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Enter here the CSS selector (class or ID) of the widget container"
 msgstr ""
 "Introduce aquí el selector CSS (clase o ID) para el contenedor del widget"
 
-#: includes/class-yith-wcan-admin-premium.php:443
+#: includes/class-yith-wcan-admin-premium.php:447
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Filter style"
 msgstr "Estilo del filtro"
 
-#: includes/class-yith-wcan-admin-premium.php:444
+#: includes/class-yith-wcan-admin-premium.php:448
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Choose the style of the filter inside widgets"
 msgstr "Escoge el estilo del filtro dentro de los widgets"
 
-#: includes/class-yith-wcan-admin-premium.php:450
+#: includes/class-yith-wcan-admin-premium.php:454
 msgctxt "[ADMIN] Legacy settings page"
 msgid "\"x\" icon before active filters"
 msgstr "Icono \"x\" antes de Filtros activos"
 
-#: includes/class-yith-wcan-admin-premium.php:451
+#: includes/class-yith-wcan-admin-premium.php:455
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Checkboxes"
 msgstr "Casillas de verificación"
 
-#: includes/class-yith-wcan-admin-premium.php:460
+#: includes/class-yith-wcan-admin-premium.php:464
 msgctxt "[ADMIN] Legacy settings page"
 msgid "General options"
 msgstr "Opciones generales"
 
-#: includes/class-yith-wcan-admin-premium.php:467
+#: includes/class-yith-wcan-admin-premium.php:471
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Ajax Loader"
 msgstr "Cargador de Ajax"
 
-#: includes/class-yith-wcan-admin-premium.php:468
+#: includes/class-yith-wcan-admin-premium.php:472
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Choose loading icon you want to use for your widget filters"
 msgstr "Escoge el icono de carga que quieres usar para tus filtros de widget"
 
-#: includes/class-yith-wcan-admin-premium.php:519
+#: includes/class-yith-wcan-admin-premium.php:523
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Opened"
 msgstr "Abierto"
 
-#: includes/class-yith-wcan-admin-premium.php:520
+#: includes/class-yith-wcan-admin-premium.php:524
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Closed"
 msgstr "Cerrado"
 
-#: includes/class-yith-wcan-admin-premium.php:534
+#: includes/class-yith-wcan-admin-premium.php:538
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Shop pagination selector"
 msgstr "Selector de paginación de tienda"
 
-#: includes/class-yith-wcan-admin-premium.php:535
+#: includes/class-yith-wcan-admin-premium.php:539
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Enter here the CSS selector (class or ID) of the shop pagination"
 msgstr ""
 "Introduce aquí el selector CSS (clase o ID) para la paginación de la tienda"
 
-#: includes/class-yith-wcan-admin-premium.php:561
+#: includes/class-yith-wcan-admin-premium.php:565
 msgctxt "[ADMIN] Legacy settings page"
 msgid "\"All categories\" anchor label"
 msgstr "Etiqueta de anclaje de \"Todas las categorías\""
 
-#: includes/class-yith-wcan-admin-premium.php:562
+#: includes/class-yith-wcan-admin-premium.php:566
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Enter here the text you want to use for \"All categories\" anchor"
 msgstr ""
 "Introduce aquí el texto que quieres usar para el anclaje de \"Todas las "
 "categorías\""
 
-#: includes/class-yith-wcan-admin-premium.php:566
+#: includes/class-yith-wcan-admin-premium.php:570
 msgctxt "[ADMIN] Legacy settings page"
 msgid "See all categories"
 msgstr "Ver todas las categorías"
 
-#: includes/class-yith-wcan-admin-premium.php:579
+#: includes/class-yith-wcan-admin-premium.php:583
 msgctxt "[ADMIN] Legacy settings page"
 msgid "\"All tags\" anchor label"
 msgstr "Anclaje de etiqueta \"Todas las etiquetas\""
 
-#: includes/class-yith-wcan-admin-premium.php:580
+#: includes/class-yith-wcan-admin-premium.php:584
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Enter here the text you want to use for \"All tags\" anchor"
 msgstr ""
 "Introduce aquí el texto que quieres usar para el anclaje de \"Todas las "
 "categorías\""
 
-#: includes/class-yith-wcan-admin-premium.php:584
+#: includes/class-yith-wcan-admin-premium.php:588
 msgctxt "[ADMIN] Legacy settings page"
 msgid "See all tags"
 msgstr "Ver todas las etiquetas"
 
-#: includes/class-yith-wcan-admin-premium.php:588
+#: includes/class-yith-wcan-admin-premium.php:592
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Hierarchical tags"
 msgstr "Etiquetas jerárquicas"
 
-#: includes/class-yith-wcan-admin-premium.php:589
+#: includes/class-yith-wcan-admin-premium.php:593
 msgctxt "[ADMIN] Legacy settings page"
 msgid "Make product tag taxonomy hierarchical"
 msgstr "Hacer que la taxonomía de etiqueta de producto sea jerárquica"
@@ -1667,7 +1667,7 @@ msgctxt "[ADMIN] Legacy settings page"
 msgid "Default"
 msgstr "Predeterminado"
 
-#: includes/class-yith-wcan-admin-premium.php:626
+#: includes/class-yith-wcan-admin-premium.php:630
 msgctxt "[Admin] tab name"
 msgid "Customization"
 msgstr "Personalización"
@@ -1697,7 +1697,7 @@ msgctxt "[Admin] tab name"
 msgid "Legacy"
 msgstr "Heredado"
 
-#: includes/class-yith-wcan-admin-premium.php:678
+#: includes/class-yith-wcan-admin-premium.php:682
 msgctxt "[ADMIN] WooCommerce Tools tab, name of the tool"
 msgid "Clear Product Filter sessions"
 msgstr "Limpiar sesiones de filtro de producto"
@@ -1712,7 +1712,7 @@ msgctxt "[ADMIN] WooCommerce Tools tab, name of the tool"
 msgid "Run filter widgets upgrade"
 msgstr "Activar actualización de widgets de filtro"
 
-#: includes/class-yith-wcan-admin-premium.php:679
+#: includes/class-yith-wcan-admin-premium.php:683
 #: includes/class-yith-wcan-admin.php:481
 msgctxt "[ADMIN] WooCommerce Tools tab, button for the tool"
 msgid "Clear"
@@ -1723,7 +1723,7 @@ msgctxt "[ADMIN] WooCommerce Tools tab, button for the tool"
 msgid "Run"
 msgstr "Activar"
 
-#: includes/class-yith-wcan-admin-premium.php:680
+#: includes/class-yith-wcan-admin-premium.php:684
 msgctxt "[ADMIN] WooCommerce Tools tab, description of the tool"
 msgid ""
 "This will clear all filter sessions on your site. It may be useful if you "

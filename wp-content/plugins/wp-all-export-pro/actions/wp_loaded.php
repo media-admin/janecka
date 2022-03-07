@@ -97,7 +97,7 @@ function pmxe_wp_loaded() {
 						'export_name' => $child_export->friendly_name,
 						'file_name' => basename($filepath),
 						'file_type' => $child_export->options['export_to'],
-						'post_types_exported' => empty($child_export->options['cpt']) ? $child_export->options['wp_query'] : implode($child_export->options['cpt'], ','),
+						'post_types_exported' => empty($child_export->options['cpt']) ? $child_export->options['wp_query'] : implode(',', $child_export->options['cpt']),
 						'export_created_date' => $child_export->registered_on,
 						'export_last_run_date' => date('Y-m-d H:i:s'),
 						'export_trigger_type' => 'manual',

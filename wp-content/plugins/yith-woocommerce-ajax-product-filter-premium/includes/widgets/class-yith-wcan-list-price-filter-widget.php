@@ -298,7 +298,7 @@ if ( ! class_exists( 'YITH_WCAN_List_Price_Filter_Widget' ) ) {
 			$instance = $old_instance;
 
 			$instance['title']         = wp_strip_all_tags( $new_instance['title'] );
-			$instance['dropdown']      = isset( $new_instance['dropdown'] ) ? 1 : 0;
+			$instance['dropdown']      = ( isset( $new_instance['dropdown'] ) && yith_plugin_fw_is_true( $new_instance['dropdown'] ) ) ? 1 : 0;
 			$instance['dropdown_type'] = $new_instance['dropdown_type'];
 			$instance['prices']        = isset( $new_instance['prices'] ) ? $this->remove_empty_price_range( $new_instance['prices'] ) : array();
 

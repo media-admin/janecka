@@ -47,7 +47,7 @@ if ( ! class_exists( 'AWS_Admin_Meta_Boxes' ) ) :
 
             $html .='<th>' . esc_html__( 'Reindex table', 'advanced-woo-search' ) . '</th>';
 
-                $html .='<td>';
+                $html .='<td id="activation">';
 
                     $html .='<div id="aws-reindex"><input class="button" type="button" value="' . esc_attr__( 'Reindex table', 'advanced-woo-search' ) . '"><span class="loader"></span><span class="reindex-progress">0%</span><span class="reindex-notice">' . __( 'Please do not close the page.', 'advanced-woo-search' ) . '</span></div><br><br>';
                     $html .='<span class="description">' .
@@ -204,7 +204,7 @@ if ( ! class_exists( 'AWS_Admin_Meta_Boxes' ) ) :
         }
 
 
-        /*
+         /*
          * Get content for the welcome notice
          * @return string
          */
@@ -215,12 +215,12 @@ if ( ! class_exists( 'AWS_Admin_Meta_Boxes' ) ) :
             $html .= '<div id="aws-welcome-panel">';
                 $html .= '<div class="aws-welcome-notice updated notice is-dismissible" style="background:#f2fbff;">';
 
-                    $html .= '<div class="welcome-panel" style="border:none;box-shadow:none;padding:0;margin:16px 0 0;background:transparent;">';
-                        $html .= '<div class="welcome-panel-content">';
+                    $html .= '<div class="aws-welcome-panel" style="border:none;box-shadow:none;padding:0;margin:16px 0 0;background:transparent;">';
+                        $html .= '<div class="aws-welcome-panel-content">';
                             $html .= '<h2>' . sprintf( __( 'Welcome to %s', 'advanced-woo-search' ), 'Advanced Woo Search PRO' ) . '</h2>';
                             $html .= '<p class="about-description">' . __( 'Powerful search plugin for WooCommerce.', 'advanced-woo-search' ) . '</p>';
-                            $html .= '<div class="welcome-panel-column-container">';
-                                $html .= '<div class="welcome-panel-column">';
+                            $html .= '<div class="aws-welcome-panel-column-container">';
+                                $html .= '<div class="aws-welcome-panel-column">';
                                     $html .= '<h4>' . __( 'Get Started', 'advanced-woo-search' ) . '</h4>';
                                     $html .= '<p style="margin-bottom:10px;">' . __( 'In order to start using the plugin search form you need to take following steps:', 'advanced-woo-search' ) . '</p>';
                                     $html .= '<ul>';
@@ -230,20 +230,20 @@ if ( ! class_exists( 'AWS_Admin_Meta_Boxes' ) ) :
                                         $html .= '<li><strong>4.</strong> <strong>' . __( 'Finish!', 'advanced-woo-search' ) . '</strong> ' . __( 'Now all is set and you can check your search form on the pages where you add it.', 'advanced-woo-search' ) . '</li>';
                                     $html .= '</ul>';
                                 $html .= '</div>';
-                                $html .= '<div class="welcome-panel-column">';
+                                $html .= '<div class="aws-welcome-panel-column">';
                                     $html .= '<h4>' . __( 'Documentation', 'advanced-woo-search' ) . '</h4>';
                                     $html .= '<ul>';
-                                        $html .= '<li><a href="https://advanced-woo-search.com/guide/steps-to-get-started/" class="welcome-icon welcome-edit-page" target="_blank">' . __( 'Steps to Get Started', 'advanced-woo-search' ) . '</a></li>';
-                                        $html .= '<li><a href="https://advanced-woo-search.com/guide/search-form/" class="welcome-icon welcome-edit-page" target="_blank">' . __( 'How to Add Search Form', 'advanced-woo-search' ) . '</a></li>';
-                                        $html .= '<li><a href="https://advanced-woo-search.com/guide/search-source/" class="welcome-icon welcome-edit-page" target="_blank">' . __( 'Search Sources', 'advanced-woo-search' ) . '</a></li>';
-                                        $html .= '<li><a href="https://advanced-woo-search.com/guide/terms-search/" class="welcome-icon welcome-edit-page" target="_blank">' . __( 'Terms Pages Search', 'advanced-woo-search' ) . '</a></li>';
+                                        $html .= '<li><a href="https://advanced-woo-search.com/guide/steps-to-get-started/" class="aws-welcome-icon aws-welcome-edit-page" target="_blank">' . __( 'Steps to Get Started', 'advanced-woo-search' ) . '</a></li>';
+                                        $html .= '<li><a href="https://advanced-woo-search.com/guide/search-form/" class="aws-welcome-icon aws-welcome-edit-page" target="_blank">' . __( 'How to Add Search Form', 'advanced-woo-search' ) . '</a></li>';
+                                        $html .= '<li><a href="https://advanced-woo-search.com/guide/search-source/" class="aws-welcome-icon aws-welcome-edit-page" target="_blank">' . __( 'Search Sources', 'advanced-woo-search' ) . '</a></li>';
+                                        $html .= '<li><a href="https://advanced-woo-search.com/guide/terms-search/" class="aws-welcome-icon aws-welcome-edit-page" target="_blank">' . __( 'Terms Pages Search', 'advanced-woo-search' ) . '</a></li>';
                                     $html .= '</ul>';
                                 $html .= '</div>';
-                                $html .= '<div class="welcome-panel-column welcome-panel-last">';
+                                $html .= '<div class="aws-welcome-panel-column aws-welcome-panel-last">';
                                     $html .= '<h4>' . __( 'Help', 'advanced-woo-search' ) . '</h4>';
                                     $html .= '<ul>';
-                                        $html .= '<li><div class="welcome-icon welcome-widgets-menus"><a href="https://wordpress.org/support/plugin/advanced-woo-search/" target="_blank">' . __( 'Support Forums', 'advanced-woo-search' ) . '</a></div></li>';
-                                        $html .= '<li><div class="welcome-icon welcome-widgets-menus"><a href="https://advanced-woo-search.com/contact/" target="_blank">' . __( 'Contact Form', 'advanced-woo-search' ) . '</a></div></li>';
+                                        $html .= '<li><div class="aws-welcome-icon aws-welcome-widgets-menus"><a href="https://wordpress.org/support/plugin/advanced-woo-search/" target="_blank">' . __( 'Support Forums', 'advanced-woo-search' ) . '</a></div></li>';
+                                        $html .= '<li><div class="aws-welcome-icon aws-welcome-widgets-menus"><a href="https://advanced-woo-search.com/contact/" target="_blank">' . __( 'Contact Form', 'advanced-woo-search' ) . '</a></div></li>';
                                     $html .= '</ul>';
                                 $html .= '</div>';
                             $html .= '</div>';

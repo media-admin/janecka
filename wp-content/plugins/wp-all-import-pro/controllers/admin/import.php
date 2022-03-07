@@ -931,10 +931,10 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 					$this->data['title'] = "";
 				} else {				
 					list($this->data['title']) = XmlImportParser::factory($xml, $xpath, $post['title'], $file)->parse(); unlink($file);
-					if ( ! isset($this->data['title']) || '' == strval(trim(strip_tags($this->data['title'], '<img><input><textarea><iframe><object><embed>'))) || '' == wp_all_import_filter_html_kses(($post['is_leave_html']) ? html_entity_decode($this->data['title']) : $this->data['title'])) {
+					if ( ! isset($this->data['title']) || '' == strval(trim(strip_tags($this->data['title'], '<img><input><textarea><iframe><object><embed>')))) {
 						$this->errors->add('xml-parsing', __('<strong>Warning</strong>: resulting post title is empty', 'wp_all_import_plugin'));
 					}
-					else $this->data['title'] = wp_all_import_filter_html_kses(($post['is_leave_html']) ? html_entity_decode($this->data['title']) : $this->data['title']);
+					else $this->data['title'] = ($post['is_leave_html']) ? html_entity_decode($this->data['title']) : $this->data['title'];
 				}
 			} catch (XmlImportException $e) {
 				$this->errors->add('form-validation', sprintf(__('Error parsing title: %s', 'wp_all_import_plugin'), $e->getMessage()));
@@ -947,10 +947,10 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 					$this->data['content'] = "";				
 				} else {								
 					list($this->data['content']) = XmlImportParser::factory($post['is_keep_linebreaks'] ? $xml : preg_replace('%\r\n?|\n%', ' ', $xml), $xpath, $post['content'], $file)->parse(); unlink($file);				
-					if ( ! isset($this->data['content']) || '' == strval(trim(strip_tags($this->data['content'], '<img><input><textarea><iframe><object><embed>'))) || '' == wp_all_import_filter_html_kses(($post['is_leave_html']) ? html_entity_decode($this->data['content']) : $this->data['content'])) {
+					if ( ! isset($this->data['content']) || '' == strval(trim(strip_tags($this->data['content'], '<img><input><textarea><iframe><object><embed>')))) {
 						$this->errors->add('xml-parsing', __('<strong>Warning</strong>: resulting post content is empty', 'wp_all_import_plugin'));
 					}
-					else $this->data['content'] = wp_all_import_filter_html_kses(($post['is_leave_html']) ? html_entity_decode($this->data['content']) : $this->data['content']);
+					else $this->data['content'] = ($post['is_leave_html']) ? html_entity_decode($this->data['content']) : $this->data['content'];
 				}
 			} catch (XmlImportException $e) {
 				$this->errors->add('form-validation', sprintf(__('Error parsing content: %s', 'wp_all_import_plugin'), $e->getMessage()));

@@ -106,7 +106,7 @@ if ( ! class_exists( 'YITH_WCAN_Reset_Navigation_Widget_Premium' ) ) {
 
 			$instance = parent::update( $new_instance, $old_instance );
 
-			$instance['custom_style']           = isset( $new_instance['custom_style'] ) ? 1 : 0;
+			$instance['custom_style']           = ( isset( $new_instance['custom_style'] ) && yith_plugin_fw_is_true( $new_instance['custom_style'] ) ) ? 1 : 0;
 			$instance['background_color']       = $new_instance['background_color'];
 			$instance['background_color_hover'] = $new_instance['background_color_hover'];
 			$instance['text_color']             = $new_instance['text_color'];

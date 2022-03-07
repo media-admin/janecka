@@ -18,7 +18,7 @@
 								<div class="switcher-target-<?php echo $section_slug; ?>download_images_yes" style="padding-left:27px;">
 									<label for="<?php echo $section_slug; ?>download_featured_delim"><?php _e('Enter image URL one per line, or separate them with a ', 'wp_all_import_plugin');?></label>
 									<input type="text" class="small" id="<?php echo $section_slug; ?>download_featured_delim" name="<?php echo $section_slug; ?>download_featured_delim" value="<?php echo esc_attr($post[$section_slug . 'download_featured_delim']) ?>" style="width:5%; text-align:center;"/>
-									<textarea name="<?php echo $section_slug; ?>download_featured_image" class="newline rad4" style="clear: both; display:block;" placeholder=""><?php echo esc_attr(wp_all_import_filter_html_kses($post[$section_slug . 'download_featured_image'])) ?></textarea>
+									<textarea name="<?php echo $section_slug; ?>download_featured_image" class="newline rad4" style="clear: both; display:block;" placeholder=""><?php echo esc_attr($post[$section_slug . 'download_featured_image']) ?></textarea>
 								</div>
 								<div class="input">							
 									<input type="radio" name="<?php echo $section_slug; ?>download_images" value="gallery" class="switcher" id="<?php echo $section_slug; ?>download_images_gallery" <?php echo ("gallery" == $post[$section_slug . 'download_images']) ? 'checked="checked"' : '';?>/>
@@ -28,7 +28,7 @@
 								<div class="switcher-target-<?php echo $section_slug; ?>download_images_gallery" style="padding-left:27px;">
 									<label for="<?php echo $section_slug; ?>gallery_featured_delim"><?php _e('Enter image filenames one per line, or separate them with a ', 'wp_all_import_plugin');?></label>
 									<input type="text" class="small" id="<?php echo $section_slug; ?>gallery_featured_delim" name="<?php echo $section_slug; ?>gallery_featured_delim" value="<?php echo esc_attr($post[$section_slug . 'gallery_featured_delim']) ?>" style="width:5%; text-align:center;"/>
-									<textarea name="<?php echo $section_slug; ?>gallery_featured_image" class="newline rad4" style="clear: both; display:block; "><?php echo esc_attr(wp_all_import_filter_html_kses($post[$section_slug . 'gallery_featured_image'])) ?></textarea>
+									<textarea name="<?php echo $section_slug; ?>gallery_featured_image" class="newline rad4" style="clear: both; display:block; "><?php echo esc_attr($post[$section_slug . 'gallery_featured_image']) ?></textarea>
 								</div>
 								<div class="input">
 									<?php $wp_uploads = wp_upload_dir(); ?>																					
@@ -38,7 +38,7 @@
 								<div class="switcher-target-<?php echo $section_slug; ?>download_images_no" style="padding-left:27px;">
 									<label for="<?php echo $section_slug; ?>featured_delim"><?php _e('Enter image filenames one per line, or separate them with a ', 'wp_all_import_plugin');?></label>
 									<input type="text" class="small" id="<?php echo $section_slug; ?>featured_delim" name="<?php echo $section_slug; ?>featured_delim" value="<?php echo esc_attr($post[$section_slug . 'featured_delim']) ?>" style="width:5%; text-align:center;"/>
-									<textarea name="<?php echo $section_slug; ?>featured_image" class="newline rad4" style="clear: both; display:block; "><?php echo esc_attr(wp_all_import_filter_html_kses($post[$section_slug . 'featured_image'])) ?></textarea>
+									<textarea name="<?php echo $section_slug; ?>featured_image" class="newline rad4" style="clear: both; display:block; "><?php echo esc_attr($post[$section_slug . 'featured_image']) ?></textarea>
 								</div>																
 							</div>
 							<h4><?php _e('Image Options', 'wp_all_import_plugin'); ?></h4>

@@ -481,6 +481,28 @@
     background: #f5f5f5;
 }
 
+.aws-search-result .aws_result_item .aws_result_link_top {
+    position: absolute;
+    z-index: 1;
+    white-space: nowrap;
+    text-indent: -9999px;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    outline: none;
+    text-decoration: none;
+}
+
+.aws-search-result .aws_result_item a,
+.aws-search-result .aws_result_item button,
+.aws-search-result .aws_result_item span[href],
+.aws-search-result .aws_result_item [data-link] {
+    position: relative;
+    z-index: 2;
+}
 
 .aws-search-result .aws_result_content {
     overflow: hidden;
@@ -775,6 +797,7 @@
 .aws-search-result .aws_add_to_cart .aws_quantity_field {
     display: inline-block !important;
     position: relative;
+    z-index: 2;
     float: right;
     margin: 2px 0 0 4px !important;
     padding: 6px 6px 6px 9px !important;
@@ -803,6 +826,7 @@
 .aws-search-result .aws_add_to_cart .aws_quantity_change {
     display: inline-block;
     position: relative;
+    z-index: 2;
     float: right;
     height: 28px;
     margin: 2px 0 0 4px;

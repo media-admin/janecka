@@ -221,8 +221,8 @@ if ( ! class_exists( 'YITH_WCAN_Navigation_Widget_Premium' ) ) {
 			$instance = parent::update( $new_instance, $old_instance );
 
 			$instance['style']            = $new_instance['style'];
-			$instance['show_count']       = isset( $new_instance['show_count'] ) ? 1 : 0;
-			$instance['dropdown']         = isset( $new_instance['dropdown'] ) ? 1 : 0;
+			$instance['show_count']       = ( isset( $new_instance['show_count'] ) && yith_plugin_fw_is_true( $new_instance['show_count'] ) ) ? 1 : 0;
+			$instance['dropdown']         = ( isset( $new_instance['dropdown'] ) && yith_plugin_fw_is_true( $new_instance['dropdown'] ) ) ? 1 : 0;
 			$instance['dropdown_type']    = $new_instance['dropdown_type'];
 			$instance['tags_list']        = ! empty( $new_instance['tags_list'] ) ? $new_instance['tags_list'] : array();
 			$instance['tags_list_query']  = isset( $new_instance['tags_list_query'] ) ? $new_instance['tags_list_query'] : 'include';

@@ -203,16 +203,9 @@ $z-index: 1001; // value is this high since modal must be on top of Proteo's sti
 				margin: 0 -5px;
 			}
 
-			&.filter-label.with-images {
+			&.filter-label {
 				font-size: 0;
 				margin: 0 -5px;
-			}
-
-			&.filter-label:not(.with-images) {
-				.filter-item {
-					margin-right: 5px;
-					margin-bottom: 10px;
-				}
 			}
 
 			&.filter-dropdown {
@@ -371,6 +364,7 @@ $z-index: 1001; // value is this high since modal must be on top of Proteo's sti
 					box-shadow: 0 0 0 1px $border-color;
 					border-radius: $border-radius;
 					display: inline-block;
+					margin: 0 5px 10px;
 					padding: 7px;
 					text-align: center;
 
@@ -423,7 +417,6 @@ $z-index: 1001; // value is this high since modal must be on top of Proteo's sti
 						background: none;
 						box-shadow: none;
 						display: block;
-						margin: 0 0 10px;
 						padding: 0;
 						text-align: left;
 						width: 100%;

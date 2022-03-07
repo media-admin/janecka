@@ -225,6 +225,7 @@ if ( ! class_exists( 'AWS_Users_Search' ) ) :
                 foreach ( $search_results as $result ) {
 
                     $new_result = array(
+                        'id'       => $result->ID,
                         'name'     => $result->display_name,
                         'link'     => get_author_posts_url( $result->ID ),
                         'excerpt'  => '',

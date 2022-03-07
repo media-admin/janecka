@@ -153,6 +153,31 @@ if ( ! class_exists( 'AWS_Admin_Filters_Helpers' ) ) :
         }
 
         /*
+         * Get specific product
+         * @return array
+         */
+        static public function get_product( $id = 0 ) {
+
+            $options = array();
+
+            if ( $id === 'aws_any' ) {
+                $options['aws_any'] = __( "Any product", "advanced-woo-search" );
+                return $options;
+            }
+
+            if ( $id ) {
+                $product_object = wc_get_product( $id );
+                if ( $product_object ) {
+                    $formatted_name = $product_object->get_formatted_name();
+                    $options[$id] = rawurldecode( wp_strip_all_tags( $formatted_name ) );
+                }
+            }
+
+            return $options;
+
+        }
+
+        /*
          * Get available taxonomies
          * @return array
          */

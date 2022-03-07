@@ -219,6 +219,18 @@ if ( ! class_exists( 'AWS_Admin_Filters' ) ) :
 
                     break;
 
+                case 'callback_ajax';
+
+                    $values_callback = '';
+                    if ( $val ) {
+                        $callback_function = $this->rule['choices']['callback'];
+                        $values_callback = $this->get_rule_callback_options( $callback_function, array( $val ), $val );
+                    }
+
+                    $values = '<select data-ajax="' . esc_attr( $this->rule['ajax'] ) . '" data-placeholder="' . esc_attr( $this->rule['placeholder'] ) . '" name="' . esc_attr( $this->field_name ) . '" class="value-val aws-select2-ajax">'. $values_callback .'</select>';
+
+                    break;
+
                 case 'bool';
 
                     $values .= '<select name="' . esc_attr( $this->field_name ) . '" class="value-val">';

@@ -8,6 +8,7 @@ var __webpack_exports__ = {};
 
 var $ = jQuery; // we can do this as WebPack will compact all together inside a closure.
 
+var $body = $('body');
 
 ;// CONCATENATED MODULE: ./assets/js/shortcodes/modules/yith-wcan-filter.js
 
@@ -30,6 +31,7 @@ var YITH_WCAN_Filter = /*#__PURE__*/function () {
   // flag set during ajax call handling
   // register original url search param
   // flag set once init has executed
+  // flag set when page has at least one active filter.
   // init object
   function YITH_WCAN_Filter() {
     _classCallCheck(this, YITH_WCAN_Filter);
@@ -42,15 +44,29 @@ var YITH_WCAN_Filter = /*#__PURE__*/function () {
 
     _defineProperty(this, "initialized", false);
 
-    var head = $('head').html(),
-        pageTitle = document.title,
-        alternativeUrl = this.searchAlternativeUrl(head);
-    alternativeUrl && !this.doingAjax && !this.initialized && !yith_wcan_shortcodes.ajax_filters && this.pushUrlToHistory(alternativeUrl, pageTitle);
+    _defineProperty(this, "filtered", false);
+
+    this.initPopState();
     this.initialized = true;
-  } // execute call to filter products in current view
+  } // init page reload when popstate event alter filters
 
 
   _createClass(YITH_WCAN_Filter, [{
+    key: "initPopState",
+    value: function initPopState() {
+      this.pushUrlToHistory(window.location);
+      $(window).on('popstate', function () {
+        var _window$history$state;
+
+        if (!((_window$history$state = window.history.state) !== null && _window$history$state !== void 0 && _window$history$state._yithWcan)) {
+          return;
+        }
+
+        window.location.reload(true);
+      });
+    } // execute call to filter products in current view
+
+  }, {
     key: "doFilter",
     value: function doFilter(filters, target, preset) {
       var _this = this;
@@ -71,6 +87,7 @@ var YITH_WCAN_Filter = /*#__PURE__*/function () {
       targetUrl = this.buildUrl(filters); // if no ajax, simply change page url
 
       if (!yith_wcan_shortcodes.ajax_filters) {
+        this.pushUrlToHistory(targetUrl, document.title, filters);
         window.location = targetUrl;
         return;
       } // start doing ajax
@@ -84,7 +101,7 @@ var YITH_WCAN_Filter = /*#__PURE__*/function () {
 
         _this.refreshFragments(target, preset, response);
 
-        _this.pushUrlToHistory(targetUrl, response.pageTitle);
+        _this.pushUrlToHistory(targetUrl, response.pageTitle, filters);
 
         _this.originalSearch = location.search;
         $target && _this.unblock($target);
@@ -107,13 +124,8 @@ var YITH_WCAN_Filter = /*#__PURE__*/function () {
       $('.woocommerce-ordering').on('change', 'select.orderby', function () {
         $(this).closest('form').submit();
       });
-
-      if (filters && !!Object.keys(filters).length) {
-        $('body').addClass('filtered');
-      } else {
-        $('body').removeClass('filtered');
-      }
-
+      this.filtered = filters && !!Object.keys(filters).length;
+      this.filtered ? $body.addClass('filtered') : $body.removeClass('filtered');
       $(window).trigger('scroll');
       $(document).trigger('yith-wcan-ajax-filtered', [response, filters]).trigger('yith_wcwl_reload_fragments');
     } // build url to show
@@ -196,13 +208,15 @@ var YITH_WCAN_Filter = /*#__PURE__*/function () {
 
   }, {
     key: "pushUrlToHistory",
-    value: function pushUrlToHistory(url, title) {
+    value: function pushUrlToHistory(url, title, filters) {
       if (!yith_wcan_shortcodes.change_browser_url || navigator.userAgent.match(/msie/i)) {
         return;
       }
 
       window.history.pushState({
-        pageTitle: title
+        _yithWcan: true,
+        pageTitle: title,
+        filters: filters
       }, '', url);
     } // replaces elements in the page with refreshed ones
 

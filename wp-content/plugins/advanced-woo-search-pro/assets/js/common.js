@@ -215,8 +215,11 @@ AwsHooks.filters = AwsHooks.filters || {};
 
                                 resultNum++;
 
-                                html += '<a href="' + taxitem.link + '" ' + target + ' class="aws_result_item aws_result_tax" data-title="' + taxitem.name + '">';
-                                    html += '<span class="aws_result_content">';
+                                html += '<div class="aws_result_item aws_result_tax" data-title="' + taxitem.name + '">';
+
+                                html += '<a class="aws_result_link_top" style="position:absolute;z-index:1;white-space:nowrap;text-indent:-9999px;overflow:hidden;top:0;bottom:0;left:0;right:0;opacity:0;outline:none;text-decoration:none;" href="' + taxitem.link + '" ' + target + '>' + taxitem.name + '</a>';
+
+                                html += '<span class="aws_result_content">';
                                         html += '<span class="aws_result_head">';
                                             if ( taxitem.image ) {
                                                 html += '<img height="16" width="16" src="' + taxitem.image + '" class="aws_tax_image">';
@@ -230,7 +233,7 @@ AwsHooks.filters = AwsHooks.filters || {};
                                             html += '<span class="aws_result_excerpt">' + taxitem.excerpt + '</span>';
                                         }
                                     html += '</span>';
-                                html += '</a>';
+                                html += '</div>';
 
                             });
                         }
@@ -248,8 +251,11 @@ AwsHooks.filters = AwsHooks.filters || {};
 
                                 resultNum++;
 
-                                html += '<a href="' + useritem.link + '" ' + target + ' class="aws_result_item aws_result_user" data-title="' + useritem.name + '">';
-                                    html += '<span class="aws_result_content">';
+                                html += '<div class="aws_result_item aws_result_user" data-title="' + useritem.name + '">';
+
+                                html += '<a class="aws_result_link_top" style="position:absolute;z-index:1;white-space:nowrap;text-indent:-9999px;overflow:hidden;top:0;bottom:0;left:0;right:0;opacity:0;outline:none;text-decoration:none;" href="' + useritem.link + '" ' + target + '>' + useritem.name + '</a>';
+
+                                html += '<span class="aws_result_content">';
                                         html += '<span class="aws_result_head">';
                                             if ( useritem.image ) {
                                                 html += '<img height="16" width="16" src="' + useritem.image + '" class="aws_tax_image">';
@@ -260,7 +266,7 @@ AwsHooks.filters = AwsHooks.filters || {};
                                             html += '<span class="aws_result_excerpt">' + useritem.excerpt + '</span>';
                                         }
                                     html += '</span>';
-                                html += '</a>';
+                                html += '</div>';
 
                             });
                         }
@@ -277,7 +283,9 @@ AwsHooks.filters = AwsHooks.filters || {};
 
                         var isOnSale = result.on_sale ? ' on-sale' : '';
 
-                        html += '<a href="' + result.link + '" ' + target + ' class="aws_result_item' + isOnSale + '" data-title="' + result.title.replace(/<(?:.|\n)*?>/gm, '') + '">';
+                        html += '<div class="aws_result_item' + isOnSale + '" data-title="' + result.title.replace(/<(?:.|\n)*?>/gm, '') + '">';
+
+                        html += '<a class="aws_result_link_top" style="position:absolute;z-index:1;white-space:nowrap;text-indent:-9999px;overflow:hidden;top:0;bottom:0;left:0;right:0;opacity:0;outline:none;text-decoration:none;" href="' + result.link + '" ' + target + '>' + result.title.replace(/<(?:.|\n)*?>/gm, '') + '</a>';
 
                         if ( result.image ) {
                             html += '<span class="aws_result_image">';
@@ -309,7 +317,7 @@ AwsHooks.filters = AwsHooks.filters || {};
 
                             html += '<span class="aws_add_to_cart">';
 
-                            html += '<span data-cart-text="' + result.add_to_cart.i18n_view_cart + '" data-cart-url="' + result.add_to_cart.cart_url + '" data-product_id="' + result.add_to_cart.id + '" data-permalink="' + result.add_to_cart.permalink + '" data-cart="' + result.add_to_cart.url + '" class="aws_cart_button">';
+                            html += '<span style="z-index:2;" data-cart-text="' + result.add_to_cart.i18n_view_cart + '" data-cart-url="' + result.add_to_cart.cart_url + '" data-product_id="' + result.add_to_cart.id + '" data-permalink="' + result.add_to_cart.permalink + '" data-cart="' + result.add_to_cart.url + '" class="aws_cart_button">';
                                 html += '<span class="aws_cart_button_text">' + result.add_to_cart.text + '</span>';
                             html += '</span>';
 
@@ -320,7 +328,7 @@ AwsHooks.filters = AwsHooks.filters || {};
                                 var quantity_min = ( typeof result.add_to_cart.quantity_min !== 'undefined' ) ? result.add_to_cart.quantity_min : '1';
                                 var quantity_max = ( typeof result.add_to_cart.quantity_max !== 'undefined' ) ? result.add_to_cart.quantity_max : '';
                                 var quantity_inputmode = ( typeof result.add_to_cart.inputmode !== 'undefined' ) ? result.add_to_cart.inputmode : 'numeric';
-                                html += '<input type="number" inputmode="' + quantity_inputmode + '" data-quantity class="aws_quantity_field" step="' + step + '" min="' + quantity_min + '" max="' + quantity_max + '" name="quantity" value="' + quantity_val + '" title="Quantity" size="4">';
+                                html += '<input style="z-index:2;" type="number" inputmode="' + quantity_inputmode + '" data-quantity class="aws_quantity_field" step="' + step + '" min="' + quantity_min + '" max="' + quantity_max + '" name="quantity" value="' + quantity_val + '" title="Quantity" size="4">';
 
                                 if ( methods.isMobile() ) {
                                     html += '<span class="aws_quantity_change" data-quantity-change="plus">+</span><span class="aws_quantity_change" data-quantity-change="minus">-</span>';
@@ -409,7 +417,7 @@ AwsHooks.filters = AwsHooks.filters || {};
                             html += '</span>';
                         }
 
-                        html += '</a>';
+                        html += '</div>';
 
                     });
 

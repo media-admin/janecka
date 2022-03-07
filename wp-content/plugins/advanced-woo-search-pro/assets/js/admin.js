@@ -35,9 +35,34 @@ jQuery(document).ready(function ($) {
     // Select2 init
 
     function aws_init_select2() {
+
         $('.aws-rules-table select.aws-select2').select2({
             minimumResultsForSearch: 15
         });
+
+        var awsSelect2Ajax = $('.aws-rules-table select.aws-select2-ajax');
+        if ( awsSelect2Ajax.length > 0 ) {
+            awsSelect2Ajax.each(function( index ) {
+                $(this).select2({
+                    ajax: {
+                        type: 'POST',
+                        delay: 250,
+                        url: aws_vars.ajaxurl,
+                        dataType: "json",
+                        data: function (params) {
+                            return {
+                                search: params.term,
+                                action: $(this).data('ajax'),
+                                _ajax_nonce: aws_vars.ajax_nonce
+                            };
+                        },
+                    },
+                    placeholder: $(this).data('placeholder'),
+                    minimumInputLength: 3,
+                });
+            });
+        }
+
     }
 
     aws_init_select2();

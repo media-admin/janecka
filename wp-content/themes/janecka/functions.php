@@ -462,8 +462,6 @@ add_theme_support( 'wc-product-gallery-lightbox' );
 
 
 
-
-
 /* Editing the Shop's Title
 function wc_custom_shop_archive_title( $title ) {
 		if ( is_shop() && isset( $title['title'] ) ) {
@@ -659,6 +657,7 @@ add_filter( 'woocommerce_germanized_delivery_time_backorder_html', 'wdt_adjust_d
 
 
 
+
 /* Making sure that the extra delivery time gets saved to the product */
 function wdt_add_deliver_time_fallback() {
 
@@ -785,12 +784,14 @@ add_action( 'woocommerce_after_shop_loop_item', 'janecka_shop_display_skus', 8 )
 /* --- Single Product Page --- */
 
 
-/* Use different Single Product Template in case of cat=Eheringe or cat=Verlobungsringe */
+/* Use different Single Product Template in case of cat=Eheringe or cat=Verlobungsringe or cat=Schmuck */
 function custom_single_product_template_include( $template ) {
 		if ( is_singular('product') && (has_term( 'eheringe', 'product_cat')) ) {
 				$template = get_stylesheet_directory() . '/woocommerce/single-product-eheringe.php';
 		} elseif ( is_singular('product') && (has_term( 'verlobungsringe-liebe-hochzeit', 'product_cat')) ) {
 			$template = get_stylesheet_directory() . '/woocommerce/single-product-verlobungsringe.php';
+		} elseif ( is_singular('product') && (has_term( 'schmuck', 'product_cat')) ) {
+			$template = get_stylesheet_directory() . '/woocommerce/single-product-schmuck.php';
 		}
 		return $template;
 }
@@ -800,15 +801,10 @@ add_filter( 'template_include', 'custom_single_product_template_include', 50, 1 
 
 
 
-/* Remove unused Data */
+/* --- Remove unused Data --- */
 
 // remove Breadcrumb
-remove_action(
-	'woocommerce_before_main_content','woocommerce_breadcrumb', 20, 0);
-
-
-// remove Price
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+remove_action( 'woocommerce_before_main_content','woocommerce_breadcrumb', 20, 0);
 
 
 // remove Price
@@ -1193,8 +1189,7 @@ add_action( 'wp_footer', 'append_sku_to_titles' );
 
 /* Adding the Description */
 
-remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
-
+remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10, 0);
 
 
 function janecka_output_long_description() {
@@ -1216,6 +1211,8 @@ function janecka_output_long_description() {
 }
 
 add_action( 'woocommerce_after_single_product_summary', 'janecka_output_long_description', 15 );
+
+
 
 
 
@@ -1257,7 +1254,7 @@ add_action( 'woocommerce_after_single_product', 'woocommerce_output_related_prod
 /* --- Shopping Cart --- */
 
 function janecka_cart_info_shipping_costs( $args ){
-	echo '<p>Hinweis: Versand für Österreich ab 50 € kostenlos - darunter 4,99€ , Ausland bis 80€ 9,99€</p>';
+	echo '<p>Hinweis: Versand für Österreich ab 50,- € kostenlos - darunter 4,99 € , Ausland bis 80€ 9,99 €</p>';
 }
 
 add_filter( 'woocommerce_after_cart_contents', 'janecka_cart_info_shipping_costs',99,1 );

@@ -40,6 +40,8 @@ if ( ! class_exists( 'AWS_Admin_Ajax' ) ) :
 
             add_action( 'wp_ajax_aws-getSuboptionValues', array( $this, 'get_suboption_values' ) );
 
+            add_action( 'wp_ajax_aws-searchForProducts', array( $this, 'search_for_products' ) );
+
         }
 
         /*
@@ -422,6 +424,52 @@ if ( ! class_exists( 'AWS_Admin_Ajax' ) ) :
             }
 
             wp_send_json_success( $html );
+
+        }
+
+        /*
+         * Ajax hook to search for products
+         */
+        public function search_for_products() {
+
+            check_ajax_referer( 'aws_pro_admin_ajax_nonce' );
+
+            $term = sanitize_text_field( $_POST['search'] );
+            $term = (string) wc_clean( wp_unslash( $term ) );
+
+            $products = array();
+            $products[] = array(
+                'id' => 'aws_any',
+                'text' => __( "Any product", "advanced-woo-search" )
+            );
+
+            $include_variations = false;
+            $limit = 30;
+
+            if ( class_exists('WC_Data_Store') ) {
+
+                $data_store = WC_Data_Store::load( 'product' );
+                $ids        = $data_store->search_products( $term, '', (bool) $include_variations, false, $limit, array(), array() );
+
+                foreach ( $ids as $id ) {
+
+                    $product_object = wc_get_product( $id );
+
+                    if ( ! wc_products_array_filter_readable( $product_object ) ) {
+                        continue;
+                    }
+
+                    $formatted_name = $product_object->get_formatted_name();
+                    $products[] = array(
+                        'id' => $product_object->get_id(),
+                        'text' => rawurldecode( wp_strip_all_tags( $formatted_name ) )
+                    );
+
+                }
+
+            }
+
+            wp_send_json( array( 'results' => $products ) );
 
         }
 

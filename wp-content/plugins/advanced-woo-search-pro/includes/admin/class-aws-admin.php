@@ -305,7 +305,7 @@ class AWS_Admin {
             wp_enqueue_script( 'select2' );
             wp_enqueue_media();
 
-            wp_enqueue_script( 'aws-admin', AWS_PRO_URL . 'assets/js/admin.js', array('jquery', 'select2'), 'pro' . AWS_PRO_VERSION );
+            wp_enqueue_script( 'aws-admin', AWS_PRO_URL . 'assets/js/admin.js', array('jquery', 'jquery-ui-sortable', 'select2'), 'pro' . AWS_PRO_VERSION );
 
             wp_localize_script( 'aws-admin', 'aws_vars', array(
                 'ajaxurl'    => admin_url( 'admin-ajax.php', 'relative' ),
