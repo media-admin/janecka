@@ -2355,7 +2355,8 @@ img.brand-logo {
 		min-height: 65px !important;
 		height: auto !important;
 		margin: 25px auto 20px;
-		padding-top: 00px !important;
+		/* padding-top: 00px !important; */
+		padding-top: 15px !important;
 	}
 }
 
