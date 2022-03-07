@@ -2591,6 +2591,8 @@ img.brand-logo {
 
 .article__services {
 	margin-bottom: 50px !important;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 
@@ -2598,6 +2600,8 @@ img.brand-logo {
 
 .article-schmuckservice {
 	margin-bottom: 80px !important;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 
@@ -2605,6 +2609,8 @@ img.brand-logo {
 
 .article-uhrenservice {
 	margin-bottom: 80px !important;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 
@@ -4008,7 +4014,8 @@ input[type=checkbox]:checked:after {
 .woocommerce ul.products li.product a img {
 	position: relative !important;
 	width: auto !important;
-	object-fit: contain !important;
+	/* object-fit: contain !important; */
+	object-fit: scale-down !important;
 	overflow: auto !important;
 	margin: 10px auto !important;
 	/* border: 1px solid rgba(0,0,0,0.1); */
@@ -5984,8 +5991,7 @@ input#ship-to-different-address-checkbox::after {
 .contact-area__zahlungsmittel {
 	position: relative !important;
 	width: 100% !important;
-	padding-top: 25px;
-	padding-bottom: 25px;
+	padding: 25px 15px  !important;
 	margin-bottom: 25px !important;
 }
 
@@ -5995,6 +6001,27 @@ input#ship-to-different-address-checkbox::after {
 	width: 100% !important;
 	list-style-image: none !important;
 	margin-left: 0px !important;
+}
+
+
+@media screen and (min-width: 768px) {
+
+	.contact-area__zahlungsmittel {
+		position: relative !important;
+		width: 100% !important;
+		padding-top: 25px;
+		padding-bottom: 25px;
+		margin-bottom: 25px !important;
+	}
+
+
+	.contact-area__zahlungsmittel-listing-list {
+		position: relative !important;
+		width: 100% !important;
+		list-style-image: none !important;
+		margin-left: 0px !important;
+	}
+
 }
 
 
@@ -6034,30 +6061,62 @@ input#ship-to-different-address-checkbox::after {
 
 
 
-
-.brands-area {
-	margin-bottom: 100px !important;
+@media screen and (min-width: 768px) {
+	.brands-area {
+		margin-bottom: 100px !important;
+	}
 }
 
 
 .brands-area__brands-listing {
 	text-align: center !important;
-	margin-top: 25px !important;
-	margin-bottom: 25px !important;
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+}
+
+
+@media screen and (min-width: 768px) {
+
+	.brands-area__brands-listing {
+		text-align: center !important;
+		margin-top: 25px !important;
+		margin-bottom: 25px !important;
+	}
+
 }
 
 
 .brands-area__brands-listing .article-produkte {
 	position: relative !important;
-	display: inline-flex !important;
+	display: block !important;
 }
-
 
 
 .brands-area__brands-listing-row {
 	position: relative !important;
-	display: inline-flex !important;
+	display: block !important;
 	text-align: center !important;
+}
+
+@media screen and (min-width: 768px) {
+
+	.brands-area__brands-listing .article-produkte {
+		position: relative !important;
+		display: inline-flex !important;
+	}
+
+
+	.brands-area__brands-listing-row {
+		position: relative !important;
+		display: inline-flex !important;
+		text-align: center !important;
+	}
+
+}
+
+
+.brand-area__link {
+	height: 0px !important;
 }
 
 
