@@ -273,11 +273,11 @@
 
 
 
-<!-- Read More / Read Less Functionality  -->
+<!-- Spoiler Functionality  ----------- NOT USED -----------
 <script>
 	var $el, $ps, $up, totalHeight;
 
-	jQuery(".sidebar-box .read-more__button").click(function() {
+	jQuery(".spoiler-box .read-more__button").click(function() {
 
 		totalHeight = 0
 
@@ -309,6 +309,32 @@
 
 	});
 </script>
+
+-->
+
+
+<!--Spoiler Functionality ALTERNATIVE -->
+
+	<script>
+
+		jQuery(".readmore-link").click( function(e) {
+			// record if our text is expanded
+			var isExpanded =  $(e.target).hasClass("expand");
+
+			//close all open paragraphs
+			jQuery(".readmore.expand").removeClass("expand");
+			jQuery(".readmore-link.expand").removeClass("expand");
+
+			// if target wasn't expand, then expand it
+			if (!isExpanded){
+				jQuery( e.target ).parent( ".readmore" ).addClass( "expand" );
+				jQuery(e.target).addClass("expand");
+			}
+		});
+
+	</script>
+
+
 
 
 </body>

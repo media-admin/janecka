@@ -627,22 +627,25 @@ p.text-center {
 
 
 
-/* Read More / Read Less Functionality */
-.sidebar-box {
-	max-height: 80px;
+/* Spoiler Functionality ----------- NOT USED -----------
+
+.spoiler-box {
+	max-height: 300px;
 	position: relative;
 	overflow: hidden;
+	margin-top: 25px;
 }
 
 
-.sidebar-box .read-more {
+.spoiler-box .read-more {
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	width: 100%;
 	text-align: center;
 	margin: 0;
-	padding: 30px 0;
+	margin-bottom: -30px !important;
+	padding: 30px 0 !important;
 	border-width: 0px !important;
 	opacity: 0.7 !important;
 	background-image: -webkit-gradient(
@@ -650,7 +653,8 @@ p.text-center {
 	left top,
 	left bottom,
 	color-stop(0, rgba(255, 0, 0, 0)),
-	color-stop(1, rgba(255, 255, 255, 100)));
+	color-stop(1, rgba(255, 255, 255, 50)),
+	color-stop(2, rgba(255, 255, 255, 100)));
 }
 
 
@@ -660,10 +664,110 @@ p.text-center {
 
 
 .read-more__img {
-	position: absolute;
-	top: 5px;
-	opacity: 0.7;
+	position: relative;
+	padding-top: 25px !important;
+	opacity: 0.95 !important;
 	text-align: center;
+}
+
+
+
+
+.readmore.expand{
+	max-height: 5000px !important;
+	transition:max-height 0.35s ease-in-out;
+}
+
+
+
+@media screen and (min-width: 768px) {
+
+	.spoiler-box {
+		max-height: inherit !important;
+		position: relative;
+		overflow: auto !important;
+	}
+
+	.spoiler-box .read-more {
+		display: none !important;
+	}
+
+	.read-more__img {
+		display: none !important;
+	}
+
+}
+
+*/
+
+
+
+
+/* Spoiler Functionality ALTERNATIVE */
+
+.readmore {
+	position: relative;
+	max-height: 300px;
+	overflow: hidden;
+
+	margin-top: 25px;
+	margin-bottom: 20px;
+
+	transition:max-height 0.15s ease-out;
+
+}
+
+
+.readmore.expand {
+	max-height: 5000px !important;
+	transition:max-height 0.35s ease-in-out;
+}
+
+
+.readmore-link {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	display: block;
+	width: 100%;
+	/* height: 60px; */
+	text-align: center;
+	padding-top: 40px;
+	background-image: linear-gradient(to bottom, transparent, white);
+	cursor: pointer;
+}
+
+.readmore-link.expand {
+	position: relative;
+	background-image: none;
+	padding-top: 10px;
+	/* height: 20px; */
+}
+
+.readmore-link:after {
+	content: url('https://janecka.dev/wp-content/themes/janecka/assets/img/icons/icon-show-more.svg');
+}
+.readmore-link.expand:after{
+	content: url('https://janecka.dev/wp-content/themes/janecka/assets/img/icons/icon-show-less.svg');
+}
+
+
+@media screen and (min-width: 768px) {
+
+	.readmore {
+		max-height: inherit !important;
+		position: relative;
+		overflow: auto !important;
+	}
+
+	.readmore-link {
+		display: none !important;
+	}
+
+	.readmore-link:after {
+		display: none !important;
+	}
+
 }
 
 
