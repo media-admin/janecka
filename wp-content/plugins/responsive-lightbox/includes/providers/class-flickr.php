@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) )
 class Responsive_Lightbox_Remote_Library_Flickr extends Responsive_Lightbox_Remote_Library_API {
 
 	/**
-	 * Constructor.
+	 * Class constructor.
 	 *
 	 * @return void
 	 */
@@ -93,14 +93,19 @@ class Responsive_Lightbox_Remote_Library_Flickr extends Responsive_Lightbox_Remo
 		if ( $args['preview_page'] < 1 )
 			$args['preview_page'] = 1;
 
-		// check per page parameter
-		if ( isset( $args['preview_per_page'] ) )
-			$args['preview_per_page'] = (int) $args['preview_per_page'];
-		else
-			$args['preview_per_page'] = 20;
+		// check limit
+		if ( isset( $args['limit'] ) && ( $limit = (int) $args['limit'] ) > 0 )
+			$args['preview_per_page'] = $limit;
+		else {
+			// check per page parameter
+			if ( isset( $args['preview_per_page'] ) )
+				$args['preview_per_page'] = (int) $args['preview_per_page'];
+			else
+				$args['preview_per_page'] = 20;
 
-		if ( $args['preview_per_page'] < 5 || $args['preview_per_page'] > 500 )
-			$args['preview_per_page'] = 20;
+			if ( $args['preview_per_page'] < 5 || $args['preview_per_page'] > 500 )
+				$args['preview_per_page'] = 20;
+		}
 
 		// set query arguments
 		$this->query_args = $args;
@@ -234,22 +239,24 @@ class Responsive_Lightbox_Remote_Library_Flickr extends Responsive_Lightbox_Remo
 		$source = 'https://www.flickr.com/photos/' . $result['owner'] . '/' . $result['id'];
 
 		$imagedata = [
-			'id'				=> 0,
-			'link'				=> '',
-			'source'			=> $source,
-			'title'				=> $result['title'],
-			'caption'			=> $this->get_attribution( 'Flickr', $source, $result['ownername'], 'https://www.flickr.com/photos/' . $result['owner'] ),
-			'description'		=> $result['description']['_content'],
-			'alt'				=> $result['tags'],
-			'url'				=> $large[0],
-			'width'				=> $large[1],
-			'height'			=> $large[2],
-			'thumbnail_url'		=> $small[0],
-			'thumbnail_width'	=> $small[1],
-			'thumbnail_height'	=> $small[2],
-			'media_provider'	=> 'flickr',
-			'filename'			=> basename( $large[0] ),
-			'dimensions'		=> $large[1] . ' x ' . $large[2]
+			'id'					=> 0,
+			'link'					=> '',
+			'source'				=> $source,
+			'title'					=> $result['title'],
+			'caption'				=> $this->get_attribution( 'Flickr', $source, $result['ownername'], 'https://www.flickr.com/photos/' . $result['owner'] ),
+			'description'			=> $result['description']['_content'],
+			'alt'					=> $result['tags'],
+			'url'					=> $large[0],
+			'width'					=> $large[1],
+			'height'				=> $large[2],
+			'orientation'			=> $large[2] > $large[1] ? 'portrait' : 'landscape',
+			'thumbnail_url'			=> $small[0],
+			'thumbnail_width'		=> $small[1],
+			'thumbnail_height'		=> $small[2],
+			'thumbnail_orientation'	=> $small[2] > $small[1] ? 'portrait' : 'landscape',
+			'media_provider'		=> 'flickr',
+			'filename'				=> basename( $large[0] ),
+			'dimensions'			=> $large[1] . ' x ' . $large[2]
 		];
 
 		// create thumbnail link

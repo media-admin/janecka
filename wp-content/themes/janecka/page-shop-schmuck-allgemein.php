@@ -13,7 +13,7 @@ get_header(); ?>
 
 		<?php the_content(); ?>
 
-		<article class="shop-overview__columns--one-column">
+		<article class="shop-overview__columns--one-column" id="product-grid">
 			<section class="container content-shop__column-filters--one-column">
 				<aside class="sidebar-filters">
 					<?php echo do_shortcode ('[yith_wcan_filters slug="schmuck-gesamt"]') ?>
@@ -21,7 +21,7 @@ get_header(); ?>
 			</section>
 
 			<section class="container content-shop__column-products--one-column">
-				<div class="container" id="#product-grid">
+				<div class="container">
 					<?php echo do_shortcode ('[products limit="60" columns="4" category="schmuck" paginate="true"]') ?>
 				</div>
 			</section>

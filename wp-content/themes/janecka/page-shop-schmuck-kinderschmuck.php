@@ -13,16 +13,16 @@ get_header(); ?>
 
 		<?php the_content(); ?>
 
-		<article class="columns shop-overview__columns">
-			<section class="content-shop container column content-shop__column-filters">
+		<article class="shop-overview__columns--one-column" id="product-grid">
+			<section class="container content-shop__column-filters--one-column">
 				<aside class="sidebar-filters">
 					<?php echo do_shortcode ('[yith_wcan_filters slug="filter-set-schmuck"]') ?>
 				</aside>
 			</section>
 
-			<section class="content-shop container column content-shop__column-products">
+			<section class="container content-shop__column-products--one-column">
 				<div class="container">
-					<?php echo do_shortcode ('[products limit="60" columns="3" category="schmuck" attribute="geschlecht" terms="kinder" paginate="true"]') ?>
+					<?php echo do_shortcode ('[products limit="60" columns="4" category="schmuck" attribute="geschlecht" terms="kinder" paginate="true"]') ?>
 				</div>
 			</section>
 		</article>

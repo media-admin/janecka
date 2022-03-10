@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) )
 class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Remote_Library_API {
 
 	/**
-	 * Constructor.
+	 * Class constructor.
 	 *
 	 * @return void
 	 */
@@ -93,14 +93,19 @@ class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Re
 		if ( $args['preview_page'] < 1 )
 			$args['preview_page'] = 1;
 
-		// check per page parameter
-		if ( isset( $args['preview_per_page'] ) )
-			$args['preview_per_page'] = (int) $args['preview_per_page'];
-		else
-			$args['preview_per_page'] = 20;
+		// check limit
+		if ( isset( $args['limit'] ) && ( $limit = (int) $args['limit'] ) > 0 )
+			$args['preview_per_page'] = $limit;
+		else {
+			// check per page parameter
+			if ( isset( $args['preview_per_page'] ) )
+				$args['preview_per_page'] = (int) $args['preview_per_page'];
+			else
+				$args['preview_per_page'] = 20;
 
-		if ( $args['preview_per_page'] < 5 || $args['preview_per_page'] > 30 )
-			$args['preview_per_page'] = 20;
+			if ( $args['preview_per_page'] < 5 || $args['preview_per_page'] > 30 )
+				$args['preview_per_page'] = 20;
+		}
 
 		// set query arguments
 		$this->query_args = $args;
@@ -188,22 +193,24 @@ class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Re
 		$thumbnail_height = (int) floor( $thumbnail_width / ( $width / $height ) );
 
 		$imagedata = [
-			'id'				=> 0,
-			'link'				=> '',
-			'source'			=> $result['links']['html'],
-			'title'				=> $result['id'],
-			'caption'			=> $this->get_attribution( 'Unsplash', $result['links']['html'], $result['user']['name'], $result['user']['links']['html'] ),
-			'description'		=> ! empty( $result['description'] ) ? $result['description'] : '',
-			'alt'				=> '',
-			'url'				=> $result['urls']['raw'],
-			'width'				=> $width,
-			'height'			=> $height,
-			'thumbnail_url'		=> $result['urls']['small'],
-			'thumbnail_width'	=> $thumbnail_width,
-			'thumbnail_height'	=> $thumbnail_height,
-			'media_provider'	=> 'unsplash',
-			'filename'			=> basename( $result['urls']['raw'] ),
-			'dimensions'		=> $width . ' x ' . $height
+			'id'					=> 0,
+			'link'					=> '',
+			'source'				=> $result['links']['html'],
+			'title'					=> $result['id'],
+			'caption'				=> $this->get_attribution( 'Unsplash', $result['links']['html'], $result['user']['name'], $result['user']['links']['html'] ),
+			'description'			=> ! empty( $result['description'] ) ? $result['description'] : '',
+			'alt'					=> '',
+			'url'					=> $result['urls']['raw'],
+			'width'					=> $width,
+			'height'				=> $height,
+			'orientation'			=> $height > $width ? 'portrait' : 'landscape',
+			'thumbnail_url'			=> $result['urls']['small'],
+			'thumbnail_width'		=> $thumbnail_width,
+			'thumbnail_height'		=> $thumbnail_height,
+			'thumbnail_orientation'	=> $thumbnail_height > $thumbnail_width ? 'portrait' : 'landscape',
+			'media_provider'		=> 'unsplash',
+			'filename'				=> basename( $result['urls']['raw'] ),
+			'dimensions'			=> $width . ' x ' . $height
 		];
 
 		// create thumbnail link

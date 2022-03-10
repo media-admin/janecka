@@ -16,11 +16,15 @@ class Responsive_Lightbox_Settings {
 	public $tabs = array();
 	public $scripts = array();
 
+	/**
+	 * Class constructor.
+	 *
+	 * @return void
+	 */
 	public function __construct() {
-		
 		// set instance
 		Responsive_Lightbox()->settings = $this;
- 
+
 		// actions
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_menu', array( $this, 'admin_menu_options' ) );
@@ -30,7 +34,7 @@ class Responsive_Lightbox_Settings {
 
 	/**
 	 * Initialize additional stuff for builder.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function init_builder() {
@@ -52,7 +56,9 @@ class Responsive_Lightbox_Settings {
 
 	/**
 	 * Load default settings.
-	 * 
+	 *
+	 * @global string $pagenow
+	 *
 	 * @return void
 	 */
 	public function load_defaults() {
@@ -1003,7 +1009,7 @@ class Responsive_Lightbox_Settings {
 			'submit' => 'save_rl_folders',
 			'reset'	 => 'reset_rl_folders'
 		);
-		
+
 		$this->tabs['capabilities'] = array(
 			'name'	 => __( 'Capabilities', 'responsive-lightbox' ),
 			'key'	 => 'responsive_lightbox_capabilities',
@@ -1030,7 +1036,7 @@ class Responsive_Lightbox_Settings {
 		// push licenses just before the addons
 		if ( isset( $this->tabs['licenses'] ) ) {
 			unset( $this->tabs['licenses'] );
-		
+
 			$this->tabs['licenses'] = array(
 				'name'	 => __( 'Licenses', 'responsive-lightbox' ),
 				'key'	 => 'responsive_lightbox_licenses',
@@ -1272,7 +1278,7 @@ class Responsive_Lightbox_Settings {
 						'label' => __( 'Display links to Facebook and Twitter.', 'responsive-lightbox' ),
 						'parent' => 'prettyphoto'
 					),
-				);		
+				);
 				break;
 
 			case 'fancybox':
@@ -1808,7 +1814,7 @@ class Responsive_Lightbox_Settings {
 
 	/**
 	 * Remote Library Media Providers description
-	 * 
+	 *
 	 * @return void
 	 */
 	public function remote_library_providers_description() {
@@ -1817,7 +1823,7 @@ class Responsive_Lightbox_Settings {
 
 	/**
 	 * Register options page
-	 * 
+	 *
 	 * @return void
 	 */
 	public function admin_menu_options() {
@@ -1833,7 +1839,7 @@ class Responsive_Lightbox_Settings {
 
 	/**
 	 * Render options page
-	 * 
+	 *
 	 * @return void
 	 */
 	public function options_page() {
@@ -1873,7 +1879,6 @@ class Responsive_Lightbox_Settings {
 		echo '
 			</h2>
 			<div class="responsive-lightbox-settings">
-			
 				<div class="df-credits">
 					<h3 class="hndle">' . __( 'Responsive Lightbox & Gallery', 'responsive-lightbox' ) . ' ' . $rl->defaults['version'] . '</h3>
 					<div class="inside">
@@ -1886,12 +1891,11 @@ class Responsive_Lightbox_Settings {
 						sprintf( __( 'Check out our other <a href="%s" target="_blank">WordPress plugins</a>.', 'responsive-lightbox' ), 'https://dfactory.eu/plugins/?utm_source=responsive-lightbox-settings&utm_medium=link&utm_campaign=other-plugins' ) . '
 						</p>
 						<hr />
-						<p class="df-link inner"><a href="https://www.dfactory.eu/?utm_source=responsive-lightbox-settings&utm_medium=link&utm_campaign=created-by" target="_blank" title="Digital Factory"><img src="' . RESPONSIVE_LIGHTBOX_URL . '/images/df-black-sm.png' . '" alt="Digital Factory" /></a></p>
+						<p class="df-link inner"><a href="https://www.dfactory.eu/?utm_source=responsive-lightbox-settings&utm_medium=link&utm_campaign=created-by" target="_blank" title="Digital Factory"><img src="//rlg-53eb.kxcdn.com/df-black-sm.png' . '" alt="Digital Factory" /></a></p>
 					</div>
 				</div>
-			
 				<form action="options.php" method="post">';
-		
+
 		// views
 		if ( ! empty( $this->tabs[$tab_key]['sections'] ) ) {
 			$views = $this->tabs[$tab_key]['sections'];
@@ -1950,7 +1954,7 @@ class Responsive_Lightbox_Settings {
 
 	/**
 	 * Render settings function.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function register_settings() {
@@ -1975,7 +1979,7 @@ class Responsive_Lightbox_Settings {
 			// register sections
 			if ( ! empty( $setting['sections'] ) && is_array( $setting['sections'] ) ) {
 				foreach ( $setting['sections'] as $section_id => $section ) {
-					add_settings_section( 
+					add_settings_section(
 						esc_attr( $section_id ),
 						! empty( $section['title'] ) ? esc_html( $section['title'] ) : '',
 						! empty( $section['callback'] ) ? $section['callback'] : '',
@@ -1990,7 +1994,7 @@ class Responsive_Lightbox_Settings {
 					// prefix field id?
 					$field_key = $field_id;
 					$field_id = ( ! empty( $setting['prefix'] ) ? $setting['prefix'] . '_' : '' ) . $field_id;
-					
+
 					// field args
 					$args = array(
 						'id' => ! empty( $field['id'] ) ? $field['id'] : $field_id,
@@ -2054,7 +2058,7 @@ class Responsive_Lightbox_Settings {
 				array( $this, 'validate_licenses' )
 			);
 
-			add_settings_section( 
+			add_settings_section(
 				'responsive_lightbox_licenses',
 				__( 'Licenses', 'responsive-lightbox' ),
 				array( $this, 'licenses_section_cb' ),
@@ -2076,9 +2080,9 @@ class Responsive_Lightbox_Settings {
 
 	/**
 	 * Render settings field function.
-	 * 
+	 *
 	 * @param array $args
-	 * @return mixed
+	 * @return void|string
 	 */
 	public function render_field( $args ) {
 		if ( empty( $args ) || ! is_array( $args ) )
@@ -2090,19 +2094,19 @@ class Responsive_Lightbox_Settings {
 			case 'boolean':
 				$html .= '<label><input id="' . $args['id'] . '" type="checkbox" name="' . $args['name'] . '" value="1" ' . checked( (bool) $args['value'], true, false ) . ( isset( $args['disabled'] ) && $args['disabled'] == true ? ' disabled="disabled"' : '' ) . ' />' . $args['label'] . '</label>';
 				break;
-				
+
 			case 'radio':
 				foreach ( $args['options'] as $key => $name ) {
 					$html .= '<label><input id="' . $args['id'] . '-' . $key . '" type="radio" name="' . $args['name'] . '" value="' . $key . '" ' . checked( $key, $args['value'], false ) . ( isset( $args['disabled'] ) && $args['disabled'] == true ? ' disabled="disabled"' : '' ) . ' />' . $name . '</label> ';
 				}
 				break;
-				
+
 			case 'checkbox':
 				foreach ( $args['options'] as $key => $name ) {
 					$html .= '<label><input id="' . $args['id'] . '-' . $key . '" type="checkbox" name="' . $args['name'] . '[' . $key . ']" value="1" ' . checked( in_array( $key, $args['value'] ), true, false ) . ( isset( $args['disabled'] ) && $args['disabled'] == true ? ' disabled="disabled"' : '' ) . ' />' . $name . '</label> ';
 				}
 				break;
-				
+
 			case 'select':
 				$html .= '<select id="' . $args['id'] . '" name="' . $args['name'] . '" value="' . $args['value'] . '" ' . ( isset( $args['disabled'] ) && $args['disabled'] == true ? ' disabled="disabled"' : '' ) . '/>';
 
@@ -2112,7 +2116,7 @@ class Responsive_Lightbox_Settings {
 
 				$html .= '</select>';
 				break;
-				
+
 			case 'multiple':
 				$html .= '<fieldset>';
 
@@ -2175,9 +2179,10 @@ class Responsive_Lightbox_Settings {
 
 	/**
 	 * Sanitize field function
-	 * 
-	 * @param mixed
-	 * @param string
+	 *
+	 * @param mixed $value
+	 * @param string $type
+	 * @param array $args
 	 * @return mixed
 	 */
 	public function sanitize_field( $value = null, $type = '', $args = array() ) {
@@ -2197,7 +2202,7 @@ class Responsive_Lightbox_Settings {
 			case 'radio':
 				$value = is_array( $value ) ? false : sanitize_text_field( $value );
 				break;
-				
+
 			case 'textarea':
 			case 'wysiwyg':
 				$value = wp_kses_post( $value );
@@ -2235,7 +2240,7 @@ class Responsive_Lightbox_Settings {
 
 	/**
 	 * Validate settings function
-	 * 
+	 *
 	 * @param array $input
 	 * @return array
 	 */
@@ -2334,6 +2339,8 @@ class Responsive_Lightbox_Settings {
 	/**
 	 * Validate capabilities.
 	 *
+	 * @global object $wp_roles
+	 *
 	 * @param array $input
 	 * @return array
 	 */
@@ -2389,7 +2396,9 @@ class Responsive_Lightbox_Settings {
 	/**
 	 * Render capabilities section.
 	 *
-	 * @return string
+	 * @global object $wp_roles
+	 *
+	 * @return void
 	 */
 	public function capabilities_table() {
 		global $wp_roles;
@@ -2443,8 +2452,8 @@ class Responsive_Lightbox_Settings {
 
 	/**
 	 * Add-ons tab callback
-	 * 
-	 * @return mixed
+	 *
+	 * @return void
 	 */
 	private function addons_tab_cb() {
 		?>
@@ -2469,8 +2478,8 @@ class Responsive_Lightbox_Settings {
 
 	/**
 	 * Licenses section callback.
-	 * 
-	 * @return mixed
+	 *
+	 * @return void
 	 */
 	public function licenses_section_cb() {
 		?><p class="description"><?php _e( 'A list of licenses for your Responsive Lightbox & Gallery extensions.', 'responsive-lightbox' ); ?></p><?php
@@ -2478,8 +2487,9 @@ class Responsive_Lightbox_Settings {
 
 	/**
 	 * License field callback.
-	 * 
-	 * @return mixed
+	 *
+	 * @param array $args
+	 * @return void
 	 */
 	public function license_field_cb( $args ) {
 		$licenses = get_option( 'responsive_lightbox_licenses' );
@@ -2500,7 +2510,7 @@ class Responsive_Lightbox_Settings {
 
 	/**
 	 * Validate licenses function.
-	 * 
+	 *
 	 * @param array $input
 	 * @return array
 	 */
@@ -2565,7 +2575,7 @@ class Responsive_Lightbox_Settings {
 					}
 				}
 			}
-			
+
 			// success notice
 			if ( $statuses['updated'] > 0 )
 				add_settings_error( 'rl_licenses_settings', 'license_activated', sprintf( _n( '%s license successfully activated.', '%s licenses successfully activated.', (int) $statuses['updated'], 'responsive-lightbox' ), (int) $statuses['updated'] ), 'updated' );
@@ -2576,12 +2586,12 @@ class Responsive_Lightbox_Settings {
 		} elseif ( isset( $_POST['reset_rl_licenses'] ) ) {
 			$licenses = get_option( 'responsive_lightbox_licenses' );
 			$statuses = array( 'updated' => 0, 'error' => 0 );
-			
+
 			foreach ( $extensions as $extension ) {
 				$license = ! empty( $licenses ) && isset( $licenses[$extension['id']]['license'] ) ? $licenses[$extension['id']]['license'] : '';
 				$status = ! empty( $licenses ) && ! empty( $licenses[$extension['id']]['status'] ) ? true : false;
 
-				if ( $status === true || ( $status === false && ! empty( $license ) ) ) {	
+				if ( $status === true || ( $status === false && ! empty( $license ) ) ) {
 					// request data
 					$request_args = array(
 						'action'		=> 'deactivate_license',
@@ -2640,7 +2650,7 @@ class Responsive_Lightbox_Settings {
 			'sslverify'		=> false
 		);
 
-		// call the custom API.
+		// call the custom API
 		$response = wp_remote_get( add_query_arg( $api_params, 'http://dfactory.eu' ) );
 
 		return $response;

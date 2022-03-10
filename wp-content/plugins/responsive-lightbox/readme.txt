@@ -3,8 +3,8 @@ Contributors: dfactory
 Donate link: http://www.dfactory.eu/
 Tags: gallery, galleries, image, images, responsive, lightbox, photo, photography, masonry, video, builder
 Requires at least: 5.0
-Tested up to: 5.9
-Stable tag: 2.3.4
+Tested up to: 5.9.1
+Stable tag: 2.3.5
 Requires PHP: 5.3.0
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
@@ -138,6 +138,12 @@ Responsive Lightbox and Gallery plugin comes with many styles and effects alread
 2. screenshot-2.jpg
 
 == Changelog ==
+
+= 2.3.5 =
+* Fix: Insert gallery double preview
+* Tweak: Display of horizontal / vertical igallery images 
+* Tweak: Improved gallery images loading performance
+* Tweak: Add gallery number of images displayed
 
 = 2.3.4 =
 * New: WordPress 5.9 compatibility
@@ -477,5 +483,8 @@ Initial release
 
 == Upgrade Notice ==
 
-= 2.3.4 =
-* New: WordPress 5.9 compatibility and multiple bugfixes release
+= 2.3.5 =
+* Fix: Insert gallery double preview
+* Tweak: Display of horizontal / vertical igallery images 
+* Tweak: Improved gallery images loading performance
+* Tweak: Add gallery number of images displayed

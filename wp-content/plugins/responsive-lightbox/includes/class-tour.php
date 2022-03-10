@@ -27,6 +27,8 @@ class Responsive_Lightbox_Tour {
 	/**
 	 * Initialize tour.
 	 *
+	 * @global string $pagenow
+	 *
 	 * @return void
 	 */
 	public function init_tour() {
@@ -54,6 +56,8 @@ class Responsive_Lightbox_Tour {
 
 	/**
 	 * Add temporary admin menu.
+	 *
+	 * @global string $pagenow
 	 *
 	 * @return void
 	 */
@@ -86,6 +90,8 @@ class Responsive_Lightbox_Tour {
 
 	/**
 	 * Load the introduction tour.
+	 *
+	 * @global string $pagenow
 	 *
 	 * @return void
 	 */

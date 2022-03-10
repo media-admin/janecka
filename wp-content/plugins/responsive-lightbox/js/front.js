@@ -148,7 +148,6 @@
 				nonce: rlArgs.nonce,
 				preview: rlArgs.preview
 			} ).done( function( response ) {
-				console.log( response );
 				// replace container with new content
 				container.replaceWith( $( response ).removeClass( 'rl-loading' ) );
 
@@ -553,7 +552,7 @@
 							quitOnDocClick: ( args.quitOnDocumentClick === '1' ? true : false ),
 							onLoadEnd: function() {
 								lastImage = $( '#imagelightbox' ).attr( 'src' );
- 
+
 								// trigger image view
 								rl_view_image( script, lastImage );
 							},

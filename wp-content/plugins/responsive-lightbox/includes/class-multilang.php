@@ -17,7 +17,9 @@ class Responsive_Lightbox_Multilang {
 	public $active_plugin = '';
 
 	/**
-	 * Constructor.
+	 * Class constructor.
+	 *
+	 * @global object $sitepress
 	 *
 	 * @return void
 	 */
@@ -129,6 +131,7 @@ class Responsive_Lightbox_Multilang {
 	/**
 	 * Root folder WP Query arguments.
 	 *
+	 * @param array args
 	 * @return void
 	 */
 	public function root_folder_query_args( $args ) {
@@ -141,18 +144,19 @@ class Responsive_Lightbox_Multilang {
 	 * Get the number of attachments per language.
 	 * Based on count_posts function from Polylang plugin (/include/model.php)
 	 *
-	 * @param string $lang 2-char language
-	 * @param array $args Arguments (accepted: m, year, monthnum, day, author, author_name, post_format)
+	 * @global object $wpdb
+	 *
+	 * @param int number
 	 * @return int
 	 */
-	public function count_attachments() {
+	public function count_attachments( $number ) {
 		// active language?
 		if ( $this->current_lang !== '' ) {
 			// remove internal WP counter to avoid unwanted query
 			remove_filter( 'rl_count_attachments', array( Responsive_Lightbox()->folders, 'count_attachments' ), 10 );
 		// if not let internal WP counter do the job
 		} else
-			return;
+			return $number;
 
 		// get taxonomies
 		$taxonomies = PLL()->model->get_filtered_taxonomies_query_vars();
@@ -272,6 +276,8 @@ class Responsive_Lightbox_Multilang {
 
 	/**
 	 * Redirect to equivalent media folder in specified language.
+	 *
+	 * @global string $pagenow
 	 *
 	 * @return void
 	 */

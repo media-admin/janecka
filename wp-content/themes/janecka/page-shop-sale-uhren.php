@@ -13,27 +13,22 @@ get_header(); ?>
 
 		<?php the_content(); ?>
 
-		<article class="columns">
-
-			<section class="content-shop container column is-one-quarter">
-
-				<aside class="column column is-three-quarter">
+		<article class="shop-overview__columns--one-column" id="product-grid">
+			<section class="container content-shop__column-filters--one-column">
+				<aside class="sidebar-filters">
 					<?php echo do_shortcode ('[yith_wcan_filters slug="sale-uhren"]') ?>
 				</aside>
 			</section>
 
-			<section class="content-shop container column is-three-quarters">
+			<section class="container content-shop__column-products--one-column">
 				<div class="container">
-					<?php echo do_shortcode ('[products limit="9" columns="3" category = "uhren"  on_sale="true" paginate="true"]') ?>
+					<?php echo do_shortcode ('[products limit="60" columns="4" category="uhren" on_sale="true" paginate="true"]') ?>
 				</div>
 			</section>
-
 		</article>
 
 		<section class="service-notice">
-
 			<?php echo do_shortcode('[content_uhrenservice]'); ?>
-
 		</section>
 
 	</main>

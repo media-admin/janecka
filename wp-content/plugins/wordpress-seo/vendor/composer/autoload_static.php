@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747
+class ComposerStaticInitad28311747d46d5ba821077602af76bc
 {
     public static $prefixLengthsPsr4 = array (
         'C' => 
@@ -504,6 +504,28 @@ class ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747
         'YoastSEO_Vendor\\Symfony\\Component\\DependencyInjection\\ParameterBag\\ParameterBag' => __DIR__ . '/../..' . '/vendor_prefixed/symfony/dependency-injection/ParameterBag/ParameterBag.php',
         'YoastSEO_Vendor\\Symfony\\Component\\DependencyInjection\\ParameterBag\\ParameterBagInterface' => __DIR__ . '/../..' . '/vendor_prefixed/symfony/dependency-injection/ParameterBag/ParameterBagInterface.php',
         'YoastSEO_Vendor\\Symfony\\Component\\DependencyInjection\\ResettableContainerInterface' => __DIR__ . '/../..' . '/vendor_prefixed/symfony/dependency-injection/ResettableContainerInterface.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Data\\AlphaNum' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Data/AlphaNum.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Data\\Byte' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Data/Byte.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Data\\Kanji' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Data/Kanji.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Data\\MaskPatternTester' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Data/MaskPatternTester.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Data\\Number' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Data/Number.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Data\\QRCodeDataException' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Data/QRCodeDataException.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Data\\QRDataAbstract' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Data/QRDataAbstract.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Data\\QRDataInterface' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Data/QRDataInterface.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Data\\QRMatrix' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Data/QRMatrix.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Helpers\\BitBuffer' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Helpers/BitBuffer.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Helpers\\Polynomial' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Helpers/Polynomial.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Output\\QRCodeOutputException' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Output/QRCodeOutputException.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Output\\QRImage' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Output/QRImage.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Output\\QRMarkup' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Output/QRMarkup.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Output\\QROutputAbstract' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Output/QROutputAbstract.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Output\\QROutputInterface' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Output/QROutputInterface.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Output\\QRString' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Output/QRString.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\QRCode' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/QRCode.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\QRCodeException' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/QRCodeException.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\QROptions' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/QROptions.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Traits\\ClassLoader' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Traits/ClassLoader.php',
+        'YoastSEO_Vendor\\chillerlan\\QRCode\\Traits\\Container' => __DIR__ . '/../..' . '/vendor_prefixed/chillerlan/php-qrcode/src/Traits/Container.php',
         'Yoast\\WP\\Lib\\Abstract_Main' => __DIR__ . '/../..' . '/lib/abstract-main.php',
         'Yoast\\WP\\Lib\\Dependency_Injection\\Container_Registry' => __DIR__ . '/../..' . '/lib/dependency-injection/container-registry.php',
         'Yoast\\WP\\Lib\\Migrations\\Adapter' => __DIR__ . '/../..' . '/lib/migrations/adapter.php',
@@ -517,17 +539,16 @@ class ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747
         'Yoast\\WP\\SEO\\Actions\\Addon_Installation\\Addon_Install_Action' => __DIR__ . '/../..' . '/src/actions/addon-installation/addon-install-action.php',
         'Yoast\\WP\\SEO\\Actions\\Alert_Dismissal_Action' => __DIR__ . '/../..' . '/src/actions/alert-dismissal-action.php',
         'Yoast\\WP\\SEO\\Actions\\Configuration\\Configuration_Workout_Action' => __DIR__ . '/../..' . '/src/actions/configuration/configuration-workout-action.php',
-        'Yoast\\WP\\SEO\\Actions\\Importing\\Abstract_Aioseo_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/abstract-aioseo-settings-importing-action.php',
-        'Yoast\\WP\\SEO\\Actions\\Importing\\Abstract_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/abstract-importing-action.php',
-        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo_Cleanup_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo-cleanup-action.php',
-        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo_Custom_Archive_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo-custom-archive-settings-importing-action.php',
-        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo_Default_Archive_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo-default-archive-settings-importing-action.php',
-        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo_General_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo-general-settings-importing-action.php',
-        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo_Posts_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo-posts-importing-action.php',
-        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo_Posttype_Defaults_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo-posttype-defaults-settings-importing-action.php',
-        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo_Taxonomy_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo-taxonomy-settings-importing-action.php',
+        'Yoast\\WP\\SEO\\Actions\\Importing\\Abstract_Aioseo_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/abstract-aioseo-importing-action.php',
+        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo\\Abstract_Aioseo_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo/abstract-aioseo-settings-importing-action.php',
+        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo\\Aioseo_Cleanup_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo/aioseo-cleanup-action.php',
+        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo\\Aioseo_Custom_Archive_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo/aioseo-custom-archive-settings-importing-action.php',
+        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo\\Aioseo_Default_Archive_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo/aioseo-default-archive-settings-importing-action.php',
+        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo\\Aioseo_General_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo/aioseo-general-settings-importing-action.php',
+        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo\\Aioseo_Posts_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo/aioseo-posts-importing-action.php',
+        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo\\Aioseo_Posttype_Defaults_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo/aioseo-posttype-defaults-settings-importing-action.php',
+        'Yoast\\WP\\SEO\\Actions\\Importing\\Aioseo\\Aioseo_Taxonomy_Settings_Importing_Action' => __DIR__ . '/../..' . '/src/actions/importing/aioseo/aioseo-taxonomy-settings-importing-action.php',
         'Yoast\\WP\\SEO\\Actions\\Importing\\Deactivate_Conflicting_Plugins_Action' => __DIR__ . '/../..' . '/src/actions/importing/deactivate-conflicting-plugins-action.php',
-        'Yoast\\WP\\SEO\\Actions\\Importing\\Import_Cursor_Manager_Trait' => __DIR__ . '/../..' . '/src/actions/importing/import-cursor-manager-trait.php',
         'Yoast\\WP\\SEO\\Actions\\Importing\\Importing_Action_Interface' => __DIR__ . '/../..' . '/src/actions/importing/importing-action-interface.php',
         'Yoast\\WP\\SEO\\Actions\\Indexables\\Indexable_Head_Action' => __DIR__ . '/../..' . '/src/actions/indexables/indexable-head-action.php',
         'Yoast\\WP\\SEO\\Actions\\Indexation\\Abstract_Link_Indexing_Action' => __DIR__ . '/../..' . '/src/deprecated/src/actions/indexation/abstract-link-indexing-action.php',
@@ -574,7 +595,6 @@ class ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747
         'Yoast\\WP\\SEO\\Builders\\Primary_Term_Builder' => __DIR__ . '/../..' . '/src/builders/primary-term-builder.php',
         'Yoast\\WP\\SEO\\Commands\\Command_Interface' => __DIR__ . '/../..' . '/src/commands/command-interface.php',
         'Yoast\\WP\\SEO\\Commands\\Index_Command' => __DIR__ . '/../..' . '/src/commands/index-command.php',
-        'Yoast\\WP\\SEO\\Conditionals\\AIOSEO_V4_Importer_Conditional' => __DIR__ . '/../..' . '/src/conditionals/aioseo-v4-importer-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Addon_Installation_Conditional' => __DIR__ . '/../..' . '/src/conditionals/addon-installation-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Admin\\Doing_Post_Quick_Edit_Save_Conditional' => __DIR__ . '/../..' . '/src/conditionals/admin/doing-post-quick-edit-save-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Admin\\Estimated_Reading_Time_Conditional' => __DIR__ . '/../..' . '/src/conditionals/admin/estimated-reading-time-conditional.php',
@@ -613,6 +633,7 @@ class ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747
         'Yoast\\WP\\SEO\\Conditionals\\Third_Party\\W3_Total_Cache_Conditional' => __DIR__ . '/../..' . '/src/conditionals/third-party/w3-total-cache-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Third_Party\\WPML_Conditional' => __DIR__ . '/../..' . '/src/conditionals/third-party/wpml-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Third_Party\\WPML_WPSEO_Conditional' => __DIR__ . '/../..' . '/src/conditionals/third-party/wpml-wpseo-conditional.php',
+        'Yoast\\WP\\SEO\\Conditionals\\Updated_Importer_Framework_Conditional' => __DIR__ . '/../..' . '/src/conditionals/updated-importer-framework-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\User_Can_Manage_Wpseo_Options_Conditional' => __DIR__ . '/../..' . '/src/conditionals/user-can-manage-wpseo-options-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\WP_Robots_Conditional' => __DIR__ . '/../..' . '/src/conditionals/wp-robots-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Web_Stories_Conditional' => __DIR__ . '/../..' . '/src/conditionals/web-stories-conditional.php',
@@ -702,6 +723,8 @@ class ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747
         'Yoast\\WP\\SEO\\Helpers\\Environment_Helper' => __DIR__ . '/../..' . '/src/helpers/environment-helper.php',
         'Yoast\\WP\\SEO\\Helpers\\Home_Url_Helper' => __DIR__ . '/../..' . '/src/helpers/home-url-helper.php',
         'Yoast\\WP\\SEO\\Helpers\\Image_Helper' => __DIR__ . '/../..' . '/src/helpers/image-helper.php',
+        'Yoast\\WP\\SEO\\Helpers\\Import_Cursor_Helper' => __DIR__ . '/../..' . '/src/helpers/import-cursor-helper.php',
+        'Yoast\\WP\\SEO\\Helpers\\Import_Helper' => __DIR__ . '/../..' . '/src/helpers/import-helper.php',
         'Yoast\\WP\\SEO\\Helpers\\Indexable_Helper' => __DIR__ . '/../..' . '/src/helpers/indexable-helper.php',
         'Yoast\\WP\\SEO\\Helpers\\Indexable_To_Postmeta_Helper' => __DIR__ . '/../..' . '/src/helpers/indexable-to-postmeta-helper.php',
         'Yoast\\WP\\SEO\\Helpers\\Indexing_Helper' => __DIR__ . '/../..' . '/src/helpers/indexing-helper.php',
@@ -941,13 +964,12 @@ class ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747
         'Yoast\\WP\\SEO\\Services\\Health_Check\\Report_Builder' => __DIR__ . '/../..' . '/src/services/health-check/report-builder.php',
         'Yoast\\WP\\SEO\\Services\\Health_Check\\Report_Builder_Factory' => __DIR__ . '/../..' . '/src/services/health-check/report-builder-factory.php',
         'Yoast\\WP\\SEO\\Services\\Health_Check\\Runner_Interface' => __DIR__ . '/../..' . '/src/services/health-check/runner-interface.php',
-        'Yoast\\WP\\SEO\\Services\\Importing\\Aioseo_Replacevar_Handler' => __DIR__ . '/../..' . '/src/services/importing/aioseo-replacevar-handler.php',
-        'Yoast\\WP\\SEO\\Services\\Importing\\Aioseo_Robots_Provider_Service' => __DIR__ . '/../..' . '/src/services/importing/aioseo-robots-provider-service.php',
-        'Yoast\\WP\\SEO\\Services\\Importing\\Aioseo_Robots_Transformer_Service' => __DIR__ . '/../..' . '/src/services/importing/aioseo-robots-transformer-service.php',
-        'Yoast\\WP\\SEO\\Services\\Importing\\Aioseo_Social_Images_Provider_Service' => __DIR__ . '/../..' . '/src/services/importing/aioseo-social-images-provider-service.php',
+        'Yoast\\WP\\SEO\\Services\\Importing\\Aioseo\\Aioseo_Replacevar_Service' => __DIR__ . '/../..' . '/src/services/importing/aioseo/aioseo-replacevar-service.php',
+        'Yoast\\WP\\SEO\\Services\\Importing\\Aioseo\\Aioseo_Robots_Provider_Service' => __DIR__ . '/../..' . '/src/services/importing/aioseo/aioseo-robots-provider-service.php',
+        'Yoast\\WP\\SEO\\Services\\Importing\\Aioseo\\Aioseo_Robots_Transformer_Service' => __DIR__ . '/../..' . '/src/services/importing/aioseo/aioseo-robots-transformer-service.php',
+        'Yoast\\WP\\SEO\\Services\\Importing\\Aioseo\\Aioseo_Social_Images_Provider_Service' => __DIR__ . '/../..' . '/src/services/importing/aioseo/aioseo-social-images-provider-service.php',
         'Yoast\\WP\\SEO\\Services\\Importing\\Conflicting_Plugins_Service' => __DIR__ . '/../..' . '/src/services/importing/conflicting-plugins-service.php',
-        'Yoast\\WP\\SEO\\Services\\Importing\\Importable_Detector' => __DIR__ . '/../..' . '/src/services/importing/importable-detector.php',
-        'Yoast\\WP\\SEO\\Services\\Importing\\Importer_Action_Filter_Trait' => __DIR__ . '/../..' . '/src/services/importing/importer-action-filter-trait.php',
+        'Yoast\\WP\\SEO\\Services\\Importing\\Importable_Detector_Service' => __DIR__ . '/../..' . '/src/services/importing/importable-detector-service.php',
         'Yoast\\WP\\SEO\\Services\\Indexables\\Indexable_Version_Manager' => __DIR__ . '/../..' . '/src/services/indexables/indexable-version-manager.php',
         'Yoast\\WP\\SEO\\Surfaces\\Classes_Surface' => __DIR__ . '/../..' . '/src/surfaces/classes-surface.php',
         'Yoast\\WP\\SEO\\Surfaces\\Helpers_Surface' => __DIR__ . '/../..' . '/src/surfaces/helpers-surface.php',
@@ -989,9 +1011,9 @@ class ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitcabd01e8e5c9131326a25a2a4633e747::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitad28311747d46d5ba821077602af76bc::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitad28311747d46d5ba821077602af76bc::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitad28311747d46d5ba821077602af76bc::$classMap;
 
         }, null, ClassLoader::class);
     }

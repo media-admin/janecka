@@ -13,7 +13,7 @@ class Responsive_Lightbox_Remote_Library {
 	public $providers = [];
 
 	/**
-	 * Constructor.
+	 * Class constructor.
 	 *
 	 * @return void
 	 */
@@ -35,7 +35,7 @@ class Responsive_Lightbox_Remote_Library {
 	 * Hidden field with response data for gallery preview.
 	 *
 	 * @param array $args Field arguments
-	 * @return string Rendered field
+	 * @return string
 	 */
 	public function remote_library_response_data( $args ) {
 		// access main instance
@@ -100,7 +100,7 @@ class Responsive_Lightbox_Remote_Library {
 	/**
 	 * Get all available providers.
 	 *
-	 * @return array Providers
+	 * @return array
 	 */
 	public function get_providers() {
 		return apply_filters( 'rl_get_providers', Responsive_Lightbox()->providers );
@@ -109,7 +109,7 @@ class Responsive_Lightbox_Remote_Library {
 	/**
 	 * Get all active providers.
 	 *
-	 * @return array Providers
+	 * @return array
 	 */
 	public function get_active_providers() {
 		$providers = $this->get_providers();
@@ -138,6 +138,9 @@ class Responsive_Lightbox_Remote_Library {
 
 	/**
 	 * Scripts and styles for media frame.
+	 *
+	 * @global string $wp_version
+	 * @global string $pagenow
 	 *
 	 * @return void
 	 */
@@ -335,7 +338,7 @@ class Responsive_Lightbox_Remote_Library {
 	 *
 	 * @param array $results Requested images
 	 * @param array $args Additional arguments
-	 * @return array Compatible attachments
+	 * @return array
 	 */
 	public function create_wp_remote_attachments( $results, $args ) {
 		$user = wp_get_current_user();
@@ -345,9 +348,6 @@ class Responsive_Lightbox_Remote_Library {
 		$date = date_i18n( __( 'F j Y' ), $time );
 
 		foreach ( $results as $no => $result ) {
-			// detect orientation
-			$orientation = $result['width'] > $result['height'] ? 'landscape' : 'portrait';
-
 			// make sure those attributes are strings
 			$copy[$no]['caption'] = (string) $result['caption'];
 			$copy[$no]['description'] = (string) $result['description'];
@@ -397,29 +397,23 @@ class Responsive_Lightbox_Remote_Library {
 				'edit'	=> '',
 				'update'	=> ''
 			);
-			$copy[$no]['orientation'] = $orientation;
+			$copy[$no]['orientation'] = $result['orientation'];
 			$copy[$no]['status'] = 'inherit';
 			$copy[$no]['type'] = 'image';
 			$copy[$no]['uploadedTo'] = 0;
 			$copy[$no]['uploadedToLink'] = '';
 			$copy[$no]['uploadedToTitle'] = '';
 			$copy[$no]['sizes'] = array(
-				// 'thumbnail' => array(
-					// 'height'		=> $result['thumbnail_height'],
-					// 'width'			=> $result['thumbnail_width'],
-					// 'orientation'	=> $orientation,
-					// 'url'			=> $result['thumbnail_url']
-				// ),
 				'medium' => array(
 					'height'		=> $result['thumbnail_height'],
 					'width'			=> $result['thumbnail_width'],
-					'orientation'	=> $orientation,
+					'orientation'	=> $result['thumbnail_orientation'],
 					'url'			=> $result['thumbnail_url']
 				),
 				'full' => array(
 					'height'		=> $result['height'],
 					'width'			=> $result['width'],
-					'orientation'	=> $orientation,
+					'orientation'	=> $result['orientation'],
 					'url'			=> $result['url']
 				)
 			);
@@ -431,8 +425,8 @@ class Responsive_Lightbox_Remote_Library {
 	/**
 	 * Remote library media query.
 	 *
-	 * @param array $args Arguments
-	 * @return array Images
+	 * @param array $args
+	 * @return array
 	 */
 	public function get_remote_library_images( $args ) {
 		$args = stripslashes_deep( $args );
@@ -496,7 +490,10 @@ class Responsive_Lightbox_Remote_Library {
 					}
 				}
 
+				// get results
 				$results = apply_filters( 'rl_remote_library_query', $results, $args['media_search'], $provider_name, $args );
+
+				// number of results
 				$nor = count( $results );
 
 				// more than requested images?

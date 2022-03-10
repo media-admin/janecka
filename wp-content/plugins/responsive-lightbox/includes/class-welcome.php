@@ -7,13 +7,13 @@ new Responsive_Lightbox_Welcome_Page();
 
 /**
  * Responsive_Lightbox_Welcome_Page class.
- * 
+ *
  * @class Responsive_Lightbox_Welcome_Page
  */
 class Responsive_Lightbox_Welcome_Page {
 
 	/**
-	 * Constructor.
+	 * Class constructor.
 	 *
 	 * @return void
 	 */
@@ -61,7 +61,7 @@ class Responsive_Lightbox_Welcome_Page {
 			printf( __( 'Thank you for choosing Responsive Lightbox & Gallery - the most popular lightbox plugin and a powerful gallery builder for WordPress.', 'responsive-lightbox' ), $plugin_version );
 			?>
 		</div>
-		
+
 		<div class="rl-badge" style="position: absolute; top: 0; right: 0; box-shadow: 0 1px 3px rgba(0,0,0,.1); max-width: 180px;"><img src="<?php echo RESPONSIVE_LIGHTBOX_URL . '/images/logo-rl.png'; ?>" width="180" height="180" /></div>
 
 		<div class="changelog">
@@ -69,7 +69,7 @@ class Responsive_Lightbox_Welcome_Page {
 			<a href="<?php echo esc_url( admin_url( 'admin.php?page=responsive-lightbox-settings' ) ); ?>" class="button button-hero"><?php _e( 'Settings', 'responsive-lightbox' ); ?></a>
 			<a href="https://dfactory.eu/products/responsive-lightbox-gallery-extensions/?utm_source=responsive-lightbox-welcome&utm_medium=button&utm_campaign=dfactory-plugins" class="button button-hero" target="_blank"><?php _e( 'Addons', 'responsive-lightbox' ); ?></a>
 		</div>
-		
+
 		<hr />
 		<?php
 	}
@@ -84,10 +84,10 @@ class Responsive_Lightbox_Welcome_Page {
 		<div class="wrap about-wrap full-width-layout">
 
 			<?php $this->intro(); ?>
-			
+
 			<div class="feature-section">
-				<h2><?php _e( 'Advanced Gallery Builder', 'responsive-lightbox' ); ?></h2>			
-				<p><?php _e( 'Responsive Lightbox & Gallery comes with a powerful gallery builder right out of the box that lets you manage galleries the same way you manage posts and pages on your WordPress website. You can add images to your gallery, adjust its settings and lightbox scripts, and configure its display options.', 'responsive-lightbox' ); ?></p>	
+				<h2><?php _e( 'Advanced Gallery Builder', 'responsive-lightbox' ); ?></h2>
+				<p><?php _e( 'Responsive Lightbox & Gallery comes with a powerful gallery builder right out of the box that lets you manage galleries the same way you manage posts and pages on your WordPress website. You can add images to your gallery, adjust its settings and lightbox scripts, and configure its display options.', 'responsive-lightbox' ); ?></p>
 				<img src="<?php echo RESPONSIVE_LIGHTBOX_URL . '/images/welcome.png'; ?>" />
 			</div>
 
@@ -100,18 +100,18 @@ class Responsive_Lightbox_Welcome_Page {
 				<h2><?php _e( 'Easy Setup', 'responsive-lightbox' ); ?></h2>
 				<p><?php _e( 'A lot goes into making a good first impression - especially when your site is doing all the talking. Responsive Lightbox & Gallery automatically adds lightbox effects to all of your image galleries, image links, and video links so you can sit back and relax while we make sure your website looks its best.', 'responsive-lightbox' ); ?></p>
 			</div>
-			
+
 			<div class="feature-section">
 				<h2><?php _e( 'Powerful Addons', 'responsive-lightbox' ); ?></h2>
 				<p><?php printf( __( 'Responsive Lightbox & Gallery enhances your site by making its images and galleries look visually appealing to your site users. And when you want to kick things up a notch you can pair the free, core plugin with <del>one of 10</del> one of 12 <a href="%s" target="_blank">premium extensions.</a>', 'responsive-lightbox' ), 'https://dfactory.eu/products/responsive-lightbox-gallery-extensions/' ); ?></p>
 			</div>
-			
+
 			<hr />
 
 			<div class="return-to-dashboard">
 				<a href="<?php echo esc_url( admin_url( 'admin.php?page=responsive-lightbox-settings' ) ); ?>"><?php _e( 'Go to Settings', 'responsive-lightbox' ); ?></a>
 			</div>
-			
+
 		</div>
 		<?php
 	}

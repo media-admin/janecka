@@ -102,7 +102,7 @@ defined( 'ABSPATH' ) || exit;
 
 	?>
 
-	<?php echo do_shortcode ('[products limit="9" category="eheringe" paginate="true"]') ?>
+	<?php echo do_shortcode ('[products limit="60" columns="4" category="eheringe" paginate="true"]') ?>
 
 		<section class="service-notice">
 			<?php echo do_shortcode('[content_schmuckservice]'); ?>

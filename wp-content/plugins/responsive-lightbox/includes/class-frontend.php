@@ -14,10 +14,15 @@ class Responsive_Lightbox_Frontend {
 
 	public $gallery_no = 0;
 
+	/**
+	 * Class constructor.
+	 *
+	 * @return void
+	 */
 	public function __construct() {
 		// set instance
 		Responsive_Lightbox()->frontend = $this;
- 
+
 		// actions
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ), 100 );
 		add_action( 'rl_before_gallery', array( $this, 'before_gallery' ), 10, 2 );
@@ -50,7 +55,7 @@ class Responsive_Lightbox_Frontend {
 	 * Add lightbox to images, galleries and videos.
 	 *
 	 * @param string $content HTML content
-	 * @return string Changed HTML content
+	 * @return string
 	 */
 	public function add_lightbox( $content ) {
 		// get current script
@@ -181,7 +186,7 @@ class Responsive_Lightbox_Frontend {
 	 *
 	 * @param string $link Video link
 	 * @param array $args Link arguments
-	 * @return string Updated video link
+	 * @return string
 	 */
 	public function lightbox_video_link( $link, $args ) {
 		// link already contains data-rel attribute?
@@ -218,7 +223,7 @@ class Responsive_Lightbox_Frontend {
 	 *
 	 * @param string $link Image link
 	 * @param array $args Link arguments
-	 * @return string Updated image link
+	 * @return string
 	 */
 	public function lightbox_image_link( $link, $args ) {
 		if ( rl_current_lightbox_supports( 'html_caption' ) ) {
@@ -282,6 +287,7 @@ class Responsive_Lightbox_Frontend {
 	 * @param bool $permalink
 	 * @param mixed $icon
 	 * @param mixed $text
+	 * @return string
 	 */
 	public function wp_get_attachment_link( $link, $id, $size, $permalink, $icon, $text ) {
 		if ( Responsive_Lightbox()->options['settings']['galleries'] && wp_attachment_is_image( $id ) ) {
@@ -317,7 +323,7 @@ class Responsive_Lightbox_Frontend {
 	 *
 	 * @param string $link Gallery image link
 	 * @param array $args Gallery link arguments
-	 * @return string Updated gallery image link
+	 * @return string
 	 */
 	public function lightbox_gallery_link( $link, $args ) {
 		// gallery image title
@@ -413,7 +419,7 @@ class Responsive_Lightbox_Frontend {
 	 *
 	 * @param string $link Content link
 	 * @param array $args Content arguments
-	 * @return string Updated content link
+	 * @return string
 	 */
 	public function lightbox_content_link( $link, $args ) {
 		if ( in_array( $args['content'], $args['supports'], true ) ) {
@@ -450,7 +456,7 @@ class Responsive_Lightbox_Frontend {
 	 * Get gallery fields.
 	 *
 	 * @param string $type Gallery type
-	 * @return array Gallery fields
+	 * @return array
 	 */
 	public function get_gallery_fields( $type ) {
 		$rl = Responsive_Lightbox();
@@ -486,7 +492,7 @@ class Responsive_Lightbox_Frontend {
      *
 	 * @param array $defaults Default gallery fields
 	 * @param array $fields Custom gallery fields
-     * @return array Unique fields
+     * @return array
      */
 	public function get_unique_fields( $defaults, $fields ) {
 		// check duplicated fields
@@ -509,7 +515,7 @@ class Responsive_Lightbox_Frontend {
 	 * @param array $fields Gallery fields
 	 * @param array $shortcode_atts Gallery shortcode attributes
 	 * @param bool $gallery Whether is it rl_gallery shortcode
-	 * @return array All combined field attributes
+	 * @return array
 	 */
 	public function get_gallery_fields_atts( $fields, $shortcode_atts, $gallery = true ) {
 		// prepare default values
@@ -529,7 +535,7 @@ class Responsive_Lightbox_Frontend {
 		if ( $gallery ) {
 			$tabs = Responsive_Lightbox()->galleries->tabs;
 
-			if ( ! empty( $tabs ) ) {	
+			if ( ! empty( $tabs ) ) {
 				foreach ( $tabs as $key => $args ) {
 					if ( in_array( $key, array( 'images', 'config' ) ) )
 						continue;
@@ -545,7 +551,7 @@ class Responsive_Lightbox_Frontend {
 
 			if ( $field_atts['hover_effect'] !== '0' )
 				$field_atts['gallery_custom_class'] .= ' rl-hover-effect-' . $field_atts['hover_effect'];
-			
+
 			if ( $field_atts['show_icon'] !== '0' )
 				$field_atts['gallery_custom_class'] .= ' rl-hover-icon-' . $field_atts['show_icon'];
 		}
@@ -556,7 +562,7 @@ class Responsive_Lightbox_Frontend {
 	/**
      * Get default gallery fields.
      *
-     * @return array Default gallery
+     * @return array
      */
 	public function get_default_gallery_fields() {
 		$sizes = get_intermediate_image_sizes();
@@ -620,7 +626,7 @@ class Responsive_Lightbox_Frontend {
 	 *
 	 * @param array $atts Shortcode arguments
 	 * @param array $fields Gallery fields
-	 * @return array Sanitized shortcode arguments
+	 * @return array
 	 */
 	public function sanitize_shortcode_args( $atts, $fields ) {
 		$rl = Responsive_Lightbox();
@@ -782,7 +788,7 @@ class Responsive_Lightbox_Frontend {
 					)
 				);
 			}
-			
+
 			// any attachments?
 			if ( ! empty( $ids ) ) {
 				foreach ( $ids as $attachment_id ) {
@@ -866,7 +872,7 @@ class Responsive_Lightbox_Frontend {
 	 * @param array $image Source image data
 	 * @param array $thumbnail Thumbnail image data
 	 * @param array $args Arguments
-	 * @return string Generated gallery image link
+	 * @return string
 	 */
 	function get_gallery_image_link( $attachment_id, $image, $thumbnail, $args ) {
 		switch ( $args['link'] ) {
@@ -962,6 +968,10 @@ class Responsive_Lightbox_Frontend {
 
 	/**
 	 * Remove WooCommerce prettyPhoto lightbox styles and scripts.
+	 *
+	 * @global object $woocommerce
+	 *
+	 * @return void
 	 */
 	public function wp_enqueue_scripts() {
 		if ( class_exists( 'WooCommerce' ) ) {
@@ -1038,12 +1048,12 @@ class Responsive_Lightbox_Frontend {
 			wp_deregister_style( 'prettyphoto' );
 		}
 	}
-	
+
 	/**
 	 * Apply lightbox to WooCommerce product image.
-	 * 
-	 * @param mixed $html
-	 * @return mixed
+	 *
+	 * @param string $html
+	 * @return string
 	 */
 	public function woocommerce_single_product_image_html( $html ) {
 		if ( Responsive_Lightbox()->options['settings']['woocommerce_gallery_lightbox'] )
@@ -1054,9 +1064,9 @@ class Responsive_Lightbox_Frontend {
 
 	/**
 	 * Apply lightbox to WooCommerce product gallery.
-	 * 
-	 * @param mixed $html
-	 * @return mixed
+	 *
+	 * @param string $html
+	 * @return string
 	 */
 	public function woocommerce_single_product_image_thumbnail_html( $html ) {
 		if ( Responsive_Lightbox()->options['settings']['woocommerce_gallery_lightbox'] ) {
@@ -1079,9 +1089,11 @@ class Responsive_Lightbox_Frontend {
 
 		return $html;
 	}
-	
+
 	/**
 	 * WooCommerce gallery init.
+	 *
+	 * @return void
 	 */
 	public function woocommerce_gallery_init() {
 		if ( ( $priority = has_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails' ) ) != false && ! empty( Responsive_Lightbox()->options['settings']['default_woocommerce_gallery'] ) && Responsive_Lightbox()->options['settings']['default_woocommerce_gallery'] !== 'default' ) {
@@ -1092,12 +1104,13 @@ class Responsive_Lightbox_Frontend {
 			add_action( 'woocommerce_product_thumbnails', array( $this, 'woocommerce_gallery' ), $priority );
 		}
 	}
-	
+
 	/**
 	 * WooCommerce gallery support.
-	 * 
+	 *
 	 * @global object $product
-	 * @return mixed
+	 *
+	 * @return void
 	 */
 	public function woocommerce_gallery() {
 		global $product;
@@ -1117,10 +1130,10 @@ class Responsive_Lightbox_Frontend {
 
 	/**
 	 * Get attachment title function
-	 * 
+	 *
 	 * @param int $id
 	 * @param string $title_arg
-	 * @return string
+	 * @return false|string
 	 */
 	public function get_attachment_title( $id, $title_arg ) {
 		if ( empty( $title_arg ) || empty( $id ) )
@@ -1152,7 +1165,7 @@ class Responsive_Lightbox_Frontend {
 
 	/**
 	 * Get attachment id by url function, adjusted to work for cropped images
-	 * 
+	 *
 	 * @param string $url
 	 * @return int
 	 */
@@ -1237,9 +1250,9 @@ class Responsive_Lightbox_Frontend {
 
 	/**
 	 * Add gallery shortcode to gallery post content.
-	 * 
+	 *
 	 * @param string $content
-	 * @return string Updated content
+	 * @return string
 	 */
 	public function gallery_preview( $content ) {
 		if ( get_post_type() === 'rl_gallery' && ! ( is_archive() && is_main_query() ) )
@@ -1250,9 +1263,9 @@ class Responsive_Lightbox_Frontend {
 
 	/**
 	 * Helper: gallery number function
-	 * 
-	 * @param mixed $content
-	 * @return mixed
+	 *
+	 * @param string $content
+	 * @return string
 	 */
 	public function gallery_attributes( $content, $shortcode_atts ) {
 		++$this->gallery_no;
@@ -1329,10 +1342,11 @@ class Responsive_Lightbox_Frontend {
 
 	/**
 	 * Replace widget callback function.
-	 * 
+	 *
 	 * @global array $wp_registered_widgets
+	 *
 	 * @param array $sidebar_params
-	 * @return type
+	 * @return array
 	 */
 	public function dynamic_sidebar_params( $sidebar_params ) {
 		if ( ( is_admin() && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) || Responsive_Lightbox()->options['settings']['widgets'] != true )
@@ -1349,8 +1363,10 @@ class Responsive_Lightbox_Frontend {
 
 	/**
 	 * Widget callback function.
-	 * 
+	 *
 	 * @global array $wp_registered_widgets
+	 *
+	 * @return void
 	 */
 	public function widget_callback_function() {
 		global $wp_registered_widgets;
@@ -1374,11 +1390,11 @@ class Responsive_Lightbox_Frontend {
 
 	/**
 	 * Filter widget output.
-	 * 
-	 * @param mixed $widget_output
+	 *
+	 * @param string $content
 	 * @param string $widget_id_base
 	 * @param id $widget_id
-	 * @return mixed
+	 * @return string
 	 */
 	public function widget_output( $content, $widget_id_base, $widget_id ) {
 		return $this->add_lightbox( $content );
@@ -1386,9 +1402,9 @@ class Responsive_Lightbox_Frontend {
 
 	/**
 	 * Filter comment content.
-	 * 
-	 * @param mixed $comment_content
-	 * @return mixed
+	 *
+	 * @param string $content
+	 * @return string
 	 */
 	public function get_comment_text( $content ) {
 		if ( ( is_admin() && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) || Responsive_Lightbox()->options['settings']['comments'] != true )
@@ -1403,7 +1419,7 @@ class Responsive_Lightbox_Frontend {
 	 * @param string $class
 	 * @param array $args
 	 * @param int $gallery_id
-	 * @return void
+	 * @return string
 	 */
 	public function gallery_container_class( $class, $args, $gallery_id ) {
 		if ( $gallery_id ) {
@@ -1418,7 +1434,7 @@ class Responsive_Lightbox_Frontend {
 
 	/**
 	 * Display content before the gallery.
-	 * 
+	 *
 	 * @param array $args
 	 * @param int $gallery_id
 	 * @return void
@@ -1441,7 +1457,7 @@ class Responsive_Lightbox_Frontend {
 
 	/**
 	 * Display content after the gallery.
-	 * 
+	 *
 	 * @param array $args
 	 * @param int $gallery_id
 	 * @return void
@@ -1467,7 +1483,7 @@ class Responsive_Lightbox_Frontend {
 	 *
 	 * @param string $content HTML content
 	 * @param string $shortcode Shortcode type
-	 * @return string Changed HTML content
+	 * @return string
 	 */
 	public function vc_shortcode_content_filter_after( $content, $shortcode ) {
 		if ( in_array( $shortcode, apply_filters( 'rl_lightbox_vc_allowed_shortcode', array( 'vc_gallery', 'vc_single_image', 'vc_images_carousel' ) ), true ) )
@@ -1479,10 +1495,11 @@ class Responsive_Lightbox_Frontend {
 	/**
 	 * Render Basic Grid gallery shortcode.
 	 *
-	 * @global object $post Post object
-	 * @param mixed $output HTML output
+	 * @global object $post
+	 *
+	 * @param string $output HTML output
 	 * @param array $shortcode_atts Shortcode attributes
-	 * @return string HTML output
+	 * @return string
 	 */
 	public function basic_grid_gallery_shortcode( $output, $shortcode_atts ) {
 		if ( ! empty( $output ) )
@@ -1640,7 +1657,7 @@ class Responsive_Lightbox_Frontend {
 
 		// styles
 		wp_enqueue_style( 'responsive-lightbox-basicgrid-gallery', plugins_url( 'css/gallery-basicgrid.css', dirname( __FILE__ ) ), [], $rl->defaults['version'] );
-		
+
 		// add inline style
 		$inline_css = '
 			#rl-gallery-container-' . $gallery_no . ' .rl-basicgrid-gallery {
@@ -1671,7 +1688,7 @@ class Responsive_Lightbox_Frontend {
 				}
 			}
 		';
-		
+
 		if ( $atts['force_height'] ) {
 			$inline_css .= '
 			#rl-gallery-container-' . $gallery_no . ' .rl-basicgrid-gallery .rl-gallery-item {
@@ -1684,7 +1701,7 @@ class Responsive_Lightbox_Frontend {
 				min-width: 100%;
 			}';
 		}
-		
+
         wp_add_inline_style( 'responsive-lightbox-basicgrid-gallery', $inline_css );
 
 		// remove any new lines from the output so that the reader parses it better
@@ -1694,10 +1711,11 @@ class Responsive_Lightbox_Frontend {
 	/**
 	 * Render Basic Slider gallery shortcode.
 	 *
-	 * @global object $post Post object
-	 * @param mixed $output HTML output
+	 * @global object $post
+	 *
+	 * @param string $output HTML output
 	 * @param array $shortcode_atts Shortcode attributes
-	 * @return string HTML output
+	 * @return string
 	 */
 	public function basic_slider_gallery_shortcode( $output, $shortcode_atts ) {
 		if ( ! empty( $output ) )
@@ -1825,7 +1843,7 @@ class Responsive_Lightbox_Frontend {
 			<?php do_action( 'rl_before_gallery', $atts, $rl_gallery_id ); ?>
 
 			<ul class="rl-gallery rl-basicslider-gallery <?php echo $atts['class']; ?>" id="rl-gallery-<?php echo $gallery_no; ?>" data-gallery_no="<?php echo $gallery_no; ?>">
- 
+
 			<?php foreach ( $images as $image ) {
 				echo '<li class="rl-gallery-item">' . $image['link'] . '</li>';
 			} ?>
@@ -1885,10 +1903,11 @@ class Responsive_Lightbox_Frontend {
 	/**
 	 * Render Basic Masonry gallery shortcode.
 	 *
-	 * @global object $post Post object
-	 * @param mixed $output HTML output
+	 * @global object $post
+	 *
+	 * @param string $output HTML output
 	 * @param array $shortcode_atts Shortcode attributes
-	 * @return string HTML output
+	 * @return string
 	 */
 	public function basic_masonry_gallery_shortcode( $output, $shortcode_atts ) {
 		if ( ! empty( $output ) )

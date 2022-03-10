@@ -7,13 +7,13 @@ new Responsive_Lightbox_Widgets();
 
 /**
  * Responsive Lightbox Widgets class.
- * 
+ *
  * @class Responsive_Lightbox_Widgets
  */
 class Responsive_Lightbox_Widgets {
 
 	/**
-	 * Constructor.
+	 * Class constructor.
 	 *
 	 * @return void
 	 */
@@ -35,7 +35,7 @@ class Responsive_Lightbox_Widgets {
 
 /**
  * Responsive Lightbox Gallery Widget class.
- * 
+ *
  * @class Responsive_Lightbox_Gallery_Widget
  */
 class Responsive_Lightbox_Gallery_Widget extends WP_Widget {
@@ -47,7 +47,7 @@ class Responsive_Lightbox_Gallery_Widget extends WP_Widget {
 	private $rlg_gallery_types  = array();
 
 	/**
-	 * Constructor.
+	 * Class constructor.
 	 *
 	 * @return void
 	 */
@@ -120,13 +120,13 @@ class Responsive_Lightbox_Gallery_Widget extends WP_Widget {
 	}
 
 	/** Render widget form.
-	 * 
+	 *
 	 * @param object $instance
 	 * @return void
 	 */
 	public function form( $instance ) {
 		$attachments = ! empty( $instance['ids'] ) ? array_filter( explode( ',', $instance['ids'] ) ) : array();
-		
+
 		$html = '
 		<div class="rl-gallery-widget-container">
 			<p>
@@ -135,7 +135,7 @@ class Responsive_Lightbox_Gallery_Widget extends WP_Widget {
 			</p>
 			<div id="' . $this->get_field_id( 'gallery' ) . '" class="rl-gallery-widget' . ( ! empty( $attachments ) ? ' has-image' : '' ) . '">
 				<input type="hidden" class="rl-gallery-ids" id="' . $this->get_field_id( 'ids' ) . '" name="' . $this->get_field_name( 'ids' ) . '" value="' . ( ! empty( $instance['ids'] ) ? esc_attr( $instance['ids'] ) : '' ) . '">';
-		
+
 			$html .= '
 				<a href="#" class="rl-gallery-widget-select button button-secondary">' . __( 'Select images', 'responsive-lightbox' ) . '</a>
 				<div class="rl-gallery-widget-content">
@@ -145,7 +145,7 @@ class Responsive_Lightbox_Gallery_Widget extends WP_Widget {
 				foreach ( $attachments as $attachment_id ) {
 					if ( ! $attachment_id || ! wp_attachment_is_image( $attachment_id ) )
 						continue;
-					
+
 					$html .= '
 						<li class="rl-gallery-image" data-attachment_id="' . absint( $attachment_id ) . '">
 							<div class="rl-gallery-inner">' . wp_get_attachment_image( $attachment_id, 'thumbnail' ) . '</div>
@@ -228,7 +228,7 @@ class Responsive_Lightbox_Gallery_Widget extends WP_Widget {
 
 	/**
 	 * Save widget form.
-	 * 
+	 *
 	 * @param array $new_instance
 	 * @param array $old_instance
 	 * @return array
@@ -256,7 +256,7 @@ class Responsive_Lightbox_Gallery_Widget extends WP_Widget {
 		if ( array_key_exists( 'ids', $new_instance ) && ! empty( $new_instance['ids'] ) ) {
 			// get unique and non empty attachment ids only
 			$attachment_ids = array_unique( array_filter( array_map( 'intval', explode( ',', $new_instance['ids'] ) ) ) );
-		
+
 			$old_instance['ids'] = implode( ',', $attachment_ids );
 		} else
 			$old_instance['ids'] = $this->rlg_defaults['ids'];
@@ -296,17 +296,22 @@ class Responsive_Lightbox_Gallery_Widget extends WP_Widget {
 
 /**
  * Responsive Lightbox Gallery Widget class.
- * 
+ *
  * @class Responsive_Lightbox_Gallery_Widget
  */
 class Responsive_Lightbox_Image_Widget extends WP_Widget {
-	
+
 	private $rli_defaults = array();
 	private $rli_text_positions = array();
 	private $rli_link_to = array();
 	private $rli_aligns = array();
 	private $rli_image_sizes = array();
 
+	/**
+	 * Class constructor.
+	 *
+	 * @return void
+	 */
 	public function __construct() {
 		parent::__construct(
 			'Responsive_Lightbox_Image_Widget',
@@ -316,7 +321,7 @@ class Responsive_Lightbox_Image_Widget extends WP_Widget {
 				'classname'		=> 'rl-image-widget'
 			)
 		);
-		
+
 		$this->rli_defaults = array(
 			'title'				 => __( 'Image', 'responsive-lightbox' ),
 			'image_id'			 => 0,
@@ -359,7 +364,7 @@ class Responsive_Lightbox_Image_Widget extends WP_Widget {
 	 * Display widget.
 	 *
 	 * @param array $args
-	 * @param object $instance
+	 * @param array $instance
 	 * @return void
 	 */
 	public function widget( $args, $instance ) {
@@ -373,27 +378,27 @@ class Responsive_Lightbox_Image_Widget extends WP_Widget {
 		}
 
 		$image = wp_get_attachment_image_src( $instance['image_id'], $instance['size'], false );
-		
+
 		switch ( $instance['link_to'] ) {
-			case 'file' :
+			case 'file':
 				$file = wp_get_attachment_image_src( $instance['image_id'], 'full', false );
 				$href = $file[0];
 				break;
-			
-			case 'post' :
+
+			case 'post':
 				$href = get_permalink( $instance['image_id'] );
 				break;
-			
-			case 'custom' :
+
+			case 'custom':
 				$href = $instance['link_custom_url'];
 				break;
-			
-			case 'none' :
-			default :
+
+			case 'none':
+			default:
 				$href = '';
 				break;
 		}
-		
+
 		if ( $instance['image_align'] === 'left' )
 			$image_align = ' style="float: left;"';
 		elseif ( $instance['image_align'] === 'center' )
@@ -423,7 +428,7 @@ class Responsive_Lightbox_Image_Widget extends WP_Widget {
 		$alt = (string) get_post_meta( $instance['image_id'], '_wp_attachment_image_alt', true );
 
 		$html = $title;
-		
+
 		if ( $text_position === 'below_image' ) {
 			$html .= ($href !== '' ? '<a href="' . $href . '" class="rl-image-widget-link">' : '') . '<img class="rl-image-widget-image" src="' . $image[0] . '" width="' . $width . '" height="' . $height . '" title="' . $image_title . '" alt="' . $alt . '"' . $image_align . ' />' . ($href !== '' ? '</a>' : '');
 			$html .= '<div class="rl-image-widget-text"' . $text_align . '>' . $text . '</div>';
@@ -437,8 +442,8 @@ class Responsive_Lightbox_Image_Widget extends WP_Widget {
 	}
 
 	/** Render widget form.
-	 * 
-	 * @param object $instance
+	 *
+	 * @param array $instance
 	 * @return void
 	 */
 	public function form( $instance ) {
@@ -447,7 +452,7 @@ class Responsive_Lightbox_Image_Widget extends WP_Widget {
 
 		if ( ! empty( $image_id ) )
 			$image = wp_get_attachment_image( $image_id, 'medium', false );
-		
+
 		if ( ! $image )
 			$image = wp_get_attachment_image( $image_id, 'full', false );
 
@@ -504,7 +509,7 @@ class Responsive_Lightbox_Image_Widget extends WP_Widget {
 				<label for="' . $this->get_field_id( 'link_custom_url' ) . '">' . __( 'URL', 'responsive-lightbox' ) . '</label>
 				<input id="' . $this->get_field_id( 'link_custom_url' ) . '" class="widefat" name="' . $this->get_field_name( 'link_custom_url' ) . '" type="text" value="' . esc_attr( isset( $instance['link_custom_url'] ) ? $instance['link_custom_url'] : $this->rli_defaults['link_custom_url'] ) . '" />
 			</p>';
-			
+
 		$html .= '
 		<p>
 				<label for="' . $this->get_field_id( 'image_align' ) . '">' . __( 'Image align', 'responsive-lightbox' ) . '</label>
@@ -515,7 +520,7 @@ class Responsive_Lightbox_Image_Widget extends WP_Widget {
 				$html .= '
 					<option value="' . esc_attr( $id ) . '" ' . selected( $id, (isset( $instance['image_align'] ) ? $instance['image_align'] : $this->rli_defaults['image_align'] ), false ) . '>' . $image_align . '</option>';
 		}
-		
+
 		$html .= '
 				</select>
 			</p>
@@ -550,7 +555,7 @@ class Responsive_Lightbox_Image_Widget extends WP_Widget {
 
 		$html .= '
 			</select>
-		
+
 		</div>';
 
 		echo $html;
@@ -558,7 +563,7 @@ class Responsive_Lightbox_Image_Widget extends WP_Widget {
 
 	/**
 	 * Save widget form.
-	 * 
+	 *
 	 * @param array $new_instance
 	 * @param array $old_instance
 	 * @return array

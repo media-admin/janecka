@@ -1,7 +1,7 @@
 <?php
 // exit if accessed directly
 if ( ! defined( 'ABSPATH' ) )
-    exit;
+	exit;
 
 /**
  * Responsive Lightbox folders class.
@@ -10,19 +10,19 @@ if ( ! defined( 'ABSPATH' ) )
  */
 class Responsive_Lightbox_Folders {
 
-    private $mode = '';
+	private $mode = '';
 	private $term_counters = array(
 		'keys'		=> array(),
 		'values'	=> array()
 	);
 
-    /**
-     * Class constructor.
-     *
+	/**
+	 * Class constructor.
+	 *
 	 * @param bool $read_only Whether run this in read only mode
-     * @return void
-     */
-    public function __construct( $read_only = false ) {
+	 * @return void
+	 */
+	public function __construct( $read_only = false ) {
 		// set instance
 		Responsive_Lightbox()->folders = $this;
 
@@ -54,14 +54,14 @@ class Responsive_Lightbox_Folders {
 		add_filter( 'ajax_query_attachments_args', array( $this, 'ajax_query_attachments_args' ) );
 		add_filter( 'attachment_fields_to_edit', array( $this, 'attachment_fields_to_edit' ), 10, 2 );
 		add_filter( 'rl_count_attachments', array( $this, 'count_attachments' ), 10 );
-    }
+	}
 
 	/**
-     * Load previously used media taxonomies via AJAX.
-     *
-     * @return void
-     */
-    public function load_old_taxonomies() {
+	 * Load previously used media taxonomies via AJAX.
+	 *
+	 * @return void
+	 */
+	public function load_old_taxonomies() {
 		if ( isset( $_POST['taxonomies'], $_POST['nonce'] ) && is_array( $_POST['taxonomies'] ) && wp_verify_nonce( $_POST['nonce'], 'rl-folders-ajax-taxonomies-nonce' ) ) {
 			$fields = $this->get_taxonomies();
 
@@ -88,15 +88,16 @@ class Responsive_Lightbox_Folders {
 
 		// send JSON error
 		wp_send_json_error();
-    }
+	}
 
-    /**
-     * Detect library mode (list or grid).
-     *
-     * @global string $pagenow Current page
-     * @return void
-     */
-    public function detect_library_mode() {
+	/**
+	 * Detect library mode (list or grid).
+	 *
+	 * @global string $pagenow
+	 *
+	 * @return void
+	 */
+	public function detect_library_mode() {
 		global $pagenow;
 
 		if ( $pagenow === 'upload.php' ) {
@@ -135,16 +136,17 @@ class Responsive_Lightbox_Folders {
 				)
 			);
 		}
-    }
+	}
 
-    /**
-     * Admin body classes.
-     *
-     * @global string $pagenow Current page
-     * @param array $classes Admin body classes
-     * @return array Changed classes
-     */
-    public function admin_body_class( $classes ) {
+	/**
+	 * Admin body classes.
+	 *
+	 * @global string $pagenow
+	 *
+	 * @param array $classes Admin body classes
+	 * @return array
+	 */
+	public function admin_body_class( $classes ) {
 		global $pagenow;
 
 		if ( $pagenow === 'upload.php' ) {
@@ -153,15 +155,15 @@ class Responsive_Lightbox_Folders {
 		}
 
 		return $classes;
-    }
+	}
 
 	/**
-     * Get folders dropdown HTML.
-     *
+	 * Get folders dropdown HTML.
+	 *
 	 * @param string $taxonomy Folders taxonomy
 	 * @param string $selected Folders taxonomy ID
-     * @return string
-     */
+	 * @return string
+	 */
 	private function get_folders( $taxonomy, $selected = 0 ) {
 		// get only 1 term to check if taxonomy is empty
 		$any_terms = get_terms(
@@ -200,32 +202,32 @@ class Responsive_Lightbox_Folders {
 	}
 
 	/**
-     * Add filter to add media folder id to the uploader
-     *
-     * @return void
-     */
-    public function pre_upload_ui() {
+	 * Add filter to add media folder id to the uploader
+	 *
+	 * @return void
+	 */
+	public function pre_upload_ui() {
 		add_filter( 'upload_post_params', array( $this, 'upload_post_params' ) );
 	}
 
 	/**
-     * Add media folder id param to the uploader
-     *
+	 * Add media folder id param to the uploader
+	 *
 	 * @param array $params Plupload parameters
-     * @return array
-     */
-    public function upload_post_params( $params ) {
+	 * @return array
+	 */
+	public function upload_post_params( $params ) {
 		$params['rl_folders_upload_files_term_id'] = 0;
 
 		return $params;
 	}
 
-    /**
-     * Display dropdown at media upload UI screen.
-     *
-     * @return void
-     */
-    public function post_upload_ui() {
+	/**
+	 * Display dropdown at media upload UI screen.
+	 *
+	 * @return void
+	 */
+	public function post_upload_ui() {
 		// get taxonomy
 		$taxonomy = Responsive_Lightbox()->options['folders']['media_taxonomy'];
 
@@ -264,15 +266,15 @@ class Responsive_Lightbox_Folders {
 
 		// display select
 		echo '<p><label>' . __( 'Upload files to', 'responsive-lightbox' ) . ': ' . wp_dropdown_categories( $args ) . '</label></p>';
-    }
+	}
 
-    /**
-     * Assign attachment to given term.
-     *
-     * @param int $post_id Current attachment ID
-     * @return void
-     */
-    public function add_attachment( $post_id ) {
+	/**
+	 * Assign attachment to given term.
+	 *
+	 * @param int $post_id Current attachment ID
+	 * @return void
+	 */
+	public function add_attachment( $post_id ) {
 		if ( isset( $_POST['rl_folders_upload_files_term_id'] ) ) {
 			// cast term id
 			$term_id = (int) $_POST['rl_folders_upload_files_term_id'];
@@ -284,15 +286,16 @@ class Responsive_Lightbox_Folders {
 			if ( is_array( term_exists( $term_id, $taxonomy ) ) )
 				wp_set_object_terms( $post_id, $term_id, $taxonomy, false );
 		}
-    }
+	}
 
-    /**
-     * Add filterable dropdown to media library.
-     *
-     * @global string $pagenow Current page
-     * @return void	
-     */
-    public function restrict_manage_posts() {
+	/**
+	 * Add filterable dropdown to media library.
+	 *
+	 * @global string $pagenow
+	 *
+	 * @return void
+	 */
+	public function restrict_manage_posts() {
 		global $pagenow;
 
 		if ( $pagenow === 'upload.php' ) {
@@ -318,16 +321,17 @@ class Responsive_Lightbox_Folders {
 
 			echo ( $html === '' ? '<select name="' . $taxonomy . '" id="media-attachment-rl-folders-filters" class="postform"><option>' . __( 'All Files', 'responsive-lightbox' ) . '</option></select> ' : $html );
 		}
-    }
+	}
 
-    /**
-     * Change query to adjust taxonomy if needed.
-     *
-     * @global string $pagenow Current page
-     * @param object $query WP Query
-     * @return object Modified query
-     */
-    public function parse_query( $query ) {
+	/**
+	 * Change query to adjust taxonomy if needed.
+	 *
+	 * @global string $pagenow
+	 *
+	 * @param object $query WP Query
+	 * @return object
+	 */
+	public function parse_query( $query ) {
 		global $pagenow;
 
 		// get taxonomy
@@ -369,15 +373,15 @@ class Responsive_Lightbox_Folders {
 		}
 
 		return $query;
-    }
+	}
 
-    /**
-     * Change AJAX query parameters to adjust taxonomy in the media library if needed.
-     *
-     * @param array $query Query arguments
-     * @return array Modified query arguments
-     */
-    public function ajax_query_attachments_args( $query ) {
+	/**
+	 * Change AJAX query parameters to adjust taxonomy in the media library if needed.
+	 *
+	 * @param array $query Query arguments
+	 * @return array
+	 */
+	public function ajax_query_attachments_args( $query ) {
 		// get taxonomy
 		$taxonomy = Responsive_Lightbox()->options['folders']['media_taxonomy'];
 
@@ -406,16 +410,16 @@ class Responsive_Lightbox_Folders {
 		}
 
 		return $query;
-    }
+	}
 
-    /**
-     * Filter the array of attachment fields that are displayed when editing an attachment.
-     *
-     * @param array $fields Attachment fields
-     * @param object $post Post object
-     * @return array Modified attachment fields
-     */
-    function attachment_fields_to_edit( $fields, $post ) {
+	/**
+	 * Filter the array of attachment fields that are displayed when editing an attachment.
+	 *
+	 * @param array $fields Attachment fields
+	 * @param object $post Post object
+	 * @return array
+	 */
+	public function attachment_fields_to_edit( $fields, $post ) {
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 			// get taxonomy option
 			$taxonomy = Responsive_Lightbox()->options['folders']['media_taxonomy'];
@@ -494,14 +498,14 @@ class Responsive_Lightbox_Folders {
 		}
 
 		return $fields;
-    }
+	}
 
-    /**
-     * Assign new term IDs to given attachment ID via AJAX in modal attachment edit screen.
-     *
-     * @return void
-     */
-    function ajax_save_attachment_compat() {
+	/**
+	 * Assign new term IDs to given attachment ID via AJAX in modal attachment edit screen.
+	 *
+	 * @return void
+	 */
+	function ajax_save_attachment_compat() {
 		if ( ! isset( $_REQUEST['id'] ) || ( $id = (int) $_REQUEST['id'] ) <= 0 || empty( $_REQUEST['attachments'] ) || empty( $_REQUEST['attachments'][$id] ) )
 			wp_send_json_error();
 
@@ -555,14 +559,14 @@ class Responsive_Lightbox_Folders {
 
 		// send JSON success
 		wp_send_json_success( $attachment );
-    }
+	}
 
 	/**
-     * Assign new term IDs to given attachment ID via AJAX in modal attachment edit screen.
-     *
-     * @return void
-     */
-    function get_terms() {
+	 * Assign new term IDs to given attachment ID via AJAX in modal attachment edit screen.
+	 *
+	 * @return void
+	 */
+	function get_terms() {
 		$tags_html = '';
 
 		$tags = wp_get_post_terms( $post->ID, 'rl_media_tag', array( 'fields' => 'id=>name' ) );
@@ -582,12 +586,12 @@ class Responsive_Lightbox_Folders {
 		}
 	}
 
-    /**
-     * AJAX action to delete term.
-     *
-     * @return void
-     */
-    public function delete_term() {
+	/**
+	 * AJAX action to delete term.
+	 *
+	 * @return void
+	 */
+	public function delete_term() {
 		if ( isset( $_POST['term_id'], $_POST['nonce'], $_POST['children'] ) && wp_verify_nonce( $_POST['nonce'], 'rl-folders-ajax-library-nonce' ) && ( $term_id = (int) $_POST['term_id'] ) > 0 ) {
 			// get taxonomy
 			$taxonomy = Responsive_Lightbox()->options['folders']['media_taxonomy'];
@@ -614,14 +618,14 @@ class Responsive_Lightbox_Folders {
 
 		// send JSON error
 		wp_send_json_error();
-    }
+	}
 
-    /**
-     * AJAX action to assign new parent of the term.
-     *
-     * @return void
-     */
-    public function move_term() {
+	/**
+	 * AJAX action to assign new parent of the term.
+	 *
+	 * @return void
+	 */
+	public function move_term() {
 		// get taxonomy
 		$taxonomy = Responsive_Lightbox()->options['folders']['media_taxonomy'];
 
@@ -630,14 +634,14 @@ class Responsive_Lightbox_Folders {
 
 		// send JSON error
 		wp_send_json_error();
-    }
+	}
 
-    /**
-     * AJAX action to add new term.
-     *
-     * @return void
-     */
-    public function add_term() {
+	/**
+	 * AJAX action to add new term.
+	 *
+	 * @return void
+	 */
+	public function add_term() {
 		if ( isset( $_POST['parent_id'], $_POST['name'], $_POST['nonce'] ) && wp_verify_nonce( $_POST['nonce'], 'rl-folders-ajax-library-nonce' ) ) {
 			// get taxonomy
 			$taxonomy = Responsive_Lightbox()->options['folders']['media_taxonomy'];
@@ -689,14 +693,14 @@ class Responsive_Lightbox_Folders {
 
 		// send JSON error
 		wp_send_json_error();
-    }
+	}
 
-    /**
-     * AJAX action to rename term.
-     *
-     * @return void
-     */
-    public function rename_term() {
+	/**
+	 * AJAX action to rename term.
+	 *
+	 * @return void
+	 */
+	public function rename_term() {
 		if ( isset( $_POST['term_id'], $_POST['name'], $_POST['nonce'] ) && wp_verify_nonce( $_POST['nonce'], 'rl-folders-ajax-library-nonce' ) && ( $term_id = (int) $_POST['term_id'] ) > 0 ) {
 			// get taxonomy
 			$taxonomy = Responsive_Lightbox()->options['folders']['media_taxonomy'];
@@ -713,14 +717,14 @@ class Responsive_Lightbox_Folders {
 
 		// send JSON error
 		wp_send_json_error();
-    }
+	}
 
-    /**
-     * AJAX action to assign new term to an attachment(s).
-     *
-     * @return void
-     */
-    public function move_attachments() {
+	/**
+	 * AJAX action to assign new term to an attachment(s).
+	 *
+	 * @return void
+	 */
+	public function move_attachments() {
 		if ( isset( $_POST['attachment_ids'], $_POST['old_term_id'], $_POST['new_term_id'], $_POST['nonce'] ) && wp_verify_nonce( $_POST['nonce'], 'rl-folders-ajax-library-nonce' ) && is_array( $_POST['attachment_ids'] ) && ! empty( $_POST['attachment_ids'] ) ) {
 			// get taxonomy
 			$taxonomy = Responsive_Lightbox()->options['folders']['media_taxonomy'];
@@ -788,15 +792,15 @@ class Responsive_Lightbox_Folders {
 
 		// send JSON error
 		wp_send_json_error();
-    }
+	}
 
-    /**
-     * Change wp_list_categories HTML link.
-     *
-     * @param array $matches Matched elements
-     * @return string Changed link with term ID
-     */
-    public function replace_folders_href( $matches ) {
+	/**
+	 * Change wp_list_categories HTML link.
+	 *
+	 * @param array $matches Matched elements
+	 * @return string
+	 */
+	public function replace_folders_href( $matches ) {
 		// get taxonomy
 		$taxonomy = Responsive_Lightbox()->options['folders']['media_taxonomy'];
 
@@ -828,15 +832,15 @@ class Responsive_Lightbox_Folders {
 		}
 
 		return 'href="' . esc_url( apply_filters( 'rl_folders_media_folder_url', add_query_arg( array( 'mode' => $this->mode, $taxonomy => $url_term_id ) ), $matches, $this->mode, $url_term_id ) ) . '" data-term_id="' . $term_id . '"';
-    }
+	}
 
-    /**
-     * Change wp_list_categories HTML link by adding attachment counter.
-     *
-     * @param array $matches Matched elements
-     * @return string Changed link with counter
-     */
-    public function replace_folders_count( $matches ) {
+	/**
+	 * Change wp_list_categories HTML link by adding attachment counter.
+	 *
+	 * @param array $matches Matched elements
+	 * @return string
+	 */
+	public function replace_folders_count( $matches ) {
 		if ( isset( $matches[1] ) ) {
 			$count = (int) str_replace( array( ' ', '&nbsp;' ), '', $matches[1] );
 			$this->term_counters['values'][] = $count;
@@ -845,15 +849,15 @@ class Responsive_Lightbox_Folders {
 		}
 
 		return '</a>';
-    }
+	}
 
-    /**
-     * Change wp_list_categories HTML output by adding jsTree attributes if needed.
-     *
-     * @param array $matches Matched elements
-     * @return string Changed element
-     */
-    public function open_folders( $matches ) {
+	/**
+	 * Change wp_list_categories HTML output by adding jsTree attributes if needed.
+	 *
+	 * @param array $matches Matched elements
+	 * @return string
+	 */
+	public function open_folders( $matches ) {
 		if ( isset( $matches[0] ) ) {
 			// open parent term
 			if ( isset( $matches[0] ) && strpos( $matches[0], 'current-cat-ancestor' ) !== false )
@@ -863,17 +867,19 @@ class Responsive_Lightbox_Folders {
 			if ( strpos( $matches[0], 'current-cat' ) !== false )
 				return $matches[0] . ' data-jstree=\'{ "selected": true }\'';
 		}
-    }
+	}
 
-    /**
-     * Enqueue all needed scripts and styles for media library and modal screens.
-     *
-     * @global string $pagenow Current page
-     * @global string $wp_list_table WP List Table instance
-     * @param string $page Current page similar to $pagenow depends on from which filter function was called
-     * @return void
-     */
-    public function add_library_scripts( $page ) {
+	/**
+	 * Enqueue all needed scripts and styles for media library and modal screens.
+	 *
+	 * @global string $pagenow
+	 * @global object $wp_list_table
+	 * @global array $_wp_admin_css_colors
+	 * 
+	 * @param string $page Current page similar to $pagenow depends on from which filter function was called
+	 * @return void
+	 */
+	public function add_library_scripts( $page ) {
 		// count how many times function was executed, allow this only once
 		static $run = 0;
 
@@ -1187,7 +1193,7 @@ class Responsive_Lightbox_Folders {
 	 */
 	public function admin_print_media_styles() {
 		echo '<style>.rl_media_folder li .selectit input[type="checkbox"] { margin: 0 3px; }</style>';
-    }
+	}
 
 	/**
 	 * Count attachments.
@@ -1198,15 +1204,16 @@ class Responsive_Lightbox_Folders {
 		$count = wp_count_posts( 'attachment' );
 
 		return (int) $count->inherit;
-    }
+	}
 
 	/**
-     * Get all previously used media taxonomies.
-     *
-     * @global object $wpdb Database handler
-     * @return array Old unused taxonomies
-     */
-    public function get_taxonomies() {
+	 * Get all previously used media taxonomies.
+	 *
+	 * @global object $wpdb
+	 *
+	 * @return array
+	 */
+	public function get_taxonomies() {
 		global $wpdb;
 
 		// query
@@ -1226,5 +1233,5 @@ class Responsive_Lightbox_Folders {
 		}
 
 		return $fields;
-    }
+	}
 }

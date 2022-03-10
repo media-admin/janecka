@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) )
 class Responsive_Lightbox_Remote_Library_Wikimedia extends Responsive_Lightbox_Remote_Library_API {
 
 	/**
-	 * Constructor.
+	 * Class constructor.
 	 *
 	 * @return void
 	 */
@@ -93,14 +93,19 @@ class Responsive_Lightbox_Remote_Library_Wikimedia extends Responsive_Lightbox_R
 		if ( $args['preview_page'] < 1 )
 			$args['preview_page'] = 1;
 
-		// check per page parameter
-		if ( isset( $args['preview_per_page'] ) )
-			$args['preview_per_page'] = (int) $args['preview_per_page'];
-		else
-			$args['preview_per_page'] = 20;
+		// check limit
+		if ( isset( $args['limit'] ) && ( $limit = (int) $args['limit'] ) > 0 )
+			$args['preview_per_page'] = $limit;
+		else {
+			// check per page parameter
+			if ( isset( $args['preview_per_page'] ) )
+				$args['preview_per_page'] = (int) $args['preview_per_page'];
+			else
+				$args['preview_per_page'] = 20;
 
-		if ( $args['preview_per_page'] < 5 || $args['preview_per_page'] > 200 )
-			$args['preview_per_page'] = 20;
+			if ( $args['preview_per_page'] < 5 || $args['preview_per_page'] > 200 )
+				$args['preview_per_page'] = 20;
+		}
 
 		// set query arguments
 		$this->query_args = $args;
@@ -222,7 +227,7 @@ class Responsive_Lightbox_Remote_Library_Wikimedia extends Responsive_Lightbox_R
 				// use larger size if height is less than 150 pixels
 				if ( $thumbnail_height < 150 ) {
 					$thumbnail_width = 480;
-					
+
 					// calculate new height based on original ratio
 					$thumbnail_height = (int) floor( $thumbnail_width / $ratio );
 				}
@@ -236,22 +241,24 @@ class Responsive_Lightbox_Remote_Library_Wikimedia extends Responsive_Lightbox_R
 		}
 
 		$imagedata = [
-			'id'				=> 0,
-			'link'				=> '',
-			'source'			=> $result['descriptionshorturl'],
-			'title'				=> $result['title'],
-			'caption'			=> $this->get_attribution( 'Wikimedia', $result['descriptionshorturl'] ),
-			'description'		=> isset( $result['extmetadata']['ImageDescription']['value'] ) ? $result['extmetadata']['ImageDescription']['value'] : '',
-			'alt'				=> isset( $result['extmetadata']['Categories']['value'] ) ? str_replace( '|', ', ', $result['extmetadata']['Categories']['value'] ) : '',
-			'url'				=> $result['url'],
-			'width'				=> $width,
-			'height'			=> $height,
-			'thumbnail_url'		=> $thumbnail_url,
-			'thumbnail_width'	=> $thumbnail_width,
-			'thumbnail_height'	=> $thumbnail_height,
-			'media_provider'	=> 'wikimedia',
-			'filename'			=> $result['name'],
-			'dimensions'		=> $width . ' x ' . $height
+			'id'					=> 0,
+			'link'					=> '',
+			'source'				=> $result['descriptionshorturl'],
+			'title'					=> $result['title'],
+			'caption'				=> $this->get_attribution( 'Wikimedia', $result['descriptionshorturl'] ),
+			'description'			=> isset( $result['extmetadata']['ImageDescription']['value'] ) ? $result['extmetadata']['ImageDescription']['value'] : '',
+			'alt'					=> isset( $result['extmetadata']['Categories']['value'] ) ? str_replace( '|', ', ', $result['extmetadata']['Categories']['value'] ) : '',
+			'url'					=> $result['url'],
+			'width'					=> $width,
+			'height'				=> $height,
+			'orientation'			=> $height > $width ? 'portrait' : 'landscape',
+			'thumbnail_url'			=> $thumbnail_url,
+			'thumbnail_width'		=> $thumbnail_width,
+			'thumbnail_height'		=> $thumbnail_height,
+			'thumbnail_orientation'	=> $thumbnail_height > $thumbnail_width ? 'portrait' : 'landscape',
+			'media_provider'		=> 'wikimedia',
+			'filename'				=> $result['name'],
+			'dimensions'			=> $width . ' x ' . $height,
 		];
 
 		// create thumbnail link

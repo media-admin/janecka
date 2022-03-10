@@ -23,7 +23,7 @@ abstract class Responsive_Lightbox_Remote_Library_API {
 	protected $response_data_args = [];
 
 	/**
-	 * Constructor.
+	 * Class constructor.
 	 *
 	 * @return void
 	 */
@@ -49,7 +49,7 @@ abstract class Responsive_Lightbox_Remote_Library_API {
 			'name'			=> ! empty( $provider->name ) ? esc_html( $provider->name ) : '',
 			'defaults'		=> ! empty( $provider->defaults ) && is_array( $provider->defaults ) ? $provider->defaults : [],
 			'fields'		=> ! empty( $provider->fields ) && is_array( $provider->fields ) ? $provider->fields : [],
-			'response_args' => ! empty( $provider->response_data_args ) && is_array( $provider->response_data_args ) ? $provider->response_data_args : []
+			'response_args'	=> ! empty( $provider->response_data_args ) && is_array( $provider->response_data_args ) ? $provider->response_data_args : []
 		);
 
 		// add provider default values
@@ -187,7 +187,7 @@ abstract class Responsive_Lightbox_Remote_Library_API {
 	 * @param string $link Image URL
 	 * @param string $user_name User name
 	 * @param string $user_link User URL
-	 * @return string 
+	 * @return string
 	 */
 	public function get_attribution( $name, $link = null, $user_name = null, $user_link = null ) {
 		if ( empty( $link ) )

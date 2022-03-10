@@ -17,7 +17,7 @@ class Responsive_Lightbox_Galleries {
 	private $menu_item;
 
 	/**
-	 * Constructor.
+	 * Class constructor.
 	 *
 	 * @param bool $read_only Whether is it read only mode
 	 * @return void
@@ -1508,7 +1508,7 @@ class Responsive_Lightbox_Galleries {
 	 * @param string $field Field name
 	 * @param mixed $value Field value
 	 * @param array $args Field arguments
-	 * @return mixed Sanitized value
+	 * @return mixed
 	 */
 	public function sanitize_field( $field, $value, $args ) {
 		switch ( $args['type'] ) {
@@ -2049,7 +2049,7 @@ class Responsive_Lightbox_Galleries {
 	 * @return void
 	 */
 	public function delete_attachment( $attachment_id ) {
-		
+		//@TODO
 	}
 
 	/**
@@ -2085,6 +2085,7 @@ class Responsive_Lightbox_Galleries {
 			'posts_per_page'		=> -1,
 			'images_per_page'		=> 0,
 			'page'					=> 1,
+			'limit'					=> 0,
 			'nopaging'				=> true,
 			'image_size'			=> 'large',
 			'thumbnail_size'		=> 'thumbnail',
@@ -2200,22 +2201,35 @@ class Responsive_Lightbox_Galleries {
 					// filter attachments
 					$attachments = apply_filters( 'rl_get_gallery_images_attachments', $attachments );
 
+					// exclude any attachments?
+					if ( $args['exclude'] && ! empty( $data[$menu_item]['attachments']['exclude'] ) )
+						$attachments = array_diff( $attachments, $data[$menu_item]['attachments']['exclude'] );
+
+					// any attachments?
 					if ( $attachments ) {
-						if ( $args['exclude'] )
-							$excluded = ! empty( $data[$menu_item]['attachments']['exclude'] ) ? $data[$menu_item]['attachments']['exclude'] : [];
+						if ( $args['limit'] )
+							$counter = 0;
 
 						foreach ( $attachments as $attachment_id ) {
 							// real attachment?
 							if ( ! wp_attachment_is_image( $attachment_id ) )
 								continue;
 
-							// get attachment image data
-							if ( ! in_array( $attachment_id, $excluded ) ) {
-								// for counting mode get attachment id only
-								if ( $args['count_images'] )
-									$images[] = $attachment_id;
-								else
-									$images[] = $this->get_gallery_image_src( $attachment_id, $args['image_size'], $args['thumbnail_size'] );
+							// for counting mode get attachment id only
+							if ( $args['count_images'] )
+								$images[] = $attachment_id;
+							else {
+								// get attachment image data
+								$images[] = $this->get_gallery_image_src( $attachment_id, $args['image_size'], $args['thumbnail_size'] );
+
+								// limit attachments?
+								if ( $args['limit'] ) {
+									$counter++;
+
+									// limit reached?
+									if ( $counter === $args['limit'] )
+										break;
+								}
 							}
 						}
 					}
@@ -2255,18 +2269,35 @@ class Responsive_Lightbox_Galleries {
 					// filter attachments
 					$attachments = apply_filters( 'rl_get_gallery_images_attachments', $attachments );
 
+					// exclude any attachments?
+					if ( $args['exclude'] && ! empty( $data[$menu_item]['attachments']['exclude'] ) )
+						$attachments = array_diff( $attachments, $data[$menu_item]['attachments']['exclude'] );
+
+					// any attachments?
 					if ( $attachments ) {
-						if ( $args['exclude'] )
-							$excluded = ! empty( $data[$menu_item]['attachments']['exclude'] ) ? $data[$menu_item]['attachments']['exclude'] : [];
+						if ( $args['limit'] )
+							$counter = 0;
 
 						foreach ( $attachments as $attachment_id ) {
-							// get attachment image data
-							if ( ! in_array( $attachment_id, $excluded ) ) {
-								// for counting mode get attachment id only
-								if ( $args['count_images'] )
-									$images[] = $attachment_id;
-								else
-									$images[] = $this->get_gallery_image_src( $attachment_id, $args['image_size'], $args['thumbnail_size'] );
+							// real attachment?
+							if ( ! wp_attachment_is_image( $attachment_id ) )
+								continue;
+
+							// for counting mode get attachment id only
+							if ( $args['count_images'] )
+								$images[] = $attachment_id;
+							else {
+								// get attachment image data
+								$images[] = $this->get_gallery_image_src( $attachment_id, $args['image_size'], $args['thumbnail_size'] );
+
+								// limit attachments?
+								if ( $args['limit'] ) {
+									$counter++;
+
+									// limit reached?
+									if ( $counter === $args['limit'] )
+										break;
+								}
 							}
 						}
 					}
@@ -2394,12 +2425,12 @@ class Responsive_Lightbox_Galleries {
 						// run query
 						$query = new WP_Query( apply_filters( 'rl_folders_query_args', $wp_query_args ) );
 
-						// get attachment IDs
+						// get attachment ids
 						$attachments = $query->get_posts();
 
 						// valid attachments?
 						if ( ! is_wp_error( $attachments ) ) {
-							// cast IDs to int
+							// cast ids to int
 							$attachments = array_map( 'intval', $attachments );
 
 							// make sure to skip duplicates
@@ -2408,17 +2439,36 @@ class Responsive_Lightbox_Galleries {
 							// filter attachments
 							$attachments = apply_filters( 'rl_get_gallery_images_attachments', $attachments );
 
-							if ( $args['exclude'] )
-								$excluded = ! empty( $data[$menu_item]['attachments']['exclude'] ) ? $data[$menu_item]['attachments']['exclude'] : [];
+							// exclude any attachments?
+							if ( $args['exclude'] && ! empty( $data[$menu_item]['attachments']['exclude'] ) )
+								$attachments = array_diff( $attachments, $data[$menu_item]['attachments']['exclude'] );
 
-							foreach ( $attachments as $attachment_id ) {
-								// get attachment image data
-								if ( ! in_array( $attachment_id, $excluded ) ) {
+							// any attachments?
+							if ( $attachments ) {
+								if ( $args['limit'] )
+									$counter = 0;
+
+								foreach ( $attachments as $attachment_id ) {
+									// real attachment?
+									if ( ! wp_attachment_is_image( $attachment_id ) )
+										continue;
+
 									// for counting mode get attachment id only
 									if ( $args['count_images'] )
 										$images[] = $attachment_id;
-									else
+									else {
+										// get attachment image data
 										$images[] = $this->get_gallery_image_src( $attachment_id, $args['image_size'], $args['thumbnail_size'] );
+
+										// limit attachments?
+										if ( $args['limit'] ) {
+											$counter++;
+
+											// limit reached?
+											if ( $counter === $args['limit'] )
+												break;
+										}
+									}
 								}
 							}
 						}
@@ -2430,13 +2480,15 @@ class Responsive_Lightbox_Galleries {
 					if ( ! $rl->options['remote_library']['active'] )
 						break;
 
-					// check for
+					// no media search phrase?
 					if ( ! isset( $args['media_search'] ) )
 						$args['media_search'] = isset( $data[$menu_item]['media_search'] ) ? $data[$menu_item]['media_search'] : '';
 
+					// no media provider?
 					if ( ! isset( $args['media_provider'] ) )
 						$args['media_provider'] = isset( $data[$menu_item]['media_provider'] ) ? $data[$menu_item]['media_provider'] : 'all';
 
+					// get remote images
 					$images = $rl->remote_library->get_remote_library_images( $args );
 					break;
 			}
@@ -2656,7 +2708,13 @@ class Responsive_Lightbox_Galleries {
 		$html = '';
 
 		// get images
-		$images = $this->get_gallery_images( $gallery_id, array( 'exclude' => true ) );
+		$images = $this->get_gallery_images(
+			$gallery_id,
+			[
+				'exclude'	=> true,
+				'limit'		=> 20
+			]
+		);
 
 		// get number of images
 		$images_count = (int) get_post_meta( $gallery_id, '_rl_images_count', true );
@@ -2664,8 +2722,8 @@ class Responsive_Lightbox_Galleries {
 		if ( ! empty( $images ) ) {
 			foreach ( $images as $image ) {
 				$html .= '
-				<li role="checkbox" aria-label="" aria-checked="false" data-id="' . $image['id'] . '" class="attachment save-ready rl-status-active' . '">
-					<div class="attachment-preview js--select-attachment type-image landscape">
+				<li tabindex="0" role="checkbox" aria-label="' . esc_attr( $image['title'] ) . '" aria-checked="true" data-id="' . $image['id'] . '" class="attachment selection selected rl-status-active">
+					<div class="attachment-preview js--select-attachment type-image ' . esc_attr( $image['thumbnail_orientation'] ). '">
 						<div class="thumbnail">
 							<div class="centered">
 								<img src="' . $image['thumbnail_url'] . '" draggable="false" alt="" />
@@ -2742,25 +2800,31 @@ class Responsive_Lightbox_Galleries {
 		$query = new WP_Query( $args );
 
 		$html = '';
+		$ids = [];
 
+		// any galleries?
 		if ( ! empty( $query->posts ) ) {
 			foreach ( $query->posts as $gallery ) {
+				// save gallery id
+				$ids[] = $gallery->ID;
+
+				// get featured image
 				$featured = $this->get_featured_image_src( $gallery->ID );
 
 				if ( is_array( $featured ) && array_key_exists( 'url', $featured ) )
-					$featured = $featured['url'];
+					$featured_image = $featured['url'];
 				else
-					$featured = '';
+					$featured_image = '';
 
 				// get title
 				$title = $gallery->post_title !== '' ? $gallery->post_title : __( '(no title)', 'responsive-gallery' );
 
 				$html .= '
-				<li role="checkbox" aria-label="' . esc_attr( $title ) . '" aria-checked="false" data-id="' . $gallery->ID . '" class="attachment save-ready">
-					<div class="attachment-preview js--select-attachment type-image landscape">
+				<li tabindex="0" role="checkbox" aria-label="' . esc_attr( $title ) . '" aria-checked="true" data-id="' . $gallery->ID . '" class="attachment selection">
+					<div class="attachment-preview js--select-attachment type-image ' . ( ! empty( $featured['thumbnail_orientation'] ) ? esc_attr( $featured['thumbnail_orientation'] ) : 'landscape' ) . '">
 						<div class="thumbnail">
-							<div class="centered" data-full-src="' . $featured . '">
-								' . $this->get_featured_image( $gallery->ID ) . '
+							<div class="centered" data-full-src="' . $featured_image . '">
+								' . $this->get_featured_image( $gallery->ID, 'thumbnail' ) . '
 							</div>
 							<div class="filename">
 								<div>' . esc_html( $title ) . '</div>
@@ -2773,7 +2837,12 @@ class Responsive_Lightbox_Galleries {
 		}
 
 		// send galleries content
-		wp_send_json_success( $html );
+		wp_send_json_success(
+			[
+				'galleries'	=> $ids,
+				'html'		=> $html
+			]
+		);
 	}
 
 	/**
@@ -3060,10 +3129,16 @@ class Responsive_Lightbox_Galleries {
 					'url'				=> $image_src[0],
 					'width'				=> $image_src[1],
 					'height'			=> $image_src[2],
+					'orientation'		=> $image_src[2] > $image_src[1] ? 'portrait' : 'landscape',
 					'thumbnail_url'		=> $thumbnail_src[0],
 					'thumbnail_width'	=> $thumbnail_src[1],
 					'thumbnail_height'	=> $thumbnail_src[2]
 				);
+
+				if ( $diff_sizes )
+					$imagedata['thumbnail_orientation'] = $thumbnail_src[2] > $thumbnail_src[1] ? 'portrait' : 'landscape';
+				else
+					$imagedata['thumbnail_orientation'] = $imagedata['orientation'];
 			}
 		// image url
 		} elseif ( is_string( $image ) ) {
@@ -3079,10 +3154,13 @@ class Responsive_Lightbox_Galleries {
 				'url'				=> $imagedata['url'],
 				'width'				=> $imagedata['width'],
 				'height'			=> $imagedata['height'],
+				'orientation'		=> $imagedata['height'] > $imagedata['width'] ? 'portrait' : 'landscape',
 				'thumbnail_url'		=> $imagedata['url'],
 				'thumbnail_width'	=> $imagedata['width'],
 				'thumbnail_height'	=> $imagedata['height']
 			);
+
+			$imagedata['thumbnail_orientation'] = $imagedata['orientation'];
 		// full image array
 		} elseif ( is_array( $image ) ) {
 			// set width and height from url, if not available
@@ -3102,8 +3180,6 @@ class Responsive_Lightbox_Galleries {
 
 			$imagedata = array(
 				'id'				=> ! empty( $image['id'] ) ? (int) $image['id'] : 0,
-				'link'				=> ! empty( $image['link'] ) ? esc_url( $image['link'] ) : '',
-				'thumbnail_link'	=> ! empty( $image['thumbnail_link'] ) ? esc_url( $image['thumbnail_link'] ) : '',
 				'title'				=> ! empty( $image['title'] ) ? esc_html( $image['title'] ) : '',
 				'caption'			=> ! empty( $image['caption'] ) ? esc_html( $image['caption'] ) : '',
 				'alt'				=> ! empty( $image['alt'] ) ? esc_html( $image['alt'] ) : '',
@@ -3113,7 +3189,12 @@ class Responsive_Lightbox_Galleries {
 				'thumbnail_url'		=> ! empty( $image['thumbnail_url'] ) ? esc_url( $image['thumbnail_url'] ) : '',
 				'thumbnail_width'	=> ! empty( $image['thumbnail_width'] ) ? (int) $image['thumbnail_width'] : 0,
 				'thumbnail_height'	=> ! empty( $image['thumbnail_height'] ) ? (int) $image['thumbnail_height'] : 0,
+				'link'				=> ! empty( $image['link'] ) ? esc_url( $image['link'] ) : '',
+				'thumbnail_link'	=> ! empty( $image['thumbnail_link'] ) ? esc_url( $image['thumbnail_link'] ) : ''
 			);
+
+			$imagedata['orientation'] = $imagedata['height'] > $imagedata['width'] ? 'portrait' : 'landscape';
+			$imagedata['thumbnail_orientation'] = $imagedata['thumbnail_height'] > $imagedata['thumbnail_width'] ? 'portrait' : 'landscape';
 		}
 
 		if ( ! empty( $imagedata ) ) {
@@ -3178,8 +3259,14 @@ class Responsive_Lightbox_Galleries {
 			// first image
 			case 'image':
 			default:
-				// get gallery images
-				$images = $this->get_gallery_images( $gallery_id, array( 'exclude' => true ) );
+				// get first gallery image
+				$images = $this->get_gallery_images(
+					$gallery_id,
+					[
+						'exclude'	=> true,
+						'limit'		=> 1
+					]
+				);
 
 				// set image data
 				if ( $images )
@@ -3188,7 +3275,6 @@ class Responsive_Lightbox_Galleries {
 					$image = 0;
 		}
 
-		// return only the first image
 		return apply_filters( 'rl_get_featured_image_src', $image, $gallery_id, $featured_image_type, $featured_image );
 	}
 
@@ -3421,7 +3507,7 @@ class Responsive_Lightbox_Galleries {
 	/**
 	 * Get query attachments.
 	 *
-	 * @param array $posts Post ids, array or objects
+	 * @param array $posts Post IDs, array or objects
 	 * @param array $args Additional arguments
 	 * @return array
 	 */
@@ -3646,7 +3732,7 @@ class Responsive_Lightbox_Galleries {
 	 * Prepare values option list.
 	 *
 	 * @param string $type
-	 * @return string
+	 * @return array
 	 */
 	public function prepare_query_args( $type = '' ) {
 		$html = '';
@@ -3753,7 +3839,7 @@ class Responsive_Lightbox_Galleries {
 	 * @param bool $skip Which post types should be skipped
 	 * @return array
 	 */
-	public function get_post_types( $simple = false, $skip = array( 'attachment', 'rl_gallery' ) ) {
+	public function get_post_types( $simple = false, $skip = [ 'attachment', 'rl_gallery' ] ) {
 		$post_types = get_post_types(
 			array(
 				'public' => true
@@ -4221,7 +4307,7 @@ class Responsive_Lightbox_Galleries {
 	 * Get size information for a specific image size.
 	 *
 	 * @param string $size The image size for which to retrieve data.
-	 * @return bool|array
+	 * @return false|array
 	 */
 	public function get_image_size( $size ) {
 		if ( isset( $this->sizes[$size] ) )

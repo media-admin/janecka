@@ -7,9 +7,13 @@
 #rl-insert-modal-gallery-button span {
 	font-size: 18px;
 }
+#rl-modal-gallery h1 {
+	line-height: 50px;
+}
 #rl-modal-gallery .rl-gallery-images-spinner {
 	margin-top: 20px;
 	float: none;
+	vertical-align: middle;
 }
 #rl-modal-gallery .rl-loading-content {
 	pointer-events: none;
@@ -65,5 +69,13 @@
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
+	}
+}
+@media only screen and (max-width: 900px) {
+	#rl-modal-gallery .media-selection .attachments {
+		display: block;
+	}
+	#rl-modal-gallery .media-frame.hide-router .media-frame-content {
+		top: 50px;
 	}
 }

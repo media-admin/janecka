@@ -450,6 +450,11 @@ figure.cover-img {
 }
 
 
+.cover-img h2 {
+	margin-top: 0px !important;
+}
+
+
 table {
 	border-collapse: unset !important;
 }
@@ -1390,18 +1395,27 @@ header {
 		position: relative !important;
 		width: 100%+2em !important;
 		/* height: 240px !important; */
-		height: 220px !important;
+		/* height: 220px !important; */
+		height: 210px !important;
 		text-align: center;
 		border: none !important;
 		border-radius: 0px !important;
 		position: fixed !important;
-		margin-top: -10px !important;
+
+		/* margin-top: -10px !important; */
+		margin-top: -20px !important;
+
 		margin-bottom: -10px !important;
 		transition: all .3s ease;
 		background: #ffffff;
 		-webkit-box-shadow: 0px 50px 24px -22px rgba(0,0,0,0.55);
 		box-shadow: 0px 34px 24px -22px rgba(0,0,0,0.55);
 	}
+
+	.home header {
+		margin-top: -10px !important;
+	}
+
 
  }
 
@@ -1473,6 +1487,7 @@ header {
 		position: relative !important;
 		/* max-width: 1024px !important; */
 		width: 100% !important;
+		height: 52px !important;
 		background-color: #ffffff !important;
 		margin-bottom: 0px !important;
 		padding-top: 0px !important;
@@ -1865,6 +1880,7 @@ header {
 		font-family: 'Aalto Sans Pro Light' !important;
 		align-items: center !important;
 		border-right: none !important;
+		padding-right: 0px !important;
 	}
 
 
@@ -1890,8 +1906,12 @@ header {
 	.navbar-menu .navbar-start {
 		position: relative !important;
 		/* width: 100% !important; */
-		width: 95% !important;
-		height: 80px !important;
+		/* width: 95% !important; */
+		width: 80% !important;
+
+		/* height: 80px !important; */
+
+		height: 65px !important;
 		margin: auto !important;
 	}
 }
@@ -2172,7 +2192,8 @@ a.navbar-item:hover {
 	.navbar-item.is-mega {
 		position: static !important;
 		/* margin-top: 180px !important; */
-		margin-top: 160px !important;
+		/* margin-top: 160px !important; */
+		margin-top: 150px !important;
 	}
 
 
@@ -2207,7 +2228,8 @@ a.navbar-item:hover {
 		display: grid !important;
 
 		/* top: 230px !important; */
-		top: 210px !important;
+		/* top: 210px !important; */
+		top: 200px !important;
 
 		grid-template-columns: 1fr 1fr 3fr !important;
 
@@ -2366,7 +2388,8 @@ a.navbar-item:hover {
 		margin: inherit !important;
 		/* margin-right: 25px !important; */
 		margin-right: 0px !important;
-		margin-top: -65px !important;
+		/* margin-top: -65px !important; */
+		margin-top: -50px !important;
 	}
 
 	.webshop-navbar img {
@@ -2460,7 +2483,8 @@ img.brand-logo {
 		height: auto !important;
 		margin: 25px auto 20px;
 		/* padding-top: 00px !important; */
-		padding-top: 15px !important;
+		/* padding-top: 14px !important; */
+		padding-top: 0px !important;
 	}
 }
 
@@ -2506,7 +2530,7 @@ img.brand-logo {
 
 	/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 	.sticky + .content {
-		padding-top: 80px !important;
+		padding-top: 50px !important;
 	}
 
 
@@ -2526,7 +2550,7 @@ img.brand-logo {
 
 
 	.sticky .logo-container {
-		top: -80px !important;
+		top: -50px !important;
 	}
 
 
@@ -2583,7 +2607,7 @@ img.brand-logo {
 		font-size: 1.0rem !important;
 		margin: 0.75rem !important;
 		/* margin-top: 50px !important; */
-		margin-bottom: 50px !important;
+		/* margin-bottom: 50px !important; */
 		padding-top: 280px !important;
 		padding-left: 1.0rem !important;
 		padding-right: inherit !important;
@@ -2656,6 +2680,11 @@ img.brand-logo {
 	color: #ffffff !important;
 	background-color: #707070;
 	padding: 0.25em 0.5em !important;
+}
+
+
+.back-to-top img {
+	width: 40px !important;
 }
 
 
@@ -3054,7 +3083,8 @@ section.hero {
 	.hero {
 		position: relative !important;
 		display: block;
-		top: 230px !important;
+		/* top: 230px !important; */
+		top: 200px !important;
 		width: 100%2.0em !important;
 		height: auto !important;
 		overflow: hidden !important;
@@ -3970,16 +4000,25 @@ h4.filter-title {
 
 
 
-
+.yith-wcan-filters.horizontal:not(.filters-modal) .yith-wcan-filter .filter-content > .filter-items {
+	max-height: inherit !important;
+}
 
 
 
 
 .filter-item.checkbox {
 	display: block;
+
+	/*
 	font-family: 'Source Sans Pro Regular', sans-serif !important;
-	font-size: 1.0rem !important;
 	font-weight: 400 !important;
+	*/
+
+	font-family: 'Aalto Sans Pro Light' !important;
+	font-weight: 500 !important;
+
+	font-size: 1.0rem !important;
 	line-height: 1rem !important;
 	color: #707070 !important;
 	border-radius: 0px !important;
@@ -3990,9 +4029,16 @@ h4.filter-title {
 
 
 .filter-item.checkbox a.term-label {
+
+	/*
 	font-family: 'Source Sans Pro Regular', sans-serif !important;
-	font-size: 1.0rem !important;
 	font-weight: 400 !important;
+	*/
+
+	font-family: 'Aalto Sans Pro Light' !important;
+	font-weight: 500 !important;
+
+	font-size: 1.0rem !important;
 	line-height: 1rem !important;
 	color: #707070 !important;
 }
@@ -4005,6 +4051,16 @@ h4.filter-title {
 	z-index: 0;
 	-webkit-appearance: none;
 }
+
+
+
+
+.yith-wcan-filters.horizontal:not(.filters-modal) .yith-wcan-filter .dropdown-wrapper .matching-items a {
+		font-family: 'Aalto Sans Pro Light' !important;
+		font-weight: 500 !important;
+}
+
+
 
 
 [type="checkbox"]::before {
@@ -4202,8 +4258,15 @@ input[type=checkbox]:checked:after {
 .woocommerce ul.products li.product .product-brand a {
 	position: relative !important;
 	font-family: 'Source Sans Pro Regular' !important;
+
+	/*
 	font-size: 1.0rem !important;
 	line-height: 1.2rem !important;
+	*/
+
+	font-size: 0.9rem !important;
+	line-height: 1.1rem !important;
+
 	text-transform: uppercase;
 	color: #707070 !important;
 }
@@ -4211,16 +4274,27 @@ input[type=checkbox]:checked:after {
 
 .woocommerce-loop-product__title {
 	position: relative !important;
-	font-family: 'Source Sans Pro Bold' !important;
+	font-family: 'Source Sans Pro Regular' !important;
 	/*
 	font-size: 1.6rem !important;
 	line-height: 1.8rem !important;
 	min-height: 5.0rem !important;
 	*/
+
+	/*
 	font-size: 1.2rem !important;
 	line-height: 1.4rem !important;
 	min-height: 3.0rem !important;
 	padding-top: 0.0rem !important;
+	*/
+
+	font-size: 1.0rem !important;
+	line-height: 1.2rem !important;
+
+	/* min-height: 3.0rem !important; */
+
+	padding-top: 0.0rem !important;
+
 }
 
 
@@ -4485,6 +4559,11 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 	font-size: 1.0rem !important;
 	line-height: 1.2rem !important;
 	padding-top: 0.25rem !important;
+
+	font-family: 'Aalto Sans Pro Light' !important;
+	font-weight: 500 !important;
+	text-transform: none !important;
+
 }
 
 
@@ -4553,7 +4632,7 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 	/* width: 100% !important; */
 	height: auto !important;
 
-	object-fit: scale-down !important;
+	/* object-fit: scale-down !important; */
 	object-position: center !important;
 
 	/*
@@ -4631,7 +4710,7 @@ a.add_to_wishlist.single_add_to_wishlist i.yith-wcwl-icon:before {
 	margin-left: 0.0rem !important;
 	border-bottom: 1px solid rgba(0,0,0,0.1);
 	padding-bottom: 1.5rem !important;
-	padding-bottom: 1.0rem !important;
+	/* padding-bottom: 1.0rem !important; */
 }
 
 
@@ -5369,6 +5448,53 @@ div.product form.cart .variations td.product_value select {
 	margin-top: 0.0rem !important;
 	padding: 1rem !important;
 
+	padding-top: 0.0rem !important;
+}
+
+
+.woocommerce.single-product.product_cat_schmuck .product-container .single-product-description h2 {
+	padding-top: 0.0rem !important;
+}
+
+
+
+
+
+/* --- SEITE SINGLE PRODUCT VERLOBUNGSRINGE --- */
+
+.woocommerce.single-product.product_cat_verlobungsringe-liebe-hochzeit div.product div.summary {
+	float: none !important;
+	width: 100% !important;
+	clear: both !important;
+	margin-bottom: 0.0rem !important;
+}
+
+
+.woocommerce.single-product.product_cat_verlobungsringe-liebe-hochzeit .product-container {
+	width: 100%;
+	clear: none;
+}
+
+@media screen and (min-width: 768px) {
+	.woocommerce.single-product.product_cat_verlobungsringe-liebe-hochzeit .product-container {
+		float: right;
+		width: 48%;
+		clear: none;
+	}
+}
+
+
+.woocommerce.single-product.product_cat_verlobungsringe-liebe-hochzeit .single-product-description {
+	position: relative !important;
+	margin-top: 0.0rem !important;
+	padding: 1rem !important;
+
+	padding-top: 0.0rem !important;
+}
+
+
+.woocommerce.single-product.product_cat_verlobungsringe-liebe-hochzeit .product-container .single-product-description h2 {
+	padding-top: 0.0rem !important;
 }
 
 
@@ -5376,8 +5502,6 @@ div.product form.cart .variations td.product_value select {
 
 
 
-
-/* --- SEITE SINGLE PRODUCT VERLOBUNGSRINGE --- */
 
 .woocommerce.product_cat_verlobungsringe-liebe-hochzeit div.product .product_title {
 	border-bottom-width: 0px !important;
@@ -5401,6 +5525,17 @@ div.product form.cart .variations td.product_value select {
 	display: none !important;
 }
 */
+
+
+
+
+
+
+
+
+
+
+111
 
 .product_cat_verlobungsringe-liebe-hochzeit .wc-gzd-additional-info {
 	display: none !important;

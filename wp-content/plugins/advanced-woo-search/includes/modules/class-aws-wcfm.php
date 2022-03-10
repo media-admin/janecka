@@ -70,7 +70,7 @@ if ( ! class_exists( 'AWS_WCFM' ) ) :
                         if ( ! $is_store_offline ) {
 
                             $store_name = wcfm_get_vendor_store_name( absint( $vendor_id ) );
-                            $store_url = $WCFMmp->wcfmmp_store->get_shop_url();
+                            $store_url = function_exists('wcfmmp_get_store_url') && $vendor_id ? wcfmmp_get_store_url( $vendor_id ) : '';
 
                             $logo = '';
 

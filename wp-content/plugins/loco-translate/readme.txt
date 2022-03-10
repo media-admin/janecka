@@ -1,10 +1,10 @@
 === Loco Translate ===
 Contributors: timwhitlock
 Tags: translation, translators, localization, localisation, l10n, i18n, Gettext, PO, MO, productivity, multilingual, internationalization
-Requires at least: 4.1
-Requires PHP: 5.2.4
-Tested up to: 5.9
-Stable tag: 2.5.8
+Requires at least: 5.2
+Requires PHP: 5.6.20
+Tested up to: 5.9.1
+Stable tag: 2.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,6 +99,14 @@ We don't collect your data or snoop on you. See the [plugin privacy notice](http
 
 
 == Changelog ==
+
+= 2.6.0 =
+* Dropped support for WordPress < 5.2
+* Code upgrades for >= PHP 5.6.20
+* Bumped WordPress version to 5.9.1
+* Removed Yandex API integration
+* Added loco_compile_script_reference filter
+* Plural-Forms retained when copying PO to same language
 
 = 2.5.8 =
 * Compatible with PHP 8.1
@@ -449,7 +457,7 @@ We don't collect your data or snoop on you. See the [plugin privacy notice](http
 
 == Upgrade Notice ==
 
-= 2.5.8 =
+= 2.6.0 =
 * Various improvements and bug fixes
 
 

@@ -46,39 +46,32 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     <?php echo $brand_description; ?>
 
-    <article class="columns" id="product-grid">
-      <section class="content-shop container column is-one-quarter">
-
-        <aside class="column column is-three-quarter">
+    <article class="shop-overview__columns--one-column" id="product-grid">
+      <section class="container content-shop__column-filters--one-column">
+        <aside class="sidebar-filters">
           <?php
-
             if ( $brand_category[0] == 'Liebe & Hochzeit' ){
               echo do_shortcode ('[yith_wcan_filters slug="hochzeit-liebe-marken"]');
             }
-
             elseif ( $brand_category[0] == 'Hochzeit' ){
               echo do_shortcode ('[yith_wcan_filters slug="hochzeit-liebe-marken"]');
             }
-
             elseif ( $brand_category[0] == 'Verlobung' ){
               echo do_shortcode ('[yith_wcan_filters slug="hochzeit-liebe-marken"]');
             }
-
             elseif ( $brand_category[0] == 'Uhren' ){
               echo do_shortcode ('[yith_wcan_filters slug="uhren-marken"]');
             }
-
             elseif ( $brand_category[0] == 'Schmuck' ) {
               echo do_shortcode ('[yith_wcan_filters slug="schmuck-marken"]');
             }
           ?>
-
         </aside>
       </section>
 
-      <section class="content-shop container column is-three-quarters">
+      <section class="container content-shop__column-products--one-column">
         <div class="container">
-         <?php echo do_shortcode ('[products limit="9" tag="' . $brand_slug . '" paginate="true"]' ) ?>
+         <?php echo do_shortcode ('[products limit="60" columns="4" tag="' . $brand_slug . '" paginate="true"]' ) ?>
         </div>
       </section>
 

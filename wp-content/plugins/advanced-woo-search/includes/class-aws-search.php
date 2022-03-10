@@ -496,7 +496,7 @@ if ( ! class_exists( 'AWS_Search' ) ) :
         /*
          * Get products info
          */
-        private function get_products( $posts_ids ) {
+        public function get_products( $posts_ids ) {
 
             $products_array = array();
 
@@ -677,6 +677,15 @@ if ( ! class_exists( 'AWS_Search' ) ) :
                         'f_sale'       => $f_sale,
                         'post_data'    => $post_data
                     );
+
+                    /**
+                     * Filter single product search result
+                     * @since 2.49
+                     * @param array $new_result Product data array
+                     * @param int $post_id Product id
+                     * @param object $product Product
+                     */
+                    $new_result = apply_filters( 'aws_search_pre_filter_single_product', $new_result, $post_id, $product );
 
                     $products_array[] = $new_result;
 

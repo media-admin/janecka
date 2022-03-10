@@ -13,18 +13,18 @@ get_header(); ?>
 
 		<?php the_content(); ?>
 
-			<article class="columns shop-overview__columns">
-				<section class="content-shop container column content-shop__column-filters">
-					<aside class="sidebar-filters">
-						<?php echo do_shortcode ('[yith_wcan_filters slug="schmuck-armschmuck"]') ?>
-					</aside>
-				</section>
+		<article class="shop-overview__columns--one-column" id="product-grid">
+			<section class="container content-shop__column-filters--one-column">
+				<aside class="sidebar-filters">
+					<?php echo do_shortcode ('[yith_wcan_filters slug="schmuck-armschmuck"]') ?>
+				</aside>
+			</section>
 
-				<section class="content-shop container column content-shop__column-products">
-					<div class="container">
-						<?php echo do_shortcode ('[products limit="60" columns="3" category="armschmuck-schmuck" paginate="true"]') ?>
-					</div>
-				</section>
+			<section class="container content-shop__column-products--one-column">
+				<div class="container">
+					<?php echo do_shortcode ('[products limit="60" columns="4" category="armschmuck-schmuck" paginate="true"]') ?>
+				</div>
+			</section>
 		</article>
 
 		<section class="service-notice">

@@ -134,7 +134,7 @@
 			}
 		} );
 
-		// extend AttachmentCompat 
+		// extend AttachmentCompat
 		var RLAttachmentCompat = wp.media.view.AttachmentCompat;
 
 		wp.media.view.AttachmentCompat = wp.media.view.AttachmentCompat.extend( {
@@ -904,7 +904,7 @@
 												$( '#the-list' ).append( rlFoldersArgs.no_media_items );
 										} );
 									}
- 
+
 									// update old node number
 									update_node_number( old_node, response.data, false );
 								}
