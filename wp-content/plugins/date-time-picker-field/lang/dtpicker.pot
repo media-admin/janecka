@@ -1,0 +1,446 @@
+# Copyright (C) 2019 dtpicker
+# This file is distributed under the same license as the dtpicker package.
+msgid ""
+msgstr ""
+"Project-Id-Version: dtpicker\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../date-time-picker-field/includes/DateTimePicker.php:211, ../date-time-picker-field/svn/tags/1.1/date-time-picker-field.php:63, ../date-time-picker-field/svn/tags/1.2/date-time-picker-field.php:78, ../date-time-picker-field/svn/tags/1.2.1/date-time-picker-field.php:88, ../date-time-picker-field/svn/tags/1.2.2/date-time-picker-field.php:91, ../date-time-picker-field/svn/tags/1.3/date-time-picker-field.php:94, ../date-time-picker-field/svn/tags/1.4/date-time-picker-field.php:102, ../date-time-picker-field/svn/tags/1.5/date-time-picker-field.php:107, ../date-time-picker-field/svn/tags/1.6/date-time-picker-field.php:114, ../date-time-picker-field/svn/tags/1.7/date-time-picker-field.php:134, ../date-time-picker-field/svn/tags/1.7.2/date-time-picker-field.php:137, ../date-time-picker-field/svn/tags/1.7.3/date-time-picker-field.php:141, ../date-time-picker-field/svn/tags/1.7.4/date-time-picker-field.php:160, ../date-time-picker-field/svn/tags/1.7.4.1/date-time-picker-field.php:163, ../date-time-picker-field/svn/tags/1.7.5/date-time-picker-field.php:178, ../date-time-picker-field/svn/tags/1.7.6/date-time-picker-field.php:194, ../date-time-picker-field/svn/tags/1.7.7/date-time-picker-field.php:217, ../date-time-picker-field/svn/trunk/includes/DateTimePicker.php:211, ../date-time-picker-field/svn/tags/1.7.8/includes/DateTimePicker.php:196, ../date-time-picker-field/svn/tags/1.7.8.1/includes/DateTimePicker.php:196, ../date-time-picker-field/svn/tags/1.7.8.2/includes/DateTimePicker.php:200, ../date-time-picker-field/svn/tags/1.7.9/includes/DateTimePicker.php:209, ../date-time-picker-field/svn/tags/1.7.9.2/includes/DateTimePicker.php:211
+msgid "Settings"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:31, ../date-time-picker-field/svn/tags/1.1/admin/settings.php:31, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:31, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:31, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:31, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:31
+msgid "DateTime Picker"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:38, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:38, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:38, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:38, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:38, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:38, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:38, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:38
+msgid "Date & Time Picker Settings"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:58, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:58, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:59, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:59, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:59, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:59, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:59, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:59, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:133, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:133, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:133
+msgid "CSS Selector"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:59, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:59, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:60, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:60, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:60, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:60, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:60, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:60, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:134, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:134, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:134
+msgid "Selector of the input field you want to target and transform into a picker. You can enter multiple selectors separated by commas."
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:60, ../date-time-picker-field/svn/tags/1.1/admin/settings.php:162, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:60, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:162, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:61, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:170, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:61, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:179, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:61, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:179, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:61, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:179, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:61, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:61, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:135, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:135, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:135
+msgid ".class_name or #field_id"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:67, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:67, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:68, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:68, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:68, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:68, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:68, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:68, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:142, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:142, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:142
+msgid "Language"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:68, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:68, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:69, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:69, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:69, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:69, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:69, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:69, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:143, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:143, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:143
+msgid "Language to display the month and day labels"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:72, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:72, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:73, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:73, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:73, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:73, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:73, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:73, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:147, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:147, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:147
+msgid "Arabic"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:73, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:73, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:74, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:74, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:74, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:74, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:74, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:74, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:148, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:148, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:148
+msgid "Azerbaijanian (Azeri)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:74, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:74, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:75, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:75, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:75, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:75, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:75, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:75, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:149, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:149, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:149
+msgid "Bulgarian"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:75, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:75, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:76, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:76, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:76, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:76, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:76, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:76, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:150, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:150, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:150
+msgid "Bosanski"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:76, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:76, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:77, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:77, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:77, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:77, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:77, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:77, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:151, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:151, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:151
+msgid "Català"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:77, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:77, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:78, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:78, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:78, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:78, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:78, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:78, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:152, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:152, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:152
+msgid "Simplified Chinese"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:78, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:78, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:79, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:79, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:79, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:79, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:79, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:79, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:153, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:153, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:153
+msgid "Čeština"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:79, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:79, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:80, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:80, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:80, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:80, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:80, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:80, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:154, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:154, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:154
+msgid "Dansk"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:80, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:80, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:81, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:81, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:81, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:81, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:81, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:81, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:155, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:155, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:155
+msgid "German"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:81, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:81, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:82, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:82, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:82, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:82, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:82, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:82, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:156, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:156, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:156
+msgid "Ελληνικά"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:82, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:82, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:83, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:83, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:83, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:83, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:83, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:83, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:157, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:157, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:157
+msgid "English"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:83, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:83, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:84, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:84, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:84, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:84, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:84, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:84, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:158, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:158, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:158
+msgid "English (British)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:84, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:84, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:85, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:85, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:85, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:85, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:85, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:85, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:159, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:159, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:159
+msgid "Spanish"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:85, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:85, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:86, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:86, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:86, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:86, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:86, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:86, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:160, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:160, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:160
+msgid "Eesti"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:86, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:86, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:87, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:87, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:87, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:87, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:87, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:87, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:161, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:161, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:161
+msgid "Euskara"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:87, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:87, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:88, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:88, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:88, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:88, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:88, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:88, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:162, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:162, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:162
+msgid "Persian"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:88, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:88, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:89, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:89, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:89, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:89, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:89, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:89, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:163, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:163, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:163
+msgid "Finnish (Suomi)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:89, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:89, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:90, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:90, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:90, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:90, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:90, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:90, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:164, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:164, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:164
+msgid "French"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:90, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:90, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:91, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:91, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:91, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:91, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:91, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:91, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:165, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:165, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:165
+msgid "Galego"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:91, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:91, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:92, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:92, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:92, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:92, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:92, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:92, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:166, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:166, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:166
+msgid "Hebrew (עברית)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:92, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:92, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:93, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:93, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:93, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:93, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:93, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:93, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:167, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:167, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:167
+msgid "Hrvatski"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:93, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:93, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:94, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:94, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:94, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:94, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:94, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:94, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:168, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:168, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:168
+msgid "Hungarian"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:94, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:94, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:95, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:95, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:95, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:95, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:95, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:95, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:169, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:169, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:169
+msgid "Indonesian"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:95, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:95, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:96, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:96, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:96, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:96, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:96, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:96, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:170, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:170, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:170
+msgid "Italian"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:96, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:96, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:97, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:97, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:97, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:97, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:97, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:97, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:171, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:171, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:171
+msgid "Japanese"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:97, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:97, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:98, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:98, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:98, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:98, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:98, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:98, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:172, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:172, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:172
+msgid "Korean (한국어)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:98, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:98, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:99, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:99, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:99, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:99, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:99, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:99, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:173, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:173, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:173
+msgid "Korean"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:99, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:99, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:100, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:100, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:100, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:100, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:100, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:100, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:174, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:174, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:174
+msgid "Lithuanian (lietuvių)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:100, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:100, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:101, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:101, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:101, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:101, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:101, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:101, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:175, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:175, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:175
+msgid "Latvian (Latviešu)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:101, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:101, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:102, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:102, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:102, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:102, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:102, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:102, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:176, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:176, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:176
+msgid "Macedonian (Македонски)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:102, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:102, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:103, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:103, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:103, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:103, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:103, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:103, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:177, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:177, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:177
+msgid "Mongolian (Монгол)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:103, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:103, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:104, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:104, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:104, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:104, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:104, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:104, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:178, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:178, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:178
+msgid "Dutch"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:104, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:104, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:105, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:105, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:105, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:105, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:105, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:105, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:179, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:179, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:179
+msgid "Norwegian"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:105, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:105, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:106, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:106, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:106, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:106, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:106, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:106, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:180, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:180, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:180
+msgid "Polish"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:106, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:106, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:107, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:107, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:107, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:107, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:107, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:107, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:181, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:181, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:181
+msgid "Portuguese"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:107, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:107, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:108, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:108, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:108, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:108, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:108, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:108, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:182, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:182, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:182
+msgid "Português(Brasil)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:108, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:108, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:109, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:109, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:109, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:109, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:109, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:109, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:183, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:183, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:183
+msgid "Romanian"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:109, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:109, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:110, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:110, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:110, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:110, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:110, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:110, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:184, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:184, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:184
+msgid "Russian"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:110, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:110, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:111, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:111, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:111, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:111, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:111, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:111, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:185, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:185, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:185
+msgid "Swedish"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:111, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:111, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:112, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:112, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:112, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:112, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:112, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:112, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:186, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:186, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:186
+msgid "Slovenčina"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:112, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:112, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:113, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:113, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:113, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:113, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:113, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:113, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:187, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:187, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:187
+msgid "Slovenščina"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:113, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:113, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:114, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:114, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:114, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:114, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:114, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:114, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:188, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:188, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:188
+msgid "Albanian (Shqip)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:114, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:114, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:115, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:115, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:115, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:115, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:115, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:115, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:189, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:189, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:189
+msgid "Serbian Cyrillic (Српски)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:115, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:115, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:116, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:116, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:116, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:116, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:116, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:116, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:190, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:190, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:190
+msgid "Serbian (Srpski)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:116, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:116, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:117, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:117, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:117, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:117, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:117, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:117, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:191, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:191, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:191
+msgid "Svenska"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:117, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:117, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:118, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:118, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:118, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:118, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:118, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:118, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:192, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:192, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:192
+msgid "Thai"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:118, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:118, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:119, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:119, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:119, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:119, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:119, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:119, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:193, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:193, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:193
+msgid "Turkish"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:119, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:119, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:120, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:120, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:120, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:120, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:120, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:120, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:194, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:194, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:194
+msgid "Ukrainian"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:120, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:120, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:121, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:121, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:121, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:121, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:121, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:121, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:195, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:195, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:195
+msgid "Vietnamese"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:121, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:121, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:122, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:122, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:122, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:122, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:122, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:122, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:196, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:196, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:196
+msgid "Simplified Chinese (简体中文)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:122, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:122, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:123, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:123, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:123, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:123, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:123, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:123, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:197, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:197, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:197
+msgid "Traditional Chinese (繁體中文)"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:128, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:128, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:129, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:129, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:129, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:129, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:129, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:129, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:203, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:203, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:203
+msgid "Theme"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:129, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:129, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:130, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:130, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:130, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:130, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:130, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:130, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:204, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:204, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:204
+msgid "calendar visual style"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:133, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:133, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:134, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:134, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:134, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:134, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:134, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:134, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:208, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:208, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:208
+msgid "Default"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:134, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:134, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:135, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:135, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:135, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:135, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:135, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:135, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:209, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:209, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:209
+msgid "Dark"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:142, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:142, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:141, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:141, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:141, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:141, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:141, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:141, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:215, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:215, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:215
+msgid "Display Calendar"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:143, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:143, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:142, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:142, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:142, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:142, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:142, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:142, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:216, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:216, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:216
+msgid "Display date picker"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:151, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:151, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:150, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:150, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:150, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:150, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:150, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:150, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:224, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:224, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:224
+msgid "Display Time"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:152, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:152, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:151, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:151, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:151, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:151, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:151, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:151, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:225, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:225, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:225
+msgid "Display time picker"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:160, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:160, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:168, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:177, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:177, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:177, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:186, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:186, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:260, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:260, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:260
+msgid "Time Step"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:161, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:161, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:169, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:178, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:178, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:178, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:187, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:187, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:261, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:261, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:261
+msgid "Time interval in minutes for time picker options"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:170, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:170, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:178, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:187, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:187, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:187, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:213, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:213, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:287, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:287, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:287
+msgid "Date Format"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:171, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:171, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:179, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:188, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:188, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:188, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:214, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:214, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:288, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:288, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:288
+msgid "Date format"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:174, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:174, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:182, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:191, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:191, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:191, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:217, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:217, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:291, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:291, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:291
+msgid "Year-Month-Day"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:175, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:175, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:183, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:192, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:192, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:192, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:218, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:218, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:292, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:292, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:292
+msgid "Year/Month/Day"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:176, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:176, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:184, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:193, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:193, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:193, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:219, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:219, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:293, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:293, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:293
+msgid "Day-Month-Year"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:177, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:177, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:185, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:194, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:194, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:194, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:220, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:220, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:294, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:294, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:294
+msgid "Day/Month/Year"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:178, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:178, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:186, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:195, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:195, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:195, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:221, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:221, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:295, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:295, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:295
+msgid "Month-Day-Year"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:179, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:179, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:187, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:196, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:196, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:196, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:222, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:222, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:296, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:296, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:296
+msgid "Month/Day/Year"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:186, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:186, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:194, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:203, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:203, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:203, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:229, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:230, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:304, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:304, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:304
+msgid "Hour Format"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:187, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:187, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:195, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:204, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:204, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:204, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:230, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:231, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:305, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:305, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:305
+msgid "Hour format"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:198, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:198, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:206, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:215, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:215, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:215, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:241, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:242, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:315, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:315, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:315
+msgid "When to Load"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:199, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:199, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:207, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:216, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:216, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:216, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:242, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:243, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:316, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:316, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:316
+msgid "Choose to search for the selector across the website or only when the shortcode [datetimepicker] exists on a page.<br> Use the shortcode to prevent the script from loading across all pages"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:202, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:202, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:210, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:219, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:219, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:219, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:245, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:246, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:319, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:319, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:319
+msgid "Across the full website"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.1/admin/settings.php:203, ../date-time-picker-field/svn/tags/1.2/admin/settings.php:203, ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:211, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:220, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:220, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:222, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:248, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:249, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:322, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:322, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:322
+msgid "Only when shortcode [datetimepicker] exists on a page."
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:159, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:159, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:159, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:159, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:159, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:159, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:233, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:233, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:233
+msgid "Keep Placeholder"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.2.1/admin/class-dtp-settings-page.php:160, ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:160, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:160, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:160, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:160, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:160, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:234, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:234, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:234
+msgid "If enabled, original placeholder will be kept. If disabled it will be replaced with current date."
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:168, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:168, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:168, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:168, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:168, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:242, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:242, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:242
+msgid "Prevent Keyboard Edit"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.2.2/admin/class-dtp-settings-page.php:169, ../date-time-picker-field/svn/tags/1.3/admin/class-dtp-settings-page.php:169, ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:169, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:169, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:169, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:243, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:243, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:243
+msgid "If enabled, it wont be possible to edit the text. This will also prevent the keyboard on mobile devices to display when selecting the date."
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:220, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:246, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:247, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:320, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:320, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:320
+msgid "Admin panel only"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.4/admin/class-dtp-settings-page.php:221, ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:247, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:248, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:321, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:321, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:321
+msgid "Full website including admin panel"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:177, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:177, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:251, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:251, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:251
+msgid "Disable Past Dates"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:178, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:178, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:252, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:252, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:252
+msgid "If enabled, past dates can't be selected"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:195, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:195, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:269, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:269, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:269
+msgid "Minimum Time"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:196, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:196, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:270, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:270, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:270
+msgid "Time options will start from this. Leave empty for none. Use the format you selected for the time. For example: 08:00 AM"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:204, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:204, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:278, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:278, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:278
+msgid "Maximum Time"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.5/admin/class-dtp-settings-page.php:205, ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:205, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:279, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:279, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:279
+msgid "Time options will not be later than this specified time. Leave empty for none. Use the format you selected for the time. For example: 08:00 PM"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.6/admin/class-dtp-settings-page.php:223, ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:297, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:297, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:297
+msgid "Day.Month.Year"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:38, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:38, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:38
+msgid "Basic Settings"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:43, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:43, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:43
+msgid "Advanced Settings"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:60, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:60, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:60
+msgid "Disable Days"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:61, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:61, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:61
+msgid "Select days you want to <strong>disable</strong>"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:65, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:65, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:65
+msgid "Sunday"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:66, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:66, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:66
+msgid "Monday"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:67, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:67, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:67
+msgid "Tuesday"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:68, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:68, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:68
+msgid "Wednesday"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:69, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:69, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:69
+msgid "Thursday"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:70, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:70, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:70
+msgid "Friday"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:71, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:71, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:71
+msgid "Saturday"
+msgstr ""
+
+#: ../date-time-picker-field/svn/tags/1.7/admin/class-dtp-settings-page.php:78, ../date-time-picker-field/svn/tags/1.7.2/admin/class-dtp-settings-page.php:78, ../date-time-picker-field/svn/tags/1.7.3/admin/class-dtp-settings-page.php:78
+msgid "Write the allowed times to <strong>override</strong> the time step and serve as default if you use the options below.<br> Values still need to be within minimum and maximum times defined in the basic settings.<br> Use the time format separated by commas. Example: 09:00,11:00,12:00,21:00<br>You need to list all the options"
+msgstr ""

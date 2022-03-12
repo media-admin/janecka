@@ -1,0 +1,314 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Date Time Picker Field\n"
+"POT-Creation-Date: 2019-05-29 17:02+0100\n"
+"PO-Revision-Date: 2019-05-24 18:35+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: date-time-picker-field.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: svn\n"
+
+#: includes/Admin/SettingsAPI.php:372
+msgid "Choose File"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:36
+msgid "Date & Time Picker"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:44
+msgid "Basic Settings"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:49
+msgid "Advanced Settings"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:78
+msgid "Default - Detect page language"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:95
+#, php-format
+msgid "Allowed times for %s"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:101
+msgid "Disable Week Days"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:102
+msgid "Select days you want to <strong>disable</strong>."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:118
+msgid "Disable specific dates"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:119
+msgid ""
+"Add the dates you want to disable divided by commas, in the format you have "
+"selected. Useful to disable holidays for example."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:125
+msgid "Default list of allowed times"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:126
+msgid ""
+"Write the allowed times to <strong>override</strong> the time step and serve "
+"as default if you use the options below.<br> Values still need to be within "
+"minimum and maximum times defined in the basic settings.<br> Use the time "
+"format separated by commas. Example: 09:00,11:00,12:00,21:00<br>You need to "
+"list all the options."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:167
+msgid ""
+"The allowed times options above will only work if you set the default list "
+"of allowed times."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:174
+msgid "CSS Selector"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:175
+msgid ""
+"Selector of the input field you want to target and transform into a picker. "
+"You can enter multiple selectors separated by commas."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:176
+msgid ".class_name or #field_id"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:183
+msgid "Language"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:184
+msgid "Language to display the month and day labels."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:192
+msgid "Theme"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:193
+msgid "Calendar visual style."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:197
+msgid "Default"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:198
+msgid "Dark"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:204
+msgid "Display Calendar"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:205
+msgid "Display date picker calendar."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:213
+msgid "Display Time"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:214
+msgid "Display time picker."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:222
+msgid "Keep Placeholder"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:223
+msgid ""
+"If enabled, original placeholder will be kept. If disabled it will be "
+"replaced with current date or next available time depending on your settings."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:231
+msgid "Prevent Keyboard Edit"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:232
+msgid ""
+"If enabled, it wont be possible to edit the text. This will also prevent the "
+"keyboard on mobile devices to display when selecting the date."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:240
+msgid "Disable Past Dates"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:243
+#, php-format
+msgid ""
+"If enabled, past dates (and times) can't be selected. Consider the plugin "
+"will use the timezone you have in your general settings to perform this "
+"calculation. Your current timezone is %s."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:253
+msgid "Time Step"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:254
+msgid "Time interval in minutes for time picker options."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:262
+msgid "Minimum Time"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:263
+msgid ""
+"Time options will start from this. Leave empty for none. Use the format you "
+"selected for the time. For example: 08:00 AM."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:271
+msgid "Maximum Time"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:272
+msgid ""
+"Time options will not be later than this specified time. Leave empty for "
+"none. Use the format you selected for the time. For example: 08:00 PM."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:280
+msgid "Offset for available times"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:281
+msgid ""
+"Time interval in minutes to advance next available time. For example, set "
+"\"45\" if you only want time entries 45m from now to be available. Works "
+"better when option to disable past dates is also enabled."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:289
+msgid "Maximum Date"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:290
+msgid ""
+"Use the European day-month-year format or an english string that is accepted "
+"by the <a target=\"_blank\" href=\"https://php.net/manual/en/function."
+"strtotime.php\">strtotime PHP function</a>. (Ex: \"+5 days\")<br> Leave "
+"empty to set no limit."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:298
+msgid "Date Format"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:302
+msgid "Year-Month-Day"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:303
+msgid "Year/Month/Day"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:304
+msgid "Day-Month-Year"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:305
+msgid "Day/Month/Year"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:306
+msgid "Month-Day-Year"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:307
+msgid "Month/Day/Year"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:308
+msgid "Day.Month.Year"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:315
+msgid "Hour Format"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:326
+msgid "When to Load"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:327
+msgid ""
+"Choose to search for the css selector across the website or only when the "
+"shortcode [datetimepicker] exists on a page.<br> Use the shortcode to "
+"prevent the script from loading across all pages."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:330
+msgid "Across the full website"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:331
+msgid "Admin panel only"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:332
+msgid "Full website including admin panel"
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:333
+msgid "Only when shortcode [datetimepicker] exists on a page."
+msgstr ""
+
+#: includes/Admin/SettingsPage.php:346
+msgid "Date & Time Picker Settings"
+msgstr ""
+
+#: includes/DateTimePicker.php:196
+msgid "Settings"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Date Time Picker Field"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://cmoreira.net/date-and-time-picker-for-wordpress/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Allows you to enable date and time picker fields in your website using css "
+"selectors."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Carlos Moreira"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://cmoreira.net"
+msgstr ""

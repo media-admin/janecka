@@ -739,6 +739,8 @@ p.text-center {
 	text-align: center;
 	padding-top: 40px;
 	background-image: linear-gradient(to bottom, transparent, white);
+	background-image: -webkit-linear-gradient(to bottom, transparent, white);
+	background-image: -moz-linear-linear-gradient(to bottom, transparent, white);
 	cursor: pointer;
 }
 
@@ -3572,11 +3574,14 @@ span.wpcf7-list-item-label a {
 }
 
 
+.xdsoft_datetimepicker .xdsoft_timepicker.active {
+	position: relative !important;
+	width: 100px;
+}
 
 
 
 
-/* --- MODAL FORM TERMIN VEREINBAREN --- */
 
 
 
@@ -3638,7 +3643,7 @@ span.wpcf7-list-item-label a {
 	margin-bottom: 25px !important; */
 	margin-top: 12px !important;
 	margin-bottom: 8px !important;
-	margin-left: 0px !important;
+	margin-left: 20px !important;
 	padding: 0.4rem 1.0rem !important;
 	padding: 0.5rem 1.5rem 0.6rem 1.5rem !important;
 }
@@ -3753,7 +3758,7 @@ span.wpcf7-list-item-label a {
 .wpcf7 label {
 	font-family: 'Roboto Slab' !important;
 	font-size: 0.9rem !important;
-	line-height: 1.0rem !important;
+	line-height: 1.2rem !important;
 	color: #fff !important;
 	margin-bottom: 0.25rem !important;
 }
@@ -3803,8 +3808,51 @@ span.wpcf7-list-item-label a {
 
 .wpcf7 input[type="checkbox"] {
 	position: relative !important;
-	margin-right: 0px !important;
+	margin-left: -16px !important;
+	line-height: 1.0rem;
 }
+
+
+.wpcf7 input[type="checkbox"]:before {
+	border-color: #ffffff !important;
+	margin-right: 18px !important;
+}
+
+
+.wpcf7 input[type=checkbox]::before {
+	width: 15px;
+	height: 15px;
+	border-radius: 0px;
+	border: 1px solid #ffffff !important;
+	/* border: 1px solid orange !important; */
+	background-color: transparent !important;
+	display: block;
+	content: "";
+	float: left !important;
+	margin-right: 12px !important;
+	left: -0.25rem !important;
+	z-index: 5 !important;
+	position: relative;
+}
+
+
+.wpcf7 input[type=checkbox]:checked:after  {
+	 content: "";
+	 display: block;
+	 width: 4px !important;
+	 height: 10px !important;
+	 border: solid #ffffff !important;
+	 border-width: 0 1px 1px 0 !important;
+	 -webkit-transform: rotate(45deg);
+	 -ms-transform: rotate(45deg);
+	 transform: rotate(45deg);
+	 position: absolute;
+	 top: 1px !important;
+	 left: 0.0rem !important;
+	 margin-left: 2px !important;
+}
+
+
 
 
 .wpcf7-list-item-label {
@@ -3849,6 +3897,12 @@ span.wpcf7-list-item-label a {
 
 
 
+/* --- MODAL FORM TERMIN VEREINBAREN --- */
+
+.wpcf7-form-control.wpcf7-submit.button {
+	color: #ffffff !important;
+	border-color: #ffffff !important;
+}
 
 
 
@@ -3906,6 +3960,21 @@ span.wpcf7-list-item-label a {
 }
 
 
+.filters-container:before {
+	position: relative;
+	display: block;
+	content: 'Filter';
+
+	font-family: 'Roboto Slab Regular' !important;
+	color: #707070 !important;
+	text-transform: uppercase !important;
+	font-size: 1.0rem !important;
+	line-height: 1.2rem !important;
+	margin-top: 2.5rem !important;
+	margin-bottom: 1.5rem !important;
+}
+
+
 h4.filter-title {
 	font-family: 'Roboto Slab Light' !important;
 	color: #707070 !important;
@@ -3937,9 +4006,15 @@ h4.filter-title {
 .yith-wcan-filters .yith-wcan-filter {
 	font-size: 1.0rem !important;
 	border-bottom: 2px solid rgba(112,112,112,0.35) !important;
-	padding-bottom: 2.0rem !important;
 	margin-bottom: 0.5rem !important !important;
 	margin-bottom: 20px !important;
+}
+
+
+@media screen and (min-width: 768px) {
+	.yith-wcan-filters .yith-wcan-filter {
+		padding-bottom: 1.0rem !important;
+	}
 }
 
 

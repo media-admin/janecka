@@ -1,0 +1,17 @@
+{
+    "name": "cmoreira/date-time-picker-field",
+    "description": "Date Time Picker WordPress plugin",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Carlos Moreira",
+            "email": "carlostrickster@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+	"require": {},
+	"autoload": {
+        "psr-4": {"CMoreira\\Plugins\\DateTimePicker\\": "./includes"}
+    }
+}

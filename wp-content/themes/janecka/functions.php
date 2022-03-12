@@ -122,6 +122,27 @@ add_action( 'wp_enqueue_scripts', 'medialab_register_scripts' );
 
 
 
+function add_custom_script(){
+?>
+
+<script type="text/javascript">
+	jQuery(window).load(function(){
+		jQuery('.open-modal-link').magnificPopup({
+			type:'inline',
+			midClick: true
+		});
+	});
+</script>
+<?php
+}
+
+add_action('wp_footer', 'add_custom_script');
+
+
+
+
+
+
 /* Beitragsbild aktivieren  */
 
 if ( ! function_exists( 'theme_slug_setup' ) ) :
