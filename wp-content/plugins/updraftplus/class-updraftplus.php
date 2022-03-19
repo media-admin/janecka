@@ -5452,7 +5452,7 @@ class UpdraftPlus {
 	}
 
 	/**
-	 * Retrieves current clean url for anchor link where href attribute value is not url (for ex. #div) or empty
+	 * Retrieves current clean url for anchor link where href attribute value is not url (for ex. #div) or empty. Output is not escaped - caller should escape.
 	 *
 	 * @return String - current clean url
 	 */

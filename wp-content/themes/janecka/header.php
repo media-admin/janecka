@@ -45,7 +45,7 @@
 			text_dialog: 'Wir nutzen Cookies auf unserer Website. Einige von ihnen sind essenziell, während andere uns helfen, diese Website und Ihre Erfahrung zu verbessern.',
 
 			cookie_groups: [
-			   {
+				 {
 					label: 'Notwendig',
 					fixed: true,
 					info: 'Zum Betrieb der Seite notwendige Cookies:',
@@ -63,9 +63,8 @@
 								name: 'dywc',
 								duration: '1 Jahr'
 							}
-						],
-
-				}, {
+						]
+					}, {
 					label: 'Statistiken',
 					fixed: false,
 					info: 'Cookies für die Analyse des Benutzerverhaltens:',
@@ -77,34 +76,46 @@
 								name: '_ga, _gid, _gat, _gtag',
 								duration: '2 Jahre'
 							}
-						],
-							accept: function() {
-								dywc.log("Load Statistic Tracking");
+				 ],
+				 accept: function() {
 
-								(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-								   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-								   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-								})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+					dywc.log("Load Statistic Tracking");
 
-								ga('create', '{TrackingID}', 'auto');
-								ga('send', 'pageview');
+					var el = document.createElement('script');
+					el.src = 'https://www.googletagmanager.com/gtag/js?id=G-294429068';
+					el.async = 1;
+					document.getElementsByTagName('head')[0].appendChild(el);
 
-							},
+					window.dataLayer = window.dataLayer || [];
 
-							reject: function() {
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
 
-								dywc.log("Reject Statistic Tracking");
+					gtag('config', 'UA-11678917-1', { 'anonymize_ip': true });
+					gtag('config', 'G-294429068', { 'anonymize_ip': true });
 
-								// var disableStr = 'ga-disable-{TrackingID}';
+				},
 
-								// window[disableStr] = true; document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+				 reject: function() {
 
-								// dywc.cookie.removeItem('_ga', '/', '.macoffice.at');
-								// dywc.cookie.removeItem('_gid', '/', '.macoffice.at');
-								// dywc.cookie.removeItem('_gat', '/', '.macoffice.at');
-								// dywc.cookie.removeItem('_gat_gtag_{TrackingID}', '/', '.macoffice.at');
+					dywc.log("Reject Statistic Tracking");
 
-							}
+					var el = document.createElement('script');
+					el.src = 'https://www.googletagmanager.com/gtag/js?id=G-294429068';
+					el.async = 1;
+					document.getElementsByTagName('head')[0].appendChild(el);
+
+					window['ga-disable-G-294429068'] = true;
+					window.dataLayer = window.dataLayer || [];
+
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+
+					gtag('config', 'UA-11678917-1', { 'anonymize_ip': true });
+					gtag('config', 'G-294429068', { 'anonymize_ip': true });
+
+				 }
+
 				}, {
 					label: 'Erleichterte Bedienung',
 					fixed: false,
@@ -116,7 +127,7 @@
 								aim: 'Cookie von Google für die Nutzung von Google Maps.',
 								name: 'NID',
 								duration: '6 Monate'
-						   }
+							 }
 						],
 
 							accept: function() {
@@ -477,13 +488,13 @@
 
 			<?php
 
-			   $args = array(
-			   'post_status' => 'publish',
-			   'posts_per_page' => 1,
-			   'post_type' => 'hinweis',
-			   'orderby'   => 'date',
-			   'order' => 'DESC',
-			   );
+				 $args = array(
+				 'post_status' => 'publish',
+				 'posts_per_page' => 1,
+				 'post_type' => 'hinweis',
+				 'orderby'   => 'date',
+				 'order' => 'DESC',
+				 );
 
 			$loop = new WP_Query( $args );
 
@@ -513,14 +524,19 @@
 
 
 		<script>
+
 			jQuery(document).ready(() => {
+
 				const modal = jQuery('.modal');
+
 				jQuery('#showModal').click(function(){
 					modal.addClass('is-active');
-			});
-			jQuery('.modal-close').click(function(){
-					modal.removeClass('is-active');
-			});
+					});
+
+				jQuery('.modal-close').click(function(){
+						modal.removeClass('is-active');
+				});
+
 			});
 		</script>
 
@@ -723,13 +739,13 @@
 
 				<?php
 
-				   $args = array(
-				   'post_status' => 'publish',
-				   'posts_per_page' => -1,
-				   'post_type' => 'slider',
-				   'orderby'   => 'date',
-				   'order' => 'ASC',
-				   );
+					 $args = array(
+					 'post_status' => 'publish',
+					 'posts_per_page' => -1,
+					 'post_type' => 'slider',
+					 'orderby'   => 'date',
+					 'order' => 'ASC',
+					 );
 
 				$loop = new WP_Query( $args );
 

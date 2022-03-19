@@ -156,7 +156,7 @@ msgstr ""
 msgid "Bucket access style"
 msgstr ""
 
-#: src/methods/s3.php:1231
+#: src/methods/s3.php:1251
 msgid "Failure: No endpoint details were given."
 msgstr ""
 
@@ -870,7 +870,7 @@ msgstr ""
 msgid "Need to get space?"
 msgstr ""
 
-#: src/methods/s3.php:214, src/methods/s3.php:215, src/methods/s3.php:227,
+#: src/methods/s3.php:215, src/methods/s3.php:216, src/methods/s3.php:227,
 #: src/methods/s3.php:228
 msgid "Error: Failed to initialise"
 msgstr ""
@@ -3586,11 +3586,11 @@ msgstr "Denne WebDAV URL genereres ved at udfylde nedenstående muligheder. Hvis
 msgid "No response data was received. This usually indicates a network connectivity issue (e.g. an outgoing firewall or overloaded network) between this site and UpdraftPlus.com."
 msgstr "Ingen respons data blev modtaget. Dette indikerer normalt et netværksforbindelseproblem (fx en udgående firewall eller et overbelastet netværk) mellem dette websted og UpdraftPlus.com."
 
-#: src/methods/s3.php:1279
+#: src/methods/s3.php:1299
 msgid "The AWS access key looks to be wrong (valid %s access keys begin with \"AK\")"
 msgstr "AWS adgangskoden er tilsyneladende forkert (gyldige %s adgangskoder begynder med \"AK\")"
 
-#: src/methods/s3.php:159
+#: src/methods/s3.php:161
 msgid "No settings were found - please go to the Settings tab and check your settings"
 msgstr "Indstillinger blev ikke fundet - Gå venligst til Indstillinger knappen og kontroller dine indstillinger"
 
@@ -4540,7 +4540,7 @@ msgid "Updraft Vault"
 msgstr "Updraft Vault"
 
 #: src/addons/azure.php:443, src/addons/backblaze.php:564,
-#: src/addons/googlecloud.php:1024, src/methods/s3.php:1307
+#: src/addons/googlecloud.php:1024, src/methods/s3.php:1327
 msgid "Delete failed:"
 msgstr "Sletning mislykkedes:"
 
@@ -5083,7 +5083,7 @@ msgstr "Komplet liste over funktioner"
 msgid "Backup (where relevant) plugins, themes and the WordPress database with UpdraftPlus before updating"
 msgstr "Lav backup (hvis relevant) af plugins, temaer og WordPress database med UpdraftPlus før du opdaterer"
 
-#: src/methods/s3.php:216, src/methods/s3.php:229
+#: src/methods/s3.php:217, src/methods/s3.php:229
 msgid "%s Error: Failed to initialise"
 msgstr "%s Fejl: Kunne ikke initialiseres"
 
@@ -7442,11 +7442,11 @@ msgstr "Nogle servere angiver krypteret FTP som tilgængelig, men melder time-ou
 msgid "Your web server's PHP installation does not included a required module (%s). Please contact your web hosting provider's support and ask for them to enable it."
 msgstr "Din web-servers PHP installation indeholder ikke et nødvendigt modul (%s). Venligst kontakt din web hosting udbyders support og bed dem om at tilføje modulet."
 
-#: src/methods/s3.php:1300
+#: src/methods/s3.php:1320
 msgid "Please check your access credentials."
 msgstr "Venligst tjek dine adgangsindstillinger."
 
-#: src/addons/s3-enhanced.php:219, src/methods/s3.php:1277
+#: src/addons/s3-enhanced.php:219, src/methods/s3.php:1297
 msgid "The error reported by %s was:"
 msgstr "Fejlen meddelt af %s var:"
 
@@ -7863,42 +7863,42 @@ msgstr "fejl: %s (se logfil for mere information)"
 msgid "You do not appear to be authenticated with Dropbox"
 msgstr "Det lader ikke til, at du har adgang til Dropbox"
 
-#: src/methods/s3.php:1295
+#: src/methods/s3.php:1315
 msgid "The communication with %s was not encrypted."
 msgstr "Kommunikationen med %s var ikke krypteret."
 
-#: src/methods/s3.php:1293
+#: src/methods/s3.php:1313
 msgid "The communication with %s was encrypted."
 msgstr "Kommunikationen med %s var krypteret."
 
-#: src/addons/googlecloud.php:1020, src/methods/s3.php:1290
+#: src/addons/googlecloud.php:1020, src/methods/s3.php:1310
 msgid "We accessed the bucket, and were able to create files within it."
 msgstr "Vi har fået adgang til gruppen, og vi kunne oprette filer i den."
 
 #: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028,
-#: src/methods/s3.php:1288, src/methods/s3.php:1300
+#: src/methods/s3.php:1308, src/methods/s3.php:1320
 msgid "We successfully accessed the bucket, but the attempt to create a file in it failed."
 msgstr "Vi har fået adgang til gruppen, men forsøget på at oprette en fil i den mislykkedes."
 
 #: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028,
-#: src/methods/s3.php:1288, src/methods/s3.php:1300
+#: src/methods/s3.php:1308, src/methods/s3.php:1320
 msgid "Failure"
 msgstr "Fejl"
 
-#: src/addons/backblaze.php:533, src/methods/s3.php:1275
+#: src/addons/backblaze.php:533, src/methods/s3.php:1295
 msgid "Failure: We could not successfully access or create such a bucket. Please check your access credentials, and if those are correct then try another bucket name (as another %s user may already have taken your name)."
 msgstr "Fejl: Vi kunne ikke få adgang til eller oprette sådan en gruppe. Tjek venligst dine adgangsoplysninger, og hvis de er korrekt, så prøv et andet gruppenavn (da en anden %s bruger måske allerede har taget dit navn)."
 
-#: src/methods/openstack2.php:150, src/methods/s3.php:1269
+#: src/methods/openstack2.php:150, src/methods/s3.php:1289
 msgid "Region"
 msgstr "Region"
 
 #: src/addons/googlecloud.php:140, src/addons/googlecloud.php:974,
-#: src/methods/s3.php:1226
+#: src/methods/s3.php:1246
 msgid "Failure: No bucket details were given."
 msgstr "Fejl: Ingen gruppedetaljer blev oplyst."
 
-#: src/methods/s3.php:1204
+#: src/methods/s3.php:1224
 msgid "API secret"
 msgstr "API hemmelighed"
 
@@ -7978,7 +7978,7 @@ msgid "Username"
 msgstr "Brugernavn"
 
 #: src/methods/cloudfiles-new.php:181, src/methods/cloudfiles.php:534,
-#: src/methods/s3.php:1200
+#: src/methods/s3.php:1220
 msgid "API key"
 msgstr "API-nøgle"
 
@@ -7992,7 +7992,7 @@ msgstr "API-nøgle"
 #: src/methods/ftp.php:426, src/methods/ftp.php:430,
 #: src/methods/openstack2.php:180, src/methods/openstack2.php:185,
 #: src/methods/openstack2.php:190, src/methods/openstack2.php:195,
-#: src/methods/s3.php:1200, src/methods/s3.php:1204
+#: src/methods/s3.php:1220, src/methods/s3.php:1224
 msgid "Failure: No %s was given."
 msgstr "Fejl: Der blev ikke angivet et %s"
 
@@ -8115,7 +8115,7 @@ msgstr "du har autentificeret din %s konto."
 #: src/addons/sftp.php:633, src/addons/webdav.php:341,
 #: src/addons/wp-cli.php:494, src/methods/addon-base-v2.php:370,
 #: src/methods/cloudfiles.php:590, src/methods/googledrive.php:613,
-#: src/methods/openstack-base.php:535, src/methods/s3.php:1290
+#: src/methods/openstack-base.php:535, src/methods/s3.php:1310
 msgid "Success"
 msgstr "Succes"
 

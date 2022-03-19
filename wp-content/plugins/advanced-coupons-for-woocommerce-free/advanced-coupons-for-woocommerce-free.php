@@ -4,7 +4,7 @@
  * Plugin Name: Advanced Coupons for WooCommerce Free
  * Plugin URI: https://advancedcouponsplugin.com
  * Description: Advanced Coupons for WooCommerce (Free Version) gives WooCommerce store owners extra coupon features so they can market their stores better.
- * Version: 3.1.4
+ * Version: 4.0.1
  * Author: Rymera Web Co
  * Author URI: https://rymera.com.au
  * Requires at least: 5.2
@@ -41,8 +41,15 @@ use ACFWF\Models\Help_Links;
 use ACFWF\Models\Notices;
 use ACFWF\Models\Order_Details;
 use ACFWF\Models\REST_API\API_Settings;
+use ACFWF\Models\REST_API\API_Store_Credit_Customer;
+use ACFWF\Models\REST_API\API_Store_Credit_Entry;
 use ACFWF\Models\Role_Restrictions;
 use ACFWF\Models\Script_Loader;
+use ACFWF\Models\Store_Credits\Admin as Store_Credits_Admin;
+use ACFWF\Models\Store_Credits\Calculate as Store_Credits_Calculate;
+use ACFWF\Models\Store_Credits\Checkout as Store_Credits_Checkout;
+use ACFWF\Models\Store_Credits\My_Account as Store_Credits_My_Account;
+use ACFWF\Models\Store_Credits\Registry as Store_Credits_Registry;
 use ACFWF\Models\Third_Party_Integrations\Aelia\Currency_Switcher;
 use ACFWF\Models\Third_Party_Integrations\WPML_Support;
 
@@ -431,33 +438,40 @@ class ACFWF extends Abstract_Main_Plugin_Class
     private function _initialize_plugin_components()
     {
         // modules
-        $url_coupons      = URL_Coupons::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
-        $role_restriction = Role_Restrictions::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
-        $cart_conditions  = Cart_Conditions::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
-        $settings         = Admin_App::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
-        $edit_coupon      = Edit_Coupon::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions, $cart_conditions);
-        $bogo_admin       = BOGO_Admin::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
-        $bogo_frontend    = BOGO_Frontend::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
-        $notices          = Notices::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
-        $upsell           = Upsell::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
-        $admin_notes      = WC_Admin_Notes::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
-        $order_details    = Order_Details::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
-        $editor_blocks    = Editor_Blocks::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
-        $help_links       = Help_Links::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $url_coupons             = URL_Coupons::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $role_restriction        = Role_Restrictions::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $cart_conditions         = Cart_Conditions::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $settings                = Admin_App::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $edit_coupon             = Edit_Coupon::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions, $cart_conditions);
+        $bogo_admin              = BOGO_Admin::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $bogo_frontend           = BOGO_Frontend::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $notices                 = Notices::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $upsell                  = Upsell::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $admin_notes             = WC_Admin_Notes::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $order_details           = Order_Details::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $editor_blocks           = Editor_Blocks::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $help_links              = Help_Links::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $store_credits_admin     = Store_Credits_Admin::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $store_credits_checkout  = Store_Credits_Checkout::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $store_credits_myaccount = Store_Credits_My_Account::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        Store_Credits_Registry::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        Store_Credits_Calculate::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
 
         // third party integration
         $currency_switcher = Currency_Switcher::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
         WPML_Support::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
 
         // boostrap args
-        $initiables     = array($cart_conditions, $edit_coupon, $bogo_admin, $notices, $upsell, $admin_notes, $help_links, $editor_blocks);
-        $activatables   = array($edit_coupon, $bogo_admin, $notices, $admin_notes);
+        $initiables     = array($cart_conditions, $edit_coupon, $bogo_admin, $notices, $upsell, $admin_notes, $help_links, $editor_blocks, $store_credits_checkout, $store_credits_myaccount);
+        $activatables   = array($edit_coupon, $bogo_admin, $notices, $admin_notes, $store_credits_admin);
         $deactivatables = array();
 
         Bootstrap::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions, $activatables, $initiables, $deactivatables);
         Script_Loader::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
 
         API_Settings::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        API_Store_Credit_Entry::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        API_Store_Credit_Customer::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
 
         //deprecated
         BOGO_Deals::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);

@@ -156,7 +156,7 @@ msgstr "Leé más sobre el estilo de acceso a los buckets"
 msgid "Bucket access style"
 msgstr "Estilo de acceso a Buckets"
 
-#: src/methods/s3.php:1231
+#: src/methods/s3.php:1251
 msgid "Failure: No endpoint details were given."
 msgstr "Error: No se brindaron detalles del endpoint."
 
@@ -870,7 +870,7 @@ msgstr "¿Ya tenés espacio?"
 msgid "Need to get space?"
 msgstr "¿Necesitás espacio?"
 
-#: src/methods/s3.php:214, src/methods/s3.php:215, src/methods/s3.php:227,
+#: src/methods/s3.php:215, src/methods/s3.php:216, src/methods/s3.php:227,
 #: src/methods/s3.php:228
 msgid "Error: Failed to initialise"
 msgstr "Error: No se pudo inicializar"
@@ -3584,11 +3584,11 @@ msgstr "Esta URL de WebDAV se genera completando las opciones de abajo. Si no co
 msgid "No response data was received. This usually indicates a network connectivity issue (e.g. an outgoing firewall or overloaded network) between this site and UpdraftPlus.com."
 msgstr "No se recibieron datos de respuesta. Esto generalmente indica un problema de conectividad de red (por ejemplo, un firewall saliente o una red sobrecargada) entre este sitio y UpdraftPlus.com."
 
-#: src/methods/s3.php:1279
+#: src/methods/s3.php:1299
 msgid "The AWS access key looks to be wrong (valid %s access keys begin with \"AK\")"
 msgstr "La clave de acceso a AWS parece no ser correcta (las claves de acceso válidas %s comienzan por \"AK\")"
 
-#: src/methods/s3.php:159
+#: src/methods/s3.php:161
 msgid "No settings were found - please go to the Settings tab and check your settings"
 msgstr "No se encontraron ninguna configuración, por favor andá a la pestaña de configuración y revisá los parámetros."
 
@@ -4538,7 +4538,7 @@ msgid "Updraft Vault"
 msgstr "Updraft Vault"
 
 #: src/addons/azure.php:443, src/addons/backblaze.php:564,
-#: src/addons/googlecloud.php:1024, src/methods/s3.php:1307
+#: src/addons/googlecloud.php:1024, src/methods/s3.php:1327
 msgid "Delete failed:"
 msgstr "Falló el borrado:"
 
@@ -5081,7 +5081,7 @@ msgstr "Lista completa de caracteristicas"
 msgid "Backup (where relevant) plugins, themes and the WordPress database with UpdraftPlus before updating"
 msgstr "Hacer un respaldo (cuando sea relevante) de los plugins, temas y la base de datos de WordPress con UpdraftPlus antes de actualizar"
 
-#: src/methods/s3.php:216, src/methods/s3.php:229
+#: src/methods/s3.php:217, src/methods/s3.php:229
 msgid "%s Error: Failed to initialise"
 msgstr "%s Error: Fallo al inicializar"
 
@@ -7440,11 +7440,11 @@ msgstr "Algunos servidores anuncian FTP cifrado como disponible, pero luego se a
 msgid "Your web server's PHP installation does not included a required module (%s). Please contact your web hosting provider's support and ask for them to enable it."
 msgstr "Tu instalación PHP del servidor no incluye un módulo requerido (%s). Por favor, contactate con el soporte de tu proveedor de hosting web y pregunte sobre el mismo para habilitarlo."
 
-#: src/methods/s3.php:1300
+#: src/methods/s3.php:1320
 msgid "Please check your access credentials."
 msgstr "Por favor, revisá sus credenciales de acceso."
 
-#: src/addons/s3-enhanced.php:219, src/methods/s3.php:1277
+#: src/addons/s3-enhanced.php:219, src/methods/s3.php:1297
 msgid "The error reported by %s was:"
 msgstr "El error reportado por %s fue:"
 
@@ -7861,42 +7861,42 @@ msgstr "error: %s (más información en el registro)"
 msgid "You do not appear to be authenticated with Dropbox"
 msgstr "No parece estar autenticado con Dropbox"
 
-#: src/methods/s3.php:1295
+#: src/methods/s3.php:1315
 msgid "The communication with %s was not encrypted."
 msgstr "La comunicación con %s no fue cifrada."
 
-#: src/methods/s3.php:1293
+#: src/methods/s3.php:1313
 msgid "The communication with %s was encrypted."
 msgstr "La comunicación con %s fue cifrada."
 
-#: src/addons/googlecloud.php:1020, src/methods/s3.php:1290
+#: src/addons/googlecloud.php:1020, src/methods/s3.php:1310
 msgid "We accessed the bucket, and were able to create files within it."
 msgstr "Accedimos correctamente al cubo, y pudimos crear archivos en él."
 
 #: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028,
-#: src/methods/s3.php:1288, src/methods/s3.php:1300
+#: src/methods/s3.php:1308, src/methods/s3.php:1320
 msgid "We successfully accessed the bucket, but the attempt to create a file in it failed."
 msgstr "Accedimos correctamente al cubo, pero el intento de crear un archivo en él falló."
 
 #: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028,
-#: src/methods/s3.php:1288, src/methods/s3.php:1300
+#: src/methods/s3.php:1308, src/methods/s3.php:1320
 msgid "Failure"
 msgstr "Fallo"
 
-#: src/addons/backblaze.php:533, src/methods/s3.php:1275
+#: src/addons/backblaze.php:533, src/methods/s3.php:1295
 msgid "Failure: We could not successfully access or create such a bucket. Please check your access credentials, and if those are correct then try another bucket name (as another %s user may already have taken your name)."
 msgstr "Fallo: No pudimos acceder o crear un cubo correctamente. Por favor, revisá tus credenciales de acceso, y si estas son correctas entonces prueba con otro nombre de cubo (quizás otro usuario de %s pueda tener ya uno con tu nombre)."
 
-#: src/methods/openstack2.php:150, src/methods/s3.php:1269
+#: src/methods/openstack2.php:150, src/methods/s3.php:1289
 msgid "Region"
 msgstr "Región"
 
 #: src/addons/googlecloud.php:140, src/addons/googlecloud.php:974,
-#: src/methods/s3.php:1226
+#: src/methods/s3.php:1246
 msgid "Failure: No bucket details were given."
 msgstr "Fallo: No se dieron los detalles del cubo."
 
-#: src/methods/s3.php:1204
+#: src/methods/s3.php:1224
 msgid "API secret"
 msgstr "API secret"
 
@@ -7976,7 +7976,7 @@ msgid "Username"
 msgstr "Nombre de usuario"
 
 #: src/methods/cloudfiles-new.php:181, src/methods/cloudfiles.php:534,
-#: src/methods/s3.php:1200
+#: src/methods/s3.php:1220
 msgid "API key"
 msgstr "Clave API"
 
@@ -7990,7 +7990,7 @@ msgstr "Clave API"
 #: src/methods/ftp.php:426, src/methods/ftp.php:430,
 #: src/methods/openstack2.php:180, src/methods/openstack2.php:185,
 #: src/methods/openstack2.php:190, src/methods/openstack2.php:195,
-#: src/methods/s3.php:1200, src/methods/s3.php:1204
+#: src/methods/s3.php:1220, src/methods/s3.php:1224
 msgid "Failure: No %s was given."
 msgstr "Fallo: %s no fue dado."
 
@@ -8113,7 +8113,7 @@ msgstr "has identificado tu cuenta %s."
 #: src/addons/sftp.php:633, src/addons/webdav.php:341,
 #: src/addons/wp-cli.php:494, src/methods/addon-base-v2.php:370,
 #: src/methods/cloudfiles.php:590, src/methods/googledrive.php:613,
-#: src/methods/openstack-base.php:535, src/methods/s3.php:1290
+#: src/methods/openstack-base.php:535, src/methods/s3.php:1310
 msgid "Success"
 msgstr "Correcto"
 

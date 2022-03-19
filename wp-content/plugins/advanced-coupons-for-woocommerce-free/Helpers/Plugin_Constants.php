@@ -32,7 +32,7 @@ class Plugin_Constants
     // Plugin configuration constants
     const TOKEN               = 'acfwf';
     const INSTALLED_VERSION   = 'acfwf_installed_version';
-    const VERSION             = '3.1.4';
+    const VERSION             = '4.0.1';
     const TEXT_DOMAIN         = 'advanced-coupons-for-woocommerce-free';
     const THEME_TEMPLATE_PATH = 'advanced-coupons-for-woocommerce-free';
     const META_PREFIX         = '_acfw_';
@@ -70,7 +70,14 @@ class Plugin_Constants
     const ORDER_BOGO_DISCOUNTS = 'acfw_order_bogo_discounts';
 
     // REST API
-    const REST_API_NAMESPACE = 'coupons/v1';
+    const REST_API_NAMESPACE         = 'coupons/v1';
+    const STORE_CREDIT_API_NAMESPACE = 'store-credits/v1';
+    const STORE_CREDIT_USER_BALANCE  = 'acfw_store_credit_balance';
+
+    // Store Credits
+    const STORE_CREDITS_SESSION    = 'acfw_store_credits_discount';
+    const STORE_CREDITS_ORDER_META = 'acfw_store_credits_order_discount';
+    const STORE_CREDITS_ENDPOINT   = 'acfw-store-credits';
 
     // Settings Constants
 
@@ -91,6 +98,7 @@ class Plugin_Constants
     const LOYALTY_PROGRAM_MODULE    = 'acfw_loyalty_program_module';
     const SORT_COUPONS_MODULE       = 'acfw_sort_coupons_module';
     const PAYMENT_METHODS_RESTRICT  = 'acfw_payment_methods_restrict_module';
+    const STORE_CREDITS_MODULE      = 'acfw_store_credits_module';
 
     // URL Coupons section
 
@@ -122,6 +130,11 @@ class Plugin_Constants
     // Advance Usage Limits
     const USAGE_LIMITS_CRON = 'acfw_advanced_usage_limits_cron';
 
+    // Store Credits
+    const STORE_CREDITS_DB_CREATED        = 'acfw_store_credits_db_created';
+    const STORE_CREDITS_DB_NAME           = 'acfw_store_credits';
+    const STORE_CREDITS_EXPIRY_CHECK_DATE = 'acfw_store_credits_expiry_check_date';
+
     // Cache options
     const AUTO_APPLY_COUPONS       = 'acfw_auto_apply_coupons';
     const APPLY_NOTIFICATION_CACHE = 'acfw_apply_notifcation_cache';
@@ -140,6 +153,10 @@ class Plugin_Constants
 
     // Permissions
     const ALLOW_FETCH_CONTENT_REMOTE = 'acfw_allow_fetch_content_remote_server';
+
+    // Others
+    const DISPLAY_DATE_FORMAT = 'F j, Y g:i a';
+    const DB_DATE_FORMAT      = 'Y-m-d H:i:s';
 
     /*
     |--------------------------------------------------------------------------
@@ -267,6 +284,7 @@ class Plugin_Constants
             self::ROLE_RESTRICT_MODULE,
             self::CART_CONDITIONS_MODULE,
             self::BOGO_DEALS_MODULE,
+            self::STORE_CREDITS_MODULE,
         );
     }
 
@@ -278,6 +296,7 @@ class Plugin_Constants
             self::ROLE_RESTRICT_MODULE,
             self::CART_CONDITIONS_MODULE,
             self::BOGO_DEALS_MODULE,
+            self::STORE_CREDITS_MODULE,
         );
     }
 }

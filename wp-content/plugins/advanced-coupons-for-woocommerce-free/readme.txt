@@ -1,10 +1,10 @@
 === Advanced Coupons for WooCommerce Coupons ===
 Contributors: jkohlbach, RymeraWebCo, Rymera01
 Donate link:
-Tags: coupons, woocommerce coupons, bogo, url coupons, coupon plugin, advanced coupons
+Tags: coupons, woocommerce coupons, bogo, url coupons, coupon plugin, store credit, advanced coupons
 Requires at least: 5.2
 Tested up to: 5.9
-Stable tag: 3.1.4
+Stable tag: 4.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,7 @@ Add extra smart WooCommerce coupons features with Advanced Coupons! It's the fre
 
 Every store owner deserves to have the best coupon features on their WooCommerce coupons - it's the key to marketing your store better!
 
-That's why we built this 100% free WooCommerce coupon plugin so you can get features like BOGO, url coupons, cart conditions, coupon role restrictions and more totally free.
+That's why we built this 100% free WooCommerce coupon plugin so you can get features like BOGO, url coupons, cart conditions, coupon role restrictions, store credit, and more totally free.
 
 **ADVANCED COUPONS – THE FREE WOOCOMMERCE COUPON PLUGIN**
 
@@ -30,6 +30,7 @@ We made WooCommerce coupons better so you can:
 
 1. Run WooCommerce BOGO deals (new BOGO coupon type)
 1. Protect against accidental discount coupon usage with Cart Conditions (coupon rules)
+1. Give WooCommerce store credit (and even refund to store credit)
 1. Organize your WooCommerce coupons with coupon categories
 1. Apply coupons with a URL easily (WooCommerce URL coupons)
 1. Restrict WooCommerce coupons by user role
@@ -59,6 +60,22 @@ For example:
 * Only apply a coupon on their first use (check their total spend is zero!)
 
 And there's dozens more! You can also combine and mix and match cart conditions to create more specific coupon rules.
+
+= WooCommerce Store Credit =
+
+***Store Credit*** can be given to any customer on your store via Coupons->Store Credit menu and in this free version of Advanced Coupons we support multiple ways to use this:
+
+* Manually grant store credit on a per user basis via an "admin ajustment"
+* Refund orders to store credit instead of refunding via the payment gateway
+* Let customers use store credit on the front end of your store during their checkout process
+
+Manually granting store credit is easy! Under Coupons->Store Credit you'll see a full dashboard showing the store credit in the system. Under Customers you can lookup a particular customer account and grant store credit to them with an "Admin Adjustment". This is excellent to use in customer service situations where you might want to grant some extra credit to keep customers happy.
+
+Refunding orders to store credit is a great way to grant a refund without having to part with actual $. They can then use the store credit towards future orders which almost guarantees you will be able to retain the customer going forward.
+
+Finally, logged in customers will see an option on the checkout to utilize the store credit toward their order, this appears on the checkout totals box with an easy to use interface that works well with any theme. This smart detection system ensures that the store credit features are only showing on your site if the customer is logged in.
+
+We're building a smarter store credit system for WooCommerce with Advanced Coupons and there will be many new free and premium features that will utilize store credit going into the future.
 
 = WooCommerce URL Coupons (Easily Apply WooCommerce Coupons With A Link) =
 
@@ -121,7 +138,7 @@ Standard WooCommerce coupons for a “30% off deal” would take 30% off the rev
 
 Each time the customer takes the WooCommerce BOGO deal you make $110 profit. I’ll take that any day of the week.
 
-**Reason #2: Cart Conditions save your money**
+**Reason #2: Cart Conditions save you money by smartly restricting coupon deals**
 
 Have you ever had a customer use a coupon they weren't meant to? Did they get more discount than they were suppose to? 
 
@@ -129,17 +146,20 @@ Cart conditions are like a set of rules your customer needs to abide by before t
 
 Gone are the days of losing out by having to put up with customers looking to scrape something extra. You can set up complex rules for your WooCommerce Coupons to abide by which, over time, will save you bucket loads.
 
-**Reason #3: A WooCommerce coupons plugin dedicated to your success!**
+**Reason #3: We're a WooCommerce coupon plugin dedicated to your success!**
 
-There's lots of other "features" that I could give you as reasons of why this is the best WooCommerce coupons extender plugin. But really there's only one more reason you should care about.
+There's lots of other "features" that I could give you as reasons of why this is the best WooCommerce coupon extension plugin. But really there's only one more reason you should care about: we care about your success!
 
 Unlike many others WooCommerce coupons plugins on the market our company, Rymera Web Co, is a professional WooCommerce extension company.
 
-We are 100% dedicated to helping STORE OWNERS. These are people just like you who are out there trying to make a living selling online via WooCommerce.
+We are 100% dedicated to helping STORE OWNERS. We are people just like you, we're out there making a living selling online using WooCommerce. We actually use this product ourselves!
 
-We believe in this industry so much that we've dedicated our entire company's existence to helping WooCommerce store owners.
+Our team believes wholeheartedly that small stores can grow into big stores, so we've dedicated our entire company's existence to helping WooCommerce store owners.
 
-Our mission is "To help store owners succeed with professional-grade tools that help them grow". Installing this *WooCommerce coupons* tool is just the first step in us helping you get to the next level.
+Our mission is "To help store owners succeed with professional-grade tools that help them grow". Installing this *WooCommerce coupons* tool is just the first step in us helping you get to the next level with your store.
+
+To your continued success!
+~ Josh & the team at Advanced Coupons
 
 == Installation ==
 
@@ -168,11 +188,13 @@ Advanced Coupons lets you create lots of new and interesting WooCommerce deals. 
 * WooCommerce BOGO coupons
 * Add Products on apply
 * Cart conditions (advance coupon rules)
+* Store credits
 * Schedule coupons
 * Auto apply coupons
 * URL coupons
 * Shipping coupons
 * Run a loyalty program
+* Gift cards (coming soon!)
 
 = What kinds of things can I test for with Cart Conditions (Coupon Rules)? =
 
@@ -221,15 +243,29 @@ Yes, coupon categories let you organise you coupons into distinct categories whi
 
 We suggest creating as many WooCommerce coupons categories as you need to separate the different types of coupons you and your team create.
 
+= How do I give store credit to a customer? =
+
+Store credits are extremely easy to grant from an admin perspective. Simply visit Coupons->Store Credits, then click on the Customers tab. You'll see an option there to search for your customer.
+
+Once you have the customer, you can adjust their store credit balance. This is called an "Admin Adjustment" and is just one way to give store credits to your customers.
+
+In this free plugin, you can also grant store credit to a customer via refunds.
+
+Simply choose the "Refund to Store Credit" option when on the Order Edit screen as you're refunding an order. The customer will then be able to utilize this store credit on their next order with you.
+
 = Is Advanced Coupons translation ready? =
 
-Yes, Advanced Coupons for WooCommerce is fully i18n compliant and ready for translation.
+Yes, Advanced Coupons for WooCommerce is fully i18n compliant and ready for translation. We have a number of translations included with the plugin. We're also fully integrated with WPML multi-lingual plugin.
 
 = I'd like access to all features, how can I get them? =
 
 Purchasing an Advanced Coupons Premium license gives you access to the full feature set of Advanced Coupons. This includes automatic updates, priority support, and more!
 
-<a href="https://advancedcouponsplugin.com/pricing/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Click here to compare the features and buy Advanced Coupons Premium</a>
+You can also explore our other compatible extensions as well:
+
+* <a href="https://advancedcouponsplugin.com/pricing/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Advanced Coupons Premium</a>
+* <a href="https://advancedcouponsplugin.com/pricing/?tab=loyalty&utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Loyalty Program for WooCommerce</a>
+* Gift Cards for WooCommerce (coming soon!)
 
 == Screenshots ==
 
@@ -246,9 +282,20 @@ We took the pain out of creating advanced coupon deals in WooCommerce and made i
 Also, I'm the founder of <a href="https://wholesalesuiteplugin.com/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Wholesale Suite</a>, the biggest wholesale solution for WooCommerce. I'm obsessed with helping store owners grow their stores and I hope you enjoy using Advanced Coupons.
 
 Thanks,
-Josh Kohlbach
+Josh Kohlbach (Found/CEO of Rymera Web Co)
 
 == Changelog ==
+
+= 4.0.1 =
+* Bug Fix: Store Credit - SQL Improvement
+
+= 4.0 =
+* Feature: Store Credits: Announcing Store Credits! You can now have the ability to grant store credit to your customers against their account which they can redeem later during checkout when placing an order. This is great for customer service scenarios such as giving credit, issuing refunds back to Store Credit instead of refunding payment, and many other future upcoming features.
+* Feature: Store Credits: Admin management dashboard
+* Feature: Store Credits: Checkout implementation
+* Feature: Store Credits: Issue Refunds using store credit
+* Feature: Store Credits: Add a My account tab to show customers their store credit
+* Feature: Store Credits: Add REST API endpoints for store credit
 
 = 3.1.4 =
 Min Version Compatibility Update: Advanced Coupons Premium 3.1.3 (if present)

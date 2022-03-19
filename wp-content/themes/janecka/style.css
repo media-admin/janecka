@@ -6372,6 +6372,28 @@ input#ship-to-different-address-checkbox::after {
 
 
 .contact-area__button-appointment-booking {
+
+	position: relative !important;
+	width: auto !important;
+	font-family: 'Source Sans Pro Regular' !important;
+	/* font-size: 1.0rem !important; */
+	font-size: 1.00rem !important;
+	/* line-height: 1.0rem !important; */
+	line-height: 1.0rem !important;
+	text-transform: uppercase;
+	color: #707070 !important;
+	background-color: transparent !important;
+	border: 2px solid #707070 !important;
+	border-radius: 25px !important;
+	text-align: left !important;
+	opacity: 100% !important;
+	margin-top: 12px !important;
+	margin-bottom: 8px !important;
+	margin-left: 0px !important;
+	padding: 0.4rem 1rem !important;
+	padding: 0.5rem 1.5rem 0.6rem 1.5rem !important;
+
+
 	margin-top: 25px !important;
 	margin-bottom: 25px !important;
 }

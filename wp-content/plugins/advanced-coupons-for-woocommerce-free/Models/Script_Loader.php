@@ -192,6 +192,14 @@ class Script_Loader implements Model_Interface
                 'footer' => true,
             ),
 
+            // ACFW edit order
+            'acfw-edit-order'           => array(
+                'src'    => $this->_constants->JS_ROOT_URL() . 'acfw-edit-order.js',
+                'deps'   => array('jquery'),
+                'ver'    => Plugin_Constants::VERSION,
+                'footer' => true,
+            ),
+
         ));
 
         // register backend styles via a loop
@@ -215,7 +223,6 @@ class Script_Loader implements Model_Interface
      */
     public function load_backend_scripts($handle)
     {
-
         global $post;
 
         // register all scripts required in the backend.
@@ -353,6 +360,23 @@ class Script_Loader implements Model_Interface
             ));
         }
 
+        // enqueue script in edit order page
+        if ('post' == $screen->base && 'shop_order' == $screen->id && 'shop_order' == $post_type) {
+
+            $order = wc_get_order($post->ID);
+
+            // only enqueue the script when order is assigned to a customer with account.
+            if ($this->_helper_functions->is_module(Plugin_Constants::STORE_CREDITS_MODULE) && $order->get_customer_id()) {
+                wp_enqueue_script('acfw-edit-order');
+                wp_localize_script('acfw-edit-order', 'acfwEditOrder', array(
+                    'button_text' => sprintf(
+                        __('Refund <span class="amount">%s</span> to Store Credits', 'advanced-coupons-for-woocommerce-free'),
+                        $this->_helper_functions->api_wc_price(0.0, array('currency' => $order->get_currency()))
+                    ),
+                ));
+            }
+        }
+
         do_action('acfw_after_load_backend_scripts', $screen, $post_type);
     }
 
@@ -370,6 +394,25 @@ class Script_Loader implements Model_Interface
      */
     public function load_frontend_scripts()
     {
+        // jquery webui popover
+        wp_register_style('jquery-webui-popover', $this->_constants->JS_ROOT_URL() . 'lib/webui-popover/jquery.webui-popover.min.css', array(), Plugin_Constants::VERSION, 'all');
+        wp_register_script('jquery-webui-popover', $this->_constants->JS_ROOT_URL() . 'lib/webui-popover/jquery.webui-popover.min.js', array('jquery'), Plugin_Constants::VERSION, true);
+
+        if (is_checkout()) {
+
+            wp_enqueue_style('acfwf-checkout', $this->_constants->CSS_ROOT_URL() . 'acfwf-checkout.css', array('jquery-webui-popover'), Plugin_Constants::VERSION, 'all');
+            wp_enqueue_script('acfwf-checkout', $this->_constants->JS_ROOT_URL() . 'acfwf-checkout.js', array('jquery', 'jquery-webui-popover'), Plugin_Constants::VERSION, true);
+            wp_localize_script('acfwf-checkout', 'acfwfCheckout', array(
+                'decimal_separator'  => wc_get_price_decimal_separator(),
+                'thousand_separator' => wc_get_price_thousand_separator(),
+                'redeem_nonce'       => wp_create_nonce('acfwf_redeem_store_credits_checkout'),
+                'enter_valid_price'  => __('Please enter a valid price', 'advanced-coupons-for-woocommerce-free'),
+            ));
+        }
+
+        if (is_account_page()) {
+            wp_enqueue_style('acfwf-my-account', $this->_constants->CSS_ROOT_URL() . 'acfw-my-account.css', array(), Plugin_Constants::VERSION, 'all');
+        }
     }
 
     /*

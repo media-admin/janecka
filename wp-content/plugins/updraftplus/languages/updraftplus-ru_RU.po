@@ -156,7 +156,7 @@ msgstr ""
 msgid "Bucket access style"
 msgstr ""
 
-#: src/methods/s3.php:1231
+#: src/methods/s3.php:1251
 msgid "Failure: No endpoint details were given."
 msgstr ""
 
@@ -870,7 +870,7 @@ msgstr ""
 msgid "Need to get space?"
 msgstr ""
 
-#: src/methods/s3.php:214, src/methods/s3.php:215, src/methods/s3.php:227,
+#: src/methods/s3.php:215, src/methods/s3.php:216, src/methods/s3.php:227,
 #: src/methods/s3.php:228
 msgid "Error: Failed to initialise"
 msgstr ""
@@ -3590,11 +3590,11 @@ msgstr ""
 msgid "No response data was received. This usually indicates a network connectivity issue (e.g. an outgoing firewall or overloaded network) between this site and UpdraftPlus.com."
 msgstr ""
 
-#: src/methods/s3.php:1279
+#: src/methods/s3.php:1299
 msgid "The AWS access key looks to be wrong (valid %s access keys begin with \"AK\")"
 msgstr ""
 
-#: src/methods/s3.php:159
+#: src/methods/s3.php:161
 msgid "No settings were found - please go to the Settings tab and check your settings"
 msgstr ""
 
@@ -4544,7 +4544,7 @@ msgid "Updraft Vault"
 msgstr "Updraft Vault"
 
 #: src/addons/azure.php:443, src/addons/backblaze.php:564,
-#: src/addons/googlecloud.php:1024, src/methods/s3.php:1307
+#: src/addons/googlecloud.php:1024, src/methods/s3.php:1327
 msgid "Delete failed:"
 msgstr "Не удалось удалить:"
 
@@ -5087,7 +5087,7 @@ msgstr "Полный список функций"
 msgid "Backup (where relevant) plugins, themes and the WordPress database with UpdraftPlus before updating"
 msgstr "Создавать (при необходимости) резервную копию плагинов, тем и базы данных WordPress, при помощи UpdraftPlus перед обновлением"
 
-#: src/methods/s3.php:216, src/methods/s3.php:229
+#: src/methods/s3.php:217, src/methods/s3.php:229
 msgid "%s Error: Failed to initialise"
 msgstr "%s Ошибка: Не удалось инициализировать"
 
@@ -7461,11 +7461,11 @@ msgstr ""
 msgid "Your web server's PHP installation does not included a required module (%s). Please contact your web hosting provider's support and ask for them to enable it."
 msgstr "В настройках PHP вашего хостинг провайдера не активирован необходимый модуль (%s). Пожалуйста, обратитесь в службу технической поддержки вашего провайдера и попросите их активировать данный модуль."
 
-#: src/methods/s3.php:1300
+#: src/methods/s3.php:1320
 msgid "Please check your access credentials."
 msgstr "Пожалуйста проверьте ваши реквизиты доступа."
 
-#: src/addons/s3-enhanced.php:219, src/methods/s3.php:1277
+#: src/addons/s3-enhanced.php:219, src/methods/s3.php:1297
 msgid "The error reported by %s was:"
 msgstr "Ошибка переданная %s:"
 
@@ -7882,42 +7882,42 @@ msgstr ""
 msgid "You do not appear to be authenticated with Dropbox"
 msgstr "Похоже что Вы не авторизованы в Dropbox."
 
-#: src/methods/s3.php:1295
+#: src/methods/s3.php:1315
 msgid "The communication with %s was not encrypted."
 msgstr "Данные передаваемые %s не были зашифрованы."
 
-#: src/methods/s3.php:1293
+#: src/methods/s3.php:1313
 msgid "The communication with %s was encrypted."
 msgstr "Данные передаваемые %s были зашифрованы."
 
-#: src/addons/googlecloud.php:1020, src/methods/s3.php:1290
+#: src/addons/googlecloud.php:1020, src/methods/s3.php:1310
 msgid "We accessed the bucket, and were able to create files within it."
 msgstr "Мы получили доступ к контейнеру и смогли создать в нём файл."
 
 #: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028,
-#: src/methods/s3.php:1288, src/methods/s3.php:1300
+#: src/methods/s3.php:1308, src/methods/s3.php:1320
 msgid "We successfully accessed the bucket, but the attempt to create a file in it failed."
 msgstr "Мы успешно создали контейнер но не смогли создать в нём файл."
 
 #: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028,
-#: src/methods/s3.php:1288, src/methods/s3.php:1300
+#: src/methods/s3.php:1308, src/methods/s3.php:1320
 msgid "Failure"
 msgstr "Неудачно"
 
-#: src/addons/backblaze.php:533, src/methods/s3.php:1275
+#: src/addons/backblaze.php:533, src/methods/s3.php:1295
 msgid "Failure: We could not successfully access or create such a bucket. Please check your access credentials, and if those are correct then try another bucket name (as another %s user may already have taken your name)."
 msgstr "Ошибка: не удалось получить доступ к существующему или создать новый контейнер. Проверьте учетные данные, и если они верны, попытайтесь указать другое имя контейнера (возможно, имя %s уже используется другим пользователем)"
 
-#: src/methods/openstack2.php:150, src/methods/s3.php:1269
+#: src/methods/openstack2.php:150, src/methods/s3.php:1289
 msgid "Region"
 msgstr "Область"
 
 #: src/addons/googlecloud.php:140, src/addons/googlecloud.php:974,
-#: src/methods/s3.php:1226
+#: src/methods/s3.php:1246
 msgid "Failure: No bucket details were given."
 msgstr "Ошибка: Данные контейнера не указаны."
 
-#: src/methods/s3.php:1204
+#: src/methods/s3.php:1224
 msgid "API secret"
 msgstr "Секретный ключ API"
 
@@ -7997,7 +7997,7 @@ msgid "Username"
 msgstr "Имя пользователя"
 
 #: src/methods/cloudfiles-new.php:181, src/methods/cloudfiles.php:534,
-#: src/methods/s3.php:1200
+#: src/methods/s3.php:1220
 msgid "API key"
 msgstr "Ключ API"
 
@@ -8011,7 +8011,7 @@ msgstr "Ключ API"
 #: src/methods/ftp.php:426, src/methods/ftp.php:430,
 #: src/methods/openstack2.php:180, src/methods/openstack2.php:185,
 #: src/methods/openstack2.php:190, src/methods/openstack2.php:195,
-#: src/methods/s3.php:1200, src/methods/s3.php:1204
+#: src/methods/s3.php:1220, src/methods/s3.php:1224
 msgid "Failure: No %s was given."
 msgstr "Ошибка нет информации о %s."
 
@@ -8134,7 +8134,7 @@ msgstr "вы авторизовали вашу учётную запись %s."
 #: src/addons/sftp.php:633, src/addons/webdav.php:341,
 #: src/addons/wp-cli.php:494, src/methods/addon-base-v2.php:370,
 #: src/methods/cloudfiles.php:590, src/methods/googledrive.php:613,
-#: src/methods/openstack-base.php:535, src/methods/s3.php:1290
+#: src/methods/openstack-base.php:535, src/methods/s3.php:1310
 msgid "Success"
 msgstr "Успех"
 

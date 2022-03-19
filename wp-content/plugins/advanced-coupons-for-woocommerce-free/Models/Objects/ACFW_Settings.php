@@ -251,6 +251,14 @@ class ACFW_Settings extends \WC_Settings_Page
                 'default' => 'yes',
             ),
 
+            array(
+                'title'   => __('Store Credits', 'advanced-coupons-for-woocommerce-free'),
+                'type'    => 'checkbox',
+                'desc'    => __('Adds a store credit account to your customer’s profile that you can credit for them to use toward purchases. Store credits can be used during checkout towards payment.', 'advanced-coupons-for-woocommerce-free'),
+                'id'      => Plugin_Constants::STORE_CREDITS_MODULE,
+                'default' => 'yes',
+            ),
+
         ));
 
         $settings = array_merge(

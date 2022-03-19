@@ -620,7 +620,7 @@ class Meow_WPMC_Core {
 					error_log( "Media Cleaner: Could not recover $path." );
 				}
 			}
-			if ( !wp_untrash_post( $issue->postId ) ) {
+			if ( !wp_update_post( array( 'ID' => $issue->postId, 'post_type' => 'attachment' ) ) ) {
 				$this->log( "🚫 Failed to Untrash Post {$issue->postId} (but deleted it from Cleaner DB)." );
 				error_log( "Media Cleaner: Failed to Untrash Post {$issue->postId} (but deleted it from Cleaner DB)." );
 				return false;
@@ -713,13 +713,14 @@ class Meow_WPMC_Core {
 		$regex = "^(.*)(\\s\\(\\+.*)$";
 		$issue->path = preg_replace( '/' . $regex . '/i', '$1', $issue->path ); // remove " (+ 6 files)" from path
 
+		// Commented on 2022/03/15: This is probably not needed, and slows down deletion
 		// Make sure there isn't a media DB entry
-		if ( $issue->type == 0 ) {
-			$attachmentid = $this->find_media_id_from_file( $issue->path, true );
-			if ( $attachmentid ) {
-				$this->log( "🚫 Issue listed as filesystem but Media {$attachmentid} exists." );
-			}
-		}
+		// if ( $issue->type == 0 ) {
+		// 	$attachmentid = $this->find_media_id_from_file( $issue->path, true );
+		// 	if ( $attachmentid ) {
+		// 		$this->log( "🚫 Issue listed as filesystem but Media {$attachmentid} exists." );
+		// 	}
+		// }
 
 		if ( $issue->type == 0 ) {
 
@@ -743,7 +744,7 @@ class Meow_WPMC_Core {
 		}
 
 		if ( $issue->type == 1 ) {
-			if ( $issue->deleted == 0 && MEDIA_TRASH ) {
+			if ( $issue->deleted == 0 ) {
 				// Move Media to trash
 				// Let's copy the images to the trash so that it can be recovered.
 				$paths = $this->get_paths_from_attachment( $issue->postId );
@@ -753,16 +754,15 @@ class Meow_WPMC_Core {
 						error_log( "Media Cleaner: Could not trash $path." );
 					}
 				}
-				wp_delete_attachment( $issue->postId, false );
+				wp_update_post( array( 'ID' => $issue->postId, 'post_type' => 'wmpc-trash' ) );
 				$wpdb->query( $wpdb->prepare( "UPDATE $table_name SET deleted = 1, ignored = 0 WHERE id = %d", $id ) );
 				return true;
 			}
 			else {
 				// Trash Media definitely by recovering it (to be like a normal Media) and remove it through the
 				// standard WordPress workflow
-				if ( MEDIA_TRASH ) {
-					$this->recover( $id );
-				}
+				$this->recover( $id );
+				wp_update_post( array( 'ID' => $issue->postId, 'post_type' => 'attachment' ) );
 				wp_delete_attachment( $issue->postId, true );
 				$wpdb->query( $wpdb->prepare( "DELETE FROM $table_name WHERE id = %d", $id ) );
 				return true;

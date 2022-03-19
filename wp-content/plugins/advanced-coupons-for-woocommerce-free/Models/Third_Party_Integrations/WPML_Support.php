@@ -494,18 +494,16 @@ class WPML_Support implements Model_Interface
      * @param bool  $is_reverse Convert from user to base currency if true.
      * @return float Converted amount.
      */
-    public function convert_amount_to_user_selected_currency($amount, $is_reverse = false)
+    public function convert_amount_to_user_selected_currency($amount, $is_reverse = false, $settings = array())
     {
-        global $woocommerce_wpml;
-
-        $multi_currency = $woocommerce_wpml ? $woocommerce_wpml->get_multi_currency() : null;
+        $multi_currency = $this->_get_multi_currency();
 
         if (!$multi_currency) {
             return $amount;
         }
 
-        $user_currency = $multi_currency->get_client_currency();
-        $site_currency = wcml_get_woocommerce_currency_option();
+        $user_currency = isset($settings['user_currency']) ? $settings['user_currency'] : $multi_currency->get_client_currency();
+        $site_currency = isset($settings['site_currency']) ? $settings['site_currency'] : wcml_get_woocommerce_currency_option();
 
         if ($site_currency === $user_currency) {
             return $amount;
@@ -519,6 +517,80 @@ class WPML_Support implements Model_Interface
             return $multi_currency->prices->convert_price_amount_by_currencies($amount, $site_currency, $user_currency);
         }
         // convert from base to user.
+    }
+
+    /**
+     * Return cart total converted to user selected currency.
+     * 
+     * @since 4.0
+     * @access public
+     * 
+     * @param float $cart_total Cart total
+     * @return float Filtered cart total.
+     */
+    public function convert_cart_total_to_user_based_currency($cart_total)
+    {
+        $multi_currency = $this->_get_multi_currency();
+        $user_currency = $multi_currency->get_client_currency();
+        $site_currency = wcml_get_woocommerce_currency_option();
+        
+        return $multi_currency->prices->convert_price_amount_by_currencies($cart_total, $site_currency, $user_currency);
+    }
+
+    /**
+     * Save user currency to store credits discount session.
+     * 
+     * @since 4.0
+     * @access public
+     * 
+     * @param array $sc_discount Session data.
+     * @return array Filtered session data.
+     */
+    public function save_user_currency_to_store_credits_discount_session($sc_discount)
+    {
+        $sc_discount['currency'] = $this->_get_multi_currency()->get_client_currency();
+        return $sc_discount;
+    }
+
+    /**
+     * Validate the store credits discount currency on cart totals calculation.
+     * When the currency saved in session is different from the users currency in WPML, then we convert the currency from
+     * session to the new value, and update the session data as well.
+     * 
+     * @since 4.0
+     * @access public
+     * 
+     * @param array $sc_discount Session data.
+     * @return float Filtered discount amount.
+     */
+    public function validate_user_currency_on_apply_store_credits_discount($sc_discount)
+    {
+        if (isset($sc_discount['currency']) && $sc_discount['currency'] !== $this->_get_multi_currency()->get_client_currency()) {
+
+            // convert back from previously selected currency to site currency
+            $amount = $this->_get_multi_currency()->prices->convert_price_amount_by_currencies(
+                $sc_discount['amount'], 
+                $sc_discount['currency'], 
+                wcml_get_woocommerce_currency_option()
+            );
+
+            // convert from site currency to newly selected currency.
+            $amount = $this->_get_multi_currency()->prices->convert_price_amount_by_currencies(
+                $amount, 
+                wcml_get_woocommerce_currency_option(),
+                $this->_get_multi_currency()->get_client_currency()
+            );
+
+            if (0 >= $amount) {
+                \WC()->session->set(Plugin_Constants::STORE_CREDITS_SESSION, null);
+            } else {
+                $sc_discount['amount'] = $amount;
+                $sc_discount['currency'] = $this->_get_multi_currency()->get_client_currency();
+                \WC()->session->set(Plugin_Constants::STORE_CREDITS_SESSION, $sc_discount);
+            }
+        }
+        
+        return $sc_discount;
     }
 
     /**
@@ -577,8 +649,23 @@ class WPML_Support implements Model_Interface
     {
         return $this->_helper_functions->is_plugin_active('sitepress-multilingual-cms/sitepress.php')
         && $this->_helper_functions->is_plugin_active('woocommerce-multilingual/wpml-woocommerce.php')
-        && $this->_helper_functions->is_plugin_active('wpml-string-translation/plugin.php')
-        && $this->_helper_functions->is_plugin_active('wpml-translation-management/plugin.php');
+        && \function_exists('icl_st_init') // string translation plugin
+        && \function_exists('wpml_tm_load_element_translations'); // translation management plugin
+    }
+
+    /**
+     * Get multi currency class instance.
+     * 
+     * @since 4.0
+     * @access private
+     * 
+     * @return object
+     */
+    private function _get_multi_currency()
+    {
+        global $woocommerce_wpml;
+
+        return $woocommerce_wpml ? $woocommerce_wpml->get_multi_currency() : null;
     }
 
     /*
@@ -586,6 +673,37 @@ class WPML_Support implements Model_Interface
     | Fulfill implemented interface contracts
     |--------------------------------------------------------------------------
      */
+
+    /**
+     * Add hooks when WPML plugin is loaded.
+     * 
+     * @since 3.1.2
+     * @access public
+     */
+    public function wpml_loaded() 
+    {
+        if (!$this->_is_wpml_requirements_installed()) {
+            return;
+        }
+
+        $this->register_translatable_strings_for_coupons();
+        $this->register_translatable_setting_strings();
+
+        add_filter('acfw_string_meta', array($this, 'apply_translation_coupon_field'), 10, 3);
+        add_filter('acfw_string_option', array($this, 'apply_translation_setting_strings'), 10, 2);
+
+        add_filter('acfw_json_search_products_response', array($this, 'remove_translated_versions_of_products'));
+        add_filter('acfw_json_search_product_categories_response', array($this, 'remove_translated_versions_of_categories'));
+        add_filter('acfwf_cart_condition_category_option', array($this, 'remove_translated_versions_of_categories'));
+        add_filter('acfw_filter_cart_item_product_id', array($this, 'get_cart_item_original_product_id'));
+        add_filter('acfw_filter_product_tax_terms', array($this, 'get_translated_taxonomy_terms_and_append_to_list'), 10, 2);
+        add_filter('acfw_filter_amount', array($this, 'convert_amount_to_user_selected_currency'), 10, 3);
+        add_filter('acfw_store_credits_get_cart_total', array($this, 'convert_cart_total_to_user_based_currency'));
+        add_filter('acfw_store_credits_discount_session', array($this, 'save_user_currency_to_store_credits_discount_session'));
+        add_filter('acfw_before_apply_store_credit_discount', array($this, 'validate_user_currency_on_apply_store_credits_discount'), 10);
+
+        add_filter('acfw_url_coupons_admin_data_panel_fields', array($this, 'add_instructions_to_coupon_url_field'));
+    }
 
     /**
      * Execute WPML_Support class.
@@ -596,23 +714,7 @@ class WPML_Support implements Model_Interface
      */
     public function run()
     {
-        if (!$this->_is_wpml_requirements_installed()) {
-            return;
-        }
-
-        add_action('wpml_loaded', array($this, 'register_translatable_strings_for_coupons'), 999);
-        add_action('wpml_loaded', array($this, 'register_translatable_setting_strings'), 999);
-        add_filter('acfw_string_meta', array($this, 'apply_translation_coupon_field'), 10, 3);
-        add_filter('acfw_string_option', array($this, 'apply_translation_setting_strings'), 10, 2);
-
-        add_filter('acfw_json_search_products_response', array($this, 'remove_translated_versions_of_products'));
-        add_filter('acfw_json_search_product_categories_response', array($this, 'remove_translated_versions_of_categories'));
-        add_filter('acfwf_cart_condition_category_option', array($this, 'remove_translated_versions_of_categories'));
-        add_filter('acfw_filter_cart_item_product_id', array($this, 'get_cart_item_original_product_id'));
-        add_filter('acfw_filter_product_tax_terms', array($this, 'get_translated_taxonomy_terms_and_append_to_list'), 10, 2);
-        add_filter('acfw_filter_amount', array($this, 'convert_amount_to_user_selected_currency'), 10, 2);
-
-        add_filter('acfw_url_coupons_admin_data_panel_fields', array($this, 'add_instructions_to_coupon_url_field'));
+        add_action('wpml_loaded', array($this, 'wpml_loaded'));
     }
 
 }

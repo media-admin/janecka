@@ -131,27 +131,36 @@ class Admin_App implements Model_Interface, Initializable_Interface
 
         $show_app         = $this->_show_with_acfwp();
         $this->_app_pages = apply_filters('acfw_admin_app_pages', array(
-            'acfw-settings' => array(
+            'acfw-store-credits' => array(
+                'slug'  => 'acfw-store-credits',
+                'label' => __('Store Credits', 'advanced-coupons-for-woocommerce-free'),
+                'page'  => 'store_credits_page',
+            ),
+            'acfw-settings'      => array(
                 'slug'  => $show_app ? 'acfw-settings' : 'wc-settings&tab=acfw_settings',
                 'label' => __('Settings', 'advanced-coupons-for-woocommerce-free'),
                 'page'  => 'settings_page',
             ),
-            'acfw-license'  => array(
+            'acfw-license'       => array(
                 'slug'  => $show_app ? 'acfw-license' : 'wc-settings&tab=acfw_settings&section=acfw_slmw_settings_section',
                 'label' => __('License', 'advanced-coupons-for-woocommerce-free'),
                 'page'  => 'license_page',
             ),
-            'acfw-help'     => array(
+            'acfw-help'          => array(
                 'slug'  => $show_app ? 'acfw-help' : 'wc-settings&tab=acfw_settings&section=acfw_setting_help_section',
                 'label' => __('Help', 'advanced-coupons-for-woocommerce-free'),
                 'page'  => 'help_page',
             ),
-            'acfw-about'    => array(
+            'acfw-about'         => array(
                 'slug'  => $show_app ? 'acfw-about' : false,
                 'label' => __('About', 'advanced-coupons-for-woocommerce-free'),
                 'page'  => 'about_page',
             ),
         ), $show_app);
+
+        if (!$this->_helper_functions->is_module(Plugin_Constants::STORE_CREDITS_MODULE)) {
+            unset($this->_app_pages['acfw-store-credits']);
+        }
 
         foreach ($this->_app_pages as $key => $app_page) {
 
@@ -236,12 +245,12 @@ class Admin_App implements Model_Interface, Initializable_Interface
 
         wp_localize_script('wp-api', 'acfwAdminApp', apply_filters('acfwf_admin_app_localized',
             array(
-                'logo_alt'       => __('Advanced Coupons', 'advanced-coupons-for-woocommerce-free'),
-                'admin_url'      => admin_url(),
-                'title'          => __('Settings', 'advanced-coupons-for-woocommerce-free'),
-                'desc'           => __('Adjust the global settings options for Advanced Coupons for WooCommerce.', 'advanced-coupons-for-woocommerce-free'),
-                'logo'           => $this->_constants->IMAGES_ROOT_URL() . 'acfw-logo.png',
-                'coupon_nav'     => array(
+                'logo_alt'           => __('Advanced Coupons', 'advanced-coupons-for-woocommerce-free'),
+                'admin_url'          => admin_url(),
+                'title'              => __('Settings', 'advanced-coupons-for-woocommerce-free'),
+                'desc'               => __('Adjust the global settings options for Advanced Coupons for WooCommerce.', 'advanced-coupons-for-woocommerce-free'),
+                'logo'               => $this->_constants->IMAGES_ROOT_URL() . 'acfw-logo.png',
+                'coupon_nav'         => array(
                     'toplevel' => __('Coupons', 'advanced-coupons-for-woocommerce-free'),
                     'links'    => array(
                         array(
@@ -258,16 +267,16 @@ class Admin_App implements Model_Interface, Initializable_Interface
                         ),
                     ),
                 ),
-                'validation'     => array(
+                'validation'         => array(
                     'default' => __('Please enter a valid value.', 'advanced-coupons-for-woocommerce-free'),
                 ),
-                'app_pages'      => array_values($this->_app_pages),
-                'action_notices' => array(
+                'app_pages'          => array_values($this->_app_pages),
+                'action_notices'     => array(
                     'success' => __('successfully updated', 'advanced-coupons-for-woocommerce-free'),
                     'fail'    => __('failed to update', 'advanced-coupons-for-woocommerce-free'),
                 ),
-                'premium_upsell' => false,
-                'license_page'   => array(
+                'premium_upsell'     => false,
+                'license_page'       => array(
                     'title'              => __('Advanced Coupons License Activation', 'advanced-coupons-for-woocommerce-free'),
                     'desc'               => __('Advanced Coupons comes in two versions - the free version (with feature limitations) and the Premium add-on.', 'advanced-coupons-for-woocommerce-free'),
                     'feature_comparison' => array(
@@ -294,7 +303,7 @@ class Admin_App implements Model_Interface, Initializable_Interface
                         ),
                     ),
                 ),
-                'help_page'      => array(
+                'help_page'          => array(
                     'title' => __('Getting Help', 'advanced-coupons-for-woocommerce-free'),
                     'desc'  => __('We’re here to help you get the most out of Advanced Coupons for WooCommerce.', 'advanced-coupons-for-woocommerce-free'),
                     'cards' => array(
@@ -316,7 +325,7 @@ class Admin_App implements Model_Interface, Initializable_Interface
                         ),
                     ),
                 ),
-                'free_guide'     => array(
+                'free_guide'         => array(
                     'tag'      => __('Recommended', 'advanced-coupons-for-woocommerce-free'),
                     'title'    => __('FREE GUIDE: How To Grow A WooCommerce Store Using Coupons', 'advanced-coupons-for-woocommerce-free'),
                     'subtitle' => __('The key to growing an online store is promoting it!', 'advanced-coupons-for-woocommerce-free'),
@@ -334,7 +343,7 @@ class Admin_App implements Model_Interface, Initializable_Interface
                         __('The tools you need to run these deals in your WooCommerce store', 'advanced-coupons-for-woocommerce-free'),
                     ),
                 ),
-                'about_page'     => array(
+                'about_page'         => array(
                     'title'        => __('About Advanced Coupons', 'advanced-coupons-for-woocommerce-free'),
                     'desc'         => __('Hello and welcome to Advanced Coupons, the plugin that makes your WooCommerce coupons better!', 'advanced-coupons-for-woocommerce-free'),
                     'main_card'    => array(
@@ -372,6 +381,91 @@ class Admin_App implements Model_Interface, Initializable_Interface
                         'installed'     => __('Activate Plugin', 'advanced-coupons-for-woocommerce-free'),
                     ),
                 ),
+                'store_credits_page' => array(
+                    'title'          => __('Store Credits Dashboard', 'advanced-coupons-for-woocommerce-free'),
+                    'currency'       => array(
+                        'decimal_separator'  => wc_get_price_decimal_separator(),
+                        'thousand_separator' => wc_get_price_thousand_separator(),
+                        'decimals'           => wc_get_price_decimals(),
+                        'symbol'             => html_entity_decode(get_woocommerce_currency_symbol()),
+                    ),
+                    'tabs'           => array(
+                        array(
+                            'label' => __('Dashboard', 'advanced-coupons-for-woocommerce-free'),
+                            'key'   => 'dashboard',
+                        ),
+                        array(
+                            'label' => __('Customers', 'advanced-coupons-for-woocommerce-free'),
+                            'key'   => 'customers',
+                        ),
+                    ),
+                    'period_options' => array(
+                        array(
+                            'label' => __('Week to Date', 'advanced-coupons-for-woocommerce-free'),
+                            'value' => 'week_to_date',
+                        ),
+                        array(
+                            'label' => __('Month to Date', 'advanced-coupons-for-woocommerce-free'),
+                            'value' => 'month_to_date',
+                        ),
+                        array(
+                            'label' => __('Quarter to Date', 'advanced-coupons-for-woocommerce-free'),
+                            'value' => 'quarter_to_date',
+                        ),
+                        array(
+                            'label' => __('Year to Date', 'advanced-coupons-for-woocommerce-free'),
+                            'value' => 'year_to_date',
+                        ),
+                        array(
+                            'label' => __('Last Week', 'advanced-coupons-for-woocommerce-free'),
+                            'value' => 'last_week',
+                        ),
+                        array(
+                            'label' => __('Last Month', 'advanced-coupons-for-woocommerce-free'),
+                            'value' => 'last_month',
+                        ),
+                        array(
+                            'label' => __('Last Quarter', 'advanced-coupons-for-woocommerce-free'),
+                            'value' => 'last_quarter',
+                        ),
+                        array(
+                            'label' => __('Last Year', 'advanced-coupons-for-woocommerce-free'),
+                            'value' => 'last_year',
+                        ),
+                        array(
+                            'label' => __('Custom Range', 'advanced-coupons-for-woocommerce-free'),
+                            'value' => 'custom',
+                        ),
+                    ),
+                    'adjust_modal'   => array(
+                        'title'           => __('Adjust Store Credit', 'advanced-coupons-for-woocommerce-free'),
+                        'description'     => __('Adjust Store credit for this user. Remember store credits are worth the same as your base currency in the store.', 'advanced-coupons-for-woocommerce-free'),
+                        'current_balance' => __('Current balance: {balance}', 'advanced-coupons-for-woocommerce-free'),
+                        'new_balance'     => __('New balance: {balance}', 'advanced-coupons-for-woocommerce-free'),
+                        'increase'        => __('Increase Store Credit', 'advanced-coupons-for-woocommerce-free'),
+                        'decrease'        => __('Decrease Store Credit', 'advanced-coupons-for-woocommerce-free'),
+                        'invalid_price'   => __('The price entered is not valid', 'advanced-coupons-for-woocommerce-free'),
+                        'make_adjustment' => __('Make Adjustment', 'advanced-coupons-for-woocommerce-free'),
+                    ),
+                    'labels'         => array(
+                        'status'         => __('Store Credits Status', 'advanced-coupons-for-woocommerce-free'),
+                        'statistics'     => __('Store Credits Statistics', 'advanced-coupons-for-woocommerce-free'),
+                        'sources'        => __('Store Credits Sources', 'advanced-coupons-for-woocommerce-free'),
+                        'source'         => __('Source', 'advanced-coupons-for-woocommerce-free'),
+                        'amount'         => sprintf(__('Amount (%s)', 'advanced-coupons-for-woocommerce-free'), html_entity_decode(get_woocommerce_currency_symbol())),
+                        'customers_list' => __('Customers List', 'advanced-coupons-for-woocommerce-free'),
+                        'search_label'   => __('Search by name or email', 'advanced-coupons-for-woocommerce-free'),
+                        'customer_name'  => __('Customer Name', 'advanced-coupons-for-woocommerce-free'),
+                        'email'          => __('Email', 'advanced-coupons-for-woocommerce-free'),
+                        'balance'        => __('Store Credit Balance', 'advanced-coupons-for-woocommerce-free'),
+                        'view_stats'     => __('View Stats', 'advanced-coupons-for-woocommerce-free'),
+                        'adjust'         => __('Adjust', 'advanced-coupons-for-woocommerce-free'),
+                        'history'        => __('Store Credit History', 'advanced-coupons-for-woocommerce-free'),
+                        'date'           => __('Date', 'advanced-coupons-for-woocommerce-free'),
+                        'activity'       => __('Activity', 'advanced-coupons-for-woocommerce-free'),
+                        'related'        => __('Related', 'advanced-coupons-for-woocommerce-free'),
+                    ),
+                ),
             )
         ));
 
@@ -384,18 +478,18 @@ class Admin_App implements Model_Interface, Initializable_Interface
 
         wp_enqueue_script('acfw-axios', $this->_constants->JS_ROOT_URL() . '/lib/axios/axios.min.js', array(), Plugin_Constants::VERSION, true);
 
-        if (defined('ACFW_SETTINGS_APP_URL') && ACFW_SETTINGS_APP_URL) {
+        if (defined('ACFW_ADMIN_APP_URL') && ACFW_ADMIN_APP_URL) {
 
-            wp_enqueue_script('acfwp-edit-coupon-app-bundle', ACFW_SETTINGS_APP_URL . '/static/js/bundle.js', array('wp-api', 'acfw-axios'), Plugin_Constants::VERSION, true);
-            wp_enqueue_script('acfwp-edit-coupon-app-vendor', ACFW_SETTINGS_APP_URL . '/static/js/vendors~main.chunk.js', array('wp-api', 'acfw-axios'), Plugin_Constants::VERSION, true);
-            wp_enqueue_script('acfwp-edit-coupon-app-main', ACFW_SETTINGS_APP_URL . '/static/js/main.chunk.js', array('wp-api', 'acfw-axios'), Plugin_Constants::VERSION, true);
+            wp_enqueue_script('acfwp-edit-coupon-app-bundle', ACFW_ADMIN_APP_URL . '/static/js/bundle.js', array('wp-api'), Plugin_Constants::VERSION, true);
+            wp_enqueue_script('acfwp-edit-coupon-app-vendor', ACFW_ADMIN_APP_URL . '/static/js/vendors~main.chunk.js', array('wp-api'), Plugin_Constants::VERSION, true);
+            wp_enqueue_script('acfwp-edit-coupon-app-main', ACFW_ADMIN_APP_URL . '/static/js/main.chunk.js', array('wp-api'), Plugin_Constants::VERSION, true);
 
         } else {
 
-            $app_js_path  = $this->_constants->JS_ROOT_PATH() . '/app/settings/build/static/js/';
-            $app_css_path = $this->_constants->JS_ROOT_PATH() . '/app/settings/build/static/css/';
-            $app_js_url   = $this->_constants->JS_ROOT_URL() . 'app/settings/build/static/js/';
-            $app_css_url  = $this->_constants->JS_ROOT_URL() . 'app/settings/build/static/css/';
+            $app_js_path  = $this->_constants->JS_ROOT_PATH() . '/app/admin-app/build/static/js/';
+            $app_css_path = $this->_constants->JS_ROOT_PATH() . '/app/admin-app/build/static/css/';
+            $app_js_url   = $this->_constants->JS_ROOT_URL() . 'app/admin-app/build/static/js/';
+            $app_css_url  = $this->_constants->JS_ROOT_URL() . 'app/admin-app/build/static/css/';
 
             if (\file_exists($app_js_path)) {
                 if ($js_files = \scandir($app_js_path)) {
@@ -433,7 +527,6 @@ class Admin_App implements Model_Interface, Initializable_Interface
      */
     public function hide_acfw_settings_in_wc()
     {
-
         return $this->_show_with_acfwp();
     }
 

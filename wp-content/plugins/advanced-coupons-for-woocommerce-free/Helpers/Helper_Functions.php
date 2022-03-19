@@ -911,6 +911,45 @@ class Helper_Functions
     }
 
     /**
+     * Sanitize query parameters.
+     *
+     * @since 4.0
+     * @access private
+     *
+     * @param array $params Query parameters.
+     * @return array Sanitized parameters.
+     */
+    public function api_sanitize_query_parameters($params)
+    {
+        if (!is_array($params) || empty($params)) {
+            return array();
+        }
+
+        $sanitized = array();
+        foreach ($params as $param => $value) {
+            switch ($param) {
+                case 'page':
+                case 'per_page':
+                    $sanitized[$param] = intval($value);
+
+                case 'search':
+                    $sanitized[$param] = esc_sql($value);
+                    break;
+
+                case 'user_id':
+                case 'object_id':
+                    $sanitized[$param] = absint($value);
+                    break;
+
+                default:
+                    $sanitized[$param] = sanitize_text_field($value);
+            }
+        }
+
+        return $sanitized;
+    }
+
+    /**
      * Format BOGO trigger/deal entry.
      *
      * @since 1.4
@@ -1010,6 +1049,111 @@ class Helper_Functions
     {
         $path = $path ? $path : $this->_constants->TEMPLATES_ROOT_PATH();
         wc_get_template($template, $args, '', $path);
+    }
+
+    /**
+     * Check if REST API request is valid.
+     * 1.) Does the request came from the same site (not external site or any external requests)
+     * 2.) Does the nonce provided is valid (CSRF protection)
+     *
+     * @since 4.0
+     * @access public
+     *
+     * @param WP_REST_Request $request Full details about the request.
+     * @return bool|WP_Error True if the request has read access for the item, WP_Error object otherwise.
+     */
+    public function check_if_valid_api_request(\WP_REST_Request $request)
+    {
+        $headers = $request->get_headers();
+
+        if (isset($headers['x_wp_nonce']) || apply_filters('acfwf_restrict_api_access_to_site_only', false, $headers, $request)) {
+
+            if (
+                !is_array($headers) || !isset($headers['referer']) || // Make sure headers are set and necessary data are present
+                strpos($headers['referer'][0], \get_site_url()) !== 0 || // We only allow requests originating from our own site
+                !\wp_verify_nonce($headers['x_wp_nonce'][0], 'wp_rest') // We verify the REST API nonce
+            ) {
+                return new \WP_Error(
+                    'rest_forbidden_context',
+                    __('Sorry, you are not allowed access to this endpoint.', 'advanced-coupons-for-woocommerce-free'),
+                    array('status' => \rest_authorization_required_code())
+                );
+            }
+
+        }
+
+        return true;
+    }
+
+    /**
+     * wc_price function for API display.
+     *
+     * @since 4.0
+     * @access public
+     *
+     * @param float $price Price in float.
+     * @return string Sanitized price.
+     */
+    public function api_wc_price($price, $settings = array())
+    {
+        // ensure that default currency is always set to site currency when displaying prices.
+        if (!isset($settings['currency'])) {
+            $settings['currency'] = get_option('woocommerce_currency');
+        }
+
+        return html_entity_decode(wc_clean(wc_price($price, $settings)));
+    }
+
+    /**
+     * Get customer display name.
+     *
+     * @since 4.0
+     * @access public
+     *
+     * @param int|WC_Customer $cid Customer ID.
+     * @return string Customer name.
+     */
+    public function get_customer_name($cid)
+    {
+        $customer      = $cid instanceof \WC_Customer ? $cid : new \WC_Customer($cid);
+        $customer_name = sprintf('%s %s', $customer->get_first_name(), $customer->get_last_name());
+
+        // set customer name to email if user has no set first and last name.
+        if (!trim($customer_name)) {
+            $customer_name = $this->get_customer_email($customer);
+        }
+
+        return $customer_name;
+    }
+
+    /**
+     * Get customer display email.
+     *
+     * @since 4.0
+     * @access public
+     *
+     * @param int|WC_Customer $cid Customer ID.
+     * @return string Customer email.
+     */
+    public function get_customer_email($cid)
+    {
+        $customer = $cid instanceof \WC_Customer ? $cid : new \WC_Customer($cid);
+        return $customer->get_billing_email() ? $customer->get_billing_email() : $customer->get_email();
+    }
+
+    /**
+     * Get order frontend link.
+     *
+     * @since 4.0
+     * @access public
+     *
+     * @param WC_Order $order Order object
+     * @return string Order view frontend URL
+     */
+    public function get_order_frontend_link($order)
+    {
+        $order = $order instanceof \WC_Order ? $order : \wc_get_order($order);
+        return $order->get_view_order_url();
     }
 
     /**

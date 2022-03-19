@@ -267,7 +267,16 @@ class UpdraftPlus_S3_Compat {
 	public function getuseSSL() {
 		return $this->use_ssl;
 	}
-
+	
+	/**
+	 * Get SSL validation value.
+	 *
+	 * @return bool
+	 */
+	public function getUseSSLValidation() {
+		return $this->use_ssl_validation;
+	}
+	
 	/**
 	 * Set SSL client certificates (experimental)
 	 *

@@ -218,6 +218,15 @@ class UpdraftPlus_S3 {
 	}
 
 	/**
+	 * Get SSL validation value.
+	 *
+	 * @return bool
+	 */
+	public function getUseSSLValidation() {
+		return $this->useSSLValidation;
+	}
+	
+	/**
 	 * Set SSL client certificates (experimental)
 	 *
 	 * @param string $sslCert SSL client certificate
@@ -1055,7 +1064,6 @@ class UpdraftPlus_S3 {
 		);
 	}
 
-
 	/**
 	 * Disable bucket logging
 	 *
@@ -1453,9 +1461,13 @@ class UpdraftPlus_S3 {
 		if (strpos($uri, '?')) {
 			list($uri, $query_str) = @explode('?', $uri);
 			parse_str($query_str, $parameters);
+			// "Sort the parameter names by character code point in ascending order. Parameters with duplicate names should be sorted by value. For example, a parameter name that begins with the uppercase letter F precedes a parameter name that begins with a lowercase letter b."
+			// N.B. Here we've not looked at the values as we don't expect duplicates
+			uksort($parameters, 'strcmp');
 		}
 
 		// Canonical Requests
+		// "Start with the HTTP request method (GET, PUT, POST, etc.)"
 		$amzRequests[] = $method;
 		$uriQmPos = strpos($uri, '?');
 		$amzRequests[] = (false === $uriQmPos ? $uri : substr($uri, 0, $uriQmPos));
@@ -1540,7 +1552,7 @@ final class UpdraftPlus_S3Request {
 	 * @param string  $bucket Bucket name
 	 * @param string  $uri Object URI
 	 * @param string  $endpoint Endpoint of storage
-	 * @param boolean $use_dns_bucket_name
+	 * @param boolean $use_dns_bucket_name - if set, then constructs an endpoint based upon the bucket name as well as $endpoint (otherwise, uses $endpoint only)
 	 * @param object  $s3 S3 Object that calls these requests
 	 *
 	 * @return mixed
@@ -1558,7 +1570,8 @@ final class UpdraftPlus_S3Request {
 		//	$this->resource = $this->uri;
 
 		if ('' !== $this->bucket) {
-			if ($this->_dnsBucketName($this->bucket) || $use_dns_bucket_name) {
+			// Use host-style access if the consumer requested it and we don't see a problem.
+			if ($use_dns_bucket_name && $this->_dnsBucketName($this->bucket)) {
 				$this->headers['Host'] = $this->bucket.'.'.$this->endpoint;
 				$this->resource = '/'.$this->bucket.$this->uri;
 			} else {
@@ -1846,7 +1859,12 @@ final class UpdraftPlus_S3Request {
 
 
 	/**
-	 * Check DNS conformity
+	 * Check DNS conformity (suitability for Host: header addressing).
+	 * Many of the rules below apply to all new buckets; but some don't apply to legacy buckets created before certain dates.
+	 * 
+	 * This is used to rule out invalid names
+	 *
+	 * @see https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
 	 *
 	 * @param  string $bucket Bucket name
 	 *
@@ -1854,17 +1872,17 @@ final class UpdraftPlus_S3Request {
 	 */
 	private function _dnsBucketName($bucket) {
 		// A DNS bucket name cannot have len>63
-		// A DNS bucket name must have a character in other than a-z, 0-9, . -
-		// The purpose of this second check is not clear - is it that there's some limitation somewhere on bucket names that match that pattern that means that the bucket must be accessed by hostname?
-		if (strlen($bucket) > 63 || !preg_match("/[^a-z0-9\.-]/", $bucket)) return false;
-		# A DNS bucket name cannot contain -.
+		if (strlen($bucket) > 63) return false;
+		// A DNS bucket name must not have a character in other than a-z, 0-9, . -
+		if (preg_match("/[^a-z0-9\.-]/", $bucket)) return false;
+		// A DNS bucket name cannot contain -.
 		if (false !== strstr($bucket, '-.')) return false;
-		# A DNS bucket name cannot contain ..
+		// A DNS bucket name cannot contain ..
 		if (false !== strstr($bucket, '..')) return false;
-		# A DNS bucket name must begin with 0-9a-z
+		// A DNS bucket name must begin with 0-9a-z
 		if (!preg_match("/^[0-9a-z]/", $bucket)) return false;
 		# A DNS bucket name must end with 0-9 a-z
-		if (!preg_match("/[0-9a-z]$/", $bucket)) return false;
+		// (!preg_match("/[0-9a-z]$/", $bucket)) return false;
 		return true;
 	}
 

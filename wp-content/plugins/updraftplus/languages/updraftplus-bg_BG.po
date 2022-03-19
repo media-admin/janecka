@@ -156,7 +156,7 @@ msgstr ""
 msgid "Bucket access style"
 msgstr ""
 
-#: src/methods/s3.php:1231
+#: src/methods/s3.php:1251
 msgid "Failure: No endpoint details were given."
 msgstr ""
 
@@ -870,7 +870,7 @@ msgstr "Вече имате място?"
 msgid "Need to get space?"
 msgstr "Трябва да получите пространство?"
 
-#: src/methods/s3.php:214, src/methods/s3.php:215, src/methods/s3.php:227,
+#: src/methods/s3.php:215, src/methods/s3.php:216, src/methods/s3.php:227,
 #: src/methods/s3.php:228
 msgid "Error: Failed to initialise"
 msgstr "Грешка: Неуспешно инициализиране"
@@ -3584,11 +3584,11 @@ msgstr "Този WebDAV URL се генерира чрез попълване н
 msgid "No response data was received. This usually indicates a network connectivity issue (e.g. an outgoing firewall or overloaded network) between this site and UpdraftPlus.com."
 msgstr "Не са получени данни за отговор. Това обикновено показва проблем с мрежовата връзка (напр. изходяща защитна стена или претоварена мрежа) между този сайт и UpdraftPlus.com."
 
-#: src/methods/s3.php:1279
+#: src/methods/s3.php:1299
 msgid "The AWS access key looks to be wrong (valid %s access keys begin with \"AK\")"
 msgstr "Ключът за достъп AWS изглежда грешен (валидните %s клавиши за достъп започват с \"AK\")"
 
-#: src/methods/s3.php:159
+#: src/methods/s3.php:161
 msgid "No settings were found - please go to the Settings tab and check your settings"
 msgstr "Не са намерени настройки - моля, отидете в раздела Настройки и проверете настройките си"
 
@@ -4538,7 +4538,7 @@ msgid "Updraft Vault"
 msgstr "Тока за тока"
 
 #: src/addons/azure.php:443, src/addons/backblaze.php:564,
-#: src/addons/googlecloud.php:1024, src/methods/s3.php:1307
+#: src/addons/googlecloud.php:1024, src/methods/s3.php:1327
 msgid "Delete failed:"
 msgstr "Изтриването е неуспешно:"
 
@@ -5081,7 +5081,7 @@ msgstr "Пълен списък с функции"
 msgid "Backup (where relevant) plugins, themes and the WordPress database with UpdraftPlus before updating"
 msgstr "Архивиране (където е уместно) плъгини, теми и база данни на WordPress с UpdraftPlus преди да се актуализира"
 
-#: src/methods/s3.php:216, src/methods/s3.php:229
+#: src/methods/s3.php:217, src/methods/s3.php:229
 msgid "%s Error: Failed to initialise"
 msgstr "%s Грешка: Не може да се инициализира"
 
@@ -7440,11 +7440,11 @@ msgstr "Някои сървъри рекламират шифрован FTP ка
 msgid "Your web server's PHP installation does not included a required module (%s). Please contact your web hosting provider's support and ask for them to enable it."
 msgstr "PHP инсталацията на вашия уеб сървър не включва задължителен модул (%s). Моля, свържете се с поддръжката на вашия уеб хостинг доставчик и ги поискайте, за да го активирате."
 
-#: src/methods/s3.php:1300
+#: src/methods/s3.php:1320
 msgid "Please check your access credentials."
 msgstr "Проверете вашите идентификационни данни за достъп."
 
-#: src/addons/s3-enhanced.php:219, src/methods/s3.php:1277
+#: src/addons/s3-enhanced.php:219, src/methods/s3.php:1297
 msgid "The error reported by %s was:"
 msgstr "Грешката, отчетена от %s, е:"
 
@@ -7861,42 +7861,42 @@ msgstr "грешка: %s (виж регистрационния файл за п
 msgid "You do not appear to be authenticated with Dropbox"
 msgstr "Не изглежда да се удостоверява с Dropbox"
 
-#: src/methods/s3.php:1295
+#: src/methods/s3.php:1315
 msgid "The communication with %s was not encrypted."
 msgstr "Комуникацията с %s не е шифрована."
 
-#: src/methods/s3.php:1293
+#: src/methods/s3.php:1313
 msgid "The communication with %s was encrypted."
 msgstr "Комуникацията с %s е шифрована."
 
-#: src/addons/googlecloud.php:1020, src/methods/s3.php:1290
+#: src/addons/googlecloud.php:1020, src/methods/s3.php:1310
 msgid "We accessed the bucket, and were able to create files within it."
 msgstr "Ние имаме достъп до кофата и успяхме да създадем файлове в него."
 
 #: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028,
-#: src/methods/s3.php:1288, src/methods/s3.php:1300
+#: src/methods/s3.php:1308, src/methods/s3.php:1320
 msgid "We successfully accessed the bucket, but the attempt to create a file in it failed."
 msgstr "Успешно осъществихме достъп до кофата, но опитът да се създаде файл в него е неуспешен."
 
 #: src/addons/googlecloud.php:1014, src/addons/googlecloud.php:1028,
-#: src/methods/s3.php:1288, src/methods/s3.php:1300
+#: src/methods/s3.php:1308, src/methods/s3.php:1320
 msgid "Failure"
 msgstr "Провалено"
 
-#: src/addons/backblaze.php:533, src/methods/s3.php:1275
+#: src/addons/backblaze.php:533, src/methods/s3.php:1295
 msgid "Failure: We could not successfully access or create such a bucket. Please check your access credentials, and if those are correct then try another bucket name (as another %s user may already have taken your name)."
 msgstr "Грешка: Не можехме успешно да осъществим достъп или да създадем такава група. Проверете вашите идентификационни данни за достъп и ако са правилни, опитайте друго име на кофа (тъй като друг потребител на %s може вече да е взел вашето име)."
 
-#: src/methods/openstack2.php:150, src/methods/s3.php:1269
+#: src/methods/openstack2.php:150, src/methods/s3.php:1289
 msgid "Region"
 msgstr "Регион"
 
 #: src/addons/googlecloud.php:140, src/addons/googlecloud.php:974,
-#: src/methods/s3.php:1226
+#: src/methods/s3.php:1246
 msgid "Failure: No bucket details were given."
 msgstr "Неуспех: Не са дадени подробности за кофата."
 
-#: src/methods/s3.php:1204
+#: src/methods/s3.php:1224
 msgid "API secret"
 msgstr "API secret"
 
@@ -7976,7 +7976,7 @@ msgid "Username"
 msgstr "Потребителско име"
 
 #: src/methods/cloudfiles-new.php:181, src/methods/cloudfiles.php:534,
-#: src/methods/s3.php:1200
+#: src/methods/s3.php:1220
 msgid "API key"
 msgstr "Ключ за API"
 
@@ -7990,7 +7990,7 @@ msgstr "Ключ за API"
 #: src/methods/ftp.php:426, src/methods/ftp.php:430,
 #: src/methods/openstack2.php:180, src/methods/openstack2.php:185,
 #: src/methods/openstack2.php:190, src/methods/openstack2.php:195,
-#: src/methods/s3.php:1200, src/methods/s3.php:1204
+#: src/methods/s3.php:1220, src/methods/s3.php:1224
 msgid "Failure: No %s was given."
 msgstr "Грешка: Не е даден %s."
 
@@ -8113,7 +8113,7 @@ msgstr "вие сте удостоверили вашия %s акаунт."
 #: src/addons/sftp.php:633, src/addons/webdav.php:341,
 #: src/addons/wp-cli.php:494, src/methods/addon-base-v2.php:370,
 #: src/methods/cloudfiles.php:590, src/methods/googledrive.php:613,
-#: src/methods/openstack-base.php:535, src/methods/s3.php:1290
+#: src/methods/openstack-base.php:535, src/methods/s3.php:1310
 msgid "Success"
 msgstr "Успешно"
 

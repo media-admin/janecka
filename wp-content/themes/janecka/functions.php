@@ -93,8 +93,8 @@ function medialab_register_scripts() {
 
 
 	// Import Import Bulma Extensions
-	wp_register_script( 'jquery--migrate-1-2-1', '//code.jquery.com/jquery-migrate-1.2.1.min.js', '', null, true );
-	wp_enqueue_script( 'jquery--migrate-1-2-1' );
+	// wp_register_script( 'jquery--migrate-1-2-1', '//code.jquery.com/jquery-migrate-1.2.1.min.js', '', null, true );
+	// wp_enqueue_script( 'jquery--migrate-1-2-1' );
 
 
 	// Import Button Back-to-Top
@@ -441,9 +441,6 @@ function janecka_stores_template_redirect(){
 }
 
 add_action( 'template_redirect', 'janecka_stores_template_redirect' );
-
-
-
 
 
 

@@ -3,7 +3,7 @@ Contributors: Backup with UpdraftPlus, DavidAnderson, DNutbourne, aporter, snigh
 Tags: backup, restore, database backup, wordpress backup, cloud backup, s3, dropbox, google drive, onedrive, ftp, backups
 Requires at least: 3.2
 Tested up to: 5.9
-Stable tag: 1.22.8
+Stable tag: 1.22.11
 Author URI: https://updraftplus.com
 Donate link: https://david.dw-perspective.org.uk/donate
 License: GPLv3 or later
@@ -169,6 +169,25 @@ The <a href="https://updraftplus.com/news/">UpdraftPlus backup blog</a> is the b
 N.B. Paid versions of UpdraftPlus Backup / Restore have a version number which is 1 higher in the first digit, and has an extra component on the end, but the changelog below still applies. i.e. changes listed for 1.16.32.x of the free version correspond to changes made in 2.16.32.x of the paid version.
 
 
+
+= 1.22.11 - 15/Mar/2022 =
+
+* FIX: Internal S3 library did not correctly construct canonical query string with v4 signatures if there were multiple parameters, leading to wrong signatures and failed authorisation
+* FIX: Fix a recent regression that caused DNS hostnames to not be preferred when using Amazon S3
+* TWEAK: Prevent deprecation notice on PHP 8.1 if opening a zero-size zip file
+* TWEAK: Introduce filter updraftplus_dropbox_fetch_curl_options for easier debugging/experimentation
+
+= 1.22.10 - 11/Mar/2022 =
+
+* FIX: Fix a regression in the 1.22.9 adjustment to the internal S3 library's evaluation of when to use a Host: header
+* FIX: Fix a long-standing issue whereby if S3-related credentials were being tested via the front-end UI, and multiple back-end instances were present, then the wrong settings could be used in making decisions on Host: headers
+
+= 1.22.9 - 10/Mar/2022 =
+
+* SECURITY: Fixed a failure to sanitise printed URLs properly, leading to a targetted XSS opportunity (if an attacker persuades a logged-in admin to follow a link personally crafted for their site, he may be able to run JavaScript inside the browser - but on our testing, this ability is limited due to the sanitisation that was there - we have not been able to confirm that a payload causing damage is possible). Reported by Taurus Omar - https://taurusomar.com.
+* TWEAK: Adjust internal S3 library's evaluation of when to use a Host: header (improves compatibility with buckets with minimal access rules)
+* TWEAK: Adjust algorithm concerning likelihood of switching S3 libraries to accelerate deployment
+* TWEAK: Prevent PHP notice when using S3 with particular bucket naming and SSL
 
 = 1.22.8 - 03/Mar/2022 =
 
@@ -1485,4 +1504,4 @@ Reliance upon any non-English translation is at your own risk; UpdraftPlus can g
 We recognise and thank those mentioned at https://updraftplus.com/acknowledgements/ for code and/or libraries used and/or modified under the terms of their open source licences.
 
 == Upgrade Notice ==
-* 1.22.8: Various tweaks/fixes to handling of S3 using bundled internal library. N.B. 1.22.3 fixed a security issue (see the changelog for more info). A recommended update for all.
+* 1.22.11: Various tweaks/fixes to handling of S3 using bundled internal library, plus other small tweaks. 1.22.9 had a fix for a reflected XSS security defect. See changelog for fuller details. A recommended update for all.
