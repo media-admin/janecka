@@ -1740,6 +1740,7 @@ header {
 		border-right: 1px solid #707070;
 		padding-top: 5px;
 		padding-right: 15px;
+		z-index: 100;
 	}
 
 	.search-area img {
