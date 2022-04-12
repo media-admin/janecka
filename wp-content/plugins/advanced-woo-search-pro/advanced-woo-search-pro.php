@@ -3,12 +3,12 @@
 /*
 Plugin Name: Advanced Woo Search PRO
 Description: Advance ajax WooCommerce product search.
-Version: 2.48
+Version: 2.51
 Author: ILLID
 Author URI: https://advanced-woo-search.com/
 Text Domain: advanced-woo-search
 WC requires at least: 3.0.0
-WC tested up to: 6.2.0
+WC tested up to: 6.3.0
 */
 
 
@@ -94,7 +94,7 @@ final class AWS_PRO_Main {
      */
     private function define_constants() {
 
-        $this->define( 'AWS_PRO_VERSION', '2.48' );
+        $this->define( 'AWS_PRO_VERSION', '2.51' );
         $this->define( 'AWS_PRO_DIR', plugin_dir_path( AWS_PRO_FILE ) );
         $this->define( 'AWS_PRO_URL', plugin_dir_url( AWS_PRO_FILE ) );
         $this->define( 'AWS_PRO_BASENAME', plugin_basename( AWS_PRO_FILE ) );

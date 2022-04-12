@@ -30,7 +30,13 @@ if ( ! class_exists( 'AWS_Table' ) ) :
 
             $this->table_name = $wpdb->prefix . AWS_INDEX_TABLE_NAME;
 
-            add_action( 'wp_insert_post', array( $this, 'product_changed' ), 10, 2 );
+            // Create, update product
+            add_action( 'woocommerce_after_product_object_save', array( $this, 'woocommerce_after_product_object_save' ) );
+
+            // Change product status
+            add_action( 'wp_insert_post', array( $this, 'product_changed' ), 10, 3 );
+
+            // Delete product
             add_action( 'delete_post', array( $this, 'product_deleted' ), 10, 2 );
 
             add_action( 'create_term', array( &$this, 'term_changed' ), 10, 3 );
@@ -505,11 +511,39 @@ if ( ! class_exists( 'AWS_Table' ) ) :
         /*
          * Update index table
          */
-        public function product_changed( $post_id, $post ) {
+        public function product_changed( $post_id, $post, $update ) {
             
             $slug = 'product';
 
+            // Not run for newly created products
+            if ( ! $update ) {
+                return;
+            }
+
             if ( $slug != $post->post_type ) {
+                return;
+            }
+
+            if ( wp_is_post_revision( $post_id ) ) {
+                return;
+            }
+
+            if ( $post->post_status === 'publish' ) {
+                return;
+            }
+
+            $this->update_table( $post_id );
+
+        }
+
+        /*
+         * Update index table
+         */
+        public function woocommerce_after_product_object_save( $product ) {
+
+            $post_id = $product->get_id();
+
+            if ( 'variation' === $product->get_type() ) {
                 return;
             }
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Coupons for WooCommerce Free\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-16 14:32+0800\n"
-"PO-Revision-Date: 2022-03-16 14:33+0800\n"
+"POT-Creation-Date: 2022-03-30 12:55+0800\n"
+"PO-Revision-Date: 2022-03-30 12:55+0800\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -1041,11 +1041,11 @@ msgstr "Revoir plus tard"
 msgid "Don't show again"
 msgstr "Ne pas afficher de nouveau"
 
-#: Models/Notices.php:542
+#: Models/Notices.php:543
 msgid "Did you know?"
 msgstr "Le saviez-vous ?"
 
-#: Models/Notices.php:545
+#: Models/Notices.php:546
 msgid "Learn More ⟶"
 msgstr "En savoir plus ⟶"
 

@@ -492,6 +492,7 @@ class Notices implements Model_Interface, Initializable_Interface, Activatable_I
             'coupons_page_acfw-about',
             'coupons_page_acfw-license',
             'coupons_page_acfw-premium',
+            'coupons_page_acfw-store-credits',
         );
 
         $post_types = array(

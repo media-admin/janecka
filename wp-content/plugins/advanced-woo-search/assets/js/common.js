@@ -170,7 +170,7 @@ AwsHooks.filters = AwsHooks.filters || {};
 
                                 html += '<li class="aws_result_item aws_result_tag" style="position:relative;">';
                                     html += '<div class="aws_result_link">';
-                                        html += '<a class="aws_result_link_top" style="position:absolute;z-index:1;white-space:nowrap;text-indent:-9999px;overflow:hidden;top:0;bottom:0;left:0;right:0;opacity:0;outline:none;text-decoration:none;" href="' + taxitem.link + '">' + taxitem.name + '</a>';
+                                        html += '<a class="aws_result_link_top" href="' + taxitem.link + '">' + taxitem.name + '</a>';
                                         html += '<span class="aws_result_content">';
                                             html += '<span class="aws_result_title">';
                                                 html += taxitem.name;
@@ -201,7 +201,7 @@ AwsHooks.filters = AwsHooks.filters || {};
                         html += '<li class="aws_result_item" style="position:relative;">';
                         html += '<div class="aws_result_link">';
 
-                        html += '<a class="aws_result_link_top" style="position:absolute;z-index:1;white-space:nowrap;text-indent:-9999px;overflow:hidden;top:0;bottom:0;left:0;right:0;opacity:0;outline:none;text-decoration:none;" href="' + result.link + '">' + result.title.replace(/<(?:.|\n)*?>/gm, '') + '</a>';
+                        html += '<a class="aws_result_link_top" href="' + result.link + '">' + result.title.replace(/(<[\s\S]*>)/gm, '') + '</a>';
 
                         if ( result.image ) {
                             html += '<span class="aws_result_image">';

@@ -175,6 +175,13 @@ if ( ! class_exists( 'AWS_Search' ) ) :
 //                $this->data['search_terms'][] = '';
 //            }
 
+            /**
+             * Filter search data parameters
+             * @since 2.50
+             * @param array $this->data Array of data parameters
+             */
+            $this->data = apply_filters( 'aws_search_data_parameters', $this->data );
+
             if ( ! empty( $this->data['search_terms'] ) ) {
 
                 if ( ! empty( $this->data['search_in'] ) ) {
@@ -714,6 +721,7 @@ if ( ! class_exists( 'AWS_Search' ) ) :
 
             $exact_words = array();
             $words = array();
+            $excerpt_length = AWS()->get_settings( 'excerpt_length' );
 
             foreach( $this->data['search_terms'] as $search_in ) {
 
@@ -740,10 +748,6 @@ if ( ! class_exists( 'AWS_Search' ) ) :
                 preg_match( '/([^.?!]*?)(' . $words . '){1}(.*?[.!?])/i', $content, $matches );
             }
 
-            if ( ! isset( $matches[0] ) ) {
-                preg_match( '/([^.?!]*?)(.*?)(.*?[.!?])/i', $content, $matches );
-            }
-
             if ( isset( $matches[0] ) ) {
 
                 $content = $matches[0];
@@ -761,7 +765,29 @@ if ( ! class_exists( 'AWS_Search' ) ) :
 
             } else {
 
-                $content = '';
+                // Get first N sentences
+                if ( str_word_count( strip_tags( $content ) ) > $excerpt_length ) {
+
+                    $sentences_array = preg_split( "/(?<=[.!?])/", $content, 10, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY );
+                    $sentences_string = '';
+                    $str_word_count = 0;
+
+                    if ( ! empty( $sentences_array ) ) {
+                        foreach ( $sentences_array as $sentence ) {
+                            $str_word_count = $str_word_count + str_word_count( strip_tags( $sentence ) );
+                            if ( $str_word_count <= $excerpt_length ) {
+                                $sentences_string .= $sentence;
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+
+                    if ( $sentences_string ) {
+                        $content = $sentences_string;
+                    }
+
+                }
 
             }
 

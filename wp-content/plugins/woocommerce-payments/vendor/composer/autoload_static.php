@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit21b0c126dae7ff4131ae6266a8e0bf28
+class ComposerStaticInit6a819f6f07c998494bc934fb60f81ad8
 {
     public static $files = array (
         '3773ef3f09c37da5478d578e32b03a4b' => __DIR__ . '/..' . '/automattic/jetpack-assets/actions.php',
@@ -88,6 +88,7 @@ class ComposerStaticInit21b0c126dae7ff4131ae6266a8e0bf28
         'Automattic\\Jetpack\\Redirect' => __DIR__ . '/..' . '/automattic/jetpack-redirect/src/class-redirect.php',
         'Automattic\\Jetpack\\Roles' => __DIR__ . '/..' . '/automattic/jetpack-roles/src/class-roles.php',
         'Automattic\\Jetpack\\Status' => __DIR__ . '/..' . '/automattic/jetpack-status/src/class-status.php',
+        'Automattic\\Jetpack\\Status\\Cache' => __DIR__ . '/..' . '/automattic/jetpack-status/src/class-cache.php',
         'Automattic\\Jetpack\\Status\\Host' => __DIR__ . '/..' . '/automattic/jetpack-status/src/class-host.php',
         'Automattic\\Jetpack\\Status\\Visitor' => __DIR__ . '/..' . '/automattic/jetpack-status/src/class-visitor.php',
         'Automattic\\Jetpack\\Sync\\Actions' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-actions.php',
@@ -260,6 +261,7 @@ class ComposerStaticInit21b0c126dae7ff4131ae6266a8e0bf28
         'WCPay\\MultiCurrency\\Compatibility\\WooCommerceBookings' => __DIR__ . '/../..' . '/includes/multi-currency/Compatibility/WooCommerceBookings.php',
         'WCPay\\MultiCurrency\\Compatibility\\WooCommerceDeposits' => __DIR__ . '/../..' . '/includes/multi-currency/Compatibility/WooCommerceDeposits.php',
         'WCPay\\MultiCurrency\\Compatibility\\WooCommerceFedEx' => __DIR__ . '/../..' . '/includes/multi-currency/Compatibility/WooCommerceFedEx.php',
+        'WCPay\\MultiCurrency\\Compatibility\\WooCommerceNameYourPrice' => __DIR__ . '/../..' . '/includes/multi-currency/Compatibility/WooCommerceNameYourPrice.php',
         'WCPay\\MultiCurrency\\Compatibility\\WooCommercePreOrders' => __DIR__ . '/../..' . '/includes/multi-currency/Compatibility/WooCommercePreOrders.php',
         'WCPay\\MultiCurrency\\Compatibility\\WooCommerceProductAddOns' => __DIR__ . '/../..' . '/includes/multi-currency/Compatibility/WooCommerceProductAddOns.php',
         'WCPay\\MultiCurrency\\Compatibility\\WooCommerceSubscriptions' => __DIR__ . '/../..' . '/includes/multi-currency/Compatibility/WooCommerceSubscriptions.php',
@@ -286,9 +288,9 @@ class ComposerStaticInit21b0c126dae7ff4131ae6266a8e0bf28
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit21b0c126dae7ff4131ae6266a8e0bf28::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit21b0c126dae7ff4131ae6266a8e0bf28::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit21b0c126dae7ff4131ae6266a8e0bf28::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6a819f6f07c998494bc934fb60f81ad8::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6a819f6f07c998494bc934fb60f81ad8::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit6a819f6f07c998494bc934fb60f81ad8::$classMap;
 
         }, null, ClassLoader::class);
     }

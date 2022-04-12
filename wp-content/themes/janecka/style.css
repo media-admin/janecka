@@ -302,8 +302,7 @@ h1 {
 		hyphens: auto;
 		text-align: center !important;
 		margin: 0px auto !important;
-		margin-top: 15px !important;
-		padding-top: 0.5em !important;
+		padding-top: 0.25rem !important;
 		padding-left: 0.0rem !important;
 		padding-bottom: 0.5em !important;
 	}
@@ -2611,7 +2610,8 @@ img.brand-logo {
 		margin: 0.75rem !important;
 		/* margin-top: 50px !important; */
 		/* margin-bottom: 50px !important; */
-		padding-top: 280px !important;
+		/* padding-top: 280px !important; */
+		padding-top: 230px !important;
 		padding-left: 1.0rem !important;
 		padding-right: inherit !important;
 	}
@@ -7216,11 +7216,21 @@ ol {
 
 
 
+/* --- SEARCH RESULT PAGE --- */
 
+.woocommerce-products-header {
+	height: auto !important;
+}
 
-
-
-
+@media screen and (min-width: 768px) {
+	.woocommerce-products-header {
+		position: inherit !important;
+		background: transparent !important;
+		box-shadow: none !important;
+		margin-bottom: 2.0rem !important;
+		z-index: initial !important;
+	}
+}
 
 
 

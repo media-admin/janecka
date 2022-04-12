@@ -119,12 +119,6 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
                     add_filter( 'aws_seamless_search_form_filter', array( $this, 'woodmart_seamless_search_form_filter' ), 10, 2 );
                 }
 
-                if ( 'Astra' === $this->current_theme ) {
-                    add_filter( 'astra_get_search_form', array( $this, 'astra_markup' ), 999999 );
-                    add_filter( 'aws_searchbox_markup', array( $this, 'astra_aws_searchbox_markup' ), 1 );
-                    add_action( 'wp_head', array( $this, 'astra_head_action' ) );
-                }
-
                 if ( 'Storefront' === $this->current_theme ) {
                     add_action( 'wp_footer', array( $this, 'storefront_footer_action' ) );
                 }
@@ -371,6 +365,11 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
 
             if ( class_exists( 'WC_PPC_Util' ) || class_exists( '\Barn2\Plugin\WC_Protected_Categories\Util' ) ) {
                 include_once( AWS_DIR . '/includes/modules/class-aws-barn2-protected-categories.php' );
+            }
+
+            // Astra theme
+            if ( 'Astra' === $this->current_theme ) {
+                include_once( AWS_DIR . '/includes/modules/class-aws-astra.php' );
             }
 
         }
@@ -871,67 +870,6 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
             }
             return $markup;
         }
-
-        /*
-         * Astra theme form markup
-         */
-        public function astra_markup( $output ) {
-            if ( function_exists( 'aws_get_search_form' ) && is_string( $output ) ) {
-
-                $pattern = '/(<form[\s\S]*?<\/form>)/i';
-                $form = aws_get_search_form(false);
-
-                if ( strpos( $output, 'aws-container' ) !== false ) {
-                    $pattern = '/(<div class="aws-container"[\s\S]*?<form.*?<\/form><\/div>)/i';
-                }
-
-                $output = trim(preg_replace('/\s\s+/', ' ', $output));
-                $output = preg_replace( $pattern, $form, $output );
-                $output = str_replace( 'aws-container', 'aws-container search-form', $output );
-                $output = str_replace( 'aws-search-field', 'aws-search-field search-field', $output );
-
-            }
-            return $output;
-        }
-
-        /*
-         * Astra theme form markup
-         */
-        public function astra_aws_searchbox_markup( $markup ) {
-            $markup = str_replace( 'aws-container', 'aws-container search-form', $markup );
-            return $markup;
-        }
-
-        /*
-         * Astra theme
-         */
-        public function astra_head_action() { ?>
-
-            <style>
-                .ast-search-menu-icon.slide-search .search-form {
-                    width: auto;
-                }
-                .ast-search-menu-icon .search-form {
-                    padding: 0 !important;
-                }
-                .ast-search-menu-icon.ast-dropdown-active.slide-search .ast-search-icon {
-                    opacity: 0;
-                }
-                .ast-search-menu-icon.slide-search .aws-container .aws-search-field {
-                    width: 0;
-                    background: #fff;
-                    border: none;
-                }
-                .ast-search-menu-icon.ast-dropdown-active.slide-search .aws-search-field {
-                    width: 235px;
-                }
-                .ast-search-menu-icon.slide-search .aws-container .aws-search-form .aws-form-btn {
-                    background: #fff;
-                    border: none;
-                }
-            </style>
-
-        <?php }
 
         /*
          * Elessi theme

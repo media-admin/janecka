@@ -119,6 +119,43 @@ if ( ! class_exists( 'AWS_Admin_Helpers' ) ) :
 
         }
 
+        /**
+         * Pagination for admin options meta fields
+         * @return string Pagination html output
+         */
+        static public function meta_fields_pagination() {
+
+            $output = '';
+
+            if ( ! isset( $_GET['section'] ) || $_GET['section'] !== 'meta' ) {
+                return $output;
+            }
+
+            $fields_count = AWS_Helpers::get_custom_fields_count();
+            $limit = 500;
+            $pagenum = isset( $_GET['pagenum'] ) ? absint( $_GET['pagenum'] ) : 1;
+
+            if ( $fields_count <= $limit ) {
+                return $output;
+            }
+
+            $page_links = paginate_links( array(
+                'base' => add_query_arg( 'pagenum', '%#%' ),
+                'format' => '',
+                'prev_text' => __( '&laquo;', 'advanced-woo-search' ),
+                'next_text' => __( '&raquo;', 'advanced-woo-search' ),
+                'total' => ceil( $fields_count / $limit ) ,
+                'current' => $pagenum
+            ) );
+
+            if ( $page_links ) {
+                $output = '<div class="tablenav"><div style="margin: 10px 0 0;">' . $page_links . '</div></div>';
+            }
+
+            return $output;
+
+        }
+
     }
 
 endif;

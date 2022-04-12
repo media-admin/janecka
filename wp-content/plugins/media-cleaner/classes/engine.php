@@ -194,7 +194,7 @@ AND p.post_type = 'attachment'
 SQL;
 		if ( get_option( 'wpmc_images_only' ) ) {
 			// Get only media entries which are images
-			$q .= " AND p.post_mime_type IN ( 'image/jpeg', 'image/gif', 'image/png',
+			$q .= " AND p.post_mime_type IN ( 'image/jpeg', 'image/gif', 'image/png', 'image/webp',
 				'image/bmp', 'image/tiff', 'image/x-icon', 'image/svg' )";
 		}
 

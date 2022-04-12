@@ -1,6 +1,15 @@
 (window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[3],{
 
-/***/ 518:
+/***/ 166:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports,"__esModule",{value:!0}),exports["default"]=_default;var _react=_interopRequireDefault(__webpack_require__(6)),_excluded=["size","onClick","icon","className"];function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}function _extends(){return _extends=Object.assign||function(a){for(var b,c=1;c<arguments.length;c++)for(var d in b=arguments[c],b)Object.prototype.hasOwnProperty.call(b,d)&&(a[d]=b[d]);return a},_extends.apply(this,arguments)}function _objectWithoutProperties(a,b){if(null==a)return{};var c,d,e=_objectWithoutPropertiesLoose(a,b);if(Object.getOwnPropertySymbols){var f=Object.getOwnPropertySymbols(a);for(d=0;d<f.length;d++)c=f[d],0<=b.indexOf(c)||Object.prototype.propertyIsEnumerable.call(a,c)&&(e[c]=a[c])}return e}function _objectWithoutPropertiesLoose(a,b){if(null==a)return{};var c,d,e={},f=Object.keys(a);for(d=0;d<f.length;d++)c=f[d],0<=b.indexOf(c)||(e[c]=a[c]);return e}function _default(a){var b=a.size,c=void 0===b?24:b,d=a.onClick,e=a.icon,f=a.className,g=_objectWithoutProperties(a,_excluded),h=["gridicon","gridicons-notice-outline",f,!!function isModulo18(a){return 0==a%18}(c)&&"needs-offset",!1,!1].filter(Boolean).join(" ");return _react["default"].createElement("svg",_extends({className:h,height:c,width:c,onClick:d},g,{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24"}),_react["default"].createElement("g",null,_react["default"].createElement("path",{d:"M12 4c4.411 0 8 3.589 8 8s-3.589 8-8 8-8-3.589-8-8 3.589-8 8-8m0-2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 13h-2v2h2v-2zm-2-2h2l.5-6h-3l.5 6z"})))}
+
+
+/***/ }),
+
+/***/ 539:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83,7 +92,7 @@ const sift = (arr, partitioner) => arr.reduce((all, curr) => {
 
 /***/ }),
 
-/***/ 522:
+/***/ 543:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -96,15 +105,15 @@ __webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport 
 var external_wp_element_ = __webpack_require__(0);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(6);
+var classnames = __webpack_require__(7);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/gridicons/dist/notice-outline.js
-var notice_outline = __webpack_require__(69);
+var notice_outline = __webpack_require__(166);
 var notice_outline_default = /*#__PURE__*/__webpack_require__.n(notice_outline);
 
 // EXTERNAL MODULE: external "moment"
-var external_moment_ = __webpack_require__(9);
+var external_moment_ = __webpack_require__(11);
 var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
@@ -112,16 +121,16 @@ var prop_types = __webpack_require__(1);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // EXTERNAL MODULE: external ["wc","components"]
-var external_wc_components_ = __webpack_require__(21);
+var external_wc_components_ = __webpack_require__(22);
 
 // EXTERNAL MODULE: external ["wp","components"]
-var external_wp_components_ = __webpack_require__(3);
+var external_wp_components_ = __webpack_require__(4);
 
 // EXTERNAL MODULE: ./client/activity-panel/activity-card/style.scss
-var style = __webpack_require__(555);
+var style = __webpack_require__(575);
 
 // EXTERNAL MODULE: external "lodash"
-var external_lodash_ = __webpack_require__(4);
+var external_lodash_ = __webpack_require__(5);
 
 // CONCATENATED MODULE: ./client/activity-panel/activity-card/placeholder.js
 
@@ -295,7 +304,7 @@ activity_card_ActivityCard.defaultProps = {
 
 /***/ }),
 
-/***/ 547:
+/***/ 567:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -307,43 +316,43 @@ var external_wp_element_ = __webpack_require__(0);
 var external_wp_i18n_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: external ["wc","components"]
-var external_wc_components_ = __webpack_require__(21);
+var external_wc_components_ = __webpack_require__(22);
 
 // EXTERNAL MODULE: external ["wp","components"]
-var external_wp_components_ = __webpack_require__(3);
+var external_wp_components_ = __webpack_require__(4);
 
 // EXTERNAL MODULE: external ["wc","data"]
-var external_wc_data_ = __webpack_require__(11);
+var external_wc_data_ = __webpack_require__(12);
 
 // EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
+var external_wp_data_ = __webpack_require__(8);
 
 // EXTERNAL MODULE: external ["wc","tracks"]
-var external_wc_tracks_ = __webpack_require__(16);
+var external_wc_tracks_ = __webpack_require__(17);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/TransitionGroup.js + 2 modules
-var TransitionGroup = __webpack_require__(174);
+var TransitionGroup = __webpack_require__(171);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/CSSTransition.js + 3 modules
-var CSSTransition = __webpack_require__(170);
+var CSSTransition = __webpack_require__(167);
 
 // EXTERNAL MODULE: external ["wc","experimental"]
-var external_wc_experimental_ = __webpack_require__(17);
+var external_wc_experimental_ = __webpack_require__(18);
 
 // EXTERNAL MODULE: external "moment"
-var external_moment_ = __webpack_require__(9);
+var external_moment_ = __webpack_require__(11);
 var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
 
 // EXTERNAL MODULE: ./client/activity-panel/activity-card/index.js + 1 modules
-var activity_card = __webpack_require__(522);
+var activity_card = __webpack_require__(543);
 
 // EXTERNAL MODULE: ./client/inbox-panel/utils.js
-var utils = __webpack_require__(177);
+var utils = __webpack_require__(176);
 
 // EXTERNAL MODULE: ./client/utils/index.js + 1 modules
-var client_utils = __webpack_require__(518);
+var client_utils = __webpack_require__(539);
 
-// CONCATENATED MODULE: ./client/inbox-panel/dissmiss-all-modal.js
+// CONCATENATED MODULE: ./client/inbox-panel/dismiss-all-modal.js
 
 
 /**
@@ -355,9 +364,10 @@ var client_utils = __webpack_require__(518);
 
 
 
-const DissmissAllModal = ({
-  onClose
-}) => {
+const DismissAllModal = _ref => {
+  let {
+    onClose
+  } = _ref;
   const {
     createNotice
   } = Object(external_wp_data_["useDispatch"])('core/notices');
@@ -410,9 +420,9 @@ const DissmissAllModal = ({
   }, Object(external_wp_i18n_["__"])('Yes, dismiss all', 'woocommerce-admin'))))));
 };
 
-/* harmony default export */ var dissmiss_all_modal = (DissmissAllModal);
+/* harmony default export */ var dismiss_all_modal = (DismissAllModal);
 // EXTERNAL MODULE: ./client/inbox-panel/index.scss
-var inbox_panel = __webpack_require__(559);
+var inbox_panel = __webpack_require__(580);
 
 // CONCATENATED MODULE: ./client/inbox-panel/index.js
 
@@ -456,15 +466,17 @@ const onBodyLinkClick = (note, innerLink) => {
 
 let hasFiredPanelViewTrack = false;
 
-const renderNotes = ({
-  hasNotes,
-  isBatchUpdating,
-  notes,
-  onDismiss,
-  onNoteActionClick,
-  setShowDismissAllModal: onDismissAll,
-  showHeader = true
-}) => {
+const renderNotes = _ref => {
+  let {
+    hasNotes,
+    isBatchUpdating,
+    notes,
+    onDismiss,
+    onNoteActionClick,
+    setShowDismissAllModal: onDismissAll,
+    showHeader = true
+  } = _ref;
+
   if (isBatchUpdating) {
     return;
   }
@@ -507,16 +519,19 @@ const renderNotes = ({
     count: notesArray.length
   })), Object(external_wp_element_["createElement"])(external_wc_components_["EllipsisMenu"], {
     label: Object(external_wp_i18n_["__"])('Inbox Notes Options', 'woocommerce-admin'),
-    renderContent: ({
-      onToggle
-    }) => Object(external_wp_element_["createElement"])("div", {
-      className: "woocommerce-inbox-card__section-controls"
-    }, Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
-      onClick: () => {
-        onDismissAll(true);
-        onToggle();
-      }
-    }, Object(external_wp_i18n_["__"])('Dismiss all', 'woocommerce-admin')))
+    renderContent: _ref2 => {
+      let {
+        onToggle
+      } = _ref2;
+      return Object(external_wp_element_["createElement"])("div", {
+        className: "woocommerce-inbox-card__section-controls"
+      }, Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
+        onClick: () => {
+          onDismissAll(true);
+          onToggle();
+        }
+      }, Object(external_wp_i18n_["__"])('Dismiss all', 'woocommerce-admin')));
+    }
   })), Object(external_wp_element_["createElement"])(TransitionGroup["a" /* default */], {
     role: "menu"
   }, notesArray.map(note => {
@@ -547,16 +562,17 @@ const renderNotes = ({
 const INBOX_QUERY = {
   page: 1,
   per_page: external_wc_data_["QUERY_DEFAULTS"].pageSize,
-  status: 'unactioned,actioned',
+  status: 'unactioned',
   type: external_wc_data_["QUERY_DEFAULTS"].noteTypes,
   orderby: 'date',
   order: 'desc',
   _fields: ['id', 'name', 'title', 'content', 'type', 'status', 'actions', 'date_created', 'date_created_gmt', 'layout', 'image', 'is_deleted', 'is_read', 'locale']
 };
 
-const InboxPanel = ({
-  showHeader = true
-}) => {
+const InboxPanel = _ref3 => {
+  let {
+    showHeader = true
+  } = _ref3;
   const {
     createNotice
   } = Object(external_wp_data_["useDispatch"])('core/notices');
@@ -624,18 +640,6 @@ const InboxPanel = ({
     }
   };
 
-  const onNoteActionClick = (note, action) => {
-    triggerNoteAction(note.id, action.id);
-    const screen = Object(client_utils["c" /* getScreenName */])();
-    Object(external_wc_tracks_["recordEvent"])('inbox_action_click', {
-      note_content: note.content,
-      note_name: note.name,
-      note_title: note.title,
-      note_type: note.type,
-      screen
-    });
-  };
-
   if (isError) {
     const title = Object(external_wp_i18n_["__"])('There was an error getting your inbox. Please try again.', 'woocommerce-admin');
 
@@ -657,7 +661,7 @@ const InboxPanel = ({
   const hasNotes = Object(utils["b" /* hasValidNotes */])(notes); // @todo After having a pagination implemented we should call the method "getNotes" with a different query since
   // the current one is only getting 25 notes and the count of unread notes only will refer to this 25 and not all the existing ones.
 
-  return Object(external_wp_element_["createElement"])(external_wp_element_["Fragment"], null, showDismissAllModal && Object(external_wp_element_["createElement"])(dissmiss_all_modal, {
+  return Object(external_wp_element_["createElement"])(external_wp_element_["Fragment"], null, showDismissAllModal && Object(external_wp_element_["createElement"])(dismiss_all_modal, {
     onClose: () => {
       setShowDismissAllModal(false);
     }
@@ -670,7 +674,9 @@ const InboxPanel = ({
     isBatchUpdating,
     notes,
     onDismiss,
-    onNoteActionClick,
+    onNoteActionClick: (note, action) => {
+      triggerNoteAction(note.id, action.id);
+    },
     setShowDismissAllModal,
     showHeader
   }))));
@@ -680,26 +686,17 @@ const InboxPanel = ({
 
 /***/ }),
 
-/***/ 555:
+/***/ 575:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
 
-/***/ 559:
+/***/ 580:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ 69:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var _extends=Object.assign||function(a){for(var c,b=1;b<arguments.length;b++)for(var d in c=arguments[b],c)Object.prototype.hasOwnProperty.call(c,d)&&(a[d]=c[d]);return a};Object.defineProperty(exports,'__esModule',{value:!0});exports.default=function(a){var b=a.size,c=b===void 0?24:b,d=a.onClick,e=a.icon,f=a.className,g=_objectWithoutProperties(a,['size','onClick','icon','className']),j=['gridicon','gridicons-notice-outline',f,!!function h(k){return 0==k%18}(c)&&'needs-offset',!1,!1].filter(Boolean).join(' ');return _react2.default.createElement('svg',_extends({className:j,height:c,width:c,onClick:d},g,{xmlns:'http://www.w3.org/2000/svg',viewBox:'0 0 24 24'}),_react2.default.createElement('g',null,_react2.default.createElement('path',{d:'M12 4c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8 3.59-8 8-8m0-2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 13h-2v2h2v-2zm-2-2h2l.5-6h-3l.5 6z'})))};var _react=__webpack_require__(5),_react2=_interopRequireDefault(_react);function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}function _objectWithoutProperties(a,b){var d={};for(var c in a)0<=b.indexOf(c)||Object.prototype.hasOwnProperty.call(a,c)&&(d[c]=a[c]);return d}module.exports=exports['default'];
-
 
 /***/ })
 

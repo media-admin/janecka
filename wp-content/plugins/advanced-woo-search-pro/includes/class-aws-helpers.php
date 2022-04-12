@@ -245,15 +245,51 @@ class AWS_Helpers {
     }
 
     /*
+     * Get total number of products custom fields
+     */
+    static public function get_custom_fields_count() {
+
+        global $wpdb;
+
+        $transient_name = 'aws_get_custom_fields_count';
+
+        $query = "
+            SELECT count(DISTINCT meta_key)
+            FROM $wpdb->postmeta
+            WHERE meta_key NOT LIKE 'attribute_pa%'
+            AND meta_key NOT LIKE '\_%'
+        ";
+
+        if ( isset( $_GET['show_inner'] ) ) {
+            $query = str_replace( "AND meta_key NOT LIKE '\_%'", '', $query );
+            $transient_name = 'aws_get_all_custom_fields_count';
+        }
+
+        $cached_count = get_transient( $transient_name );
+
+        if ( $cached_count ) {
+            return $cached_count;
+        }
+
+        $count = (int) $wpdb->get_var( $query );
+
+        set_transient( $transient_name, $count, 60*60*24 );
+
+        return $count;
+
+    }
+
+    /*
      * Get array of products custom fields
      */
     static public function get_custom_fields( $values = false ) {
         global $wpdb;
 
         $query = "
-            SELECT DISTINCT meta_key, meta_value
+            SELECT DISTINCT meta_key
             FROM $wpdb->postmeta
             WHERE meta_key NOT LIKE 'attribute_pa%'
+            AND meta_key NOT LIKE '\_%'
             ORDER BY meta_key ASC
         ";
 
@@ -261,6 +297,19 @@ class AWS_Helpers {
 
         if ( ! isset( $_GET['section'] ) || $_GET['section'] !== 'meta' ) {
             return $meta_keys;
+        }
+
+        if ( isset( $_GET['show_inner'] ) ) {
+            $query = str_replace( "AND meta_key NOT LIKE '\_%'", '', $query );
+        }
+
+        $fields_count = AWS_Helpers::get_custom_fields_count();
+        $limit = 500;
+        $pagenum = isset( $_GET['pagenum'] ) ? absint( $_GET['pagenum'] ) : 1;
+        $offset = ( $pagenum - 1 ) * $limit;
+
+        if ( $fields_count > $limit ) {
+            $query = $query . " LIMIT $offset, $limit";
         }
 
         $wp_es_fields = $wpdb->get_results( $query );
@@ -1501,6 +1550,7 @@ class AWS_Helpers {
     static public function page_filter_tax( $product_terms, $filter_terms, $operator = 'OR' ) {
 
         $skip = true;
+        $operator = strtoupper( $operator );
 
         if ( $filter_terms && is_array( $filter_terms ) && ! empty( $filter_terms ) ) {
 

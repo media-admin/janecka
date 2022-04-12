@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["customerEffortScore"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 471);
+/******/ 	return __webpack_require__(__webpack_require__.s = 491);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -107,20 +107,20 @@ this["wc"] = this["wc"] || {}; this["wc"]["customerEffortScore"] =
 if (false) { var throwOnDirectAccess, ReactIs; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(49)();
+  module.exports = __webpack_require__(60)();
 }
 
 
 /***/ }),
 
-/***/ 13:
+/***/ 14:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["compose"]; }());
 
 /***/ }),
 
-/***/ 17:
+/***/ 18:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wc"]["experimental"]; }());
@@ -134,14 +134,14 @@ if (false) { var throwOnDirectAccess, ReactIs; } else {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["components"]; }());
 
 /***/ }),
 
-/***/ 471:
+/***/ 491:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -162,16 +162,16 @@ var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 var external_wp_i18n_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: external ["wp","compose"]
-var external_wp_compose_ = __webpack_require__(13);
+var external_wp_compose_ = __webpack_require__(14);
 
 // EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
+var external_wp_data_ = __webpack_require__(8);
 
 // EXTERNAL MODULE: external ["wp","components"]
-var external_wp_components_ = __webpack_require__(3);
+var external_wp_components_ = __webpack_require__(4);
 
 // EXTERNAL MODULE: external ["wc","experimental"]
-var external_wc_experimental_ = __webpack_require__(17);
+var external_wc_experimental_ = __webpack_require__(18);
 
 // CONCATENATED MODULE: ./packages/customer-effort-score/build-module/customer-feedback-modal/index.js
 /**
@@ -198,10 +198,11 @@ var external_wc_experimental_ = __webpack_require__(17);
  * @param {string} props.label                 Question to ask the customer.
  */
 
-function CustomerFeedbackModal({
-  recordScoreCallback,
-  label
-}) {
+function CustomerFeedbackModal(_ref) {
+  let {
+    recordScoreCallback,
+    label
+  } = _ref;
   const options = [{
     label: Object(external_wp_i18n_["__"])('Very difficult', 'woocommerce-admin'),
     value: '1'
@@ -327,15 +328,16 @@ const noop = () => {};
  */
 
 
-function CustomerEffortScore({
-  recordScoreCallback,
-  label,
-  createNotice,
-  onNoticeShownCallback = noop,
-  onNoticeDismissedCallback = noop,
-  onModalShownCallback = noop,
-  icon
-}) {
+function CustomerEffortScore(_ref) {
+  let {
+    recordScoreCallback,
+    label,
+    createNotice,
+    onNoticeShownCallback = noop,
+    onNoticeDismissedCallback = noop,
+    onModalShownCallback = noop,
+    icon
+  } = _ref;
   const [shouldCreateNotice, setShouldCreateNotice] = Object(external_wp_element_["useState"])(true);
   const [visible, setVisible] = Object(external_wp_element_["useState"])(false);
   Object(external_wp_element_["useEffect"])(() => {
@@ -419,7 +421,7 @@ CustomerEffortScore.propTypes = {
 
 /***/ }),
 
-/***/ 49:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -432,7 +434,7 @@ CustomerEffortScore.propTypes = {
 
 
 
-var ReactPropTypesSecret = __webpack_require__(50);
+var ReactPropTypesSecret = __webpack_require__(61);
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -491,7 +493,7 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 50:
+/***/ 61:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -511,7 +513,7 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ 7:
+/***/ 8:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["data"]; }());

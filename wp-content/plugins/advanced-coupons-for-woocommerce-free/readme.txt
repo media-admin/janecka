@@ -4,7 +4,7 @@ Donate link:
 Tags: coupons, woocommerce coupons, bogo, url coupons, coupon plugin, store credit, advanced coupons
 Requires at least: 5.2
 Tested up to: 5.9
-Stable tag: 4.0.1
+Stable tag: 4.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -285,6 +285,16 @@ Thanks,
 Josh Kohlbach (Found/CEO of Rymera Web Co)
 
 == Changelog ==
+
+= 4.0.3 =
+* Bug Fix: Store Credits: Searching for existing customer on the second page of the customer list will show empty list
+* Bug Fix: Store Credits: refunding order to store credits more that the available amount won't show any notice
+* Bug Fix: Make notices be visible on the store credits admin page
+* Bug Fix: Store Credits: Failing on manually refund will remove the "Refund to Store Credits" button 
+* Bug Fix: Order total is not deducted with the tore credits discount when the order is recalculated in the backend
+
+= 4.0.2 =
+* Bug Fix: Fee Value is Hidden in The Order Details Table on The Checkout Page if Store Credit Module is Enabled
 
 = 4.0.1 =
 * Bug Fix: Store Credit - SQL Improvement

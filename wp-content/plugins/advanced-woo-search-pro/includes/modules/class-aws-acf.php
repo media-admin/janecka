@@ -51,32 +51,10 @@ if ( ! class_exists( 'AWS_ACF' ) ) :
          * Constructor
          */
         public function __construct() {
-            add_filter( 'aws_meta_keys_unfiltered', array( $this, 'aws_meta_keys_unfiltered' ) );
             add_filter( 'aws_meta_keys', array( $this, 'aws_meta_keys' ) );
             add_filter( 'aws_indexed_custom_fields', array( $this, 'aws_indexed_custom_fields' ), 10, 3 );
-        }
-
-        /*
-         * Add description for ACF fields in admin page
-         */
-        public function aws_meta_keys_unfiltered( $meta_keys ) {
-
-            $this->data['acf_fields'] = array();
-
-            if ( isset( $_GET['page'] ) && $_GET['page'] == 'aws-options' ) {
-
-                if ( is_array( $meta_keys ) && ! empty( $meta_keys ) ) {
-                    foreach ( $meta_keys as $field ) {
-                        if ( strpos(  $field->meta_value, 'field_' ) === 0 && strpos( $field->meta_key, '_') === 0 ) {
-                            $this->data['acf_fields'][ $field->meta_value] = ltrim( $field->meta_key, '_' );
-                        }
-                    }
-                }
-
-            }
-
-            return $meta_keys;
-
+            add_filter( 'aws_admin_filter_rules', array( $this, 'aws_admin_filter_rules' ), 1 );
+            add_filter( 'aws_filters_condition_rules', array( $this, 'condition_rules' ), 1 );
         }
 
         /*
@@ -84,20 +62,35 @@ if ( ! class_exists( 'AWS_ACF' ) ) :
          */
         public function aws_meta_keys( $meta_keys ) {
 
-            if ( isset( $_GET['page'] ) && $_GET['page'] == 'aws-options' && isset( $this->data['acf_fields'] ) && ! empty( $this->data['acf_fields'] ) ) {
+            if ( isset( $_GET['page'] ) && $_GET['page'] == 'aws-options' ) {
 
                 if ( is_array( $meta_keys ) && ! empty( $meta_keys ) ) {
 
                     $acf_fields = $this->get_available_acf_fields();
 
-                    foreach ( $meta_keys as $meta_slug => $meta_name ) {
-                        if ( $index = array_search( $meta_name, $this->data['acf_fields'] ) ) {
-                            $field_title = isset( $acf_fields[$index] ) ? $acf_fields[$index]['title'] : false;
+                    if ( $acf_fields ) {
+                        foreach ( $meta_keys as $meta_slug => $meta_name ) {
+
+                            $process = false;
+                            $field_title = false;
+                            foreach ( $acf_fields as $acf_field => $acf_field_params ) {
+                                if ( 'meta_' . $acf_field_params['type'] === $meta_slug ) {
+                                    $process = true;
+                                    $field_title =  $acf_field_params['title'];
+                                    break;
+                                }
+                            }
+
+                            if ( ! $process ) {
+                                continue;
+                            }
+
                             if ( $field_title ) {
                                 $meta_keys[$meta_slug] = $field_title . ' ( ' . $meta_name . ' ) ( ACF )';
                             } else {
                                 $meta_keys[$meta_slug] = $meta_name . ' ( ACF )';
                             }
+
                         }
                     }
 
@@ -315,6 +308,169 @@ if ( ! class_exists( 'AWS_ACF' ) ) :
             return $fields;
 
         }
+
+        /*
+         * Add new filter rules for admin
+         */
+        public function aws_admin_filter_rules( $options ) {
+
+            $options['product'][] = array(
+                "name" => __( "ACF: Fields", "advanced-woo-search" ),
+                "id"   => "product_acf",
+                "type" => "callback",
+                "operators" => "equals",
+                "choices" => array(
+                    'callback' => array( $this, 'get_acf_field' ),
+                    'params'   => array()
+                ),
+                "suboption" => array(
+                    'callback' => array( $this, 'get_all_acf_fields' ),
+                    'params'   => array()
+                ),
+            );
+
+            return $options;
+
+        }
+
+        /*
+         * Add custom condition rule method
+         */
+        public function condition_rules( $rules ) {
+            $rules['product_acf'] = array( $this, 'product_acf' );
+            return $rules;
+        }
+
+        /*
+         * Custom match function for ACF condition rule
+         */
+        public function product_acf( $condition_rule ) {
+            global $wpdb;
+
+            $meta_name = $condition_rule['suboption'];
+            $relation = $condition_rule['operator'] === 'equal' ? 'IN' : 'NOT IN';
+            $string = '';
+
+            $value = $condition_rule['value'] === 'aws_any' ? '' : $condition_rule['value'];
+
+            $acf_inner_fields = $wpdb->get_results("
+                    SELECT DISTINCT meta_key
+                    FROM $wpdb->postmeta
+                    WHERE meta_value = '{$meta_name}'
+                    ORDER BY meta_key ASC
+            ");
+
+            if ( is_array( $acf_inner_fields ) && ! empty( $acf_inner_fields ) ) {
+
+                $acf_inner = $acf_inner_fields[0]->meta_key;
+                $acf_inner = ltrim( $acf_inner, '_' );
+
+                if ( $value ) {
+
+                    $value = (string) str_replace("||", '"', $value );
+
+                    $string = "( id {$relation} (
+                        SELECT post_id
+                        FROM $wpdb->postmeta
+                        WHERE meta_key = '{$acf_inner}' AND meta_value = '{$value}'
+                    ))";
+
+                } else {
+
+                    $string = "( id {$relation} (
+                        SELECT post_id
+                        FROM $wpdb->postmeta
+                        WHERE meta_key = '{$acf_inner}'
+                    ))";
+
+                }
+
+            }
+
+            return $string;
+
+        }
+
+        /*
+         * Condition callback: get all available vendors
+         */
+        public function get_acf_field( $name = '' ) {
+
+            global $wpdb;
+
+            $options = array();
+
+            $acf_inner_fields = $wpdb->get_results("
+                    SELECT DISTINCT meta_key
+                    FROM $wpdb->postmeta
+                    WHERE meta_value = '{$name}'
+                    ORDER BY meta_key ASC
+            ");
+
+            if ( is_array( $acf_inner_fields ) && ! empty( $acf_inner_fields ) ) {
+
+                $acf_inner = $acf_inner_fields[0]->meta_key;
+                $acf_inner = ltrim( $acf_inner, '_' );
+
+                $acf_values = $wpdb->get_results("
+                    SELECT DISTINCT meta_value
+                    FROM $wpdb->postmeta
+                    WHERE meta_key = '{$acf_inner}'
+                    ORDER BY meta_value ASC
+                ");
+
+                if ( is_array( $acf_values ) && ! empty( $acf_values ) ) {
+                    foreach( $acf_values as $acf_value ) {
+
+                        $acf_field_value = (string) str_replace('"', "||", $acf_value->meta_value);
+
+                        if ( $acf_field_value ) {
+
+                            $options[sanitize_title($acf_field_value)] = array(
+                                'name'  => $acf_field_value,
+                                'value' => $acf_field_value
+                            );
+
+                        }
+
+                    }
+                }
+
+            }
+
+            if ( empty( $options ) ) {
+                $options[] = array(
+                    'name'  => ' ',
+                    'value' => ' '
+                );
+            }
+
+            return $options;
+
+        }
+
+        /*
+         * Get all available ACF fields for admin area
+         */
+        public function get_all_acf_fields() {
+
+            $options = array();
+
+            $available_acf_fields = $this->get_available_acf_fields();
+
+            if ( $available_acf_fields ) {
+                foreach( $available_acf_fields as $field_slug => $field_data ) {
+                    $options[] = array(
+                        'name'  => $field_data['title'],
+                        'value' => $field_slug
+                    );
+                }
+            }
+
+            return $options;
+
+        }
+
 
     }
 

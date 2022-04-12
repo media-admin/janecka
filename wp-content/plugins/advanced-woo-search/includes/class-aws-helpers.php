@@ -871,6 +871,7 @@ if ( ! class_exists( 'AWS_Helpers' ) ) :
         static public function page_filter_tax( $product_terms, $filter_terms, $operator = 'OR' ) {
 
             $skip = true;
+            $operator = strtoupper( $operator );
 
             if ( $filter_terms && is_array( $filter_terms ) && ! empty( $filter_terms ) ) {
 

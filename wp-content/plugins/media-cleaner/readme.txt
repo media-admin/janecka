@@ -3,9 +3,9 @@ Contributors: TigrouMeow
 Tags: clean, delete, file, files, images, image, media, library, upload, acf
 Donate link: https://meowapps.com/donation/
 Requires at least: 5.0
-Tested up to: 5.9.1
+Tested up to: 5.9.2
 Requires PHP: 7.0
-Stable tag: 6.3.1
+Stable tag: 6.3.2
 
 Clean your WordPress from unused files, broken media entries. Powerful engine and beautiful UI!
 
@@ -15,7 +15,7 @@ Media Cleaner cleans your Media Library from the media entries (and files) which
 
 **Before using this plugin, make sure you have a proper backup of your install. This step is not optional; it is required. You cannot trust any tools modifying or deleting your files.**
 
-To know more about compatibility, important information and Pro version, please read this until the end. Last but not least, it is necessary to read the [tutorial](https://meowapps.com/media-cleaner-tutorial/). It is available on the official website, here: [Media Cleaner](https://meowapps.com/plugin/media-cleaner/). 
+To know more about compatibility, important information and Pro version, please read this until the end. Last but not least, it is necessary to read the [tutorial](https://meowapps.com/media-cleaner/tutorial/). It is available on the official website, here: [Media Cleaner](https://meowapps.com/plugin/media-cleaner/). 
 
 === IMPORTANT ===
 
@@ -78,6 +78,10 @@ To make everything perfect, you will also need to clean and optimize your databa
 1. Media -> Media Cleaner
 
 == Changelog ==
+
+= 6.3.2 (2022/03/22) =
+* Fix: Better support for WebP.
+* Info: New plugin the the family! 🎉 It is simply called Database Cleaner, and it aims to be the best Database Cleaner. You can find it on WordPress: https://wordpress.org/plugins/database-cleaner. Let me know what you think, I will make it better for you!
 
 = 6.3.1 (2022/03/15) =
 * Add: Do not rely on the Media Trash anymore (MEDIA_TRASH)!
@@ -343,7 +347,7 @@ To make everything perfect, you will also need to clean and optimize your databa
 * Update: Compatibility with WordPress 5.1.
 
 = 5.1.0 =
-* Add: Filters for Filesystem scan. Please have a look at the tutorial (https://meowapps.com/media-cleaner-tutorial/), there is now a section about those filters.
+* Add: Filters for Filesystem scan. Please have a look at the tutorial (https://meowapps.com/media-cleaner/tutorial/), there is now a section about those filters.
 * Fix: Query for metakey.
 * Fix: Thumbnails matching.
 * Update: Compatibility for WordPress 5 and Gutenberg.

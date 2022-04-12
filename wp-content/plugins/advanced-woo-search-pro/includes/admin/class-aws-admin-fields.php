@@ -285,7 +285,10 @@ if ( ! class_exists( 'AWS_Admin_Fields' ) ) :
 
                             <td>
 
-                                <span class="description"><?php echo wp_kses_post( $value['desc'] ); ?></span><br><br>
+                                <span class="description">
+                                    <?php echo wp_kses_post( $value['desc'] ); ?>
+                                    <?php echo AWS_Admin_Helpers::meta_fields_pagination(); ?>
+                                </span><br><br>
 
                                 <table class="aws-table aws-table-sources widefat" cellspacing="0">
 

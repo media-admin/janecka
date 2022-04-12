@@ -10,6 +10,10 @@ return array(
 		'version' => 'dev-trunk',
 		'path'    => $baseDir . '/includes/multi-currency/Compatibility/WooCommerceProductAddOns.php'
 	),
+	'WCPay\\MultiCurrency\\Compatibility\\WooCommerceNameYourPrice' => array(
+		'version' => 'dev-trunk',
+		'path'    => $baseDir . '/includes/multi-currency/Compatibility/WooCommerceNameYourPrice.php'
+	),
 	'WCPay\\MultiCurrency\\Compatibility\\WooCommerceFedEx' => array(
 		'version' => 'dev-trunk',
 		'path'    => $baseDir . '/includes/multi-currency/Compatibility/WooCommerceFedEx.php'
@@ -754,6 +758,10 @@ return array(
 		'version' => '1.6.1.0',
 		'path'    => $vendorDir . '/automattic/jetpack-config/src/class-config.php'
 	),
+	'Automattic\\Jetpack\\Password_Checker' => array(
+		'version' => '0.2.2.0',
+		'path'    => $vendorDir . '/automattic/jetpack-password-checker/src/class-password-checker.php'
+	),
 	'Automattic\\Jetpack\\IdentityCrisis\\UI' => array(
 		'version' => '0.7.0.0',
 		'path'    => $vendorDir . '/automattic/jetpack-identity-crisis/src/class-ui.php'
@@ -765,10 +773,6 @@ return array(
 	'Automattic\\Jetpack\\Identity_Crisis' => array(
 		'version' => '0.7.0.0',
 		'path'    => $vendorDir . '/automattic/jetpack-identity-crisis/src/class-identity-crisis.php'
-	),
-	'Automattic\\Jetpack\\Password_Checker' => array(
-		'version' => '0.2.2.0',
-		'path'    => $vendorDir . '/automattic/jetpack-password-checker/src/class-password-checker.php'
 	),
 	'Automattic\\Jetpack\\Assets\\Logo' => array(
 		'version' => '1.5.14.0',
@@ -871,16 +875,16 @@ return array(
 		'path'    => $vendorDir . '/automattic/jetpack-connection/src/class-tokens.php'
 	),
 	'Automattic\\Jetpack\\Redirect' => array(
-		'version' => '1.7.10.0',
+		'version' => '1.7.12.0',
 		'path'    => $vendorDir . '/automattic/jetpack-redirect/src/class-redirect.php'
-	),
-	'Automattic\\Jetpack\\Heartbeat' => array(
-		'version' => '1.4.0.0',
-		'path'    => $vendorDir . '/automattic/jetpack-heartbeat/src/class-heartbeat.php'
 	),
 	'Automattic\\Jetpack\\Roles' => array(
 		'version' => '1.4.14.0',
 		'path'    => $vendorDir . '/automattic/jetpack-roles/src/class-roles.php'
+	),
+	'Automattic\\Jetpack\\Heartbeat' => array(
+		'version' => '1.4.0.0',
+		'path'    => $vendorDir . '/automattic/jetpack-heartbeat/src/class-heartbeat.php'
 	),
 	'Jetpack_Tracks_Client' => array(
 		'version' => '1.14.1.0',
@@ -895,11 +899,11 @@ return array(
 		'path'    => $vendorDir . '/automattic/jetpack-tracking/src/class-tracking.php'
 	),
 	'Automattic\\Jetpack\\Assets' => array(
-		'version' => '1.17.5.0',
+		'version' => '1.17.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-assets/src/class-assets.php'
 	),
 	'Automattic\\Jetpack\\Assets\\Semver' => array(
-		'version' => '1.17.5.0',
+		'version' => '1.17.6.0',
 		'path'    => $vendorDir . '/automattic/jetpack-assets/src/class-semver.php'
 	),
 	'Automattic\\Jetpack\\A8c_Mc_Stats' => array(
@@ -907,20 +911,24 @@ return array(
 		'path'    => $vendorDir . '/automattic/jetpack-a8c-mc-stats/src/class-a8c-mc-stats.php'
 	),
 	'Automattic\\Jetpack\\Terms_Of_Service' => array(
-		'version' => '1.9.19.0',
+		'version' => '1.9.20.0',
 		'path'    => $vendorDir . '/automattic/jetpack-terms-of-service/src/class-terms-of-service.php'
 	),
 	'Automattic\\Jetpack\\Status\\Visitor' => array(
-		'version' => '1.10.0.0',
+		'version' => '1.12.0.0',
 		'path'    => $vendorDir . '/automattic/jetpack-status/src/class-visitor.php'
 	),
 	'Automattic\\Jetpack\\Status\\Host' => array(
-		'version' => '1.10.0.0',
+		'version' => '1.12.0.0',
 		'path'    => $vendorDir . '/automattic/jetpack-status/src/class-host.php'
 	),
 	'Automattic\\Jetpack\\Status' => array(
-		'version' => '1.10.0.0',
+		'version' => '1.12.0.0',
 		'path'    => $vendorDir . '/automattic/jetpack-status/src/class-status.php'
+	),
+	'Automattic\\Jetpack\\Status\\Cache' => array(
+		'version' => '1.12.0.0',
+		'path'    => $vendorDir . '/automattic/jetpack-status/src/class-cache.php'
 	),
 	'Jetpack_Options' => array(
 		'version' => '1.14.2.0',

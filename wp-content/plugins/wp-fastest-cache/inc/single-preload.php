@@ -96,7 +96,7 @@
 	        // Add the HTML for the post meta
 	    }
 
-	    public function save_settings(){
+	    public static function save_settings(){
 	        if(current_user_can('manage_options')){
 	            $res = array("success" => true);
 

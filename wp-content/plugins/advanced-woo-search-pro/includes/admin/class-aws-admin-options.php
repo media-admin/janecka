@@ -1440,17 +1440,6 @@ if ( ! class_exists( 'AWS_Admin_Options' ) ) :
             );
 
             $options['user'][] = array(
-                "name" => __( "User", "advanced-woo-search" ),
-                "id"   => "user_page_user",
-                "type" => "callback",
-                "operators" => "equals",
-                "choices" => array(
-                    'callback' => 'AWS_Admin_Filters_Helpers::get_users',
-                    'params'   => array()
-                ),
-            );
-
-            $options['user'][] = array(
                 "name" => __( "User role", "advanced-woo-search" ),
                 "id"   => "user_page_role",
                 "type" => "callback",
@@ -1461,6 +1450,17 @@ if ( ! class_exists( 'AWS_Admin_Options' ) ) :
                 ),
             );
 
+            $options['user'][] = array(
+                "name" => __( "User", "advanced-woo-search" ),
+                "id"   => "user_page_user",
+                "type" => "callback",
+                "operators" => "equals",
+                "choices" => array(
+                    'callback' => 'AWS_Admin_Filters_Helpers::get_users',
+                    'params'   => array()
+                ),
+            );
+            
             $options['user'][] = array(
                 "name" => __( "User products count", "advanced-woo-search" ),
                 "id"   => "user_page_count",

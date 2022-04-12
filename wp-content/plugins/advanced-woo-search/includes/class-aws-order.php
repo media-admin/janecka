@@ -87,6 +87,12 @@ if ( ! class_exists( 'AWS_Order' ) ) :
 
             }
 
+            if ( empty( $attr_filter ) && class_exists('WC_Query') && method_exists( 'WC_Query', 'get_layered_nav_chosen_attributes' ) && count( WC_Query::get_layered_nav_chosen_attributes() ) > 0  ) {
+                foreach ( WC_Query::get_layered_nav_chosen_attributes() as $taxonomy => $data ) {
+                    $attr_filter[$taxonomy] = $data;
+                }
+            }
+
 
             /**
              * Filter available search page filters before apply
@@ -233,7 +239,7 @@ if ( ! class_exists( 'AWS_Order' ) ) :
 
                             foreach( $attr_filter as $attr_filter_name => $attr_filter_object ) {
 
-                                $operator = isset( $attr_filter_object['operator'] ) ? $attr_filter_object['operator'] : 'OR';
+                                $operator = isset( $attr_filter_object['operator'] ) ? $attr_filter_object['operator'] : ( isset( $attr_filter_object['query_type'] ) ? $attr_filter_object['query_type'] : 'OR' ) ;
                                 $attr_filter_terms = $attr_filter_object['terms'];
 
                                 $skip = AWS_Helpers::page_filter_tax( $product_terms_array, $attr_filter_terms, $operator );
