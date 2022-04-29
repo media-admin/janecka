@@ -6,8 +6,8 @@
 function markenslider_shortcode() {
 	ob_start();
 	get_template_part( 'shortcodes/markenslider_shortcode');
-	return ob_get_clean();   
-} 
+	return ob_get_clean();
+}
 
 add_shortcode( 'content_markenslider', 'markenslider_shortcode' );
 
@@ -16,8 +16,8 @@ add_shortcode( 'content_markenslider', 'markenslider_shortcode' );
 function terminwunschbutton_shortcode() {
 	ob_start();
 	get_template_part( 'shortcodes/terminwunschbutton_shortcode');
-	return ob_get_clean();   
-} 
+	return ob_get_clean();
+}
 
 add_shortcode( 'content_terminwunschbutton', 'terminwunschbutton_shortcode' );
 
@@ -26,8 +26,8 @@ add_shortcode( 'content_terminwunschbutton', 'terminwunschbutton_shortcode' );
 function schmuckservice_shortcode() {
 	ob_start();
 	get_template_part( 'shortcodes/schmuckservice_shortcode');
-	return ob_get_clean();   
-} 
+	return ob_get_clean();
+}
 
 add_shortcode( 'content_schmuckservice', 'schmuckservice_shortcode' );
 
@@ -37,15 +37,19 @@ add_shortcode( 'content_schmuckservice', 'schmuckservice_shortcode' );
 function uhrenservice_shortcode() {
 	ob_start();
 	get_template_part( 'shortcodes/uhrenservice_shortcode');
-	return ob_get_clean();   
-} 
+	return ob_get_clean();
+}
 
 add_shortcode( 'content_uhrenservice', 'uhrenservice_shortcode' );
 
 
+function spoiler_home01_shortcode() {
+	ob_start();
+	get_template_part( 'shortcodes/spoiler-home-01_shortcode');
+	return ob_get_clean();
+}
 
-
-
+add_shortcode( 'spoiler_home01', 'spoiler_home01_shortcode' );
 
 
 
@@ -64,7 +68,7 @@ function show_tags()
 
 
 function all_posts_shortcode() {
-	
+
 	//Parameter für Posts
 	$args = array(
 		'category' => '',
@@ -73,15 +77,15 @@ function all_posts_shortcode() {
 		'orderby'   => 'id',
 		'order' => 'ASC',
 	);
-	
+
 	//Posts holen
 	$posts = get_posts($args);
-	
-	
+
+
 	//Inhalte sammeln
 	$content = '';
 	foreach ($posts as $post) {
-		
+
 		$content .= '<div class="card column is-one-third">';
 		$content .= '<div class="card-image">';
 		$content .= '<a class="" href="'.get_permalink($post->ID).'">';
@@ -104,10 +108,10 @@ function all_posts_shortcode() {
 		$content .= '<code class="tag is-danger">';
 		$content .= '<i class="fas fa-tags"></i>';
 		$content .= '</code>';
-	
-		$post_tags = get_the_tags($post->ID);			
-		 
-		
+
+		$post_tags = get_the_tags($post->ID);
+
+
 		if (!empty($post_tags)) {
 			foreach ($post_tags as $tag) {
 				$content .= '<span class="tag"><a href="' . get_tag_link($tag->term_id) . '">' . $tag->name . '</a></span>';
@@ -119,14 +123,14 @@ function all_posts_shortcode() {
 		$content .= '</div>';
 		$content .= '</div>';
 		$content .= '</div>';
-		
-	}
-	
-	//Inhalte übergeben
-	return $content;		
-	
-} 
 
-add_shortcode( 'all_posts', 'all_posts_shortcode' );	
+	}
+
+	//Inhalte übergeben
+	return $content;
+
+}
+
+add_shortcode( 'all_posts', 'all_posts_shortcode' );
 
 ?>
