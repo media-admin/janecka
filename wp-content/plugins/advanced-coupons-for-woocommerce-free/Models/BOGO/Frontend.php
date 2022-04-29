@@ -139,20 +139,52 @@ class Frontend implements Model_Interface
      */
 
     /**
+     * Restrict cart to only allow one BOGO to be applied.
+     * 
+     * @since 4.1
+     * @access public
+     * 
+     * @param bool            $return Filter return value.
+     * @param Advanced_Coupon $coupon Advanced coupon object.
+     * @return string Notice markup.
+     */
+    public function restrict_cart_to_only_one_bogo_deal($return, $coupon)
+    {
+        if ($coupon->is_type('acfw_bogo')) {
+
+            $this->_calculation = Calculation::get_instance();
+  
+            if ($this->_calculation->get_bogo_deal() && $coupon->get_code() !== $this->_calculation->get_bogo_coupon_code()) {
+                throw new \Exception(
+                    sprintf(
+                        __('The coupon "%s" cannot be applied to the cart. A coupon with a "Buy X Get X" deal has already been applied to the cart.', 'advanced-coupons-for-woocommerce-free'),
+                        $coupon->get_code()
+                    )
+                );
+            }
+        }
+
+        return $return;
+    }
+
+    /**
      * Implement BOGO Deals for all applied coupon in the cart.
      *
      * @since 1.4
+     * @since 4.1 Skip calculation when there is no BOGO Deal present to calculate.
      * @access public
      */
     public function implement_bogo_deals()
     {
-        // skip if calculation already done.
-        if ($this->_calculation instanceof Calculation) {
-            return;
+        // create BOGO Calculation instance.
+        if (!$this->_calculation instanceof Calculation) {
+            $this->_calculation = Calculation::get_instance();
         }
 
-        // create BOGO Calculation instance.
-        $this->_calculation = Calculation::get_instance();
+        // skip if there's no BOGO coupon or when calculation is already done.
+        if (!$this->_calculation->get_bogo_deal() || $this->_calculation->is_calculation_done()) {
+            return;
+        }
 
         // check if calculation is available in session and is still valid.
         if (!$this->_calculation->is_calculated_from_session()) {
@@ -160,10 +192,8 @@ class Frontend implements Model_Interface
             // clear previous session data.
             Calculation::clear_session_data();
 
-            // Loop through each applied coupon and implement BOGO Deal.
-            foreach ($this->_calculation->get_all_bogo_deals() as $bogo_deal) {
-                $this->_implement_bogo_deal($bogo_deal);
-            }
+            // run BOGO impelementation
+            $this->_run_implementation();
 
             // add eligible notices for deals with missing items.
             $this->_add_notice_for_eligible_deals();
@@ -177,27 +207,27 @@ class Frontend implements Model_Interface
             $this->_set_matching_cart_item_deals_prices();
         }
 
+        // mark calculation as done.
+        $this->_calculation->done_calculation();
+
         // display eligible for deals notices.
         $this->_display_eligible_deal_notices();
     }
 
     /**
-     * Implement BOGO Deal for coupon.
+     * Run BOGO implementation
      *
      * @since 1.4
      * @access private
-     *
-     * @param string $coupon_code Coupon code.
      */
-    private function _implement_bogo_deal(Abstract_BOGO_Deal $bogo_deal)
+    private function _run_implementation()
     {
+        $bogo_deal = $this->_calculation->get_bogo_deal();
+
         // skip if the re are no triggers or deals data.
         if (0 >= count($bogo_deal->triggers) || 0 >= count($bogo_deal->deals)) {
             return;
         }
-
-        // set current BOGO deal being processed in calculation object.
-        $this->_calculation->set_bogo_deal($bogo_deal);
 
         // allow 3rd party implementations for BOGO deals.
         if (apply_filters('acfwf_before_implement_bogo_for_coupon', false)) {
@@ -332,39 +362,38 @@ class Frontend implements Model_Interface
      */
     private function _add_notice_for_eligible_deals()
     {
-        foreach ($this->_calculation->get_all_bogo_deals() as $bogo_deal) {
+        $bogo_deal = $this->_calculation->get_bogo_deal();
 
-            // if BOGO Deal last iteration has no fulfilled deals, then reverify triggers.
-            if (!$bogo_deal->has_deal_fulfilled()) {
-                $this->_calculation->set_bogo_deal($bogo_deal);
-                $bogo_deal->reset_counters();
+        // if BOGO Deal last iteration has no fulfilled deals, then reverify triggers.
+        if (!$bogo_deal->has_deal_fulfilled()) {
+            $this->_calculation->set_bogo_deal($bogo_deal);
+            $bogo_deal->reset_counters();
 
-                // skip displaying notice if triggers are not verified.
-                // NOTE: This means that the items that were used to verify the last iteration was used by another coupon.
-                if (!$this->_calculation->verify_triggers(false, false)) {
-                    continue;
-                }
+            // skip displaying notice if triggers are not verified.
+            // NOTE: This means that the items that were used to verify the last iteration was used by another coupon.
+            if (!$this->_calculation->verify_triggers(false, false)) {
+                return;
             }
-
-            $coupon           = $bogo_deal->get_coupon();
-            $allowed_entries  = $this->_calculation->get_entries_by_coupon($coupon->get_code(), 'deal', 'allowed');
-            $allowed_quantity = array_sum(array_column($allowed_entries, 'quantity'));
-
-            if (!$allowed_quantity || !apply_filters('acfw_bogo_deals_is_eligible_notice', true, $allowed_quantity, $coupon)) {
-                continue;
-            }
-
-            $settings    = $coupon->get_bogo_notice_settings();
-            $message     = isset($settings['message']) && $settings['message'] ? $settings['message'] : __('Your current cart is eligible to redeem deals.', 'advanced-coupons-for-woocommerce-free');
-            $message     = str_replace(array('{acfw_bogo_remaining_deals_quantity}', '{acfw_bogo_coupon_code}'), array($allowed_quantity, $coupon->get_code()), $message);
-            $notice_type = isset($settings['notice_type']) && $settings['notice_type'] ? $settings['notice_type'] : 'notice';
-            $button_url  = isset($settings['button_url']) && $settings['button_url'] ? $settings['button_url'] : get_permalink(wc_get_page_id('shop'));
-            $button_text = isset($settings['button_text']) && $settings['button_text'] ? $settings['button_text'] : __('View Deals', 'advanced-coupons-for-woocommerce-free');
-            $notice_text = sprintf('<span class="acfw-bogo-notice-text">%s <a href="%s" class="button">%s</a></span>', $message, $button_url, $button_text);
-
-            // $test = wc_add_notice($notice_text, $notice_type, array('acfw-bogo' => true, 'coupon' => $coupon->get_code()));
-            $this->_calculation->add_notice($notice_text, $notice_type, $coupon->get_code());
         }
+
+        $coupon           = $bogo_deal->get_coupon();
+        $allowed_entries  = $this->_calculation->get_entries_by_coupon($coupon->get_code(), 'deal', 'allowed');
+        $allowed_quantity = array_sum(array_column($allowed_entries, 'quantity'));
+
+        if (!$allowed_quantity || !apply_filters('acfw_bogo_deals_is_eligible_notice', true, $allowed_quantity, $coupon)) {
+            return;
+        }
+
+        $settings    = $coupon->get_bogo_notice_settings();
+        $message     = isset($settings['message']) && $settings['message'] ? $settings['message'] : __('Your current cart is eligible to redeem deals.', 'advanced-coupons-for-woocommerce-free');
+        $message     = str_replace(array('{acfw_bogo_remaining_deals_quantity}', '{acfw_bogo_coupon_code}'), array($allowed_quantity, $coupon->get_code()), $message);
+        $notice_type = isset($settings['notice_type']) && $settings['notice_type'] ? $settings['notice_type'] : 'notice';
+        $button_url  = isset($settings['button_url']) && $settings['button_url'] ? $settings['button_url'] : get_permalink(wc_get_page_id('shop'));
+        $button_text = isset($settings['button_text']) && $settings['button_text'] ? $settings['button_text'] : __('View Deals', 'advanced-coupons-for-woocommerce-free');
+        $notice_text = sprintf('<span class="acfw-bogo-notice-text">%s <a href="%s" class="button">%s</a></span>', $message, $button_url, $button_text);
+
+        // $test = wc_add_notice($notice_text, $notice_type, array('acfw-bogo' => true, 'coupon' => $coupon->get_code()));
+        $this->_calculation->add_notice($notice_text, $notice_type, $coupon->get_code());
     }
 
     /**
@@ -573,6 +602,7 @@ class Frontend implements Model_Interface
             return;
         }
 
+        add_filter('woocommerce_coupon_is_valid', array($this, 'restrict_cart_to_only_one_bogo_deal'), 10, 2);
         add_action('woocommerce_before_calculate_totals', array($this, 'implement_bogo_deals'), 11);
         add_filter('woocommerce_cart_item_price', array($this, 'display_discounted_price'), 10, 2);
         add_filter('woocommerce_cart_totals_coupon_html', array($this, 'display_bogo_discount_summary'), 10, 3);

@@ -62,15 +62,6 @@ class Role_Restrictions implements Model_Interface
      */
     private $_coupon_endpoint;
 
-    /**
-     * Coupon base url.
-     *
-     * @since 1.0
-     * @access private
-     * @var string
-     */
-    private $_coupon_base_url;
-
     /*
     |--------------------------------------------------------------------------
     | Class Methods
@@ -91,8 +82,6 @@ class Role_Restrictions implements Model_Interface
     {
         $this->_constants        = $constants;
         $this->_helper_functions = $helper_functions;
-        $this->_coupon_endpoint  = $this->_helper_functions->get_coupon_url_endpoint();
-        $this->_coupon_base_url  = home_url('/') . $this->_coupon_endpoint;
 
         $main_plugin->add_to_all_plugin_models($this);
         $main_plugin->add_to_public_models($this);

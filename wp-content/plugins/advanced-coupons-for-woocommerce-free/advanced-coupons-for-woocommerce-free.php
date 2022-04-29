@@ -4,13 +4,13 @@
  * Plugin Name: Advanced Coupons for WooCommerce Free
  * Plugin URI: https://advancedcouponsplugin.com
  * Description: Advanced Coupons for WooCommerce (Free Version) gives WooCommerce store owners extra coupon features so they can market their stores better.
- * Version: 4.0.3
+ * Version: 4.2
  * Author: Rymera Web Co
  * Author URI: https://rymera.com.au
  * Requires at least: 5.2
- * Tested up to: 5.9.3
+ * Tested up to: 5.9.4
  * WC requires at least: 4.0
- * WC tested up to: 6.4
+ * WC tested up to: 6.4.1
  *
  * Text Domain: advanced-coupons-for-woocommerce-free
  * Domain Path: /languages/
@@ -51,6 +51,7 @@ use ACFWF\Models\Store_Credits\Checkout as Store_Credits_Checkout;
 use ACFWF\Models\Store_Credits\My_Account as Store_Credits_My_Account;
 use ACFWF\Models\Store_Credits\Registry as Store_Credits_Registry;
 use ACFWF\Models\Third_Party_Integrations\Aelia\Currency_Switcher;
+use ACFWF\Models\Third_Party_Integrations\Woocs;
 use ACFWF\Models\Third_Party_Integrations\WPML_Support;
 
 // REST API
@@ -460,6 +461,7 @@ class ACFWF extends Abstract_Main_Plugin_Class
         // third party integration
         $currency_switcher = Currency_Switcher::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
         WPML_Support::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        Woocs::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
 
         // boostrap args
         $initiables     = array($cart_conditions, $edit_coupon, $bogo_admin, $notices, $upsell, $admin_notes, $help_links, $editor_blocks, $store_credits_checkout, $store_credits_myaccount);

@@ -4,7 +4,7 @@ Donate link:
 Tags: coupons, woocommerce coupons, bogo, url coupons, coupon plugin, store credit, advanced coupons
 Requires at least: 5.2
 Tested up to: 5.9
-Stable tag: 4.0.3
+Stable tag: 4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -285,6 +285,19 @@ Thanks,
 Josh Kohlbach (Found/CEO of Rymera Web Co)
 
 == Changelog ==
+
+= 4.2 =
+* Feature: Add option to always use regular price when sale price exists
+* Improvement: Add css classes for coupon type to coupon gutenberg blocks to help improve styling targeting
+* Improvement: Pass the URL Coupon attributes to the redirect URL and remove blog permalink structure from the coupon permalink structure
+* Improvement: Create duplicate Store Credits REST API endpoints to add support for WC Basic Auth
+* Improvement: Store Credits: Option to hide store credits section on checkout screen if the customer currently has no store credit balance
+* Improvement: Feature description improvement for "Customer Buys"
+
+= 4.1 =
+* Improvement: Only allow one (1) BOGO coupon to be applied to the cart at once
+* Improvement: WOOCS currency switcher plugin integration
+* Improvement: Show notice if a BOGO coupon already exists on the cart and don’t apply the new one 
 
 = 4.0.3 =
 * Bug Fix: Store Credits: Searching for existing customer on the second page of the customer list will show empty list

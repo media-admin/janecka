@@ -5,7 +5,7 @@ Tags: datepicker, booking, calendar, date picker, jquery ui
 Requires at least: 5.0
 Tested up to: 5.8
 Requires PHP: 5.6.2
-Stable tag: 2.1
+Stable tag: 2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,6 +114,9 @@ When you install the PRO plugin, it will automatically import your input created
 4. Integration
 
 == Changelog ==
+
+= v2.2 - April 8, 2022 =
+- Fix Freemius vulnerability by updating to 2.4.3
 
 = v2.1 - August 13, 2021 =
 - Fix: Divi Integration.

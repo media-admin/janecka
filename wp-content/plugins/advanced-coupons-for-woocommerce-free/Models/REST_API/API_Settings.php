@@ -110,7 +110,6 @@ class API_Settings implements Model_Interface
     {
         $this->_constants        = $constants;
         $this->_helper_functions = $helper_functions;
-        $this->_coupon_endpoint  = $this->_helper_functions->get_coupon_url_endpoint();
 
         $main_plugin->add_to_all_plugin_models($this);
         $main_plugin->add_to_public_models($this);
@@ -460,6 +459,13 @@ class API_Settings implements Model_Interface
                 'id'     => 'url_coupons_section',
                 'title'  => __('URL Coupons', 'advanced-coupons-for-woocommerce-free'),
                 'fields' => 'url_coupons_section' === $current_section ? $this->_get_single_section_fields($current_section) : array(),
+                'show'   => $this->_helper_functions->is_module(Plugin_Constants::URL_COUPONS_MODULE),
+                'module' => Plugin_Constants::URL_COUPONS_MODULE,
+            ),
+            array(
+                'id'     => 'store_credits_section',
+                'title'  => __('Store Credits', 'advanced-coupons-for-woocommerce-free'),
+                'fields' => 'store_credits_section' === $current_section ? $this->_get_single_section_fields($current_section) : array(),
                 'show'   => $this->_helper_functions->is_module(Plugin_Constants::URL_COUPONS_MODULE),
                 'module' => Plugin_Constants::URL_COUPONS_MODULE,
             ),

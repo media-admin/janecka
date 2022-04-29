@@ -104,8 +104,6 @@ class Edit_Coupon implements Model_Interface, Initializable_Interface, Activatab
         $this->_constants        = $constants;
         $this->_helper_functions = $helper_functions;
         $this->_cart_conditions  = $cart_conditions;
-        $this->_coupon_endpoint  = $this->_helper_functions->get_coupon_url_endpoint();
-        $this->_coupon_base_url  = home_url('/') . $this->_coupon_endpoint;
 
         $main_plugin->add_to_all_plugin_models($this);
         $main_plugin->add_to_public_models($this);

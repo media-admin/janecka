@@ -55,15 +55,6 @@ class Notices implements Model_Interface, Initializable_Interface, Activatable_I
      */
     private $_helper_functions;
 
-    /**
-     * Coupon endpoint set.
-     *
-     * @since 1.1
-     * @access private
-     * @var string
-     */
-    private $_coupon_endpoint;
-
     /*
     |--------------------------------------------------------------------------
     | Class Methods
@@ -84,7 +75,6 @@ class Notices implements Model_Interface, Initializable_Interface, Activatable_I
     {
         $this->_constants        = $constants;
         $this->_helper_functions = $helper_functions;
-        $this->_coupon_endpoint  = $this->_helper_functions->get_coupon_url_endpoint();
 
         $main_plugin->add_to_all_plugin_models($this);
         $main_plugin->add_to_public_models($this);

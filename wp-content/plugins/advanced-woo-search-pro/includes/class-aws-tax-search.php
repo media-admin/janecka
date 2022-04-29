@@ -384,6 +384,8 @@ if ( ! class_exists( 'AWS_Tax_Search' ) ) :
          */
         private function get_filters() {
 
+            global $wpdb;
+
             $filters = '';
             $excludes_array = array();
 

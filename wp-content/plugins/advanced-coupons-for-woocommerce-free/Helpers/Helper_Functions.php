@@ -713,6 +713,7 @@ class Helper_Functions
      * Get price with WWP/P support.
      *
      * @since 1.0
+     * @since 4.2 Add "Always use regular price" setting
      * @access private
      *
      * @param WC_Product $product Product object
@@ -737,6 +738,11 @@ class Helper_Functions
 
             }
 
+        }
+
+        // return regular price when setting is set to yes.
+        if (get_option(Plugin_Constants::ALWAYS_USE_REGULAR_PRICE) === 'yes') {
+            return (float) $product->get_regular_price();
         }
 
         return $product->is_on_sale() ? (float) $product->get_sale_price() : (float) $product->get_regular_price();
@@ -1179,6 +1185,15 @@ class Helper_Functions
             }
         }
 
+        $classnames = array(
+            'acfw-single-coupon-block',
+            'acfw-coupon-type-' . $coupon->get_discount_type(),
+        );
+
+        if ($classname) {
+            $classnames[] = $classname;
+        }
+
         $this->load_template(
             'acfw-blocks/single-coupon.php',
             array(
@@ -1189,7 +1204,7 @@ class Helper_Functions
                 'has_discount_value' => $visibility->discount_value && ($coupon->get_amount() || 'acfw_bogo' === $coupon->get_discount_type()),
                 'has_schedule'       => $visibility->schedule && $schedule_string,
                 'schedule_string'    => $schedule_string,
-                'classname'          => $classname,
+                'classnames'          => $classnames,
             )
         );
     }

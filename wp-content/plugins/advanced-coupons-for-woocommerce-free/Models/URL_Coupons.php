@@ -271,6 +271,7 @@ class URL_Coupons implements Model_Interface
      * Redirect after applying coupon successfully.
      *
      * @since 1.0
+     * @since 4.2 append coupon URL attributes to the redirect URL
      * @access private
      *
      * @param Advanced_Coupon $coupon      Advanced coupon object.
@@ -298,6 +299,12 @@ class URL_Coupons implements Model_Interface
 
         } else {
             $redirect_url = wc_get_cart_url();
+        }
+
+        // append attributes that was added in the coupon to the redirect URL.
+        if (!empty($_GET)) {
+            $connector     = strpos($redirect_url, '?') === false ? '?' : '&';
+            $redirect_url .= $connector . http_build_query($_GET);
         }
 
         // Clear notices when redirecting to an external URL.
@@ -373,6 +380,7 @@ class URL_Coupons implements Model_Interface
      * Override the WooCommerce post type registration for shop_coupon.
      *
      * @since 1.0
+     * @since 4.2 set `with_front` parameter to false in rewrites settings
      * @access public
      *
      * @param array $args shop_coupon post type registration args.
@@ -383,8 +391,9 @@ class URL_Coupons implements Model_Interface
 
         $args['publicly_queryable'] = true;
         $args['rewrite']            = array(
-            'slug'  => $this->_coupon_endpoint,
-            'pages' => false,
+            'slug'       => $this->_coupon_endpoint,
+            'pages'      => false,
+            'with_front' => false, // exclude any custom structures prepended in the permalink settings.
         );
 
         // flush rewrite rules when transient is set.

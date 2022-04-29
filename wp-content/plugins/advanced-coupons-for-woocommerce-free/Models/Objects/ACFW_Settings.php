@@ -103,6 +103,10 @@ class ACFW_Settings extends \WC_Settings_Page
             $sections['acfw_setting_url_coupons_section'] = __('URL Coupons', 'advanced-coupons-for-woocommerce-free');
         }
 
+        if ($this->_helper_functions->is_module(Plugin_Constants::STORE_CREDITS_MODULE)) {
+            $sections['acfw_setting_store_credits_section'] = __('Store Credits', 'advanced-coupons-for-woocommerce-free');
+        }
+
         $sections['acfw_setting_help_section'] = __('Help', 'advanced-coupons-for-woocommerce-free');
 
         return apply_filters('woocommerce_get_sections_' . $this->id, $sections);
@@ -183,6 +187,11 @@ class ACFW_Settings extends \WC_Settings_Page
             case 'acfw_setting_role_restrictions_section':
                 $module   = Plugin_Constants::ROLE_RESTRICT_MODULE;
                 $settings = apply_filters('acfw_setting_role_restrictions_options', $this->_get_role_restrictions_section_options());
+                break;
+
+            case 'acfw_setting_store_credits_section':
+                $module   = Plugin_Constants::STORE_CREDITS_MODULE;
+                $settings = apply_filters('acfw_setting_store_credits_options', $this->_get_store_credits_section_options());
                 break;
 
             case 'acfw_setting_modules_section':
@@ -384,6 +393,13 @@ class ACFW_Settings extends \WC_Settings_Page
             ),
 
             array(
+                'title'       => __('Always use regular price', 'advanced-coupons-for-woocommerce-free'),
+                'type'        => 'checkbox',
+                'desc_tip'    => __('When calculating for BOGO Deals and/or Add Products discount, always ensure the Regular Price is used and ignore the Sale Price if present.', 'advanced-coupons-for-woocommerce-free'),
+                'id'          => Plugin_Constants::ALWAYS_USE_REGULAR_PRICE,
+            ),
+
+            array(
                 'type' => 'sectionend',
                 'id'   => 'acfw_general_sectionend',
             ),
@@ -507,6 +523,35 @@ class ACFW_Settings extends \WC_Settings_Page
                 'type' => 'sectionend',
                 'id'   => 'acfw_role_restrictions_sectionend',
             ),
+        );
+    }
+
+    /**
+     * Get store credits section options.
+     *
+     * @since 4.2
+     * @access private
+     *
+     * @return array
+     */
+    private function _get_store_credits_section_options()
+    {
+        return array(
+
+            array(
+                'title' => __('Store Credits', 'advanced-coupons-for-woocommerce-free'),
+                'type'  => 'title',
+                'desc'  => '',
+                'id'    => 'acfw_store_credits_main_title',
+            ),
+
+            array(
+                'title' => __('Hide store credits on checkout if zero balance', 'advanced-coupons-for-woocommerce-free'),
+                'type'  => 'checkbox',
+                'desc'  => __("Hides the store credit section on the checkout totals box if the logged in customer has zero balance.", 'advanced-coupons-for-woocommerce-free'),
+                'id'    => Plugin_Constants::STORE_CREDITS_HIDE_CHECKOUT_ZERO_BALANCE,
+            ),
+
         );
     }
 

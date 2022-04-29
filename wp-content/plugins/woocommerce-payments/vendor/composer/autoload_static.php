@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6a819f6f07c998494bc934fb60f81ad8
+class ComposerStaticInitaf4bdee58886d2ccf7c88214529f1c9e
 {
     public static $files = array (
         '3773ef3f09c37da5478d578e32b03a4b' => __DIR__ . '/..' . '/automattic/jetpack-assets/actions.php',
@@ -50,6 +50,7 @@ class ComposerStaticInit6a819f6f07c998494bc934fb60f81ad8
 
     public static $classMap = array (
         'Automattic\\Jetpack\\A8c_Mc_Stats' => __DIR__ . '/..' . '/automattic/jetpack-a8c-mc-stats/src/class-a8c-mc-stats.php',
+        'Automattic\\Jetpack\\Admin_UI\\Admin_Menu' => __DIR__ . '/..' . '/automattic/jetpack-admin-ui/src/class-admin-menu.php',
         'Automattic\\Jetpack\\Assets' => __DIR__ . '/..' . '/automattic/jetpack-assets/src/class-assets.php',
         'Automattic\\Jetpack\\Assets\\Logo' => __DIR__ . '/..' . '/automattic/jetpack-logo/src/class-logo.php',
         'Automattic\\Jetpack\\Assets\\Semver' => __DIR__ . '/..' . '/automattic/jetpack-assets/src/class-semver.php',
@@ -77,6 +78,7 @@ class ComposerStaticInit6a819f6f07c998494bc934fb60f81ad8
         'Automattic\\Jetpack\\Connection\\Urls' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-urls.php',
         'Automattic\\Jetpack\\Connection\\Utils' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-utils.php',
         'Automattic\\Jetpack\\Connection\\Webhooks' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-webhooks.php',
+        'Automattic\\Jetpack\\Connection\\Webhooks\\Authorize_Redirect' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/webhooks/class-authorize-redirect.php',
         'Automattic\\Jetpack\\Connection\\XMLRPC_Async_Call' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-xmlrpc-async-call.php',
         'Automattic\\Jetpack\\Connection\\XMLRPC_Connector' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-xmlrpc-connector.php',
         'Automattic\\Jetpack\\Constants' => __DIR__ . '/..' . '/automattic/jetpack-constants/src/class-constants.php',
@@ -94,6 +96,7 @@ class ComposerStaticInit6a819f6f07c998494bc934fb60f81ad8
         'Automattic\\Jetpack\\Sync\\Actions' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-actions.php',
         'Automattic\\Jetpack\\Sync\\Codec_Interface' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/interface-codec.php',
         'Automattic\\Jetpack\\Sync\\Data_Settings' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-data-settings.php',
+        'Automattic\\Jetpack\\Sync\\Dedicated_Sender' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-dedicated-sender.php',
         'Automattic\\Jetpack\\Sync\\Default_Filter_Settings' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-default-filter-settings.php',
         'Automattic\\Jetpack\\Sync\\Defaults' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-defaults.php',
         'Automattic\\Jetpack\\Sync\\Functions' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-functions.php',
@@ -143,7 +146,7 @@ class ComposerStaticInit6a819f6f07c998494bc934fb60f81ad8
         'Automattic\\Jetpack\\Sync\\Simple_Codec' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-simple-codec.php',
         'Automattic\\Jetpack\\Sync\\Users' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-users.php',
         'Automattic\\Jetpack\\Sync\\Utils' => __DIR__ . '/..' . '/automattic/jetpack-sync/src/class-utils.php',
-        'Automattic\\Jetpack\\Terms_Of_Service' => __DIR__ . '/..' . '/automattic/jetpack-terms-of-service/src/class-terms-of-service.php',
+        'Automattic\\Jetpack\\Terms_Of_Service' => __DIR__ . '/..' . '/automattic/jetpack-connection/src/class-terms-of-service.php',
         'Automattic\\Jetpack\\Tracking' => __DIR__ . '/..' . '/automattic/jetpack-tracking/src/class-tracking.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Composer\\Installers\\AglInstaller' => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers/AglInstaller.php',
@@ -288,9 +291,9 @@ class ComposerStaticInit6a819f6f07c998494bc934fb60f81ad8
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6a819f6f07c998494bc934fb60f81ad8::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6a819f6f07c998494bc934fb60f81ad8::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit6a819f6f07c998494bc934fb60f81ad8::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitaf4bdee58886d2ccf7c88214529f1c9e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitaf4bdee58886d2ccf7c88214529f1c9e::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitaf4bdee58886d2ccf7c88214529f1c9e::$classMap;
 
         }, null, ClassLoader::class);
     }

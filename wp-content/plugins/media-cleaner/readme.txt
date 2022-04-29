@@ -3,9 +3,9 @@ Contributors: TigrouMeow
 Tags: clean, delete, file, files, images, image, media, library, upload, acf
 Donate link: https://meowapps.com/donation/
 Requires at least: 5.0
-Tested up to: 5.9.2
+Tested up to: 5.9.3
 Requires PHP: 7.0
-Stable tag: 6.3.2
+Stable tag: 6.3.4
 
 Clean your WordPress from unused files, broken media entries. Powerful engine and beautiful UI!
 
@@ -79,16 +79,21 @@ To make everything perfect, you will also need to clean and optimize your databa
 
 == Changelog ==
 
+= 6.3.4 (2022/04/29) =
+* Fix: Issue with Elementor.
+* Fix: Issue with JetEngine.
+* Add: Support for ACF Photo Gallery.
+* Info: New plugin the the family! 🎉 It is simply called Database Cleaner, and it aims to be... the best Database Cleaner! You can find it [here](https://wordpress.org/plugins/database-cleaner).
+* Info: I am working hard on Media Cleaner. If you want to give me some love and motivation, write a simple and nice review [here](https://wordpress.org/support/plugin/media-cleaner/reviews/?rate=5#new-post). Thank you so much! 💖
+
 = 6.3.2 (2022/03/22) =
 * Fix: Better support for WebP.
-* Info: New plugin the the family! 🎉 It is simply called Database Cleaner, and it aims to be the best Database Cleaner. You can find it on WordPress: https://wordpress.org/plugins/database-cleaner. Let me know what you think, I will make it better for you!
 
 = 6.3.1 (2022/03/15) =
 * Add: Do not rely on the Media Trash anymore (MEDIA_TRASH)!
 * Fix: Better support for WPBakery.
 * Add: Support for Google Web Stories.
 * Info: There is no need to add MEDIA_TRASH anymore :) You can remove it from your wp-config.php if you added it in there. 
-* Info: I am working hard on Media Cleaner. If you want to give me some love and motivation, write a simple and nice review [here](https://wordpress.org/support/plugin/media-cleaner/reviews/?rate=5#new-post). Thank you so much! 💖
 
 = 6.3.0 (2022/02/20) =
 * Fix: When a Media entry is removed from Media Library, also remove it from the Issues in the Cleaner Dashboard.

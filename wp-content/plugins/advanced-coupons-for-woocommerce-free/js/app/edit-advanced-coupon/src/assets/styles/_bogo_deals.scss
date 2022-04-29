@@ -348,6 +348,14 @@
             }
         }
 
+        .bogo-auto-add-products-field {
+            display: none;
+    
+            &.show {
+                display: block;
+            }
+        }
+
     }
 
     .any-products-trigger-form {

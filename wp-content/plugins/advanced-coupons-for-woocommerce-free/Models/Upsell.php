@@ -54,15 +54,6 @@ class Upsell implements Model_Interface, Initializable_Interface
      */
     private $_helper_functions;
 
-    /**
-     * Coupon endpoint set.
-     *
-     * @since 1.0
-     * @access private
-     * @var string
-     */
-    private $_coupon_endpoint;
-
     /*
     |--------------------------------------------------------------------------
     | Class Methods
@@ -83,7 +74,6 @@ class Upsell implements Model_Interface, Initializable_Interface
     {
         $this->_constants        = $constants;
         $this->_helper_functions = $helper_functions;
-        $this->_coupon_endpoint  = $this->_helper_functions->get_coupon_url_endpoint();
 
         $main_plugin->add_to_all_plugin_models($this);
         $main_plugin->add_to_public_models($this);
@@ -584,6 +574,21 @@ class Upsell implements Model_Interface, Initializable_Interface
         return array_merge($options, $this->_get_trigger_apply_options(true));
     }
 
+    /**
+     * Upsell BOGO automatically add deal products feature.
+     * 
+     * @since 4.1
+     * @access public
+     * 
+     * @param array $bogo_deals Coupon BOGO Deals data.
+     */
+    public function upsell_automatically_add_deal_products_feature($bogo_deals) 
+    {
+        $deals_type = isset($bogo_deals['deals_type']) ? $bogo_deals['deals_type'] : 'specific-products';
+
+        include $this->_constants->VIEWS_ROOT_PATH() . 'premium/view-coupon-bogo-additional-settings.php';
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Settings.
@@ -1058,6 +1063,14 @@ class Upsell implements Model_Interface, Initializable_Interface
                 $this->_constants->IMAGES_ROOT_URL() . '/acfw-logo.png',
                 apply_filters('acfwp_upsell_link', 'https://advancedcouponsplugin.com/pricing/?utm_source=acfwf&utm_medium=upsell&utm_campaign=autoapply')
             ),
+            'bogo_auto_add_get_products' => sprintf(
+                __('<img src="%s" alt="Advanced Coupons Premium" />
+                <h3>Upgrade To Apply "Get" Product Automatically</h3>
+                <p>In Advanced Coupons Premium, BOGO coupons with the Specific Product "Get" type can automatically apply the product to a customer’s cart! This is only available for Specific Product type. It’s a great user experience upgrade for your customers to have it done for them.</p>
+                <a href="%s" target="_blank">See all features & pricing &rarr;</a>', 'advanced-coupons-for-woocommerce-free'),
+                $this->_constants->IMAGES_ROOT_URL() . '/acfw-logo.png',
+                apply_filters('acfwp_upsell_link', 'https://advancedcouponsplugin.com/pricing/?utm_source=acfwf&utm_medium=upsell&utm_campaign=bogoautoadd')
+            ),
         );
 
         return $data;
@@ -1420,6 +1433,7 @@ class Upsell implements Model_Interface, Initializable_Interface
         add_filter('acfw_bogo_trigger_apply_type_descs', array($this, 'bogo_premium_trigger_apply_type_descs'));
         add_filter('acfw_bogo_trigger_type_options', array($this, 'bogo_premium_trigger_type_options'));
         add_filter('acfw_bogo_apply_type_options', array($this, 'bogo_premium_apply_type_options'));
+        add_action('acfw_bogo_before_additional_settings', array($this, 'upsell_automatically_add_deal_products_feature'), 10, 2);
         add_filter('woocommerce_get_sections_acfw_settings', array($this, 'register_upsell_settings_section'));
         add_filter('woocommerce_get_settings_acfw_settings', array($this, 'get_upsell_settings_section_fields'), 10, 2);
         add_action('acfw_settings_help_section_options', array($this, 'help_settings_upgrade_section'));

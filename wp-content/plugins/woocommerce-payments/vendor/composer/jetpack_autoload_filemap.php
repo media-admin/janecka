@@ -7,7 +7,7 @@ $baseDir   = dirname($vendorDir);
 
 return array(
 	'3773ef3f09c37da5478d578e32b03a4b' => array(
-		'version' => '1.17.6.0',
+		'version' => '1.17.8.0',
 		'path'    => $vendorDir . '/automattic/jetpack-assets/actions.php'
 	),
 );

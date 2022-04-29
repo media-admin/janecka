@@ -321,17 +321,17 @@
         },
         {
             "name": "digitick/sepa-xml",
-            "version": "2.1.0",
-            "version_normalized": "2.1.0.0",
+            "version": "2.1.1",
+            "version_normalized": "2.1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-sepa-xml/php-sepa-xml.git",
-                "reference": "0f66774120139555a6a1f532cb30870898004119"
+                "reference": "cfab29eefd13a4d94d495bd79bad15fc322c1f47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-sepa-xml/php-sepa-xml/zipball/0f66774120139555a6a1f532cb30870898004119",
-                "reference": "0f66774120139555a6a1f532cb30870898004119",
+                "url": "https://api.github.com/repos/php-sepa-xml/php-sepa-xml/zipball/cfab29eefd13a4d94d495bd79bad15fc322c1f47",
+                "reference": "cfab29eefd13a4d94d495bd79bad15fc322c1f47",
                 "shasum": ""
             },
             "require": {
@@ -341,7 +341,7 @@
             "require-dev": {
                 "phpunit/phpunit": "^8.0 | ^9.0"
             },
-            "time": "2021-05-20T13:47:04+00:00",
+            "time": "2022-03-11T13:41:21+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -374,7 +374,7 @@
             ],
             "support": {
                 "issues": "https://github.com/php-sepa-xml/php-sepa-xml/issues",
-                "source": "https://github.com/php-sepa-xml/php-sepa-xml/tree/2.1.0"
+                "source": "https://github.com/php-sepa-xml/php-sepa-xml/tree/2.1.1"
             },
             "install-path": "../digitick/sepa-xml"
         },
@@ -489,31 +489,32 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.10.2",
-            "version_normalized": "1.10.2.0",
+            "version": "1.11.0",
+            "version_normalized": "1.11.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220"
+                "reference": "14daed4296fae74d9e3201d2c4925d1acb7aa614"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/776f831124e9c62e1a2c601ecc52e776d8bb7220",
-                "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/14daed4296fae74d9e3201d2c4925d1acb7aa614",
+                "reference": "14daed4296fae74d9e3201d2c4925d1acb7aa614",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
-            "replace": {
-                "myclabs/deep-copy": "self.version"
+            "conflict": {
+                "doctrine/collections": "<1.6.8",
+                "doctrine/common": "<2.13.3 || >=3,<3.2.2"
             },
             "require-dev": {
-                "doctrine/collections": "^1.0",
-                "doctrine/common": "^2.6",
-                "phpunit/phpunit": "^7.1"
+                "doctrine/collections": "^1.6.8",
+                "doctrine/common": "^2.13.3 || ^3.2.2",
+                "phpunit/phpunit": "^7.5.20 || ^8.5.23 || ^9.5.13"
             },
-            "time": "2020-11-13T09:40:50+00:00",
+            "time": "2022-03-03T13:19:32+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -538,7 +539,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.10.2"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.11.0"
             },
             "funding": [
                 {
@@ -780,17 +781,17 @@
         },
         {
             "name": "vendidero/one-stop-shop-woocommerce",
-            "version": "v1.2.0",
-            "version_normalized": "1.2.0.0",
+            "version": "v1.2.1",
+            "version_normalized": "1.2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/one-stop-shop-woocommerce.git",
-                "reference": "e5fd7e3f05937a9b967531143d8ebf30f6ee78d3"
+                "reference": "31d4c0826ba2e9ae433ad39a91d260ab5f7e299f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/one-stop-shop-woocommerce/zipball/e5fd7e3f05937a9b967531143d8ebf30f6ee78d3",
-                "reference": "e5fd7e3f05937a9b967531143d8ebf30f6ee78d3",
+                "url": "https://api.github.com/repos/vendidero/one-stop-shop-woocommerce/zipball/31d4c0826ba2e9ae433ad39a91d260ab5f7e299f",
+                "reference": "31d4c0826ba2e9ae433ad39a91d260ab5f7e299f",
                 "shasum": ""
             },
             "require": {
@@ -799,7 +800,7 @@
             "require-dev": {
                 "phpunit/phpunit": "6.5.14"
             },
-            "time": "2022-02-21T12:00:19+00:00",
+            "time": "2022-04-13T10:03:13+00:00",
             "type": "wordpress-plugin",
             "installation-source": "dist",
             "autoload": {
@@ -821,24 +822,24 @@
             "description": "One Stop Shop Helper for WooCommerce",
             "homepage": "https://github.com/vendidero/one-stop-shop-woocommerce",
             "support": {
-                "source": "https://github.com/vendidero/one-stop-shop-woocommerce/tree/v1.2.0",
+                "source": "https://github.com/vendidero/one-stop-shop-woocommerce/tree/v1.2.1",
                 "issues": "https://github.com/vendidero/one-stop-shop-woocommerce/issues"
             },
             "install-path": "../../packages/one-stop-shop-woocommerce"
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "v1.6.9",
-            "version_normalized": "1.6.9.0",
+            "version": "v1.6.10",
+            "version_normalized": "1.6.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "2b87aaa89b42441f25e4cbd3777e29476aff32de"
+                "reference": "0826c06944e16f3f1c95d2b79768c9ec6ab98d47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/2b87aaa89b42441f25e4cbd3777e29476aff32de",
-                "reference": "2b87aaa89b42441f25e4cbd3777e29476aff32de",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/0826c06944e16f3f1c95d2b79768c9ec6ab98d47",
+                "reference": "0826c06944e16f3f1c95d2b79768c9ec6ab98d47",
                 "shasum": ""
             },
             "require": {
@@ -851,7 +852,7 @@
             "require-dev": {
                 "phpunit/phpunit": "7.5.14"
             },
-            "time": "2022-02-24T10:29:12+00:00",
+            "time": "2022-04-26T10:23:49+00:00",
             "type": "wordpress-plugin",
             "installation-source": "dist",
             "autoload": {
@@ -875,7 +876,7 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.6.9",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.6.10",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
             "install-path": "../../packages/woocommerce-germanized-dhl"

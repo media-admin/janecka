@@ -968,6 +968,34 @@ if ( ! class_exists( 'AWS_Helpers' ) ) :
 
         }
 
+        /**
+         * Get array of relevance scores
+         * @return array $relevance_array
+         */
+        static public function get_relevance_scores( $data ) {
+
+            $relevance_array = array(
+                'title'   => 200,
+                'content' => 100,
+                'id'      => 300,
+                'sku'     => 300,
+                'other'   => 35
+            );
+
+            /**
+             * Change relevance scores for product search fields
+             * @since 2.53
+             * @param array $relevance_array Array of relevance scores
+             * @param array $data Array of search query related data
+             */
+            $relevance_array_filtered = apply_filters( 'aws_relevance_scores', $relevance_array, $data );
+
+            $relevance_array = shortcode_atts( $relevance_array, $relevance_array_filtered, 'aws_relevance_scores' );
+
+            return $relevance_array;
+
+        }
+
     }
 
 endif;

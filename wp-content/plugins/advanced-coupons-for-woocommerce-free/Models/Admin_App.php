@@ -133,7 +133,7 @@ class Admin_App implements Model_Interface, Initializable_Interface
         $this->_app_pages = apply_filters('acfw_admin_app_pages', array(
             'acfw-store-credits' => array(
                 'slug'  => 'acfw-store-credits',
-                'label' => __('Store Credits', 'advanced-coupons-for-woocommerce-free'),
+                'label' => __('Manage Store Credits', 'advanced-coupons-for-woocommerce-free'),
                 'page'  => 'store_credits_page',
             ),
             'acfw-settings'      => array(

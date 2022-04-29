@@ -323,63 +323,63 @@ return array(
 		'path'    => $baseDir . '/packages/woocommerce-trusted-shops/src/Package.php'
 	),
 	'Vendidero\\OneStopShop\\SettingsPage' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/SettingsPage.php'
 	),
 	'Vendidero\\OneStopShop\\Install' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/Install.php'
 	),
 	'Vendidero\\OneStopShop\\Settings' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/Settings.php'
 	),
 	'Vendidero\\OneStopShop\\CSVExporterBOP' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/CSVExporterBOP.php'
 	),
 	'Vendidero\\OneStopShop\\Package' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/Package.php'
 	),
 	'Vendidero\\OneStopShop\\ReportTable' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/ReportTable.php'
 	),
 	'Vendidero\\OneStopShop\\CSVExporter' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/CSVExporter.php'
 	),
 	'Vendidero\\OneStopShop\\DeliveryThresholdEmailNotification' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/DeliveryThresholdEmailNotification.php'
 	),
 	'Vendidero\\OneStopShop\\Queue' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/Queue.php'
 	),
 	'Vendidero\\OneStopShop\\Tax' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/Tax.php'
 	),
 	'Vendidero\\OneStopShop\\AsyncReportGenerator' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/AsyncReportGenerator.php'
 	),
 	'Vendidero\\OneStopShop\\DeliveryThresholdWarning' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/DeliveryThresholdWarning.php'
 	),
 	'Vendidero\\OneStopShop\\Admin' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/Admin.php'
 	),
 	'Vendidero\\OneStopShop\\AdminNote' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/AdminNote.php'
 	),
 	'Vendidero\\OneStopShop\\Report' => array(
-		'version' => '1.2.0.0',
+		'version' => '1.2.1.0',
 		'path'    => $baseDir . '/packages/one-stop-shop-woocommerce/src/Report.php'
 	),
 	'Vendidero\\Germanized\\Shipments\\Shipment' => array(
@@ -607,175 +607,175 @@ return array(
 		'path'    => $baseDir . '/packages/woocommerce-germanized-shipments/src/Packing/ShipmentItem.php'
 	),
 	'Vendidero\\Germanized\\DHL\\ShippingProvider\\DeutschePost' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php'
 	),
 	'Vendidero\\Germanized\\DHL\\ShippingProvider\\ShippingMethod' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/ShippingProvider/ShippingMethod.php'
 	),
 	'Vendidero\\Germanized\\DHL\\ShippingProvider\\DHL' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Install' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Install.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Package' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Package.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Product' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Product.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Order' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Order.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Ajax' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Ajax.php'
 	),
 	'Vendidero\\Germanized\\DHL\\ParcelServices' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/ParcelServices.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Admin\\Importer\\Internetmarke' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Admin/Importer/Internetmarke.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Admin\\Importer\\DHL' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Admin/Importer/DHL.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Admin\\Status' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Admin/Status.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Admin\\Admin' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Admin/Admin.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Label\\DHLInlayReturn' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Label/DHLInlayReturn.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Label\\Label' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Label/Label.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Label\\DHLReturn' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Label/DHLReturn.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Label\\ReturnLabel' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Label/ReturnLabel.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Label\\DeutschePost' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Label/DeutschePost.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Label\\DHL' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Label/DHL.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Label\\DeutschePostReturn' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Label/DeutschePostReturn.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Legacy\\LabelQuery' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Legacy/LabelQuery.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Legacy\\DataStores\\Label' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Legacy/DataStores/Label.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Legacy\\DownloadHandler' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Legacy/DownloadHandler.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Legacy\\LabelFactory' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Legacy/LabelFactory.php'
 	),
 	'Vendidero\\Germanized\\DHL\\ParcelLocator' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/ParcelLocator.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\ReturnRest' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/ReturnRest.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\Paket' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/Paket.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\LabelSoap' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\ImProductList' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/ImProductList.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\AuthSoap' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/AuthSoap.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\Internetmarke' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\ParcelRest' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/ParcelRest.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\ImPartnerInformation' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/ImPartnerInformation.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\Soap' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/Soap.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\Rest' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/Rest.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\ImProductsSoap' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/ImProductsSoap.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\FinderSoap' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/FinderSoap.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\ImRefundSoap' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/ImRefundSoap.php'
 	),
 	'Vendidero\\Germanized\\DHL\\Api\\ImWarenpostIntRest' => array(
-		'version' => '1.6.9.0',
+		'version' => '1.6.10.0',
 		'path'    => $baseDir . '/packages/woocommerce-germanized-dhl/src/Api/ImWarenpostIntRest.php'
 	),
 	'Vendidero\\Germanized\\Shopmark' => array(
-		'version' => 'dev-master',
+		'version' => 'dev-v3.8.5-branch',
 		'path'    => $baseDir . '/src/Shopmark.php'
 	),
 	'Vendidero\\Germanized\\Packages' => array(
-		'version' => 'dev-master',
+		'version' => 'dev-v3.8.5-branch',
 		'path'    => $baseDir . '/src/Packages.php'
 	),
 	'Vendidero\\Germanized\\Shopmarks' => array(
-		'version' => 'dev-master',
+		'version' => 'dev-v3.8.5-branch',
 		'path'    => $baseDir . '/src/Shopmarks.php'
 	),
 	'Vendidero\\Germanized\\Autoloader' => array(
-		'version' => 'dev-master',
+		'version' => 'dev-v3.8.5-branch',
 		'path'    => $baseDir . '/src/Autoloader.php'
 	),
 	'Psr\\Log\\LoggerAwareInterface' => array(
@@ -823,107 +823,107 @@ return array(
 		'path'    => $vendorDir . '/psr/log/Psr/Log/AbstractLogger.php'
 	),
 	'Digitick\\Sepa\\PaymentInformation' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/PaymentInformation.php'
 	),
 	'Digitick\\Sepa\\TransferFile\\Facade\\BaseCustomerTransferFileFacade' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/TransferFile/Facade/BaseCustomerTransferFileFacade.php'
 	),
 	'Digitick\\Sepa\\TransferFile\\Facade\\CustomerTransferFileFacadeInterface' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/TransferFile/Facade/CustomerTransferFileFacadeInterface.php'
 	),
 	'Digitick\\Sepa\\TransferFile\\Facade\\CustomerCreditFacade' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/TransferFile/Facade/CustomerCreditFacade.php'
 	),
 	'Digitick\\Sepa\\TransferFile\\Facade\\CustomerDirectDebitFacade' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/TransferFile/Facade/CustomerDirectDebitFacade.php'
 	),
 	'Digitick\\Sepa\\TransferFile\\TransferFileInterface' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/TransferFile/TransferFileInterface.php'
 	),
 	'Digitick\\Sepa\\TransferFile\\CustomerDirectDebitTransferFile' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/TransferFile/CustomerDirectDebitTransferFile.php'
 	),
 	'Digitick\\Sepa\\TransferFile\\CustomerCreditTransferFile' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/TransferFile/CustomerCreditTransferFile.php'
 	),
 	'Digitick\\Sepa\\TransferFile\\BaseTransferFile' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/TransferFile/BaseTransferFile.php'
 	),
 	'Digitick\\Sepa\\TransferFile\\Factory\\TransferFileFacadeFactory' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/TransferFile/Factory/TransferFileFacadeFactory.php'
 	),
 	'Digitick\\Sepa\\DomBuilder\\DomBuilderFactory' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/DomBuilder/DomBuilderFactory.php'
 	),
 	'Digitick\\Sepa\\DomBuilder\\BaseDomBuilder' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/DomBuilder/BaseDomBuilder.php'
 	),
 	'Digitick\\Sepa\\DomBuilder\\CustomerDirectDebitTransferDomBuilder' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/DomBuilder/CustomerDirectDebitTransferDomBuilder.php'
 	),
 	'Digitick\\Sepa\\DomBuilder\\DomBuilderInterface' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/DomBuilder/DomBuilderInterface.php'
 	),
 	'Digitick\\Sepa\\DomBuilder\\CustomerCreditTransferDomBuilder' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/DomBuilder/CustomerCreditTransferDomBuilder.php'
 	),
 	'Digitick\\Sepa\\Util\\StringHelper' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/Util/StringHelper.php'
 	),
 	'Digitick\\Sepa\\TransferInformation\\CustomerDirectDebitTransferInformation' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/TransferInformation/CustomerDirectDebitTransferInformation.php'
 	),
 	'Digitick\\Sepa\\TransferInformation\\CustomerCreditTransferInformation' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/TransferInformation/CustomerCreditTransferInformation.php'
 	),
 	'Digitick\\Sepa\\TransferInformation\\BaseTransferInformation' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/TransferInformation/BaseTransferInformation.php'
 	),
 	'Digitick\\Sepa\\TransferInformation\\TransferInformationInterface' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/TransferInformation/TransferInformationInterface.php'
 	),
 	'Digitick\\Sepa\\GroupHeader' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/GroupHeader.php'
 	),
 	'Digitick\\Sepa\\Exception\\InvalidTransferTypeException' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/Exception/InvalidTransferTypeException.php'
 	),
 	'Digitick\\Sepa\\Exception\\InvalidTransferFileConfiguration' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/Exception/InvalidTransferFileConfiguration.php'
 	),
 	'Digitick\\Sepa\\Exception\\InvalidArgumentException' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/Exception/InvalidArgumentException.php'
 	),
 	'Digitick\\Sepa\\Exception\\InvalidPaymentMethodException' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/Exception/InvalidPaymentMethodException.php'
 	),
 	'Digitick\\Sepa\\Exception\\Exception' => array(
-		'version' => '2.1.0.0',
+		'version' => '2.1.1.0',
 		'path'    => $vendorDir . '/digitick/sepa-xml/src/Exception/Exception.php'
 	),
 	'Defuse\\Crypto\\Crypto' => array(
@@ -983,99 +983,99 @@ return array(
 		'path'    => $vendorDir . '/defuse/php-encryption/src/Core.php'
 	),
 	'DeepCopy\\Matcher\\PropertyMatcher' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Matcher/PropertyMatcher.php'
 	),
 	'DeepCopy\\Matcher\\Doctrine\\DoctrineProxyMatcher' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Matcher/Doctrine/DoctrineProxyMatcher.php'
 	),
 	'DeepCopy\\Matcher\\Matcher' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Matcher/Matcher.php'
 	),
 	'DeepCopy\\Matcher\\PropertyNameMatcher' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Matcher/PropertyNameMatcher.php'
 	),
 	'DeepCopy\\Matcher\\PropertyTypeMatcher' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Matcher/PropertyTypeMatcher.php'
 	),
 	'DeepCopy\\DeepCopy' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php'
 	),
 	'DeepCopy\\Filter\\ReplaceFilter' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Filter/ReplaceFilter.php'
 	),
 	'DeepCopy\\Filter\\KeepFilter' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Filter/KeepFilter.php'
 	),
 	'DeepCopy\\Filter\\Doctrine\\DoctrineEmptyCollectionFilter' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Filter/Doctrine/DoctrineEmptyCollectionFilter.php'
 	),
 	'DeepCopy\\Filter\\Doctrine\\DoctrineCollectionFilter' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Filter/Doctrine/DoctrineCollectionFilter.php'
 	),
 	'DeepCopy\\Filter\\Doctrine\\DoctrineProxyFilter' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Filter/Doctrine/DoctrineProxyFilter.php'
 	),
 	'DeepCopy\\Filter\\Filter' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Filter/Filter.php'
 	),
 	'DeepCopy\\Filter\\SetNullFilter' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Filter/SetNullFilter.php'
 	),
 	'DeepCopy\\TypeMatcher\\TypeMatcher' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/TypeMatcher/TypeMatcher.php'
 	),
 	'DeepCopy\\Exception\\CloneException' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php'
 	),
 	'DeepCopy\\Exception\\PropertyException' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php'
 	),
 	'DeepCopy\\Reflection\\ReflectionHelper' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Reflection/ReflectionHelper.php'
 	),
 	'DeepCopy\\TypeFilter\\ReplaceFilter' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/ReplaceFilter.php'
 	),
 	'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedListFilter' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedListFilter.php'
 	),
 	'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedList' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedList.php'
 	),
 	'DeepCopy\\TypeFilter\\Spl\\ArrayObjectFilter' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/ArrayObjectFilter.php'
 	),
 	'DeepCopy\\TypeFilter\\Date\\DateIntervalFilter' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Date/DateIntervalFilter.php'
 	),
 	'DeepCopy\\TypeFilter\\ShallowCopyFilter' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/ShallowCopyFilter.php'
 	),
 	'DeepCopy\\TypeFilter\\TypeFilter' => array(
-		'version' => '1.10.2.0',
+		'version' => '1.11.0.0',
 		'path'    => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/TypeFilter.php'
 	),
 	'DVDoug\\BoxPacker\\Test\\ConstrainedPlacementNoStackingTestItem' => array(

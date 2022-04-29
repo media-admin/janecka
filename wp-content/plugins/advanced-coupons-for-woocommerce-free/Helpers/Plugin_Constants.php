@@ -32,7 +32,7 @@ class Plugin_Constants
     // Plugin configuration constants
     const TOKEN               = 'acfwf';
     const INSTALLED_VERSION   = 'acfwf_installed_version';
-    const VERSION             = '4.0.3';
+    const VERSION             = '4.2';
     const TEXT_DOMAIN         = 'advanced-coupons-for-woocommerce-free';
     const THEME_TEMPLATE_PATH = 'advanced-coupons-for-woocommerce-free';
     const META_PREFIX         = '_acfw_';
@@ -70,18 +70,21 @@ class Plugin_Constants
     const ORDER_BOGO_DISCOUNTS = 'acfw_order_bogo_discounts';
 
     // REST API
-    const REST_API_NAMESPACE         = 'coupons/v1';
-    const STORE_CREDIT_API_NAMESPACE = 'store-credits/v1';
-    const STORE_CREDIT_USER_BALANCE  = 'acfw_store_credit_balance';
+    const REST_API_NAMESPACE            = 'coupons/v1';
+    const STORE_CREDIT_API_NAMESPACE    = 'store-credits/v1';
+    const STORE_CREDIT_USER_BALANCE     = 'acfw_store_credit_balance';
+    const STORE_CREDIT_WC_API_NAMESPACE = 'wc-store-credits/v1';
 
     // Store Credits
-    const STORE_CREDITS_SESSION    = 'acfw_store_credits_discount';
-    const STORE_CREDITS_ORDER_META = 'acfw_store_credits_order_discount';
-    const STORE_CREDITS_ENDPOINT   = 'acfw-store-credits';
+    const STORE_CREDITS_SESSION                    = 'acfw_store_credits_discount';
+    const STORE_CREDITS_ORDER_META                 = 'acfw_store_credits_order_discount';
+    const STORE_CREDITS_ENDPOINT                   = 'acfw-store-credits';
+    const STORE_CREDITS_HIDE_CHECKOUT_ZERO_BALANCE = 'acfw_store_credits_hide_checkout_zero_balance';
 
     // Settings Constants
 
     // General Section
+    const ALWAYS_USE_REGULAR_PRICE = 'acfw_always_use_regular_price';
 
     // Modules section
 

@@ -100,11 +100,6 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
                     add_action( 'wp_head', array( $this, 'oceanwp_head_action' ) );
                 }
 
-                // Avada theme
-                if ( class_exists( 'Avada' ) ) {
-                    add_action( 'wp_head', array( $this, 'avada_head_action' ) );
-                }
-
                 // Twenty Twenty theme
                 if (  function_exists( 'twentytwenty_theme_support' ) ) {
                     add_action( 'wp_head', array( $this, 'twenty_twenty_head_action' ) );
@@ -228,12 +223,6 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
             // Product Sort and Display for WooCommerce plugin
             if ( defined( 'WC_PSAD_NAME' ) ) {
                 add_filter( "option_psad_shop_page_enable", array( $this, 'psad_filter' ) );
-            }
-
-            if ( 'Avada' === $this->current_theme ) {
-                add_filter( 'aws_posts_per_page', array( $this, 'avada_posts_per_page' ), 2 );
-                add_filter( 'aws_products_order_by', array( $this, 'avada_aws_products_order_by' ), 1 );
-                add_filter( 'post_class', array( $this, 'avada_post_class' ) );
             }
 
             if ( 'Electro' === $this->current_theme ) {
@@ -370,6 +359,11 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
             // Astra theme
             if ( 'Astra' === $this->current_theme ) {
                 include_once( AWS_DIR . '/includes/modules/class-aws-astra.php' );
+            }
+
+            // Avada theme
+            if ( class_exists( 'Avada' ) || 'Avada' === $this->current_theme ) {
+                include_once( AWS_DIR . '/includes/modules/class-aws-avada.php' );
             }
 
         }
@@ -667,47 +661,6 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
                         jQuery( '.aws-search-result' ).hide();
 
                     } );
-
-                }, false);
-
-            </script>
-
-        <?php }
-
-        /*
-         * Avada wp theme
-         */
-        public function avada_head_action() { ?>
-
-            <style>
-
-                .fusion-flyout-search .aws-container {
-                    margin: 0 auto;
-                    padding: 0;
-                    width: 100%;
-                    width: calc(100% - 40px);
-                    max-width: 600px;
-                    position: absolute;
-                    top: 40%;
-                    left: 20px;
-                    right: 20px;
-                }
-
-            </style>
-
-            <script>
-
-                window.addEventListener('load', function() {
-                    var awsSearch = document.querySelectorAll(".fusion-menu .fusion-main-menu-search a, .fusion-flyout-menu-icons .fusion-icon-search");
-                    if ( awsSearch ) {
-                        for (var i = 0; i < awsSearch.length; i++) {
-                            awsSearch[i].addEventListener('click', function() {
-                                window.setTimeout(function(){
-                                    document.querySelector(".fusion-menu .fusion-main-menu-search .aws-search-field, .fusion-flyout-search .aws-search-field").focus();
-                                }, 100);
-                            }, false);
-                        }
-                    }
 
                 }, false);
 
@@ -1873,77 +1826,6 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
                 return 'no';
             }
             return $value;
-        }
-
-        /*
-         * Avada theme posts per page option
-         */
-        public function avada_posts_per_page( $posts_per_page ) {
-            $num = 12;
-            $search_page_res_per_page = AWS()->get_settings( 'search_page_res_per_page' );
-            if ( $search_page_res_per_page ) {
-                $num = intval( $search_page_res_per_page );
-            }
-            $posts_per_page = isset( $_GET['product_count'] ) && intval( sanitize_text_field( $_GET['product_count'] ) ) ? intval( sanitize_text_field( $_GET['product_count'] ) ) : $num;
-            return $posts_per_page;
-        }
-
-        /*
-         * Avada theme order by options
-         */
-        public function avada_aws_products_order_by( $order_by ) {
-
-            $order_by_new = '';
-
-            if ( isset( $_GET['product_orderby'] ) ) {
-                switch( sanitize_text_field( $_GET['product_orderby'] ) ) {
-                    case 'name':
-                        $order_by_new = 'title';
-                        break;
-                    case 'price':
-                        $order_by_new = 'price';
-                        break;
-                    case 'date':
-                        $order_by_new = 'date';
-                        break;
-                    case 'popularity':
-                        $order_by_new = 'popularity';
-                        break;
-                    case 'rating':
-                        $order_by_new = 'rating';
-                        break;
-                }
-            }
-
-            if ( isset( $_GET['product_order'] ) && $order_by_new ) {
-                $product_order = sanitize_text_field( $_GET['product_order'] );
-                if ( in_array( $product_order, array( 'asc', 'desc' ) ) ) {
-                    $order_by_new = $order_by_new . '-' . $product_order;
-                }
-
-            }
-
-            if ( $order_by_new ) {
-                $order_by = $order_by_new;
-            }
-
-            return $order_by;
-
-        }
-
-        /*
-         * Avada theme fix for product variations inside list products view
-         */
-        public function avada_post_class( $classes ) {
-            if ( 'product_variation' === get_post_type()  ) {
-                if ( isset( $_SERVER['QUERY_STRING'] ) ) {
-                    parse_str( sanitize_text_field( wp_unslash( $_SERVER['QUERY_STRING'] ) ), $params );
-                    if ( isset( $params['product_view'] ) && $params['product_view'] ) {
-                        $classes[] = 'product-' . $params['product_view'] . '-view';
-                    }
-                }
-            }
-            return $classes;
         }
 
         /*

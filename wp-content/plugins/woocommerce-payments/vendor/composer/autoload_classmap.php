@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Automattic\\Jetpack\\A8c_Mc_Stats' => $vendorDir . '/automattic/jetpack-a8c-mc-stats/src/class-a8c-mc-stats.php',
+    'Automattic\\Jetpack\\Admin_UI\\Admin_Menu' => $vendorDir . '/automattic/jetpack-admin-ui/src/class-admin-menu.php',
     'Automattic\\Jetpack\\Assets' => $vendorDir . '/automattic/jetpack-assets/src/class-assets.php',
     'Automattic\\Jetpack\\Assets\\Logo' => $vendorDir . '/automattic/jetpack-logo/src/class-logo.php',
     'Automattic\\Jetpack\\Assets\\Semver' => $vendorDir . '/automattic/jetpack-assets/src/class-semver.php',
@@ -34,6 +35,7 @@ return array(
     'Automattic\\Jetpack\\Connection\\Urls' => $vendorDir . '/automattic/jetpack-connection/src/class-urls.php',
     'Automattic\\Jetpack\\Connection\\Utils' => $vendorDir . '/automattic/jetpack-connection/src/class-utils.php',
     'Automattic\\Jetpack\\Connection\\Webhooks' => $vendorDir . '/automattic/jetpack-connection/src/class-webhooks.php',
+    'Automattic\\Jetpack\\Connection\\Webhooks\\Authorize_Redirect' => $vendorDir . '/automattic/jetpack-connection/src/webhooks/class-authorize-redirect.php',
     'Automattic\\Jetpack\\Connection\\XMLRPC_Async_Call' => $vendorDir . '/automattic/jetpack-connection/src/class-xmlrpc-async-call.php',
     'Automattic\\Jetpack\\Connection\\XMLRPC_Connector' => $vendorDir . '/automattic/jetpack-connection/src/class-xmlrpc-connector.php',
     'Automattic\\Jetpack\\Constants' => $vendorDir . '/automattic/jetpack-constants/src/class-constants.php',
@@ -51,6 +53,7 @@ return array(
     'Automattic\\Jetpack\\Sync\\Actions' => $vendorDir . '/automattic/jetpack-sync/src/class-actions.php',
     'Automattic\\Jetpack\\Sync\\Codec_Interface' => $vendorDir . '/automattic/jetpack-sync/src/interface-codec.php',
     'Automattic\\Jetpack\\Sync\\Data_Settings' => $vendorDir . '/automattic/jetpack-sync/src/class-data-settings.php',
+    'Automattic\\Jetpack\\Sync\\Dedicated_Sender' => $vendorDir . '/automattic/jetpack-sync/src/class-dedicated-sender.php',
     'Automattic\\Jetpack\\Sync\\Default_Filter_Settings' => $vendorDir . '/automattic/jetpack-sync/src/class-default-filter-settings.php',
     'Automattic\\Jetpack\\Sync\\Defaults' => $vendorDir . '/automattic/jetpack-sync/src/class-defaults.php',
     'Automattic\\Jetpack\\Sync\\Functions' => $vendorDir . '/automattic/jetpack-sync/src/class-functions.php',
@@ -100,7 +103,7 @@ return array(
     'Automattic\\Jetpack\\Sync\\Simple_Codec' => $vendorDir . '/automattic/jetpack-sync/src/class-simple-codec.php',
     'Automattic\\Jetpack\\Sync\\Users' => $vendorDir . '/automattic/jetpack-sync/src/class-users.php',
     'Automattic\\Jetpack\\Sync\\Utils' => $vendorDir . '/automattic/jetpack-sync/src/class-utils.php',
-    'Automattic\\Jetpack\\Terms_Of_Service' => $vendorDir . '/automattic/jetpack-terms-of-service/src/class-terms-of-service.php',
+    'Automattic\\Jetpack\\Terms_Of_Service' => $vendorDir . '/automattic/jetpack-connection/src/class-terms-of-service.php',
     'Automattic\\Jetpack\\Tracking' => $vendorDir . '/automattic/jetpack-tracking/src/class-tracking.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Composer\\Installers\\AglInstaller' => $vendorDir . '/composer/installers/src/Composer/Installers/AglInstaller.php',

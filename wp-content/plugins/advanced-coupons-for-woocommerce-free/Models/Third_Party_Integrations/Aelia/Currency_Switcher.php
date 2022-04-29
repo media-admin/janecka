@@ -126,7 +126,7 @@ class Currency_Switcher implements Model_Interface
     /**
      * Remove all filters related to currency settings when the "acfw_rest_api_context" action hook is triggered.
      * 
-     * @since 1.0
+     * @since 4.0
      * @access public
      * 
      * @param WP_REST_Request $request Full details about the request.
@@ -239,7 +239,6 @@ class Currency_Switcher implements Model_Interface
      */
     public function run()
     {
-
         if (
             !$this->_helper_functions->is_plugin_active('woocommerce-aelia-currencyswitcher/woocommerce-aelia-currencyswitcher.php') ||
             !$this->_helper_functions->is_plugin_active('wc-aelia-foundation-classes/wc-aelia-foundation-classes.php')

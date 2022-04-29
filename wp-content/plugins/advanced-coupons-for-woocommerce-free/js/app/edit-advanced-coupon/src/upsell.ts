@@ -37,6 +37,18 @@ export default function upsell_events() {
     hideGeneralUpsellOnBogo
   );
 
+  $("#acfw_bogo_deals").on(
+    "change acfw_load",
+    "select#bogo-deals-type",
+    toggle_bogo_auto_add_products_field
+  );
+
+  $("#acfw_bogo_deals").on(
+    "change",
+    "input[name='acfw_bogo_auto_add_products']",
+    upsell_bogo_auto_add_get_products
+  );
+
   $("#woocommerce-coupon-data #discount_type").trigger("acfw_load");
 }
 
@@ -126,4 +138,43 @@ function hideGeneralUpsellOnBogo() {
   } else {
     $("p.acfw-dyk-notice-general").show();
   }
+}
+
+/**
+ * Toggle BOGO auto add products field.
+ *
+ * @since 4.1
+ */
+function toggle_bogo_auto_add_products_field() {
+  const $this = $(this);
+  const $module = $this.closest("#acfw_bogo_deals");
+  const $field = $module.find(".bogo-auto-add-products-field");
+  const $input = $field.find("input[type='checkbox']");
+  const applyType = $this.val();
+
+  if (applyType === "specific-products") {
+    $input.prop("disabled", false);
+    $field.addClass("show");
+  } else {
+    $input.prop("disabled", false);
+    $field.removeClass("show");
+  }
+}
+
+/**
+ * Upsell BOGO auto add get products feature.
+ *
+ * @since 4.1
+ */
+function upsell_bogo_auto_add_get_products() {
+  const $this = $(this);
+
+  $this.prop("checked", false);
+
+  const { bogo_auto_add_get_products } = acfw_edit_coupon.upsell;
+
+  vex.dialog.alert({
+    unsafeMessage: `<div class="upsell-alert usage-limits">${bogo_auto_add_get_products}</div>`,
+  });
+  $(this).val("none");
 }

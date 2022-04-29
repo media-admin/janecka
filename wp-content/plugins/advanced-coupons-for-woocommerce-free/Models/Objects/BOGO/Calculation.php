@@ -69,18 +69,18 @@ class Calculation
      *
      * @since 1.4
      * @access private
-     * @var string
+     * @var Abstract_BOGO_Deal|null
      */
-    private $_bogo_deal;
+    private $_bogo_deal = null;
 
     /**
-     * Property that houses all BOGO Deals in cart.
-     *
-     * @since 1.4
+     * Property that houses the code of the BOGO Coupon.
+     * 
+     * @since 4.1
      * @access private
-     * @var array
+     * @var string
      */
-    private $_all_bogo_deals = array();
+    private $_bogo_coupon_code = '';
 
     /**
      * Trigger/deal entry default and allowed prop values.
@@ -101,6 +101,15 @@ class Calculation
         'name'          => '',
     );
 
+    /**
+     * Flag to identify if the BOGO calculation has already been done on the cart.
+     * 
+     * @since 4.1
+     * @access private
+     * @var boolean
+     */
+    private $_calculation_done = false;
+
     /*
     |--------------------------------------------------------------------------
     | Class Methods
@@ -118,14 +127,16 @@ class Calculation
         foreach (\WC()->cart->get_applied_coupons() as $coupon_code) {
 
             $coupon    = new Advanced_Coupon($coupon_code);
-            $bogo_deal = $coupon->is_type('acfw_bogo') ? $this->_get_bogo_deal_object($coupon) : null;
+            $bogo_deal = $coupon->is_type('acfw_bogo') ? $this->_get_bogo_deal_for_coupon($coupon) : null;
 
             // skip if coupon has no BOGO deal.
             if (!$bogo_deal || !$bogo_deal->is_bogo_deal) {
                 continue;
             }
 
-            $this->_all_bogo_deals[$coupon->get_code()] = $bogo_deal;
+            $this->_bogo_deal        = $bogo_deal;
+            $this->_bogo_coupon_code = $coupon->get_code();
+            break;
         }
     }
 
@@ -161,9 +172,7 @@ class Calculation
     public function get_cart_session_hash()
     {
         $cart_session = array(
-            'bogo_data' => array_map(function ($b) {
-                return $b->get_data_for_session();
-            }, $this->_all_bogo_deals),
+            'bogo_data' => $this->_bogo_deal->get_data_for_session(),
             'items'     => array_map(function ($i) {
                 return array(
                     'key'          => $i['key'],
@@ -346,7 +355,8 @@ class Calculation
      */
     public function get_current_bogo_deal()
     {
-        return $this->_bogo_deal;
+        \wc_deprecated_function('ACFWF\Models\Objects\BOGO\Calculation::' . __FUNCTION__, '4.1', 'ACFWF\Models\Objects\BOGO\Calculation::get_bogo_deal');
+        return $this->get_bogo_deal();
     }
 
     /**
@@ -359,7 +369,34 @@ class Calculation
      */
     public function get_all_bogo_deals()
     {
-        return $this->_all_bogo_deals;
+        \wc_deprecated_function('ACFWF\Models\Objects\BOGO\Calculation::' . __FUNCTION__, '4.1', 'ACFWF\Models\Objects\BOGO\Calculation::get_bogo_deal');
+        return array($this->get_bogo_deal());
+    }
+
+    /**
+     * Get BOGO Deal object.
+     * 
+     * @since 4.1
+     * @access public
+     * 
+     * @return Abstract_BOGO_Deal BOGO deal object.
+     */
+    public function get_bogo_deal()
+    {
+        return $this->_bogo_deal;
+    }
+
+    /**
+     * Get the code of the BOGO coupon being processed.
+     * 
+     * @since 4.1
+     * @access public
+     * 
+     * @return string Coupon code.
+     */
+    public function get_bogo_coupon_code()
+    {
+        return $this->_bogo_coupon_code;
     }
 
     /*
@@ -652,6 +689,30 @@ class Calculation
         }
     }
 
+    /**
+     * Check if BOGO calculation is done or not.
+     * 
+     * @since 4.1
+     * @access public
+     * 
+     * @return bool True if done, false otherwise.
+     */
+    public function is_calculation_done()
+    {
+        return $this->_calculation_done;
+    }
+
+    /**
+     * Set calculation done flag to true.
+     * 
+     * @since 4.1
+     * @access public
+     */
+    public function done_calculation()
+    {
+        $this->_calculation_done = true;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Utility methods
@@ -667,7 +728,7 @@ class Calculation
      * @param Advanced_Coupon $coupon Coupon object.
      * @return Abstract_BOGO_Deal BOGO Deal object.
      */
-    private function _get_bogo_deal_object(Advanced_Coupon $coupon)
+    private function _get_bogo_deal_for_coupon(Advanced_Coupon $coupon)
     {
         return new Advanced($coupon);
     }

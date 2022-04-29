@@ -348,16 +348,26 @@ class AWS_Search {
          */
         $this->data['search_terms'] = apply_filters( 'aws_search_terms', $this->data['search_terms'] );
 
+        $relevance_scores = AWS_Helpers::get_relevance_scores( $this->data );
+
         foreach ( $this->data['search_terms'] as $search_term ) {
 
             $search_term_len = strlen( $search_term );
 
+            $relevance_title        = $relevance_scores['title'] + 20 * $search_term_len;
+            $relevance_title_like   = $relevance_scores['title'] / 5 + 2 * $search_term_len;
 
-            $relevance_title        = 200 + 20 * $search_term_len;
-            $relevance_content      = 35 + 4 * $search_term_len;
-            $relevance_title_like   = 40 + 2 * $search_term_len;
-            $relevance_content_like = 35 + 1 * $search_term_len;
+            $relevance_content      = $relevance_scores['content'] + 4 * $search_term_len;
+            $relevance_content_like = $relevance_scores['content'] + 1 * $search_term_len;
 
+            $relevance_id = $relevance_scores['id'];
+            $relevance_id_like = $relevance_scores['id'] / 10;
+
+            $relevance_sku = $relevance_scores['sku'];
+            $relevance_sku_like = $relevance_scores['sku'] / 5;
+
+            $relevance_other = $relevance_scores['other'];
+            $relevance_other_like = $relevance_scores['other'] / 5;
 
             $search_term_norm = AWS_Plurals::singularize( $search_term );
 
@@ -408,13 +418,13 @@ class AWS_Search {
                         break;
 
                     case 'sku':
-                        $relevance_array['sku'][] = $wpdb->prepare( "( case when ( term_source = 'sku' AND term = '%s' ) then 300 else 0 end )", $search_term );
-                        $relevance_array['sku'][] = $wpdb->prepare( "( case when ( term_source = 'sku' AND term LIKE %s ) then 50 else 0 end )", $like );
+                        $relevance_array['sku'][] = $wpdb->prepare( "( case when ( term_source = 'sku' AND term = '%s' ) then {$relevance_sku} else 0 end )", $search_term );
+                        $relevance_array['sku'][] = $wpdb->prepare( "( case when ( term_source = 'sku' AND term LIKE %s ) then {$relevance_sku_like} else 0 end )", $like );
                         break;
 
                     case 'id':
-                        $relevance_array['id'][] = $wpdb->prepare( "( case when ( term_source = 'id' AND term = '%s' ) then 300 else 0 end )", $search_term );
-                        $relevance_array['id'][] = $wpdb->prepare( "( case when ( term_source = 'id' AND term LIKE %s ) then 5 else 0 end )", $like );
+                        $relevance_array['id'][] = $wpdb->prepare( "( case when ( term_source = 'id' AND term = '%s' ) then {$relevance_id} else 0 end )", $search_term );
+                        $relevance_array['id'][] = $wpdb->prepare( "( case when ( term_source = 'id' AND term LIKE %s ) then {$relevance_id_like} else 0 end )", $like );
                         break;
 
                     default:
@@ -430,7 +440,7 @@ class AWS_Search {
                     $addition_relevance_sources_string .= "'" . $addition_relevance_source . "',";
                 }
                 $addition_relevance_sources_string = rtrim( $addition_relevance_sources_string, "," );
-                $new_relevance_array[] = $wpdb->prepare( "( case when ( term_source IN ( {$addition_relevance_sources_string} ) AND term = '%s' ) then 35 else 0 end ) + ( case when ( term_source IN ( {$addition_relevance_sources_string} ) AND term LIKE %s ) then 5 else 0 end )",  $search_term, $like );
+                $new_relevance_array[] = $wpdb->prepare( "( case when ( term_source IN ( {$addition_relevance_sources_string} ) AND term = '%s' ) then {$relevance_other} else 0 end ) + ( case when ( term_source IN ( {$addition_relevance_sources_string} ) AND term LIKE %s ) then {$relevance_other_like} else 0 end )",  $search_term, $like );
             }
 
         }
@@ -1176,6 +1186,7 @@ class AWS_Search {
 
         $exact_words = array();
         $words = array();
+        $excerpt_length = AWS_PRO()->get_settings( 'excerpt_length', $this->form_id, $this->filter_id );
 
         foreach( $this->data['search_terms'] as $search_in ) {
 
@@ -1202,10 +1213,6 @@ class AWS_Search {
             preg_match( '/([^.?!]*?)(' . $words . '){1}(.*?[.!?])/i', $content, $matches );
         }
 
-        if ( ! isset( $matches[0] ) ) {
-            preg_match( '/([^.?!]*?)(.*?)(.*?[.!?])/i', $content, $matches );
-        }
-
         if ( isset( $matches[0] ) ) {
 
             $content = $matches[0];
@@ -1223,7 +1230,29 @@ class AWS_Search {
 
         } else {
 
-            $content = '';
+            // Get first N sentences
+            if ( str_word_count( strip_tags( $content ) ) > $excerpt_length ) {
+
+                $sentences_array = preg_split( "/(?<=[.!?])/", $content, 10, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY );
+                $sentences_string = '';
+                $str_word_count = 0;
+
+                if ( ! empty( $sentences_array ) ) {
+                    foreach ( $sentences_array as $sentence ) {
+                        $str_word_count = $str_word_count + str_word_count( strip_tags( $sentence ) );
+                        if ( $str_word_count <= $excerpt_length ) {
+                            $sentences_string .= $sentence;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+
+                if ( $sentences_string ) {
+                    $content = $sentences_string;
+                }
+
+            }
 
         }
 

@@ -31,9 +31,9 @@ if ( !class_exists( 'MeowCommon_Ratings' ) ) {
 		function create_rating_date() {
 			$rating_date = get_option( $this->prefix . '_rating_date' );
 			if ( empty( $rating_date ) ) {
-				$two_months = strtotime( '+2 months' );
-				$six_months = strtotime( '+4 months' );
-				$rating_date = mt_rand( $two_months, $six_months );
+				$two_weeks = strtotime( '+2 weeks' );
+				$three_weeks = strtotime( '+3 weeks' );
+				$rating_date = mt_rand( $two_weeks, $three_weeks );
 				update_option( $this->prefix . '_rating_date', $rating_date, false );
 			}
 			return $rating_date;

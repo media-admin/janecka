@@ -7,7 +7,7 @@
  * Author URI:      https://www.inputwp.com/
  * Text Domain:     date-time-picker-field
  * Domain Path:     /lang
- * Version:         2.1
+ * Version:         2.2
  * License: GPL v2 or later
  *
  * This program is free software; you can redistribute it and/or modify

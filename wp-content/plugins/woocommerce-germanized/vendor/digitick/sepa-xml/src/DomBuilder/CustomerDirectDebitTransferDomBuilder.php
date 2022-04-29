@@ -187,12 +187,12 @@ class CustomerDirectDebitTransferDomBuilder extends BaseDomBuilder
         $debtorAccount->appendChild($this->getIbanElement($transactionInformation->getIban()));
         $directDebitTransactionInformation->appendChild($debtorAccount);
 
-        if (strlen($transactionInformation->getCreditorReference()) > 0)
+        if (strlen((string)$transactionInformation->getCreditorReference()) > 0)
         {
             $directDebitTransactionInformation->appendChild(
                 $this->getStructuredRemittanceElement($transactionInformation)
             );
-        } elseif (strlen($transactionInformation->getRemittanceInformation()) > 0) {
+        } elseif (strlen((string)$transactionInformation->getRemittanceInformation()) > 0) {
             $directDebitTransactionInformation->appendChild(
                 $this->getRemittenceElement($transactionInformation->getRemittanceInformation())
             );
@@ -240,6 +240,11 @@ class CustomerDirectDebitTransferDomBuilder extends BaseDomBuilder
             $orgId = $this->createElement('OrgId');
             $othr  = $this->createElement('Othr');
             $othr->appendChild($this->createElement('Id', $groupHeader->getInitiatingPartyId()));
+
+            if ($groupHeader->getIssuer()) {
+                $othr->appendChild($this->createElement('Issr', $groupHeader->getIssuer()));
+            }
+
             $orgId->appendChild($othr);
             $newId->appendChild($orgId);
 

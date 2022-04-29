@@ -3,7 +3,7 @@
 }
 ?>
 
-<div class="acfw-single-coupon-block<?php echo $classname ? ' ' . $classname : ''; ?>">
+<div class="<?php echo implode(' ', $classnames); ?>">
     <?php do_action('acfwf_before_single_coupon_block', $coupon);?>
     <?php if ($has_usage_limit): ?>
         <span class="acfw-coupon-usage-limit"><?php echo sprintf(_n('%s use remaining', '%s uses remaining', $coupon->get_usage_limit(), 'advanced-coupons-for-woocommerce-free'), $coupon->get_usage_limit()); ?></span>

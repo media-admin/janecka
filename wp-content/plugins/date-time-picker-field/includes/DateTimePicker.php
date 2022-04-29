@@ -458,7 +458,7 @@ if ( ! class_exists( 'DateTimePicker' ) ) {
 			}
 
 			$found = false;
-
+			$count = 0;
 			while ( ! $found ) {
 
 				foreach ( $range as $hour ) {
@@ -478,6 +478,11 @@ if ( ! class_exists( 'DateTimePicker' ) ) {
 
 				$next->modify( '+1 day' );
 
+				if ($count >= 24) {
+					break;
+				}
+
+				$count++;
 			}
 
 			return $value;

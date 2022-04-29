@@ -217,7 +217,7 @@ AwsHooks.filters = AwsHooks.filters || {};
 
                                 html += '<div class="aws_result_item aws_result_tax" data-title="' + taxitem.name + '">';
 
-                                html += '<a class="aws_result_link_top" style="position:absolute;z-index:1;white-space:nowrap;text-indent:-9999px;overflow:hidden;top:0;bottom:0;left:0;right:0;opacity:0;outline:none;text-decoration:none;" href="' + taxitem.link + '" ' + target + '>' + taxitem.name + '</a>';
+                                html += '<a class="aws_result_link_top" href="' + taxitem.link + '" ' + target + '>' + taxitem.name + '</a>';
 
                                 html += '<span class="aws_result_content">';
                                         html += '<span class="aws_result_head">';
@@ -253,7 +253,7 @@ AwsHooks.filters = AwsHooks.filters || {};
 
                                 html += '<div class="aws_result_item aws_result_user" data-title="' + useritem.name + '">';
 
-                                html += '<a class="aws_result_link_top" style="position:absolute;z-index:1;white-space:nowrap;text-indent:-9999px;overflow:hidden;top:0;bottom:0;left:0;right:0;opacity:0;outline:none;text-decoration:none;" href="' + useritem.link + '" ' + target + '>' + useritem.name + '</a>';
+                                html += '<a class="aws_result_link_top" href="' + useritem.link + '" ' + target + '>' + useritem.name + '</a>';
 
                                 html += '<span class="aws_result_content">';
                                         html += '<span class="aws_result_head">';
@@ -283,9 +283,9 @@ AwsHooks.filters = AwsHooks.filters || {};
 
                         var isOnSale = result.on_sale ? ' on-sale' : '';
 
-                        html += '<div class="aws_result_item' + isOnSale + '" data-title="' + result.title.replace(/<(?:.|\n)*?>/gm, '') + '">';
+                        html += '<div class="aws_result_item' + isOnSale + '" data-title="' + result.title.replace(/(<[\s\S]*>)/gm, '') + '">';
 
-                        html += '<a class="aws_result_link_top" style="position:absolute;z-index:1;white-space:nowrap;text-indent:-9999px;overflow:hidden;top:0;bottom:0;left:0;right:0;opacity:0;outline:none;text-decoration:none;" href="' + result.link + '" ' + target + '>' + result.title.replace(/<(?:.|\n)*?>/gm, '') + '</a>';
+                        html += '<a class="aws_result_link_top" href="' + result.link + '" ' + target + '>' + result.title.replace(/(<[\s\S]*>)/gm, '') + '</a>';
 
                         if ( result.image ) {
                             html += '<span class="aws_result_image">';
