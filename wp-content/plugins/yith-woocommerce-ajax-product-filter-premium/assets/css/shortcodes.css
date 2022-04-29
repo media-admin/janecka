@@ -115,11 +115,11 @@
   border: 2px solid transparent;
   border-radius: var(--yith-wcan-color_swatches_border_radius, 4px);
   display: inline-block;
-  height: calc(var( --yith-wcan-color_swatches_size, 45px ) + 4px);
+  height: calc(var(--yith-wcan-color_swatches_size, 45px) + 4px);
   margin-bottom: 5px;
   overflow: hidden;
   vertical-align: middle;
-  width: calc(var( --yith-wcan-color_swatches_size, 45px ) + 4px);
+  width: calc(var(--yith-wcan-color_swatches_size, 45px) + 4px);
 }
 .yith-wcan-filters .yith-wcan-filter .filter-items .filter-item.color .term-color .color-swatch {
   display: block;
@@ -140,11 +140,11 @@
   border-radius: var(--yith-wcan-color_swatches_border_radius, 4px);
   display: inline-block;
   font-size: 0;
-  height: calc(var( --yith-wcan-color_swatches_size, 45px ) + 4px);
+  height: calc(var(--yith-wcan-color_swatches_size, 45px) + 4px);
   margin-bottom: 5px;
   overflow: hidden;
   vertical-align: middle;
-  width: calc(var( --yith-wcan-color_swatches_size, 45px ) + 4px);
+  width: calc(var(--yith-wcan-color_swatches_size, 45px) + 4px);
 }
 .yith-wcan-filters .yith-wcan-filter .filter-items .filter-item.color .term-image:hover {
   border-color: var(--yith-wcan-filters_colors_accent, #4e8ba2);
@@ -939,6 +939,10 @@ body.rtl .yith-wcan-filters .yith-wcan-filter .filter-items.level-0 ul {
   padding-left: 0;
   padding-right: 15px;
 }
+body.rtl .yith-wcan-filters .yith-wcan-filter h4.collapsable:after {
+  left: 5px;
+  right: auto;
+}
 
 @media (max-width: 991px) {
   body.filters-in-modal .yith-wcan-filters {
@@ -1030,8 +1034,8 @@ body.rtl .yith-wcan-filters .yith-wcan-filter .filter-items.level-0 ul {
   color: #fff;
 }
 .yith-wcan-active-filters .reset-filters:hover {
-  background-color: rgb(calc( var( --yith-wcan-filters_colors_accent_r, 73 ) * 0.8), calc( var( --yith-wcan-filters_colors_accent_g, 139 ) * 0.8), calc( var( --yith-wcan-filters_colors_accent_b, 162 ) * 0.8));
-  border-color: rgb(calc( var( --yith-wcan-filters_colors_accent_r, 73 ) * 0.8), calc( var( --yith-wcan-filters_colors_accent_g, 139 ) * 0.8), calc( var( --yith-wcan-filters_colors_accent_b, 162 ) * 0.8));
+  background-color: rgb(calc(var(--yith-wcan-filters_colors_accent_r, 73) * 0.8), calc(var(--yith-wcan-filters_colors_accent_g, 139) * 0.8), calc(var(--yith-wcan-filters_colors_accent_b, 162) * 0.8));
+  border-color: rgb(calc(var(--yith-wcan-filters_colors_accent_r, 73) * 0.8), calc(var(--yith-wcan-filters_colors_accent_g, 139) * 0.8), calc(var(--yith-wcan-filters_colors_accent_b, 162) * 0.8));
 }
 
 /* === 3. MOBILE FILTERS === */

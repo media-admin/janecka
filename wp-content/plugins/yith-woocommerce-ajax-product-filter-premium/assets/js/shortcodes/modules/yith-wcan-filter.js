@@ -28,7 +28,7 @@ export default class YITH_WCAN_Filter {
 
 	// init page reload when popstate event alter filters
 	initPopState() {
-		this.pushUrlToHistory( window.location );
+		this.pushUrlToHistory( window.location, document.title, null, true );
 
 		$( window ).on( 'popstate', function () {
 			if ( ! window.history.state?._yithWcan ) {
@@ -212,7 +212,7 @@ export default class YITH_WCAN_Filter {
 	}
 
 	// push url to browser history
-	pushUrlToHistory( url, title, filters ) {
+	pushUrlToHistory( url, title, filters, current ) {
 		if (
 			! yith_wcan_shortcodes.change_browser_url ||
 			navigator.userAgent.match( /msie/i )
@@ -220,7 +220,13 @@ export default class YITH_WCAN_Filter {
 			return;
 		}
 
-		window.history.pushState(
+		let method = 'pushState';
+
+		if ( !! current ) {
+			method = 'replaceState';
+		}
+
+		window.history[ method ](
 			{
 				_yithWcan: true,
 				pageTitle: title,

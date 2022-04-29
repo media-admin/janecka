@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: YITH WooCommerce Ajax Product Filter\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/yith-woocommerce-"
 "ajax-product-filter.premium\n"
-"POT-Creation-Date: 2022-03-03 13:37:53+00:00\n"
+"POT-Creation-Date: 2022-04-04 12:12:51+00:00\n"
 "PO-Revision-Date: 2021-11-04 09:05:24+0000\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -14,8 +14,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: GlotPress/3.0.0-alpha.2\n"
 
-#: includes/class-yith-wcan-premium.php:234
-#: includes/class-yith-wcan-premium.php:235
+#: includes/class-yith-wcan-premium.php:238
+#: includes/class-yith-wcan-premium.php:239
 msgid "Parent tag"
 msgstr "Étiquette parent"
 
@@ -49,7 +49,7 @@ msgstr ""
 msgid "YITH AJAX Price List Filter"
 msgstr "YITH AJAX Filtre de liste de prix"
 
-#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:234
+#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:230
 #: includes/widgets/class-yith-wcan-navigation-widget.php:447
 #: includes/widgets/class-yith-wcan-reset-navigation-widget.php:195
 #: includes/widgets/class-yith-wcan-sort-by-widget.php:177
@@ -57,32 +57,32 @@ msgstr "YITH AJAX Filtre de liste de prix"
 msgid "Title"
 msgstr "Titre"
 
-#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:240
+#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:236
 #: includes/widgets/class-yith-wcan-navigation-widget-premium.php:188
 #: includes/widgets/class-yith-wcan-sort-by-widget.php:183
 #: includes/widgets/class-yith-wcan-stock-on-sale-widget.php:214
 msgid "Show widget dropdown"
 msgstr "Afficher la liste déroulante du widget"
 
-#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:248
+#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:244
 #: includes/widgets/class-yith-wcan-navigation-widget-premium.php:196
 #: includes/widgets/class-yith-wcan-sort-by-widget.php:191
 #: includes/widgets/class-yith-wcan-stock-on-sale-widget.php:222
 msgid "Opened"
 msgstr "Ouvert"
 
-#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:249
+#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:245
 #: includes/widgets/class-yith-wcan-navigation-widget-premium.php:197
 #: includes/widgets/class-yith-wcan-sort-by-widget.php:192
 #: includes/widgets/class-yith-wcan-stock-on-sale-widget.php:223
 msgid "Closed"
 msgstr "Fermé"
 
-#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:255
+#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:251
 msgid "Price Range"
 msgstr "Gamme de prix"
 
-#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:270
+#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:266
 msgid "Add new range"
 msgstr "Ajouter une nouvelle gamme"
 
@@ -826,7 +826,7 @@ msgctxt "[Admin] Label in new preset page"
 msgid "Choose the layout for this filter preset"
 msgstr "Choisissez la mise en page pour ce filtre prédéfini"
 
-#: includes/class-yith-wcan-premium.php:168
+#: includes/class-yith-wcan-premium.php:172
 msgctxt "[Admin] Label in new preset page"
 msgid "Horizontal"
 msgstr "Horizontal"
@@ -1008,7 +1008,7 @@ msgid "Choose if the toggle has to be closed or opened by default"
 msgstr "Choisissez si la bascule doit être fermée ou ouverte par défaut"
 
 #: includes/class-yith-wcan-admin-premium.php:315
-#: includes/class-yith-wcan-premium.php:130
+#: includes/class-yith-wcan-premium.php:134
 msgctxt "[Admin] Filter edit form"
 msgid "Order by"
 msgstr "Commandé par"
@@ -1142,32 +1142,32 @@ msgctxt "[Admin] Filter edit form"
 msgid "Label"
 msgstr "Étiqueter"
 
-#: includes/class-yith-wcan-premium.php:131
+#: includes/class-yith-wcan-premium.php:135
 msgctxt "[Admin] Filter edit form"
 msgid "Price Range"
 msgstr "Échelle des prix"
 
-#: includes/class-yith-wcan-premium.php:132
+#: includes/class-yith-wcan-premium.php:136
 msgctxt "[Admin] Filter edit form"
 msgid "Price Slider"
 msgstr "Curseur de prix"
 
-#: includes/class-yith-wcan-premium.php:133
+#: includes/class-yith-wcan-premium.php:137
 msgctxt "[Admin] Filter edit form"
 msgid "Review"
 msgstr "Revoir"
 
-#: includes/class-yith-wcan-premium.php:134
+#: includes/class-yith-wcan-premium.php:138
 msgctxt "[Admin] Filter edit form"
 msgid "In stock/On sale"
 msgstr "En stock/En vente"
 
-#: includes/class-yith-wcan-premium.php:148
+#: includes/class-yith-wcan-premium.php:152
 msgctxt "[Admin] Filter edit form"
 msgid "Label/Image"
 msgstr "Étiquette/Image"
 
-#: includes/class-yith-wcan-premium.php:153
+#: includes/class-yith-wcan-premium.php:157
 msgctxt "[Admin] Filter edit form"
 msgid "Radio"
 msgstr "Radio"
@@ -1877,51 +1877,51 @@ msgctxt "[FRONTEND] Label for the Filters button on mobile"
 msgid "Filters"
 msgstr "Filtres"
 
-#: includes/class-yith-wcan-frontend.php:591
+#: includes/class-yith-wcan-frontend.php:625
 #: includes/filters/class-yith-wcan-filter-tax.php:62
 msgctxt "[FRONTEND] \"All\" label shown when no term is selected"
 msgid "All"
 msgstr "Tout"
 
-#: includes/class-yith-wcan-frontend.php:592
+#: includes/class-yith-wcan-frontend.php:626
 msgctxt "[FRONTEND] Search placeholder shown in terms dropdown"
 msgid "Search..."
 msgstr "Recherche ..."
 
-#: includes/class-yith-wcan-frontend.php:593
+#: includes/class-yith-wcan-frontend.php:627
 msgctxt "[FRONTEND] Empty items list in the dropdown"
 msgid "No item found"
 msgstr "Pas d'article trouvé"
 
 #. translators: 1. Number of items to show.
-#: includes/class-yith-wcan-frontend.php:595
+#: includes/class-yith-wcan-frontend.php:629
 msgctxt "[FRONTEND] Show more link on terms dropdown"
 msgid "Show %d more"
 msgstr "Montrer %d de plus"
 
-#: includes/class-yith-wcan-frontend.php:596
+#: includes/class-yith-wcan-frontend.php:630
 msgctxt "[FRONTEND] Alt text for modal close button on mobile"
 msgid "Close"
 msgstr "Fermer"
 
-#: includes/class-yith-wcan-frontend.php:597
+#: includes/class-yith-wcan-frontend.php:631
 msgctxt "[FRONTEND] Label for filter button, on horizontal layout"
 msgid "Save"
 msgstr "Sauvegarder"
 
-#: includes/class-yith-wcan-frontend.php:598
+#: includes/class-yith-wcan-frontend.php:632
 msgctxt "[FRONTEND] Label for filter button, on mobile modal"
 msgid "Show results"
 msgstr "Montrer les résultats"
 
-#: includes/class-yith-wcan-frontend.php:599
+#: includes/class-yith-wcan-frontend.php:633
 msgctxt ""
 "[FRONTEND] Label for clear selection link, that appears above filter after "
 "selection"
 msgid "Clear"
 msgstr "Effacer"
 
-#: includes/class-yith-wcan-frontend.php:600
+#: includes/class-yith-wcan-frontend.php:634
 msgctxt ""
 "[FRONTEND] Label for clear selection link, that appears above filter after "
 "selection"
@@ -2012,14 +2012,14 @@ msgstr "Mis en avant"
 
 #. translators: 1. Formatted min price of the range. 2. Formatted max price of
 #. the range.
-#: includes/class-yith-wcan-query-premium.php:263
+#: includes/class-yith-wcan-query-premium.php:262
 msgctxt "[FRONTEND] Active price filter label"
 msgid "%1$s - %2$s"
 msgstr "%1$s - %2$s"
 
 #. translators: 1. Formatted min price of the range. 2. Formatted max price of
 #. the range.
-#: includes/class-yith-wcan-query-premium.php:270
+#: includes/class-yith-wcan-query-premium.php:269
 msgctxt "[FRONTEND] Active price filter label"
 msgid "%1$s & above"
 msgstr "%1$s et plus"
@@ -2364,12 +2364,12 @@ msgstr ""
 "S'il vous plaît, allez dans <a href=\"%s\">WP Dashboard -> YITH -> Ajax "
 "Product Filter -> Pré-réglage</a> et créez votre premier preset"
 
-#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:218
+#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:214
 msgctxt "refer to: product price"
 msgid "Price Filter"
 msgstr "Filtre de prix"
 
-#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:246
+#: includes/widgets/class-yith-wcan-list-price-filter-widget.php:242
 #: includes/widgets/class-yith-wcan-navigation-widget-premium.php:194
 #: includes/widgets/class-yith-wcan-sort-by-widget.php:189
 #: includes/widgets/class-yith-wcan-stock-on-sale-widget.php:220

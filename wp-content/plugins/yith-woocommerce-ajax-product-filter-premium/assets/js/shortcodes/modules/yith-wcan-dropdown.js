@@ -52,11 +52,11 @@ export default class YITH_WCAN_Dropdown {
 				labels: {
 					emptyLabel: defaultAll
 						? defaultAll
-						: yith_wcan_shortcodes.labels.empty_option,
+						: yith_wcan_shortcodes.labels?.empty_option,
 					searchPlaceholder:
-						yith_wcan_shortcodes.labels.search_placeholder,
-					noItemsFound: yith_wcan_shortcodes.labels.no_items,
-					showMore: yith_wcan_shortcodes.labels.show_more,
+						yith_wcan_shortcodes.labels?.search_placeholder,
+					noItemsFound: yith_wcan_shortcodes.labels?.no_items,
+					showMore: yith_wcan_shortcodes.labels?.show_more,
 				},
 			};
 
@@ -128,7 +128,7 @@ export default class YITH_WCAN_Dropdown {
 	_initShowMoreTemplate( $dropdwonSpan ) {
 		const $showMore = $( '<a/>', {
 			class: 'show-more',
-			text: this.options.labels.showMore.replace(
+			text: this.options.labels.showMore?.replace(
 				'%d',
 				this.options.perPage
 			),

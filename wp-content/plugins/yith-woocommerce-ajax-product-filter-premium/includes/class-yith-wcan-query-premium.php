@@ -184,11 +184,10 @@ if ( ! class_exists( 'YITH_WCAN_Query_Premium' ) ) {
 					}
 				}
 
+				// add any parameter related to current page.
 				global $wp_query;
 
-				// add any parameter related to current page.
-				if ( isset( $wp_query ) && $wp_query instanceof WP_Query && is_product_taxonomy() ) {
-
+				if ( $wp_query instanceof WP_Query && is_product_taxonomy() ) {
 					$qo = $wp_query->get_queried_object();
 
 					if ( $qo instanceof WP_Term && ! isset( $query[ $qo->taxonomy ] ) ) {
@@ -1035,7 +1034,19 @@ if ( ! class_exists( 'YITH_WCAN_Query_Premium' ) ) {
 
 			$min_price = $wpdb->get_var( $lookup_query ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery
 
-			return ceil( $min_price );
+			// Check to see if we should add taxes to the prices if store are excl tax but display incl.
+			$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
+
+			if ( wc_tax_enabled() && ! wc_prices_include_tax() && 'incl' === $tax_display_mode ) {
+				$tax_class = apply_filters( 'woocommerce_price_filter_widget_tax_class', '' ); // Uses standard tax class.
+				$tax_rates = WC_Tax::get_rates( $tax_class );
+
+				if ( $tax_rates ) {
+					$min_price += WC_Tax::get_tax_total( WC_Tax::calc_exclusive_tax( $min_price, $tax_rates ) );
+				}
+			}
+
+			return floor( $min_price );
 		}
 
 		/**
@@ -1071,6 +1082,17 @@ if ( ! class_exists( 'YITH_WCAN_Query_Premium' ) ) {
 
 			$max_price = $wpdb->get_var( $lookup_query ); // phpcs:ignore WordPress.DB.PreparedSQL, WordPress.DB.DirectDatabaseQuery
 
+			// Check to see if we should add taxes to the prices if store are excl tax but display incl.
+			$tax_display_mode = get_option( 'woocommerce_tax_display_shop' );
+
+			if ( wc_tax_enabled() && ! wc_prices_include_tax() && 'incl' === $tax_display_mode ) {
+				$tax_class = apply_filters( 'woocommerce_price_filter_widget_tax_class', '' ); // Uses standard tax class.
+				$tax_rates = WC_Tax::get_rates( $tax_class );
+
+				if ( $tax_rates ) {
+					$max_price += WC_Tax::get_tax_total( WC_Tax::calc_exclusive_tax( $max_price, $tax_rates ) );
+				}
+			}
 			return ceil( $max_price );
 		}
 

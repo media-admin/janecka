@@ -14,13 +14,13 @@ var $body = $('body');
 
 /* global globalThis, jQuery, yith_wcan_shortcodes, accounting */
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -54,7 +54,7 @@ var YITH_WCAN_Filter = /*#__PURE__*/function () {
   _createClass(YITH_WCAN_Filter, [{
     key: "initPopState",
     value: function initPopState() {
-      this.pushUrlToHistory(window.location);
+      this.pushUrlToHistory(window.location, document.title, null, true);
       $(window).on('popstate', function () {
         var _window$history$state;
 
@@ -208,12 +208,18 @@ var YITH_WCAN_Filter = /*#__PURE__*/function () {
 
   }, {
     key: "pushUrlToHistory",
-    value: function pushUrlToHistory(url, title, filters) {
+    value: function pushUrlToHistory(url, title, filters, current) {
       if (!yith_wcan_shortcodes.change_browser_url || navigator.userAgent.match(/msie/i)) {
         return;
       }
 
-      window.history.pushState({
+      var method = 'pushState';
+
+      if (!!current) {
+        method = 'replaceState';
+      }
+
+      window.history[method]({
         _yithWcan: true,
         pageTitle: title,
         filters: filters
@@ -367,7 +373,7 @@ function yith_wcan_filter_labels_classCallCheck(instance, Constructor) { if (!(i
 
 function yith_wcan_filter_labels_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function yith_wcan_filter_labels_createClass(Constructor, protoProps, staticProps) { if (protoProps) yith_wcan_filter_labels_defineProperties(Constructor.prototype, protoProps); if (staticProps) yith_wcan_filter_labels_defineProperties(Constructor, staticProps); return Constructor; }
+function yith_wcan_filter_labels_createClass(Constructor, protoProps, staticProps) { if (protoProps) yith_wcan_filter_labels_defineProperties(Constructor.prototype, protoProps); if (staticProps) yith_wcan_filter_labels_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 function yith_wcan_filter_labels_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -448,13 +454,17 @@ var YITH_WCAN_Filter_Labels = /*#__PURE__*/function () {
 
 /* global globalThis, jQuery, yith_wcan_shortcodes, accounting */
 
+function yith_wcan_reset_button_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function yith_wcan_reset_button_createClass(Constructor, protoProps, staticProps) { if (protoProps) yith_wcan_reset_button_defineProperties(Constructor.prototype, protoProps); if (staticProps) yith_wcan_reset_button_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
 function yith_wcan_reset_button_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function yith_wcan_reset_button_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
-var YITH_WCAN_Reset_Button = // current button
+var YITH_WCAN_Reset_Button = /*#__PURE__*/yith_wcan_reset_button_createClass( // current button
 // init object
 function YITH_WCAN_Reset_Button(el) {
   yith_wcan_reset_button_classCallCheck(this, YITH_WCAN_Reset_Button);
@@ -472,7 +482,7 @@ function YITH_WCAN_Reset_Button(el) {
     });
   });
   this.$reset.data('reset', this).addClass('enhanced');
-};
+});
 
 
 ;// CONCATENATED MODULE: ./assets/js/shortcodes/modules/yith-wcan-modal-opener.js
@@ -483,7 +493,7 @@ function yith_wcan_modal_opener_classCallCheck(instance, Constructor) { if (!(in
 
 function yith_wcan_modal_opener_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function yith_wcan_modal_opener_createClass(Constructor, protoProps, staticProps) { if (protoProps) yith_wcan_modal_opener_defineProperties(Constructor.prototype, protoProps); if (staticProps) yith_wcan_modal_opener_defineProperties(Constructor, staticProps); return Constructor; }
+function yith_wcan_modal_opener_createClass(Constructor, protoProps, staticProps) { if (protoProps) yith_wcan_modal_opener_defineProperties(Constructor.prototype, protoProps); if (staticProps) yith_wcan_modal_opener_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 function yith_wcan_modal_opener_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -602,7 +612,7 @@ function yith_wcan_dropdown_classCallCheck(instance, Constructor) { if (!(instan
 
 function yith_wcan_dropdown_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function yith_wcan_dropdown_createClass(Constructor, protoProps, staticProps) { if (protoProps) yith_wcan_dropdown_defineProperties(Constructor.prototype, protoProps); if (staticProps) yith_wcan_dropdown_defineProperties(Constructor, staticProps); return Constructor; }
+function yith_wcan_dropdown_createClass(Constructor, protoProps, staticProps) { if (protoProps) yith_wcan_dropdown_defineProperties(Constructor.prototype, protoProps); if (staticProps) yith_wcan_dropdown_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 function yith_wcan_dropdown_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -620,6 +630,8 @@ var YITH_WCAN_Dropdown = /*#__PURE__*/function () {
   // options
   // init object
   function YITH_WCAN_Dropdown(el, opts) {
+    var _yith_wcan_shortcodes, _yith_wcan_shortcodes2, _yith_wcan_shortcodes3, _yith_wcan_shortcodes4;
+
     yith_wcan_dropdown_classCallCheck(this, YITH_WCAN_Dropdown);
 
     yith_wcan_dropdown_defineProperty(this, "$originalSelect", null);
@@ -656,10 +668,10 @@ var YITH_WCAN_Dropdown = /*#__PURE__*/function () {
       order: defaultOrder ? defaultOrder : 'ASC',
       getElements: null,
       labels: {
-        emptyLabel: defaultAll ? defaultAll : yith_wcan_shortcodes.labels.empty_option,
-        searchPlaceholder: yith_wcan_shortcodes.labels.search_placeholder,
-        noItemsFound: yith_wcan_shortcodes.labels.no_items,
-        showMore: yith_wcan_shortcodes.labels.show_more
+        emptyLabel: defaultAll ? defaultAll : (_yith_wcan_shortcodes = yith_wcan_shortcodes.labels) === null || _yith_wcan_shortcodes === void 0 ? void 0 : _yith_wcan_shortcodes.empty_option,
+        searchPlaceholder: (_yith_wcan_shortcodes2 = yith_wcan_shortcodes.labels) === null || _yith_wcan_shortcodes2 === void 0 ? void 0 : _yith_wcan_shortcodes2.search_placeholder,
+        noItemsFound: (_yith_wcan_shortcodes3 = yith_wcan_shortcodes.labels) === null || _yith_wcan_shortcodes3 === void 0 ? void 0 : _yith_wcan_shortcodes3.no_items,
+        showMore: (_yith_wcan_shortcodes4 = yith_wcan_shortcodes.labels) === null || _yith_wcan_shortcodes4 === void 0 ? void 0 : _yith_wcan_shortcodes4.show_more
       }
     };
     this.options = $.extend(defaults, opts);
@@ -733,9 +745,11 @@ var YITH_WCAN_Dropdown = /*#__PURE__*/function () {
   }, {
     key: "_initShowMoreTemplate",
     value: function _initShowMoreTemplate($dropdwonSpan) {
+      var _this$options$labels$;
+
       var $showMore = $('<a/>', {
         "class": 'show-more',
-        text: this.options.labels.showMore.replace('%d', this.options.perPage)
+        text: (_this$options$labels$ = this.options.labels.showMore) === null || _this$options$labels$ === void 0 ? void 0 : _this$options$labels$.replace('%d', this.options.perPage)
       });
       $showMore.on('click', this.loadNextPage.bind(this)).hide();
       $dropdwonSpan.append($showMore);
@@ -1225,13 +1239,13 @@ var YITH_WCAN_Dropdown = /*#__PURE__*/function () {
 
 /* global globalThis, jQuery, yith_wcan_shortcodes, accounting */
 
-function yith_wcan_preset_typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { yith_wcan_preset_typeof = function _typeof(obj) { return typeof obj; }; } else { yith_wcan_preset_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return yith_wcan_preset_typeof(obj); }
+function yith_wcan_preset_typeof(obj) { "@babel/helpers - typeof"; return yith_wcan_preset_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, yith_wcan_preset_typeof(obj); }
 
 function yith_wcan_preset_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function yith_wcan_preset_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function yith_wcan_preset_createClass(Constructor, protoProps, staticProps) { if (protoProps) yith_wcan_preset_defineProperties(Constructor.prototype, protoProps); if (staticProps) yith_wcan_preset_defineProperties(Constructor, staticProps); return Constructor; }
+function yith_wcan_preset_createClass(Constructor, protoProps, staticProps) { if (protoProps) yith_wcan_preset_defineProperties(Constructor.prototype, protoProps); if (staticProps) yith_wcan_preset_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 function yith_wcan_preset_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -2530,12 +2544,14 @@ var YITH_WCAN_Preset = /*#__PURE__*/function () {
     key: "formatPrice",
     value: function formatPrice(price) {
       if ('undefined' !== typeof accounting) {
+        var _yith_wcan_shortcodes, _yith_wcan_shortcodes2, _yith_wcan_shortcodes3, _yith_wcan_shortcodes4;
+
         price = accounting.formatMoney(price, {
-          symbol: yith_wcan_shortcodes.currency_format.symbol,
-          decimal: yith_wcan_shortcodes.currency_format.decimal,
-          thousand: yith_wcan_shortcodes.currency_format.thousand,
+          symbol: (_yith_wcan_shortcodes = yith_wcan_shortcodes.currency_format) === null || _yith_wcan_shortcodes === void 0 ? void 0 : _yith_wcan_shortcodes.symbol,
+          decimal: (_yith_wcan_shortcodes2 = yith_wcan_shortcodes.currency_format) === null || _yith_wcan_shortcodes2 === void 0 ? void 0 : _yith_wcan_shortcodes2.decimal,
+          thousand: (_yith_wcan_shortcodes3 = yith_wcan_shortcodes.currency_format) === null || _yith_wcan_shortcodes3 === void 0 ? void 0 : _yith_wcan_shortcodes3.thousand,
           precision: 0,
-          format: yith_wcan_shortcodes.currency_format.format
+          format: (_yith_wcan_shortcodes4 = yith_wcan_shortcodes.currency_format) === null || _yith_wcan_shortcodes4 === void 0 ? void 0 : _yith_wcan_shortcodes4.format
         });
       }
 
@@ -2603,19 +2619,19 @@ var YITH_WCAN_Preset = /*#__PURE__*/function () {
 
 /* global globalThis, jQuery, yith_wcan_shortcodes, accounting */
 
-function yith_wcan_dropdown_premium_typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { yith_wcan_dropdown_premium_typeof = function _typeof(obj) { return typeof obj; }; } else { yith_wcan_dropdown_premium_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return yith_wcan_dropdown_premium_typeof(obj); }
+function yith_wcan_dropdown_premium_typeof(obj) { "@babel/helpers - typeof"; return yith_wcan_dropdown_premium_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, yith_wcan_dropdown_premium_typeof(obj); }
 
 function yith_wcan_dropdown_premium_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function yith_wcan_dropdown_premium_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function yith_wcan_dropdown_premium_createClass(Constructor, protoProps, staticProps) { if (protoProps) yith_wcan_dropdown_premium_defineProperties(Constructor.prototype, protoProps); if (staticProps) yith_wcan_dropdown_premium_defineProperties(Constructor, staticProps); return Constructor; }
+function yith_wcan_dropdown_premium_createClass(Constructor, protoProps, staticProps) { if (protoProps) yith_wcan_dropdown_premium_defineProperties(Constructor.prototype, protoProps); if (staticProps) yith_wcan_dropdown_premium_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+function _get() { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return _get.apply(this, arguments); }
 
 function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
@@ -2715,19 +2731,19 @@ var YITH_WCAN_Dropdown_Premium = /*#__PURE__*/function (_YITH_WCAN_Dropdown) {
 
 /* global globalThis, jQuery, yith_wcan_shortcodes, accounting */
 
-function yith_wcan_preset_premium_typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { yith_wcan_preset_premium_typeof = function _typeof(obj) { return typeof obj; }; } else { yith_wcan_preset_premium_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return yith_wcan_preset_premium_typeof(obj); }
+function yith_wcan_preset_premium_typeof(obj) { "@babel/helpers - typeof"; return yith_wcan_preset_premium_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, yith_wcan_preset_premium_typeof(obj); }
 
 function yith_wcan_preset_premium_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function yith_wcan_preset_premium_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function yith_wcan_preset_premium_createClass(Constructor, protoProps, staticProps) { if (protoProps) yith_wcan_preset_premium_defineProperties(Constructor.prototype, protoProps); if (staticProps) yith_wcan_preset_premium_defineProperties(Constructor, staticProps); return Constructor; }
+function yith_wcan_preset_premium_createClass(Constructor, protoProps, staticProps) { if (protoProps) yith_wcan_preset_premium_defineProperties(Constructor.prototype, protoProps); if (staticProps) yith_wcan_preset_premium_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-function yith_wcan_preset_premium_get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { yith_wcan_preset_premium_get = Reflect.get; } else { yith_wcan_preset_premium_get = function _get(target, property, receiver) { var base = yith_wcan_preset_premium_superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return yith_wcan_preset_premium_get(target, property, receiver || target); }
+function yith_wcan_preset_premium_get() { if (typeof Reflect !== "undefined" && Reflect.get) { yith_wcan_preset_premium_get = Reflect.get; } else { yith_wcan_preset_premium_get = function _get(target, property, receiver) { var base = yith_wcan_preset_premium_superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(arguments.length < 3 ? target : receiver); } return desc.value; }; } return yith_wcan_preset_premium_get.apply(this, arguments); }
 
 function yith_wcan_preset_premium_superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = yith_wcan_preset_premium_getPrototypeOf(object); if (object === null) break; } return object; }
 
-function yith_wcan_preset_premium_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) yith_wcan_preset_premium_setPrototypeOf(subClass, superClass); }
+function yith_wcan_preset_premium_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) yith_wcan_preset_premium_setPrototypeOf(subClass, superClass); }
 
 function yith_wcan_preset_premium_setPrototypeOf(o, p) { yith_wcan_preset_premium_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return yith_wcan_preset_premium_setPrototypeOf(o, p); }
 

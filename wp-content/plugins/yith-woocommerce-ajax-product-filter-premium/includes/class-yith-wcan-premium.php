@@ -92,6 +92,10 @@ if ( ! class_exists( 'YITH_WCAN_Premium' ) ) {
 			wp_register_style( 'yith-wcan-shortcodes', YITH_WCAN_URL . 'assets/css/shortcodes.css', array( 'ion.range-slider' ), YITH_WCAN_VERSION );
 			wp_register_script( 'ion.range-slider', YITH_WCAN_URL . 'assets/js/ion.range-slider' . $suffix . '.js', array( 'jquery' ), '2.3.1', true );
 			wp_register_script( 'yith-wcan-shortcodes', YITH_WCAN_URL . 'assets/js/yith-wcan-shortcodes' . $suffix . '.js', array( 'jquery', 'ion.range-slider', 'accounting', 'selectWoo' ), YITH_WCAN_VERSION, true );
+
+			if ( is_admin() ) {
+				wp_localize_script( 'yith-wcan-shortcodes', 'yith_wcan_shortcodes', array() );
+			}
 		}
 
 		/**

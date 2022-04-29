@@ -4,12 +4,20 @@ Contributors: yithemes
 Tags: woocommerce, widget, ajax, ajax filtered nav, ajax navigation, ajax filtered navigation
 Requires at least: 5.7
 Tested up to: 5.9
-
-Stable tag: 4.8.0
+Stable tag: 4.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog =
+
+= 4.9.0 - Released on 04 April 2022 =
+
+* New: support for WooCommerce 6.4
+* Tweak: improve toggle icon position on RTL
+* Update: YITH Plugin Framework
+* Fix: show price with taxes in product price slider filter
+* Fix: JS error when rendering plugin blocks on Getenberg editor
+* Fix: avoid duplicated entry on window history when shortcode.js script is loaded
 
 = 4.8.0 - Released on 03 March 2022 =
 

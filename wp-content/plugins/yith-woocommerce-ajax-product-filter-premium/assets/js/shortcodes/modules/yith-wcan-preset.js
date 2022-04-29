@@ -1471,11 +1471,11 @@ export default class YITH_WCAN_Preset {
 	formatPrice( price ) {
 		if ( 'undefined' !== typeof accounting ) {
 			price = accounting.formatMoney( price, {
-				symbol: yith_wcan_shortcodes.currency_format.symbol,
-				decimal: yith_wcan_shortcodes.currency_format.decimal,
-				thousand: yith_wcan_shortcodes.currency_format.thousand,
+				symbol: yith_wcan_shortcodes.currency_format?.symbol,
+				decimal: yith_wcan_shortcodes.currency_format?.decimal,
+				thousand: yith_wcan_shortcodes.currency_format?.thousand,
 				precision: 0,
-				format: yith_wcan_shortcodes.currency_format.format,
+				format: yith_wcan_shortcodes.currency_format?.format,
 			} );
 		}
 

@@ -98,10 +98,6 @@ if ( ! class_exists( 'YITH_WCAN_List_Price_Filter_Widget' ) ) {
 			/* === Hooks and Actions === */
 			add_filter( 'woocommerce_layered_nav_link', array( $this, 'price_filter_args' ) );
 
-			if ( ! is_active_widget( false, false, 'woocommerce_price_filter', true ) && ! is_admin() ) {
-				add_filter( 'loop_shop_post_in', array( $this, 'price_filter' ) );
-			}
-
 			/* === Dropdown === */
 			add_filter( 'yith_widget_title_list_price_filter', array( $this, 'widget_title' ), 10, 3 );
 
@@ -360,77 +356,5 @@ if ( ! class_exists( 'YITH_WCAN_List_Price_Filter_Widget' ) ) {
 
 			return $prices;
 		}
-
-		/**
-		 * Filters post__in parameter of main products query, to show only products matching with current price range
-		 *
-		 * @param array $filtered_posts Post__in parameter.
-		 * @return array Filtered array of post__in parameter.
-		 */
-		public function price_filter( $filtered_posts = array() ) {
-			global $wpdb;
-
-			$in_array_function = apply_filters( 'yith_wcan_in_array_ignor_case', false ) ? 'yit_in_array_ignore_case' : 'in_array';
-
-			// phpcs:disable WordPress.Security.NonceVerification.Recommended
-			$min = isset( $_GET['min_price'] ) ? floatval( $_GET['min_price'] ) : false;
-			$max = isset( $_GET['max_price'] ) ? floatval( $_GET['max_price'] ) : false;
-			// phpcs:enable WordPress.Security.NonceVerification.Recommended
-
-			if ( false !== $min || false !== $max ) {
-				$min = $min ? $min : 0;
-				$max = $max ? $max : 9999999999;
-
-				$matched_products = array();
-				$price_meta       = apply_filters( 'woocommerce_price_filter_meta_keys', array( '_price' ) );
-
-				$matched_products_query = apply_filters(
-					'woocommerce_price_filter_results',
-					$wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
-						$wpdb->prepare( // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
-							"SELECT DISTINCT ID, post_parent, post_type FROM {$wpdb->posts} as p INNER JOIN {$wpdb->postmeta} as pm ON p.ID = pm.post_id WHERE post_type IN ( %s, %s ) AND post_status = %s AND meta_key IN (" . str_repeat( '%s ', count( $price_meta ) ) . ')  AND meta_value BETWEEN %f AND %f', // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-							array_merge(
-								array(
-									'product',
-									'product_variation',
-									'publish',
-								),
-								$price_meta,
-								array(
-									$min,
-									$max,
-								)
-							)
-						),
-						OBJECT_K
-					),
-					$min,
-					$max
-				);
-
-				if ( $matched_products_query ) {
-					foreach ( $matched_products_query as $product ) {
-						if ( 'product' === $product->post_type ) {
-							$matched_products[] = $product->ID;
-						}
-						if ( $product->post_parent > 0 && ! $in_array_function( $product->post_parent, $matched_products ) ) {
-							$matched_products[] = $product->post_parent;
-						}
-					}
-				}
-
-				// Filter the id's.
-				if ( 0 === count( $filtered_posts ) ) {
-					$filtered_posts = $matched_products;
-				} else {
-					$filtered_posts = array_intersect( $filtered_posts, $matched_products );
-
-				}
-				$filtered_posts[] = 0;
-			}
-
-			return (array) $filtered_posts;
-		}
-
 	}
 }

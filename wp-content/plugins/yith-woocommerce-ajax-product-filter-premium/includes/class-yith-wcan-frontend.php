@@ -95,6 +95,7 @@ if ( ! class_exists( 'YITH_WCAN_Frontend' ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles_scripts' ) );
 			add_action( 'body_class', array( $this, 'body_class' ) );
 			add_action( 'wp_head', array( $this, 'add_meta' ) );
+			add_action( 'wp_robots', array( $this, 'add_robots_directives' ) );
 
 			// Template methods.
 			add_action( 'init', array( $this, 'add_reset_button' ) );
@@ -492,6 +493,35 @@ if ( ! class_exists( 'YITH_WCAN_Frontend' ) ) {
 		}
 
 		/**
+		 * Add robots directives to filtered pages
+		 *
+		 * @param array $directives Array of directives.
+		 * @return array Filtered array of directives
+		 */
+		public function add_robots_directives( $directives ) {
+			$enable_seo   = 'yes' === yith_wcan_get_option( 'yith_wcan_enable_seo' );
+			$meta_options = yith_wcan_get_option( 'yith_wcan_seo_value', 'noindex-follow' );
+
+			if ( $enable_seo && 'disabled' !== $meta_options && ( YITH_WCAN_Query()->is_filtered() || yith_wcan_can_be_displayed() && yit_is_filtered_uri() ) ) {
+				$meta_options = explode( '-', $meta_options );
+
+				foreach ( $meta_options as $directive ) {
+					$directives[ $directive ] = true;
+
+					if ( 'follow' === $directive && ! empty( $directives['nofollow'] ) ) {
+						$directives['nofollow'] = false;
+					}
+
+					if ( 'nofollow' === $directive && ! empty( $directives['follow'] ) ) {
+						$directives['follow'] = false;
+					}
+				}
+			}
+
+			return $directives;
+		}
+
+		/**
 		 * Add custom meta to filtered page
 		 *
 		 * @return void
@@ -499,6 +529,10 @@ if ( ! class_exists( 'YITH_WCAN_Frontend' ) ) {
 		public function add_meta() {
 			$enable_seo   = 'yes' === yith_wcan_get_option( 'yith_wcan_enable_seo' );
 			$meta_options = yith_wcan_get_option( 'yith_wcan_seo_value', 'noindex-follow' );
+
+			if ( function_exists( 'wp_robots_no_robots' ) ) {
+				return;
+			}
 
 			if ( $enable_seo && 'disabled' !== $meta_options && ( YITH_WCAN_Query()->is_filtered() || yith_wcan_can_be_displayed() && yit_is_filtered_uri() ) ) {
 				$content = str_replace( '-', ', ', $meta_options );

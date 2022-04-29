@@ -1101,6 +1101,10 @@ body.rtl .yith-wcan-filters {
 				}
 			}
 		}
+        h4.collapsable:after{
+            left: 5px;
+            right: auto;
+        }
 	}
 }
 

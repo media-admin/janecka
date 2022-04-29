@@ -3,7 +3,7 @@
 Plugin Name: WP All Export Pro
 Plugin URI: http://www.wpallimport.com/export/
 Description: Export any post type to a CSV or XML file. Edit the exported data, and then re-import it later using WP All Import.
-Version: 1.7.4
+Version: 1.7.5
 Author: Soflyy
 */
 
@@ -46,7 +46,7 @@ if (class_exists('PMXE_Plugin') and PMXE_EDITION == "free") {
      */
     define('PMXE_PREFIX', 'pmxe_');
 
-    define('PMXE_VERSION', '1.7.4');
+    define('PMXE_VERSION', '1.7.5');
 
     define('PMXE_EDITION', 'paid');
 
@@ -471,6 +471,9 @@ Some of the features you used in WP All Export Pro now require paid add-ons. If 
                     if (!$controller instanceof PMXE_Controller_Admin) {
                         throw new Exception("Administration page `$page` matches to a wrong controller type.");
                     }
+
+                    $reviewsUI = new \Wpae\Reviews\ReviewsUI();
+                    add_action('admin_notices', [$reviewsUI, 'render']);
 
                     if ($controller instanceof PMXE_Admin_Manage && $action == 'update_action' && isset($_GET['id'])) {
                         $addons = new \Wpae\App\Service\Addons\AddonService();
@@ -905,6 +908,7 @@ Some of the features you used in WP All Export Pro now require paid add-ons. If 
             $parent_id = false;
             $export_post_type = false;
             $client_mode_enabled = false;
+            $created_at = false;
 
             // Check if field exists
             foreach ($tablefields as $tablefield) {
@@ -912,6 +916,8 @@ Some of the features you used in WP All Export Pro now require paid add-ons. If 
                 if ('parent_id' == $tablefield->Field) $parent_id = true;
                 if ('export_post_type' == $tablefield->Field) $export_post_type = true;
                 if ('client_mode_enabled' == $tablefield->Field) $client_mode_enabled= true;
+                if ('created_at' == $tablefield->Field) $created_at = true;
+
             }
 
             if (!$iteration) {
@@ -926,6 +932,11 @@ Some of the features you used in WP All Export Pro now require paid add-ons. If 
 
             if (!$client_mode_enabled) {
                 $wpdb->query("ALTER TABLE {$table} ADD `client_mode_enabled` TINYINT NOT NULL DEFAULT '0';");
+            }
+
+            if ( ! $created_at ){
+                $wpdb->query("ALTER TABLE {$table} ADD `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP;");
+                $wpdb->query("UPDATE {$table} SET `created_at` = `registered_on` WHERE 1");
             }
 
             update_option("wp_all_export_pro_db_version", PMXE_VERSION);

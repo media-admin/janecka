@@ -87,7 +87,7 @@ if ( ! class_exists( 'YITH_WCAN_Admin' ) ) {
 		public function register_styles_scripts() {
 			// register styles.
 			wp_register_style( 'yith_wcan_admin', YITH_WCAN_URL . 'assets/css/admin.css', array( 'yit-plugin-style' ), YITH_WCAN_VERSION );
-			wp_register_style( 'yith-wcan-material-icons', 'https://fonts.googleapis.com/icon?family=Material+Icons', array(), '3.0.1' );
+			wp_register_style( 'yith-wcan-material-icons', YITH_WCAN_URL . 'assets/material-icons/material-icons.css', array(), '3.0.1' );
 
 			// register scripts.
 			wp_register_script( 'yith_wcan_admin_filters', YITH_WCAN_URL . 'assets/js/yith-wcan-admin-filters.js', array( 'jquery' ), YITH_WCAN_VERSION, true );

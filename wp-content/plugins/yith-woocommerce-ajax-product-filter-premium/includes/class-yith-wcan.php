@@ -300,6 +300,10 @@ if ( ! class_exists( 'YITH_WCAN' ) ) {
 
 			wp_register_style( 'yith-wcan-shortcodes', YITH_WCAN_URL . 'assets/css/shortcodes.css', array(), YITH_WCAN_VERSION );
 			wp_register_script( 'yith-wcan-shortcodes', YITH_WCAN_URL . 'assets/js/yith-wcan-shortcodes' . $suffix . '.js', array( 'jquery', 'accounting', 'selectWoo' ), YITH_WCAN_VERSION, true );
+
+			if ( is_admin() ) {
+				wp_localize_script( 'yith-wcan-shortcodes', 'yith_wcan_shortcodes', array() );
+			}
 		}
 
 		/**
