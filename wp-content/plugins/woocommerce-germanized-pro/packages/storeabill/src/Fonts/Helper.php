@@ -104,7 +104,7 @@ final class Helper {
 
 		if ( empty( $results['error'] ) ) {
 			$saved_fonts[ $url ] = $results;
-			update_option( 'storeabill_font_local_filenames', $saved_fonts );
+			update_option( 'storeabill_font_local_filenames', $saved_fonts, false );
 
 			return $results['url'];
 		}

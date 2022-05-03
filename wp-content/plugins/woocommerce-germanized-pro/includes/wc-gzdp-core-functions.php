@@ -204,3 +204,11 @@ function wc_gzdp_get_email_helper( $email ) {
 
 	return new WC_GZDP_Email_Helper( $email );
 }
+
+add_filter( 'storeabill_enabled_extended_log', 'wc_gzdp_is_extended_debug_mode_enabled', 5 );
+add_filter( 'woocommerce_gzd_dpd_enable_logging', 'wc_gzdp_is_extended_debug_mode_enabled', 5 );
+add_filter( 'woocommerce_gzdp_enable_logging', 'wc_gzdp_is_extended_debug_mode_enabled', 5 );
+
+function wc_gzdp_is_extended_debug_mode_enabled() {
+	return function_exists( 'wc_gzd_is_extended_debug_mode_enabled' ) ? wc_gzd_is_extended_debug_mode_enabled() : false;
+}

@@ -45,6 +45,11 @@ class Helper {
 		add_action( 'woocommerce_order_refunded', array( __CLASS__, 'sync_order_refund' ), 10, 2 );
 
 		/**
+		 * Listen to hooks triggered before creating refund payments.
+		 */
+        add_action( 'woocommerce_create_refund', array( __CLASS__, 'observe_refund_comments' ), 10, 1 );
+
+		/**
 		 * Validate the order upon saving.
 		 */
 		add_action( 'woocommerce_after_order_object_save', array( __CLASS__, 'validate_order' ), 10 );
@@ -53,6 +58,18 @@ class Helper {
 		 * Register order status update hooks on init.
 		 */
 		add_action( 'init', array( __CLASS__, 'register_order_status_hooks' ), 50 );
+
+		/**
+         * For some actions, e.g. saving order items via WP Admin, Woo does not trigger
+         * a tax recalculation. This may easily lead to broken order state which ultimately
+         * leads to cancellations being created. To overcome this issue force a tax recalculation
+         * in case a valid AJAX request is detected during wc_save_order_items().
+         *
+         * @see wc_save_order_items()
+		 */
+        add_action( 'woocommerce_before_save_order_items', function() {
+            add_action( 'woocommerce_order_after_calculate_totals', array( __CLASS__, 'maybe_trigger_tax_recalculation' ), 10, 2 );
+        } );
 
 		/**
 		 * Customer panel downloads
@@ -93,6 +110,46 @@ class Helper {
 	}
 
 	/**
+	 * @param boolean $and_taxes
+	 * @param \WC_Order $order
+	 *
+	 * @return void
+	 */
+    public static function maybe_trigger_tax_recalculation( $and_taxes, $order ) {
+        // Prevent infinite loops
+	    remove_action( 'woocommerce_order_after_calculate_totals', array( __CLASS__, 'maybe_trigger_tax_recalculation' ), 10 );
+
+	    if ( did_action( 'woocommerce_order_before_calculate_taxes' ) ) {
+            return;
+        }
+
+        $actions = array(
+            'woocommerce_save_order_items',
+            'woocommerce_add_order_item',
+            'woocommerce_add_order_shipping',
+            'woocommerce_add_order_fee',
+            'woocommerce_remove_order_item'
+        );
+
+        if ( isset( $_REQUEST['action'] ) && in_array( $_REQUEST['action'], $actions ) ) {
+            $calculate_tax_args = array(
+                'country'  => isset( $_POST['country'] ) ? sab_strtoupper( sab_clean( wp_unslash( $_POST['country'] ) ) ) : '',
+                'state'    => isset( $_POST['state'] ) ? sab_strtoupper( sab_clean( wp_unslash( $_POST['state'] ) ) ) : '',
+                'postcode' => isset( $_POST['postcode'] ) ? sab_strtoupper( sab_clean( wp_unslash( $_POST['postcode'] ) ) ) : '',
+                'city'     => isset( $_POST['city'] ) ? sab_strtoupper( sab_clean( wp_unslash( $_POST['city'] ) ) ) : '',
+            );
+
+            \Vendidero\StoreaBill\Package::extended_log( 'Triggered tax recalculation while saving items' );
+
+            $order->calculate_taxes( $calculate_tax_args );
+
+            \Vendidero\StoreaBill\Package::extended_log( 'Triggered calculate totals while saving items' );
+
+            $order->calculate_totals( false );
+        }
+    }
+
+	/**
 	 * @param $transaction_id
 	 * @param Order $order
 	 *
@@ -101,9 +158,9 @@ class Helper {
     public static function sync_transaction_id( $transaction_id, $order ) {
 	    /**
 	     * Mollie uses a separate payment id which is used during mollie exports (e.g. CSV, DATEV).
-         * For improved matching, use the payment id as transaction id.
+         * For improved matching, use the payment id instead of the default transaction id.
 	     */
-        if ( $order->get_meta( '_mollie_payment_id' ) ) {
+        if ( strstr( $order->get_payment_method(), 'mollie_' ) && 'ord_' === substr( $transaction_id, 0, 4 ) && $order->get_meta( '_mollie_payment_id' ) ) {
             $transaction_id = $order->get_meta( '_mollie_payment_id' );
         }
 
@@ -366,6 +423,28 @@ class Helper {
 	}
 
 	public static function validate_order( $order ) {
+        $stack    = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS,10 );
+        $validate = true;
+
+		/**
+		 * Do not validate orders while WC_Order::update_taxes() is called to prevent
+         * unnecessary cancellations being generated during bad order states.
+         *
+         * @see WC_Order::update_taxes()
+		 */
+        foreach( $stack as $backtrace ) {
+            if ( ! isset( $backtrace['class'], $backtrace['function'] ) ) {
+                continue;
+            }
+
+            if ( 'WC_Abstract_Order' === $backtrace['class'] && 'update_taxes' === $backtrace['function'] ) {
+                $validate = false;
+                break;
+            }
+        }
+
+        Package::extended_log( sprintf( "Validating order #%s? %s", $order->get_id(), sab_bool_to_string( $validate ) ) );
+
 	    /*
 	     * Make sure validation works on clean order data, e.g. fresh instance from DB.
 	     *
@@ -375,8 +454,12 @@ class Helper {
 	     */
 	    $order_id = ! is_numeric( $order ) ? $order->get_id() : $order;
 
+		if ( ! apply_filters( 'storeabill_woo_order_validate', $validate, $order_id ) ) {
+			return;
+		}
+
 		if ( $sab_order = self::get_order( $order_id ) ) {
-			$sab_order->validate();
+			$sab_order->validate( array( 'created_via' => 'automation' ) );
 		}
 	}
 
@@ -385,9 +468,57 @@ class Helper {
 	 * @param $refund_id
 	 */
 	public static function sync_order_refund( $order_id, $refund_id ) {
+		global $wp_filter;
+
 		if ( $sab_order = self::get_order( $order_id ) ) {
 			$sab_order->validate();
 		}
+
+		/**
+		 * Remove the anonymous woocommerce_new_order_note_data filter by its specific priority.
+		 */
+        if ( isset( $wp_filter['woocommerce_new_order_note_data'] ) && isset( $wp_filter['woocommerce_new_order_note_data']->callbacks[991] ) ) {
+	        array_pop( $wp_filter['woocommerce_new_order_note_data']->callbacks[991] );
+        }
+	}
+
+	/**
+	 * @param \WC_Order_Refund $refund
+	 *
+	 * @return void
+	 */
+	public static function observe_refund_comments( $refund ) {
+		/**
+		 * During wc_refund_payment many payment gateways create order notes that contain
+         * details to the payment linked to the refund. As Woo does not (yet) offer a way to store the
+         * transaction id for a refund, let's try to find the transaction id based on a regex and save it
+         * as meta in the refund.
+		 */
+		add_filter( 'woocommerce_new_order_note_data', function( $comment_data, $args ) use ( $refund ) {
+            if ( ! $args['is_customer_note'] ) {
+                if ( $order = self::get_order( $args['order_id'] ) ) {
+	                $content        = $comment_data['comment_content'];
+                    $regex          = '';
+                    $payment_method = $order->get_payment_method();
+
+                    if ( strstr( $payment_method, 'mollie_' ) ) {
+	                    $regex = '/\b(tr_)([\da-zA-Z]){6,}\b/';
+                    } elseif ( strstr( $payment_method, 'paypal' ) ) {
+	                    $regex = '/\b[\dA-Z]{17}\b/';
+                    }
+
+                    $regex = apply_filters( 'storeabill_woo_order_refund_payment_transaction_id_regex', $regex, $payment_method, $refund, $order );
+
+                    if ( ! empty( $regex ) && ! empty( $content ) ) {
+	                    if ( preg_match( $regex, $content, $match ) ) {
+                            $refund->update_meta_data( '_sab_matched_refund_transaction_id', sab_clean( trim( $match[0] ) ) );
+	                    }
+                    }
+                }
+            }
+
+            return $comment_data;
+		}, 991, 2 );
 	}
 
 	/**
@@ -528,13 +659,18 @@ class Helper {
 
 	/**
 	 * @param \WC_Order_Item $order_item
+     * @param Order $order
 	 *
 	 * @return OrderItem
 	 */
-	public static function get_order_item( $order_item ) {
+	public static function get_order_item( $order_item, $order ) {
 		// Remove _accounting item type prefix.
 		$document_item_type = str_replace( 'accounting_', '', self::get_document_item_type( $order_item->get_type() ) );
 		$classname          = '\Vendidero\StoreaBill\WooCommerce\OrderItem' . ucfirst( $document_item_type );
+
+        if ( 'fee' === $order_item->get_type() && $order->fee_is_voucher( $order_item ) ) {
+            $classname = '\Vendidero\StoreaBill\WooCommerce\OrderItemVoucher';
+        }
 
 		if ( ! class_exists( $classname ) ) {
 			$classname = '\Vendidero\StoreaBill\WooCommerce\OrderItem';

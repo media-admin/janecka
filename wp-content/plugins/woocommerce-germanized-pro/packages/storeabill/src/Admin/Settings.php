@@ -56,14 +56,6 @@ class Settings {
 		$settings = array_merge( $settings, \Vendidero\StoreaBill\WooCommerce\Admin\Settings::get_cancellation_settings() );
 
 		$settings = array_merge( $settings, array(
-			array(
-				'title' 	     => _x( 'Email', 'storeabill-core', 'woocommerce-germanized-pro' ),
-				'desc' 		     => _x( 'Automatically send cancellations to customers by email.', 'storeabill-core', 'woocommerce-germanized-pro' ),
-				'id' 		     => 'storeabill_invoice_cancellation_send_to_customer',
-				'default'	     => 'yes',
-				'type' 		     => 'sab_toggle',
-			),
-
 			array( 'type' => 'sectionend', 'id' => 'cancellation_general_settings' ),
 
 			array( 'title' => _x( 'Layout', 'storeabill-core', 'woocommerce-germanized-pro' ), 'desc' => sprintf( _x( 'Manage your %1$s templates by using the visual editor <a href="%2$s" class="button button-secondary">Learn more</a>', 'storeabill-core', 'woocommerce-germanized-pro' ), sab_get_document_type_label( 'invoice_cancellation' ), apply_filters( 'storeabill_invoice_cancellation_layout_help_link', '#' ) ), 'type' => 'title', 'id' => 'cancellation_layout_settings' ),
@@ -90,14 +82,6 @@ class Settings {
 		$settings = array_merge( $settings, \Vendidero\StoreaBill\WooCommerce\Admin\Settings::get_invoice_settings() );
 
 		$settings = array_merge( $settings, array(
-			array(
-				'title' 	     => _x( 'Email', 'storeabill-core', 'woocommerce-germanized-pro' ),
-				'desc' 		     => _x( 'Automatically send invoices to customers by email after finalizing.', 'storeabill-core', 'woocommerce-germanized-pro' ),
-				'id' 		     => 'storeabill_invoice_send_to_customer',
-				'default'	     => 'yes',
-				'type' 		     => 'sab_toggle',
-			),
-
 			array( 'type' => 'sectionend', 'id' => 'invoice_general_settings' ),
 
 			array( 'title' => _x( 'Layout', 'storeabill-core', 'woocommerce-germanized-pro' ), 'desc' => sprintf( _x( 'Manage your %1$s templates by using the visual editor <a href="%2$s" class="button button-secondary">Learn more</a>', 'storeabill-core', 'woocommerce-germanized-pro' ), sab_get_document_type_label( 'invoice' ), apply_filters( 'storeabill_invoice_layout_help_link', '#' ) ), 'type' => 'title', 'id' => 'invoice_layout_settings' ),

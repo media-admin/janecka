@@ -120,6 +120,13 @@ class Resources extends REST {
 		return $this->get_sync_helper()->parse_response( $this->post( 'vouchers', $data ) );
 	}
 
+	public function create_voucher_transaction_hint( $id, $payment_transaction_id ) {
+		return $this->get_sync_helper()->parse_response( $this->post( 'transaction-assignment-hint', array(
+			'voucherId'         => $id,
+			'externalReference' => $payment_transaction_id,
+		) ) );
+	}
+
 	public function update_voucher_file( $id, $file ) {
 		try {
 			$curl_file = new \CURLFile( $file, 'application/pdf' );

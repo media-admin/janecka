@@ -2,8 +2,6 @@
 
 class WC_GZD_Product_Export {
 
-	public $columns = array();
-
 	protected static $_instance = null;
 
 	public static function instance() {
@@ -17,6 +15,8 @@ class WC_GZD_Product_Export {
 	protected $additional_columns = array();
 
 	protected $is_exporting_delivery_time = false;
+
+	protected $is_exporting_nutrients = false;
 
 	/**
 	 * Cloning is forbidden.
@@ -37,11 +37,33 @@ class WC_GZD_Product_Export {
 	}
 
 	public function __construct() {
-		add_action( 'admin_init', array( $this, 'init' ), 20 );
+		add_filter( 'woocommerce_product_export_product_default_columns', array( $this, 'set_columns' ), 10, 1 );
+		add_filter( 'woocommerce_product_export_row_data', array( $this, 'export_delivery_times' ), 10, 2 );
+		add_filter( 'woocommerce_product_export_row_data', array( $this, 'export_nutrients' ), 15, 2 );
+		add_filter( "woocommerce_product_export_column_names", array( $this, 'register_additional_columns' ), 500, 2 );
+
+		if ( ! did_action( 'init' ) ) {
+			add_action( 'init', array( $this, 'register_column_filters' ) );
+		} else {
+			$this->register_column_filters();
+		}
+
+		$this->additional_columns = array();
+		$this->is_exporting_delivery_time = false;
+		$this->is_exporting_nutrients = false;
+	}
+
+	public function register_column_filters() {
+		foreach ( $this->get_columns() as $key => $column ) {
+			add_filter( 'woocommerce_product_export_product_column_' . $key, array( $this, 'export_column' ), 10, 2 );
+		}
 	}
 
 	public function init() {
+		wc_deprecated_function( 'WC_GZD_Product_Export::init', '3.9.0' );
+	}
 
+	public function get_columns() {
 		/**
 		 * Filter to extend Germanized data added to the WooCommerce product export.
 		 *
@@ -49,7 +71,7 @@ class WC_GZD_Product_Export {
 		 *
 		 * @since 1.9.1
 		 */
-		$this->columns = apply_filters( 'woocommerce_gzd_product_export_default_columns', array(
+		return apply_filters( 'woocommerce_gzd_product_export_default_columns', array(
 			'service'                  => _x( 'Is service?', 'exporter', 'woocommerce-germanized' ),
 			'used_good'                => _x( 'Is used good?', 'exporter', 'woocommerce-germanized' ),
 			'defective_copy'           => _x( 'Is defective copy?', 'exporter', 'woocommerce-germanized' ),
@@ -68,18 +90,21 @@ class WC_GZD_Product_Export {
 			'delivery_time'            => _x( 'Delivery time', 'exporter', 'woocommerce-germanized' ),
 			'sale_price_label'         => _x( 'Sale price label', 'exporter', 'woocommerce-germanized' ),
 			'sale_price_regular_label' => _x( 'Sale price regular label', 'exporter', 'woocommerce-germanized' ),
+			'is_food'                  => _x( 'Is food?', 'exporter', 'woocommerce-germanized' ),
+			'nutrients'                => _x( 'Nutrients', 'exporter', 'woocommerce-germanized' ),
+			'allergen_ids'             => _x( 'Allergenic', 'exporter', 'woocommerce-germanized' ),
+			'deposit_type'             => _x( 'Deposit Type', 'exporter', 'woocommerce-germanized' ),
+			'deposit_quantity'         => _x( 'Deposit Quantity', 'exporter', 'woocommerce-germanized' ),
+			'ingredients'              => _x( 'Ingredients', 'exporter', 'woocommerce-germanized' ),
+			'nutrient_reference_value' => _x( 'Nutrient reference value slug', 'exporter', 'woocommerce-germanized' ),
+			'alcohol_content'          => _x( 'Alcohol content', 'exporter', 'woocommerce-germanized' ),
+			'drained_weight'           => _x( 'Drained weight', 'exporter', 'woocommerce-germanized' ),
+			'net_filling_quantity'     => _x( 'Net filling quantity', 'exporter', 'woocommerce-germanized' ),
+			'nutri_score'              => _x( 'Nutri-Score', 'exporter', 'woocommerce-germanized' ),
+			'food_description'         => _x( 'Food Description', 'exporter', 'woocommerce-germanized' ),
+			'food_place_of_origin'     => _x( 'Food Place of Origin', 'exporter', 'woocommerce-germanized' ),
+			'food_distributor'         => _x( 'Food Distributor', 'exporter', 'woocommerce-germanized' ),
 		) );
-
-		add_filter( 'woocommerce_product_export_product_default_columns', array( $this, 'set_columns' ), 10, 1 );
-		add_filter( 'woocommerce_product_export_row_data', array( $this, 'export_delivery_times' ), 10, 2 );
-		add_filter( "woocommerce_product_export_column_names", array( $this, 'register_additional_columns' ), 500, 2 );
-
-		foreach ( $this->columns as $key => $column ) {
-			add_filter( 'woocommerce_product_export_product_column_' . $key, array( $this, 'export_column' ), 10, 2 );
-		}
-
-		$this->additional_columns = array();
-		$this->is_exporting_delivery_time = false;
 	}
 
 	public function register_additional_columns( $columns ) {
@@ -88,12 +113,8 @@ class WC_GZD_Product_Export {
 		return $columns;
 	}
 
-	public function get_columns() {
-		return $this->columns;
-	}
-
 	public function set_columns( $columns ) {
-		return array_merge( $columns, $this->columns );
+		return array_merge( $columns, $this->get_columns() );
 	}
 
 	/**
@@ -126,22 +147,53 @@ class WC_GZD_Product_Export {
 	}
 
 	/**
+	 * @param $row
+	 * @param WC_Product $product
+	 */
+	public function export_nutrients( $row, $product ) {
+		if ( ! $this->is_exporting_nutrients ) {
+			return $row;
+		}
+
+		$gzd_product      = wc_gzd_get_product( $product );
+		$row['nutrients'] = '';
+
+		foreach( $gzd_product->get_nutrient_ids( 'edit' ) as $nutrient_id => $values ) {
+			if ( $nutrient = WC_germanized()->nutrients->get_nutrient_term( $nutrient_id, 'id' ) ) {
+				$column_key         = 'nutrients:' . esc_attr( $nutrient->slug );
+				$row[ $column_key ] = $values['value'];
+
+				if ( '' !== $values['ref_value'] ) {
+					$row[ $column_key ] = $row[ $column_key ] . '|' . $values['ref_value'];
+				}
+
+				$this->additional_columns[ $column_key ] = sprintf( __( 'Nutrients: %s', 'woocommerce-germanized' ), $nutrient->name );
+			}
+		}
+
+		return $row;
+	}
+
+	/**
 	 * @param $value
 	 * @param WC_Product $product
 	 *
 	 * @return mixed|void|null
 	 */
 	public function export_column( $value, $product ) {
-		$filter      = current_filter();
-		$column_name = str_replace( 'woocommerce_product_export_product_column_', '', $filter );
-		$gzd_product = wc_gzd_get_product( $product );
+		$filter        = current_filter();
+		$column_name   = str_replace( 'woocommerce_product_export_product_column_', '', $filter );
+		$gzd_product   = wc_gzd_get_product( $product );
+		$is_html_field = in_array( $column_name, array( 'ingredients', 'food_description', 'food_place_of_origin', 'food_distributor', 'defect_description', 'mini_desc' ) );
 
 		/**
 		 * Delivery time needs special handling
 		 */
 		if ( 'delivery_time' === $column_name ) {
 			$this->is_exporting_delivery_time = true;
-
+			return '';
+		} elseif ( 'nutrients' === $column_name ) {
+			$this->is_exporting_nutrients = true;
 			return '';
 		}
 
@@ -163,12 +215,39 @@ class WC_GZD_Product_Export {
 			$getter = "get_{$column_name}";
 			$value  = '';
 
+			if ( $is_html_field ) {
+				$getter = "get_formatted_{$column_name}";
+			}
+
 			if ( is_callable( array( $gzd_product, $getter ) ) ) {
 				$value = $gzd_product->$getter();
 			}
 		}
 
+		if ( $is_html_field ) {
+			$value = $this->filter_description_field( $value );
+		}
+
 		return $value;
+	}
+
+	protected function filter_description_field( $description ) {
+		$description = str_replace( '\n', "\\\\n", $description );
+		$description = str_replace( "\n", '\n', $description );
+
+		return $description;
+	}
+
+	public function get_column_value_allergen_ids( $product ) {
+		$allergenic_list = array();
+
+		foreach( wc_gzd_get_gzd_product( $product )->get_allergen_ids() as $id ) {
+			if ( $term = WC_germanized()->allergenic->get_allergen_term( $id, 'id' ) ) {
+				$allergenic_list[] = $term->name;
+			}
+		}
+
+		return implode( '|', $allergenic_list );
 	}
 
 	public function get_column_value_sale_price_label( $product ) {

@@ -41,8 +41,8 @@ function ItemDiscountEdit( {
 	 className,
 	 showPricesIncludingTax
 } ) {
-	const { content, discountType, hideIfEmpty } = attributes;
-	let item = getPreviewItem();
+	const { content, discountType, hideIfEmpty, itemType } = attributes;
+	let item = getPreviewItem( itemType );
 
 	const {
 		TextColor,
@@ -125,11 +125,15 @@ export default compose(
 		const { clientId } = ownProps;
 		const { getBlockRootClientId, getBlockAttributes } = select( 'core/block-editor' );
 
-		const columnClientId = getBlockRootClientId( clientId );
-		const tableClientId = getBlockRootClientId( columnClientId );
-		const tableAttributes = getBlockAttributes( tableClientId );
+		const columnClientId  = getBlockRootClientId( clientId );
+		const tableClientId   = getBlockRootClientId( columnClientId );
+		let tableAttributes   = getBlockAttributes( tableClientId );
 
-		ownProps.attributes.showPricesIncludingTax = tableAttributes.showPricesIncludingTax;
+		if ( tableAttributes ) {
+			ownProps.attributes.showPricesIncludingTax = tableAttributes.showPricesIncludingTax;
+		} else {
+			tableAttributes = ownProps.attributes;
+		}
 
 		return {
 			showPricesIncludingTax: tableAttributes.showPricesIncludingTax

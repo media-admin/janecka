@@ -113,6 +113,18 @@ window.germanized = window.germanized || {};
                      */
                     if ( $errorWrapper.length > 0 && $errorWrapper.children().length > 0 ) {
                         hasError = true;
+
+                        /**
+                         * Some payment plugins e.g. Stripe do not remove the child-elements (e.g. li)
+                         * but leave empty orphan elements. Explicitly check the li content and prevent error state.
+                         */
+                        if ( $errorWrapper.find( 'li' ).length > 0 ) {
+                            var error_text = $.trim( $errorWrapper.find( 'li' ).text() );
+
+                            if ( '' === error_text ) {
+                                hasError = false;
+                            }
+                        }
                     }
 
                     if ( ! hasError ) {

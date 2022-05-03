@@ -22,8 +22,8 @@ const ItemTaxRateEdit = ( {
    setFontSize,
    className
 } ) => {
-    const { content } = attributes;
-    let item = getPreviewItem();
+    const { content, itemType } = attributes;
+    let item = getPreviewItem( itemType );
 
     const taxRate = item.tax_rates[0].formatted_percentage_html;
 

@@ -50,7 +50,7 @@ class Font {
 		}
 
 		if ( empty( $this->data['name'] ) ) {
-			$this->set_name( str_replace( '_', '', sanitize_key( $this->get_label() ) ) );
+			$this->set_name( Fonts::clean_font_name( $this->get_label() ) );
 		}
 	}
 
@@ -65,7 +65,7 @@ class Font {
 	}
 
 	public function get_name() {
-		return $this->data['name'];
+		return Fonts::clean_font_name(  $this->data['name'] );
 	}
 
 	public function set_name( $name ) {

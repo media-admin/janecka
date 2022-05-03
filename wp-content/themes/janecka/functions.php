@@ -357,6 +357,24 @@ add_filter( 'the_content_more_link', 'medialab_read_more_text', 10, 2 );
 
 
 
+/* Get rid of the “Category:”, “Tag:”, “Author:”, “Archives:” and “Other taxonomy name:” */
+add_filter( 'get_the_archive_title', function ($title) {
+	if ( is_category() ) {
+  	$title = single_cat_title( '', false );
+ 	} elseif ( is_tag() ) {
+ 		$title = single_tag_title( '', false );
+	} elseif ( is_tax() ) {
+		$title = single_term_title( '', false );
+	} elseif ( is_author() ) {
+		$title = '<span class="vcard">' . get_the_author() . '</span>' ;
+ }
+
+ return $title;
+});
+
+
+
+
 /* Anzeige der Vorschaubilder in der Galerie */
 
 function medialab_get_backend_preview_thumb($post_ID) {

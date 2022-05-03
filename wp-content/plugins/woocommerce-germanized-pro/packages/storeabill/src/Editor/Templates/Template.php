@@ -28,6 +28,10 @@ abstract class Template {
 	    return 'invoice';
     }
 
+    public static function get_document_type_object() {
+        return sab_get_document_type( self::get_document_type() );
+    }
+
 	public static function get_name() {
 	    return '';
     }

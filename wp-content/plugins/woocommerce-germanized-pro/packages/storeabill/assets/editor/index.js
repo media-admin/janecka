@@ -27,7 +27,7 @@ function enforceBlockOrder( blocks ) {
         if ( 'storeabill/footer' === block.name ) {
             const {
                 moveBlockToPosition
-            } = dispatch( 'core/editor' );
+            } = dispatch( 'core/block-editor' );
 
             moveBlockToPosition( block.clientId, '', '', length );
         }

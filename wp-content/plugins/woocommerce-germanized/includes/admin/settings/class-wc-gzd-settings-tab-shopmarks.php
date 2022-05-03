@@ -37,6 +37,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			''               => __( 'General', 'woocommerce-germanized' ),
 			'delivery_times' => __( 'Delivery times', 'woocommerce-germanized' ),
 			'unit_prices'    => __( 'Unit prices', 'woocommerce-germanized' ),
+			'food'           => __( 'Food', 'woocommerce-germanized' ),
 			'price_labels'   => __( 'Price labels', 'woocommerce-germanized' ),
 		);
 
@@ -50,6 +51,16 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		) );
 
 		return $sections;
+	}
+
+	protected function section_is_pro( $section_id ) {
+		$is_pro = parent::section_is_pro( $section_id );
+
+		if ( 'food' === $section_id ) {
+			$is_pro = true;
+		}
+
+		return $is_pro;
 	}
 
 	public function get_pointers() {
@@ -175,6 +186,8 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			$settings = $this->get_delivery_time_settings();
 		} elseif ( 'unit_prices' === $current_section ) {
 			$settings = $this->get_unit_price_settings();
+		} elseif ( 'food' === $current_section ) {
+			$settings = $this->get_food_settings();
 		} elseif ( 'price_labels' === $current_section ) {
 			$settings = $this->get_price_label_settings();
 		} elseif ( 'product_widgets' === $current_section ) {
@@ -240,7 +253,23 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'id'            => 'woocommerce_gzd_display_product_widget_delivery_time',
 				'type'          => 'gzd_toggle',
 				'default'       => 'yes',
-				'checkboxgroup' => 'end',
+				'checkboxgroup' => '',
+			),
+
+			array(
+				'desc' 		    => __( 'Deposit', 'woocommerce-germanized' ),
+				'id' 		    => 'woocommerce_gzd_display_product_widget_product_deposit',
+				'type'          => 'gzd_toggle',
+				'default'	    => 'yes',
+				'checkboxgroup'	=> '',
+			),
+
+			array(
+				'desc' 		    => __( 'Deposit Packaging Type', 'woocommerce-germanized' ),
+				'id' 		    => 'woocommerce_gzd_display_product_widget_deposit_packaging_type',
+				'type'          => 'gzd_toggle',
+				'default'	    => 'yes',
+				'checkboxgroup'	=> 'end',
 			),
 
 			array( 'type' => 'sectionend', 'id' => 'product_widget_visibility_options' )
@@ -287,6 +316,22 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			array(
 				'desc' 		    => __( 'Defect Description', 'woocommerce-germanized' ),
 				'id' 		    => 'woocommerce_gzd_display_emails_product_defect_description',
+				'type'          => 'gzd_toggle',
+				'default'	    => 'yes',
+				'checkboxgroup'	=> '',
+			),
+
+			array(
+				'desc' 		    => __( 'Deposit', 'woocommerce-germanized' ),
+				'id' 		    => 'woocommerce_gzd_display_emails_product_deposit',
+				'type'          => 'gzd_toggle',
+				'default'	    => 'yes',
+				'checkboxgroup'	=> '',
+			),
+
+			array(
+				'desc' 		    => __( 'Deposit Packaging Type', 'woocommerce-germanized' ),
+				'id' 		    => 'woocommerce_gzd_display_emails_product_deposit_packaging_type',
 				'type'          => 'gzd_toggle',
 				'default'	    => 'yes',
 				'checkboxgroup'	=> 'end',
@@ -545,6 +590,56 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 			array( 'type' => 'sectionend', 'id' => 'delivery_time_options' ),
 		);
+	}
+
+	protected function is_saveable() {
+		$is_saveable     = parent::is_saveable();
+		$current_section = $this->get_current_section();
+
+		if ( in_array( $current_section, array( 'food' ) ) && ! WC_germanized()->is_pro() ) {
+			$is_saveable = false;
+		}
+
+		return $is_saveable;
+	}
+
+	protected function get_food_settings() {
+		if ( WC_germanized()->is_pro() ) {
+			$food_settings = array_merge( array( array( 'type' => 'title', 'title' => __( 'Deposit', 'woocommerce-germanized' ), 'id' => 'deposit_options' ), ), apply_filters( 'woocommerce_gzd_food_deposit_settings', array(
+				array(
+					'title'    => __( 'Format', 'woocommerce-germanized' ),
+					'desc'     => '<div class="wc-gzd-additional-desc">' . __( 'This text will be used to display the deposit notice. Use {amount} to insert the deposit amount. {type} for the deposit type name, {amount_per_unit} for the deposit amount per unit, {packaging_type} for the packaging type and {quantity} for the deposit quantity.', 'woocommerce-germanized' ) . '</div>',
+					'desc_tip' => false,
+					'id'       => 'woocommerce_gzd_deposit_text',
+					'type'     => 'text',
+					'default'  => __( 'plus {amount} deposit', 'woocommerce-germanized' ),
+				),
+				array(
+					'title'    => __( 'Packaging Font Size', 'woocommerce-germanized' ),
+					'desc'     => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Adjust the packaging type title font size which must <a href="%s" target="_blank">at least correspond to the price labeling</a> for the respective product.', 'woocommerce-germanized' ), 'https://www.it-recht-kanzlei.de/hinweispflichten-einweg-mehrweg-getraenkeverpackungen.html' ) . '</div>',
+					'desc_tip' => false,
+					'id'       => 'woocommerce_gzd_deposit_packaging_type_font_size',
+					'type'     => 'text',
+					'css'      => 'max-width: 100px',
+					'default'  => '1.2em',
+				),
+			) ) );
+
+			$food_settings[] = array( 'type' => 'sectionend', 'id' => 'deposit_options' );
+		} else {
+			$food_settings = array(
+				array(
+					'title' => '',
+					'type'  => 'title',
+					'id'    => 'food_options',
+					'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( 'Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more. %sUpgrade to %spro%s%s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>'
+				),
+
+				array( 'type' => 'sectionend', 'id' => 'food_options' ),
+			);
+		}
+
+		return $food_settings;
 	}
 
 	protected function get_unit_price_settings() {

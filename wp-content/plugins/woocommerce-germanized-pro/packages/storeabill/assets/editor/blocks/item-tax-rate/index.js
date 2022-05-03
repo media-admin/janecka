@@ -20,6 +20,14 @@ const settings = {
         "customTextColor": {
             "type": "string"
         },
+        "isDisabled": {
+            "type": "boolean",
+            "default": false,
+        },
+        "itemType": {
+            "type": "string",
+            "default": "",
+        },
         "fontSize": {
             "type": "string"
         },

@@ -24,8 +24,8 @@ function ItemNameEdit( {
     fontSize,
     setFontSize,
 } ) {
-    const { content } = attributes;
-    let item = getPreviewItem();
+    const { content, itemType } = attributes;
+    let item = getPreviewItem( itemType );
 
     const {
         TextColor,

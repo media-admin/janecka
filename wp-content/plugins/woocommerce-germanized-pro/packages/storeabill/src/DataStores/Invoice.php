@@ -32,16 +32,19 @@ class Invoice extends Document {
 	 */
 	protected $internal_meta_keys = array(
 		'_address',
+		'_created_via',
+		'_reference_number',
+		'_external_sync_handlers',
+		'_version',
 		'_shipping_address',
 		'_created_via',
-		'_version',
-		'_reference_number',
 		'_currency',
 		'_prices_include_tax',
 		'_is_reverse_charge',
 		'_is_oss',
 		'_vat_id',
 		'_is_taxable',
+		'_stores_vouchers_as_discount',
 		'_round_tax_at_subtotal',
 		'_tax_display_mode',
 		'_total',
@@ -66,7 +69,6 @@ class Invoice extends Document {
 		'_voucher_tax',
 		'_discount_tax',
 		'_payment_status',
-		'_external_sync_handlers',
 		'_payment_method_title',
 		'_payment_method_name',
 		'_payment_transaction_id',
@@ -99,6 +101,7 @@ class Invoice extends Document {
 			case "is_reverse_charge":
 			case "is_oss":
 			case "is_taxable":
+			case "stores_vouchers_as_discount":
 				$value = sab_bool_to_string( $value );
 				break;
 			case "payment_status":

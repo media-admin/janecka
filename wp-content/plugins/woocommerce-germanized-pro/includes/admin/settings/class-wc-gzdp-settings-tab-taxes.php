@@ -149,6 +149,17 @@ class WC_GZDP_Settings_Tab_Taxes extends WC_GZD_Settings_Tab_Taxes {
 				),
 			),
 
+			array(
+				'title' 	=> __( 'Virtual Location Check', 'woocommerce-germanized-pro' ),
+				'desc' 		=> __( 'Check and store actual customer location (based on IP address) while selling virtual products.', 'woocommerce-germanized-pro' ) . '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Store customer location data based on <a href="%1$s">Geolocation</a>. Shows a <a href="%2$s">checkbox</a> in case the IP-based country differs from the country chosen by the customer.', 'woocommerce-germanized-pro' ), admin_url( 'admin.php?page=wc-settings&tab=integration' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-checkboxes&checkbox_id=virtual_vat_location' ) ) . '</div>',
+				'id' 		=> 'woocommerce_gzdp_virtual_vat_location_check',
+				'default'	=> 'no',
+				'type' 		=> 'gzd_toggle',
+				'custom_attributes' => array(
+					'data-show_if_woocommerce_gzdp_enable_vat_check' => '',
+				),
+			),
+
 			array( 'type' => 'sectionend', 'id' => 'vat_id_options' ),
 		);
 	}

@@ -7,15 +7,17 @@ defined( 'ABSPATH' ) || exit;
 class Shortcodes extends \Vendidero\StoreaBill\Document\Shortcodes {
 
 	public function get_shortcodes() {
-		$shortcodes = array(
+		$shortcodes = parent::get_shortcodes();
+
+		$shortcodes = array_merge( $shortcodes, array(
 			'order'      => array( $this, 'order_data' ),
 			'if_order'   => array( $this, 'if_order_data' ),
 			'order_item' => array( $this, 'order_item_data' ),
 			'invoice'    => array( $this, 'invoice_data' ),
 			'if_document_has_differing_shipping_address' => array( $this, 'if_document_has_differing_shipping_address' ),
-		);
+		) );
 
-		return apply_filters( 'storeabill_invoice_shortcodes', $shortcodes );
+		return apply_filters( 'storeabill_invoice_shortcodes', $shortcodes, $this );
 	}
 
 	public function order_data( $atts ) {

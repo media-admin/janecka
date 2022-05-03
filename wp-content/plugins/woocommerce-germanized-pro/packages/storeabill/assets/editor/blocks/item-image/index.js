@@ -16,6 +16,14 @@ const settings = {
         "customWidth": {
             "type": "number"
         },
+        "isDisabled": {
+            "type": "boolean",
+            "default": false,
+        },
+        "itemType": {
+            "type": "string",
+            "default": "",
+        },
     },
     edit
 };

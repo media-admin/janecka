@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit1418a5a1d0c782b002aa91b1b9126757
+class ComposerStaticInit7322fb5f1b3c81982302f74759d02e5e
 {
     public static $prefixLengthsPsr4 = array (
         'V' => 
@@ -191,6 +191,10 @@ class ComposerStaticInit1418a5a1d0c782b002aa91b1b9126757
         'Vendidero\\Germanized\\DPD\\Package' => __DIR__ . '/../..' . '/packages/woocommerce-germanized-dpd/src/Package.php',
         'Vendidero\\Germanized\\DPD\\ShippingProvider\\DPD' => __DIR__ . '/../..' . '/packages/woocommerce-germanized-dpd/src/ShippingProvider/DPD.php',
         'Vendidero\\Germanized\\Pro\\Autoloader' => __DIR__ . '/../..' . '/src/Autoloader.php',
+        'Vendidero\\Germanized\\Pro\\Food\\Allergen' => __DIR__ . '/../..' . '/src/Food/Allergen.php',
+        'Vendidero\\Germanized\\Pro\\Food\\Deposits\\Helper' => __DIR__ . '/../..' . '/src/Food/Deposits/Helper.php',
+        'Vendidero\\Germanized\\Pro\\Food\\Helper' => __DIR__ . '/../..' . '/src/Food/Helper.php',
+        'Vendidero\\Germanized\\Pro\\Food\\Nutrient' => __DIR__ . '/../..' . '/src/Food/Nutrient.php',
         'Vendidero\\Germanized\\Pro\\Legacy\\Cancellation' => __DIR__ . '/../..' . '/src/Legacy/Cancellation.php',
         'Vendidero\\Germanized\\Pro\\Legacy\\CancellationRefund' => __DIR__ . '/../..' . '/src/Legacy/CancellationRefund.php',
         'Vendidero\\Germanized\\Pro\\Legacy\\Importer' => __DIR__ . '/../..' . '/src/Legacy/Importer.php',
@@ -245,6 +249,8 @@ class ComposerStaticInit1418a5a1d0c782b002aa91b1b9126757
         'Vendidero\\StoreaBill\\DataStores\\ProductItem' => __DIR__ . '/../..' . '/packages/storeabill/src/DataStores/ProductItem.php',
         'Vendidero\\StoreaBill\\DataStores\\ShippingItem' => __DIR__ . '/../..' . '/packages/storeabill/src/DataStores/ShippingItem.php',
         'Vendidero\\StoreaBill\\DataStores\\TaxItem' => __DIR__ . '/../..' . '/packages/storeabill/src/DataStores/TaxItem.php',
+        'Vendidero\\StoreaBill\\DataStores\\VoucherItem' => __DIR__ . '/../..' . '/packages/storeabill/src/DataStores/VoucherItem.php',
+        'Vendidero\\StoreaBill\\Document\\AsyncExporter' => __DIR__ . '/../..' . '/packages/storeabill/src/Document/AsyncExporter.php',
         'Vendidero\\StoreaBill\\Document\\Attribute' => __DIR__ . '/../..' . '/packages/storeabill/src/Document/Attribute.php',
         'Vendidero\\StoreaBill\\Document\\BulkActionHandler' => __DIR__ . '/../..' . '/packages/storeabill/src/Document/BulkActionHandler.php',
         'Vendidero\\StoreaBill\\Document\\BulkMerge' => __DIR__ . '/../..' . '/packages/storeabill/src/Document/BulkMerge.php',
@@ -295,6 +301,7 @@ class ComposerStaticInit1418a5a1d0c782b002aa91b1b9126757
         'Vendidero\\StoreaBill\\Editor\\Blocks\\ItemTableColumnBlock' => __DIR__ . '/../..' . '/packages/storeabill/src/Editor/Blocks/ItemTableColumnBlock.php',
         'Vendidero\\StoreaBill\\Editor\\Blocks\\ItemTaxRate' => __DIR__ . '/../..' . '/packages/storeabill/src/Editor/Blocks/ItemTaxRate.php',
         'Vendidero\\StoreaBill\\Editor\\Blocks\\ItemTotalRow' => __DIR__ . '/../..' . '/packages/storeabill/src/Editor/Blocks/ItemTotalRow.php',
+        'Vendidero\\StoreaBill\\Editor\\Blocks\\ItemTotalTax' => __DIR__ . '/../..' . '/packages/storeabill/src/Editor/Blocks/ItemTotalTax.php',
         'Vendidero\\StoreaBill\\Editor\\Blocks\\ItemTotals' => __DIR__ . '/../..' . '/packages/storeabill/src/Editor/Blocks/ItemTotals.php',
         'Vendidero\\StoreaBill\\Editor\\Blocks\\Logo' => __DIR__ . '/../..' . '/packages/storeabill/src/Editor/Blocks/Logo.php',
         'Vendidero\\StoreaBill\\Editor\\Blocks\\PageNumber' => __DIR__ . '/../..' . '/packages/storeabill/src/Editor/Blocks/PageNumber.php',
@@ -355,6 +362,7 @@ class ComposerStaticInit1418a5a1d0c782b002aa91b1b9126757
         'Vendidero\\StoreaBill\\Interfaces\\TotalsContainable' => __DIR__ . '/../..' . '/packages/storeabill/src/Interfaces/TotalsContainable.php',
         'Vendidero\\StoreaBill\\Invoice\\BulkCancel' => __DIR__ . '/../..' . '/packages/storeabill/src/Invoice/BulkCancel.php',
         'Vendidero\\StoreaBill\\Invoice\\BulkFinalize' => __DIR__ . '/../..' . '/packages/storeabill/src/Invoice/BulkFinalize.php',
+        'Vendidero\\StoreaBill\\Invoice\\BulkSend' => __DIR__ . '/../..' . '/packages/storeabill/src/Invoice/BulkSend.php',
         'Vendidero\\StoreaBill\\Invoice\\Cancellation' => __DIR__ . '/../..' . '/packages/storeabill/src/Invoice/Cancellation.php',
         'Vendidero\\StoreaBill\\Invoice\\CancellationCsvExporter' => __DIR__ . '/../..' . '/packages/storeabill/src/Invoice/CancellationCsvExporter.php',
         'Vendidero\\StoreaBill\\Invoice\\CancellationPreview' => __DIR__ . '/../..' . '/packages/storeabill/src/Invoice/CancellationPreview.php',
@@ -374,6 +382,7 @@ class ComposerStaticInit1418a5a1d0c782b002aa91b1b9126757
         'Vendidero\\StoreaBill\\Invoice\\SimpleTable' => __DIR__ . '/../..' . '/packages/storeabill/src/Invoice/SimpleTable.php',
         'Vendidero\\StoreaBill\\Invoice\\TaxItem' => __DIR__ . '/../..' . '/packages/storeabill/src/Invoice/TaxItem.php',
         'Vendidero\\StoreaBill\\Invoice\\TaxableItem' => __DIR__ . '/../..' . '/packages/storeabill/src/Invoice/TaxableItem.php',
+        'Vendidero\\StoreaBill\\Invoice\\VoucherItem' => __DIR__ . '/../..' . '/packages/storeabill/src/Invoice/VoucherItem.php',
         'Vendidero\\StoreaBill\\Lexoffice\\API\\Auth' => __DIR__ . '/../..' . '/packages/storeabill-lexoffice/src/API/Auth.php',
         'Vendidero\\StoreaBill\\Lexoffice\\API\\Resources' => __DIR__ . '/../..' . '/packages/storeabill-lexoffice/src/API/Resources.php',
         'Vendidero\\StoreaBill\\Lexoffice\\Customer' => __DIR__ . '/../..' . '/packages/storeabill-lexoffice/src/Customer.php',
@@ -418,6 +427,7 @@ class ComposerStaticInit1418a5a1d0c782b002aa91b1b9126757
         'Vendidero\\StoreaBill\\WooCommerce\\OrderItemProduct' => __DIR__ . '/../..' . '/packages/storeabill/src/WooCommerce/OrderItemProduct.php',
         'Vendidero\\StoreaBill\\WooCommerce\\OrderItemShipping' => __DIR__ . '/../..' . '/packages/storeabill/src/WooCommerce/OrderItemShipping.php',
         'Vendidero\\StoreaBill\\WooCommerce\\OrderItemTaxable' => __DIR__ . '/../..' . '/packages/storeabill/src/WooCommerce/OrderItemTaxable.php',
+        'Vendidero\\StoreaBill\\WooCommerce\\OrderItemVoucher' => __DIR__ . '/../..' . '/packages/storeabill/src/WooCommerce/OrderItemVoucher.php',
         'Vendidero\\StoreaBill\\WooCommerce\\Product' => __DIR__ . '/../..' . '/packages/storeabill/src/WooCommerce/Product.php',
         'Vendidero\\StoreaBill\\WooCommerce\\REST\\Orders' => __DIR__ . '/../..' . '/packages/storeabill/src/WooCommerce/REST/Orders.php',
         'Vendidero\\StoreaBill\\WooCommerce\\REST\\Server' => __DIR__ . '/../..' . '/packages/storeabill/src/WooCommerce/REST/Server.php',
@@ -433,10 +443,10 @@ class ComposerStaticInit1418a5a1d0c782b002aa91b1b9126757
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit1418a5a1d0c782b002aa91b1b9126757::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit1418a5a1d0c782b002aa91b1b9126757::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit1418a5a1d0c782b002aa91b1b9126757::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit1418a5a1d0c782b002aa91b1b9126757::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit7322fb5f1b3c81982302f74759d02e5e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit7322fb5f1b3c81982302f74759d02e5e::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit7322fb5f1b3c81982302f74759d02e5e::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit7322fb5f1b3c81982302f74759d02e5e::$classMap;
 
         }, null, ClassLoader::class);
     }

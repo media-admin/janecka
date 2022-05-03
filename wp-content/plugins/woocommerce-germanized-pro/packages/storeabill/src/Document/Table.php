@@ -306,7 +306,8 @@ abstract class Table extends WP_List_Table {
 				$search = '*' . $search . '*';
 			}
 
-			$args['search'] = $search;
+			$args['search']         = $search;
+            $args['search_columns'] = $this->get_search_columns( $search );
 		}
 
 		// Query the user IDs for this page
@@ -320,6 +321,20 @@ abstract class Table extends WP_List_Table {
 			)
 		);
 	}
+
+    protected function get_search_columns( $search ) {
+        $search_columns = array();
+
+	    if ( is_numeric( $search ) ) {
+		    $search_columns = array( 'document_id', 'document_reference_id', 'document_author_id', 'document_customer_id', 'document_number', '_reference_number' );
+	    } elseif ( strlen( $search ) === 2 ) {
+		    $search_columns = array( 'document_country' );
+	    } else {
+		    $search_columns = array( 'document_id', 'document_formatted_number', '_reference_number' );
+	    }
+
+        return $search_columns;
+    }
 
 	/**
 	 */

@@ -44,6 +44,6 @@ class ItemQuantity extends ItemTableColumnBlock {
 		$attributes    = $this->parse_attributes( $attributes );
 		$output        = $document_item->get_quantity();
 
-		return $this->wrap( $this->replace_placeholder( $content, $output ), $attributes );
+		return $this->wrap( $this->replace_placeholder( $content, esc_html( $output ) ), $attributes );
 	}
 }

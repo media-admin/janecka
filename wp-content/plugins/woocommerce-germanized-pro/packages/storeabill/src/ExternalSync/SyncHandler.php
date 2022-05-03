@@ -161,6 +161,8 @@ abstract class SyncHandler implements ExternalSync {
 					foreach( $result->get_error_messages() as $message ) {
 						$this->add_setting_error( $message );
 					}
+				} else {
+
 				}
 			}
 

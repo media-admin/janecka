@@ -60,6 +60,10 @@ class WC_GZD_Order_Helper {
 
 		add_action( 'woocommerce_checkout_create_order_fee_item', array( $this, 'set_fee_split_tax_meta' ), 10, 4 );
 
+		add_action( 'woocommerce_before_order_object_save', array( $this, 'set_order_version' ), 10 );
+		// The woocommerce_before_order_object_save hook might fail in case an order has been created manually
+		add_action( 'woocommerce_new_order', array( $this, 'on_create_order' ), 10 );
+
 		// Disallow user order cancellation
 		if ( 'yes' === get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) ) {
 
@@ -75,6 +79,50 @@ class WC_GZD_Order_Helper {
 				'maybe_reduce_order_stock'
 			), 5, 1 );
 		}
+	}
+
+	/**
+	 * @param $order_id
+	 * @param WC_Order $order
+	 *
+	 * @return void
+	 */
+	public function on_create_order( $order_id ) {
+		if ( $order = wc_get_order( $order_id ) ) {
+			if ( ! $order->get_meta( '_gzd_version' ) ) {
+				$order->update_meta_data( '_gzd_version', WC_germanized()->version );
+				$order->save();
+			}
+		}
+	}
+
+	/**
+	 * @param WC_Abstract_Order $order
+	 *
+	 * @return void
+	 */
+	public function set_order_version( $order ) {
+		if ( ! $order->get_id() ) {
+			$order->update_meta_data( '_gzd_version', WC_germanized()->version );
+		}
+	}
+
+	public function get_order_version( $order ) {
+		$version = '1.0.0';
+
+		if ( is_numeric( $order ) ) {
+			$order = wc_get_order( $order );
+		}
+
+		if ( $order ) {
+			$version = $order->get_meta( '_gzd_version', true );
+
+			if ( ! $version ) {
+				$version = '1.0.0';
+			}
+		}
+
+		return $version;
 	}
 
 	/**
@@ -173,6 +221,13 @@ class WC_GZD_Order_Helper {
 		array_push( $metas, '_unit_base' );
 		array_push( $metas, '_min_age' );
 		array_push( $metas, '_defect_description' );
+		array_push( $metas, '_deposit_type' );
+		array_push( $metas, '_deposit_amount' );
+		array_push( $metas, '_deposit_net_amount' );
+		array_push( $metas, '_deposit_quantity' );
+		array_push( $metas, '_deposit_amount_per_unit' );
+		array_push( $metas, '_deposit_net_amount_per_unit' );
+		array_push( $metas, '_deposit_packaging_type' );
 
 		return $metas;
 	}
@@ -180,7 +235,10 @@ class WC_GZD_Order_Helper {
 	public function refresh_item_data( $item ) {
 		if ( is_a( $item, 'WC_Order_Item_Product' ) && ( $product = $item->get_product() ) ) {
 			if ( $gzd_item = wc_gzd_get_order_item( $item ) ) {
-				$gzd_product = wc_gzd_get_product( $product );
+				$tax_display_mode   = get_option( 'woocommerce_tax_display_cart' );
+				$gzd_product        = wc_gzd_get_product( $product );
+				$order              = $item->get_order();
+				$prices_include_tax = $order ? $order->get_prices_include_tax() : wc_prices_include_tax();
 
 				$gzd_item->set_unit( $gzd_product->get_unit_name() );
 				$gzd_item->set_unit_base( $gzd_product->get_unit_base() );
@@ -192,6 +250,17 @@ class WC_GZD_Order_Helper {
 				$gzd_item->set_defect_description( $gzd_product->get_formatted_defect_description() );
 				$gzd_item->set_delivery_time( $gzd_product->get_delivery_time_html() );
 				$gzd_item->set_min_age( $gzd_product->get_min_age() );
+
+				$gzd_item->set_deposit_type( $gzd_product->get_deposit_type() );
+				$gzd_item->set_deposit_amount_per_unit( $gzd_product->get_deposit_amount_per_unit( 'view', 'incl' ) );
+				$gzd_item->set_deposit_net_amount_per_unit( $gzd_product->get_deposit_amount_per_unit( 'view', 'excl' ) );
+
+				$gzd_item->set_deposit_quantity( $gzd_product->get_deposit_quantity() );
+
+				$gzd_item->set_deposit_amount( $gzd_product->get_deposit_amount( 'view', 'incl' ) );
+				$gzd_item->set_deposit_net_amount( $gzd_product->get_deposit_amount( 'view', 'excl' ) );
+
+				$gzd_item->set_deposit_packaging_type( $gzd_product->get_deposit_packaging_type() );
 
 				/**
 				 * Add order item meta.

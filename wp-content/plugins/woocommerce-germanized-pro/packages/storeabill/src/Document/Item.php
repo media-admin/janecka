@@ -104,6 +104,24 @@ abstract class Item extends Data {
 		}
 	}
 
+	/**
+	 * Prefix for action and filter hooks on data.
+	 *
+	 * @return string
+	 */
+	protected function get_hook_prefix() {
+		return "{$this->get_general_hook_prefix()}get_";
+	}
+
+	/**
+	 * Prefix for action and filter hooks on data.
+	 *
+	 * @return string
+	 */
+	protected function get_general_hook_prefix() {
+		return "storeabill_{$this->get_type()}_item_";
+	}
+
 	public function apply_changes() {
 		if ( function_exists( 'array_replace' ) ) {
 			$this->data = array_replace( $this->data, $this->changes ); // phpcs:ignore PHPCompatibility.FunctionUse.NewFunctions.array_replaceFound
@@ -221,6 +239,19 @@ abstract class Item extends Data {
 		uasort( $this->attributes, array( $this, '_sort_attributes_callback' ) );
 
 		return apply_filters( "{$this->get_hook_prefix()}attributes", array_values( $this->attributes ), $this );
+	}
+
+	public function remove_attribute( $key ) {
+		$attributes = $this->get_attributes();
+		$key        = strtolower( $key );
+
+		foreach( $attributes as $attr_key => $attribute ) {
+			if ( $key == strtolower( $attribute->get_key() ) ) {
+				unset( $attributes[ $attr_key ] );
+			}
+		}
+
+		$this->set_attributes( $attributes );
 	}
 
 	public function get_attribute( $key ) {

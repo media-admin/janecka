@@ -52,12 +52,6 @@ class SimplePreview extends Simple implements Previewable {
 			'label' => _x( 'Attribute 1', 'storeabill-core', 'woocommerce-germanized-pro' ),
 			'order' => 1,
 		);
-		$attributes[] = array(
-			'key'   => 'attribute_2',
-			'value' => _x( 'Value 2', 'storeabill-core', 'woocommerce-germanized-pro' ),
-			'label' => _x( 'Attribute 2', 'storeabill-core', 'woocommerce-germanized-pro' ),
-			'order' => 2,
-		);
 
 		$item = new ProductItem();
 		$item->set_prices_include_tax( true );
@@ -87,13 +81,20 @@ class SimplePreview extends Simple implements Previewable {
 
 		$item = new FeeItem();
 		$item->set_prices_include_tax( true );
-		$item->set_name( _x( 'Payment', 'storeabill-core', 'woocommerce-germanized-pro' ) );
+		$item->set_name( _x( 'Payment Fee', 'storeabill-core', 'woocommerce-germanized-pro' ) );
 		$item->set_line_total( 4 );
 		$item->set_quantity( 1 );
 		$item->set_line_subtotal( 4 );
 		$item->add_tax_rate( array(
 			'percent' => 19,
 		) );
+
+		$this->add_item( $item );
+
+		$item = new VoucherItem();
+		$item->set_code( _x( 'XYZ123W', 'storeabill-core', 'woocommerce-germanized-pro' ) );
+		$item->set_line_total( -4 );
+		$item->set_quantity( 1 );
 
 		$this->add_item( $item );
 
@@ -161,6 +162,14 @@ class SimplePreview extends Simple implements Previewable {
 
 	public function set_template( $template ) {
 		$this->template = $template;
+	}
+
+	public function get_line_item_types() {
+		if ( $this->is_editor_preview() ) {
+			return array( 'product' );
+		} else {
+			return parent::get_line_item_types();
+		}
 	}
 
 	public function save() {

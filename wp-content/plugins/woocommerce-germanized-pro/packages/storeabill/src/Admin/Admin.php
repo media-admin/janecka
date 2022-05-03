@@ -232,7 +232,8 @@ class Admin {
             if ( 'invoice' === $object_type ) {
                 $handlers = array_replace( $handlers, array(
                     'finalize' => '\Vendidero\StoreaBill\Invoice\BulkFinalize',
-                    'cancel'   => '\Vendidero\StoreaBill\Invoice\BulkCancel'
+                    'cancel'   => '\Vendidero\StoreaBill\Invoice\BulkCancel',
+                    'send'     => '\Vendidero\StoreaBill\Invoice\BulkSend',
                 ) );
             }
 

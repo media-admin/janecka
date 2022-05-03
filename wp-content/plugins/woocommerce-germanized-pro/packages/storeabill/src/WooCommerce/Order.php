@@ -32,6 +32,9 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 
 	protected $documents = array();
 
+	/**
+	 * @var Invoice[]
+	 */
 	protected $documents_to_delete = array();
 
 	/**
@@ -105,6 +108,19 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 		return $this->order->get_status();
 	}
 
+	/**
+	 * @param RefundOrder $refund
+	 *
+	 * @return string
+	 */
+	public function get_refund_transaction_id( $refund ) {
+		return apply_filters( "{$this->get_hook_prefix()}refund_transaction_id", '', $this, $refund );
+	}
+
+	public function get_transaction_id() {
+		return apply_filters( "{$this->get_hook_prefix()}transaction_id", $this->get_order()->get_transaction_id(), $this );
+	}
+
 	public function allow_round_split_taxes_at_subtotal() {
 		return apply_filters( "{$this->get_hook_prefix()}allow_round_split_taxes_at_subtotal", false, $this );
 	}
@@ -156,7 +172,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 			}
 		}
 
-		return $billing_email;
+		return apply_filters( "{$this->get_hook_prefix()}email", $billing_email, $this );
 	}
 
 	public function get_voucher_total() {
@@ -167,12 +183,23 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 		return apply_filters( "{$this->get_hook_prefix()}voucher_tax", 0, $this->get_order() );
 	}
 
-	public function get_discount_notice() {
+	public function get_discount_notice( $include_vouchers = false ) {
 		$text         = '';
-		$coupon_codes = $this->get_order()->get_coupon_codes();
+		$coupon_codes = array();
+		$coupons      = $this->get_order()->get_items( 'coupon' );
+
+		if ( $coupons ) {
+			foreach ( $coupons as $coupon ) {
+				if ( ! $include_vouchers && $this->coupon_is_voucher( $coupon ) ) {
+					continue;
+				}
+
+				$coupon_codes[] = $coupon->get_code();
+			}
+		}
 
 		if ( ! empty( $coupon_codes ) ) {
-			$text = implode( ', ', $this->get_order()->get_coupon_codes() );
+			$text = implode( ', ', $coupon_codes );
 		}
 
 		return apply_filters( "{$this->get_hook_prefix()}discount_notice", $text, $this->get_order() );
@@ -181,7 +208,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 	public function round_tax_at_subtotal() {
 		$round_at_subtotal = 'yes' === get_option( 'woocommerce_tax_round_at_subtotal' );
 
-		return $round_at_subtotal;
+		return apply_filters( "{$this->get_hook_prefix()}round_tax_at_subtotal", $round_at_subtotal, $this->get_order() );
 	}
 
 	/**
@@ -384,14 +411,14 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 	public function sync( &$invoice, $args = array() ) {
 		$args = wp_parse_args( $args, array(
 			'items'          => array(),
-			'validate_total' => true,
+			'validate_total' => true
 		) );
 
 		if ( ! $invoice->is_finalized() && 'simple' === $invoice->get_invoice_type() ) {
 
 			do_action( "{$this->get_hook_prefix()}before_sync_invoice", $this );
 
-			$billing_address = array_merge( $this->get_order()->get_address( 'billing' ), array( 'email' => $this->get_order()->get_billing_email(), 'phone' => $this->get_order()->get_billing_phone() ) );
+			$billing_address = array_merge( $this->get_order()->get_address( 'billing' ), array( 'email' => $this->get_email(), 'phone' => $this->get_order()->get_billing_phone() ) );
 
 			// Do only replace vat id in case the vat id does not yet exist or is empty
 			if ( ! array_key_exists( 'vat_id', $billing_address ) || empty( $billing_address['vat_id'] ) ) {
@@ -415,17 +442,37 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 				'customer_id'            => $this->get_order()->get_customer_id(),
 				'payment_method_name'    => $this->get_order()->get_payment_method(),
 				'payment_method_title'   => $this->get_order()->get_payment_method_title(),
-				'payment_transaction_id' => apply_filters( "{$this->get_hook_prefix()}transaction_id", $this->get_order()->get_transaction_id(), $this ),
+				'payment_transaction_id' => $this->get_transaction_id(),
 				'is_reverse_charge'      => $this->is_reverse_charge(),
 				'tax_display_mode'       => $this->get_tax_display_mode(),
 				'is_oss'                 => $this->is_oss(),
 				'vat_id'                 => $this->get_vat_id(),
-				'voucher_total'          => $this->get_voucher_total(),
-				'voucher_tax'            => $this->get_voucher_tax(),
-				'discount_notice'        => $this->get_discount_notice(),
 				'currency'               => $this->get_order()->get_currency(),
 				'date_of_service'        => $this->get_date_of_service(),
+				'voucher_total'          => $this->get_voucher_total(),
+				'voucher_tax'            => $this->get_voucher_tax(),
 			) );
+
+			/**
+			 * Legacy voucher support
+			 */
+			if ( ! empty( $invoice_args['voucher_total'] ) ) {
+				$invoice_args['stores_vouchers_as_discount'] = true;
+				$invoice_args['discount_notice']             = $this->get_discount_notice( true );
+			} else {
+				unset( $invoice_args['voucher_total'] );
+				unset( $invoice_args['voucher_tax'] );
+
+				$invoice_args['discount_notice'] = $this->get_discount_notice();
+            }
+
+			/**
+			 * Sync the created via attribute just in case it is explicitly set to prevent overrides
+			 * on additional (possibly later) syncs.
+			 */
+			if ( ! empty( $args['created_via'] ) ) {
+				$invoice_args['created_via'] = $args['created_via'];
+			}
 
 			unset( $invoice_args['items'] );
 
@@ -637,13 +684,16 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 	/**
 	 * This method cancels all cancelable invoices
 	 * and removes unfixed invoices.
+	 *
+	 * @param string $reason
+	 * @param array $cancellation_props
 	 */
-	public function cancel( $reason = '' ) {
+	public function cancel( $reason = '', $cancellation_props = array() ) {
 		foreach( $this->get_invoices() as $invoice ) {
 			if ( ! $invoice->is_finalized() ) {
 				$this->delete_document( $invoice->get_id() );
 			} else {
-				$new_cancellation = $invoice->cancel();
+				$new_cancellation = $invoice->cancel( array(), 0, $cancellation_props );
 
 				if ( ! is_wp_error( $new_cancellation ) ) {
 					$this->add_document( $new_cancellation );
@@ -761,7 +811,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 			$order_total -= $order_total_tax;
 		}
 
-		$order_total       = sab_format_decimal( $order_total, '' );
+		$order_total       = sab_format_decimal( max( 0, $order_total ), '' );
 		$order_plain_total = sab_format_decimal( $this->get_order_total_to_bill(), '' );
 		$total_billed      = sab_format_decimal( $total_billed, '' );
 		$total_tax_billed  = sab_format_decimal( $total_tax_billed, '' );
@@ -797,7 +847,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 				$fee->set_name( _x( 'Fee', 'storeabill-core', 'woocommerce-germanized-pro' ) );
 				$fee->set_line_total( $total_diff );
 				$fee->set_line_subtotal( $total_diff );
-				$fee->set_is_taxable( $has_tax_diff > 0 ? true : false );
+				$fee->set_is_taxable( $has_tax_diff ? true : false );
 				$fee->set_total_tax( 0 );
 				$fee->set_prices_include_tax( $this->order_item_type_includes_tax( 'fee', $last_invoice->prices_include_tax() ) );
 
@@ -865,22 +915,18 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 			} elseif ( $total_diff < 0 ) {
 				$args = array(
 					'is_voucher' => false,
-					'item_types' => array( 'product' )
+					'item_types' => array( 'product' ),
 				);
 
-				$product_total = $last_invoice->get_product_total();
-				$discount      = abs( $total_diff );
-				$has_taxes     = $last_invoice->get_total_tax() > 0;
+				$product_total   = $last_invoice->get_product_total();
+				$discount        = abs( $total_diff );
+				$has_taxes       = $last_invoice->get_total_tax() > 0;
 
-				if ( $discount > $product_total ) {
-					$args['item_types'] = array( 'product', 'shipping', 'fee' );
-				}
-
-				if ( ! $has_tax_diff && $has_taxes ) {
-					$args['is_voucher'] = true;
-				}
-
-				$last_invoice->apply_discount( $discount, 'fixed', $args );
+				/**
+				 * Make sure to skip the zero order total check here to prevent
+				 * treating negative fees with taxes (and order total = 0) as vouchers
+				 */
+				$has_tax_diff = $total_tax_billed != $order_total_tax;        
 				$discount_notice = '';
 
 				if ( $this->has_negative_fee() ) {
@@ -892,11 +938,17 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 					}
 				}
 
-				$discount_notice = apply_filters( "{$this->get_hook_prefix()}forced_discount_notice", $discount_notice, $discount, $last_invoice, $this );
+				$args['code'] = apply_filters( "{$this->get_hook_prefix()}forced_discount_notice", $discount_notice, $discount, $last_invoice, $this );
 
-				if ( ! $has_discounts && ! empty( $discount_notice ) ) {
-					$last_invoice->add_discount_notice( $discount_notice );
+				if ( $discount > $product_total ) {
+					$args['item_types'] = array( 'product', 'shipping', 'fee' );
 				}
+
+				if ( ! $has_tax_diff && $has_taxes ) {
+					$args['is_voucher'] = true;
+				}
+
+				$last_invoice->apply_discount( $discount, 'fixed', $args );
 
 				do_action( "{$this->get_hook_prefix()}added_order_total_diff_as_discount", $last_invoice, $this, $discount, $args );
 			}
@@ -977,10 +1029,12 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 
 	/**
 	 * Makes sure that the order is not containing a higher
-	 * invoice amount as order total. Cancels invoices or removes items from unfixed invoices if necessary.
+	 * invoice amount as order total. Cancel invoices or removes items from unfixed invoices if necessary.
+	 *
+	 * @param array $cancellation_props Props passed to the cancellation in case a cancellation is being created.
 	 */
-	public function validate() {
-		$this->maybe_cancel();
+	public function validate( $cancellation_props = array() ) {
+		$this->maybe_cancel( array(), $cancellation_props );
 		$this->save();
 
 		$this->refresh();
@@ -1040,7 +1094,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 
 	public function get_order_item( $item_id ) {
 		if ( $order_item = $this->get_order()->get_item( $item_id ) ) {
-			return Helper::get_order_item( $order_item );
+			return Helper::get_order_item( $order_item, $this );
 		}
 
 		return false;
@@ -1438,7 +1492,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 		}
 
 		/**
-		 * Do not bill negative fees - use discount instead.
+		 * Do not bill negative fees (except for high accuracy taxes) - use discount instead.
 		 */
 		if ( $order_item && 'fee' === $order_item->get_type() && $total_left_rounded <= 0 && $this->bill_negative_fee_as_discount( $order_item ) ) {
 			$total_left = 0;
@@ -1459,25 +1513,70 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 
 	/**
 	 * @param \WC_Order_Item_Fee $order_item
+	 *
+	 * @return boolean
+	 */
+	public function fee_is_voucher( $order_item ) {
+		$is_voucher = false;
+
+		if ( is_a( $order_item, 'WC_Order_Item_Fee' ) && 'yes' === $order_item->get_meta( '_is_voucher' ) ) {
+			$is_voucher = true;
+		}
+
+		return apply_filters( "{$this->get_hook_prefix()}is_voucher", $is_voucher, $order_item );
+	}
+
+	/**
+	 * @param \WC_Order_Item_Coupon $order_item
+	 *
+	 * @return boolean
+	 */
+	protected function coupon_is_voucher( $order_item ) {
+		$is_voucher = false;
+
+		if ( is_a( $order_item, 'WC_Order_Item_Coupon' ) && 'yes' === $order_item->get_meta( 'is_voucher' ) ) {
+			$is_voucher = true;
+		}
+
+		return $is_voucher;
+	}
+
+	/**
+	 * Older invoice versions may include negative fees as discounts only.
+	 *
+	 * @return bool
+	 */
+	protected function may_include_negative_fee_as_discount() {
+		$includes_fee_as_discount = false;
+
+		foreach( $this->get_finalized_invoices() as $invoice ) {
+			if ( version_compare( $invoice->get_version(), '1.9.0', '>=' ) ) {
+				$includes_fee_as_discount = false;
+				break;
+			} elseif ( ! $invoice->has_status( 'cancelled' ) && version_compare( $invoice->get_version(), '1.9.0', '<' ) ) {
+				$includes_fee_as_discount = true;
+				break;
+			}
+		}
+
+		return $includes_fee_as_discount;
+	}
+
+	/**
+	 * @param \WC_Order_Item_Fee $order_item
 	 */
 	protected function bill_negative_fee_as_discount( $order_item ) {
 		$bill_as_discount = true;
 
 		/**
-		 * In case the negative fee taxes have a higher accuracy than price decimals (e.g. 7,012 vs 7,01)
-		 * booking this fee as a discount will lead to tax rounding issues as the tax totals will already be rounded per position
-		 * in case of net prices. There is no other option way than booking these negative fees separately as a negative fee.
+		 * Allow fees to be booked as negative fee in case they are regular fees (e.g. include taxes)
+		 * or explicitly are marked as voucher. Make sure to book negative fees as discounts vor legacy invoices
+		 * to prevent legacy invoices from additional billings.
 		 */
-		if ( $order = $order_item->get_order() ) {
-			if ( ! $order->get_prices_include_tax() ) {
-				$tax_totals        = $order_item->get_taxes();
-				$tax_total_rounded = array_sum( array_map( 'wc_round_tax_total', $tax_totals['total'] ) );
-				$tax_total         = array_sum( $tax_totals['total'] );
-
-				if ( $tax_total !== $tax_total_rounded ) {
-					$bill_as_discount = false;
-				}
-			}
+		if ( $this->fee_is_voucher( $order_item ) ) {
+			$bill_as_discount = false;
+		} elseif ( $order_item->get_total_tax() != 0 && ! $this->may_include_negative_fee_as_discount() ) {
+			$bill_as_discount = false;
 		}
 
 		return apply_filters( "{$this->get_hook_prefix()}bill_negative_fee_as_discount", $bill_as_discount, $order_item, $this );
@@ -1596,7 +1695,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 
 				if ( 0 == $total_left_inc_tax_rounded && (
 					( $this->include_free_items() && $this->is_free_item( $item ) ) ||
-					( $this->is_free() && $this->bill_free_orders() ) ||
+					( $this->is_free() && $this->bill_free_orders() && ! $this->is_negative_fee( $item ) ) ||
 					( $this->is_voucher_item( $item, $args['voucher_total'] ) && $this->get_billable_item_subtotal( $item, $args ) != 0 )
 				) ) {
 					if ( $quantity_left > 0 ) {
@@ -1670,7 +1769,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 		/**
 		 * Free order. Check quantity instead of total amount.
 		 */
-		if ( ! $needs_billing && ( $this->get_billable_item_quantity( $order_item ) > 0 && $this->is_free() && $this->bill_free_orders() ) ) {
+		if ( ! $needs_billing && ( $this->get_billable_item_quantity( $order_item ) > 0 && $this->is_free() && $this->bill_free_orders() && ! $this->is_negative_fee( $order_item ) ) ) {
 			$needs_billing = true;
 		}
 
@@ -1786,6 +1885,15 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 	 */
 	protected function is_free_item( $order_item ) {
 		return ( $this->get_order()->get_line_total( $order_item, true, true ) == 0 );
+	}
+
+	/**
+	 * @param WC_Order_Item $order_item
+	 *
+	 * @return bool
+	 */
+	protected function is_negative_fee( $order_item ) {
+		return ( is_a( $order_item, 'WC_Order_Item_Fee' ) && $order_item->get_total() < 0 );
 	}
 
 	protected function is_free() {
@@ -1933,7 +2041,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 					 * Detect order item price changes (manual adjustments).
 					 */
 					if ( ! $order_item_has_refund ) {
-						if ( $order_item_price != $price && $order_item_price != $price_subtotal && $order_item_price_subtotal != $price_subtotal ) {
+						if ( $order_item_price < $price && $order_item_price != $price_subtotal && $order_item_price_subtotal != $price_subtotal ) {
 							$price_has_changed = true;
 						}
 					}
@@ -1959,24 +2067,8 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 						$tax_to_cancel        = $available_tax_to_cancel;
 						$reason               = 'order_item_removed';
 
-						Package::extended_log( sprintf( 'Order item %s doesnt seem to exist any longer', $order_item_id ) );
-					} elseif( $price_has_changed ) {
-						/**
-						 * In case the order item price has changed (e.g. user has edited
-						 * prices manually) cancel items.
-						 *
-						 * Explicitly check the subtotal too as invoices may be discounted differently
-						 * in comparison to orders (e.g. in case vouchers are involved).
-						 */
-						$quantity_to_cancel   = $quantity_available_to_cancel;
-						$line_total_to_cancel = $line_total_available_to_cancel;
-						$total_to_cancel      = $total_available_to_cancel;
-						$tax_to_cancel        = $available_tax_to_cancel;
-						$reason               = 'order_item_price_changed';
-						$reason_details       = sprintf( 'Price changed from %s to %s', $price, $order_item_price );
-
-						Package::extended_log( sprintf( 'Order item %s price has changed from %s to %s', $order_item_id, $price, $order_item_price ) );
-					} elseif( ! empty( $order_item_id ) && $order_items_left[ $order_item_id ]['line_total'] < $line_total_available_to_cancel ) {
+						Package::extended_log( sprintf( 'Order item %s doesnt seem to exist any longer or quantity has changed', $order_item_id ) );
+					} elseif ( $price_has_changed || ( ! empty( $order_item_id ) && $order_items_left[ $order_item_id ]['line_total'] < $line_total_available_to_cancel ) ) {
 						/**
 						 * Order item has changed in total, e.g. refunded.
 						 */
@@ -1998,7 +2090,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 
 						$reason = 'order_item_changed';
 
-						Package::extended_log( sprintf( 'Order item %s seems to have changed (e.g. refunded). Cancel %s', $order_item_id, $total_to_cancel ) );
+						Package::extended_log( sprintf( 'Order item %s seems to have changed (e.g. refunded, price change). Cancel %s', $order_item_id, $total_to_cancel ) );
 					}
 
 					// Prevent rounding issues.
@@ -2006,7 +2098,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 					$total_to_cancel      = sab_format_decimal( $total_to_cancel, '' );
 					$tax_to_cancel        = sab_format_decimal( $tax_to_cancel, '' );
 
-					if ( $line_total_to_cancel > 0 ) {
+					if ( $line_total_to_cancel > 0 || ( is_a( $item, '\Vendidero\StoreaBill\Invoice\VoucherItem' ) && ! $invoice->stores_vouchers_as_discount() && $line_total_to_cancel < 0 ) ) {
 						if ( ! array_key_exists( $order_item_id, $order_items_to_cancel ) ) {
 							$order_items_to_cancel[ $order_item_id ] = array(
 								'quantity'   => $quantity_to_cancel > 0 ? $quantity_to_cancel : 1,
@@ -2052,10 +2144,11 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 	 * all unfixed invoices will be deleted and fixed invoices cancelled.
 	 *
 	 * @param array $args
+	 * @param array $cancellation_props Static props passed to the cancellation that may be created.
 	 *
 	 * @return boolean Whether cancelling was necessary or not.
 	 */
-	public function maybe_cancel( $args = array() ) {
+	public function maybe_cancel( $args = array(), $cancellation_props = array() ) {
 		$refund_items          = $this->get_refund_items_map();
 		$order_items_to_cancel = $this->get_order_items_to_cancel( $args );
 		$has_cancelled         = false;
@@ -2152,7 +2245,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 		if ( ! empty( $order_items_to_cancel ) && $this->round_tax_at_subtotal_has_changed() ) {
 			$has_cancelled = true;
 
-			$this->cancel( 'round_tax_setting_changed' );
+			$this->cancel( 'round_tax_setting_changed', $cancellation_props );
 			Package::extended_log( 'Auto cancelling order #' . $this->get_id() . ' invoices due to change of Woo round_tax_at_subtotal setting.' );
 
 		} elseif ( ! empty( $order_items_to_cancel ) ) {
@@ -2164,24 +2257,27 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 				}
 
 				if ( $invoice->is_cancelable() ) {
-					$items_to_cancel    = array();
-					$is_refund_linkable = true;
-					$refund_id          = 0;
+					$items_to_cancel      = array();
+					$items_left_to_cancel = array();
+					$is_refund_linkable   = true;
+					$refund_id            = 0;
+
+					foreach( $invoice->get_items_left_to_cancel() as $item_id => $item_data ) {
+						if ( $item = $invoice->get_item( $item_id ) ) {
+							$items_left_to_cancel[ $item->get_reference_id() ] = $item_data;
+							$items_left_to_cancel[ $item->get_reference_id() ]['item'] = $item;
+						}
+					}
 
 					foreach( $order_items_to_cancel as $order_item_id => $item_to_cancel ) {
 
-						if ( $item = $invoice->get_item_by_reference_id( $order_item_id ) ) {
-							/**
-							 * Seems like the item type is not cancelable
-							 */
-							if ( ! in_array( $item->get_item_type(), $invoice->get_item_types_cancelable() ) ) {
-								continue;
-							}
-
-							$item_quantity           = $item->get_quantity();
-							$item_total              = $item->get_total();
-							$item_line_total         = $item->get_line_total();
-							$item_tax                = $item->get_total_tax();
+						if ( isset( $items_left_to_cancel[ $order_item_id ] ) ) {
+							$item_data               = $items_left_to_cancel[ $order_item_id ];
+							$item                    = $item_data['item'];
+							$item_quantity           = $item_data['quantity'];
+							$item_total              = $item_data['total'];
+							$item_line_total         = $item_data['line_total'];
+							$item_tax                = $item_data['tax'];
 							$item_price              = $item->get_price();
 
 							$item_quantity_to_cancel    = $item_to_cancel['quantity'] >= $item_quantity ? $item_quantity : $item_to_cancel['quantity'];
@@ -2215,7 +2311,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 
 								if ( empty( $refund_id ) && $refunded_quantity == $item_quantity_to_cancel ) {
 									$refund_id = $current_item_refund_id;
-								} elseif( $refunded_quantity != $item_quantity_to_cancel || $refund_id !== $current_item_refund_id ) {
+								} elseif ( $refunded_quantity != $item_quantity_to_cancel || $refund_id !== $current_item_refund_id ) {
 									$is_refund_linkable = false;
 									$refund_id          = 0;
 								}
@@ -2239,13 +2335,15 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 					}
 
 					if ( ! empty( $items_to_cancel ) ) {
-						$cancellation = $invoice->cancel( $items_to_cancel, $refund_id );
+						Package::extended_log( 'Trying to cancel items for invoice ' . $invoice->get_formatted_number() . ': ' . wc_print_r( $items_to_cancel, true ) );
+
+						$cancellation = $invoice->cancel( $items_to_cancel, $refund_id, $cancellation_props );
 
 						if ( ! is_wp_error( $cancellation ) ) {
 							$has_cancelled = true;
 
 							$this->add_document( $cancellation );
-							Package::extended_log( 'Auto added new cancellation to order #' . $this->get_id() );
+							Package::extended_log( 'Auto added cancellation ' . $cancellation->get_formatted_number() . ' to order #' . $this->get_id() );
 
 							$item_notes = array();
 
@@ -2272,7 +2370,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 		if ( $total_billed > $order_total_after_refunds ) {
 			$has_cancelled = true;
 
-			$this->cancel( 'order_total_diff' );
+			$this->cancel( 'order_total_diff', $cancellation_props );
 			Package::extended_log( 'Auto cancelling order #' . $this->get_id() . ' due to total diff (billed: ' . $total_billed . ', order total after refunds: ' . $order_total_after_refunds .')' );
 		}
 
@@ -2332,7 +2430,7 @@ class Order implements \Vendidero\StoreaBill\Interfaces\Order {
 			$total = 0;
 		}
 
-		return sab_format_decimal( $total );
+		return sab_format_decimal( max( 0, $total ) );
 	}
 
 	public function get_total_tax_billed( $finalized_only = false ) {

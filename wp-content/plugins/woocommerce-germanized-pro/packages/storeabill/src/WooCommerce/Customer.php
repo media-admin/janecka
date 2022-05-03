@@ -66,11 +66,11 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 	}
 
 	public function get_first_name() {
-		return $this->customer->get_billing_first_name();
+		return $this->customer->get_billing_first_name() ? $this->customer->get_billing_first_name() : $this->customer->get_first_name();
 	}
 
 	public function get_last_name() {
-		return $this->customer->get_billing_last_name();
+		return $this->customer->get_billing_last_name() ? $this->customer->get_billing_last_name() : $this->customer->get_last_name();
 	}
 
 	public function get_title() {
@@ -170,6 +170,10 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 		return $this->customer->get_billing_city();
 	}
 
+	public function get_billing( $context = 'view' ) {
+		return $this->customer->get_billing( $context );
+	}
+
 	public function get_shipping_address() {
 		return $this->customer->get_shipping_address();
 	}
@@ -188,6 +192,10 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 
 	public function get_shipping_city() {
 		return $this->customer->get_shipping_city();
+	}
+
+	public function get_shipping( $context = 'view' ) {
+		return $this->customer->get_shipping( $context );
 	}
 
 	public function has_shipping_address() {

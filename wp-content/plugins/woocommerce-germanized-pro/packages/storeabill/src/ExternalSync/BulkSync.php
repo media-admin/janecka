@@ -80,6 +80,11 @@ class BulkSync extends BulkActionHandler {
 						continue;
 					}
 
+					/**
+					 * Cancel outstanding events.
+					 */
+					Helper::cancel_deferred_sync( $object, $handler );
+
 					$result = $handler->sync( $object );
 
 					if ( is_wp_error( $result ) ) {

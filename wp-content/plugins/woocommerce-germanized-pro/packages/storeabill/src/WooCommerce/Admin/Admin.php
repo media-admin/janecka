@@ -107,7 +107,7 @@ class Admin {
 		    $actions["download-invoice-{$invoice->get_id()}"] = array(
 			    'url'       => $invoice->get_download_url(),
 			    'name'      => sprintf( _x( 'Download %s', 'storeabill-core', 'woocommerce-germanized-pro' ), $invoice->get_title() ),
-			    'action'    => "download"
+			    'action'    => "download download-" . esc_attr( str_replace( '_', '-', $invoice->get_type() ) )
 		    );
         }
 
@@ -272,6 +272,7 @@ class Admin {
 				array(
 					'ajax_url'                    => admin_url( 'admin-ajax.php' ),
 					'edit_documents_nonce'        => wp_create_nonce( 'sab-edit-woo-documents' ),
+					'tax_based_on'                => esc_attr( get_option( 'woocommerce_tax_based_on' ) ),
 					'order_id'                    => isset( $post->ID ) ? $post->ID : '',
 					'i18n_delete_document_notice' => _x( 'Do you really want to delete the document?', 'storeabill-core', 'woocommerce-germanized-pro' ),
 					'i18n_cancel_invoice_notice'  => _x( 'Do you really want to cancel the invoice?', 'storeabill-core', 'woocommerce-germanized-pro' ),

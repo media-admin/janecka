@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { SVG } from 'wordpress-components';
+import { SVG } from '@wordpress/components';
 
 const grid = (
     <SVG x="0.0000mm" y="0.0000mm" width="2.5cm" viewBox="0.0000 0.0000 50.2710 20.4580" xmlns="http://www.w3.org/2000/svg">

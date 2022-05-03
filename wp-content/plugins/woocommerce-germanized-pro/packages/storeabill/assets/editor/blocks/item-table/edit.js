@@ -8,8 +8,8 @@ import { dropRight, get, map, times, includes, cloneDeep } from 'lodash';
  * WordPress dependencies
  */
 import { __, _x } from '@wordpress/i18n';
-import { PanelBody, RangeControl, TextControl, ToggleControl, Toolbar } from '@wordpress/components';
-import { useRef, createContext, useEffect } from '@wordpress/element';
+import { PanelBody, RangeControl, TextControl, ToggleControl, Toolbar, Disabled } from '@wordpress/components';
+import { useRef, useEffect, useCallback } from '@wordpress/element';
 import { compose } from "@wordpress/compose";
 import {
 	InspectorControls,
@@ -17,6 +17,9 @@ import {
 	BlockControls,
 	BlockVerticalAlignmentToolbar,
 	withColors,
+	BlockPreview,
+	BlockList,
+	BlockEditorProvider,
 	getColorClassName,
 	ContrastChecker,
 	__experimentalPanelColorGradientSettings as PanelColorGradientSettings,
@@ -26,7 +29,7 @@ import {
 import { withDispatch, useDispatch, useSelect } from '@wordpress/data';
 import { createBlock } from '@wordpress/blocks';
 
-import { documentTypeSupports, getDefaultInnerBlocks } from '@storeabill/settings';
+import { documentTypeSupports, getDefaultInnerBlocks, getSetting } from '@storeabill/settings';
 import { useColors } from '@storeabill/utils';
 import { BorderSelect, getBorderClasses } from '@storeabill/components/border-select';
 
@@ -77,6 +80,26 @@ function ColumnsEditContainer( {
 		[clientId]
 	);
 
+	const { childBlocks } = useSelect(
+		( select ) => {
+			return {
+				childBlocks: select( 'core/block-editor' ).getBlocks( clientId ),
+			};
+		},
+		[clientId]
+	);
+
+	const { itemTypes } = useSelect(
+		( select ) => {
+			const { getEditedPostAttribute } = select( 'core/editor' );
+			const meta  = getEditedPostAttribute( 'meta' );
+
+			return {
+				itemTypes: meta['_line_item_types'] ? meta['_line_item_types'] : getSetting( 'lineItemTypes' ),
+			};
+		}
+	);
+
 	const ref = useRef();
 	const {
 		InspectorControlsColorPanel,
@@ -90,8 +113,23 @@ function ColumnsEditContainer( {
 		}
 	);
 
+	/**
+	 * Older Gutenberg versions might add a surrounding wrapper div element in BlockList
+	 * which prevents styles being applied. Remove it.
+	 */
+	const removeWrapperDiv = useCallback((node) => {
+		if ( node !== null ) {
+			let element = node.querySelector('* > div:not([class])');
+
+			if ( element ) {
+				element.replaceWith(...element.childNodes);
+			}
+		}
+	}, []);
+
 	const { borders, showPricesIncludingTax, hasDenseLayout } = attributes;
 	const borderClasses = getBorderClasses( borders );
+	let rowCount = 1;
 
 	const classes = classnames( className, {
 		'has-border-color': borderColor.color,
@@ -116,7 +154,7 @@ function ColumnsEditContainer( {
 						value={ count }
 						onChange={ ( value ) => updateColumns( count, value ) }
 						min={ 2 }
-						max={ 6 }
+						max={ 8 }
 					/>
 					{ documentTypeSupports( 'item_totals' ) &&
 					<ToggleControl
@@ -160,7 +198,7 @@ function ColumnsEditContainer( {
 				</PanelColorGradientSettings>
 			</InspectorControls>
 
-			<div className={ classes } ref={ ref } style={ {
+			<div className={ classnames( classes, ['sab-item-table-row-' + rowCount, 'sab-item-table-row-' + ( rowCount % 2 === 0 ? 'even' : 'odd' )] ) } ref={ ref } style={ {
 				borderColor: borderColor.color,
 			} }>
 				<InnerBlocks
@@ -172,6 +210,47 @@ function ColumnsEditContainer( {
 					isHorizontalLayouts
 				/>
 			</div>
+
+			<Disabled>
+				<div className="sab-item-table-placeholder-wrapper">
+					<div className="sab-item-table-placeholders">
+						{
+							Object.entries( getSetting( 'availableLineItemTypes' ) ).map( ( data ) => {
+								if ( includes( itemTypes, data[0] ) ) {
+									let newBlocks = cloneDeep( childBlocks );
+									rowCount = rowCount + 1;
+
+									newBlocks.map( ( block, i ) => {
+										block.attributes.itemType = data[0];
+
+										block.innerBlocks.map( ( innerBlock, i ) => {
+											innerBlock.attributes.itemType = data[0];
+
+											if ( 'storeabill/item-position' === innerBlock.name ) {
+												innerBlock.attributes.currentPosition = rowCount;
+											}
+										});
+									});
+
+									const blockClasses = classnames( classes, ['sab-item-table-placeholder-' + data[0]], 'sab-item-table-row-' + rowCount, 'sab-item-table-row-' + ( rowCount % 2 === 0 ? 'even' : 'odd' ) );
+
+									return (
+										<BlockEditorProvider value={ newBlocks } key={ data[0] }>
+											<div className={ blockClasses } style={ {
+												borderColor: borderColor.color,
+											} }>
+												<div className="block-editor-inner-blocks" ref={ removeWrapperDiv }>
+													<BlockList className={ "block-editor-block-list__layout" } renderAppender={ false } settings={ { 'isOutlineMode': false, 'isFocusMode': false, 'isNavigationMode': false } } />
+												</div>
+											</div>
+										</BlockEditorProvider>
+									)
+								}
+							} )
+						}
+					</div>
+				</div>
+			</Disabled>
 		</>
 	);
 }
@@ -343,15 +422,19 @@ function ColumnsEdit( props ) {
 	const {
 		blockType,
 		hasInnerBlocks,
+		childBlocks,
 	} = useSelect(
 		( select ) => {
 			const {
 				getBlockType,
 			} = select( 'core/blocks' );
 
+			const childBlocks = select( 'core/block-editor' ).getBlocks( clientId );
+
 			return {
 				blockType: getBlockType( name ),
-				hasInnerBlocks: select( 'core/block-editor' ).getBlocks( clientId ).length > 0,
+				childBlocks: childBlocks,
+				hasInnerBlocks: childBlocks.length > 0,
 			};
 		},
 		[clientId, name]

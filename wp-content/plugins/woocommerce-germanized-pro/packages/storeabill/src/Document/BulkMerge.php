@@ -3,6 +3,7 @@
 namespace Vendidero\StoreaBill\Document;
 
 use Vendidero\StoreaBill\Admin\Admin;
+use Vendidero\StoreaBill\Utilities\CacheHelper;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -32,6 +33,8 @@ class BulkMerge extends BulkActionHandler {
 
 		if ( ! empty( $current ) ) {
 			foreach ( $current as $document_id ) {
+				CacheHelper::prevent_caching();
+
 				if ( $document = sab_get_document( $document_id ) ) {
 					if ( $document->has_file() ) {
 						$this->add_file( $document->get_relative_path() );

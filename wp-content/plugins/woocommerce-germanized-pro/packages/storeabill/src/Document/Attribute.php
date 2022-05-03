@@ -23,7 +23,11 @@ class Attribute {
 	 *
 	 * @param array|Attribute $args
 	 */
-	public function __construct( $args ) {
+	public function __construct( $args = array() ) {
+		$this->set_props( $args, true );
+	}
+
+	public function set_props( $args, $set_defaults = false ) {
 		$class_args = array();
 
 		if ( is_array( $args ) ) {
@@ -32,7 +36,9 @@ class Attribute {
 			$class_args = $args->get_data();
 		}
 
-		$class_args = wp_parse_args( $class_args, $this->defaults );
+		if ( $set_defaults ) {
+			$class_args = wp_parse_args( $class_args, $this->defaults );
+		}
 
 		foreach( $class_args as $key => $data ) {
 			$setter = "set_{$key}";

@@ -112,6 +112,13 @@ class Settings {
 				),
 			),
 			array(
+				'title' 	     => _x( 'Email', 'storeabill-core', 'woocommerce-germanized-pro' ),
+				'desc' 		     => _x( 'Send by e-mail after automatic creation.', 'storeabill-core', 'woocommerce-germanized-pro' ) . '<div class="sab-additional-desc">' . sprintf( _x( 'In case an invoice is being created automatically, the invoice will be sent to the customer by e-mail. Invoices created manually by the store manager will not be sent automatically.', 'storeabill-core', 'woocommerce-germanized-pro' ) ) . '</div>',
+				'id' 		     => 'storeabill_invoice_send_to_customer',
+				'default'	     => 'yes',
+				'type' 		     => 'sab_toggle',
+			),
+			array(
 				'title' 	     => _x( 'Free orders', 'storeabill-core', 'woocommerce-germanized-pro' ),
 				'desc' 		     => _x( 'Create invoices to orders with zero total.', 'storeabill-core', 'woocommerce-germanized-pro' ),
 				'id' 		     => 'storeabill_invoice_woo_order_free',
@@ -132,6 +139,13 @@ class Settings {
 
 	public static function get_cancellation_settings() {
 		return array(
+			array(
+				'title' 	     => _x( 'Email', 'storeabill-core', 'woocommerce-germanized-pro' ),
+				'desc' 		     => _x( 'Send by e-mail after automatic creation.', 'storeabill-core', 'woocommerce-germanized-pro' ) . '<div class="sab-additional-desc">' . sprintf( _x( 'In case a cancellation is being created automatically, e.g. after cancelling or refunding an order, the cancellation created will be sent to the customer by e-mail. Cancellations created manually will not be sent automatically.', 'storeabill-core', 'woocommerce-germanized-pro' ) ) . '</div>',
+				'id' 		     => 'storeabill_invoice_cancellation_send_to_customer',
+				'default'	     => 'yes',
+				'type' 		     => 'sab_toggle',
+			),
 			array(
 				'title' 	     => _x( 'Download', 'storeabill-core', 'woocommerce-germanized-pro' ),
 				'desc' 		     => _x( 'Add download link to customer orders panel.', 'storeabill-core', 'woocommerce-germanized-pro' ),

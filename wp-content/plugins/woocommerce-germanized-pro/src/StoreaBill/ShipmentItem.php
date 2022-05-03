@@ -71,6 +71,8 @@ class ShipmentItem implements SyncableReferenceItem {
 			do_action( 'storeabill_woo_shipment_item_after_retrieve_attributes', $object, $this );
 		}
 
+		$meta = apply_filters( "{$this->get_hook_prefix()}order_item_meta_to_sync", $meta, $this, $object );
+
 		$attributes     = array();
 		$order          = 0;
 		$existing_slugs = array();

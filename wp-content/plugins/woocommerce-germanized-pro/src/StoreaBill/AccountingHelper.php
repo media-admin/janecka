@@ -43,6 +43,9 @@ class AccountingHelper {
 		add_filter( 'storeabill_invoice_finalize_help_link', array( __CLASS__, 'invoice_finalize_help_link' ), 10 );
 		add_filter( 'storeabill_accounting_help_link', array( __CLASS__, 'accounting_help_link' ), 10, 2 );
 
+        add_filter( 'storeabill_locate_theme_template_locations', array( __CLASS__, 'register_gzd_template_location' ), 10, 2 );
+        add_filter( 'storeabill_email_template_path', array( __CLASS__, 'register_gzd_email_template_path' ) );
+
 		/**
 		 * Adjust email salutation based on Germanized settings
 		 */
@@ -123,6 +126,30 @@ class AccountingHelper {
 
         add_filter( 'woocommerce_gzd_product_warranties_email_product_ids', array( __CLASS__, 'warranties_product_ids' ), 10, 3 );
 	}
+
+    public static function register_gzd_email_template_path() {
+        return untrailingslashit( WC_germanized_pro()->template_path() );
+    }
+
+	/**
+     * Allow storeabill templates to be overridden via the woocommerce-germanized-pro template path too.
+     *
+	 * @param string[] $template_locations
+	 * @param string $template_name
+	 *
+	 * @return string[]
+	 */
+    public static function register_gzd_template_location( $template_locations, $template_name ) {
+	    /**
+	     * Do not override storeabill templates from woocommerce-germanized-pro template folder
+         * because legacy v2 templates might be stored here.
+	     */
+        if ( ! get_option( 'wc_gzdp_invoice_simple' ) ) {
+	        $template_locations[] = trailingslashit( WC_germanized_pro()->template_path() ) . $template_name;
+        }
+
+        return $template_locations;
+    }
 
     public static function warranties_product_ids( $product_ids, $object, $mail_id ) {
         if ( is_a( $object, '\Vendidero\StoreaBill\Invoice\Invoice' ) ) {
@@ -612,7 +639,7 @@ class AccountingHelper {
 		if ( wc_gzd_is_small_business() ) {
 			ob_start();
 			wc_get_template( 'global/small-business-info.php' );
-			$return = ob_get_clean();
+			$return = strip_tags( ob_get_clean() );
 		}
 
 		return apply_filters( 'woocommerce_gzdp_shortcode_small_business', $return, $atts );

@@ -50,6 +50,14 @@ function blockTypeFilter( settings, name ) {
         "width": {
             "type": "number",
         },
+        "isDisabled": {
+            "type": "boolean",
+            "default": false,
+        },
+        "itemType": {
+            "type": "string",
+            "default": "",
+        },
         "headingTextColor": {
             "type": "string"
         },

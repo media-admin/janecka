@@ -45,7 +45,7 @@ class ItemName extends ItemTableColumnBlock {
 		 */
 		$document_item = $GLOBALS['document_item'];
 		$attributes    = $this->parse_attributes( $attributes );
-		$output        = $document_item->get_name();
+		$output        = wp_kses_post( $document_item->get_name() );
 
 		return $this->wrap( $this->replace_placeholder( $content, $output ), $attributes );
 	}

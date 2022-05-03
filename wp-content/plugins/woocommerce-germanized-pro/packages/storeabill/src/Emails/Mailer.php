@@ -156,9 +156,10 @@ class Mailer {
 	 * @param Invoice $invoice
 	 */
 	public static function maybe_send_invoice( $invoice ) {
-		$type = $invoice->get_type();
+		$type              = $invoice->get_type();
+		$auto_send_enabled = ( 'yes' === Package::get_setting( "{$type}_send_to_customer" ) && 'automation' === $invoice->get_created_via() );
 
-		if ( $invoice->is_finalized() && apply_filters( "storeabill_send_{$invoice->get_type()}_to_customer", ( 'yes' === Package::get_setting( "{$type}_send_to_customer" ) ), $invoice ) ) {
+		if ( $invoice->is_finalized() && apply_filters( "storeabill_send_{$invoice->get_type()}_to_customer", $auto_send_enabled, $invoice ) ) {
 			$invoice->send_to_customer();
 		}
 	}
@@ -321,7 +322,7 @@ class Mailer {
 
 	public static function set_woocommerce_template_dir( $dir, $template ) {
 		if ( file_exists( Package::get_path() . '/templates/' . $template ) ) {
-			return untrailingslashit( Package::get_template_path() );
+			return untrailingslashit( apply_filters( 'storeabill_email_template_path', Package::get_template_path() ) );
 		}
 
 		return $dir;

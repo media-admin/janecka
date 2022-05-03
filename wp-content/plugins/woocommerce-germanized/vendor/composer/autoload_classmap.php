@@ -320,6 +320,7 @@ return array(
     'Vendidero\\Germanized\\Shipments\\WPMLHelper' => $baseDir . '/packages/woocommerce-germanized-shipments/src/WPMLHelper.php',
     'Vendidero\\Germanized\\Shopmark' => $baseDir . '/src/Shopmark.php',
     'Vendidero\\Germanized\\Shopmarks' => $baseDir . '/src/Shopmarks.php',
+    'Vendidero\\Germanized\\Utilities\\NumberUtil' => $baseDir . '/src/Utilities/NumberUtil.php',
     'Vendidero\\OneStopShop\\Admin' => $baseDir . '/packages/one-stop-shop-woocommerce/src/Admin.php',
     'Vendidero\\OneStopShop\\AdminNote' => $baseDir . '/packages/one-stop-shop-woocommerce/src/AdminNote.php',
     'Vendidero\\OneStopShop\\AsyncReportGenerator' => $baseDir . '/packages/one-stop-shop-woocommerce/src/AsyncReportGenerator.php',

@@ -27,6 +27,7 @@ $unit-3: .6rem !default;
       min-height: 1rem;
       text-align: center;
       position: relative;
+      list-style-type: none;
 
       &:not(:first-child)::before {
         background: $primary-color;

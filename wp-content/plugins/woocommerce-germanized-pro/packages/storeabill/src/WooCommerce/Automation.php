@@ -309,15 +309,22 @@ class Automation {
 				'storeabill-order-sync'
 			);
 		} else {
+			// Create a fresh order object
+			$order = Helper::get_order( $order_id );
+
 			CacheHelper::prevent_caching();
 
 			Package::extended_log( 'Starting order #' . $order_id . ' invoice sync (instant)' );
 
-			$order->sync_order( true, $args );
+			$order->sync_order( true, array( 'created_via' => 'automation' ) );
+
+			$result = true;
 
 			if ( self::finalize_invoices() && $order->needs_finalization() ) {
-				return $order->finalize( $defer );
+				$result = $order->finalize( $defer );
 			}
+
+			return $result;
 		}
 
 		return true;
@@ -339,7 +346,7 @@ class Automation {
 
 		Package::extended_log( 'Starting order #' . $order_id . ' invoice sync (deferred callback)' );
 
-		$order->sync_order( true );
+		$order->sync_order( true, array( 'created_via' => 'automation' ) );
 
 		if ( self::finalize_invoices() && $order->needs_finalization() ) {
 			$order->finalize();

@@ -47,6 +47,46 @@ class ItemTotals extends DynamicBlock {
 		$classes    = array( ( $attributes['hasDenseLayout'] ? 'sab-item-totals-has-dense-layout' : '' ) );
 
 		if ( ! empty( $block['innerBlocks'] ) ) {
+			/**
+			 * Make sure to check whether total types are valid (e.g. custom line item types), legacy vouchers
+			 */
+			if ( is_a( $document, '\Vendidero\StoreaBill\Invoice\Invoice' ) ) {
+				$line_item_types            = $document->get_line_item_types();
+				$is_legacy_template         = version_compare( $document->get_template()->get_version(), '1.9.0', '<' );
+				$is_legacy_voucher_template = $is_legacy_template && sizeof( $document->get_items( 'voucher' ) ) > 0;
+
+				if ( $is_legacy_voucher_template && ! in_array( 'voucher', $line_item_types ) ) {
+					$total_index             = sizeof( $block['innerBlocks'] );
+					$has_voucher_total_block = false;
+
+					foreach( $block['innerBlocks'] as $index => $inner_block ) {
+						if ( isset( $inner_block['attrs']['totalType'] ) ) {
+							if ( in_array( $inner_block['attrs']['totalType'], array( 'vouchers', 'voucher' ) ) ) {
+								$has_voucher_total_block = true;
+							} elseif ( 'total' === $inner_block['attrs']['totalType'] ) {
+								$total_index = $index;
+							}
+						}
+					}
+
+					if ( ! $has_voucher_total_block ) {
+						array_splice( $block['innerBlocks'], $total_index, 0, array(
+							array(
+								'blockName' => 'storeabill/item-total-row',
+								'attrs'     => array(
+									'totalType'   => 'vouchers',
+									'heading'     => sprintf( esc_attr_x( 'Voucher: %s (Multipurpose)', 'storeabill-item-total', 'woocommerce-germanized-pro' ), '[document_total data="code" total_type="vouchers"]' ),
+									'hideIfEmpty' => true,
+								),
+								'innerBlocks'  => array(),
+								'innerHTML'    => '',
+								'innerContent' => array(),
+							)
+						) );
+					}
+				}
+			}
+
 			$content = sab_get_template_html( 'blocks/item-totals/totals.php', array(
 				'totals'  => $block,
 				'classes' => $classes,

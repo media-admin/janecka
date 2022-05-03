@@ -16,14 +16,15 @@ window.storeabill.admin = window.storeabill.admin || {};
         needsFixation: false,
 
         init: function() {
-            var self            = storeabill.admin.edit_order;
-            self.params         = storeabill_admin_edit_order_params;
-            self.$wrapper       = $( '#sab-order-invoices' );
+            var self      = storeabill.admin.edit_order;
+            self.params   = storeabill_admin_edit_order_params;
+            self.$wrapper = $( '#sab-order-invoices' );
 
             self.initTiptip();
 
             // Listen to AJAX Events to allow running actions after Woo saved/added/removed order items.
             $( document ).ajaxComplete( self.onAjaxComplete );
+            $( document ).ajaxSend( self.onAjaxSend );
 
             $( document )
                 .on( 'click', '#sab-order-invoices #sab-order-invoice-sync', self.onSync )
@@ -212,34 +213,96 @@ window.storeabill.admin = window.storeabill.admin || {};
             var self = storeabill.admin.edit_order;
 
             if ( jqXHR != null ) {
-
                 if ( settings.hasOwnProperty( 'data' ) ) {
                     var search = settings.data;
-                    var data   = false;
-
-                    try {
-                        data = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}', function( key, value ) { return key==="" ? value:decodeURIComponent( value ) });
-                    } catch (e) {
-                        data = false;
-                    }
+                    var data   = self.parseAjaxData( search );
 
                     if ( data && data.hasOwnProperty( 'action' ) ) {
                         var action = data.action;
 
-                        if (
-                            'woocommerce_save_order_items' === action
-                            || 'woocommerce_remove_order_item' === action
-                            || 'woocommerce_add_order_item' === action
-                            || 'woocommerce_delete_refund' === action
-                            || 'woocommerce_calc_line_taxes' === action
-                            || 'woocommerce_remove_order_tax' === action
-                            || 'woocommerce_add_order_shipping' === action
-                            || 'woocommerce_add_order_fee' === action
-                            || 'woocommerce_remove_order_coupon' === action
-                            || 'woocommerce_add_coupon_discount' === action
-                            || 'woocommerce_load_order_items' === action
-                        ) {
+                        if ( self.isWooAjaxAction( action ) ) {
                             self.sync( self.hasInvoices() );
+                        }
+                    }
+                }
+            }
+        },
+
+        isWooAjaxAction: function( action ) {
+            if (
+                'woocommerce_save_order_items' === action
+                || 'woocommerce_remove_order_item' === action
+                || 'woocommerce_add_order_item' === action
+                || 'woocommerce_delete_refund' === action
+                || 'woocommerce_calc_line_taxes' === action
+                || 'woocommerce_remove_order_tax' === action
+                || 'woocommerce_add_order_shipping' === action
+                || 'woocommerce_add_order_fee' === action
+                || 'woocommerce_remove_order_coupon' === action
+                || 'woocommerce_add_coupon_discount' === action
+                || 'woocommerce_load_order_items' === action
+            ) {
+                return true;
+            }
+
+            return false;
+        },
+
+        parseAjaxData: function( rawData ) {
+            var data   = false;
+
+            try {
+                data = JSON.parse('{"' + rawData.replace(/&/g, '","').replace(/=/g,'":"') + '"}', function( key, value ) { return key==="" ? value:decodeURIComponent( value ) });
+            } catch (e) {
+                data = false;
+            }
+
+            return data;
+        },
+
+        getTaxableAddress: function() {
+            var self = storeabill.admin.edit_order;
+
+            var country          = '';
+            var state            = '';
+            var postcode         = '';
+            var city             = '';
+
+            if ( 'shipping' === self.params.tax_based_on ) {
+                country  = $( '#_shipping_country' ).val();
+                state    = $( '#_shipping_state' ).val();
+                postcode = $( '#_shipping_postcode' ).val();
+                city     = $( '#_shipping_city' ).val();
+            }
+
+            if ( 'billing' === self.params.tax_based_on || ! country ) {
+                country  = $( '#_billing_country' ).val();
+                state    = $( '#_billing_state' ).val();
+                postcode = $( '#_billing_postcode' ).val();
+                city     = $( '#_billing_city' ).val();
+            }
+
+            return {
+                country:  country,
+                state:    state,
+                postcode: postcode,
+                city:     city
+            };
+        },
+
+        onAjaxSend: function( e, jqXHR, settings ) {
+            var self = storeabill.admin.edit_order;
+
+            if ( jqXHR != null ) {
+                if ( settings.hasOwnProperty( 'data' ) ) {
+                    var search = settings.data;
+                    var data   = self.parseAjaxData( search );
+
+                    if ( data && data.hasOwnProperty( 'action' ) && ! data.hasOwnProperty( 'country' ) ) {
+                        var action = data.action;
+
+                        if ( self.isWooAjaxAction( action ) ) {
+                            settings.data += ( '&' + $.param( self.getTaxableAddress() ) );
                         }
                     }
                 }

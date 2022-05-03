@@ -15,6 +15,7 @@
       display: flex;
       justify-content: flex-end;
       border-color: $default-border-color;
+      border-style: none !important;
 
       .item-total-row-heading, .item-total-row-data {
         padding: $total-row-padding;

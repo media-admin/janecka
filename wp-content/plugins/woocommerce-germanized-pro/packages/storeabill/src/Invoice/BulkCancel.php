@@ -3,6 +3,7 @@
 namespace Vendidero\StoreaBill\Invoice;
 
 use Vendidero\StoreaBill\Document\BulkActionHandler;
+use Vendidero\StoreaBill\Utilities\CacheHelper;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -24,6 +25,8 @@ class BulkCancel extends BulkActionHandler {
 
 		if ( ! empty( $current ) ) {
 			foreach ( $current as $invoice_id ) {
+				CacheHelper::prevent_caching();
+
 				if ( $invoice = sab_get_invoice( $invoice_id, 'simple' ) ) {
 					if ( $invoice->is_cancelable() ) {
 						$result = $invoice->cancel();

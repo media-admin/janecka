@@ -19,6 +19,7 @@ class Simple extends Invoice {
 			'product',
 			'fee',
 			'shipping',
+			'voucher'
 		), $this );
 	}
 
@@ -294,7 +295,7 @@ class Simple extends Invoice {
 	 *
 	 * @return WP_Error|Cancellation
 	 */
-	public function cancel( $items = array(), $refund_order_id = 0 ) {
+	public function cancel( $items = array(), $refund_order_id = 0, $cancellation_props = array() ) {
 		$error = new WP_Error();
 
 		if ( ! $this->is_cancelable() ) {
@@ -413,13 +414,22 @@ class Simple extends Invoice {
 				$cancellation->set_payment_method_title( $this->get_payment_method_title() );
 				$cancellation->set_date_of_service( $this->get_date_of_service() );
 				$cancellation->set_date_of_service_end( $this->get_date_of_service_end() );
-				$cancellation->set_voucher_total( $this->get_voucher_total() );
-				$cancellation->set_voucher_tax( $this->get_voucher_tax() );
 				$cancellation->set_discount_notice( $this->get_discount_notice() );
+				$cancellation->set_stores_vouchers_as_discount( $this->stores_vouchers_as_discount() );
+
+				if ( $cancellation->stores_vouchers_as_discount() ) {
+					$cancellation->set_voucher_total( $this->get_voucher_total() );
+					$cancellation->set_voucher_tax( $this->get_voucher_tax() );
+				}
 
 				if ( $refund = $cancellation->get_refund_order() ) {
 					$cancellation->set_refund_order_number( $refund->get_formatted_number() );
 					$cancellation->set_reason( $refund->get_reason() );
+					$cancellation->set_payment_transaction_id( $refund->get_transaction_id() );
+
+					if ( '' === $cancellation->get_payment_transaction_id() && ( $order = $cancellation->get_order() ) ) {
+						$order->get_refund_transaction_id( $refund );
+					}
 				}
 
 				foreach( $items_to_cancel as $item_id => $item_data ) {
@@ -516,6 +526,11 @@ class Simple extends Invoice {
 				 * Copy meta data
 				 */
 				$cancellation->set_meta_data( $this->get_meta_data() );
+
+				/**
+				 * Set additional props
+				 */
+				$cancellation->set_props( $cancellation_props );
 
 				/**
 				 * Calculate totals (without taxes)

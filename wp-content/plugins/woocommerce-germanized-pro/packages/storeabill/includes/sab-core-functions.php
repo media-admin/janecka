@@ -74,10 +74,10 @@ function sab_locate_template( $template_name, $template_path = '', $default_path
 
 	// Look within passed path within the theme - this is priority.
 	$template = locate_template(
-		array(
+		apply_filters( 'storeabill_locate_theme_template_locations', array(
 			trailingslashit( $template_path ) . $template_name,
 			$template_name,
-		)
+		), $template_name )
 	);
 
 	// Get default template/.
@@ -1039,4 +1039,25 @@ function sab_get_base_bank_account_data( $field = '' ) {
 
 function sab_get_wildcard_postcodes( $postcode, $country = '' ) {
 	return wc_get_wildcard_postcodes( $postcode, $country );
+}
+
+function sab_get_random_key( $max_length = -1 ) {
+	$key       = array( ABSPATH, time() );
+	$constants = array( 'AUTH_KEY', 'SECURE_AUTH_KEY', 'LOGGED_IN_KEY', 'NONCE_KEY', 'AUTH_SALT', 'SECURE_AUTH_SALT', 'LOGGED_IN_SALT', 'NONCE_SALT', 'SECRET_KEY' );
+
+	foreach ( $constants as $constant ) {
+		if ( defined( $constant ) ) {
+			$key[] = constant( $constant );
+		}
+	}
+
+	shuffle( $key );
+
+	$key = md5( serialize( $key ) );
+
+	if ( $max_length > 0 ) {
+		$key = substr( $key, 0, $max_length );
+	}
+
+	return $key;
 }

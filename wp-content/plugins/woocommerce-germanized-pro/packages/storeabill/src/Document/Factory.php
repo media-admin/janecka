@@ -99,6 +99,9 @@ class Factory {
 				case 'accounting_tax':
 					$classname = '\Vendidero\StoreaBill\Invoice\TaxItem';
 					break;
+				case 'accounting_voucher':
+					$classname = '\Vendidero\StoreaBill\Invoice\VoucherItem';
+					break;
 			}
 
 			$classname = apply_filters( 'storeabill_document_item_classname', $classname, $item_type, $item_id );

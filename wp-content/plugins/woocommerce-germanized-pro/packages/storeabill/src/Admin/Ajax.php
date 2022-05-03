@@ -497,6 +497,11 @@ class Ajax {
 			wp_die( -1 );
 		}
 
+		/**
+		 * Cancel outstanding events.
+		 */
+		Helper::cancel_deferred_sync( $object, $handler );
+
 		$result = $handler->sync( $object );
 
 		if ( ! is_wp_error( $result ) ) {
@@ -776,8 +781,8 @@ class Ajax {
 			) );
 		}
 
-		$start_date = ! empty( $filters['start_date'] ) ? wc_string_to_datetime( $filters['start_date'] ) : false;
-		$end_date   = ! empty( $filters['end_date'] ) ? wc_string_to_datetime( $filters['end_date'] ) : false;
+		$start_date = ! empty( $filters['start_date'] ) ? sab_string_to_datetime( $filters['start_date'] ) : false;
+		$end_date   = ! empty( $filters['end_date'] ) ? sab_string_to_datetime( $filters['end_date'] ) : false;
 		$today      = sab_string_to_datetime( 'now' );
 
 		if ( $start_date && $start_date > $today ) {

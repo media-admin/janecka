@@ -42,6 +42,8 @@ abstract class ItemTableColumnBlock extends DynamicBlock {
 			}
 		}
 
+		$inc_tax = apply_filters( 'storeabill_document_item_table_prices_include_tax', $inc_tax, $prefix, $discount_total_type, isset( $GLOBALS['document'] ) ? $GLOBALS['document'] : false, isset( $GLOBALS['document_item'] ) ? $GLOBALS['document_item'] : false );
+
 		if ( ! $inc_tax ) {
 			if ( strpos( $prefix, '_total' ) !== false ) {
 				$getter = str_replace( '_total', '', $getter );

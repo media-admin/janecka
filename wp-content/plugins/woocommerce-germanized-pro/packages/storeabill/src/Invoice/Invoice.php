@@ -49,65 +49,66 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 	 * @var array
 	 */
 	protected $data = array(
-		'date_created'           => null,
-		'date_modified'          => null,
-		'date_sent'              => null,
-		'date_custom'            => null,
-		'date_custom_extra'      => null,
-		'date_due'               => null,
-		'date_paid'              => null,
-		'date_of_service'        => null,
-		'date_of_service_end'    => null,
-		'created_via'            => '',
-		'version'                => '',
-		'parent_id'              => 0,
-		'payment_status'         => '',
-		'payment_method_title'   => '',
-		'payment_method_name'    => '',
-		'payment_transaction_id' => '',
-		'reference_id'           => '',
-		'reference_type'         => '',
-		'reference_number'       => '',
-		'customer_id'            => 0,
-		'author_id'              => 0,
-		'number'                 => '',
-		'formatted_number'       => '',
-		'journal_type'           => '',
-		'vat_id'                 => '',
-		'status'                 => '',
-		'discount_notice'        => '',
-		'address'                => array(),
-		'shipping_address'       => array(),
-		'external_sync_handlers' => array(),
-		'relative_path'          => '',
-		'currency'               => '',
-		'prices_include_tax'     => false,
-		'tax_display_mode'       => 'incl',
-		'is_reverse_charge'      => false,
-		'is_oss'                 => false,
-		'is_taxable'             => true,
-		'round_tax_at_subtotal'  => null,
-		'total'                  => 0,
-		'subtotal'               => 0,
-		'total_paid'             => 0,
-		'product_total'          => 0,
-		'shipping_total'         => 0,
-		'fee_total'              => 0,
-		'product_subtotal'       => 0,
-		'shipping_subtotal'      => 0,
-		'fee_subtotal'           => 0,
-		'discount_total'         => 0,
-		'total_tax'              => 0,
-		'subtotal_tax'           => 0,
-		'product_tax'            => 0,
-		'shipping_tax'           => 0,
-		'fee_tax'                => 0,
-		'product_subtotal_tax'   => 0,
-		'shipping_subtotal_tax'  => 0,
-		'fee_subtotal_tax'       => 0,
-		'discount_tax'           => 0,
-		'voucher_total'          => 0,
-		'voucher_tax'            => 0,
+		'date_created'                => null,
+		'date_modified'               => null,
+		'date_sent'                   => null,
+		'date_custom'                 => null,
+		'date_custom_extra'           => null,
+		'date_due'                    => null,
+		'date_paid'                   => null,
+		'date_of_service'             => null,
+		'date_of_service_end'         => null,
+		'created_via'                 => '',
+		'version'                     => '',
+		'parent_id'                   => 0,
+		'payment_status'              => '',
+		'payment_method_title'        => '',
+		'payment_method_name'         => '',
+		'payment_transaction_id'      => '',
+		'reference_id'                => '',
+		'reference_type'              => '',
+		'reference_number'            => '',
+		'customer_id'                 => 0,
+		'author_id'                   => 0,
+		'number'                      => '',
+		'formatted_number'            => '',
+		'journal_type'                => '',
+		'vat_id'                      => '',
+		'status'                      => '',
+		'discount_notice'             => '',
+		'address'                     => array(),
+		'shipping_address'            => array(),
+		'external_sync_handlers'      => array(),
+		'relative_path'               => '',
+		'currency'                    => '',
+		'prices_include_tax'          => false,
+		'tax_display_mode'            => 'incl',
+		'is_reverse_charge'           => false,
+		'is_oss'                      => false,
+		'is_taxable'                  => true,
+		'round_tax_at_subtotal'       => null,
+		'total'                       => 0,
+		'subtotal'                    => 0,
+		'total_paid'                  => 0,
+		'product_total'               => 0,
+		'shipping_total'              => 0,
+		'fee_total'                   => 0,
+		'product_subtotal'            => 0,
+		'shipping_subtotal'           => 0,
+		'fee_subtotal'                => 0,
+		'discount_total'              => 0,
+		'total_tax'                   => 0,
+		'subtotal_tax'                => 0,
+		'product_tax'                 => 0,
+		'shipping_tax'                => 0,
+		'fee_tax'                     => 0,
+		'product_subtotal_tax'        => 0,
+		'shipping_subtotal_tax'       => 0,
+		'fee_subtotal_tax'            => 0,
+		'discount_tax'                => 0,
+		'voucher_total'               => 0,
+		'voucher_tax'                 => 0,
+		'stores_vouchers_as_discount' => false,
 	);
 
 	/**
@@ -324,6 +325,7 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 			'fee',
 			'tax',
 			'shipping',
+			'voucher'
 		), $this );
 	}
 
@@ -331,14 +333,20 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 	 * Returns item types used to calculate totals.
 	 *
 	 * @return array
-	 * @see SAB_Item_Totalizable
 	 */
 	public function get_item_types_for_totals() {
-		return apply_filters( $this->get_hook_prefix() . 'item_types_for_total', array(
+		$item_types = apply_filters( $this->get_hook_prefix() . 'item_types_for_total', array(
 			'product',
 			'fee',
 			'shipping',
+			'voucher'
 		), $this );
+
+		if ( $this->stores_vouchers_as_discount() ) {
+			$item_types = array_diff( $item_types, array( 'voucher' ) );
+		}
+
+		return $item_types;
 	}
 
 	/**
@@ -535,6 +543,19 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 						'label'        => $fee->get_total() < 0 ? _x( 'Discount: %s', 'storeabill-core', 'woocommerce-germanized-pro' ) : _x( 'Fee: %s', 'storeabill-core', 'woocommerce-germanized-pro' )
 					) );
 				}
+			} elseif( 'vouchers' === $total_type ) {
+				$vouchers = $this->get_items( 'voucher' );
+
+				foreach ( $vouchers as $voucher ) {
+					$document_totals[] = new Total( $this, array(
+						'total'        => $voucher->get_total(),
+						'placeholders' => array(
+							'{code}' => $voucher->get_code(),
+						),
+						'type'         => 'vouchers',
+						'label'        => _x( 'Voucher: %s', 'storeabill-core', 'woocommerce-germanized-pro' )
+					) );
+				}
 			} elseif( 'line_subtotal_after' === $total_type ) {
 				$document_totals[] = new Total( $this, array(
 					'total' => $this->get_line_subtotal( false ),
@@ -586,6 +607,8 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 				if ( in_array( $total_type, array( 'discount' ) ) ) {
 					$placeholders['{notice}']        = $this->get_formatted_discount_notice();
 					$placeholders['{discount_type}'] = $this->get_discount_type_title();
+				} elseif ( in_array( $total_type, array( 'voucher' ) ) ) {
+					$placeholders['{code}']          = $this->get_formatted_voucher_notice();
 				}
 
 				if ( false !== $total ) {
@@ -889,7 +912,14 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 	 * @return float
 	 */
 	public function get_voucher_total( $context = 'view' ) {
-		return $this->get_prop( 'voucher_total', $context );
+		$voucher_total = $this->get_prop( 'voucher_total', $context );
+
+		if ( 'view' === $context ) {
+			$voucher_total = floatval( $voucher_total );
+			$voucher_total = $voucher_total < 0 ? $voucher_total * -1 : $voucher_total;
+		}
+
+		return $voucher_total;
 	}
 
 	/**
@@ -911,7 +941,14 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 	 * @return float
 	 */
 	public function get_voucher_tax( $context = 'view' ) {
-		return $this->get_prop( 'voucher_tax', $context );
+		$voucher_total = $this->get_prop( 'voucher_tax', $context );
+
+		if ( 'view' === $context ) {
+			$voucher_total = floatval( $voucher_total );
+			$voucher_total = $voucher_total < 0 ? $voucher_total * -1 : $voucher_total;
+		}
+
+		return $voucher_total;
 	}
 
 	/**
@@ -1035,16 +1072,26 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 		return apply_filters( "{$this->get_hook_prefix()}formatted_discount_notice", $notice, $this );
 	}
 
+	public function get_formatted_voucher_notice() {
+		$codes = array();
+
+		foreach( $this->get_items( 'voucher' ) as $voucher ) {
+			if ( ! empty( $voucher->get_code() ) ) {
+				$codes[] = $voucher->get_code();
+			}
+		}
+
+		return apply_filters( "{$this->get_hook_prefix()}formatted_voucher_notice", implode( ', ', $codes ), $this );
+	}
+
 	public function get_discount_type_title() {
 		$title = '';
+		$types = sab_get_invoice_discount_types();
 
-		if ( $this->has_discount() ) {
-			$types = sab_get_invoice_discount_types();
+		if ( $this->has_voucher() && $this->stores_vouchers_as_discount() ) {
+			$title = $types['multi_purpose'];
+		} elseif ( $this->has_discount() ) {
 			$title = $types['single_purpose'];
-
-			if ( $this->has_voucher() ) {
-				$title = $types['multi_purpose'];
-			}
 		}
 
 		return apply_filters( "{$this->get_hook_prefix()}discount_type_title", $title, $this );
@@ -1336,8 +1383,16 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 		return $this->get_total_net( 'fee' );
 	}
 
+	public function get_voucher_net( $context = 'view' ) {
+		return $this->get_voucher_net_total();
+	}
+
 	public function get_fee_subtotal_net( $context = 'view' ) {
 		return $this->get_total_net( 'fee_subtotal' );
+	}
+
+	public function get_voucher_subtotal_net( $context = 'view'  ) {
+		return $this->get_voucher_net_total();
 	}
 
 	/**
@@ -1463,8 +1518,46 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 		return $this->get_prop( 'is_taxable', $context );
 	}
 
-	public function has_voucher( $context = 'view' ) {
+	public function get_stores_vouchers_as_discount( $context = 'view' ) {
+		$stores_vouchers_as_discount = $this->get_prop( 'stores_vouchers_as_discount', $context );
+
+		/**
+		 * Invoices before 1.8.6 did always store vouchers as discount.
+		 */
+		if ( 'view' === $context && '' !== $this->get_version() && version_compare( $this->get_version(), '1.8.6', '<' ) ) {
+			$stores_vouchers_as_discount = true;
+		}
+
+		return $stores_vouchers_as_discount;
+	}
+
+	public function stores_vouchers_as_discount() {
+		return $this->get_stores_vouchers_as_discount();
+	}
+
+	public function has_voucher( $voucher_code = '' ) {
 		return ( $this->get_voucher_total() > 0 );
+	}
+
+	public function has_voucher_items() {
+		return sizeof( $this->get_items( 'voucher' ) ) > 0;
+	}
+
+	/**
+	 * @param string $code
+	 *
+	 * @return false|\Vendidero\StoreaBill\Invoice\VoucherItem
+	 */
+	public function get_voucher( $code ) {
+		$vouchers = $this->get_items( 'voucher' );
+
+		foreach( $vouchers as $voucher ) {
+			if ( $voucher->get_name() === $code ) {
+				return $voucher;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -1486,7 +1579,7 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 			}
 		}
 
-		return max( 0, $net_total );
+		return $net_total;
 	}
 
 	/**
@@ -1660,46 +1753,87 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 	 * Apply a coupon to the order and recalculate totals.
 	 */
 	public function apply_discount( $amount, $type = 'fixed', $args = array() ) {
+		$args = wp_parse_args( $args, array(
+			'is_voucher' => false,
+			'code'       => '',
+			'item_types' => array( 'product' )
+		) );
+
 		if ( $this->is_finalized() ) {
 			return new WP_Error( _x( 'This invoice is already finalized and cannot be discounted.', 'storeabill-core', 'woocommerce-germanized-pro' ) );
 		}
 
-		$discounts = new Discounts( $this );
-		$applied   = $discounts->apply_discount( $amount, $type, $args );
+		if ( $args['is_voucher'] && ! $this->stores_vouchers_as_discount() ) {
+			$this->calculate_totals( true );
 
-		if ( is_wp_error( $applied ) ) {
-			return $applied;
-		}
+			$max_discount        = floatval( $this->get_total() ) * -1;
+			$voucher_item_amount = max( ( $amount > 0 ? floatval( $amount ) * -1 : floatval( $amount ) ), $max_discount );
 
-		$this->set_item_discount_amounts( $discounts );
+			if ( ( $voucher = $this->get_voucher( $args['code'] ) ) && $voucher_item_amount == $voucher->get_total() ) {
+				$voucher->set_quantity( $voucher->get_quantity() + 1 );
+				$voucher->calculate_totals();
+			} else {
+				$voucher = new VoucherItem();
 
-		if ( $discounts->is_voucher() ) {
-			$this->set_voucher_total( $discounts->get_total_discount() );
-		}
+				$voucher->set_document( $this );
+				$voucher->set_code( $args['code'] );
+				$voucher->set_line_total( $voucher_item_amount );
 
-		$this->calculate_totals( true );
+				$voucher->calculate_totals();
 
-		if ( $discounts->is_voucher() ) {
-			$all_discounts = $discounts->get_discounts();
-			$discount_tax  = 0;
-
-			foreach ( $all_discounts as $item_id => $item_discount_amount ) {
-				if ( $item = $this->get_item( $item_id ) ) {
-					if ( ! $item->is_taxable() ) {
-						continue;
-					}
-
-					$taxes = array_sum( Tax::calc_tax( $item_discount_amount, $item->get_tax_rates(), $this->get_prices_include_tax() ) );
-
-					if ( ! $this->round_tax_at_subtotal() ) {
-						$taxes = Numbers::round( $taxes );
-					}
-
-					$discount_tax += $taxes;
-				}
+				$this->add_item( $voucher );
 			}
 
-			$this->set_voucher_tax( $discount_tax );
+			$this->calculate_totals( true );
+
+		} else {
+			$discounts = new Discounts( $this );
+			$applied   = $discounts->apply_discount( $amount, $type, $args );
+
+			if ( is_wp_error( $applied ) ) {
+				return $applied;
+			}
+
+			$this->set_item_discount_amounts( $discounts );
+
+			if ( ! empty( $args['code'] ) ) {
+				$this->add_discount_notice( $args['code'] );
+			}
+
+			/**
+			 * Legacy vouchers as discounts
+			 */
+			if ( $discounts->is_voucher() ) {
+				$this->set_voucher_total( $discounts->get_total_discount() );
+			}
+
+			$this->calculate_totals( true );
+
+			/**
+			 * Legacy vouchers as discounts
+			 */
+			if ( $discounts->is_voucher() ) {
+				$all_discounts = $discounts->get_discounts();
+				$discount_tax  = 0;
+
+				foreach ( $all_discounts as $item_id => $item_discount_amount ) {
+					if ( $item = $this->get_item( $item_id ) ) {
+						if ( ! $item->is_taxable() ) {
+							continue;
+						}
+
+						$taxes = array_sum( Tax::calc_tax( $item_discount_amount, $item->get_tax_rates(), $this->get_prices_include_tax() ) );
+
+						if ( ! $this->round_tax_at_subtotal() ) {
+							$taxes = Numbers::round( $taxes );
+						}
+
+						$discount_tax += $taxes;
+					}
+				}
+
+				$this->set_voucher_tax( $discount_tax );
+			}
 		}
 
 		return true;
@@ -1877,6 +2011,10 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 	 */
 	public function set_is_taxable( $value ) {
 		$this->set_prop( 'is_taxable', sab_string_to_bool( $value ) );
+	}
+
+	public function set_stores_vouchers_as_discount( $value ) {
+		$this->set_prop( 'stores_vouchers_as_discount', sab_string_to_bool( $value ) );
 	}
 
 	/**
@@ -2377,9 +2515,9 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 	 */
 	public function get_formatted_price( $price, $type = '' ) {
 		/**
-		 * Discounts should be negative.
+		 * Discounts and vouchers should be negative.
 		 */
-		if ( strpos( $type, 'discount' ) !== false && $price > 0 ) {
+		if ( ( strstr( $type, 'discount' ) || strstr( $type, 'voucher' ) ) && $price > 0 ) {
 			$price *= -1;
 		}
 
@@ -2448,23 +2586,25 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 		 * In case the invoice includes a voucher add the voucher amount to certain net types.
 		 */
 		if ( $this->has_voucher() ) {
-			$item_type_getter = array();
-
-			foreach( $this->get_item_types_for_tax_totals() as $item_type ) {
-				$item_type_getter[ "get_{$item_type}_total" ] = $item_type;
-			}
-
 			if ( in_array( $getter_total, array( 'get_total' ) ) ) {
 				$total += $this->get_voucher_total();
-			} elseif ( array_key_exists( $getter_total, $item_type_getter ) ) {
-				$item_type    = $item_type_getter[ $getter_total ];
-				$discount     = $this->get_item_type_discount( $item_type );
-				$discount_tax = $this->get_item_type_discount_tax( $item_type );
+			} elseif ( $this->stores_vouchers_as_discount() ) {
+				$item_type_getter = array();
 
-				$total += $discount;
+				foreach( $this->get_item_types_for_tax_totals() as $item_type ) {
+					$item_type_getter[ "get_{$item_type}_total" ] = $item_type;
+				}
 
-				if ( ! $this->prices_include_tax() ) {
-					$total -= $discount_tax;
+				if ( array_key_exists( $getter_total, $item_type_getter ) ) {
+					$item_type    = $item_type_getter[ $getter_total ];
+					$discount     = $this->get_item_type_discount( $item_type );
+					$discount_tax = $this->get_item_type_discount_tax( $item_type );
+
+					$total += $discount;
+
+					if ( ! $this->prices_include_tax() ) {
+						$total -= $discount_tax;
+					}
 				}
 			}
 		}
@@ -2602,32 +2742,34 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 		$discount_total = $subtotal - $total;
 		$discount_tax   = $subtotal_tax - $total_tax;
 
-		/**
-		 * Very specific to net based invoices containing vouchers.
-		 * Discounts (per items) need additional taxes added on top to
-		 * reflect the voucher amount. There is no other way to calculate
-		 * the amount based on pure item discounts.
-		 */
-		if ( $this->has_voucher() && ! $this->prices_include_tax() && 'incl' === $this->get_tax_display_mode() ) {
-			$discount_item_taxes = 0;
+		if ( $this->stores_vouchers_as_discount() && $this->has_voucher() ) {
+			/**
+			 * Very specific to net based invoices containing vouchers.
+			 * Discounts (per items) need additional taxes added on top to
+			 * reflect the voucher amount. There is no other way to calculate
+			 * the amount based on pure item discounts.
+			 */
+			if ( ! $this->prices_include_tax() && 'incl' === $this->get_tax_display_mode() ) {
+				$discount_item_taxes = 0;
 
-			foreach( $this->get_items( $this->get_item_types_for_totals() ) as $item ) {
-				$discount_item_total = $item->get_discount_total();
-				$discount_item_tax   = sab_add_number_precision( array_sum( Tax::calc_tax( $discount_item_total, $item->get_tax_rates(), false ) ), false );
+				foreach( $this->get_items( $this->get_item_types_for_totals() ) as $item ) {
+					$discount_item_total = $item->get_discount_total();
+					$discount_item_tax   = sab_add_number_precision( array_sum( Tax::calc_tax( $discount_item_total, $item->get_tax_rates(), false ) ), false );
 
-				$discount_item_taxes += ( $item->round_tax_at_subtotal() ? $discount_item_tax : Numbers::round( $discount_item_tax ) );
-			}
+					$discount_item_taxes += ( $item->round_tax_at_subtotal() ? $discount_item_tax : Numbers::round( $discount_item_tax ) );
+				}
 
-			if ( $discount_item_taxes > 0 ) {
-				$discount_item_taxes = sab_remove_number_precision( $discount_item_taxes );
+				if ( $discount_item_taxes > 0 ) {
+					$discount_item_taxes = sab_remove_number_precision( $discount_item_taxes );
 
-				$discount_total += $discount_item_taxes;
+					$discount_total += $discount_item_taxes;
 
-				$voucher_total = $this->get_voucher_total() - $this->get_voucher_tax();
-				$voucher_total += $discount_item_taxes;
+					$voucher_total = $this->get_voucher_total() - $this->get_voucher_tax();
+					$voucher_total += $discount_item_taxes;
 
-				$this->set_voucher_total( $voucher_total );
-				$this->set_voucher_tax( $discount_item_taxes );
+					$this->set_voucher_total( $voucher_total );
+					$this->set_voucher_tax( $discount_item_taxes );
+				}
 			}
 		}
 
@@ -2871,34 +3013,36 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 					$reflection = new ReflectionMethod( $this, $getter );
 
 					if ( $reflection->isPublic() ) {
-						$total += $this->{$getter}();
+						$total += $this->{$getter}( 'total' );
 					}
 				} else {
 					// Try to get total from meta
-					$total += $this->get_meta( $item_type . '_total', true );
+					$total += $this->get_meta( $item_type . '_total', true, 'total' );
 				}
 
 				if ( is_callable( array( $this, $subtotal_getter ) ) ) {
 					$reflection = new ReflectionMethod( $this, $subtotal_getter );
 
 					if ( $reflection->isPublic() ) {
-						$subtotal += $this->{$subtotal_getter}();
+						$subtotal += $this->{$subtotal_getter}( 'total' );
 					}
 				} else {
 					// Try to get total from meta
-					$subtotal += $this->get_meta( $item_type . '_subtotal', true );
+					$subtotal += $this->get_meta( $item_type . '_subtotal', true, 'total' );
 				}
 			} catch ( Exception $e ) {
 				$errors->add( $e->getErrorCode(), $e->getMessage() );
 			}
 		}
 
-		/**
-		 * Specific to net based invoices containing vouchers.
-		 * Lets reduce the total price by the voucher tax added during total calculation.
-		 */
-		if ( $this->has_voucher() && ! $this->prices_include_tax() ) {
-			$total = max( $total - $this->get_voucher_tax(), 0 );
+		if ( $this->stores_vouchers_as_discount() ) {
+			/**
+			 * Specific to net based invoices containing vouchers.
+			 * Lets reduce the total price by the voucher tax added during total calculation.
+			 */
+			if ( $this->has_voucher() && ! $this->prices_include_tax() ) {
+				$total = max( $total - $this->get_voucher_tax(), 0 );
+			}
 		}
 
 		$this->set_total( Numbers::round( $total, sab_get_price_decimals() ) );
@@ -2927,7 +3071,7 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 					$reflection = new ReflectionMethod( $this, $getter );
 
 					if ( $reflection->isPublic() ) {
-						$result = $this->{$getter}();
+						$result = $this->{$getter}( 'total' );
 
 						if ( is_numeric( $result ) ) {
 							$total += $result;
@@ -2935,7 +3079,7 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 					}
 				} else {
 					// Try to get total from meta
-					$result = $this->get_meta( $item_type . '_tax', true );
+					$result = $this->get_meta( $item_type . '_tax', true, 'total' );
 
 					if ( is_numeric( $result ) ) {
 						$total += $result;
@@ -2967,7 +3111,7 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 					$reflection = new ReflectionMethod( $this, $getter );
 
 					if ( $reflection->isPublic() ) {
-						$result = $this->{$getter}();
+						$result = $this->{$getter}( 'total' );
 
 						if ( is_numeric( $result ) ) {
 							$total += $result;
@@ -2975,7 +3119,7 @@ abstract class Invoice extends Document implements \Vendidero\StoreaBill\Interfa
 					}
 				} else {
 					// Try to get total from meta
-					$result = $this->get_meta( $item_type . '_subtotal_tax', true );
+					$result = $this->get_meta( $item_type . '_subtotal_tax', true, 'total' );
 
 					if ( is_numeric( $result ) ) {
 						$total += $result;

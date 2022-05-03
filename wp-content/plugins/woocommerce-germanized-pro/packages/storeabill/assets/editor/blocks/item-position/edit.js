@@ -24,8 +24,8 @@ function ItemPositionEdit( {
     fontSize,
     setFontSize,
 } ) {
-    const { content } = attributes;
-    let item = getPreviewItem();
+    const { content, itemType, currentPosition } = attributes;
+    let item = getPreviewItem( itemType );
 
     const {
         TextColor,
@@ -41,7 +41,7 @@ function ItemPositionEdit( {
         [ fontSize.class ]: fontSize.class,
     } );
 
-    const position = 1;
+    const position = currentPosition;
 
     return (
         <div>

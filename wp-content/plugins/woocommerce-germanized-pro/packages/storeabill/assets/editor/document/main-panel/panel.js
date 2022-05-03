@@ -1,13 +1,15 @@
 import { withSelect, withDispatch, select } from '@wordpress/data';
 import { _x } from '@wordpress/i18n';
 import { compose } from '@wordpress/compose';
-import { get, isEmpty } from 'lodash';
-import { PanelRow, TextControl, Button, SelectControl, FormTokenField } from '@wordpress/components';
+import { get, isEmpty, includes, remove, cloneDeep } from 'lodash';
+import { PanelRow, TextControl, Button, SelectControl, ToggleControl, PanelHeader, Tooltip } from '@wordpress/components';
 import { getSetting } from '@storeabill/settings';
 
 function MainPanelContent( {
 	title,
+    itemTypes,
 	onUpdateTitle,
+	onUpdateLineItemTypes
 } ) {
 
 	const onImportLayout = function( documentType ) {
@@ -79,19 +81,39 @@ function MainPanelContent( {
 				}
 			</PanelRow>
 		}
-		{ ! isEmpty( getSetting( 'lineItemTypes' ) && getSetting( 'lineItemTypes' ).length > 1 ) &&
-			<PanelRow className="sab-document-line-item-types">
-				<span>{ _x( 'Line Item Types', 'storeabill-core', 'storeabill' ) }</span>
-				<span>
-				{
-					Object.values( getSetting( 'lineItemTypes' ) ).map( function( itemType ) {
-						return (
-							<span key={ itemType } className="sab-label sab-label-light">{ itemType }</span>
-						);
-					} )
-				}
-				</span>
-			</PanelRow>
+		{ ! getSetting( 'isFirstPage' ) && ! isEmpty( getSetting( 'availableLineItemTypes' ) ) &&
+			<>
+				<PanelRow className="sab-document-line-item-types">
+					<span className="sab-title">{ _x( 'Additional Line Item Types', 'storeabill-core', 'storeabill' ) }</span>
+				</PanelRow>
+				<PanelRow className="sab-document-line-item-types">
+					<span className="sab-help">{ _x( 'Please make sure to check your total types after updating line item types as the subtotal might change.', 'storeabill-core', 'storeabill' ) }</span>
+				</PanelRow>
+			</>
+		}
+		{ ! getSetting( 'isFirstPage' ) && ! isEmpty( getSetting( 'availableLineItemTypes' ) ) &&
+			Object.entries( getSetting( 'availableLineItemTypes' ) ).map( ( data ) => {
+				return (
+					<PanelRow className={"sab-document-line-item-types-" + data[0]} key={ data[0] }>
+						<ToggleControl
+							label={ data[1] }
+							checked={ includes( itemTypes, data[0] ) }
+							onChange={ ( isChecked ) => {
+								let newItemTypes = cloneDeep( itemTypes );
+
+								if ( isChecked && ! includes( newItemTypes, data[0] ) ) {
+									newItemTypes.push( data[0] );
+								} else if ( ! isChecked && includes( newItemTypes, data[0] ) ) {
+									remove( newItemTypes, function( el ) {
+										return el === data[0];
+									} );
+								}
+								return onUpdateLineItemTypes( newItemTypes );
+							} }
+						/>
+					</PanelRow>
+				)
+			} )
 		}
 		</>
 	);
@@ -101,9 +123,12 @@ const applyWithSelect = withSelect( ( select ) => {
 
 	const { getEditedPostAttribute } = select( 'core/editor' );
 	const title = getEditedPostAttribute( 'title' );
+	const meta  = getEditedPostAttribute( 'meta' );
+	const newItemTypes = meta['_line_item_types'] ? meta['_line_item_types'] : getSetting( 'lineItemTypes' );
 
 	return {
-		title: title
+		title: title,
+		itemTypes: newItemTypes
 	};
 } );
 
@@ -115,7 +140,10 @@ const applyWithDispatch = withDispatch( ( dispatch, { metaKey } ) => {
 	return {
 		onUpdateTitle: ( title ) => {
 			editPost( { title: title } );
-		}
+		},
+		onUpdateLineItemTypes: ( lineItemTypes ) => {
+			editPost( { meta: { '_line_item_types': lineItemTypes } } );
+		},
 	}
 } );
 

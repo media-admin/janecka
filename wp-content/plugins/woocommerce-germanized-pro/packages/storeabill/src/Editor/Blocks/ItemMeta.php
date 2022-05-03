@@ -69,7 +69,7 @@ class ItemMeta extends ItemTableColumnBlock {
 		if ( empty( $shortcode_data ) && true === $attributes['hideIfEmpty'] ) {
 			return '';
 		} else {
-			return $this->wrap( $this->replace_placeholder( $content, $output ), $attributes );
+			return $this->wrap( $this->replace_placeholder( $content, wp_kses_post( $output ) ), $attributes );
 		}
 	}
 }

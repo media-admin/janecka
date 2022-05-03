@@ -200,6 +200,11 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		$delivery_times_by_country = $gzd_product->get_country_specific_delivery_times( 'edit' );
 		?>
         <div class="variable_pricing_labels">
+            <p class="wc-gzd-product-settings-subtitle">
+		        <?php _e( 'Price Labeling', 'woocommerce-germanized' ); ?>
+                <a class="page-title-action" href="https://vendidero.de/dokumentation/woocommerce-germanized/preisauszeichnung"><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+            </p>
+
             <p class="form-row form-row-first">
                 <label><?php _e( 'Sale Label', 'woocommerce-germanized' ); ?></label>
                 <select name="variable_sale_price_label[<?php echo $loop; ?>]">
@@ -261,7 +266,13 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				<?php printf( __( 'To enable unit prices on variation level please choose a unit and unit price units within %s.', 'woocommerce-germanized' ), '<a href="#general_product_data" class="wc-gzd-general-product-data-tab">' . __( 'general product data', 'woocommerce-germanized' ) . '</a>' ); ?>
             </p>
         </div>
+
         <div class="variable_shipping_time variable_delivery_time <?php echo esc_attr( self::get_delivery_time_wrapper_classes() ); ?>">
+            <p class="wc-gzd-product-settings-subtitle">
+		        <?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?>
+                <a class="page-title-action" href="https://vendidero.de/dokument/lieferzeiten-verwalten"><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+            </p>
+
             <p class="form-row form-row-full">
                 <label for="delivery_time"><?php _e( 'Delivery Time', 'woocommerce-germanized' ); ?></label>
 				<?php
@@ -356,22 +367,61 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
         <div class="variable_cart_mini_desc">
             <p class="form-row form-row-full">
-                <label for="variable_mini_desc"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?></label>
-                <textarea rows="3" style="width: 100%" name="variable_mini_desc[<?php echo $loop; ?>]"
-                      id="variable_mini_desc_<?php echo $loop; ?>"
-                      class="variable_mini_desc"><?php echo htmlspecialchars_decode( $gzd_product->get_mini_desc( 'edit' ) ); ?>
-                </textarea>
+                <label for="variable_mini_desc_<?php echo esc_attr( $loop ); ?>"><?php echo __( 'Optional Mini Description', 'woocommerce-germanized' ); ?></label>
+                <textarea rows="3" style="width: 100%" name="variable_mini_desc[<?php echo $loop; ?>]" id="variable_mini_desc_<?php echo esc_attr( $loop ); ?>" class="variable_mini_desc"><?php echo htmlspecialchars_decode( $gzd_product->get_mini_desc( 'edit' ) ); ?></textarea>
             </p>
         </div>
 
         <div class="variable_cart_defect_description show_if_variation_defective_copy">
             <p class="form-row form-row-full">
-                <label for="variable_defect_description"><?php echo __( 'Defect Description', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Inform your customers about product defects. This description will be shown on top of your product description and during cart/checkout.', 'woocommerce-germanized' ) ); ?></label>
-                <textarea rows="3" style="width: 100%" name="variable_defect_description[<?php echo $loop; ?>]"
-                          id="variable_defect_description_<?php echo $loop; ?>"
-                          class="variable_defect_description"><?php echo htmlspecialchars_decode( $gzd_product->get_defect_description( 'edit' ) ); ?>
-                </textarea>
+                <label for="variable_defect_description_<?php echo esc_attr( $loop ); ?>"><?php echo __( 'Defect Description', 'woocommerce-germanized' ); ?> <?php echo wc_help_tip( __( 'Inform your customers about product defects. This description will be shown on top of your product description and during cart/checkout.', 'woocommerce-germanized' ) ); ?></label>
+                <textarea rows="3" style="width: 100%" name="variable_defect_description[<?php echo $loop; ?>]" id="variable_defect_description_<?php echo esc_attr( $loop ); ?>" class="variable_defect_description"><?php echo htmlspecialchars_decode( $gzd_product->get_defect_description( 'edit' ) ); ?></textarea>
             </p>
+        </div>
+
+        <div class="variable_food show_if_is_food">
+            <?php if ( WC_germanized()->is_pro() ) : ?>
+                <p class="wc-gzd-product-settings-subtitle">
+		            <?php _e( 'Deposit', 'woocommerce-germanized-pro' ); ?>
+                    <a class="page-title-action" href="https://vendidero.de/dokument/lebensmittel-auszeichnen#pfand"><?php _e( 'Help', 'woocommerce-germanized' ); ?></a>
+                </p>
+
+	            <?php
+	            woocommerce_wp_select( array(
+		            'wrapper_class' => 'form-row form-row-first',
+		            'id'          => 'variable_deposit_type',
+		            'name'        => "variable_deposit_type[{$loop}]",
+		            'label'       => __( 'Deposit Type', 'woocommerce-germanized' ),
+		            'options'     => array( "-1" => __( 'Select Deposit Type', 'woocommerce-germanized' ) ) + WC_germanized()->deposit_types->get_deposit_types(),
+		            'desc_tip'    => true,
+                    'value'       => $gzd_product->get_deposit_type( 'edit' ) ? $gzd_product->get_deposit_type( 'edit' ) : $gzd_parent_product->get_deposit_type(),
+		            'description' => __( 'In case this product is reusable and has deposits, select the deposit type.', 'woocommerce-germanized' )
+	            ) );
+
+	            woocommerce_wp_text_input( array(
+		            'wrapper_class' => 'form-row form-row-last',
+		            'id'            => "variable_deposit_quantity{$loop}",
+		            'name'          => "variable_deposit_quantity[{$loop}]",
+		            'label'         => __( 'Deposit Quantity', 'woocommerce-germanized' ),
+		            'value'         => $gzd_product->get_deposit_quantity( 'edit' ),
+		            'placeholder'   => $gzd_parent_product->get_deposit_quantity() ? $gzd_parent_product->get_deposit_quantity() : 1,
+		            'data_type'     => 'number',
+                    'custom_attributes' => array( 'min' => 1 ),
+		            'description'   => __( 'Number of units included for deposit purposes, e.g. 6 bottles.', 'woocommerce-germanized' ),
+                    'desc_tip'      => true,
+	            ) );
+	            ?>
+		    <?php else: ?>
+                <div class="wc-gzd-inner-product-pro-tab-wrapper">
+                    <div class="wc-gzd-premium-overlay notice notice-warning inline">
+                        <h3><?php _e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
+                        <p><?php _e( 'Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more with Germanized Pro.', 'woocommerce-germanized' ); ?></p>
+                        <p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php _e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
+                    </div>
+                </div>
+		    <?php endif; ?>
+
+			<?php do_action( 'woocommerce_gzd_edit_product_variation_food_wrapper', $loop, $variation_data, $variation ); ?>
         </div>
 		<?php
 	}
@@ -381,6 +431,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_unit_product'                                 => '',
 			'_unit_price_auto'                              => '',
 			'_unit_price_regular'                           => '',
+			'_deposit_type'                                 => '',
+			'_deposit_quantity'                             => '',
 			'_sale_price_label'                             => '',
 			'_sale_price_regular_label'                     => '',
 			'_unit_price_sale'                              => '',
@@ -391,13 +443,24 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_defect_description'                           => '',
 			'_service'                                      => '',
 			'_used_good'                                    => '',
-            '_defective_copy'                               => '',
+			'_defective_copy'                               => '',
 			'delivery_time'                                 => '',
 			'country_specific_delivery_times'               => '',
 			'new_country_specific_delivery_times_countries' => '',
 			'new_country_specific_delivery_times_terms'     => '',
 			'_min_age'                                      => '',
-            '_warranty_attachment_id'                       => '',
+			'_warranty_attachment_id'                       => '',
+			'_nutrient_ids'                                 => '',
+			'_nutrient_reference_value'                     => '',
+			'_allergen_ids'                                 => '',
+			'_ingredients'                                  => '',
+			'_nutri_score'                                  => '',
+			'_alcohol_content'                              => '',
+			'_drained_weight'                               => '',
+			'_net_filling_quantity'                         => '',
+			'_food_distributor'                             => '',
+			'_food_place_of_origin'                         => '',
+			'_food_description'                             => '',
 		);
 
 		foreach ( $data as $k => $v ) {

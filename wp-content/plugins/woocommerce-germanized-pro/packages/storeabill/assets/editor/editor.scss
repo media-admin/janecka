@@ -19,9 +19,19 @@ mark {
 }
 
 .sab-document-main {
-  .components-base-control .components-base-control__help {
+  .components-base-control .components-base-control__help, .sab-help {
     font-size: 11px;
     margin-top: 5px;
+    color: rgb(117, 117, 117);
+  }
+  .sab-document-line-item-types {
+    min-height: auto;
+
+    .sab-title {
+      font-weight: 500;
+      text-align: left;
+      color: #1e1e1e;
+    }
   }
 }
 

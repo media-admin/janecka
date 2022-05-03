@@ -12,8 +12,10 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 			<!-- Site Title -->
-			<?php if (is_front_page() ) : ?>
+			<?php if ( is_front_page() ) : ?>
 				<title>Startseite | <?php bloginfo( 'name' ); ?></title>
+			<?php elseif ( is_tax() ) : ?>
+			<title><?php single_term_title($sep = ''); ?> | <?php bloginfo( 'name' ); ?></title>
 			<?php else : ?>
 				<title><?php wp_title($sep = ''); ?> | <?php bloginfo( 'name' ); ?></title>
 			<?php endif; ?>

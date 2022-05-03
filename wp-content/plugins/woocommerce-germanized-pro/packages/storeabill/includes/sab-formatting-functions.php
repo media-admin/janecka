@@ -23,8 +23,32 @@ function sab_string_to_datetime( $time_string ) {
 	return wc_string_to_datetime( $time_string );
 }
 
+function sab_string_to_timestamp( $time_string, $from_timestamp = null ) {
+	return wc_string_to_timestamp( $time_string, $from_timestamp );
+}
+
 function sab_format_decimal( $number, $dp = false, $trim_zeros = false ) {
 	return wc_format_decimal( $number, $dp, $trim_zeros );
+}
+
+function sab_get_price_decimal_separator() {
+	return wc_get_price_decimal_separator();
+}
+
+function sab_get_price_format() {
+	return get_woocommerce_price_format();
+}
+
+function sab_get_price_thousand_separator() {
+	return wc_get_price_thousand_separator();
+}
+
+function sab_get_currency_symbol( $currency = '' ) {
+	if ( '' === $currency ) {
+		$currency = sab_get_default_currency();
+	}
+
+	return get_woocommerce_currency_symbol( $currency );
 }
 
 function sab_get_price_decimals() {

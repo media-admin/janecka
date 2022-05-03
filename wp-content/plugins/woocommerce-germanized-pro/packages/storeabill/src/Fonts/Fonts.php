@@ -112,6 +112,10 @@ final class Fonts {
 		return apply_filters( 'storeabill_default_font', self::$default_font );
 	}
 
+	public static function clean_font_name( $name ) {
+		return str_replace( '_', '-', sanitize_title( $name ) );
+	}
+
 	public static function clean_font_family( $family ) {
 		$family = preg_replace("/[^a-zA-Z0-9]+/", "", $family );
 

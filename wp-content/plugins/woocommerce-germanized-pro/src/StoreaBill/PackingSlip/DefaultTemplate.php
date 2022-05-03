@@ -127,7 +127,7 @@ class DefaultTemplate extends Template {
 			<div class="wp-block-storeabill-item-table-column is-horizontally-aligned-<?php echo ( self::has_price_column() ? 'center' : 'right' ); ?>">
 				<span class="item-column-heading-text"><strong><?php echo esc_html_x( 'Quantity', 'item-table-column', 'woocommerce-germanized-pro' ); ?></strong></span>
 				<!-- wp:storeabill/item-quantity -->
-				<p class="wp-block-storeabill-item-quantity sab-block-item-content">{content}</p>
+				<p class="wp-block-storeabill-item-quantity sab-block-item-content"><span class="placeholder-content sab-tooltip" contenteditable="false" data-tooltip="<?php echo esc_attr_x( 'Quantity', 'item-table-column', 'woocommerce-germanized-pro' ); ?>"><span class="editor-placeholder"></span>{content}</span></p>
 				<!-- /wp:storeabill/item-quantity -->
 
 				<?php do_action( self::get_hook_prefix() . 'after_item_quantity' ); ?>
@@ -139,7 +139,7 @@ class DefaultTemplate extends Template {
                 <div class="wp-block-storeabill-item-table-column is-horizontally-aligned-right">
                     <span class="item-column-heading-text"><strong><?php echo esc_html_x( 'Total', 'item-table-column', 'woocommerce-germanized-pro' ); ?></strong></span>
                     <!-- wp:storeabill/item-line-total {"showPricesIncludingTax":true} -->
-                    <p class="wp-block-storeabill-item-line-total sab-block-item-content">{content}</p>
+                    <p class="wp-block-storeabill-item-line-total sab-block-item-content"><span class="placeholder-content sab-tooltip" contenteditable="false" data-tooltip="<?php echo esc_attr_x( 'Total', 'item-table-column', 'woocommerce-germanized-pro' ); ?>"><span class="editor-placeholder"></span>{content}</span></p>
                     <!-- /wp:storeabill/item-line-total -->
 
                     <?php do_action( self::get_hook_prefix() . 'after_item_line_total' ); ?>

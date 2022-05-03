@@ -7,14 +7,14 @@ defined( 'ABSPATH' ) || exit;
 class Shortcodes extends \Vendidero\StoreaBill\Document\Shortcodes {
 
 	public function get_shortcodes() {
-		$shortcodes = array(
+		$shortcodes = array_merge( parent::get_shortcodes(), array(
 			'shipment'              => array( $this, 'shipment_data' ),
 			'order'                 => array( $this, 'order_data' ),
 			'if_shipment'           => array( $this, 'if_shipment_data' ),
 			'if_order'              => array( $this, 'if_order_data' ),
 			'return_reasons'        => array( $this, 'return_reasons_data' ),
 			'order_item'            => array( $this, 'order_item_data' ),
-		);
+		) );
 
 		return apply_filters( 'storeabill_packing_slip_shortcodes', $shortcodes, $this );
 	}

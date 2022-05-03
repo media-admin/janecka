@@ -154,8 +154,7 @@ class MpdfRenderer implements PDF {
 				$files = array();
 
 				foreach( $embed->get_fonts() as $font_name => $embed_font_data ) {
-
-					$files[ $font_name ] = array(
+					$files[ Fonts::clean_font_name( $font_name ) ] = array(
 						'R'  => basename( $embed_font_data['files']['regular'] ),
 						'I'  => basename( $embed_font_data['files']['italic'] ),
 						'B'  => basename( $embed_font_data['files']['bold'] ),
@@ -163,7 +162,7 @@ class MpdfRenderer implements PDF {
 					);
 
 					$result['translations'] += array(
-						Fonts::clean_font_family( $embed_font_data['family'] ) => $embed_font_data['name'],
+						Fonts::clean_font_family( $embed_font_data['family'] ) => Fonts::clean_font_name( $embed_font_data['name'] ),
 					);
 				}
 

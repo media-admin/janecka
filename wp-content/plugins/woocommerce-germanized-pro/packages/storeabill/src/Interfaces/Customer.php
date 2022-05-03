@@ -46,6 +46,8 @@ interface Customer extends Reference, ExternalSyncable {
 
 	public function get_billing_city();
 
+	public function get_billing();
+
 	public function get_shipping_address();
 
 	public function get_shipping_address_2();
@@ -55,6 +57,8 @@ interface Customer extends Reference, ExternalSyncable {
 	public function get_shipping_country();
 
 	public function get_shipping_city();
+
+	public function get_shipping();
 
 	public function has_shipping_address();
 

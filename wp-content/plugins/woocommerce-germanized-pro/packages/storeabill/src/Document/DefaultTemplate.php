@@ -80,15 +80,31 @@ class DefaultTemplate extends Template {
 
 	public function get_line_item_types( $context = 'view' ) {
 		$line_item_types = $this->get_prop( 'line_item_types', $context );
+		$line_item_types = '' === $line_item_types ? array() : (array) $line_item_types;
 
-		if ( 'view' === $context && empty( $line_item_types ) ) {
-			$line_item_types = sab_get_document_type_line_item_types( $this->get_document_type() );
+		if ( 'view' === $context ) {
+			/**
+			 * The item types stored within the template reflect the additional (user-selectable) item types only.
+			 * Make sure that the main line item type is always included.
+			 */
+			if ( $document_type = sab_get_document_type( $this->get_document_type() ) ) {
+				$line_item_types = array_filter( array_unique( array_merge( $document_type->main_line_item_types, $line_item_types ) ) );
+			}
 		}
 
 		return $line_item_types;
 	}
 
 	public function set_line_item_types( $value ) {
+		$available_line_item_types = array();
+
+		if ( $document_type = sab_get_document_type( $this->get_document_type() ) ) {
+			$available_line_item_types = $document_type->additional_line_item_types;
+		}
+
+		$value = (array) $value;
+		$value = array_intersect( $value, $available_line_item_types );
+
 		$this->set_prop( 'line_item_types', $value );
 	}
 

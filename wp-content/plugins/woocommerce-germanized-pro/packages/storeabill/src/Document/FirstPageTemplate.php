@@ -121,6 +121,14 @@ class FirstPageTemplate extends Template {
 		return array();
 	}
 
+	public function get_version( $context = 'view' ) {
+		if ( $template = $this->get_default_template() ) {
+			return $template->get_version( $context );
+		}
+
+		return '1.0.0';
+	}
+
 	public function get_fonts( $context = 'view' ) {
 		if ( $template = $this->get_default_template() ) {
 			return $template->get_fonts();

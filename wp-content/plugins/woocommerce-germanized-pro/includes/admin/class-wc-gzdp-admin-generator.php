@@ -193,7 +193,7 @@ class WC_GZDP_Admin_Generator {
 	}
 
 	public function populate_settings_observal( $generator ) {
-		$settings = get_option( 'woocommerce_gzdp_generator_settings_' . $generator );
+		$settings     = $this->get_required_settings( $generator );
 		$cur_settings = array();
 
 		if ( ! empty( $settings ) ) {
@@ -289,6 +289,23 @@ class WC_GZDP_Admin_Generator {
 		}
 	}
 
+	protected function get_required_settings( $generator ) {
+		$required_settings = array();
+
+		if ( 'agbs' === $generator ) {
+			$required_settings = array(
+				'gzd_order_submit_btn_text',
+				'allowed_countries',
+				'specific_allowed_countries',
+				'tax_display_shop',
+				'free_shipping_settings',
+				'gzdp_contract_after_confirmation'
+			);
+		}
+
+		return $required_settings;
+	}
+
 	public function get_generator( $generator ) {
 		$product = WC_germanized_pro()->get_vd_product();
 		
@@ -304,19 +321,10 @@ class WC_GZDP_Admin_Generator {
         }
 
 		$remote_version    = $remote->version;
-		$settings_required = $remote->settings;
-
-		// Update required settings
-		if ( ! empty( $settings_required ) ) {
-			update_option( 'woocommerce_gzdp_generator_settings_' . $generator, $settings_required );
-        } else {
-			delete_option( 'woocommerce_gzdp_generator_settings_' . $generator );
-        }
-
-		$generator_data = get_option( 'woocommerce_gzdp_generator_' . $generator, array() );
-
-		$settings       = array( 'api_version' => $this->api_version );
-		$settings       = array_merge( $settings, $this->get_options( 'woocommerce_', $settings_required ) );
+		$settings_required = $this->get_required_settings( $generator );
+		$generator_data    = get_option( 'woocommerce_gzdp_generator_' . $generator, array() );
+		$settings          = array( 'api_version' => $this->api_version );
+		$settings          = array_merge( $settings, $this->get_options( 'woocommerce_', $settings_required ) );
 
 		// Update generator data if remote version is newer than local version
 		if ( version_compare( $version, $remote_version, "<" ) || empty( $generator_data ) || ( ! empty( $generator_data ) && array_key_exists( 'errors', $generator_data ) ) ) {
@@ -346,21 +354,21 @@ class WC_GZDP_Admin_Generator {
 			}
 		}
 
-		if ( $like == 'woocommerce_' ) {
+		if ( 'woocommerce_' === $like ) {
+			$return['payment_methods'] = array();
 
 		    $gateways = WC()->payment_gateways->payment_gateways();
-			$return[ 'payment_methods' ] = array();
 
 			if ( ! empty( $gateways ) ) {
 				foreach ( $gateways as $key => $gateway ) {
-					if ( $gateway->enabled == 'yes' )
-						$return[ 'payment_methods' ][ $key ] = $gateway->get_title();
+					if ( 'yes' === $gateway->enabled ) {
+						$return['payment_methods'][ $key ] = $gateway->get_title();
+					}
 				}
 			}
 
 			$return['shipping_countries_restrict'] = 'no';
 			$return['shipping_countries']          = WC()->countries->get_shipping_countries();
-
 			$ship_to_countries                     = get_option( 'woocommerce_ship_to_countries' );
 			$allowed_countries                     = get_option( 'woocommerce_allowed_countries' );
 
@@ -372,6 +380,7 @@ class WC_GZDP_Admin_Generator {
 		}
 
 		$return['url']                        = site_url();
+		$return['admin_url']                  = admin_url();
 		$return['default_delivery_time_text'] = '';
 		$return['revocation_page_url']        = wc_gzd_get_page_permalink( 'revocation' );
 
@@ -452,7 +461,7 @@ class WC_GZDP_Admin_Generator {
 		}
 
 		$settings = array( 'api_version' => $this->api_version );
-		$settings = array_merge( $settings, $this->get_options( 'woocommerce_', $remote->settings ) );
+		$settings = array_merge( $settings, $this->get_options( 'woocommerce_', $this->get_required_settings( $generator ) ) );
 		$result   = VD()->api->generator_result_check( $product, $generator, $data, $settings );
 
 		if ( ! $result || is_wp_error( $result ) ) {
@@ -487,6 +496,20 @@ class WC_GZDP_Admin_Generator {
 		return false;
 	}
 
+	protected function update_page_content( $post, $content, $append = false ) {
+		if ( function_exists( 'wc_gzd_update_page_content' ) ) {
+			wc_gzd_update_page_content( $post->ID, $content, $append );
+		} else {
+			$content = $append ? $post->post_content . "\n" . $content : $content;
+
+			// Sanitization happens here
+			wp_update_post( array(
+				'ID'           => $post->ID,
+				'post_content' => $content,
+			) );
+		}
+	}
+
 	public function save_to_page() {
 		$append = false;
 
@@ -499,17 +522,9 @@ class WC_GZDP_Admin_Generator {
 		
 		if ( $post ) {
 			$content = wp_kses_post( $_POST['wc_gzdp_generator_content'] );
-			
-			if ( $append ) {
-				$content = $post->post_content . "\n" . $content;
-            }
 
-			// Sanitization happens here
-			wp_update_post( array(
-				'ID'           => absint( $_POST['generator_page_id'] ),
-				'post_content' => $content,
-			) );
-			
+			$this->update_page_content( $post, $content, $append );
+
 			update_post_meta( $post->ID, 'woocommerce_gzdp_generator_version_' . $generator, get_option( 'woocommerce_gzdp_generator_version_' . $generator ) );
 
 			/**

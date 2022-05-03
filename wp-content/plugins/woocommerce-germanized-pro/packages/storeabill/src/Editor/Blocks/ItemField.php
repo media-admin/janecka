@@ -68,6 +68,6 @@ class ItemField extends ItemTableColumnBlock {
 
 		$attributes['placeholder'] = empty( $attributes['placeholder'] ) ? '&nbsp;' : $attributes['placeholder'];
 
-		return $this->wrap( '<table style="' . sab_print_styles( $styles, false ) . '" class="' . sab_print_html_classes( $classes, false ) . '"><tr><td class="placeholder">' . $attributes['placeholder'] . '</td></tr></table>', $attributes );
+		return $this->wrap( '<table style="' . sab_print_styles( $styles, false ) . '" class="' . sab_print_html_classes( $classes, false ) . '"><tr><td class="placeholder">' . wp_kses_post( $attributes['placeholder'] ) . '</td></tr></table>', $attributes );
 	}
 }

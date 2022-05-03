@@ -153,7 +153,7 @@ class DefaultInvoice extends Template {
 			<div class="wp-block-storeabill-item-table-column is-horizontally-aligned-center">
                 <span class="item-column-heading-text"><strong><?php echo esc_html_x( 'Quantity', 'storeabill-item-table-column', 'woocommerce-germanized-pro' ); ?></strong></span>
                 <!-- wp:storeabill/item-quantity -->
-				<p class="wp-block-storeabill-item-quantity sab-block-item-content">{content}</p>
+				<p class="wp-block-storeabill-item-quantity sab-block-item-content"><span class="placeholder-content sab-tooltip" contenteditable="false" data-tooltip="<?php echo esc_attr_x( 'Quantity', 'storeabill-item-table-column', 'woocommerce-germanized-pro' ); ?>"><span class="editor-placeholder"></span>{content}</span></p>
 				<!-- /wp:storeabill/item-quantity -->
 
 				<?php do_action( self::get_hook_prefix() . 'after_item_quantity' ); ?>
@@ -164,7 +164,7 @@ class DefaultInvoice extends Template {
 			<div class="wp-block-storeabill-item-table-column is-horizontally-aligned-center">
                 <span class="item-column-heading-text"><strong><?php echo esc_html_x( 'Price', 'storeabill-item-table-column', 'woocommerce-germanized-pro' ); ?></strong></span>
                 <!-- wp:storeabill/item-price {"showPricesIncludingTax":<?php echo self::prices_include_tax() ? 'true' : 'false'; ?>} -->
-				<p class="wp-block-storeabill-item-price sab-block-item-content">{content}</p>
+				<p class="wp-block-storeabill-item-price sab-block-item-content"><span class="placeholder-content sab-tooltip" contenteditable="false" data-tooltip="<?php echo esc_attr_x( 'Price', 'storeabill-item-table-column', 'woocommerce-germanized-pro' ); ?>"><span class="editor-placeholder"></span>{content}</span></p>
 				<!-- /wp:storeabill/item-price -->
 
 				<?php do_action( self::get_hook_prefix() . 'after_item_price' ); ?>
@@ -176,7 +176,7 @@ class DefaultInvoice extends Template {
                 <div class="wp-block-storeabill-item-table-column is-horizontally-aligned-center">
                     <span class="item-column-heading-text"><strong><?php echo esc_html_x( 'Discount', 'storeabill-item-table-column', 'woocommerce-germanized-pro' ); ?></strong></span>
                     <!-- wp:storeabill/item-discount {"showPricesIncludingTax":<?php echo self::prices_include_tax() ? 'true' : 'false'; ?>} -->
-                    <p class="wp-block-storeabill-item-discount sab-block-item-content">{content}</p>
+                    <p class="wp-block-storeabill-item-discount sab-block-item-content"><span class="placeholder-content sab-tooltip" contenteditable="false" data-tooltip="<?php echo esc_attr_x( 'Discount', 'storeabill-item-table-column', 'woocommerce-germanized-pro' ); ?>"><span class="editor-placeholder"></span>{content}</span></p>
                     <!-- /wp:storeabill/item-discount -->
 
 		            <?php do_action( self::get_hook_prefix() . 'after_item_discount' ); ?>
@@ -189,7 +189,7 @@ class DefaultInvoice extends Template {
                 <div class="wp-block-storeabill-item-table-column is-horizontally-aligned-center">
                     <span class="item-column-heading-text"><strong><?php echo esc_html_x( 'Tax Rate', 'storeabill-item-table-column', 'woocommerce-germanized-pro' ); ?></strong></span>
                     <!-- wp:storeabill/item-tax-rate {"showPricesIncludingTax":<?php echo self::prices_include_tax() ? 'true' : 'false'; ?>} -->
-                    <p class="wp-block-storeabill-item-tax-rate sab-block-item-content">{content}</p>
+                    <p class="wp-block-storeabill-item-tax-rate sab-block-item-content"><span class="placeholder-content sab-tooltip" contenteditable="false" data-tooltip="<?php echo esc_attr_x( 'Tax Rate', 'storeabill-item-table-column', 'woocommerce-germanized-pro' ); ?>"><span class="editor-placeholder"></span>{content}</span></p>
                     <!-- /wp:storeabill/item-tax-rate -->
 
 					<?php do_action( self::get_hook_prefix() . 'after_item_tax_rate' ); ?>
@@ -201,7 +201,7 @@ class DefaultInvoice extends Template {
 			<div class="wp-block-storeabill-item-table-column is-horizontally-aligned-right">
                 <span class="item-column-heading-text"><strong><?php echo esc_html_x( 'Total', 'storeabill-item-table-column', 'woocommerce-germanized-pro' ); ?></strong></span>
                 <!-- wp:storeabill/item-line-total {"discountTotalType":"<?php echo ( self::show_row_based_discounts() ? 'after_discounts' : 'before_discounts' ); ?>","showPricesIncludingTax":<?php echo self::prices_include_tax() ? 'true' : 'false'; ?>} -->
-				<p class="wp-block-storeabill-item-line-total sab-block-item-content">{content}</p>
+				<p class="wp-block-storeabill-item-line-total sab-block-item-content"><span class="placeholder-content sab-tooltip" contenteditable="false" data-tooltip="<?php echo esc_attr_x( 'Total', 'storeabill-item-table-column', 'woocommerce-germanized-pro' ); ?>"><span class="editor-placeholder"></span>{content}</span></p>
 				<!-- /wp:storeabill/item-line-total -->
 
 				<?php do_action( self::get_hook_prefix() . 'after_item_line_total' ); ?>
@@ -216,15 +216,15 @@ class DefaultInvoice extends Template {
 		<div class="wp-block-storeabill-item-totals">
             <!-- wp:storeabill/item-total-row {"totalType":"line_subtotal<?php echo ( self::show_row_based_discounts() ? '_after' : '' ); ?><?php echo ( ! self::prices_include_tax() ? '_net' : '' ); ?>","heading":"<?php echo esc_attr_x( 'Subtotal', 'storeabill-item-total', 'woocommerce-germanized-pro' ); ?>"} /-->
 
-			<!-- wp:storeabill/item-total-row {"totalType":"fee<?php echo ( ! self::prices_include_tax() ? '_net' : '' ); ?>","heading":"<?php echo esc_attr_x( 'Fees', 'storeabill-item-total', 'woocommerce-germanized-pro' ); ?>","hideIfEmpty":true} /-->
-
 			<!-- wp:storeabill/item-total-row {"totalType":"shipping<?php echo ( ! self::prices_include_tax() ? '_net' : '' ); ?>","heading":"<?php echo esc_attr_x( 'Shipping', 'storeabill-item-total', 'woocommerce-germanized-pro' ); ?>","hideIfEmpty":true} /-->
 
 			<?php if ( ! self::show_row_based_discounts() ) : ?>
-                <!-- wp:storeabill/item-total-row {"totalType":"discount<?php echo ( ! self::prices_include_tax() ? '_net' : '' ); ?>","hideIfEmpty":true,"heading":"<?php printf( esc_attr_x( 'Discount %s', 'storeabill-item-total', 'woocommerce-germanized-pro' ), '\u003cspan class=\u0022document-shortcode sab-tooltip\u0022 contenteditable=\u0022false\u0022 data-tooltip=\u0022' . esc_attr_x( 'Discount Notice', 'storeabill-core', 'woocommerce-germanized-pro' ) . '\u0022 data-shortcode=\u0022document_total?data=notice&total_type=discount\u0022\u003e\u003cspan class=\u0022editor-placeholder\u0022\u003e\u003c/span\u003e' . esc_attr_x( 'XYZ123 (Single-purpose)', 'storeabill-core', 'woocommerce-germanized-pro' ) . '\u003c/span\u003e' ); ?>"} /-->
+                <!-- wp:storeabill/item-total-row {"totalType":"discount<?php echo ( ! self::prices_include_tax() ? '_net' : '' ); ?>","hideIfEmpty":true,"heading":"<?php printf( esc_attr_x( 'Discount: %s', 'storeabill-item-total', 'woocommerce-germanized-pro' ), '\u003cspan class=\u0022document-shortcode sab-tooltip\u0022 contenteditable=\u0022false\u0022 data-tooltip=\u0022' . esc_attr_x( 'Discount Notice', 'storeabill-core', 'woocommerce-germanized-pro' ) . '\u0022 data-shortcode=\u0022document_total?data=notice&total_type=discount\u0022\u003e\u003cspan class=\u0022editor-placeholder\u0022\u003e\u003c/span\u003e' . esc_attr_x( 'XYZ123 (Single-purpose)', 'storeabill-core', 'woocommerce-germanized-pro' ) . '\u003c/span\u003e' ); ?>"} /-->
 			<?php else: ?>
                 <!-- wp:storeabill/item-total-row {"totalType":"additional_costs_discount<?php echo ( ! self::prices_include_tax() ? '_net' : '' ); ?>","hideIfEmpty":true,"heading":"<?php echo esc_attr_x( 'Discount', 'storeabill-item-total', 'woocommerce-germanized-pro' ); ?>"} /-->
             <?php endif; ?>
+
+            <!-- wp:storeabill/item-total-row {"totalType":"vouchers","hideIfEmpty":true,"heading":"<?php printf( esc_attr_x( 'Voucher: %s (Multipurpose)', 'storeabill-item-total', 'woocommerce-germanized-pro' ), '\u003cspan class=\u0022document-shortcode sab-tooltip\u0022 contenteditable=\u0022false\u0022 data-tooltip=\u0022' . esc_attr_x( 'Coupon Code', 'storeabill-core', 'woocommerce-germanized-pro' ) . '\u0022 data-shortcode=\u0022document_total?data=code&total_type=vouchers\u0022\u003e\u003cspan class=\u0022editor-placeholder\u0022\u003e\u003c/span\u003e' . esc_attr_x( 'XYZ123W', 'storeabill-core', 'woocommerce-germanized-pro' ) . '\u003c/span\u003e' ); ?>"} /-->
 
             <?php if ( self::prices_include_tax() ) : ?>
                 <!-- wp:storeabill/item-total-row {"content":"\u003cstrong\u003e{total}\u003c/strong\u003e","totalType":"total","borders":["top","bottom"],"customBorderColor":"<?php echo esc_attr( self::get_light_color() ); ?>","customFontSize":"16","heading":"\u003cstrong\u003e<?php echo esc_attr_x( 'Total', 'storeabill-item-total', 'woocommerce-germanized-pro' ); ?>\u003c/strong\u003e"} /-->

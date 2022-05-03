@@ -59,9 +59,9 @@ function ItemMetaEdit( {
    fontSize,
    setFontSize,
 } ) {
-    const { metaType, content, hideIfEmpty } = attributes;
-    let item = getPreviewItem();
-    const preview = getItemMetaTypePreview( metaType );
+    const { metaType, content, hideIfEmpty, itemType } = attributes;
+    let item = getPreviewItem( itemType );
+    const preview = getItemMetaTypePreview( metaType, itemType );
 
     const {
         TextColor,
@@ -73,8 +73,11 @@ function ItemMetaEdit( {
         [ fontSize.size ]
     );
 
+    const editorContent = replacePlaceholderWithPreview( content, preview, '{content}' );
+
     const classes = classnames( 'sab-block-item-content placeholder-wrapper sab-block-item-meta', className, {
         [ fontSize.class ]: fontSize.class,
+        'empty-editor-block': ! preview && ! editorContent
     } );
 
     return (
@@ -106,7 +109,7 @@ function ItemMetaEdit( {
             <TextColor>
                 <RichText
                     tagName="p"
-                    value={ replacePlaceholderWithPreview( content, preview, '{content}' ) }
+                    value={ editorContent }
                     placeholder=""
                     className={ classes }
                     onChange={ ( value ) =>

@@ -4,6 +4,7 @@ namespace Vendidero\StoreaBill\Lexoffice\API;
 
 use Vendidero\StoreaBill\API\REST;
 use Vendidero\StoreaBill\API\RESTResponse;
+use Vendidero\StoreaBill\ExternalSync\Helper;
 use Vendidero\StoreaBill\Interfaces\OAuth;
 use Vendidero\StoreaBill\Lexoffice\Package;
 use Vendidero\StoreaBill\Lexoffice\Sync;
@@ -96,7 +97,7 @@ class Auth extends REST implements OAuth {
 			'client_id'     => Package::get_client_id(),
 			'response_type' => 'code',
 			'redirect_uri'  => '/api/oauth2/authorization_code',
-			'scopes'        => 'profile.read,vouchers.read,vouchers.write,contacts.read,contacts.write,files.write'
+			'scopes'        => 'profile.read,vouchers.read,vouchers.write,contacts.read,contacts.write,files.write,transaction-assignment-hint.write'
 		), $this->get_url() . 'authorize' );
 
 		if ( $this->is_connected() ) {
@@ -159,6 +160,8 @@ class Auth extends REST implements OAuth {
 			$refresh_token_expires->modify( '+23 months' );
 
 			$this->update_refresh_token_expires_on( $refresh_token_expires );
+
+			Helper::auth_successful( $this->get_sync_helper() );
 
 			return true;
 		} else {

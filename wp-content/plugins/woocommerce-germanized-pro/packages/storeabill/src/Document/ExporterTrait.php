@@ -50,7 +50,9 @@ trait ExporterTrait {
 	}
 
 	public function has_errors() {
-		return sab_wp_error_has_errors( $this->errors );
+		$errors = $this->get_errors();
+
+		return sab_wp_error_has_errors( $errors );
 	}
 
 	public function add_error( $msg ) {

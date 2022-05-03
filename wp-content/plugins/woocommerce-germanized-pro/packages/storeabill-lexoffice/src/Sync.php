@@ -200,7 +200,11 @@ class Sync extends SyncHandler {
 	/**
 	 * @param \Vendidero\StoreaBill\Interfaces\Customer $customer
 	 */
-	protected function sync_customer( $customer, $force_business = false ) {
+	protected function sync_customer( $customer ) {
+		if ( ! is_a( $customer, 'Vendidero\StoreaBill\Lexoffice\Customer' ) ) {
+			$customer = new Customer( $customer );
+		}
+
 		$shipping_country  = $customer->has_shipping_address() ? $customer->get_shipping_country() : $customer->get_billing_country();
 		$shipping_postcode = $customer->has_shipping_address() ? $customer->get_shipping_postcode() : $customer->get_billing_postcode();
 
@@ -232,17 +236,12 @@ class Sync extends SyncHandler {
 			'note'           => _x( 'WooCommerce customer', 'lexoffice', 'woocommerce-germanized-pro' ),
 		);
 
-		if ( ! $customer->is_business() && ! $force_business ) {
+		if ( ! $customer->is_business() ) {
 			$request['person'] = array(
 				'firstName'  => $customer->get_first_name(),
-				'lastName'   => $customer->get_last_name()
+				'lastName'   => $customer->get_last_name(),
+				'salutation' => $customer->get_formatted_title(),
 			);
-
-			if ( $salutation = $customer->get_formatted_title() ) {
-				$request['person']['salutation'] = $salutation;
-			} else {
-				$request['person']['salutation'] = 'Herr';
-			}
 
 			$request['emailAddresses']['other'] = array( $customer->get_email() );
 
@@ -252,15 +251,8 @@ class Sync extends SyncHandler {
 				);
 			}
 		} else {
-			$company_name = $customer->get_company_name();
-
-			if ( $force_business && '' === $customer->get_company_name() ) {
-				/* translators: 1: first name 2: last name */
-				$company_name = sprintf( _x( '%1$s %2$s', 'storeabill-company-customer-name', 'storeabill' ), $customer->get_first_name(), $customer->get_last_name() );
-			}
-
 			$request['company'] = array(
-				'name'                 => $company_name,
+				'name'                 => $customer->get_company_name(),
 				'allowTaxFreeInvoices' => $customer->is_vat_exempt(),
 				'contactPersons'       => array()
 			);
@@ -275,13 +267,8 @@ class Sync extends SyncHandler {
 				'emailAddress'      => $customer->get_email(),
 				'phoneNumber'       => $customer->get_phone(),
 				'primary'           => true,
+				'salutation'        => $customer->get_formatted_title(),
 			);
-
-			if ( $salutation = $customer->get_formatted_title() ) {
-				$contact['salutation'] = $salutation;
-			} else {
-				$contact['salutation'] = 'Herr';
-			}
 
 			$request['emailAddresses']['business'] = array( $customer->get_email() );
 			$request['company']['contactPersons']  = array( $contact );
@@ -376,7 +363,7 @@ class Sync extends SyncHandler {
 			'type'                 => 'cancellation' === $invoice->get_invoice_type() ? 'salescreditnote' : 'salesinvoice',
 			'voucherNumber'        => apply_filters( "{$this->get_hook_prefix()}voucher_number", $voucher_number, $invoice ),
 			'voucherDate'          => $invoice->get_date_created()->date_i18n( 'Y-m-d' ),
-			'shippingDate'         => $shipping_date,
+			'shippingDate'         => apply_filters( "{$this->get_hook_prefix()}voucher_shipping_date", $shipping_date, $invoice ),
 			'dueDate'              => $invoice->get_date_due() ? $invoice->get_date_due()->date_i18n( 'Y-m-d' ) : $invoice->get_date_created()->date_i18n( 'Y-m-d' ),
 			'totalGrossAmount'     => sab_format_decimal( $invoice->get_total(), 2 ),
 			'totalTaxAmount'       => $total_tax,
@@ -396,9 +383,15 @@ class Sync extends SyncHandler {
 			 * (Re)sync the customer
 			 */
 			if ( $customer = $invoice->get_customer() ) {
-				$customer_result = $this->sync_customer( $customer, $this->force_company_contact_existence( $invoice ) );
+				$invoice_customer = new \Vendidero\StoreaBill\Lexoffice\Customer( $customer, $this->force_company_contact_existence( $invoice ) ? array( 'is_business' => true ) : array() );
+				/**
+				 * Prefer current invoice data when syncing customer
+				 */
+				$invoice_customer->populate_by_invoice( $invoice );
 
-				if ( ! is_wp_error( $customer_result ) && ( $customer_sync_data = $customer->get_external_sync_handler_data( self::get_name() ) ) ) {
+				$customer_result = $this->sync_customer( $invoice_customer );
+
+				if ( ! is_wp_error( $customer_result ) && ( $customer_sync_data = $invoice_customer->get_external_sync_handler_data( self::get_name() ) ) ) {
 					$request['contactId'] = $customer_sync_data->get_id();
 				} elseif ( is_wp_error( $customer_result ) ) {
 					if ( $force_valid_customer ) {
@@ -409,30 +402,12 @@ class Sync extends SyncHandler {
 						}
 					}
 				}
-			} elseif( $this->force_company_contact_existence( $invoice ) ) {
-				$invoice_customer = new \Vendidero\StoreaBill\Lexoffice\Customer( $invoice, array(
-					'is_business' => true,
-				) );
-
-				$customer_result = $this->sync_customer( $invoice_customer, true );
-
-				if ( ! is_wp_error( $customer_result ) && ( $customer_sync_data = $invoice_customer->get_external_sync_handler_data( self::get_name() ) ) ) {
-					$request['contactId'] = $customer_sync_data->get( 'customer_id' );
-				} elseif ( is_wp_error( $customer_result ) ) {
-					if ( $force_valid_customer ) {
-						return $customer_result;
-					} else {
-						foreach( $customer_result->get_error_messages() as $message ) {
-							Package::log( sprintf( 'The following error occurred while syncing customer data for %s - need to use collective customer instead: %s', $invoice->get_title(), $message ), 'error' );
-						}
-					}
-				}
-			} elseif( $this->force_creating_customers() || $force_valid_customer ) {
-				$invoice_customer = new \Vendidero\StoreaBill\Lexoffice\Customer( $invoice );
+			} elseif ( $this->force_company_contact_existence( $invoice ) || $this->force_creating_customers() || $force_valid_customer ) {
+				$invoice_customer = new \Vendidero\StoreaBill\Lexoffice\Customer( $invoice, $this->force_company_contact_existence( $invoice ) ? array( 'is_business' => true ) : array() );
 				$customer_result  = $this->sync_customer( $invoice_customer );
 
 				if ( ! is_wp_error( $customer_result ) && ( $customer_sync_data = $invoice_customer->get_external_sync_handler_data( self::get_name() ) ) ) {
-					$request['contactId'] = $customer_sync_data->get( 'customer_id' );
+					$request['contactId'] = $customer_sync_data->get_id();
 				} elseif ( is_wp_error( $customer_result ) ) {
 					if ( $force_valid_customer ) {
 						return $customer_result;
@@ -453,13 +428,24 @@ class Sync extends SyncHandler {
 			}
 		}
 
-		$items = array();
+		$items             = array();
+		$main_category_ids = array();
+
+		/**
+		 * Build a map of main category ids to be used as reference
+		 * while detecting category ids for items later on.
+		 */
+		foreach( $invoice->get_items( 'product' ) as $item ) {
+			$main_category_ids[] = $this->get_category_id( $item, $invoice );
+		}
+
+		$main_category_ids = array_unique( $main_category_ids );
 
 		/**
 		 * Build up items array. Items are being merged by category ID and tax rate.
 		 */
 		foreach( $invoice->get_items( $invoice->get_item_types_for_totals() ) as $item ) {
-			$category_id = $this->get_category_id( $item, $invoice );
+			$category_id = $this->get_category_id( $item, $invoice, $main_category_ids );
 
 			/**
 			 * Lexoffice cannot handle free items
@@ -590,6 +576,8 @@ class Sync extends SyncHandler {
 		 */
 		$request['remark'] = apply_filters( "{$this->get_hook_prefix()}voucher_remark", $this->get_invoice_remark( $remark_data ), $invoice );
 
+		$request = apply_filters( "{$this->get_hook_prefix()}voucher", $request, $invoice );
+
 		if ( $this->has_synced( $invoice ) ) {
 			$data        = $invoice->get_external_sync_handler_data( static::get_name() );
 			$remote_data = $this->get_api()->get_voucher( $data->get_id() );
@@ -637,6 +625,13 @@ class Sync extends SyncHandler {
 				}
 			}
 
+			/**
+			 * Create transaction hint
+			 */
+			if ( $invoice->is_paid() && $invoice->get_payment_transaction_id() ) {
+				$hint_result = $this->get_api()->create_voucher_transaction_hint( $id, $invoice->get_payment_transaction_id() );
+			}
+
 			$invoice->update_external_sync_handler( static::get_name(), array(
 				'id'      => $id,
 				'version' => $version
@@ -672,8 +667,9 @@ class Sync extends SyncHandler {
 	 *
 	 * @param $item
 	 * @param Invoice $invoice
+	 * @param array $main_category_ids
 	 */
-	protected function get_category_id( $item, $invoice ) {
+	protected function get_category_id( $item, $invoice, $main_category_ids = array() ) {
 		$categories = array(
 			'products'                => '8f8664a8-fd86-11e1-a21f-0800200c9a66',
 			'services'                => '8f8664a0-fd86-11e1-a21f-0800200c9a66',
@@ -723,6 +719,19 @@ class Sync extends SyncHandler {
 						$category_name = 'eu_digital';
 					}
 				}
+
+				/**
+				 * Lexoffice does not allow mixing categories for distance sales, e.g.
+				 * in case a digital product is sold and an additional service (fee) is booked as
+				 * a revenue that won't work. Tweak: Book fees as digital too in case a digital product is included.
+				 */
+				if ( 'fee' === $item->get_item_type() && ! empty( $main_category_ids ) ) {
+					$digital_category = $invoice->is_oss() ? 'eu_digital_oss' : 'eu_digital';
+
+					if ( in_array( $digital_category, $main_category_ids ) ) {
+						$category_name = $digital_category;
+					}
+				}
 			}
 
 			/**
@@ -745,7 +754,7 @@ class Sync extends SyncHandler {
 		}
 
 		$category = $categories[ $category_name ];
-		$category = apply_filters( "{$this->get_hook_prefix()}voucher_item_category_id", $category, $item, $invoice );
+		$category = apply_filters( "{$this->get_hook_prefix()}voucher_item_category_id", $category, $item, $invoice, $this );
 
 		if ( ! in_array( $category, $categories ) ) {
 			$category = $categories[ $default_category_name ];
@@ -832,6 +841,8 @@ class Sync extends SyncHandler {
 						$error->add( 404, _x( 'The requested resource could not be found.', 'lexoffice', 'woocommerce-germanized-pro' ) );
 					} elseif( in_array( $response->get_code(), array( 400, 401 ) ) ) {
 						$error->add( $response->get_code(), sprintf( _x( 'Seems like your connection to lexoffice was lost. Please <a href="%s">connect</a> to lexoffice.', 'lexoffice', 'woocommerce-germanized-pro' ), $this->get_admin_url() ) );
+					} elseif( in_array( $response->get_code(), array( 403 ) ) ) {
+						$error->add( $response->get_code(), sprintf( _x( 'Scope is missing. Please <a href="%s">refresh</a> your connection to lexoffice.', 'lexoffice', 'woocommerce-germanized-pro' ), $this->get_admin_url() ) );
 					} else {
 						$error->add( $response->get_code(), _x( 'Error while connecting to lexoffice. Please make sure that your host allows outgoing connections to lexoffice.', 'lexoffice', 'woocommerce-germanized-pro' ) );
 					}

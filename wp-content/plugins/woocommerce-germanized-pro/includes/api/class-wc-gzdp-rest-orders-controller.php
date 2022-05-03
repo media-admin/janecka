@@ -30,8 +30,10 @@ class WC_GZDP_REST_Orders_Controller {
 		$order = wc_get_order( $post );
 
 		$response_order_data = $response->get_data();
-		$response_order_data['billing']['vat_id']  = $order->get_meta( '_billing_vat_id' );
-		$response_order_data['shipping']['vat_id'] = $order->get_meta( '_shipping_vat_id' );
+		$response_order_data['billing']['vat_id']  = WC_GZDP_VAT_Helper::instance()->get_order_billing_vat_id( $order ) ? WC_GZDP_VAT_Helper::instance()->get_order_billing_vat_id( $order ) : '';
+		$response_order_data['shipping']['vat_id'] = WC_GZDP_VAT_Helper::instance()->get_order_shipping_vat_id( $order ) ? WC_GZDP_VAT_Helper::instance()->get_order_shipping_vat_id( $order ) : '';
+		$response_order_data['vat_id']             = WC_GZDP_VAT_Helper::instance()->get_order_vat_id( $order ) ? WC_GZDP_VAT_Helper::instance()->get_order_vat_id( $order ) : '';
+
 		$response_order_data['needs_confirmation'] = wc_gzdp_order_needs_confirmation( $order->get_id() );
 
 		$response->set_data( $response_order_data );
@@ -47,7 +49,6 @@ class WC_GZDP_REST_Orders_Controller {
 	 * @return mixed
 	 */
 	public function insert( $order, $request, $creating ) {
-
 		if ( isset( $request['billing']['vat_id'] ) ) {
 			$order->update_meta_data( '_billing_vat_id', wc_clean( $request['billing']['vat_id'] ) );
 		}
@@ -57,7 +58,6 @@ class WC_GZDP_REST_Orders_Controller {
 		}
 
 		if ( isset( $request['needs_confirmation'] ) ) {
-
 			if ( $request['needs_confirmation'] ) {
 				$order->update_meta_data( '_order_needs_confirmation', true );
 			} elseif ( ! $creating && ! $request['needs_confirmation'] ) {
@@ -102,6 +102,13 @@ class WC_GZDP_REST_Orders_Controller {
 			'description' => __( 'Whether an order needs confirmation or not.', 'woocommerce-germanized-pro' ),
 			'type'        => 'boolean',
 			'context'     => array( 'view', 'edit' ),
+		);
+
+		$schema_properties['vat_id'] = array(
+			'description' => __( 'VAT ID', 'woocommerce-germanized-pro' ),
+			'type'        => 'string',
+			'context'     => array( 'view', 'edit' ),
+			'readonly'    => true,
 		);
 
 		return $schema_properties;

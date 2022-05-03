@@ -23,10 +23,10 @@ class Product implements \Vendidero\StoreaBill\Interfaces\Product {
 	public function __construct( $product ) {
 		if ( is_numeric( $product ) ) {
 			$product = wc_get_product( $product );
+		}
 
-			if ( ! is_a( $product, 'WC_Product' ) ) {
-				throw new \Exception( _x( 'Invalid product.', 'storeabill-core', 'woocommerce-germanized-pro' ) );
-			}
+		if ( ! is_a( $product, 'WC_Product' ) ) {
+			throw new \Exception( _x( 'Invalid product.', 'storeabill-core', 'woocommerce-germanized-pro' ) );
 		}
 
 		$this->product = $product;

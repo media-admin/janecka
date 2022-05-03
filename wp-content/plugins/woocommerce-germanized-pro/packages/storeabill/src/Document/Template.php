@@ -24,6 +24,7 @@ abstract class Template extends Data {
 		'content'            => '',
 		'template_name'      => '',
 		'margins'            => array(),
+		'version'            => '1.0.0',
 	);
 
 	protected $blocks = null;
@@ -158,8 +159,16 @@ abstract class Template extends Data {
 		return $this->get_prop( 'content', $context );
 	}
 
+	public function get_version( $context = 'view' ) {
+		return $this->get_prop( 'version', $context );
+	}
+
 	public function set_content( $value ) {
 		$this->set_prop( 'content', $value );
+	}
+
+	public function set_version( $value ) {
+		$this->set_prop( 'version', $value );
 	}
 
 	protected function get_blocks() {

@@ -28,6 +28,14 @@ const settings = {
         "borderColor": {
             "type": "string"
         },
+        "isDisabled": {
+            "type": "boolean",
+            "default": false,
+        },
+        "itemType": {
+            "type": "string",
+            "default": "",
+        },
         "customTextColor" : {
             "type": "string",
         },

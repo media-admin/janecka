@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 use \Vendidero\Germanized\Pro\Packages;
 use Vendidero\StoreaBill\Document\FirstPageTemplate;
-use Vendidero\StoreaBill\TaxRate;
+use Vendidero\StoreaBill\Package;
 
 if ( ! class_exists( 'WC_GZDP_Install' ) ) :
 
@@ -107,8 +107,11 @@ class WC_GZDP_Install {
 
 		self::create_capabilities();
 		self::create_cron_jobs();
+		self::create_tables();
+
 		self::install_packages();
 		self::create_options();
+		self::create_default_terms();
 		
 		// Queue upgrades
 		$current_version    = get_option( 'woocommerce_gzdp_version', null );
@@ -138,6 +141,20 @@ class WC_GZDP_Install {
 			do_action( 'woocommerce_gzdp_updated' );
 		}
 	}
+
+    protected static function create_tables() {
+        global $wpdb;
+
+	    $row = $wpdb->get_results(  "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '{$wpdb->term_taxonomy}' AND column_name = 'order'" );
+
+	    if ( empty( $row ) ) {
+		    $wpdb->query( "ALTER TABLE `{$wpdb->term_taxonomy}` ADD `order` INT (11) NOT NULL DEFAULT 0;" );
+	    }
+    }
+
+    protected static function create_default_terms() {
+        Vendidero\Germanized\Pro\Food\Helper::import_food_attributes();
+    }
 
 	protected static function create_cron_jobs() {
 	    if ( ! did_action( 'init' ) ) {
@@ -495,11 +512,21 @@ class WC_GZDP_Install {
 			self::upgrade_3_2_2();
 		} elseif( version_compare( $current_db_version, '3.4.0', '<' ) ) {
 			self::upgrade_3_4_0();
+		} elseif( version_compare( $current_db_version, '3.4.2', '<' ) ) {
+			self::upgrade_3_4_2();
 		}
 	}
 
 	protected static function upgrade_3_2_2() {
 	    update_option( 'woocommerce_gzdp_checkout_layout_style', 'navigation' );
+	}
+
+	protected static function upgrade_3_4_2() {
+		if ( Package::enable_accounting() ) {
+            if ( ( $lexoffice = \Vendidero\StoreaBill\ExternalSync\Helper::get_sync_handler( 'lexoffice' ) ) && $lexoffice->is_enabled() ) {
+	            update_option( 'storeabill_sync_handler_needs_oauth_refresh', 'lexoffice', false );
+            }
+		}
 	}
 
 	protected static function upgrade_3_4_0() {

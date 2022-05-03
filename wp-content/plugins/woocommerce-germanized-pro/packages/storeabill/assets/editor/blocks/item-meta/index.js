@@ -26,6 +26,14 @@ const settings = {
         "customFontSize": {
             "type": "string"
         },
+        "isDisabled": {
+            "type": "boolean",
+            "default": false,
+        },
+        "itemType": {
+            "type": "string",
+            "default": "",
+        },
         "metaType": {
             "type": "string"
         },

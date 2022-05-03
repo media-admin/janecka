@@ -347,10 +347,8 @@ abstract class TaxableItem extends Item implements Taxable, Summable, Priceable 
 	protected function has_voucher() {
 		$has_voucher = false;
 
-		if ( $document = $this->get_document() ) {
-			if ( $document->has_voucher() ) {
-				$has_voucher = true;
-			}
+		if ( ( $document = $this->get_document() ) && $document->has_voucher() ) {
+			$has_voucher = true;
 		}
 
 		return $has_voucher;
@@ -366,10 +364,22 @@ abstract class TaxableItem extends Item implements Taxable, Summable, Priceable 
 		$line_total = $this->get_line_total();
 
 		if ( $this->has_voucher() ) {
-			$line_total = $this->get_line_subtotal();
+			if ( ( $document = $this->get_document() ) && $document->stores_vouchers_as_discount() ) {
+				$line_total = $this->get_line_subtotal();
+			}
 		}
 
 		return $line_total;
+	}
+
+	protected function get_tax_shares() {
+		$tax_shares = array();
+
+		if ( ( $document = $this->get_document() ) && is_a( $document, '\Vendidero\StoreaBill\Interfaces\Invoice' ) ) {
+			$tax_shares = $document->get_tax_shares( $this->get_item_type() );
+		}
+
+		return $tax_shares;
 	}
 
 	protected function calculate_split_tax_totals() {
@@ -379,10 +389,9 @@ abstract class TaxableItem extends Item implements Taxable, Summable, Priceable 
 
 		if ( $document = $this->get_document() ) {
 			if ( is_a( $document, '\Vendidero\StoreaBill\Interfaces\Invoice' ) ) {
-				$tax_shares = $document->get_tax_shares( $this->get_item_type() );
+				$tax_shares = $this->get_tax_shares();
 
 				foreach( $tax_shares as $tax_rate_key => $share ) {
-
 					if ( isset( $rates[ $tax_rate_key ] ) ) {
 
 						$total_amount    = sab_format_decimal( $this->get_line_total_taxable() * $share );
@@ -501,7 +510,7 @@ abstract class TaxableItem extends Item implements Taxable, Summable, Priceable 
 		if ( is_a( $this, '\Vendidero\StoreaBill\Interfaces\SplitTaxable' ) ) {
 			if ( ( $document = $this->get_document() ) && $this->enable_split_tax() ) {
 				if ( is_a( $document, '\Vendidero\StoreaBill\Interfaces\Invoice' ) ) {
-					$tax_shares = $document->get_tax_shares();
+					$tax_shares = $this->get_tax_shares();
 
 					if ( sizeof( $tax_shares ) > 1 ) {
 						$this->calculate_split_tax_totals();

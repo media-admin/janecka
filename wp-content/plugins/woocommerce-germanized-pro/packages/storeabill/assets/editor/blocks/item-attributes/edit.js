@@ -23,8 +23,8 @@ const ItemAttributesEdit = ( {
     setFontSize,
     className
 } ) => {
-    const { customAttributes } = attributes;
-    let item = getPreviewItem();
+    const { customAttributes, itemType } = attributes;
+    let item = getPreviewItem( itemType );
 
     const {
         TextColor,

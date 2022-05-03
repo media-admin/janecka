@@ -829,17 +829,17 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
-            "version": "v1.6.10",
-            "version_normalized": "1.6.10.0",
+            "version": "v1.6.11",
+            "version_normalized": "1.6.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-dhl.git",
-                "reference": "0826c06944e16f3f1c95d2b79768c9ec6ab98d47"
+                "reference": "158f608a4ef3a1fc8dfae7f5dccd864c9833cb91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/0826c06944e16f3f1c95d2b79768c9ec6ab98d47",
-                "reference": "0826c06944e16f3f1c95d2b79768c9ec6ab98d47",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-dhl/zipball/158f608a4ef3a1fc8dfae7f5dccd864c9833cb91",
+                "reference": "158f608a4ef3a1fc8dfae7f5dccd864c9833cb91",
                 "shasum": ""
             },
             "require": {
@@ -852,7 +852,7 @@
             "require-dev": {
                 "phpunit/phpunit": "7.5.14"
             },
-            "time": "2022-04-26T10:23:49+00:00",
+            "time": "2022-05-02T08:39:46+00:00",
             "type": "wordpress-plugin",
             "installation-source": "dist",
             "autoload": {
@@ -876,24 +876,24 @@
             "description": "The Germanized DHL implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-dhl",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.6.10",
+                "source": "https://github.com/vendidero/woocommerce-germanized-dhl/tree/v1.6.11",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-dhl/issues"
             },
             "install-path": "../../packages/woocommerce-germanized-dhl"
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "v1.6.7",
-            "version_normalized": "1.6.7.0",
+            "version": "v1.6.8",
+            "version_normalized": "1.6.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "21beacc0ef8b915446c0e26e3547143d28f4bf13"
+                "reference": "057067cf3a6bdeaa19348f0d7790479660e62381"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/21beacc0ef8b915446c0e26e3547143d28f4bf13",
-                "reference": "21beacc0ef8b915446c0e26e3547143d28f4bf13",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/057067cf3a6bdeaa19348f0d7790479660e62381",
+                "reference": "057067cf3a6bdeaa19348f0d7790479660e62381",
                 "shasum": ""
             },
             "require": {
@@ -906,7 +906,7 @@
                 "phpunit/phpunit": "7.5.14",
                 "yoast/phpunit-polyfills": "^1.0"
             },
-            "time": "2022-02-24T10:11:22+00:00",
+            "time": "2022-05-02T08:38:19+00:00",
             "type": "wordpress-plugin",
             "installation-source": "dist",
             "autoload": {
@@ -928,7 +928,7 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v1.6.7",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v1.6.8",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
             "install-path": "../../packages/woocommerce-germanized-shipments"

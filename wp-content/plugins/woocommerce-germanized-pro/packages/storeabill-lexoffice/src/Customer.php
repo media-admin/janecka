@@ -12,21 +12,37 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 	use ExternalSyncable;
 
 	/**
-	 * The document
+	 * The object
 	 *
-	 * @var Invoice
+	 * @var Invoice|\Vendidero\StoreaBill\Interfaces\Customer
 	 */
-	protected $document;
+	protected $object;
 
 	protected $data = array();
 
 	/**
 	 * Customer constructor.
 	 *
-	 * @param Invoice $invoice
+	 * @param Invoice|\Vendidero\StoreaBill\Interfaces\Customer $object
 	 * @param array $customer_data
 	 */
-	public function __construct( $invoice, $customer_data = array() ) {
+	public function __construct( $object, $customer_data = array() ) {
+		if ( is_a( $object, '\Vendidero\StoreaBill\Invoice\Invoice' ) ) {
+			$this->populate_by_invoice( $object );
+		} elseif ( is_a( $object, '\Vendidero\StoreaBill\Interfaces\Customer' ) ) {
+			$this->populate_by_customer( $object );
+		}
+
+		$this->object = $object;
+	}
+
+	/**
+	 * @param Invoice $invoice
+	 * @param array $customer_data
+	 *
+	 * @return void
+	 */
+	public function populate_by_invoice( $invoice, $customer_data = array() ) {
 		$this->data = wp_parse_args( $customer_data, array(
 			'is_business'         => false,
 			'id'                  => '',
@@ -36,39 +52,69 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 			'vat_id'              => $invoice->get_vat_id(),
 			'email'               => $invoice->get_email(),
 			'phone'               => $invoice->get_phone(),
+			'first_name'          => $invoice->get_first_name(),
+			'last_name'           => $invoice->get_last_name()
 		) );
 
+		$this->update_address_data( $customer_data );
+	}
+
+	/**
+	 * @param \Vendidero\StoreaBill\Interfaces\Customer $customer
+	 * @param array $customer_data
+	 *
+	 * @return void
+	 */
+	public function populate_by_customer( $customer, $customer_data = array() ) {
+		$this->data = wp_parse_args( $customer_data, array(
+			'is_business'         => $customer->is_business(),
+			'id'                  => '',
+			'is_vat_exempt'       => $customer->is_vat_exempt(),
+			'billing_address'     => $customer->get_billing(),
+			'shipping_address'    => $customer->get_shipping(),
+			'vat_id'              => $customer->get_vat_id(),
+			'email'               => $customer->get_email(),
+			'phone'               => $customer->get_phone(),
+			'first_name'          => $customer->get_first_name(),
+			'last_name'           => $customer->get_last_name()
+		) );
+
+		$this->update_address_data( $customer_data );
+	}
+
+	protected function update_address_data( $customer_data = array() ) {
 		$this->data['billing_address'] = wp_parse_args( $this->data['billing_address'], array(
-			'title'       => '',
-			'first_name'  => '',
-			'last_name'   => '',
-			'address_1'   => '',
-			'address_2'   => '',
-			'city'        => '',
-			'postcode'    => '',
-			'country'     => '',
+			'title'       => isset( $customer_data['billing_address']['title'] ) ? $customer_data['billing_address']['title'] : '',
+			'first_name'  => isset( $customer_data['billing_address']['first_name'] ) ? $customer_data['billing_address']['first_name'] : '',
+			'last_name'   => isset( $customer_data['billing_address']['last_name'] ) ? $customer_data['billing_address']['last_name'] : '',
+			'address_1'   => isset( $customer_data['billing_address']['address_1'] ) ? $customer_data['billing_address']['address_1'] : '',
+			'address_2'   => isset( $customer_data['billing_address']['address_2'] ) ? $customer_data['billing_address']['address_2'] : '',
+			'city'        => isset( $customer_data['billing_address']['city'] ) ? $customer_data['billing_address']['city'] : '',
+			'postcode'    => isset( $customer_data['billing_address']['postcode'] ) ? $customer_data['billing_address']['postcode'] : '',
+			'country'     => isset( $customer_data['billing_address']['country'] ) ? $customer_data['billing_address']['country'] : '',
 		) );
 
 		$this->data['shipping_address'] = wp_parse_args( $this->data['shipping_address'], array(
-			'title'       => '',
-			'first_name'  => '',
-			'last_name'   => '',
-			'address_1'   => '',
-			'address_2'   => '',
-			'city'        => '',
-			'postcode'    => '',
-			'country'     => '',
+			'title'       => isset( $customer_data['shipping_address']['title'] ) ? $customer_data['shipping_address']['title'] : '',
+			'first_name'  => isset( $customer_data['shipping_address']['first_name'] ) ? $customer_data['shipping_address']['first_name'] : '',
+			'last_name'   => isset( $customer_data['shipping_address']['last_name'] ) ? $customer_data['shipping_address']['last_name'] : '',
+			'address_1'   => isset( $customer_data['shipping_address']['address_1'] ) ? $customer_data['shipping_address']['address_1'] : '',
+			'address_2'   => isset( $customer_data['shipping_address']['address_2'] ) ? $customer_data['shipping_address']['address_2'] : '',
+			'city'        => isset( $customer_data['shipping_address']['city'] ) ? $customer_data['shipping_address']['city'] : '',
+			'postcode'    => isset( $customer_data['shipping_address']['postcode'] ) ? $customer_data['shipping_address']['postcode'] : '',
+			'country'     => isset( $customer_data['shipping_address']['country'] ) ? $customer_data['shipping_address']['country'] : '',
 		) );
-
-		$this->document = $invoice;
 	}
 
 	public function get_reference_type() {
 		return 'lexoffice';
 	}
 
+	/**
+	 * @return \Vendidero\StoreaBill\Interfaces\Customer|Invoice
+	 */
 	public function get_object() {
-		return $this->document;
+		return $this->object;
 	}
 
 	public function get_id() {
@@ -84,7 +130,7 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 	}
 
 	public function get_first_name() {
-		return $this->get_address_data( 'first_name' );
+		return $this->get( 'first_name' );
 	}
 
 	protected function get_address_data( $prop, $type = 'billing' ) {
@@ -94,7 +140,7 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 	}
 
 	public function get_last_name() {
-		return $this->get_address_data( 'last_name' );
+		return $this->get( 'last_name' );
 	}
 
 	public function get_title() {
@@ -102,7 +148,7 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 	}
 
 	public function get_formatted_title() {
-		$title_formatted = 'Herr';
+		$title_formatted = '';
 
 		if ( function_exists( 'wc_gzd_get_customer_title' ) && ( $title = $this->get_title() ) ) {
 			if ( is_numeric( $title ) ) {
@@ -152,7 +198,7 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 		$company        = $this->get_company();
 		$force_business = $this->get( 'is_business' );
 		$vat_id         = $this->get_vat_id();
-		$is_business = ! empty( $company ) || ! empty( $vat_id ) || $force_business;
+		$is_business    = ! empty( $company ) || ! empty( $vat_id ) || $force_business;
 
 		return $is_business;
 	}
@@ -177,6 +223,10 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 		return $this->get_address_data( 'city' );
 	}
 
+	public function get_billing() {
+		return $this->data['billing_address'];
+	}
+
 	public function get_shipping_address() {
 		return $this->get_address_data( 'address_1', 'shipping' );
 	}
@@ -195,6 +245,10 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 
 	public function get_shipping_city() {
 		return $this->get_address_data( 'city', 'shipping' );
+	}
+
+	public function get_shipping() {
+		return $this->data['shipping_address'];
 	}
 
 	public function has_shipping_address() {
@@ -220,7 +274,7 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 	}
 
 	public function save() {
-		return $this->document->save();
+		return $this->object->save();
 	}
 
 	/**
@@ -245,30 +299,38 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 	}
 
 	public function get_external_sync_handler_data( $handler_name ) {
-		$data = $this->document->get_external_sync_handler_data( $handler_name );
+		if ( is_a( $this->object, '\Vendidero\StoreaBill\Invoice\Invoice' ) ) {
+			$data = $this->object->get_external_sync_handler_data( $handler_name );
 
-		$data->set( 'id', $data->get( 'customer_id' ) );
-		$data->set( 'version', $data->get( 'customer_version' ) );
+			$data->set( 'id', $data->get( 'customer_id' ) );
+			$data->set( 'version', $data->get( 'customer_version' ) );
+		} else {
+			$data = $this->object->get_external_sync_handler_data( $handler_name );
+		}
 
 		return $data;
 	}
 
 	public function get_external_sync_handlers() {
-		return $this->document->get_external_sync_handlers();
+		return $this->object->get_external_sync_handlers();
 	}
 
 	public function set_external_sync_handlers( $sync_handlers ) {
-		$this->document->set_external_sync_handlers( $sync_handlers );
+		$this->object->set_external_sync_handlers( $sync_handlers );
 	}
 
 	public function has_been_externally_synced( $handler_name ) {
-		$external_sync_handlers = $this->get_external_sync_handlers();
+		if ( is_a( $this->object, '\Vendidero\StoreaBill\Invoice\Invoice' ) ) {
+			$external_sync_handlers = $this->get_external_sync_handlers();
 
-		if ( array_key_exists( $handler_name, $external_sync_handlers ) && ! empty( $external_sync_handlers[ $handler_name ]['customer_id'] ) ) {
-			return true;
+			if ( array_key_exists( $handler_name, $external_sync_handlers ) && ! empty( $external_sync_handlers[ $handler_name ]['customer_id'] ) ) {
+				return true;
+			}
+
+			return false;
+		} else {
+			return $this->object->has_been_externally_synced( $handler_name );
 		}
-
-		return false;
 	}
 
 	/**
@@ -276,16 +338,18 @@ class Customer implements \Vendidero\StoreaBill\Interfaces\Customer {
 	 * @param array|SyncData $args
 	 */
 	public function update_external_sync_handler( $handler_name, $args = array() ) {
-		if ( isset( $args['id'] ) ) {
-			$args['customer_id'] = $args['id'];
-			unset( $args['id'] );
+		if ( is_a( $this->object, '\Vendidero\StoreaBill\Invoice\Invoice' ) ) {
+			if ( isset( $args['id'] ) ) {
+				$args['customer_id'] = $args['id'];
+				unset( $args['id'] );
+			}
+
+			if ( isset( $args['version'] ) ) {
+				$args['customer_version'] = $args['version'];
+				unset( $args['version'] );
+			}
 		}
 
-		if ( isset( $args['version'] ) ) {
-			$args['customer_version'] = $args['version'];
-			unset( $args['version'] );
-		}
-
-		$this->document->update_external_sync_handler( $handler_name, $args );
+		$this->object->update_external_sync_handler( $handler_name, $args );
 	}
 }

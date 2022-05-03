@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite299a933ca87b0a0decaa65a9a3208be
+class ComposerStaticInit482c1d95ee04952b7c1f802e896f3a53
 {
     public static $files = array (
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
@@ -437,6 +437,7 @@ class ComposerStaticInite299a933ca87b0a0decaa65a9a3208be
         'Vendidero\\Germanized\\Shipments\\WPMLHelper' => __DIR__ . '/../..' . '/packages/woocommerce-germanized-shipments/src/WPMLHelper.php',
         'Vendidero\\Germanized\\Shopmark' => __DIR__ . '/../..' . '/src/Shopmark.php',
         'Vendidero\\Germanized\\Shopmarks' => __DIR__ . '/../..' . '/src/Shopmarks.php',
+        'Vendidero\\Germanized\\Utilities\\NumberUtil' => __DIR__ . '/../..' . '/src/Utilities/NumberUtil.php',
         'Vendidero\\OneStopShop\\Admin' => __DIR__ . '/../..' . '/packages/one-stop-shop-woocommerce/src/Admin.php',
         'Vendidero\\OneStopShop\\AdminNote' => __DIR__ . '/../..' . '/packages/one-stop-shop-woocommerce/src/AdminNote.php',
         'Vendidero\\OneStopShop\\AsyncReportGenerator' => __DIR__ . '/../..' . '/packages/one-stop-shop-woocommerce/src/AsyncReportGenerator.php',
@@ -536,9 +537,9 @@ class ComposerStaticInite299a933ca87b0a0decaa65a9a3208be
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite299a933ca87b0a0decaa65a9a3208be::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite299a933ca87b0a0decaa65a9a3208be::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInite299a933ca87b0a0decaa65a9a3208be::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit482c1d95ee04952b7c1f802e896f3a53::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit482c1d95ee04952b7c1f802e896f3a53::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit482c1d95ee04952b7c1f802e896f3a53::$classMap;
 
         }, null, ClassLoader::class);
     }

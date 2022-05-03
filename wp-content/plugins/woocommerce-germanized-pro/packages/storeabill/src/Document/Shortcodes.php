@@ -256,7 +256,8 @@ class Shortcodes implements ShortcodeHandleable {
 		if ( empty( $defaults ) ) {
 			$defaults = array(
 				'data'    => '',
-				'compare' => 'e',
+				// In case no value has been transmitted, assume a not empty check.
+				'compare' => isset( $args['value'] ) ? 'e' : 'nempty',
 				'value'   => '',
 				'chain'   => 'OR',
 				'format'  => '',
@@ -395,6 +396,15 @@ class Shortcodes implements ShortcodeHandleable {
 
 			if ( empty( $result ) ) {
 				$result = $object->get_meta( '_' . $field_key );
+			}
+		}
+
+		/**
+		 * Fallback to product parent data in case result is empty string.
+		 */
+		if ( '' === $result && is_a( $object, '\Vendidero\StoreaBill\Interfaces\Product' ) ) {
+			if ( $parent = $object->get_parent() ) {
+				return $this->get_object_data( $parent, $field_key, $args );
 			}
 		}
 
@@ -722,14 +732,20 @@ class Shortcodes implements ShortcodeHandleable {
 			);
 		}
 
-		$atts   = $this->parse_args( $atts );
-		$format = $atts['format'];
+		$atts               = $this->parse_args( $atts );
+		$format             = $atts['format'];
+		$has_applied_format = false;
 
-		if ( is_a( $data, 'WC_DateTime' ) ) {
+		if ( is_a( $data, 'WC_DateTime' ) || is_a( $data, 'DateTime' ) ) {
 			$format = empty( $format ) ? sab_date_format() : $format;
+
+			if ( ! is_a( $data, 'WC_DateTime' ) ) {
+				$data = new \WC_DateTime( "@{$data->getTimestamp()}", new \DateTimeZone( 'UTC' ) );
+			}
 
 			try {
 				$return_data = $data->date_i18n( $format );
+				$has_applied_format = true;
 			} catch( \Exception $e ) {
 				$return_data = '';
 			}
@@ -744,12 +760,22 @@ class Shortcodes implements ShortcodeHandleable {
 
 			$format = empty( $format ) ? sab_date_format() : $format;
 
+			if ( ! is_a( $end_date, 'WC_DateTime' ) ) {
+				$end_date = new \WC_DateTime( "@{$end_date->getTimestamp()}", new \DateTimeZone( 'UTC' ) );
+			}
+
+			if ( ! is_a( $start_date, 'WC_DateTime' ) ) {
+				$start_date = new \WC_DateTime( "@{$start_date->getTimestamp()}", new \DateTimeZone( 'UTC' ) );
+			}
+
 			try {
 				if ( $is_period ) {
 					$return_data = $start_date->date_i18n( $format ) . apply_filters( 'storeabill_date_period_separator', ' - ' ) . $end_date->date_i18n( $format );
 				} else {
 					$return_data = $start_date->date_i18n( $format );
 				}
+
+				$has_applied_format = true;
 			} catch( \Exception $e ) {
 				$return_data = '';
 			}
@@ -774,16 +800,58 @@ class Shortcodes implements ShortcodeHandleable {
 			$return_data = wp_kses_post( nl2br( wptexturize( $data ) ) );
 		}
 
-		if ( 'price' === $format ) {
-			if ( is_callable( array( $data, 'get_formatted_price' ) ) ) {
-				$return_data = $data->get_formatted_price( $data );
-			} elseif ( is_a( $data, '\Vendidero\StoreaBill\Interfaces\Reference' ) ) {
-				if ( $data->is_callable( 'get_currency' ) ) {
-					$currency    = $data->get_currency();
-					$return_data = sab_format_price( $return_data, array( 'currency' => $currency ) );
+		if ( ! $has_applied_format && ! empty( $format ) ) {
+			$sanitized_format = str_replace( '-', '_', sanitize_key( $format ) );
+
+			if ( has_filter( "storeabill_format_{$sanitized_format}_shortcode" ) ) {
+				$return_data = apply_filters( "storeabill_format_{$sanitized_format}_shortcode", $return_data, $data, $atts, $this );
+			} elseif ( 'price' === $format ) {
+				if ( is_callable( array( $data, 'get_formatted_price' ) ) ) {
+					$return_data = $data->get_formatted_price( $data );
+				} elseif ( is_a( $data, '\Vendidero\StoreaBill\Interfaces\Reference' ) ) {
+					if ( $data->is_callable( 'get_currency' ) ) {
+						$currency    = $data->get_currency();
+						$return_data = sab_format_price( $return_data, array( 'currency' => $currency ) );
+					}
+				} else {
+					$return_data = sab_format_price( $return_data );
 				}
-			} else {
-				$return_data = sab_format_price( $return_data );
+			} elseif ( 'decimal' === $format && is_numeric( $return_data ) ) {
+				$decimal_args = array(
+					'decimal_separator'  => sab_get_price_decimal_separator(),
+					'thousand_separator' => sab_get_price_thousand_separator(),
+					'decimals'           => sab_get_price_decimals(),
+				);
+
+				$decimal     = (float) $return_data;
+				$return_data = apply_filters( 'storeabill_shortcode_formatted_decimal', number_format( $decimal, $decimal_args['decimals'], $decimal_args['decimal_separator'], $decimal_args['thousand_separator'] ), $decimal, $decimal_args, $return_data );
+
+				if ( apply_filters( 'storeabill_shortcode_formatted_decimal_trim_zeros', false ) && $decimal_args['decimals'] > 0 ) {
+					$return_data = sab_trim_zeros( $return_data );
+				}
+			} elseif ( 'date:' === substr( $format, 0, 5 ) || ( strstr( strtolower( $format ), 'm' ) && strstr( strtolower( $format ), 'y' ) && strstr( strtolower( $format ), 'd' ) ) ) {
+				$datetime = false;
+				$format   = 'date:' === substr( $format, 0, 5 ) ? substr( $format, 5 ) : $format;
+
+				// Timestamp vs formatted strings
+				if ( is_numeric( $return_data ) && (int) $return_data == $return_data ) {
+					$datetime = sab_string_to_datetime( $return_data );
+				} elseif ( is_string( $return_data ) && strtotime( $return_data ) ) {
+					// The date string should be in local site timezone. Convert to UTC
+					$timestamp = sab_string_to_timestamp( get_gmt_from_date( $return_data ) );
+					$datetime  = new \WC_DateTime( "@{$timestamp}", new \DateTimeZone( 'UTC' ) );
+
+					// Set local timezone or offset.
+					if ( get_option( 'timezone_string' ) ) {
+						$datetime->setTimezone( new \DateTimeZone( sab_timezone_string() ) );
+					} else {
+						$datetime->set_utc_offset( sab_timezone_string() );
+					}
+				}
+
+				if ( is_a( $datetime, 'WC_DateTime' ) ) {
+					return $this->format_result( $datetime, $atts );
+				}
 			}
 		}
 

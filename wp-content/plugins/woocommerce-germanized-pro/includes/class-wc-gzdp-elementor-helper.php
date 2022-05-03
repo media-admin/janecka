@@ -13,7 +13,13 @@ class WC_GZDP_Elementor_Helper {
         'tax_notice',
         'unit_price',
         'units',
-	    'defect_description'
+	    'defect_description',
+	    'deposit',
+	    'deposit_packaging_type',
+	    'nutrients',
+	    'ingredients',
+	    'allergenic',
+	    'nutri_score'
     );
 
     public static function instance() {

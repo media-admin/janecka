@@ -52,16 +52,33 @@ class WC_GZDP_Admin {
 		add_filter( 'woocommerce_template_directory', array( $this, 'set_woocommerce_template_dir' ), 10, 2 );
 
 		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'save_field' ), 0, 3 );
-		add_filter( 'woocommerce_gzd_template_check', array( $this, 'add_template_check' ), 10, 1 );
+		add_filter( 'woocommerce_gzd_template_check', array( $this, 'add_template_check' ), 10, 2 );
 		add_action( 'woocommerce_gzd_status_after_tools', array( $this, 'generator_cache_clean' ), 10 );
+		add_action( 'woocommerce_gzd_status_after_tools', array( $this, 'create_default_food_terms' ), 10 );
 		add_action( 'woocommerce_gzd_status_after_tools', array( $this, 'legacy_invoice_import' ), 10 );
 		add_action( 'woocommerce_gzd_status_after_tools', array( $this, 'legacy_template_import' ), 10 );
 
 		add_action( 'admin_init', array( $this, 'check_clear_generator_cache' ) );
 		add_action( 'admin_init', array( $this, 'check_import_legacy_templates' ) );
+		add_action( 'admin_init', array( $this, 'check_create_food_terms' ) );
 
         $this->wizward = require WC_GERMANIZED_PRO_ABSPATH . 'includes/admin/class-wc-gzdp-admin-setup-wizard.php';
 	}
+
+    public function create_default_food_terms() {
+        if ( ! taxonomy_exists( 'product_nutrient' ) ) {
+            return;
+        }
+	    ?>
+        <tr>
+            <td><?php _e( 'Nutrients & Allergenic', 'woocommerce-germanized-pro' ); ?></td>
+            <td class="help"><?php echo wc_help_tip( esc_attr( __( 'Create (missing) default nutrients and allergenic terms.', 'woocommerce-germanized-pro' ) ) ); ?></td>
+            <td>
+                <a href="<?php echo wp_nonce_url( add_query_arg( array( 'create-food-terms' => true ) ), 'wc-gzdp-create-food-terms' ); ?>" class="button button-secondary"><?php _e( 'Create missing default terms', 'woocommerce-germanized-pro' ); ?></a></td>
+            </td>
+        </tr>
+	    <?php
+    }
 
 	public function generator_cache_clean() {
 	    ?>
@@ -111,6 +128,14 @@ class WC_GZDP_Admin {
 		<?php
 	}
 
+	public function check_create_food_terms() {
+		if ( current_user_can( 'manage_woocommerce' ) && isset( $_GET['create-food-terms'] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'wc-gzdp-create-food-terms' ) ) {
+			Vendidero\Germanized\Pro\Food\Helper::import_food_attributes( true );
+
+			wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) );
+		}
+	}
+
 	public function check_clear_generator_cache() {
 		if ( current_user_can( 'manage_woocommerce' ) && isset( $_GET['clear-generator-cache'] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'wc-gzdp-clear-generator-cache' ) ) {
 		    WC_GZDP_Admin_Generator::instance()->clear_caches();
@@ -130,15 +155,29 @@ class WC_GZDP_Admin {
 	}
 
 	public function add_template_check( $check ) {
+        $supports_paths = version_compare( WC_germanized()->version, '3.9.0', '>=' ) ? true : false;
+        $paths          = ! $supports_paths ? WC_germanized_pro()->plugin_path() . '/templates' : array(
+	        WC_germanized_pro()->plugin_path() . '/templates',
+	        WC_germanized_pro()->plugin_path() . '/packages/storeabill/templates'
+        );
 
 	    $check['germanized_pro'] = array(
 		    'title'             => __( 'Germanized for WooCommerce Pro', 'woocommerce-germanized-pro' ),
-		    'path'              => WC_germanized_pro()->plugin_path() . '/templates',
+		    'path'              => $paths,
 		    'template_path'     => WC_germanized_pro()->template_path(),
 		    'outdated_help_url' => '',
 		    'files'             => array(),
 		    'has_outdated'      => false,
         );
+
+		$check['storeabill'] = array(
+			'title'             => __( 'StoreaBill', 'woocommerce-germanized-pro' ),
+			'path'              => WC_germanized_pro()->plugin_path() . '/packages/storeabill/templates',
+			'template_path'     => \Vendidero\StoreaBill\Package::get_template_path(),
+			'outdated_help_url' => '',
+			'files'             => array(),
+			'has_outdated'      => false,
+		);
 
         return $check;
     }
@@ -160,8 +199,9 @@ class WC_GZDP_Admin {
 	}
 
 	public function set_woocommerce_template_dir( $dir, $template ) {
-		if ( file_exists( WC_germanized_pro()->plugin_path() . '/templates/' . $template ) )
+		if ( file_exists( WC_germanized_pro()->plugin_path() . '/templates/' . $template ) ) {
 			return 'woocommerce-germanized-pro';
+		}
 
 		return $dir;
 	}

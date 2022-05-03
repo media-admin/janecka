@@ -21,7 +21,7 @@ class Package {
 	 *
 	 * @var string
 	 */
-	const VERSION = '1.8.5';
+	const VERSION = '1.9.1';
 
 	/**
 	 * Init the package.
@@ -153,7 +153,25 @@ class Package {
 
 		// Force using Gutenberg to prevent issues for document_template post type.
 		add_filter( 'use_block_editor_for_post', array( __CLASS__, 'force_gutenberg' ), 1500, 2 );
+
+        // Delete async exporter files that have not been downloaded via REST
+        add_action( 'delete_expired_transients', array( __CLASS__, 'cleanup_expired_exporter_files' ), 100 );
 	}
+
+    public static function cleanup_expired_exporter_files() {
+	    $exporters = array_filter( (array) get_option( 'storeabill_running_async_exporter', array() ) );
+
+        foreach( $exporters as $exporter_id => $filename ) {
+            if ( ! get_transient( "sab_export_{$exporter_id}" ) ) {
+	            $upload_dir = UploadManager::get_upload_dir();
+	            $file_path  = trailingslashit( $upload_dir['basedir'] ) . $filename;
+
+                if ( @file_exists( $file_path ) ) {
+                    @unlink( $file_path );
+                }
+            }
+        }
+    }
 
 	public static function force_gutenberg( $use_gutenberg, $post ) {
 		if ( 'document_template' === $post->post_type ) {
@@ -196,17 +214,19 @@ class Package {
 	 * @return string
 	 */
 	public static function filter_templates( $template, $template_name, $template_path ) {
-		$template_path = self::get_template_path();
+		if ( file_exists( self::get_path() . '/templates/' . $template_name ) ) {
+			$template_path = self::get_template_path();
 
-		// Check for Theme overrides
-		$theme_template = locate_template( array(
-			trailingslashit( $template_path ) . $template_name,
-		) );
+			// Check for Theme overrides
+			$theme_template = locate_template( apply_filters( 'storeabill_locate_theme_template_locations', array(
+				trailingslashit( $template_path ) . $template_name,
+			), $template_name ) );
 
-		if ( ! $theme_template && file_exists( self::get_path() . '/templates/' . $template_name ) ) {
-			$template = self::get_path() . '/templates/' . $template_name;
-		} elseif ( $theme_template ) {
-			$template = $theme_template;
+			if ( ! $theme_template ) {
+				$template = self::get_path() . '/templates/' . $template_name;
+			} else {
+				$template = $theme_template;
+			}
 		}
 
 		return $template;
@@ -501,6 +521,7 @@ class Package {
 			'invoice_shipping_item' => 'Vendidero\StoreaBill\DataStores\ShippingItem',
 			'invoice_fee_item'      => 'Vendidero\StoreaBill\DataStores\FeeItem',
 			'invoice_tax_item'      => 'Vendidero\StoreaBill\DataStores\TaxItem',
+			'invoice_voucher_item'  => 'Vendidero\StoreaBill\DataStores\VoucherItem',
 			'document_item'         => 'Vendidero\StoreaBill\DataStores\DocumentItem',
 			'document_notice'       => 'Vendidero\StoreaBill\DataStores\DocumentNotice',
 			'document_template'     => 'Vendidero\StoreaBill\DataStores\DocumentTemplate',

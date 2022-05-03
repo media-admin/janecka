@@ -39,7 +39,7 @@ do_action( 'storeabill_email_before_document_table', $document, $sent_to_admin, 
 		$after  = '';
 	}
 	/* translators: %s: Order ID. */
-	echo wp_kses_post( $before . sprintf( _x( 'Details to your %s', 'storeabill-core', 'woocommerce-germanized-pro' ), sab_get_document_type_label( $document->get_type() ) ) . $after );
+	echo wp_kses_post( $before . sprintf( _x( '%s details', 'storeabill-core', 'woocommerce-germanized-pro' ), sab_get_document_type_label( $document->get_type() ) ) . $after );
 	?>
 </h2>
 

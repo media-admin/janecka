@@ -55,7 +55,7 @@ class ItemPosition extends ItemTableColumnBlock {
 		if ( empty( $shortcode_data ) ) {
 			return '';
 		} else {
-			return $this->wrap( $this->replace_placeholder( $content, $output ), $attributes );
+			return $this->wrap( $this->replace_placeholder( $content, esc_html( $output ) ), $attributes );
 		}
 	}
 }

@@ -62,7 +62,7 @@ class ItemDifferentialTaxationNotice extends ItemTableColumnBlock {
 		}
 
 		if ( ! empty( $output ) ) {
-			return $this->wrap( $output, $attributes );
+			return $this->wrap( wp_kses_post( $output ), $attributes );
 		} else {
 			return $output;
 		}

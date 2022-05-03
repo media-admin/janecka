@@ -128,6 +128,9 @@ class InvoiceController extends DocumentController {
 			'fee_total',
 			'fee_tax',
 			'fee_net',
+			'voucher_total',
+			'voucher_net',
+			'voucher_tax',
 			'shipping_subtotal',
 			'shipping_subtotal_tax',
 			'shipping_subtotal_net',
@@ -807,6 +810,13 @@ class InvoiceController extends DocumentController {
 					'label'       => _x( 'Voucher total', 'storeabill-core', 'woocommerce-germanized-pro' ),
 					'context'     => array( 'view', 'edit' ),
 				),
+				'voucher_net'     => array(
+					'description' => _x( 'Voucher net amount for the invoice.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+					'type'        => 'string',
+					'label'       => _x( 'Voucher net total', 'storeabill-core', 'woocommerce-germanized-pro' ),
+					'context'     => array( 'view', 'edit' ),
+					'readonly'    => true,
+				),
 				'voucher_tax'  => array(
 					'description' => _x( 'Voucher tax amount for the invoice.', 'storeabill-core', 'woocommerce-germanized-pro' ),
 					'type'        => 'string',
@@ -1255,6 +1265,66 @@ class InvoiceController extends DocumentController {
 								'context'     => array( 'view', 'edit' ),
 							),
 						) ),
+					),
+				),
+				'voucher_items'   => array(
+					'description' => _x( 'Voucher items.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+					'type'        => 'array',
+					'context'     => array( 'view', 'edit' ),
+					'items'       => array(
+						'type'       => 'object',
+						'properties' => array(
+							'id'           => array(
+								'description' => _x( 'Item ID.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+								'type'        => 'integer',
+								'context'     => array( 'view', 'edit' ),
+								'readonly'    => true,
+							),
+							'code'         => array(
+								'description' => _x( 'Coupon code.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+								'type'        => array( 'string', 'null' ),
+								'context'     => array( 'view', 'edit' ),
+							),
+							'quantity'     => array(
+								'description' => _x( 'Quantity billed.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+								'type'        => 'integer',
+								'context'     => array( 'view', 'edit' ),
+							),
+							'line_total'        => array(
+								'description' => _x( 'Line total (after discounts).', 'storeabill-core', 'woocommerce-germanized-pro' ),
+								'type'        => 'string',
+								'context'     => array( 'view', 'edit' ),
+							),
+							'meta_data'    => array(
+								'description' => _x( 'Meta data.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+								'type'        => 'array',
+								'context'     => array( 'view', 'edit' ),
+								'items'       => array(
+									'type'       => 'object',
+									'properties' => $this->get_meta_property_schema(),
+								),
+							),
+							'attributes'      => array(
+								'description' => _x( 'Item attributes.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+								'type'        => 'array',
+								'context'     => array( 'view', 'edit' ),
+								'items'       => array(
+									'type'       => 'object',
+									'properties' => $this->get_item_attributes_property_schema(),
+								),
+							),
+							'price'        => array(
+								'description' => _x( 'Product price.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+								'type'        => 'number',
+								'context'     => array( 'view', 'edit' ),
+							),
+							'total'    => array(
+								'description' => _x( 'Product total.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+								'type'        => 'string',
+								'context'     => array( 'view', 'edit' ),
+								'readonly'    => true,
+							),
+						),
 					),
 				),
 				'totals'           => array(

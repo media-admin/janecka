@@ -23,6 +23,18 @@ const settings = {
         "fontSize": {
             "type": "string"
         },
+        "currentPosition": {
+            "type": "integer",
+            "default": 1,
+        },
+        "isDisabled": {
+            "type": "boolean",
+            "default": false,
+        },
+        "itemType": {
+            "type": "string",
+            "default": "",
+        },
         "customFontSize": {
             "type": "string"
         },

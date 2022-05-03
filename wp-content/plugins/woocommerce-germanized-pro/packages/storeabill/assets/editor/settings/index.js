@@ -80,6 +80,8 @@ export function getPreview() {
 }
 
 export function getPreviewItem( itemType = 'product' ) {
+	itemType = '' === itemType ? 'product' : itemType;
+
 	const preview = getPreview();
 
 	return preview[itemType + '_items'][0];
@@ -105,7 +107,7 @@ export function getItemTotalTypeTitle( totalType ) {
 	return defaultTitle && defaultTitle[0] ? defaultTitle[0].title : '';
 }
 
-export function getPreviewTotal( totalType = 'total' ) {
+export function getPreviewTotal( totalType = 'total', formatted = true ) {
 	const preview = getPreview();
 
 	let totals = preview['totals'];
@@ -115,7 +117,11 @@ export function getPreviewTotal( totalType = 'total' ) {
 	);
 
 	if ( typeTotals.length > 0 ) {
-		return typeTotals[0]['total_formatted'];
+		if ( formatted ) {
+			return typeTotals[0]['total_formatted'];
+		} else {
+			return typeTotals[0]['total'];
+		}
 	}
 
 	return 0;
@@ -136,6 +142,17 @@ export function getPreviewDiscountNotice() {
 	const preview = getPreview();
 
 	return preview.formatted_discount_notice;
+}
+
+export function getPreviewVoucherNotice() {
+	const preview = getPreview();
+	let items 	  = preview['voucher_items'];
+
+	if ( items.length > 0 ) {
+		return items[0]['code'];
+	}
+
+	return '{code}';
 }
 
 export function getPreviewFeeName() {
@@ -256,10 +273,12 @@ export function getItemTotalKey( prefix, incTax = true, discountType = '' ) {
 
 		if ( 'total' === prefix ) {
 			key = 'subtotal';
+		} else if ( 'total_tax' === prefix ) {
+			key = 'subtotal_tax';
 		}
 	}
 
-	if ( false === incTax ) {
+	if ( false === incTax && ! includes( prefix, '_tax' ) ) {
 		if ( includes( prefix, '_total' ) ) {
 			key = key.replace( '_total', '' );
 		}
@@ -409,6 +428,35 @@ export function getDateTypeTitle( dateType ) {
 	} );
 
 	return title;
+}
+
+export function formatPrice( amount ) {
+	try {
+		amount = parseFloat( amount );
+
+		if ( 'invoice_cancellation' === getSetting( 'documentType' ) ) {
+			amount = amount * -1;
+		}
+
+		let decimalCount = getSetting( 'priceFormat' ).decimals;
+		let decimal      = getSetting( 'priceFormat' ).decimal_separator;
+		let thousands    = getSetting( 'priceFormat' ).thousand_separator;
+		let currency     = getSetting( 'priceFormat' ).currency;
+		let format       = getSetting( 'priceFormat' ).format;
+
+		decimalCount = Math.abs(decimalCount);
+		decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+
+		const negativeSign = amount < 0 ? "-" : "";
+
+		let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+		let j = (i.length > 3) ? i.length % 3 : 0;
+		let price = negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+
+		return format.replace( '%s', currency ).replace( '%v', price );
+	} catch (e) {
+		return amount;
+	}
 }
 
 export function getShortcodePreview( shortcodeQuery ) {

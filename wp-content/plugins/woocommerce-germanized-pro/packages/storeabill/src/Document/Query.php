@@ -29,6 +29,8 @@ abstract class Query extends WC_Object_Query {
 
 	protected $meta_query = null;
 
+	protected $search_meta_query = null;
+
 	protected $query_limit = '';
 
 	protected $query_orderby = '';
@@ -276,7 +278,7 @@ abstract class Query extends WC_Object_Query {
 	}
 
 	public function maybe_prefix_column( $column ) {
-		if ( substr( $column, 0, 9 ) !== 'document_' ) {
+		if ( substr( $column, 0, 9 ) !== 'document_' && '_' !== substr( $column, 0, 1 ) ) {
 			$column = 'document_' . $column;
 		}
 
@@ -405,7 +407,6 @@ abstract class Query extends WC_Object_Query {
 		}
 
 		if ( $search ) {
-
 			$leading_wild  = ( ltrim( $search, '*' ) != $search );
 			$trailing_wild = ( rtrim( $search, '*' ) != $search );
 
@@ -418,6 +419,7 @@ abstract class Query extends WC_Object_Query {
 			} else {
 				$wild = false;
 			}
+
 			if ( $wild ) {
 				$search = trim( $search, '*' );
 			}
@@ -425,7 +427,9 @@ abstract class Query extends WC_Object_Query {
 			$search_columns = array();
 
 			if ( $this->args['search_columns'] ) {
-				$search_columns = array_intersect( $this->args['search_columns'], array( 'document_id', 'document_number', 'document_country', 'document_formatted_number', 'document_reference_id', 'document_author_id', 'document_customer_id' ) );
+				$core_search_columns = array( 'document_id', 'document_number', 'document_country', 'document_formatted_number', 'document_reference_id', 'document_author_id', 'document_customer_id' );
+				$search_columns      = array_intersect( $this->args['search_columns'], $core_search_columns );
+				$search_meta_columns = array_diff( $this->args['search_columns'], $core_search_columns );
 			}
 
 			if ( ! $search_columns ) {
@@ -435,6 +439,49 @@ abstract class Query extends WC_Object_Query {
 					$search_columns = array( 'document_country' );
 				} else {
 					$search_columns = array( 'document_id', 'document_formatted_number' );
+				}
+			}
+
+			/**
+			 * Allow searching for meta too.
+			 */
+			if ( ! empty( $search_meta_columns ) ) {
+				$search_meta_query_args = array(
+					'relation' => 'OR',
+				);
+
+				/**
+				 * By default, WP appends both wildcards to meta LIKE queries.
+				 * Work around this issue by using a regex search in case of leading, trailing wildcards.
+				 */
+				$meta_search  = $search;
+				$meta_compare = 'LIKE';
+
+				if ( 'leading' === $wild ) {
+					$meta_compare = 'REGEXP';
+					$meta_search  = $meta_search . '$';
+				} elseif ( 'trailing' === $wild ) {
+					$meta_compare = 'REGEXP';
+					$meta_search  = '^' . $meta_search;
+				}
+
+				foreach( $search_meta_columns as $column ) {
+					$search_meta_query_args[] = array(
+						'key'     => $column,
+						'value'   => $meta_search,
+						'compare' => $meta_compare
+					);
+				}
+
+				if ( ! empty( $search_meta_query_args ) ) {
+					$this->search_meta_query = new WP_Meta_Query( $search_meta_query_args );
+
+					$clauses            = $this->search_meta_query->get_sql( 'storeabill_document', $wpdb->storeabill_documents, 'document_id', $this );
+					$this->query_from  .= $clauses['join'];
+
+					if ( $this->search_meta_query->has_or_relation() ) {
+						$this->query_fields = 'DISTINCT ' . $this->query_fields;
+					}
 				}
 			}
 
@@ -464,7 +511,6 @@ abstract class Query extends WC_Object_Query {
 			$include = false;
 		}
 
-		// Meta query.
 		$this->meta_query = new WP_Meta_Query();
 		$this->meta_query->parse_query_vars( $this->args );
 
@@ -473,7 +519,7 @@ abstract class Query extends WC_Object_Query {
 			$this->query_from  .= $clauses['join'];
 			$this->query_where .= $clauses['where'];
 
-			if ( $this->meta_query->has_or_relation() ) {
+			if ( $this->meta_query->has_or_relation() && ! strstr( $this->query_fields, 'DISTINCT' ) ) {
 				$this->query_fields = 'DISTINCT ' . $this->query_fields;
 			}
 		}
@@ -579,7 +625,20 @@ abstract class Query extends WC_Object_Query {
 			}
 		}
 
-		return ' AND (' . implode( ' OR ', $searches ) . ')';
+		$meta_where = '';
+
+		if ( $this->search_meta_query ) {
+			$clauses    = $this->search_meta_query->get_sql( 'storeabill_document', $wpdb->storeabill_documents, 'document_id', $this );
+			$meta_where = $clauses['where'];
+
+			if ( empty( $searches ) ) {
+				$meta_where = mb_eregi_replace( '^ AND', '', $meta_where );
+			} else {
+				$meta_where = mb_eregi_replace( '^ AND', ' OR', $meta_where );
+			}
+		}
+
+		return ' AND (' . implode( ' OR ', $searches ) . ' ' . $meta_where . ')';
 	}
 
 	/**

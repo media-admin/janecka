@@ -55,7 +55,7 @@ class ItemTaxRate extends ItemTableColumnBlock {
 				$output = sab_format_tax_rate_percentage( 0, array( 'html' => true ) );
 			}
 
-			return $this->wrap( $this->replace_placeholder( $content, $output ), $attributes );
+			return $this->wrap( $this->replace_placeholder( $content, wp_kses_post( $output ) ), $attributes );
 		}
 
 		return $content;

@@ -30,7 +30,8 @@ class WC_GZDP_Theme_Helper {
 			'enfold',
 			'storefront',
 			'shopkeeper',
-            'astra'
+            'astra',
+			'twentytwentytwo'
 		);
 
 		$current = wp_get_theme();

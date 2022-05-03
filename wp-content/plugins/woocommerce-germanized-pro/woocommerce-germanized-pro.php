@@ -3,13 +3,13 @@
  * Plugin Name: Germanized for WooCommerce Pro
  * Plugin URI: https://vendidero.de/woocommerce-germanized
  * Description: Extends Germanized for WooCommerce with professional features such as PDF invoices, legal text generators and many more.
- * Version: 3.4.1
+ * Version: 3.5.1
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
- * Tested up to: 5.9
+ * Tested up to: 6.0
  * WC requires at least: 3.9
- * WC tested up to: 6.1
+ * WC tested up to: 6.5
  *
  * Text Domain: woocommerce-germanized-pro
  * Domain Path: /i18n/languages/
@@ -70,7 +70,7 @@ final class WooCommerce_Germanized_Pro {
 	 *
 	 * @var string
 	 */
-	public $version = '3.4.1';
+	public $version = '3.5.1';
 
 	/**
 	 * Single instance of WooCommerce Germanized Main Class
@@ -297,6 +297,7 @@ final class WooCommerce_Germanized_Pro {
 
 		$this->load_checkout_module();
 		$this->load_contract_module();
+		$this->load_food_module();
 
 		if ( apply_filters( 'woocommerce_gzdp_enable_legal_generator', true ) ) {
 			$this->load_generator_module();
@@ -358,16 +359,18 @@ final class WooCommerce_Germanized_Pro {
 		$template_path = $this->template_path();
 		$template_name = apply_filters( 'woocommerce_gzdp_template_name', $template_name );
 
-		// Check Theme
-		$theme_template = locate_template( array(
-            trailingslashit( $template_path ) . $template_name,
-        ) );
-
 		// Load Default
-		if ( ! $theme_template && file_exists( apply_filters( 'woocommerce_gzdp_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name ) ) ) {
-			$template = apply_filters( 'woocommerce_gzdp_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name );
-		} elseif ( $theme_template ) {
-			$template = $theme_template;
+		if ( file_exists( apply_filters( 'woocommerce_gzdp_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name ) ) ) {
+			// Check Theme
+			$theme_template = locate_template( array(
+				trailingslashit( $template_path ) . $template_name,
+			) );
+
+            if ( ! $theme_template ) {
+	            $template = apply_filters( 'woocommerce_gzdp_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name );
+            } else {
+	            $template = $theme_template;
+            }
 		}
 		
 		return apply_filters( 'woocommerce_gzdp_filter_template', $template, $template_name, $template_path );
@@ -504,6 +507,11 @@ final class WooCommerce_Germanized_Pro {
 		if ( get_option( 'woocommerce_gzdp_contract_after_confirmation' ) == "yes" ) {
 			$this->contract_helper = include_once WC_GERMANIZED_PRO_ABSPATH . 'includes/class-wc-gzdp-contract-helper.php';
 		}
+	}
+
+	public function load_food_module() {
+		\Vendidero\Germanized\Pro\Food\Helper::init();
+		\Vendidero\Germanized\Pro\Food\Deposits\Helper::init();
 	}
 
 	public function load_checkout_module() {

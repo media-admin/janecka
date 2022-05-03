@@ -330,3 +330,35 @@ table.wc-gzdp-legal-checkboxes {
   width: 100%;
   margin: 1em 0;
 }
+
+.woocommerce_variation .form-row-nutrient {
+  margin: .5em 0;
+
+  label {
+    display: block;
+    width: 100%;
+  }
+
+  .description {
+    margin-left: 5px;
+  }
+}
+
+.product_data .form-field-wp-editor {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 1em;
+
+  label {
+    float: none;
+    width: 150px;
+    margin: 0;
+    padding: 15px;
+    padding-right: 0;
+  }
+
+  .wc-gzdp-product-editor-wrap {
+    flex-grow: 1;
+    padding-right: 20px;
+  }
+}

@@ -22,6 +22,8 @@ class Helper {
 
 	protected static $blocks = null;
 
+	protected static $registered_block_scripts = false;
+
 	protected static $asset_data = array();
 
 	protected static $font_embed = null;
@@ -36,7 +38,13 @@ class Helper {
 
 		add_action( 'storeabill_load_block_editor', array( __CLASS__, 'register_assets' ), 10 );
 		add_action( 'storeabill_load_block_editor', array( __CLASS__, 'get_blocks' ), 11 );
-		add_action( 'rest_api_init', array( __CLASS__, 'get_blocks' ), 10 );
+
+		/**
+		 * Fallback for dynamic blocks (register without registering scripts to prevent performance issues in default Gutenberg)
+		 */
+		add_action( 'rest_api_init', function() {
+			self::get_blocks( false );
+		}, 10 );
 
 		add_action( 'init', array( __CLASS__, 'register_meta' ) );
 
@@ -54,7 +62,7 @@ class Helper {
 		add_filter( 'block_editor_no_javascript_message', array( __CLASS__, 'reset_theme_file_path_filter' ), 999 );
 
 		add_action( 'enqueue_block_editor_assets', array( __CLASS__, 'enqueue_editor_assets' ) );
-		add_filter( 'block_editor_settings_all', array( __CLASS__, 'prevent_theme_settings' ), 999, 2 );
+		add_filter( 'block_editor_settings_all', array( __CLASS__, 'override_theme_settings' ), 999, 2 );
 
 		add_action( 'admin_footer', array( __CLASS__, 'add_footer_styles' ), 150 );
 
@@ -246,6 +254,7 @@ class Helper {
 		$to_merge_template->set_pdf_template_id( $base_template->get_pdf_template_id( 'edit' ) );
 		$to_merge_template->set_font_size( $base_template->get_font_size( 'edit' ) );
 		$to_merge_template->set_fonts( $base_template->get_fonts( 'edit' ) );
+		$to_merge_template->set_line_item_types( $base_template->get_line_item_types( 'edit' ) );
 
 		$to_merge_template->save();
 
@@ -507,21 +516,10 @@ class Helper {
 				$edit_link = $template->get_first_page()->get_edit_url();
 			}
 
-			$line_item_types        = $template->get_line_item_types();
-			$line_item_type_options = array();
+			$current_line_item_types = $template->get_line_item_types();
+			$line_item_type_options  = array();
 
-			if ( empty( $line_item_types ) ) {
-				$line_item_types = $document_type->default_line_item_types;
-			}
-
-			$item_types        = $document_type->available_line_item_types;
-			$item_type_options = array();
-
-			foreach( $item_types as $item_type ) {
-				$item_type_options[ $item_type ] = sab_get_document_item_type_title( sab_maybe_prefix_document_item_type( $item_type, $template->get_document_type() ) );
-			}
-
-			foreach( $line_item_types as $item_type ) {
+			foreach( apply_filters( 'storeabill_additional_line_item_types_selectable', $document_type->additional_line_item_types, $template->get_document_type() ) as $item_type ) {
 				$line_item_type_options[ $item_type ] = sab_get_document_item_type_title( sab_maybe_prefix_document_item_type( $item_type, $template->get_document_type() ) );
 			}
 
@@ -542,8 +540,8 @@ class Helper {
 			self::$asset_data['linkedEditLink']       = $edit_link ? $edit_link : '';
 			self::$asset_data['marginTypesSupported'] = $template->is_first_page() ? array( 'top', 'bottom' ) : array( 'top', 'left', 'bottom', 'right' );
 			self::$asset_data['defaultMargins']       = $template->get_default_margins();
-			self::$asset_data['lineItemTypes']        = $line_item_type_options;
-			self::$asset_data['itemTypes']            = $item_type_options;
+			self::$asset_data['lineItemTypes']        = $current_line_item_types;
+			self::$asset_data['availableLineItemTypes'] = $line_item_type_options;
 			self::$asset_data['dateFormat']           = sab_date_format();
 			self::$asset_data['dateTypes']            = apply_filters( 'storeabill_document_template_editor_date_types', $document_type->date_types, $document_type );
 			self::$asset_data['supports']             = $document_type->supports;
@@ -555,6 +553,13 @@ class Helper {
 			self::$asset_data['barcodeTypes']         = sab_get_barcode_types();
 			self::$asset_data['barcodeCodeTypes']     = sab_get_document_type_barcode_code_types( $template->get_document_type() );
 			self::$asset_data['allowedBlockTypes']    = self::allowed_block_types( array(), $post );
+			self::$asset_data['priceFormat']          = array(
+				'decimals'           => sab_get_price_decimals(),
+				'decimal_separator'  => sab_get_price_decimal_separator(),
+				'currency'           => sab_get_currency_symbol(),
+				'thousand_separator' => sab_get_price_thousand_separator(),
+				'format'             => esc_attr( str_replace( array( '%1$s', '%2$s' ), array( '%s', '%v' ), sab_get_price_format() ) ),
+			);
 
 			if ( sab_document_type_supports( $template->get_document_type(), 'discounts' ) ) {
 				self::$asset_data['discountTotalTypes'] = array(
@@ -624,7 +629,7 @@ class Helper {
 				/**
 				 * Register item meta data ready to preview in the editor.
 				 */
-				foreach( array_keys( self::$asset_data['itemTypes'] ) as $type ) {
+				foreach( $document_type->main_line_item_types as $type ) {
 					self::$asset_data['itemMetaTypes'][ $type ] = $preview ? $preview->get_item_preview_meta( $type ) : array();
 				}
 			}
@@ -851,6 +856,8 @@ class Helper {
 			remove_theme_support( 'align-wide' );
 			remove_theme_support( 'editor-color-palette' );
 			remove_theme_support( 'editor-gradient-presets' );
+			remove_theme_support( 'custom-units' );
+			remove_theme_support( 'custom-spacing' );
 
 			/**
 			 * This action indicates that the current request
@@ -868,7 +875,7 @@ class Helper {
 	 * @param $args
 	 * @param \WP_Block_Editor_Context $block_editor_context
 	 */
-	public static function prevent_theme_settings( $args, $block_editor_context ) {
+	public static function override_theme_settings( $args, $block_editor_context ) {
 		if ( $block_editor_context->post && self::is_document_template( $block_editor_context->post ) ) {
 			unset( $args['colors'] );
 			unset( $args['gradients'] );
@@ -877,7 +884,9 @@ class Helper {
 			$args['disableCustomColors']    = false;
 			$args['disableCustomGradients'] = true;
 			$args['enableCustomUnits']      = false;
+			$args['enableCustomSpacing']    = false;
 			$args['supportsLayout']         = false;
+			$args['defaultEditorStyles']    = array();
 
 			if ( isset( $args['__experimentalFeatures']['color']['customDuotone'] ) ) {
 				$args['__experimentalFeatures']['color']['customDuotone'] = false;
@@ -1130,6 +1139,23 @@ class Helper {
 				return current_user_can( 'manage_storeabill' );
 			}
 		) );
+
+		register_post_meta('document_template', '_line_item_types', array(
+			'show_in_rest' => array(
+				'schema' => array(
+					'type'  => 'array',
+					'items' => array(
+						'type' => 'string'
+					),
+				),
+			),
+			'type'              => 'array',
+			'single'            => true,
+			'sanitize_callback' => array( __CLASS__, 'sanitize_line_item_types' ),
+			'auth_callback'     => function() {
+				return current_user_can( 'manage_storeabill' );
+			}
+		) );
 	}
 
 	public static function sanitize_font_size( $font_size ) {
@@ -1148,6 +1174,12 @@ class Helper {
 		$margins = array_map( 'sab_format_decimal', $margins );
 
 		return $margins;
+	}
+
+	public static function sanitize_line_item_types( $line_item_types ) {
+		$line_item_types = array_filter( array_map( 'sanitize_key', (array) $line_item_types ) );
+
+		return $line_item_types;
 	}
 
 	public static function get_editor_templates( $document_type ) {
@@ -1202,10 +1234,11 @@ class Helper {
 	/**
 	 * @return Block[]
 	 */
-	public static function get_blocks() {
-		if ( is_null( self::$blocks ) ) {
+	public static function get_blocks( $and_scripts = true ) {
+		$and_scripts = ! is_bool( $and_scripts ) ? true : $and_scripts;
 
-			self::$blocks = array();
+		if ( is_null( self::$blocks ) || ( $and_scripts && ! self::$registered_block_scripts ) ) {
+			self::$blocks = is_null( self::$blocks ) ? array() : self::$blocks;
 
 			$blocks = array(
 				'ItemTableColumn',
@@ -1220,6 +1253,7 @@ class Helper {
 				'ItemSku',
 				'ItemDiscount',
 				'ItemTaxRate',
+				'ItemTotalTax',
 				'ItemLineTotal',
 				'ItemDifferentialTaxationNotice',
 				'ItemMeta',
@@ -1239,29 +1273,45 @@ class Helper {
 				'ShippingAddress'
 			);
 
-			foreach ( $blocks as $class ) {
-				$class    = __NAMESPACE__ . '\\Blocks\\' . $class;
-				$instance = new $class();
+			if ( empty( self::$blocks ) ) {
+				foreach ( $blocks as $class ) {
+					$class    = __NAMESPACE__ . '\\Blocks\\' . $class;
+					$instance = new $class();
 
-				$instance->register_script();
-				$instance->register_type();
+					if ( $and_scripts ) {
+						$instance->register_script();
+					}
 
-				self::$blocks[ $instance->get_name() ] = $instance;
+					$instance->register_type();
+
+					self::$blocks[ $instance->get_name() ] = $instance;
+				}
+
+				foreach( self::get_dynamic_content_blocks() as $block_name => $dynamic_content_block ) {
+					$block = wp_parse_args( $dynamic_content_block, array(
+						'title'           => '',
+						'render_callback' => null,
+					) );
+
+					$class    = __NAMESPACE__ . '\\Blocks\\DynamicContent';
+					$instance = new $class( $block_name, $block );
+
+					if ( $and_scripts ) {
+						$instance->register_script();
+					}
+
+					$instance->register_type();
+
+					self::$blocks[ $instance->get_name() ] = $instance;
+				}
+			} elseif ( $and_scripts ) {
+				foreach( self::$blocks as $instance ) {
+					$instance->register_script();
+				}
 			}
 
-			foreach( self::get_dynamic_content_blocks() as $block_name => $dynamic_content_block ) {
-				$block = wp_parse_args( $dynamic_content_block, array(
-					'title'           => '',
-					'render_callback' => null,
-				) );
-
-				$class    = __NAMESPACE__ . '\\Blocks\\DynamicContent';
-				$instance = new $class( $block_name, $block );
-
-				$instance->register_script();
-				$instance->register_type();
-
-				self::$blocks[ $instance->get_name() ] = $instance;
+			if ( $and_scripts ) {
+				self::$registered_block_scripts = true;
 			}
 		}
 
@@ -1453,7 +1503,8 @@ class Helper {
 				'storeabill/item-price',
 				'storeabill/item-discount',
 				'storeabill/item-line-total',
-				'storeabill/item-tax-rate'
+				'storeabill/item-tax-rate',
+				'storeabill/item-total-tax',
 			);
 
 			/**

@@ -24,6 +24,42 @@ class Helper {
 
 		add_filter( "storeabill_admin_invoice_actions", array( __CLASS__, 'add_invoice_actions' ), 10, 2 );
 		add_filter( "storeabill_admin_invoice_cancellation_actions", array( __CLASS__, 'add_invoice_actions' ), 10, 2 );
+
+		add_action( 'admin_notices', array( __CLASS__, 'auth_refresh_notice' ) );
+	}
+
+	/**
+	 * @param SyncHandler $handler
+	 *
+	 * @return void
+	 */
+    public static function auth_successful( $handler ) {
+	    if ( $needs_refresh = get_option( 'storeabill_sync_handler_needs_oauth_refresh' ) ) {
+		    $needs_refresh = is_array( $needs_refresh ) ? array_filter( $needs_refresh ) : array( $needs_refresh );
+            $needs_refresh = array_diff( $needs_refresh, array( $handler->get_name() ) );
+
+            if ( empty( $needs_refresh ) ) {
+	            delete_option( 'storeabill_sync_handler_needs_oauth_refresh' );
+            } else {
+	            update_option( 'storeabill_sync_handler_needs_oauth_refresh', $needs_refresh );
+            }
+	    }
+    }
+
+	public static function auth_refresh_notice() {
+		if ( $needs_refresh = get_option( 'storeabill_sync_handler_needs_oauth_refresh' ) ) {
+			$needs_refresh = is_array( $needs_refresh ) ? array_filter( $needs_refresh ) : array( $needs_refresh );
+
+			foreach( $needs_refresh as $handler_name ) {
+				if ( ( $handler = self::get_sync_handler( $handler_name ) ) && $handler->is_enabled() && 'oauth' === $handler->get_auth_api()->get_type() && $handler->get_auth_api()->is_connected() ) {
+					?>
+					<div class="notice notice-error error">
+						<p><?php printf( _x( 'Your %1$s connection needs a refresh, as the API scope has changed. Please <a href="%2$s">refresh your API connection</a> now.', 'storeabill-core', 'woocommerce-germanized-pro' ), $handler->get_title(), $handler->get_admin_url() ); ?></p>
+					</div>
+					<?php
+				}
+			}
+		}
 	}
 
 	/**
@@ -268,7 +304,7 @@ class Helper {
 		}
 	}
 
-	protected static function cancel_deferred_sync( $object, $handler ) {
+	public static function cancel_deferred_sync( $object, $handler ) {
 		$args = array(
 			'object_id'      => $object->get_id(),
 			'object_type'    => $object->get_type(),

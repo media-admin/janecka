@@ -72,7 +72,7 @@ window.germanized = window.germanized || {};
                         /**
                          * Allow passing a parameter to explicitly allow VAT Ids for UK
                          */
-                        if ( 'GB' === country && ! self.params.great_britain_supports_vat_id ) {
+                        if ( 'GB' === country && 'no' === self.params.great_britain_supports_vat_id ) {
                             var postcodeStart = postcode.substring( 0, 2 );
 
                             if ( 'BT' === postcodeStart ) {
@@ -121,7 +121,7 @@ window.germanized = window.germanized || {};
                 hasVatError = false;
 
             if ( $errors.length > 0 ) {
-                $vatIdError     = $errors.find( '[data-id$="vat_id"]' );
+                var $vatIdError = $errors.find( '[data-id$="vat_id"]' );
 
                 if ( $vatIdError.length > 0 ) {
                     var fieldId = $vatIdError.data( 'id' );

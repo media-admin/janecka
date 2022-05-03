@@ -84,6 +84,11 @@ class WC_GZDP_Multistep_Checkout {
 		if ( get_option( 'woocommerce_gzdp_checkout_privacy_policy_first_step' ) === 'yes' ) {
 			$this->insert_privacy_policy();
 		}
+
+		/**
+		 * Do not allow disabling checkout adjustments when using multistep checkout
+		 */
+		add_filter( 'woocommerce_gzd_allow_disabling_checkout_adjustments', '__return_false', 1000 );
 	}
 
 	public function insert_privacy_policy() {
@@ -360,19 +365,19 @@ class WC_GZDP_Multistep_Checkout {
 	}
 
 	public function stop_checkout_theme_override( $template, $template_name, $template_path ) {
-		
 		if ( $template_name == 'checkout/form-checkout.php' ) {
 
 			// Maybe force template override
-			if ( get_option( 'woocommerce_gzdp_checkout_force_template_override' ) === 'yes' || apply_filters( 'woocommerce_gzdp_multistep_checkout_force_template_override', false ) )
+			if ( 'yes' === get_option( 'woocommerce_gzdp_checkout_force_template_override' ) || apply_filters( 'woocommerce_gzdp_multistep_checkout_force_template_override', false ) ) {
 				$template = WC()->plugin_path() . '/templates/' . $template_name;
+			}
 			
 			// Allow theme override by using woocommerce-germanized-pro/checkout/multistep/form-checkout.php template
-			if ( $loc = locate_template( WC_germanized_pro()->template_path() . 'checkout/multistep/form-checkout.php' ) )
+			if ( $loc = locate_template( WC_germanized_pro()->template_path() . 'checkout/multistep/form-checkout.php' ) ) {
 				$template = $loc;
-			else
+			} else {
 				$template = apply_filters( 'woocommerce_gzdp_checkout_template_not_found', $template, 'checkout/multistep/form-checkout.php', $template_path );
-
+			}
 		}
 
 		return $template;

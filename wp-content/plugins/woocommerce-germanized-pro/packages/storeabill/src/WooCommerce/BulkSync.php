@@ -3,6 +3,7 @@
 namespace Vendidero\StoreaBill\WooCommerce;
 
 use Vendidero\StoreaBill\Document\BulkActionHandler;
+use Vendidero\StoreaBill\Utilities\CacheHelper;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -32,9 +33,10 @@ class BulkSync extends BulkActionHandler {
 
 		if ( ! empty( $current ) ) {
 			foreach ( $current as $order_id ) {
+				CacheHelper::prevent_caching();
 
 				if ( $order = Helper::get_order( $order_id ) ) {
-					$result = $order->sync_order( true );
+					$result = $order->sync_order( true, array( 'created_via' => 'bulk_action' ) );
 
 					if ( ! is_wp_error( $result ) ) {
 						$result = $order->finalize();

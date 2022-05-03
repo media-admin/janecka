@@ -31,6 +31,10 @@ interface Order extends SyncableReference {
 
 	public function get_status();
 
+	public function get_transaction_id();
+
+	public function get_refund_transaction_id( $refund );
+
 	public function get_taxable_country();
 
 	public function get_taxable_postcode();
@@ -61,9 +65,9 @@ interface Order extends SyncableReference {
 
 	public function get_formatted_number();
 
-	public function validate();
+	public function validate( $cancellation_props = array() );
 
-	public function cancel( $reason = '' );
+	public function cancel( $reason = '', $cancellation_props = array() );
 
 	public function get_invoice_total_unpaid();
 

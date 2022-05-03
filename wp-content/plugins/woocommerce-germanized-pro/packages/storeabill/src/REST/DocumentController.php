@@ -4,6 +4,7 @@ namespace Vendidero\StoreaBill\REST;
 
 defined( 'ABSPATH' ) || exit;
 
+use Vendidero\StoreaBill\Document\AsyncExporter;
 use Vendidero\StoreaBill\Document\Document;
 use Vendidero\StoreaBill\Document\Item;
 use Vendidero\StoreaBill\Invoice;
@@ -62,6 +63,51 @@ abstract class DocumentController extends Controller {
 					),
 				),
 				'schema' => array( $this, 'get_public_item_schema' ),
+			)
+		);
+
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base . '/export',
+			array(
+				array(
+					'methods'             => WP_REST_Server::CREATABLE,
+					'callback'            => array( $this, 'create_export' ),
+					'permission_callback' => array( $this, 'create_export_permissions_check' ),
+					'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ),
+				),
+				'schema' => array( $this, 'get_public_export_schema' ),
+			)
+		);
+
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base . '/export/(?P<id>[\w]+)',
+			array(
+				array(
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_export' ),
+					'permission_callback' => array( $this, 'get_export_permissions_check' ),
+					'args'                => array(
+						'context' => $this->get_context_param( array( 'default' => 'edit' ) ),
+					),
+				),
+				'schema' => array( $this, 'get_public_export_schema' ),
+			)
+		);
+
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base . '/export/(?P<id>[\w]+)/download',
+			array(
+				array(
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'download_export' ),
+					'permission_callback' => array( $this, 'get_export_permissions_check' ),
+					'args'                => array(
+						'context' => $this->get_context_param( array( 'default' => 'edit' ) ),
+					),
+				)
 			)
 		);
 
@@ -147,6 +193,61 @@ abstract class DocumentController extends Controller {
 		);
 	}
 
+	public function get_public_export_schema() {
+		return array(
+			'$schema'    => 'http://json-schema.org/draft-04/schema#',
+			'title'      => 'export',
+			'type'       => 'object',
+			'properties' => array(
+				'id'              => array(
+					'description' => _x( 'Unique identifier for the resource.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+					'type'        => 'string',
+					'label'       => _x( 'ID', 'storeabill-core', 'woocommerce-germanized-pro' ),
+					'context'     => array( 'view', 'edit' ),
+					'readonly'    => true,
+				),
+				'type' => array(
+					'description' => _x( 'The export type, e.g. csv.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'start_date'      => array(
+					'description' => _x( "The export start date, in the site's timezone.", 'storeabill-core', 'woocommerce-germanized-pro' ),
+					'type'        => 'string',
+					'format'      => 'date-time',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'end_date'      => array(
+					'description' => _x( "The export end date, in the site's timezone.", 'storeabill-core', 'woocommerce-germanized-pro' ),
+					'type'        => 'string',
+					'format'      => 'date-time',
+					'context'     => array( 'view', 'edit' ),
+				),
+				'filters' => array(
+					'description' => _x( 'Export filters.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+					'type'        => 'array',
+					'context'     => array( 'view', 'edit' ),
+					'items'       => array(
+						'type' => 'string',
+					),
+				),
+				'status' => array(
+					'description' => _x( 'The export status, e.g. running.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+					'type'        => 'enum',
+					'options'     => array( 'running', 'complete' ),
+					'context'     => array( 'view', 'edit' ),
+					'readonly'    => true,
+				),
+				'percent_complete' => array(
+					'description' => _x( 'Percent completed.', 'storeabill-core', 'woocommerce-germanized-pro' ),
+					'type'        => 'integer',
+					'context'     => array( 'view', 'edit' ),
+					'readonly'    => true,
+				),
+			)
+		);
+	}
+
 	public function get_public_pdf_schema() {
 		return array(
 			'$schema'    => 'http://json-schema.org/draft-04/schema#',
@@ -179,6 +280,137 @@ abstract class DocumentController extends Controller {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Get a single export.
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 * @return WP_Error|WP_REST_Response
+	 */
+	public function get_export( $request ) {
+		try {
+			$exporter = new AsyncExporter( sab_clean( $request['id'] ) );
+		} catch( \Exception $e ) {
+			return new WP_Error( "storeabill_rest_{$this->get_data_type()}_export_invalid_id", _x( 'Invalid export ID.', 'storeabill-core', 'woocommerce-germanized-pro' ), array( 'status' => 404 ) );
+		}
+
+		if ( ! $exporter->exists() || $exporter->get_document_type() !== $this->get_document_type() ) {
+			return new WP_Error( "storeabill_rest_{$this->get_data_type()}_export_invalid_id", _x( 'Invalid export ID.', 'storeabill-core', 'woocommerce-germanized-pro' ), array( 'status' => 404 ) );
+		}
+
+		/**
+		 * Next step
+		 */
+		if ( 'complete' !== $exporter->get_status() ) {
+			$result = $exporter->next();
+
+			if ( is_wp_error( $result ) ) {
+				$exporter->delete();
+				$result->add_data( array( 'status' => 400 ) );
+
+				return $result;
+			}
+		}
+
+		$data     = $this->prepare_export_for_response( $exporter, $request );
+		$response = rest_ensure_response( $data );
+
+		$response->add_links( array(
+			'self'       => array(
+				'href' => rest_url( sprintf( '/%s/%s/export/%s', $this->namespace, $this->rest_base, $exporter->get_id() ) ),
+			),
+			'download' => array(
+				'href' => rest_url( sprintf( '/%s/%s/export/%s/download', $this->namespace, $this->rest_base, $exporter->get_id() ) ),
+			),
+		) );
+
+		return $response;
+	}
+
+	public function download_export( $request ) {
+		try {
+			$exporter = new AsyncExporter( sab_clean( $request['id'] ) );
+		} catch( \Exception $e ) {
+			return new WP_Error( "storeabill_rest_{$this->get_data_type()}_export_invalid_id", _x( 'Invalid export ID.', 'storeabill-core', 'woocommerce-germanized-pro' ), array( 'status' => 404 ) );
+		}
+
+		if ( ! $exporter->exists() || ! 'complete' === $exporter->get_status() || $exporter->get_document_type() !== $this->get_document_type() ) {
+			return new WP_Error( "storeabill_rest_{$this->get_data_type()}_export_invalid_id", _x( 'Invalid export ID.', 'storeabill-core', 'woocommerce-germanized-pro' ), array( 'status' => 404 ) );
+		}
+
+		$exporter->export();
+	}
+
+	/**
+	 * Start a new export.
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 * @return WP_Error|WP_REST_Response
+	 */
+	public function create_export( $request ) {
+		$id = sab_get_random_key();
+
+		while( get_transient( "sab_export_{$id}" ) ) {
+			$id = sab_get_random_key();
+		}
+
+		$args = array(
+			'document_type' => $this->get_document_type(),
+			'type'          => $request['type'],
+			'filters'       => $request['filters'],
+			'start_date'    => $request['start_date'],
+			'end_date'      => $request['end_date'],
+		);
+
+		try {
+			$exporter = new AsyncExporter( $id, $args );
+			$result   = $exporter->next();
+
+			if ( is_wp_error( $result ) ) {
+				$result->add_data( array( 'status' => 400 ) );
+
+				return $result;
+			}
+
+			$request->set_param( 'context', 'edit' );
+
+			$response = $this->prepare_export_for_response( $exporter, $request );
+			$response = rest_ensure_response( $response );
+
+			$response->set_status( 201 );
+			$response->header( 'Location', rest_url( sprintf( '/%s/%s/export/%d', $this->namespace, $this->rest_base, $exporter->get_id() ) ) );
+		} catch( \Exception $e ) {
+			/* translators: %s: error message */
+			return new WP_Error( "storeabill_rest_{$this->get_data_type()}_export_error", sprintf( _x( 'Cannot create export: %1$s.', 'storeabill-core', 'woocommerce-germanized-pro' ), $e->getMessage() ), array( 'status' => 400 ) );
+		}
+
+		return $response;
+	}
+
+	/**
+	 * @param AsyncExporter $export
+	 * @param WP_REST_Request $request
+	 *
+	 * @return WP_REST_Response
+	 */
+	protected function prepare_export_for_response( $export, $request ) {
+		$data = array(
+			'id'               => $export->get_id(),
+			'type'             => $export->get_type(),
+			'status'           => $export->get_status(),
+			'start_date'       => wc_rest_prepare_date_response( $export->get_start_date(), false ),
+			'end_date'         => wc_rest_prepare_date_response( $export->get_end_date(), false ),
+			'filters'          => $export->get_filters(),
+			'percent_complete' => $export->get_percent_complete(),
+		);
+
+		$context  = ! empty( $request['context'] ) ? $request['context'] : 'view';
+		$schema   = $this->get_public_export_schema();
+		$data     = rest_filter_response_by_context( $data, $schema, $context );
+		$response = rest_ensure_response( $data );
+
+		return $response;
 	}
 
 	/**
@@ -299,6 +531,34 @@ abstract class DocumentController extends Controller {
 	public function get_preview_permissions_check( $request ) {
 		if ( ! current_user_can( 'manage_storeabill' ) ) {
 			return new \WP_Error( "storeabill_rest_cannot_view", _x( 'Sorry, you cannot view this resource.', 'storeabill-core', 'woocommerce-germanized-pro' ), array( 'status' => rest_authorization_required_code() ) );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Check if a given request has access to read an item.
+	 *
+	 * @param  WP_REST_Request $request Full details about the request.
+	 * @return WP_Error|boolean
+	 */
+	public function get_export_permissions_check( $request ) {
+		if ( ! current_user_can( 'manage_storeabill' ) ) {
+			return new \WP_Error( "storeabill_rest_cannot_view", _x( 'Sorry, you cannot view this resource.', 'storeabill-core', 'woocommerce-germanized-pro' ), array( 'status' => rest_authorization_required_code() ) );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Check if a given request has access to read an item.
+	 *
+	 * @param  WP_REST_Request $request Full details about the request.
+	 * @return WP_Error|boolean
+	 */
+	public function create_export_permissions_check( $request ) {
+		if ( ! current_user_can( 'manage_storeabill' ) ) {
+			return new WP_Error( 'storeabill_rest_cannot_create', _x( 'Sorry, you are not allowed to create resources.', 'storeabill-core', 'woocommerce-germanized-pro' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 
 		return true;

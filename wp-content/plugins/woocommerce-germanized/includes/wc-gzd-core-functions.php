@@ -269,6 +269,10 @@ function wc_gzd_format_tax_rate_percentage( $rate, $percent = false ) {
 	return str_replace( '.', ',', wc_format_decimal( str_replace( '%', '', $rate ), true, true ) ) . ( $percent ? ' %' : '' );
 }
 
+function wc_gzd_format_alcohol_content( $alcohol_content ) {
+	return apply_filters( 'woocommerce_gzd_formatted_alcohol_content', sprintf( '%1$s %% vol', wc_format_localized_decimal( $alcohol_content ) ) );
+}
+
 function wc_gzd_is_customer_activated( $user_id = '' ) {
 
 	if ( is_user_logged_in() && empty( $user_id ) ) {
@@ -1134,6 +1138,50 @@ function wc_gzd_format_product_units_decimal( $unit_product ) {
 	return str_replace( '.', ',', $unit_product );
 }
 
+function wc_gzd_format_deposit_amount( $amount, $args ) {
+	$args = wp_parse_args( $args, array(
+		'type'            => '',
+		'quantity'        => 1,
+		'packaging_type'  => '',
+		'amount_per_unit' => ''
+	) );
+
+	$text                        = get_option( 'woocommerce_gzd_deposit_text' );
+	$deposit_type_name           = '';
+	$deposit_packaging_type_name = ! empty( $args['packaging_type'] ) ? WC_germanized()->deposit_types->get_packaging_type_title( $args['packaging_type'] ) : '';
+
+	if ( ! is_a( $args['type'], 'WP_Term' ) ) {
+		if ( $deposit_type_term = WC_germanized()->deposit_types->get_deposit_type_term( $args['type'] ) ) {
+			$deposit_type_name = $deposit_type_term->name;
+		} else {
+			$deposit_type_name = $args['type'];
+		}
+	} else {
+		$deposit_type_name = $args['type']->name;
+	}
+
+	$replacements = array(
+		'{amount}'          => $amount,
+		'{type}'            => '' === $deposit_type_name ? '' : '<span class="deposit-type">' . esc_html( $deposit_type_name ) . '</span>',
+		'{packaging_type}'  => '' === $deposit_packaging_type_name ? '' : '<span class="deposit-packaging-type">' . esc_html( $deposit_packaging_type_name ) . '</span>',
+		'{quantity}'        => '' === $args['quantity'] ? '' : '<span class="deposit-quantity">' . esc_html( $args['quantity'] ) . '</span>',
+		'{amount_per_unit}' => '' === $args['amount_per_unit'] ? '' : '<span class="deposit-amount-per-unit">' . $args['amount_per_unit'] . '</span>'
+	);
+
+	$html = wc_gzd_replace_label_shortcodes( $text, $replacements );
+
+	/**
+	 * Filter to adjust the formatted deposit amount.
+	 *
+	 * @param string $html  The html output
+	 * @param string $price The price html
+	 * @param array $args   Additional arguments
+	 *
+	 * @since 3.9.0
+	 */
+	return apply_filters( 'woocommerce_gzd_formatted_deposit_price', $html, $amount, $args );
+}
+
 function wc_gzd_format_unit_price( $price, $unit, $unit_base, $product_units = '' ) {
 	$text = get_option( 'woocommerce_gzd_unit_price_text' );
 
@@ -1251,6 +1299,52 @@ function wc_gzd_get_cart_defect_descriptions( $items = false ) {
 	}
 }
 
+function wc_gzd_update_page_content( $page_id, $content, $append = true ) {
+	$page = get_post( $page_id );
+
+	if ( $page ) {
+		$is_shortcode    = preg_match( '/^\[[a-z]+(?:_[a-z]+)*]$/m', $content ) > 0;
+		$current_content = $append ? $page->post_content . "\n" : '';
+		$new_content     = $current_content . wp_kses_post( $content );
+
+		if ( function_exists( 'has_blocks' ) && has_blocks( $page_id ) ) {
+			if ( $is_shortcode ) {
+				$new_content = $current_content . "<!-- wp:shortcode -->\n" . " " . esc_html( $content ) . " " . "\n  <!-- /wp:shortcode -->";
+			} else {
+				$new_content = $current_content . wp_kses_post( $content );
+			}
+		}
+
+		wp_update_post(
+			array(
+				'ID'           => $page_id,
+				'post_content' => apply_filters( "woocommerce_gzd_update_page_content", $new_content, $page_id, $content, $page->post_content, $append, $is_shortcode ),
+			)
+		);
+	}
+}
+
+function wc_gzd_content_has_shortcode( $content, $shortcode ) {
+	global $shortcode_tags;
+
+	$shortcode_exists = shortcode_exists( $shortcode );
+
+	/**
+	 * Temporarily register the shortcode to enable finding non-registered shortcodes too.
+	 */
+	if ( ! $shortcode_exists ) {
+		$shortcode_tags[ $shortcode ] = '__return_false';
+	}
+
+	$has_shortcode = has_shortcode( $content, $shortcode );
+
+	if ( ! $shortcode_exists ) {
+		unset( $shortcode_tags[ $shortcode ] );
+	}
+
+	return $has_shortcode;
+}
+
 function wc_gzd_print_item_defect_descriptions( $descriptions, $echo = false ) {
 	$strings = array();
 
@@ -1316,4 +1410,12 @@ function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = arr
 	$content = trim( $content );
 
 	return apply_filters( 'woocommerce_gzd_post_plain_content', $content, $content_post );
+}
+
+add_filter( 'woocommerce_gzd_dhl_enable_logging', 'wc_gzd_is_extended_debug_mode_enabled', 5 );
+add_filter( 'woocommerce_gzd_shipments_enable_logging', 'wc_gzd_is_extended_debug_mode_enabled', 5 );
+add_filter( 'oss_woocommerce_enable_extended_logging', 'wc_gzd_is_extended_debug_mode_enabled', 5 );
+
+function wc_gzd_is_extended_debug_mode_enabled() {
+	return 'yes' === get_option( 'woocommerce_gzd_extended_debug_mode' );
 }

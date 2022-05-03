@@ -24,8 +24,8 @@ const ItemQuantityEdit = ( {
     setFontSize,
     className
 } ) => {
-    const { content } = attributes;
-    let item = getPreviewItem();
+    const { content, itemType } = attributes;
+    let item = getPreviewItem( itemType );
 
     const quantity = item.quantity;
 

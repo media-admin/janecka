@@ -207,18 +207,24 @@ abstract class Document extends Data implements Numberable, ExternalSyncable {
 
 	public function get_line_item_types() {
 		$default_line_item_types = $this->get_item_types();
+		$main_line_item_types    = array();
 
 		if ( $document_type = sab_get_document_type( $this->get_type() ) ) {
 			$default_line_item_types = $document_type->default_line_item_types;
+			$main_line_item_types    = $document_type->main_line_item_types;
 		}
 
+		/**
+		 * Override with template data
+		 */
 		if ( $template = $this->get_template() ) {
-			$template_line_item_types = $template->get_line_item_types();
-
-			if ( ! empty( $template_line_item_types ) ) {
-				$default_line_item_types = $template_line_item_types;
-			}
+			$default_line_item_types = $template->get_line_item_types();
 		}
+
+		/**
+		 * Make sure to always include the main line item types e.g. product.
+		 */
+		$default_line_item_types = array_filter( array_unique( array_merge( $main_line_item_types, $default_line_item_types ) ) );
 
 		return apply_filters( $this->get_hook_prefix() . 'line_item_types', $default_line_item_types, $this );
 	}
@@ -764,7 +770,16 @@ abstract class Document extends Data implements Numberable, ExternalSyncable {
 	}
 
 	public function get_country( $context = 'view' ) {
-		return $this->get_address_prop( 'country', $context );
+		$country = $this->get_address_prop( 'country', $context );
+
+		/**
+		 * If country data is missing: Use base country instead.
+		 */
+		if ( 'view' === $context && '' === $country ) {
+			$country = Countries::get_base_country();
+		}
+
+		return $country;
 	}
 
 	/**

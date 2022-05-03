@@ -3,6 +3,7 @@
 namespace Vendidero\StoreaBill\DataStores;
 
 use Exception;
+use Vendidero\StoreaBill\Package;
 use WC_Data_Store_WP;
 use WC_Object_Data_Store_Interface;
 
@@ -37,7 +38,8 @@ class DocumentTemplate extends WC_Data_Store_WP implements WC_Object_Data_Store_
 		'_fonts',
 		'_font_size',
 		'_color',
-		'_line_item_types'
+		'_line_item_types',
+		'_version'
 	);
 
 	/*
@@ -58,6 +60,8 @@ class DocumentTemplate extends WC_Data_Store_WP implements WC_Object_Data_Store_
 		if ( empty( $template->get_margins() ) ) {
 			$template->set_margins( $template->get_default_margins() );
 		}
+
+		$template->set_version( Package::get_version() );
 
 		/**
 		 * Note: addslashes() is needed if storing the data with wp_insert_post()
@@ -282,7 +286,8 @@ class DocumentTemplate extends WC_Data_Store_WP implements WC_Object_Data_Store_
 			'_font_size'       => 'font_size',
 			'_color'           => 'color',
 			'_line_item_types' => 'line_item_types',
-			'_template_name'   => 'template_name'
+			'_template_name'   => 'template_name',
+			'_version'         => 'version'
 		);
 
 		$props_to_update = $this->get_props_to_update( $template, $meta_key_to_props );

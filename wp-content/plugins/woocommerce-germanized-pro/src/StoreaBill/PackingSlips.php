@@ -21,7 +21,7 @@ class PackingSlips {
 		add_action( 'storeabill_woo_gzd_shipment_item_synced', array( __CLASS__, 'sync_shipment_item_product' ), 10, 2 );
 
 		add_filter( 'storeabill_packing_slip_editor_templates', array( __CLASS__, 'register_template' ) );
-		add_filter( 'storeabill_packing_slip_shortcode_handlers', array( __CLASS__, 'register_shortcode_handler' ), 10 );
+		add_filter( 'storeabill_packing_slip_shortcode_handler_classname', array( __CLASS__, 'register_shortcode_handler' ), 10 );
 
 		if ( self::is_enabled() ) {
 			add_filter( 'storeabill_rest_api_get_rest_namespaces', array( __CLASS__, 'register_rest_controllers' ) );
@@ -47,6 +47,11 @@ class PackingSlips {
 				add_action( 'woocommerce_gzdp_after_sync_packing_slip', array( __CLASS__, 'maybe_restore_order_language' ), 10, 2 );
 				add_action( 'woocommerce_gzdp_synced_packing_slip', array( __CLASS__, 'sync_packing_slip_language' ), 10, 2 );
 			}
+
+			/**
+			 * Add latest invoices to default Woo invoice mail if existent.
+			 */
+			add_filter( 'woocommerce_email_attachments', array( __CLASS__, 'attach_to_mail' ), 10, 4 );
 		}
 
 		if ( is_admin() ) {
@@ -67,6 +72,54 @@ class PackingSlips {
 				Ajax::init();
 			}
 		}
+	}
+
+	/**
+	 * In case a finalized invoice exists, attach the (latest) invoice file
+	 * to the default Woo customer invoice mail.
+	 *
+	 * @param $attachments
+	 * @param $email_id
+	 * @param $object
+	 * @param $email
+	 *
+	 * @return mixed
+	 */
+	public static function attach_to_mail( $attachments, $email_id, $object, $email = false ) {
+		$email_ids = array();
+
+		if ( 'yes' === get_option( 'woocommerce_gzdp_packing_slip_auto' ) ) {
+			$email_ids = array_filter( (array) get_option( 'woocommerce_gzdp_packing_slip_attach_to_emails', array() ) );
+
+			/**
+			 * Support partial shipments
+			 */
+			if ( in_array( 'customer_shipment', $email_ids ) ) {
+				$email_ids[] = 'customer_partial_shipment';
+			}
+		}
+
+		if ( apply_filters( 'woocommerce_gzdp_packing_slip_email_attach', ( in_array( $email_id, $email_ids ) ), $email_id, $object, $email ) ) {
+			if ( is_a( $email, 'WC_GZD_Email_Customer_Shipment' ) ) {
+				if ( is_a( $email->shipment, '\Vendidero\Germanized\Shipments\Shipment' ) ) {
+					if ( $packing_slip = wc_gzdp_get_packing_slip_by_shipment( $email->shipment ) ) {
+						if ( $packing_slip->has_file() ) {
+							$attachments[] = $packing_slip->get_path();
+						}
+					}
+				}
+			} elseif ( is_a( $object, 'WC_Order' ) ) {
+				foreach( wc_gzd_get_shipments_by_order( $object ) as $shipment ) {
+					if ( $packing_slip = wc_gzdp_get_packing_slip_by_shipment( $shipment ) ) {
+						if ( $packing_slip->has_file() ) {
+							$attachments[] = $packing_slip->get_path();
+						}
+					}
+				}
+			}
+		}
+
+		return $attachments;
 	}
 
 	/**
@@ -185,10 +238,8 @@ class PackingSlips {
 		return $placeholder;
 	}
 
-	public static function register_shortcode_handler( $handler ) {
-		$handler[] = '\Vendidero\Germanized\Pro\StoreaBill\PackingSlip\Shortcodes';
-
-		return $handler;
+	public static function register_shortcode_handler() {
+		return '\Vendidero\Germanized\Pro\StoreaBill\PackingSlip\Shortcodes';
 	}
 
 	/**
@@ -543,6 +594,22 @@ class PackingSlips {
 	}
 
 	protected static function get_packing_slips_settings() {
+		$mailer          = WC()->mailer();
+		$email_templates = $mailer->get_emails();
+		$email_select    = array();
+
+		foreach ( $email_templates as $email ) {
+			$customer = false;
+
+			if ( is_callable( array( $email, 'is_customer_email' ) ) ) {
+				$customer = $email->is_customer_email();
+			}
+
+			$email_select[ $email->id ] = empty( $email->title ) ? ucfirst( $email->id ) : ucfirst( $email->title ) . ' (' . ( $customer ? __( 'Customer', 'woocommerce-germanized-pro' ) : __( 'Admin', 'woocommerce-germanized-pro' ) ) . ')';
+		}
+
+		$email_select = array_intersect_key( $email_select, apply_filters( 'woocommerce_gzdp_packing_slip_email_ids_allowed', array( 'customer_completed_order' => '', 'customer_shipment' => '' ) ) );
+
 		$settings = array(
 			array( 'title' => '', 'type' => 'title', 'id' => 'packing_slip_settings' ),
 
@@ -562,6 +629,18 @@ class PackingSlips {
 				'type'           => 'multiselect',
 				'class'          => 'sab-enhanced-select',
 				'options'        => wc_gzd_get_shipment_statuses(),
+				'custom_attributes' => array(
+					'data-show_if_woocommerce_gzdp_packing_slip_auto' => ''
+				),
+			),
+
+			array(
+				'title' 	     => __( 'Attach to email(s)', 'woocommerce-germanized-pro' ),
+				'id' 		     => 'woocommerce_gzdp_packing_slip_attach_to_emails',
+				'default'	     => array( '' ),
+				'type'           => 'multiselect',
+				'class'          => 'sab-enhanced-select',
+				'options'        => $email_select,
 				'custom_attributes' => array(
 					'data-show_if_woocommerce_gzdp_packing_slip_auto' => ''
 				),

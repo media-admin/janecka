@@ -83,34 +83,7 @@ class PostDocument extends Document {
 		$content = '';
 
 		if ( $page_post = $this->get_post() ) {
-			remove_shortcode( 'revocation_form' );
-			add_shortcode( 'revocation_form', array( $this, 'revocation_form_replacement' ) );
-
-			$custom_content = metadata_exists( 'post', $page_post->ID, '_legal_text' ) && get_post_meta( $page_post->ID, '_legal_text', true ) ? htmlspecialchars_decode( get_post_meta( $page_post->ID, '_legal_text', true ) ) : false;
-
-			if ( ! $custom_content ) {
-				global $post;
-
-				$reset_post = $post;
-				$post       = $page_post;
-
-				setup_postdata( $post );
-
-				ob_start();
-				the_content();
-				$content = ob_get_clean();
-
-				/**
-				 * Reset post data to keep global loop valid.
-				 */
-				if ( $reset_post ) {
-					setup_postdata( $reset_post );
-				}
-			} else {
-				$content = apply_filters( 'the_content', $custom_content );
-			}
-
-			add_shortcode( 'revocation_form', 'WC_GZD_Shortcodes::revocation_form' );
+			$content = WC_germanized()->emails->get_email_plain_content( $page_post );
 		}
 
 		return apply_filters( "{$this->get_hook_prefix()}content", $content, $this );

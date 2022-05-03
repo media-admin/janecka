@@ -46,7 +46,6 @@ class WC_GZD_Admin {
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'add_legal_page_metabox' ) );
 		add_action( 'add_meta_boxes', array( $this, 'register_product_meta_boxes' ) );
-		add_action( 'admin_menu', array( $this, 'hide_metaboxes' ), 10 );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts' ) );
 		add_action( 'save_post', array( $this, 'save_legal_page_content' ), 10, 3 );
@@ -54,15 +53,10 @@ class WC_GZD_Admin {
 		add_filter( 'woocommerce_admin_status_tabs', array( $this, 'set_gzd_status_tab' ) );
 		add_action( 'woocommerce_admin_status_content_germanized', array( $this, 'status_tab' ) );
 
-		add_action( 'admin_init', array( $this, 'check_language_install' ) );
-		add_action( 'admin_init', array( $this, 'check_text_options_deletion' ) );
-		add_action( 'admin_init', array( $this, 'check_complaints_shortcode_append' ) );
-		add_action( 'admin_init', array( $this, 'check_insert_vat_rates' ) );
+        add_action( 'admin_init', array( $this, 'tool_actions' ) );
 		add_action( 'admin_init', array( $this, 'check_resend_activation_email' ) );
-		add_action( 'admin_init', array( $this, 'check_notices' ) );
 		add_action( 'admin_init', array( $this, 'check_dhl_import' ) );
 		add_action( 'admin_init', array( $this, 'check_internetmarke_import' ) );
-		add_action( 'admin_init', array( $this, 'check_encryption_key_insert' ) );
 
 		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_shipping_address', array(
@@ -97,18 +91,52 @@ class WC_GZD_Admin {
 
 		add_filter( 'woocommerce_gzd_shipment_admin_provider_list', array( $this, 'maybe_register_shipping_providers' ), 10 );
 
-        // Hide custom product taxonomies from quick-edit/bulk-edit
-        add_filter( 'quick_edit_show_taxonomy', array( $this, 'hide_taxonomies_quick_edit' ), 10, 2 );
-
 		$this->wizward = require 'class-wc-gzd-admin-setup-wizard.php';
 	}
 
-    public function hide_taxonomies_quick_edit( $show_in_quick_edit, $taxonomy_name ) {
-        if ( in_array( $taxonomy_name, array( 'product_delivery_time', 'product_price_label', 'product_unit' ) ) ) {
-            return false;
-        }
+    public function tool_actions() {
+        $actions = array(
+            'language_install',
+            'text_options_deletion',
+            'complaints_shortcode_append',
+            'insert_vat_rates',
+            'disable_notices',
+            'encryption_key_insert',
+            'enable_debug_mode'
+        );
 
-        return $show_in_quick_edit;
+	    if ( current_user_can( 'manage_woocommerce' ) ) {
+            foreach( $actions as $action ) {
+	            $nonce_name = "wc-gzd-check-{$action}";
+
+	            /**
+	             * Legacy notice support
+	             */
+                if ( 'encryption_key_insert' === $action && isset( $_GET['insert-encryption-key'] ) ) {
+                    $nonce_name = 'wc-gzd-insert-encryption-key';
+	                $_GET["wc-gzd-check-{$action}"] = true;
+                }
+
+	            if ( isset( $_GET["wc-gzd-check-{$action}"] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( $nonce_name ) ) {
+                    $method = "check_{$action}";
+
+                    if ( is_callable( array( $this, $method ) ) ) {
+                        $this->$method();
+
+                        wp_safe_redirect( admin_url( 'admin.php?page=wc-status&tab=germanized' ) );
+                        exit();
+                    }
+                }
+            }
+	    }
+    }
+
+    protected function check_enable_debug_mode() {
+        if ( 'yes' === get_option( 'woocommerce_gzd_extended_debug_mode' ) ) {
+            update_option( 'woocommerce_gzd_extended_debug_mode', 'no' );
+        } else {
+            update_option( 'woocommerce_gzd_extended_debug_mode', 'yes' );
+        }
     }
 
 	/**
@@ -126,12 +154,6 @@ class WC_GZD_Admin {
 	public function oss_enable_hide_tax_percentage() {
 	    update_option( 'woocommerce_gzd_hide_tax_rate_shop', 'yes' );
     }
-
-	public function hide_metaboxes() {
-		remove_meta_box( 'tagsdiv-product_unit', 'product', 'side' );
-		remove_meta_box( 'tagsdiv-product_delivery_time', 'product', 'side' );
-		remove_meta_box( 'tagsdiv-product_price_label', 'product', 'side' );
-	}
 
 	public function check_dhl_import() {
 
@@ -258,7 +280,7 @@ class WC_GZD_Admin {
 		$template_data = apply_filters( 'woocommerce_gzd_template_check', array(
 			'germanized' => array(
 				'title'             => __( 'Germanized for WooCommerce', 'woocommerce-germanized' ),
-				'path'              => WC_germanized()->plugin_path() . '/templates',
+				'path'              => array( WC_germanized()->plugin_path() . '/templates' ),
 				'template_path'     => WC_germanized()->template_path(),
 				'outdated_help_url' => 'https://vendidero.de/dokument/veraltete-germanized-templates-aktualisieren',
 				'files'             => array(),
@@ -277,52 +299,61 @@ class WC_GZD_Admin {
 				'has_outdated'      => false,
 			) );
 
+            if ( ! is_array( $path_data['path'] ) ) {
+	            $path_data['path'] = array( $path_data['path'] );
+            }
+
 			$template_data[ $plugin ] = $path_data;
+            $core_templates           = array();
 
-			$core_templates = WC_Admin_Status::scan_template_files( $path_data['path'] );
-			$template_path  = $path_data['template_path'];
+            foreach( $path_data['path'] as $path ) {
+	            $core_templates[ $path ] = WC_Admin_Status::scan_template_files( $path );
+            }
 
-			foreach ( $core_templates as $file ) {
+			$template_path = $path_data['template_path'];
 
-				if ( '.DS_Store' === $file ) {
-					continue;
-				}
+			foreach ( $core_templates as $core_path => $files ) {
+                foreach( $files as $file ) {
+	                if ( '.DS_Store' === $file ) {
+		                continue;
+	                }
 
-				$theme_file = false;
+	                $theme_file = false;
 
-				if ( file_exists( get_stylesheet_directory() . '/' . $file ) ) {
-					$theme_file = get_stylesheet_directory() . '/' . $file;
-				} elseif ( file_exists( get_stylesheet_directory() . '/' . $template_path . $file ) ) {
-					$theme_file = get_stylesheet_directory() . '/' . $template_path . $file;
-				} elseif ( file_exists( get_template_directory() . '/' . $file ) ) {
-					$theme_file = get_template_directory() . '/' . $file;
-				} elseif ( file_exists( get_template_directory() . '/' . $template_path . $file ) ) {
-					$theme_file = get_template_directory() . '/' . $template_path . $file;
-				}
+	                if ( file_exists( get_stylesheet_directory() . '/' . $file ) ) {
+		                $theme_file = get_stylesheet_directory() . '/' . $file;
+	                } elseif ( file_exists( get_stylesheet_directory() . '/' . $template_path . $file ) ) {
+		                $theme_file = get_stylesheet_directory() . '/' . $template_path . $file;
+	                } elseif ( file_exists( get_template_directory() . '/' . $file ) ) {
+		                $theme_file = get_template_directory() . '/' . $file;
+	                } elseif ( file_exists( get_template_directory() . '/' . $template_path . $file ) ) {
+		                $theme_file = get_template_directory() . '/' . $template_path . $file;
+	                }
 
-				if ( false !== $theme_file ) {
-					$core_version  = WC_Admin_Status::get_file_version( $path_data['path'] . '/' . $file );
-					$theme_version = WC_Admin_Status::get_file_version( $theme_file );
+	                if ( false !== $theme_file ) {
+		                $core_version  = WC_Admin_Status::get_file_version( trailingslashit( $core_path ) . $file );
+		                $theme_version = WC_Admin_Status::get_file_version( $theme_file );
 
-					if ( ! $theme_version ) {
-						$theme_version = '1.0';
-					}
+		                if ( ! $theme_version ) {
+			                $theme_version = '1.0';
+		                }
 
-					$file_data = array(
-						'template'      => $file,
-						'theme_file'    => $theme_file,
-						'theme_version' => $theme_version,
-						'core_version'  => $core_version,
-						'outdated'      => false,
-					);
+		                $file_data = array(
+			                'template'      => $file,
+			                'theme_file'    => $theme_file,
+			                'theme_version' => $theme_version,
+			                'core_version'  => $core_version,
+			                'outdated'      => false,
+		                );
 
-					if ( $core_version && $theme_version && version_compare( $theme_version, $core_version, '<' ) ) {
-						$file_data['outdated']                    = true;
-						$template_data[ $plugin ]['has_outdated'] = true;
-					}
+		                if ( $core_version && $theme_version && version_compare( $theme_version, $core_version, '<' ) ) {
+			                $file_data['outdated']                    = true;
+			                $template_data[ $plugin ]['has_outdated'] = true;
+		                }
 
-					$template_data[ $plugin ]['files'][] = $file_data;
-				}
+		                $template_data[ $plugin ]['files'][] = $file_data;
+	                }
+                }
 			}
 		}
 
@@ -679,81 +710,75 @@ class WC_GZD_Admin {
 	    ) );
     }
 
-	public function check_language_install() {
-		if ( current_user_can( 'manage_woocommerce' ) && isset( $_GET['install-language'] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'wc-gzd-install-language' ) ) {
+	protected function check_language_install() {
+        require_once( ABSPATH . 'wp-admin/includes/translation-install.php' );
+        $language = sanitize_text_field( $_GET['install-language'] );
 
-			require_once( ABSPATH . 'wp-admin/includes/translation-install.php' );
-			$language = sanitize_text_field( $_GET['install-language'] );
+        // Download language pack if possible
+        if ( wp_can_install_language_pack() ) {
+            $loaded_language = wp_download_language_pack( $language );
+        }
 
-			// Download language pack if possible
-			if ( wp_can_install_language_pack() ) {
-				$loaded_language = wp_download_language_pack( $language );
-			}
+        update_option( 'WPLANG', $language );
+        load_default_textdomain( $loaded_language );
 
-			update_option( 'WPLANG', $language );
-			load_default_textdomain( $loaded_language );
-
-			// Redirect to check for updates
-			wp_safe_redirect( admin_url( 'update-core.php?force-check=1' ) );
-
-		}
-
+        // Redirect to check for updates
+        wp_safe_redirect( admin_url( 'update-core.php?force-check=1' ) );
+        exit();
 	}
 
-	public function check_text_options_deletion() {
-		if ( current_user_can( 'manage_woocommerce' ) && isset( $_GET['delete-text-options'] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'wc-gzd-delete-text-options' ) ) {
+	protected function check_text_options_deletion() {
+        global $wpdb;
 
-			global $wpdb;
+        $wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->options WHERE option_name LIKE %s", 'woocommerce_gzd_%_text' ) );
 
-			$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->options WHERE option_name LIKE %s", 'woocommerce_gzd_%_text' ) );
+        $manager = WC_GZD_Legal_Checkbox_Manager::instance();
+        $manager->do_register_action();
+        $options = $manager->get_options();
 
-			$manager = WC_GZD_Legal_Checkbox_Manager::instance();
-			$manager->do_register_action();
-			$options = $manager->get_options();
+        $checkboxes   = $manager->get_checkboxes();
+        $text_options = array(
+            'label',
+            'error_message',
+            'confirmation',
+            'admin_desc',
+            'admin_name',
+        );
 
-			$checkboxes   = $manager->get_checkboxes();
-			$text_options = array(
-				'label',
-				'error_message',
-				'confirmation',
-				'admin_desc',
-				'admin_name',
-			);
+        foreach ( $checkboxes as $checkbox ) {
+            if ( ! $checkbox->is_core() ) {
+                continue;
+            }
+            foreach ( $text_options as $text_option ) {
+                if ( isset( $options[ $checkbox->get_id() ][ $text_option ] ) ) {
+                    unset( $options[ $checkbox->get_id() ][ $text_option ] );
+                }
+            }
+        }
 
-			foreach ( $checkboxes as $checkbox ) {
-				if ( ! $checkbox->is_core() ) {
-					continue;
-				}
-				foreach ( $text_options as $text_option ) {
-					if ( isset( $options[ $checkbox->get_id() ][ $text_option ] ) ) {
-						unset( $options[ $checkbox->get_id() ][ $text_option ] );
-					}
-				}
-			}
+        /**
+         * Clear options cache before calling add_option again
+         */
+        wp_cache_delete( 'notoptions', 'options' );
+        wp_cache_delete( 'alloptions', 'options' );
 
-			/**
-			 * Clear options cache before calling add_option again
-			 */
-			wp_cache_delete( 'notoptions', 'options' );
-			wp_cache_delete( 'alloptions', 'options' );
+        $manager->update_options( $options );
 
-			$manager->update_options( $options );
+        // Reinstall options
+        WC_GZD_Install::create_options();
 
-			// Reinstall options
-			WC_GZD_Install::create_options();
+        /**
+         * After text options deletion.
+         *
+         * This hook fires after Germanized has deleted and re-installed it's text options.
+         *
+         * @since 1.6.0
+         */
+        do_action( 'woocommerce_gzd_deleted_text_options' );
 
-			/**
-			 * After text options deletion.
-			 *
-			 * This hook fires after Germanized has deleted and re-installed it's text options.
-			 *
-			 * @since 1.6.0
-			 */
-			do_action( 'woocommerce_gzd_deleted_text_options' );
-
-			// Redirect to check for updates
-			wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) );
-		}
+        // Redirect to check for updates
+        wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) );
+        exit();
 	}
 
 	public function get_complaints_shortcode_pages() {
@@ -787,24 +812,24 @@ class WC_GZD_Admin {
 		}
 	}
 
-	public function check_complaints_shortcode_append() {
-		if ( current_user_can( 'manage_woocommerce' ) && isset( $_GET['complaints'] ) && 'add' === $_GET['complaints'] && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'append-complaints-shortcode' ) ) {
-			$pages = $this->get_complaints_shortcode_pages();
+	protected function check_complaints_shortcode_append() {
+        $pages = $this->get_complaints_shortcode_pages();
 
-			foreach ( $pages as $page_name => $page_id ) {
-				if ( $page_id != 1 ) {
-					$this->insert_complaints_shortcode( $page_id );
-				}
-			}
+        foreach ( $pages as $page_name => $page_id ) {
+            if ( $page_id != 1 ) {
+                $this->insert_complaints_shortcode( $page_id );
+            }
+        }
 
-			wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=disputes' ) );
-		}
+        wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=disputes' ) );
+        exit();
 	}
 
 	public function is_complaints_shortcode_inserted( $page_id ) {
 		$post = get_post( $page_id );
+
 		if ( $post ) {
-			return ( strpos( $post->post_content, '[gzd_complaints' ) !== false ? true : false );
+			return wc_gzd_content_has_shortcode( $post->post_content, 'gzd_complaints' );
 		}
 
 		return false;
@@ -815,52 +840,29 @@ class WC_GZD_Admin {
 			return;
 		}
 
-		$page = get_post( $page_id );
+		wc_gzd_update_page_content( $page_id, '[gzd_complaints]' );
+	}
 
-        if ( function_exists( 'has_blocks' ) && has_blocks( $page_id ) ) {
-	        wp_update_post(
-		        array(
-			        'ID'           => $page_id,
-			        'post_content' => $page->post_content . "\n" . "<!-- wp:shortcode -->\n" . " [gzd_complaints] " . "\n  <!-- /wp:shortcode -->",
-		        )
-	        );
-        } else {
-	        wp_update_post(
-		        array(
-			        'ID'           => $page_id,
-			        'post_content' => $page->post_content . "\n[gzd_complaints]",
-		        )
-	        );
+	protected function check_encryption_key_insert() {
+        $result = false;
+
+        if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) ) {
+            if ( ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() ) {
+                $result = WC_GZD_Secret_Box_Helper::maybe_insert_missing_key();
+            }
         }
+
+        // Redirect to check for updates
+        wp_safe_redirect( add_query_arg( array( 'added-encryption-key' => wc_bool_to_string( $result ) ), wp_get_referer() ) );
+        exit();
 	}
 
-	public function check_encryption_key_insert() {
-		if ( current_user_can( 'manage_woocommerce' ) && isset( $_GET['insert-encryption-key'] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'wc-gzd-insert-encryption-key' ) ) {
-			$result = false;
-
-		    if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) ) {
-				if ( ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() ) {
-					$result = WC_GZD_Secret_Box_Helper::maybe_insert_missing_key();
-				}
-			}
-
-			// Redirect to check for updates
-			wp_safe_redirect( add_query_arg( array( 'added-encryption-key' => wc_bool_to_string( $result ) ), wp_get_referer() ) );
-		}
-	}
-
-	public function check_notices() {
-		if ( current_user_can( 'manage_woocommerce' ) && isset( $_GET['check-notices'] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'wc-gzd-notices' ) ) {
-
-			if ( get_option( 'woocommerce_gzd_disable_notices' ) ) {
-				delete_option( 'woocommerce_gzd_disable_notices' );
-			} else {
-				update_option( 'woocommerce_gzd_disable_notices', 'yes' );
-			}
-
-			// Redirect to check for updates
-			wp_safe_redirect( admin_url( 'admin.php?page=wc-status&tab=germanized' ) );
-		}
+	protected function check_disable_notices() {
+        if ( get_option( 'woocommerce_gzd_disable_notices' ) ) {
+            delete_option( 'woocommerce_gzd_disable_notices' );
+        } else {
+            update_option( 'woocommerce_gzd_disable_notices', 'yes' );
+        }
 	}
 
 	public function disable_small_business_options() {
@@ -878,17 +880,14 @@ class WC_GZD_Admin {
 		update_option( 'woocommerce_price_display_suffix', '' );
 
 		update_option( 'woocommerce_gzd_shipping_tax', 'no' );
-		update_option( 'woocommerce_gzd_enable_virtual_vat', 'no' );
 	}
 
-	public function check_insert_vat_rates() {
-		if ( current_user_can( 'manage_woocommerce' ) && isset( $_GET['insert-vat-rates'] ) && isset( $_GET['_wpnonce'] ) && check_admin_referer( 'wc-gzd-insert-vat-rates' ) ) {
+	protected function check_insert_vat_rates() {
+        WC_GZD_Install::create_tax_rates();
 
-			WC_GZD_Install::create_tax_rates();
-
-			// Redirect to check for updates
-			wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=tax&section=standard' ) );
-		}
+        // Redirect to check for updates
+        wp_safe_redirect( admin_url( 'admin.php?page=wc-settings&tab=tax&section=standard' ) );
+		exit();
 	}
 
 	public function get_shipping_method_instances() {

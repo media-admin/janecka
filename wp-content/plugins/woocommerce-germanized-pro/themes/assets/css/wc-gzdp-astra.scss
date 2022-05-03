@@ -78,6 +78,21 @@ table.shop_table .wc-gzd-item-desc p {
   clear: both;
 }
 
+.wc-gzd-food-table {
+  width: auto;
+
+  tr {
+    text-align: left;
+
+    &.wc-gzd-nutrient-table-item-is-child {
+      th {
+        padding-left: 1em;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
 @media (min-width: 769px) {
   .woocommerce-page.woocommerce-multistep-checkout form #order_review, .woocommerce-page.woocommerce-multistep-checkout form #order_review_heading {
     width: 100%;

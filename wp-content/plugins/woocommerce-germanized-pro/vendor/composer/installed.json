@@ -36,12 +36,12 @@
             },
             "installation-source": "dist",
             "autoload": {
-                "classmap": [
-                    "src/AutoloadGenerator.php"
-                ],
                 "psr-4": {
                     "Automattic\\Jetpack\\Autoloader\\": "src"
-                }
+                },
+                "classmap": [
+                    "src/AutoloadGenerator.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -209,17 +209,17 @@
         },
         {
             "name": "vendidero/storeabill",
-            "version": "v1.8.5",
-            "version_normalized": "1.8.5.0",
+            "version": "v1.9.1",
+            "version_normalized": "1.9.1.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:vendidero/storeabill.git",
-                "reference": "498201ef9f00f9bddf5e9ccac395e0ff929dd380"
+                "reference": "7466d9940cdbf9f0819d78f001c5ee2d1f9847f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/storeabill/zipball/498201ef9f00f9bddf5e9ccac395e0ff929dd380",
-                "reference": "498201ef9f00f9bddf5e9ccac395e0ff929dd380",
+                "url": "https://api.github.com/repos/vendidero/storeabill/zipball/7466d9940cdbf9f0819d78f001c5ee2d1f9847f5",
+                "reference": "7466d9940cdbf9f0819d78f001c5ee2d1f9847f5",
                 "shasum": ""
             },
             "require": {
@@ -230,7 +230,7 @@
                 "phpunit/phpunit": "7.5.14",
                 "yoast/phpunit-polyfills": "^1.0"
             },
-            "time": "2022-01-13T12:59:38+00:00",
+            "time": "2022-05-02T13:54:28+00:00",
             "type": "wordpress-plugin",
             "extra": {
                 "bamarni-bin": {
@@ -240,7 +240,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "Vendidero\\StoreaBill\\": "src",
+                    "Vendidero\\StoreaBill\\": "src/",
                     "Vendidero\\StoreaBill\\Vendor\\": "lib/packages/"
                 },
                 "psr-0": {
@@ -275,17 +275,17 @@
         },
         {
             "name": "vendidero/storeabill-lexoffice",
-            "version": "v1.1.6",
-            "version_normalized": "1.1.6.0",
+            "version": "v1.2.1",
+            "version_normalized": "1.2.1.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:vendidero/storeabill-lexoffice.git",
-                "reference": "66406847fbfd336c2fae4de302ec56a93da4a874"
+                "reference": "47eedbe8925606c672c8b3ba9839e4c0b59cad07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/storeabill-lexoffice/zipball/66406847fbfd336c2fae4de302ec56a93da4a874",
-                "reference": "66406847fbfd336c2fae4de302ec56a93da4a874",
+                "url": "https://api.github.com/repos/vendidero/storeabill-lexoffice/zipball/47eedbe8925606c672c8b3ba9839e4c0b59cad07",
+                "reference": "47eedbe8925606c672c8b3ba9839e4c0b59cad07",
                 "shasum": ""
             },
             "require": {
@@ -294,7 +294,7 @@
             "require-dev": {
                 "phpunit/phpunit": "^6.5.14"
             },
-            "time": "2021-11-01T10:48:50+00:00",
+            "time": "2022-04-06T12:38:59+00:00",
             "type": "wordpress-plugin",
             "installation-source": "dist",
             "autoload": {

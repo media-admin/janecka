@@ -70,6 +70,16 @@ class RefundOrder implements \Vendidero\StoreaBill\Interfaces\RefundOrder {
 		return $this->get_order()->get_meta( $key, $single, $context );
 	}
 
+	public function get_transaction_id() {
+		$transaction_id = '';
+
+		if ( $this->get_meta( '_sab_matched_refund_transaction_id' ) ) {
+			$transaction_id = $this->get_meta( '_sab_matched_refund_transaction_id' );
+		}
+
+		return apply_filters( "{$this->get_hook_prefix()}transaction_id", $transaction_id, $this );
+	}
+
 	/**
 	 * Check if a method is callable by checking the underlying order object.
 	 * Necessary because is_callable checks will always return true for this object

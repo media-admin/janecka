@@ -63,6 +63,21 @@
 }
 
 /**
+ * Hide elementor pro elements
+ */
+.woocommerce-multistep-checkout-active-payment, .woocommerce-multistep-checkout-active-address {
+  .e-checkout__order_review-2 {
+    display: none;
+  }
+
+  &.woocommerce-multistep-checkout-active-address {
+    .e-checkout__order_review {
+      display: none;
+    }
+  }
+}
+
+/**
  * Hide amazon details from second/third step
  */
 .woocommerce-multistep-checkout-active-order, .woocommerce-multistep-checkout-active-payment {
