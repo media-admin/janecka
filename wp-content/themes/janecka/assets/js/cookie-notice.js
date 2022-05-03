@@ -74,38 +74,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	 reject: function() {
 
-	  // Hier kommt der Opt-Out Code rein
-	  // Folgendes Beispiel für Google Analytics
+			dywc.log("Reject Statistic Tracking");
 
-		var el = document.createElement('script');
-		el.src = 'https://www.googletagmanager.com/gtag/js?id=G-EG4NB8NX4L';
-		el.async = 1;
-		document.getElementsByTagName('head')[0].appendChild(el);
+			var el = document.createElement('script');
+			el.src = 'https://www.googletagmanager.com/gtag/js?id=G-EG4NB8NX4L';
+			el.async = 1;
+			document.getElementsByTagName('head')[0].appendChild(el);
 
-		window['ga-disable-G-EG4NB8NX4L'] = true;
-		window.dataLayer = window.dataLayer || [];
+			window['ga-disable-G-EG4NB8NX4L'] = true;
+			window.dataLayer = window.dataLayer || [];
 
-		function gtag(){ dataLayer.push(arguments); }
+			function gtag(){ dataLayer.push(arguments); }
 
-		gtag('js', new Date());
+			gtag('js', new Date());
 
-		gtag('config', 'UA-11678917-1');
-		gtag('config', 'G-EG4NB8NX4L');
-
-		// Original Cookie Snippet
-		//
-	  // var disableStr = 'ga-disable-{TrackingID}';
-		//
-	  // window[disableStr] = true; document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-		//
-	  // dywc.cookie.removeItem('_ga', '/', '.domain.de');
-	  // dywc.cookie.removeItem('_gid', '/', '.domain.de');
-	  // dywc.cookie.removeItem('_gat', '/', '.domain.de');
-	  // dywc.cookie.removeItem('_gat_gtag_{TrackingID}', '/', '.domain.de');
-
-
+			gtag('config', 'UA-11678917-1');
+			gtag('config', 'G-EG4NB8NX4L');
 
 	 }
+
 	}
    ]
 
