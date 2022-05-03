@@ -106,7 +106,7 @@ function medialab_register_scripts() {
 	wp_register_script( 'dywc', get_template_directory_uri() . '/assets/js/dywc.js', '', null, true );
 	wp_enqueue_script( 'dywc' );
 
-	wp_register_script( 'cookie-notice', get_template_directory_uri() . '/assets/js/dywc.js', '', null, true );
+	wp_register_script( 'cookie-notice', get_template_directory_uri() . '/assets/js/cookie-notice.js', '', null, true );
 	wp_enqueue_script( 'cookie-notice' );
 
 
