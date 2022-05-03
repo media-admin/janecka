@@ -2234,6 +2234,8 @@ a.navbar-item:hover {
 		top: 200px !important;
 
 		grid-template-columns: 1fr 1fr 3fr !important;
+		/* grid-auto-rows: 90px; */
+		grid-template-rows: 52px;
 
 		column-gap: 5% !important;
 		row-gap: 5% !important;
