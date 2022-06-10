@@ -77,7 +77,7 @@ if ( ! class_exists( 'AWS_Cache' ) ) :
             if ( is_user_logged_in() ) {
                 $user = wp_get_current_user();
                 $role = ( array ) $user->roles;
-                $user_role = $role[0];
+                $user_role = array_values( $role )[0];
                 if ( $user_role ) {
                     $cache_option_name = $cache_option_name . '_' . $user_role;
                 }

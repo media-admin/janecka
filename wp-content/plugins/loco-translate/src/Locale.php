@@ -39,11 +39,17 @@ class Loco_Locale implements JsonSerializable {
     private $_name;
 
     /**
-     * Cache of raw plural data 
-     * @var array
+     * Plural equation expressed in terms of "n"
+     * @var string|null
+     */
+    private $pluraleq;
+    
+    /**
+     * Cache of plural forms mapped optionally to CLDR mnemonic tags 
+     * @var array|null
      */
     private $plurals;
-
+    
     /**
      * Validity cache
      * @var bool
@@ -360,47 +366,48 @@ class Loco_Locale implements JsonSerializable {
         // plural data expected by editor
         $p = $this->getPluralData();
         $a['pluraleq'] = $p[0];
-        $a['plurals'] = $p[1];
         $a['nplurals'] = count($p[1]);
+        $a['plurals'] = $this->getPluralForms();
         // tone setting may used by some external translation providers
         $a['tone'] = $this->getFormality();
         return $a;
     }
 
 
-    /**
-     * Get plural data with translated forms
-     * @internal
-     * @return array [ (string) equation, (array) forms ]
-     */
-    public function getPluralData(){
-        $cache = $this->plurals;
-        if( ! $cache ){
-            $lc = $this->lang;
+    private function getPluralData(){
+        if( is_null($this->plurals) ){
+            $lc = strtolower($this->lang);
             $db = Loco_data_CompiledData::get('plurals');
             $id = $lc && isset($db[$lc]) ? $db[$lc] : 0;
-            $cache = $this->setPlurals( $db[''][$id] );
+            list( $this->pluraleq, $this->plurals ) = $db[''][$id];
         }
-        return $cache;
+        return [ $this->pluraleq, $this->plurals ];
     }
 
 
     /**
-     * @param array[]
-     * @return array
+     * Get translated plural form labels
+     * @return string[]
      */
-    private function setPlurals( array $raw ){
-        $raw = apply_filters( 'loco_locale_plurals', $raw, $this );
-        // handle languages with no plural forms, where n is always 0
-        if( ! isset($raw[1][1]) ){
-            // Translators: Plural category for languages that have no plurals
-            $raw[1] = [ _x('All forms','Plural category','loco-translate') ];
-            $raw[0] = '0';
+    public function getPluralForms(){
+        list( , $plurals ) = $this->getPluralData();
+        $nplurals = count($plurals);
+        // Languages with no plural forms, where n always yields 0. The UI doesn't show a label for this.
+        if( 1 === $nplurals ){
+            return [ 'All' ];
         }
-        // else translate all implemented plural forms
+        // Germanic plurals can show singular/plural as per source string text boxes
+        // Note that french style plurals include n=0 under the "Single", but we will show "Single (0,1)"
+        if( 2 === $nplurals ){
+            $l10n = [ 
+                'one' => _x('Single','Editor','loco-translate'), 
+                'other' => _x('Plural',"Editor",'loco-translate'),
+            ];
+        }
+        // else translate all implemented plural forms and show sample numbers if useful:
         // for meaning of categories, see http://cldr.unicode.org/index/cldr-spec/plural-rules
         else {
-            $forms = [
+            $l10n = [
                 // Translators: Plural category for zero quantity
                 'zero' => _x('Zero','Plural category','loco-translate'),
                 // Translators: Plural category for singular quantity
@@ -414,14 +421,40 @@ class Loco_Locale implements JsonSerializable {
                 // Translators: General plural category not covered by other forms
                 'other' => _x('Other','Plural category','loco-translate'),
             ];
-            foreach( $raw[1] as $k => $v ){
-                if( isset($forms[$v]) ){
-                    $raw[1][$k] = $forms[$v];
-                }
+        }
+        // process labels to be shown in editor tab, appending sample values of `n` if useful
+        $labels = [];
+        foreach( $plurals as $sample => $tag ){
+            if( is_int($sample) ){
+                $sample = sprintf('%u',$sample);
+            }
+            // if CLDR tag is to be used we'll need to translate it
+            if( array_key_exists($tag,$l10n) ){
+                $name = $l10n[$tag];
+            }
+            else {
+                $name = $tag;
+            }
+            // show just samples if no name
+            if( '' === $name ){
+                $labels[] = $sample;
+            }
+            // show just name if label is numeric, or samples are redundant
+            else if(
+                preg_match('/\\d/',$name)  ||
+                ( 'one' === $tag && '1' === $sample ) ||
+                ( 'two' === $tag && '2' === $sample ) ||
+                ( 'zero' === $tag && '0' === $sample ) ||
+                ( 'other' === $tag && 2 === $nplurals )
+            ){
+                $labels[] = $name;
+            }
+            // else both - most common for standard CLDR forms
+            else {
+                $labels[] = sprintf('%s (%s)', $name, $sample );
             }
         }
-        $this->plurals = $raw;
-        return $raw;
+        return $labels;
     }
 
 
@@ -438,31 +471,74 @@ class Loco_Locale implements JsonSerializable {
     /**
      * Apply PO style Plural-Forms header.
      * @param string e.g. "nplurals=2; plural=n != 1;"
-     * @return self
+     * @return void
      */
     public function setPluralFormsHeader( $str ){
-        if( ! preg_match('/^nplurals=(\\d);\s*plural=([ +\\-\\/*%!=<>|&?:()n0-9]+);?$/', $str, $match ) ){
+        if( ! preg_match('#^nplurals=(\\d);\\s*plural=([-+/*%!=<>|&?:()n\\d ]+);?$#', $str, $match ) ){
             throw new InvalidArgumentException('Invalid Plural-Forms header, '.json_encode($str) );
         }
-        $cache = $this->getPluralData();
-        $exprn = $match[2];
-        // always alter if equation differs
-        if( $cache[0] !== $exprn ){
-            $this->plurals[0] = $exprn;
-            // alter number of forms if changed
-            $nplurals = max( 1, (int) $match[1] );
-            if( $nplurals !== count($cache[1]) ){
-                // named forms must also change, but Plural-Forms cannot contain this information
-                // as a cheat, we'll assume first form always "one" and last always "other"
-                for( $i = 1; $i < $nplurals; $i++ ){
-                    $name = 1 === $i ? 'one' : sprintf('Plural %u',$i);
-                    $forms[] = $name;
-                }
-                $forms[] = 'other';
-                $this->setPlurals( [$exprn,$forms] );
-            }
+        $nplurals = (int) $match[1];
+        $pluraleq = trim( $match[2],' ');
+        // single form requires no further inspection
+        if( 2 > $nplurals ){
+            $this->pluraleq = '0';
+            $this->plurals = ['other'];
+            return;
         }
-        return $this;
+        // Override new equation in all cases
+        $previous = $this->getPluralData()[0];
+        $this->pluraleq = $pluraleq;
+        // quit asap if plural forms being set aren't changing anything
+        if( $nplurals === count($this->plurals) && self::hashPlural($previous) === self::hashPlural($pluraleq) ){
+            return;
+        }
+        // compile sample keys as per built-in CLDR rule for this language
+        $keys = [];
+        $formula = new Plural_Forms($pluraleq);
+        $ns = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,20,21,22,30,31,32,100,101,102,103,104,111,200,201,202,301,302];
+        for( $i = 0; $i < $nplurals; $i++ ){
+            $sample = [];
+            $suffix = '';
+            foreach( $ns as $j => $n ){
+                if( is_null($n) || $formula->execute($n) !== $i ){
+                    continue;
+                }
+                $ns[$j] = null;
+                if( array_key_exists(2,$sample) ){
+                    $suffix = "\xE2\x80\xA6";
+                    break;
+                }
+                else {
+                    $sample[] = $n;
+                }
+            }
+            $keys[] = implode(',',$sample).$suffix;
+        }
+        // use mnemonic tag only if it matches the default (CLDR) tag for the current language
+        if( array_keys($this->plurals) !== $keys ) {
+            // exception when two forms only and the first accepts n=1 and second n=2
+            if( 2 === $nplurals && 0 === $formula->execute(1) && 1 === $formula->execute(2) ){
+                $tags = ['one','other'];
+            }
+            // blanking CLDR tags means only samples will be used as labels
+            else {
+                $tags = array_fill(0,$nplurals,'');
+                // Translators: Shown when a PO file's Plural-Forms header has a different formula from the Unicode CLDR rules
+                Loco_error_AdminNotices::info( __('Plural forms differ from Loco Translate\'s built in rules for this language','loco-translate') );
+            }
+            // set new plural forms
+            $this->plurals = array_combine($keys,$tags);
+        }
+    }
+
+
+    /**
+     * Crude normalizer for a plural equation such that similar formulae can be compared.
+     * @param string original plural equation
+     * @return string signature for comparison
+     */
+    private static function hashPlural( $str ){
+        return trim( str_replace([' ','<>'],['','!='],$str), '()' );
     }
 
 

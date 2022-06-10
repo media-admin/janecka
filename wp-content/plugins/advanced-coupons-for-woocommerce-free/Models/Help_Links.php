@@ -330,7 +330,7 @@ class Help_Links implements Model_Interface, Initializable_Interface
         }
 
         $search    = sanitize_text_field($_REQUEST['term']);
-        $fetch_url = sprintf('https://advancedcouponsplugin.com/wp-json/wp/v2/knowledgebase?search=%s', $search);
+        $fetch_url = sprintf('https://advancedcouponsplugin.com/wp-json/wp/v2/ht-kb/?search=%s', $search);
         $response  = wp_remote_get($fetch_url);
 
         // validate fetch response data.

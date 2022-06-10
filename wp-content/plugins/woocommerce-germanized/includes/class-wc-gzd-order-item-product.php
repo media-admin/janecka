@@ -38,7 +38,21 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		return $amount;
 	}
 
+	private function parse_incl_tax( $incl_tax ) {
+		if ( 'incl' === $incl_tax ) {
+			$incl_tax = true;
+		} elseif ( 'excl' === $incl_tax ) {
+			$incl_tax = false;
+		} elseif ( '' === $incl_tax ) {
+			$incl_tax = false;
+		}
+
+		return wc_string_to_bool( $incl_tax );
+	}
+
 	public function get_deposit_amount( $incl_tax = false ) {
+		$incl_tax = $this->parse_incl_tax( $incl_tax );
+
 		if ( false === $incl_tax ) {
 			return $this->get_deposit_net_amount();
 		}
@@ -60,14 +74,17 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 			$args['currency'] = $order->get_currency();
 		}
 
-		$price_html = wc_price( $this->get_deposit_amount( 'incl' === $tax_display ? true : false  ), $args );
+		$price_html = wc_price( $this->get_deposit_amount( 'incl' === $tax_display ? true : false ), $args );
 
-		return wc_gzd_format_deposit_amount( $price_html, array(
-			'type'            => $this->get_deposit_type(),
-			'quantity'        => $this->get_deposit_quantity(),
-			'packaging_type'  => $this->get_deposit_packaging_type(),
-			'amount_per_unit' => $this->get_deposit_amount_per_unit( 'incl' === $tax_display ? true : false ),
-		) );
+		return wc_gzd_format_deposit_amount(
+			$price_html,
+			array(
+				'type'            => $this->get_deposit_type(),
+				'quantity'        => $this->get_deposit_quantity(),
+				'packaging_type'  => $this->get_deposit_packaging_type(),
+				'amount_per_unit' => $this->get_deposit_amount_per_unit( 'incl' === $tax_display ? true : false ),
+			)
+		);
 	}
 
 	public function get_deposit_quantity() {
@@ -113,6 +130,8 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 	}
 
 	public function get_deposit_amount_per_unit( $incl_tax = false ) {
+		$incl_tax = $this->parse_incl_tax( $incl_tax );
+
 		if ( false === $incl_tax ) {
 			return $this->get_deposit_net_amount_per_unit();
 		}
@@ -384,19 +403,23 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 			$gross_subtotal = $order->get_item_subtotal( $this->order_item, true, false );
 		}
 
-		$prices_net = wc_gzd_recalculate_unit_price( array(
-			'regular_price' => $net_total,
-			'sale_price'    => $net_subtotal,
-			'base'          => $this->get_unit_base(),
-			'products'      => $this->get_unit_product(),
-		) );
+		$prices_net = wc_gzd_recalculate_unit_price(
+			array(
+				'regular_price' => $net_total,
+				'sale_price'    => $net_subtotal,
+				'base'          => $this->get_unit_base(),
+				'products'      => $this->get_unit_product(),
+			)
+		);
 
-		$prices_gross = wc_gzd_recalculate_unit_price( array(
-			'regular_price' => $gross_total,
-			'sale_price'    => $gross_subtotal,
-			'base'          => $this->get_unit_base(),
-			'products'      => $this->get_unit_product(),
-		) );
+		$prices_gross = wc_gzd_recalculate_unit_price(
+			array(
+				'regular_price' => $gross_total,
+				'sale_price'    => $gross_subtotal,
+				'base'          => $this->get_unit_base(),
+				'products'      => $this->get_unit_product(),
+			)
+		);
 
 		$this->set_unit_price( $prices_gross['regular'] );
 		$this->set_unit_price_subtotal( $prices_gross['sale'] );

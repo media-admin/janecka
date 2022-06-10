@@ -1511,35 +1511,35 @@ if ( ! class_exists('XmlExportWooCommerceOrder') )
 			foreach (self::$order_sections as $slug => $section) :
 				if ( ! empty($section['meta']) or ! empty($section['additional']) ): 
 				?>										
-				<p class="wpae-available-fields-group"><?php echo $section['title']; ?><span class="wpae-expander">+</span></p>
+				<p class="wpae-available-fields-group"><?php echo esc_html($section['title']); ?><span class="wpae-expander">+</span></p>
 				<div class="wpae-custom-field">
 					<ul>
 						<?php if ( ! empty($section['meta']) ): ?>
 						<li>
 							<div class="default_column" rel="">								
-								<label class="wpallexport-element-label"><?php echo __("All", "wp_all_export_plugin") . ' ' . $section['title'] . ' ' . __("Data", "wp_all_export_plugin"); ?></label>
-								<input type="hidden" name="rules[]" value="pmxe_<?php echo $slug;?>"/>
+								<label class="wpallexport-element-label"><?php echo esc_html__("All", "wp_all_export_plugin") . ' ' . esc_html($section['title']) . ' ' . esc_html__("Data", "wp_all_export_plugin"); ?></label>
+								<input type="hidden" name="rules[]" value="pmxe_<?php echo esc_attr($slug);?>"/>
 							</div>
 						</li>
 						<?php
 						foreach ($section['meta'] as $cur_meta_key => $field) {
-							$is_auto_field = ( isset($field['auto']) and ! empty($field['auto']) or XmlExportEngine::$is_auto_generate_enabled and 'specific' != $this->post['export_type']);
+                            $is_auto_field = ( isset( $field['auto'] ) && ! empty( $field['auto'] ) || ( XmlExportEngine::$is_auto_generate_enabled && ( isset( $this->post['export_type'] ) && 'specific' != $this->post['export_type'] ) ) );
 							?>
-							<li class="pmxe_<?php echo $slug; ?>  <?php if ( $is_auto_field ) echo 'wp_all_export_auto_generate';?>">
-								<div class="custom_column" rel="<?php echo ($i + 1);?>">
-									<label class="wpallexport-xml-element"><?php echo (is_array($field)) ? $field['name'] : $field; ?></label>
-									<input type="hidden" name="ids[]" value="1"/>
-									<input type="hidden" name="cc_label[]" value="<?php echo (is_array($field)) ? $field['label'] : $cur_meta_key; ?>"/>										
-									<input type="hidden" name="cc_php[]" value=""/>										
-									<input type="hidden" name="cc_code[]" value=""/>
-									<input type="hidden" name="cc_sql[]" value=""/>
-									<input type="hidden" name="cc_options[]" value="<?php echo (is_array($field)) ? $field['options'] : $slug;?>"/>										
-									<input type="hidden" name="cc_type[]" value="<?php echo (is_array($field)) ? $field['type'] : 'woo_order'; ?>"/>
-									<input type="hidden" name="cc_value[]" value="<?php echo (is_array($field)) ? $field['label'] : $cur_meta_key; ?>"/>
-									<input type="hidden" name="cc_name[]" value="<?php echo (is_array($field)) ? $field['name'] : $field;?>"/>
-									<input type="hidden" name="cc_settings[]" value=""/>
-                                    <input type="hidden" name="cc_combine_multiple_fields[]"  value="<?php echo (is_array($field) && isset($field['cc_combine_multiple_fields'])) ? $field['cc_combine_multiple_fields'] : '';?>"/>
-                                    <input type="hidden" name="cc_combine_multiple_fields_value[]"  value="<?php echo (is_array($field) && isset($field['cc_combine_multiple_fields_value'])) ? $field['cc_combine_multiple_fields_value'] : '';?>"/>
+							<li class="pmxe_<?php echo esc_attr($slug); ?>  <?php if ( $is_auto_field ) echo esc_html('wp_all_export_auto_generate');?>">
+                                <div class="custom_column" rel="<?php echo intval($i + 1);?>">
+                                    <label class="wpallexport-xml-element"><?php echo (is_array($field)) ? esc_attr($field['name']) : esc_attr($field); ?></label>
+                                    <input type="hidden" name="ids[]" value="1"/>
+                                    <input type="hidden" name="cc_label[]" value="<?php echo (is_array($field)) ? esc_attr($field['label']) : esc_attr($cur_meta_key); ?>"/>
+                                    <input type="hidden" name="cc_php[]" value=""/>
+                                    <input type="hidden" name="cc_code[]" value=""/>
+                                    <input type="hidden" name="cc_sql[]" value=""/>
+                                    <input type="hidden" name="cc_options[]" value="<?php echo (is_array($field)) ? esc_attr($field['options']) : esc_attr($slug);?>"/>
+                                    <input type="hidden" name="cc_type[]" value="<?php echo (is_array($field)) ? esc_attr($field['type']) : esc_attr('woo_order'); ?>"/>
+                                    <input type="hidden" name="cc_value[]" value="<?php echo (is_array($field)) ? esc_attr($field['label']) : esc_attr($cur_meta_key); ?>"/>
+                                    <input type="hidden" name="cc_name[]" value="<?php echo (is_array($field)) ? esc_attr($field['name']) : esc_attr($field);?>"/>
+                                    <input type="hidden" name="cc_settings[]" value=""/>
+                                    <input type="hidden" name="cc_combine_multiple_fields[]"  value="<?php echo (is_array($field) && isset($field['cc_combine_multiple_fields'])) ? esc_attr($field['cc_combine_multiple_fields']) : '';?>"/>
+                                    <input type="hidden" name="cc_combine_multiple_fields_value[]"  value="<?php echo (is_array($field) && isset($field['cc_combine_multiple_fields_value'])) ? esc_attr($field['cc_combine_multiple_fields_value']) : '';?>"/>
 
                                 </div>
 							</li>
@@ -1554,33 +1554,33 @@ if ( ! class_exists('XmlExportWooCommerceOrder') )
 							{
 								?>
 								<li class="available_sub_section">
-									<p class="wpae-available-fields-group"><?php echo $sub_section['title']; ?><span class="wpae-expander">+</span></p>
+									<p class="wpae-available-fields-group"><?php echo esc_html($sub_section['title']); ?><span class="wpae-expander">+</span></p>
 									<div class="wpae-custom-field">
 									<ul>
 										<li>
 											<div class="default_column" rel="">								
-												<label class="wpallexport-element-label"><?php echo __("All", "wp_all_export_plugin") . ' ' . $sub_section['title']; ?></label>
-												<input type="hidden" name="rules[]" value="pmxe_<?php echo $slug;?>_<?php echo $sub_slug;?>"/>
+												<label class="wpallexport-element-label"><?php echo esc_html__("All", "wp_all_export_plugin") . ' ' . esc_html($sub_section['title']); ?></label>
+												<input type="hidden" name="rules[]" value="pmxe_<?php echo esc_attr($slug);?>_<?php echo esc_attr($sub_slug);?>"/>
 											</div>
 										</li>
 										<?php
 										foreach ($sub_section['meta'] as $field) {
 											?>
-											<li class="pmxe_<?php echo $slug; ?>_<?php echo $sub_slug;?>">
-												<div class="custom_column" rel="<?php echo ($i + 1);?>">
-													<label class="wpallexport-xml-element"><?php echo (is_array($field)) ? $field['name'] : $field; ?></label>
+											<li class="pmxe_<?php echo esc_attr($slug); ?>_<?php echo esc_attr($sub_slug);?>">
+												<div class="custom_column" rel="<?php echo intval($i + 1);?>">
+													<label class="wpallexport-xml-element"><?php echo (is_array($field)) ? esc_attr($field['name']) : esc_attr($field); ?></label>
 													<input type="hidden" name="ids[]" value="1"/>
-													<input type="hidden" name="cc_label[]" value="item_data__<?php echo (is_array($field)) ? $field['label'] : $field; ?>"/>										
-													<input type="hidden" name="cc_php[]" value=""/>										
+													<input type="hidden" name="cc_label[]" value="item_data__<?php echo (is_array($field)) ? esc_attr($field['label']) : esc_attr($field); ?>"/>
+													<input type="hidden" name="cc_php[]" value=""/>
 													<input type="hidden" name="cc_code[]" value=""/>
 													<input type="hidden" name="cc_sql[]" value=""/>
 													<input type="hidden" name="cc_options[]" value="item_data"/>
-													<input type="hidden" name="cc_type[]" value="<?php echo (is_array($field)) ? $field['type'] : $sub_slug; ?>"/>
-													<input type="hidden" name="cc_value[]" value="item_data__<?php echo (is_array($field)) ? $field['label'] : $field; ?>"/>
-													<input type="hidden" name="cc_name[]" value="<?php echo (is_array($field)) ? $field['name'] : $field;?>"/>
+													<input type="hidden" name="cc_type[]" value="<?php echo (is_array($field)) ? esc_attr($field['type']) : esc_attr($sub_slug); ?>"/>
+													<input type="hidden" name="cc_value[]" value="item_data__<?php echo (is_array($field)) ? esc_attr($field['label']) : esc_attr($field); ?>"/>
+													<input type="hidden" name="cc_name[]" value="<?php echo (is_array($field)) ? esc_attr($field['name']) : esc_attr($field);?>"/>
 													<input type="hidden" name="cc_settings[]" value=""/>
-                                                    <input type="hidden" name="cc_combine_multiple_fields[]"  value="<?php echo (is_array($field) && isset($field['cc_combine_multiple_fields'])) ? $field['cc_combine_multiple_fields'] : '';?>"/>
-                                                    <input type="hidden" name="cc_combine_multiple_fields_value[]"  value="<?php echo (is_array($field) && isset($field['cc_combine_multiple_fields_value'])) ? $field['cc_combine_multiple_fields_value'] : '';?>"/>
+                                                    <input type="hidden" name="cc_combine_multiple_fields[]"  value="<?php echo (is_array($field) && isset($field['cc_combine_multiple_fields'])) ? esc_attr($field['cc_combine_multiple_fields']) : '';?>"/>
+                                                    <input type="hidden" name="cc_combine_multiple_fields_value[]"  value="<?php echo (is_array($field) && isset($field['cc_combine_multiple_fields_value'])) ? esc_attr($field['cc_combine_multiple_fields_value']) : '';?>"/>
 
                                                 </div>
 											</li>
@@ -1611,7 +1611,7 @@ if ( ! class_exists('XmlExportWooCommerceOrder') )
 				<?php
 				foreach (self::$order_sections as $slug => $section) :
 					?>										
-					<optgroup label="<?php echo $section['title']; ?>">					
+					<optgroup label="<?php echo esc_attr($section['title']); ?>">
 						<?php
 						foreach ($section['meta'] as $cur_meta_key => $field) 
 						{
@@ -1621,9 +1621,9 @@ if ( ! class_exists('XmlExportWooCommerceOrder') )
 							$field_options = is_array($field) ? $field['options'] : $slug;								
 							?>
 							<option 
-								value="<?php echo $field_type;?>" 
-								label="<?php echo $field_label;?>" 									
-								options="<?php echo $field_options; ?>"><?php echo $field_name;?></option>						
+								value="<?php echo esc_attr($field_type);?>"
+								label="<?php echo esc_attr($field_label);?>"
+								options="<?php echo esc_attr($field_options); ?>"><?php echo esc_attr($field_name);?></option>
 							<?php						
 						}		
 						?>
@@ -1634,7 +1634,7 @@ if ( ! class_exists('XmlExportWooCommerceOrder') )
 						foreach ($section['additional'] as $sub_slug => $sub_section) 
 						{
 							?>
-							<optgroup label="<?php echo $sub_section['title']; ?>">		
+							<optgroup label="<?php echo esc_attr($sub_section['title']); ?>">
 													
 								<?php foreach ($sub_section['meta'] as $field): ?>
 									
@@ -1645,9 +1645,9 @@ if ( ! class_exists('XmlExportWooCommerceOrder') )
 									$field_options = 'item_data';
 									?>
 									<option 
-										value="<?php echo $field_type;?>" 
-										label="<?php echo $field_label;?>" 											
-										options="<?php echo $field_options; ?>"><?php echo $field_name;?></option>								
+										value="<?php echo esc_attr($field_type);?>"
+										label="<?php echo esc_attr($field_label);?>"
+										options="<?php echo esc_attr($field_options); ?>"><?php echo esc_attr($field_name);?></option>
 																											
 								<?php endforeach; ?>		
 
@@ -1681,7 +1681,7 @@ if ( ! class_exists('XmlExportWooCommerceOrder') )
 			$exclude = array('__product_variation', 'post_type', '__line_item_id', '__line_item_title', '_line_tax', '_line_tax_data', '_wc_rating_count', '_wc_review_count', '_default_attributes', '_product_attributes');
 			foreach (self::$order_sections as $slug => $section) :
 				?>										
-				<optgroup label="<?php echo $section['title']; ?>">					
+				<optgroup label="<?php echo esc_attr($section['title']); ?>">
 					<?php
 					foreach ($section['meta'] as $cur_meta_key => $field) 
 					{
@@ -1696,18 +1696,18 @@ if ( ! class_exists('XmlExportWooCommerceOrder') )
 							case 'customer':								
 								if ( strpos($field_label, '_') === 0):
 								?>
-								<option value="<?php echo 'cf_' . $field_label; ?>"><?php echo $field_name; ?></option>
+								<option value="<?php echo esc_attr('cf_' . $field_label); ?>"><?php echo esc_html($field_name); ?></option>
 								<?php
 								else:
 								?>
-								<option value="<?php echo $field_label; ?>"><?php echo $field_name; ?></option>
+								<option value="<?php echo esc_attr($field_label); ?>"><?php echo esc_html($field_name); ?></option>
 								<?php
 								endif;
 								break;
 							case 'items':
 								if (!in_array($field_label, $exclude)):
 								?>
-								<option value="<?php echo 'item_' . $field_label; ?>"><?php echo $field_name; ?></option>
+								<option value="<?php echo esc_attr('item_' . $field_label); ?>"><?php echo esc_html($field_name); ?></option>
 								<?php
 								endif;
 							case 'notes':
@@ -1716,7 +1716,7 @@ if ( ! class_exists('XmlExportWooCommerceOrder') )
 								$allowed = array('__coupons_used');
 								if (in_array($field_label, $allowed)):
 								?>
-								<option value="<?php echo 'item_' . $field_label; ?>"><?php echo $field_name; ?></option>
+								<option value="<?php echo esc_attr('item_' . $field_label); ?>"><?php echo esc_html($field_name); ?></option>
 								<?php
 								endif;
 							case 'refunds':
@@ -1726,18 +1726,18 @@ if ( ! class_exists('XmlExportWooCommerceOrder') )
 								{
 									case 'cf':									
 										?>
-										<option value="<?php echo 'cf_' . $field_label; ?>"><?php echo $field_name; ?></option>							
+										<option value="<?php echo esc_attr('cf_' . $field_label); ?>"><?php echo esc_html($field_name); ?></option>
 										<?php
 										break;
 									case 'cats':
 									case 'attr':
 										?>
-										<option value="<?php echo 'tx_' . $field_label; ?>"><?php echo $field_name; ?></option>							
+										<option value="<?php echo esc_attr('tx_' . $field_label); ?>"><?php echo esc_html($field_name); ?></option>
 										<?php
 										break;
 									default:
 										?>
-										<option value="<?php echo  $field_label; ?>"><?php echo $field_name; ?></option>
+										<option value="<?php echo esc_attr($field_label); ?>"><?php echo esc_html($field_name); ?></option>
 										<?php
 										break;
 								}								
@@ -1758,7 +1758,7 @@ if ( ! class_exists('XmlExportWooCommerceOrder') )
 									if ($field_label . '_' == $field_type) $field_type = '';
 									$field_type = str_replace(array('woo', 'cats', 'attr'), array('cf', 'tx', 'tx'), $field_type);
 									?>
-									<option value="<?php echo 'product_' . $field_type . $field_label; ?>"><?php echo $field_name; ?></option>
+									<option value="<?php echo esc_attr('product_' . $field_type . $field_label); ?>"><?php echo esc_html($field_name); ?></option>
 								<?php endforeach;?>
 							</optgroup>
 							<?php
@@ -1876,7 +1876,7 @@ if ( ! class_exists('XmlExportWooCommerceOrder') )
 		}
 
 			public function available_order_items_data()
-			{			
+			{
 				
 				$data = XmlExportEngine::$woo_export->get_all_fields_for_order_items();
 

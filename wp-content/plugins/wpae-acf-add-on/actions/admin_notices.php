@@ -37,7 +37,7 @@ function pmae_admin_notices() {
 		foreach ($messages as $type => $m) {
 			in_array((string)$type, array('updated', 'error')) or $type = 'updated';
 			?>
-			<div class="<?php echo $type ?>"><p><?php echo $m ?></p></div>
+			<div class="<?php echo esc_attr($type) ?>"><p><?php echo wp_kses_post($m)  ?></p></div>
 			<?php 
 		}
 	}

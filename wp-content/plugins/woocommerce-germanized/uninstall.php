@@ -16,7 +16,7 @@ wp_clear_scheduled_hook( 'woocommerce_gzd_customer_cleanup' );
 
 if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 
-	include_once( 'includes/class-wc-gzd-install.php' );
+	include_once 'includes/class-wc-gzd-install.php';
 
 	// Delete digital rates
 	$wpdb->delete( $wpdb->prefix . 'woocommerce_tax_rates', array( 'tax_rate_class' => 'virtual-rate' ), array( '%s' ) );
@@ -80,20 +80,20 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 		'_shipping_parcelshop',
 		'_shipping_title',
 		'_billing_title',
-		'_woocommerce_activation'
+		'_woocommerce_activation',
 	);
 
 	// Delete gzd meta data
-	$wpdb->query( "DELETE meta FROM {$wpdb->postmeta} meta WHERE meta.meta_key IN ('" . join( "','", $meta_keys ) . "');" );
+	$wpdb->query( "DELETE meta FROM {$wpdb->postmeta} meta WHERE meta.meta_key IN ('" . join( "','", $meta_keys ) . "');" ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 	// Delete terms if > WP 4.2 (term splitting was added in 4.2)
 	if ( version_compare( $wp_version, '4.2', '>=' ) ) {
 		// Delete term taxonomies
-		foreach ( array( 'product_delivery_time', 'product_unit', 'product_price_label', 'product_deposit_type', 'product_nutrient', 'product_allergen' ) as $taxonomy ) {
+		foreach ( array( 'product_delivery_time', 'product_unit', 'product_price_label', 'product_deposit_type', 'product_nutrient', 'product_allergen' ) as $taxonomy_name ) {
 			$wpdb->delete(
 				$wpdb->term_taxonomy,
 				array(
-					'taxonomy' => $taxonomy,
+					'taxonomy' => $taxonomy_name,
 				)
 			);
 		}
@@ -125,11 +125,11 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 		"{$wpdb->prefix}woocommerce_gzd_packaging",
 		"{$wpdb->prefix}woocommerce_gzd_packagingmeta",
 		"{$wpdb->prefix}woocommerce_gzd_shipping_provider",
-		"{$wpdb->prefix}woocommerce_gzd_shipping_providermeta"
+		"{$wpdb->prefix}woocommerce_gzd_shipping_providermeta",
 	);
 
-	foreach( $custom_tables as $table ) {
-		$result = $wpdb->query( "DROP TABLE IF EXISTS " . $table );
+	foreach ( $custom_tables as $table ) {
+		$result = $wpdb->query( 'DROP TABLE IF EXISTS ' . $table ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 	}
 
 	// Clear any cached data that has been removed

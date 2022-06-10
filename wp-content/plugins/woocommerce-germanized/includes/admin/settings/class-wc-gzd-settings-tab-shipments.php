@@ -45,7 +45,7 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 		$label = parent::get_breadcrumb_label( $label );
 
 		if ( empty( $current_section ) ) {
-			return $label . '<a href="' . admin_url( 'admin.php?page=wc-gzd-shipments' ) . '" class="page-title-action" target="_blank">' . _x( 'Manage', 'shipments', 'woocommerce-germanized' ) . '</a>';
+			return $label . '<a href="' . esc_url( admin_url( 'admin.php?page=wc-gzd-shipments' ) ) . '" class="page-title-action" target="_blank">' . _x( 'Manage', 'shipments', 'woocommerce-germanized' ) . '</a>';
 		} else {
 			return $label;
 		}
@@ -71,7 +71,7 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 				'title' => __( 'Automated packing', 'woocommerce-germanized' ),
 				'type'  => 'title',
 				'id'    => 'automated_packing_options',
-				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( '%sUpgrade to %spro%s%s to unlock this feature and enjoy premium support.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>'
+				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( '%1$sUpgrade to %2$spro%3$s%4$s to unlock this feature and enjoy premium support.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>',
 			),
 			array(
 				'title' => '',
@@ -81,7 +81,10 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 				'type'  => 'image',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'automated_packing_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'automated_packing_options',
+			),
 		);
 	}
 }

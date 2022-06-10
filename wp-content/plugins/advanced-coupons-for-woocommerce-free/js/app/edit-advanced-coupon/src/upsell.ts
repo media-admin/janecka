@@ -16,7 +16,9 @@ export default function upsell_events() {
     "#reset_usage_limit_period",
     upsell_advance_usage_limits
   );
-  $("#usage_restriction_coupon_data .exclude_coupon_ids_field").on(
+  $(
+    "#usage_restriction_coupon_data .acfw_exclude_coupons_field,#usage_restriction_coupon_data .acfw_allowed_customers_field"
+  ).on(
     "click change focus",
     "input,select",
     upsell_exclude_coupons_restriction
@@ -50,6 +52,14 @@ export default function upsell_events() {
   );
 
   $("#woocommerce-coupon-data #discount_type").trigger("acfw_load");
+
+  initExcludeCouponField();
+}
+
+function initExcludeCouponField() {
+  const $excludeField = $("p.acfw_exclude_coupons_field");
+
+  $excludeField.insertAfter("p.form-field.individual_use_field");
 }
 
 /**
@@ -83,6 +93,7 @@ function upsell_exclude_coupons_restriction() {
     afterClose: () => (exludeCouponShown = false),
   });
   $(this).val("");
+  $(this).blur();
 }
 
 /**

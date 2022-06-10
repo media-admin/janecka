@@ -390,6 +390,7 @@ class WPML_Support implements Model_Interface
      * Remove translated version of products in product search.
      *
      * @since 1.3
+     * @since 4.2.1 Make sure the main language products are returned on product search AJAX when the product was originally created on a secondary language.
      * @access public
      *
      * @param array $products List of products.
@@ -397,13 +398,15 @@ class WPML_Support implements Model_Interface
      */
     public function remove_translated_versions_of_products($products)
     {
-        global $woocommerce_wpml;
+        global $sitepress, $woocommerce_wpml, $wpml_post_translations;
+
+        $default_language = $sitepress->get_default_language();
 
         // only run filter when WCML is properly setup.
         if ($woocommerce_wpml && $woocommerce_wpml->products) {
 
-            $products = array_filter($products, function ($name, $id) use ($woocommerce_wpml) {
-                return $woocommerce_wpml->products->is_original_product($id);
+            $products = array_filter($products, function ($name, $id) use ($wpml_post_translations, $default_language) {
+                return $default_language === $wpml_post_translations->get_element_lang_code($id);
             }, ARRAY_FILTER_USE_BOTH);
         }
 

@@ -80,6 +80,6 @@ class OrdersImporter extends Importer {
 	    $data_store = WC_Data_Store::load( 'customer-download' );
 	    $data_store->delete_by_order_id( $this->getPid() );
 	    wc_downloadable_product_permissions($this->getPid(), true);
-        update_option('wp_all_import_previously_updated_order_' . $this->getImport()->id, $this->getPid());
+        update_option('wp_all_import_previously_updated_order_' . $this->getImport()->id, $this->getPid(), false);
     }
 }

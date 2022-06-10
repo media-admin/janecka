@@ -81,14 +81,12 @@ function wc_gzd_get_gzd_product( $product ) {
 }
 
 function wc_gzd_get_small_business_product_notice() {
-
 	/**
 	 * Filter to adjust the small business product notice.
 	 *
 	 * @param string $html The notice.
 	 *
 	 * @since 1.0.0
-	 *
 	 */
 	return apply_filters( 'woocommerce_gzd_small_business_product_notice', wc_gzd_get_small_business_notice() );
 }
@@ -128,7 +126,6 @@ function wc_gzd_is_revocation_exempt( $product, $type = 'digital' ) {
 				}
 			}
 		}
-
 	} elseif ( 'service' === $type && ( $checkbox = wc_gzd_get_legal_checkbox( 'service' ) ) ) {
 
 		if ( $checkbox->is_enabled() ) {
@@ -185,7 +182,7 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 		$types = array( $types );
 	}
 
-	if ( in_array( $product->get_type(), $types ) ) {
+	if ( in_array( $product->get_type(), $types, true ) ) {
 		$matches_type = true;
 	} else {
 		foreach ( $types as $type ) {
@@ -196,7 +193,7 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 			} elseif ( 'defective_copy' === $type ) {
 				$matches_type = wc_gzd_get_product( $product )->is_defective_copy();
 			} else {
-				$getter = "is_" . $type;
+				$getter = 'is_' . $type;
 				try {
 					if ( is_callable( array( $product, $getter ) ) ) {
 						$reflection = new ReflectionMethod( $product, $getter );
@@ -205,11 +202,11 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 							$matches_type = $product->{$getter}() === true;
 						}
 					}
-				} catch ( Exception $e ) {
+				} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 				}
 			}
 			// Seems like we found a match - lets escape the loop
-			if ( $matches_type === true ) {
+			if ( true === $matches_type ) {
 				break;
 			}
 		}
@@ -222,7 +219,7 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 		if ( $parent_id ) {
 			$parent_type = WC_Product_Factory::get_product_type( $parent_id );
 
-			if ( $parent_type && in_array( $parent_type, $types ) ) {
+			if ( $parent_type && in_array( $parent_type, $types, true ) ) {
 				$matches_type = true;
 			}
 		}
@@ -254,13 +251,16 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
 			$product = wc_gzd_get_gzd_product( $product );
 		}
 
-		$default_args = wp_parse_args( $args, array(
-			'regular_price' => $wc_product->get_regular_price(),
-			'sale_price'    => $wc_product->get_sale_price(),
-			'price'         => $wc_product->get_price(),
-			'base'          => $product->get_unit_base(),
-			'products'      => $product->get_unit_product(),
-		) );
+		$default_args = wp_parse_args(
+			$args,
+			array(
+				'regular_price' => $wc_product->get_regular_price(),
+				'sale_price'    => $wc_product->get_sale_price(),
+				'price'         => $wc_product->get_price(),
+				'base'          => $product->get_unit_base(),
+				'products'      => $product->get_unit_product(),
+			)
+		);
 
 		if ( isset( $default_args['tax_mode'] ) && 'incl' === $default_args['tax_mode'] ) {
 			$default_args['regular_price'] = wc_get_price_including_tax( $wc_product, array( 'price' => $default_args['regular_price'] ) );
@@ -288,8 +288,8 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
 	$args['sale_price']    = floatval( $args['sale_price'] );
 	$args['regular_price'] = floatval( $args['regular_price'] );
 	$args['price']         = floatval( $args['price'] );
-	$args['base']          = ! empty( $args['base'] ) ? floatval( $args['base'] ) : 0;
-	$args['products']      = ! empty( $args['products'] ) ? floatval( $args['products'] ) : 0;
+	$args['base']          = ! empty( $args['base'] ) ? floatval( $args['base'] ) : 0.0;
+	$args['products']      = ! empty( $args['products'] ) ? floatval( $args['products'] ) : 0.0;
 
 	$base         = $args['base'];
 	$unit_product = $args['products'];
@@ -298,7 +298,7 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
 
 	if ( empty( $unit_product ) ) {
 		// Set base multiplicator to 1
-		$base = 1;
+		$base = 1.0;
 	} else {
 		$product_base = $unit_product;
 	}
@@ -306,7 +306,7 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
 	$prices = array();
 
 	// Do not recalculate if unit base and/or product is empty
-	if ( 0 == $product_base || 0 == $base ) {
+	if ( 0.0 === $product_base || 0.0 === $base ) {
 		return $prices;
 	}
 
@@ -345,11 +345,17 @@ function wc_gzd_recalculate_unit_price( $args = array(), $product = false ) {
  */
 function wc_gzd_get_valid_product_delivery_time_slugs( $maybe_slug, $allow_add_new = true ) {
 	if ( is_array( $maybe_slug ) ) {
-		return array_filter( array_map( function( $maybe_slug ) use ( $allow_add_new ) {
-			return wc_gzd_get_valid_product_delivery_time_slugs( $maybe_slug, $allow_add_new );
-		}, $maybe_slug ), function( $x ) {
-			return false !== $x;
-		} );
+		return array_filter(
+			array_map(
+				function( $maybe_slug ) use ( $allow_add_new ) {
+					return wc_gzd_get_valid_product_delivery_time_slugs( $maybe_slug, $allow_add_new );
+				},
+				$maybe_slug
+			),
+			function( $x ) {
+				return false !== $x;
+			}
+		);
 	} else {
 		$slug = false;
 
@@ -379,11 +385,70 @@ function wc_gzd_get_valid_product_delivery_time_slugs( $maybe_slug, $allow_add_n
 						}
 					}
 				}
- 			} else {
+			} else {
 				$slug = $term->slug;
 			}
 		}
 
 		return $slug;
 	}
+}
+
+function wc_gzd_product_review_is_verified( $comment_id ) {
+	return apply_filters( 'woocommerce_gzd_product_review_is_verified', wc_review_is_from_verified_owner( $comment_id ), $comment_id );
+}
+
+function wc_gzd_product_rating_is_verified( $product_id ) {
+	return apply_filters( 'woocommerce_gzd_product_rating_is_verified', 'yes' === get_option( 'woocommerce_gzd_product_ratings_verified' ), $product_id );
+}
+
+function wc_gzd_get_legal_product_rating_authenticity_notice( $product_id ) {
+	$product_id = is_a( $product_id, 'WC_Product' ) ? $product_id->get_id() : $product_id;
+	$verified   = wc_gzd_product_rating_is_verified( $product_id );
+	$text       = $verified ? get_option( 'woocommerce_gzd_product_rating_verified_text', __( '{link}Verified overall ratings{/link}', 'woocommerce-germanized' ) ) : get_option( 'woocommerce_gzd_product_rating_unverified_text', __( '{link}Unverified overall ratings{/link}', 'woocommerce-germanized' ) );
+
+	if ( $text ) {
+		$replacements = array(
+			'{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'review_authenticity' ) ) . '" target="_blank">',
+			'{/link}' => '</a>',
+		);
+
+		$text = wc_gzd_replace_label_shortcodes( $text, $replacements );
+	}
+
+	/**
+	 * Filter to adjust the legal product rating authenticity text for products.
+	 *
+	 * @param string $text The HTML output.
+	 * @param integer $product_id
+	 *
+	 * @since 3.9.3
+	 */
+	return apply_filters( 'woocommerce_gzd_legal_product_rating_authenticity_text', $text, $product_id );
+}
+
+function wc_gzd_get_legal_product_review_authenticity_notice( $comment_id ) {
+	$comment_id = is_a( $comment_id, 'WP_Comment' ) ? $comment_id->comment_ID : $comment_id;
+	$verified   = wc_gzd_product_review_is_verified( $comment_id );
+	$text       = $verified ? get_option( 'woocommerce_gzd_product_review_verified_text', __( 'Verified purchase. {link}Find out more{/link}', 'woocommerce-germanized' ) ) : get_option( 'woocommerce_gzd_product_review_unverified_text', __( 'Purchase not verified. {link}Find out more{/link}', 'woocommerce-germanized' ) );
+
+	if ( $text ) {
+		$replacements = array(
+			'{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'review_authenticity' ) ) . '" target="_blank">',
+			'{/link}' => '</a>',
+		);
+
+		$text = wc_gzd_replace_label_shortcodes( $text, $replacements );
+	}
+
+	/**
+	 * Filter to adjust the legal product review authenticity text for a single review.
+	 *
+	 * @param string $text The HTML output.
+	 * @param bool $verified
+	 * @param integer $comment_id
+	 *
+	 * @since 3.9.3
+	 */
+	return apply_filters( 'woocommerce_gzd_legal_product_review_authenticity_text', $text, $verified, $comment_id );
 }

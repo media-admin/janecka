@@ -2,7 +2,7 @@
 /**
  * Admin delivery threshold notification.
  *
- * @version 1.0.0
+ * @version 1.0.1
  *
  * @var \Vendidero\OneStopShop\Report $report
  */
@@ -16,17 +16,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <?php /* translators: %s: Customer billing full name */ ?>
-	<p><?php printf( _x( 'Your OSS delivery threshold of %1$s has been reached. Please take action immediately. Visit the <a href="%2$s">OSS Settings Panel</a> for details.', 'oss', 'woocommerce-germanized' ), wc_price( \Vendidero\OneStopShop\Package::get_delivery_notification_threshold() ), esc_url( \Vendidero\OneStopShop\Settings::get_settings_url() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+	<p><?php echo wp_kses_post( sprintf( _x( 'Your OSS delivery threshold of %1$s has been reached. Please take action immediately. Visit the <a href="%2$s">OSS Settings Panel</a> for details.', 'oss', 'woocommerce-germanized' ), wc_price( \Vendidero\OneStopShop\Package::get_delivery_notification_threshold() ), esc_url( \Vendidero\OneStopShop\Settings::get_settings_url() ) ) ); ?></p>
 
-	<h2><?php _ex( 'Report Details', 'oss', 'woocommerce-germanized' ); ?></h2>
+	<h2><?php echo esc_html_x( 'Report Details', 'oss', 'woocommerce-germanized' ); ?></h2>
 
 	<ul>
-		<li><?php _ex( 'Period', 'oss', 'woocommerce-germanized' ); ?>: <?php echo $report->get_date_start()->format( wc_date_format() ); ?> - <?php echo $report->get_date_end()->format( wc_date_format() ); ?></li>
-        <li><?php _ex( 'Net total', 'oss', 'woocommerce-germanized' ); ?>: <?php echo wc_price( $report->get_net_total() ); ?></li>
-        <li><?php _ex( 'Tax total', 'oss', 'woocommerce-germanized' ); ?>: <?php echo wc_price( $report->get_tax_total() ); ?></li>
-    </ul>
+		<li><?php echo esc_html_x( 'Period', 'oss', 'woocommerce-germanized' ); ?>: <?php echo esc_html( $report->get_date_start()->format( wc_date_format() ) ); ?> - <?php echo esc_html( $report->get_date_end()->format( wc_date_format() ) ); ?></li>
+		<li><?php echo esc_html_x( 'Net total', 'oss', 'woocommerce-germanized' ); ?>: <?php echo wc_price( $report->get_net_total() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></li>
+		<li><?php echo esc_html_x( 'Tax total', 'oss', 'woocommerce-germanized' ); ?>: <?php echo wc_price( $report->get_tax_total() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></li>
+	</ul>
 
-    <a class="button button-primary" href="<?php echo esc_url( $report->get_url() ); ?>"><?php _ex( 'See report details', 'oss', 'woocommerce-germanized' ); ?></a>
+	<a class="button button-primary" href="<?php echo esc_url( $report->get_url() ); ?>"><?php echo esc_html_x( 'See report details', 'oss', 'woocommerce-germanized' ); ?></a>
 <?php
 
 /**

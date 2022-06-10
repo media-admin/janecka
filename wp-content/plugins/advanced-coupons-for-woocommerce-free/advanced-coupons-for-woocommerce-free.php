@@ -4,13 +4,13 @@
  * Plugin Name: Advanced Coupons for WooCommerce Free
  * Plugin URI: https://advancedcouponsplugin.com
  * Description: Advanced Coupons for WooCommerce (Free Version) gives WooCommerce store owners extra coupon features so they can market their stores better.
- * Version: 4.2
+ * Version: 4.3.1
  * Author: Rymera Web Co
  * Author URI: https://rymera.com.au
  * Requires at least: 5.2
- * Tested up to: 5.9.4
+ * Tested up to: 6.1
  * WC requires at least: 4.0
- * WC tested up to: 6.4.1
+ * WC tested up to: 6.5.1
  *
  * Text Domain: advanced-coupons-for-woocommerce-free
  * Domain Path: /languages/
@@ -40,6 +40,7 @@ use ACFWF\Models\Edit_Coupon;
 use ACFWF\Models\Help_Links;
 use ACFWF\Models\Notices;
 use ACFWF\Models\Order_Details;
+use ACFWF\Models\REST_API\API_Reports;
 use ACFWF\Models\REST_API\API_Settings;
 use ACFWF\Models\REST_API\API_Store_Credit_Customer;
 use ACFWF\Models\REST_API\API_Store_Credit_Entry;
@@ -442,7 +443,7 @@ class ACFWF extends Abstract_Main_Plugin_Class
         $url_coupons             = URL_Coupons::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
         $role_restriction        = Role_Restrictions::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
         $cart_conditions         = Cart_Conditions::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
-        $settings                = Admin_App::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        $admin_app               = Admin_App::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
         $edit_coupon             = Edit_Coupon::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions, $cart_conditions);
         $bogo_admin              = BOGO_Admin::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
         $bogo_frontend           = BOGO_Frontend::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
@@ -455,8 +456,9 @@ class ACFWF extends Abstract_Main_Plugin_Class
         $store_credits_admin     = Store_Credits_Admin::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
         $store_credits_checkout  = Store_Credits_Checkout::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
         $store_credits_myaccount = Store_Credits_My_Account::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+
+        $store_credits_calculate = Store_Credits_Calculate::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
         Store_Credits_Registry::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
-        Store_Credits_Calculate::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
 
         // third party integration
         $currency_switcher = Currency_Switcher::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
@@ -464,9 +466,9 @@ class ACFWF extends Abstract_Main_Plugin_Class
         Woocs::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
 
         // boostrap args
-        $initiables     = array($cart_conditions, $edit_coupon, $bogo_admin, $notices, $upsell, $admin_notes, $help_links, $editor_blocks, $store_credits_checkout, $store_credits_myaccount);
-        $activatables   = array($edit_coupon, $bogo_admin, $notices, $admin_notes, $store_credits_admin);
-        $deactivatables = array();
+        $initiables     = array($cart_conditions, $admin_app, $edit_coupon, $bogo_admin, $notices, $upsell, $admin_notes, $help_links, $editor_blocks, $store_credits_checkout, $store_credits_myaccount);
+        $activatables   = array($edit_coupon, $bogo_admin, $notices, $admin_notes, $store_credits_admin, $store_credits_calculate);
+        $deactivatables = array($admin_app);
 
         Bootstrap::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions, $activatables, $initiables, $deactivatables);
         Script_Loader::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
@@ -474,6 +476,7 @@ class ACFWF extends Abstract_Main_Plugin_Class
         API_Settings::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
         API_Store_Credit_Entry::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
         API_Store_Credit_Customer::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
+        API_Reports::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);
 
         //deprecated
         BOGO_Deals::get_instance($this, $this->Plugin_Constants, $this->Helper_Functions);

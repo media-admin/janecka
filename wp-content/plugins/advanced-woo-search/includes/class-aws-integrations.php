@@ -192,6 +192,19 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
                     add_action( 'wp_head', array( $this, 'orchid_store_wp_head' ) );
                 }
 
+                if ( 'Betheme' === $this->current_theme ) {
+                    add_action( 'wp_head', array( $this, 'betheme_wp_head' ) );
+                }
+
+                if ( 'Gecko' === $this->current_theme ) {
+                    add_action( 'wp_head', array( $this, 'gecko_wp_head' ) );
+                    add_filter( 'aws_js_seamless_searchbox_markup', array( $this, 'gecko_seamless_searchbox_markup' ), 1 );
+                }
+
+                if ( 'Savoy' === $this->current_theme ) {
+                    add_filter( 'aws_js_seamless_searchbox_markup', array( $this, 'savoy_seamless_searchbox_markup' ), 1 );
+                }
+
             }
 
             add_action( 'wp_head', array( $this, 'head_js_integration' ) );
@@ -1402,6 +1415,96 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
         <?php }
 
         /*
+         * Be theme search form styles
+         */
+        public function betheme_wp_head() { ?>
+            <style>
+                #Header_wrapper #searchform {
+                    opacity: 0;
+                }
+            </style>
+        <?php }
+
+        /*
+         * Gecko theme search form
+         */
+        public function gecko_wp_head() { ?>
+            <style>
+                #jas-wrapper .aws-container.header__search {
+                    height: 100%;
+                    width: 100%;
+                    top: 0;
+                    left: 0;
+                    background: rgba(0, 0, 0, .95);
+                    z-index: 9999;
+                }
+                #jas-wrapper .aws-container.header__search .aws-search-form {
+                    max-width: 550px;
+                    top: calc(50% - 125px);
+                    left: 50%;
+                    width: 100%;
+                    -webkit-transform: translateX(-50%);
+                    -moz-transform: translateX(-50%);
+                    -ms-transform: translateX(-50%);
+                    -o-transform: translateX(-50%);
+                    transform: translateX(-50%);
+                }
+                #jas-wrapper .aws-container.header__search .aws-search-form .aws-search-field {
+                    background: transparent;
+                    border: none;
+                    border-bottom: 1px solid rgba(255, 255, 255, .1);
+                    text-align: center;
+                    font-size: 18px;
+                    color: #fff;
+                }
+            </style>
+
+            <script>
+                window.addEventListener('load', function() {
+                    if ( typeof jQuery !== 'undefined' ) {
+                        jQuery(document).on( 'click', '#jas-header .sf-open, #sf-close', function () {
+                            jQuery('.aws-container').toggleClass('dn');
+                            jQuery('.aws-search-result').hide();
+                            jQuery('.aws-container.header__search .aws-search-field:visible').focus();
+                        } );
+                    }
+                    function aws_results_layout( styles, options ) {
+                        var form = options.form;
+                        var realForm = form.closest('#jas-wrapper').find('.aws-container.header__search .aws-search-form');
+                        if ( options.form.closest('#jas-wrapper').length > 0 && jQuery('.aws-container.header__search').is(':visible') ) {
+                            var offset = parseInt( realForm.css('top') );
+                            var offsetLeft = parseInt( realForm.css('left') );
+                            var bodyOffset = jQuery('body').offset();
+                            styles.top = offset + form.find('.aws-search-field').innerHeight();
+                            styles.width = realForm.outerWidth();
+                            styles.left = offsetLeft - realForm.outerWidth() / 2;
+                        }
+                        return styles;
+                    }
+                    AwsHooks.add_filter( "aws_results_layout", aws_results_layout );
+                }, false);
+            </script>
+
+        <?php }
+
+        /*
+         * Gecko theme markup for seamless js integration
+         */
+        public function gecko_seamless_searchbox_markup( $markup ) {
+            $markup = str_replace( 'aws-container', 'aws-container header__search w__100 dn pf', $markup );
+            $markup = str_replace( '</form>', '</form><a id="sf-close" class="pa" href="#"><i class="pe-7s-close"></i></a>', $markup );
+            return $markup;
+        }
+
+        /*
+         * Savoy theme markup for seamless js integration
+         */
+        public function savoy_seamless_searchbox_markup( $markup ) {
+            $markup = str_replace( 'name="s"', 'name="s" id="nm-header-search-input"', $markup );
+            return $markup;
+        }
+
+        /*
          * Exclude product categories
          */
         public function filter_protected_cats_term_exclude( $exclude ) {
@@ -1633,6 +1736,18 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
 
             if ( 'Basel' === $this->current_theme ) {
                 $selectors[] = '.basel-search-wrapper #searchform, .secondary-header #searchform, .mobile-nav #searchform';
+            }
+
+            if ( 'Betheme' === $this->current_theme ) {
+                $selectors[] = '#Header_wrapper #searchform';
+            }
+
+            if ( 'Gecko' === $this->current_theme ) {
+                $selectors[] = '#jas-wrapper .header__search';
+            }
+
+            if ( 'Savoy' === $this->current_theme ) {
+                $selectors[] = '#nm-header-search-form';
             }
 
             // WCFM - WooCommerce Multivendor Marketplace

@@ -13,6 +13,7 @@ namespace WooCommerce\PayPalCommerce\WcGateway;
 
 use Psr\Container\ContainerInterface;
 use WooCommerce\PayPalCommerce\ApiClient\Entity\ApplicationContext;
+use WooCommerce\PayPalCommerce\ApiClient\Exception\RuntimeException;
 use WooCommerce\PayPalCommerce\ApiClient\Helper\Cache;
 use WooCommerce\PayPalCommerce\ApiClient\Helper\DccApplies;
 use WooCommerce\PayPalCommerce\Button\Helper\MessagesDisclaimers;
@@ -771,21 +772,7 @@ return array(
 					>',
 					'</a>'
 				),
-				'options'      => array(
-					'card'        => _x( 'Credit or debit cards', 'Name of payment method', 'woocommerce-paypal-payments' ),
-					'credit'      => _x( 'Pay Later', 'Name of payment method', 'woocommerce-paypal-payments' ),
-					'sepa'        => _x( 'SEPA-Lastschrift', 'Name of payment method', 'woocommerce-paypal-payments' ),
-					'bancontact'  => _x( 'Bancontact', 'Name of payment method', 'woocommerce-paypal-payments' ),
-					'blik'        => _x( 'BLIK', 'Name of payment method', 'woocommerce-paypal-payments' ),
-					'eps'         => _x( 'eps', 'Name of payment method', 'woocommerce-paypal-payments' ),
-					'giropay'     => _x( 'giropay', 'Name of payment method', 'woocommerce-paypal-payments' ),
-					'ideal'       => _x( 'iDEAL', 'Name of payment method', 'woocommerce-paypal-payments' ),
-					'mercadopago' => _x( 'Mercado Pago', 'Name of payment method', 'woocommerce-paypal-payments' ),
-					'mybank'      => _x( 'MyBank', 'Name of payment method', 'woocommerce-paypal-payments' ),
-					'p24'         => _x( 'Przelewy24', 'Name of payment method', 'woocommerce-paypal-payments' ),
-					'sofort'      => _x( 'Sofort', 'Name of payment method', 'woocommerce-paypal-payments' ),
-					'venmo'       => _x( 'Venmo', 'Name of payment method', 'woocommerce-paypal-payments' ),
-				),
+				'options'      => $container->get( 'wcgateway.all-funding-sources' ),
 				'screens'      => array(
 					State::STATE_START,
 					State::STATE_ONBOARDED,
@@ -797,15 +784,7 @@ return array(
 				'title'        => __( 'Vaulting', 'woocommerce-paypal-payments' ),
 				'type'         => 'checkbox',
 				'desc_tip'     => true,
-				'label'        => sprintf(
-					// translators: %1$s and %2$s are the opening and closing of HTML <a> tag.
-					__( 'Enable saved cards and subscription features on your store. To use vaulting features, you must %1$senable vaulting on your account%2$s.', 'woocommerce-paypal-payments' ),
-					'<a
-						href="https://docs.woocommerce.com/document/woocommerce-paypal-payments/#enable-vaulting-on-your-live-account"
-						target="_blank"
-					>',
-					'</a>'
-				),
+				'label'        => $container->get( 'button.helper.vaulting-label' ),
 				'description'  => __( 'Allow registered buyers to save PayPal and Credit Card accounts. Allow Subscription renewals.', 'woocommerce-paypal-payments' ),
 				'default'      => false,
 				'screens'      => array(
@@ -813,6 +792,7 @@ return array(
 				),
 				'requirements' => array(),
 				'gateway'      => array( 'paypal', 'dcc' ),
+				'input_class'  => $container->get( 'wcgateway.helper.vaulting-scope' ) ? array() : array( 'ppcp-disabled-checkbox' ),
 			),
 			'logging_enabled'                    => array(
 				'title'        => __( 'Logging', 'woocommerce-paypal-payments' ),
@@ -1003,7 +983,7 @@ return array(
 			'message_enabled'                    => array(
 				'title'        => __( 'Enable message on Checkout', 'woocommerce-paypal-payments' ),
 				'type'         => 'checkbox',
-				'label'        => __( 'Enable on Checkout', 'woocommerce-paypal-payments' ),
+				'label'        => sprintf( $container->get( 'wcgateway.settings.fields.pay-later-label' ), __( 'Enable on Checkout', 'woocommerce-paypal-payments' ) ),
 				'default'      => true,
 				'screens'      => array(
 					State::STATE_START,
@@ -1309,7 +1289,7 @@ return array(
 			'message_product_enabled'            => array(
 				'title'        => __( 'Enable message on Single Product', 'woocommerce-paypal-payments' ),
 				'type'         => 'checkbox',
-				'label'        => __( 'Enable on Single Product', 'woocommerce-paypal-payments' ),
+				'label'        => sprintf( $container->get( 'wcgateway.settings.fields.pay-later-label' ), __( 'Enable on Single Product', 'woocommerce-paypal-payments' ) ),
 				'default'      => true,
 				'screens'      => array(
 					State::STATE_START,
@@ -1615,7 +1595,7 @@ return array(
 			'message_cart_enabled'               => array(
 				'title'        => __( 'Enable message on Cart', 'woocommerce-paypal-payments' ),
 				'type'         => 'checkbox',
-				'label'        => __( 'Enable on Cart', 'woocommerce-paypal-payments' ),
+				'label'        => sprintf( $container->get( 'wcgateway.settings.fields.pay-later-label' ), __( 'Enable on Cart', 'woocommerce-paypal-payments' ) ),
 				'default'      => true,
 				'screens'      => array(
 					State::STATE_START,
@@ -1959,13 +1939,15 @@ return array(
 					'woocommerce-paypal-payments'
 				),
 				'options'      => array(
-					'visa'       => _x( 'Visa', 'Name of credit card', 'woocommerce-paypal-payments' ),
-					'mastercard' => _x( 'Mastercard', 'Name of credit card', 'woocommerce-paypal-payments' ),
-					'amex'       => _x( 'American Express', 'Name of credit card', 'woocommerce-paypal-payments' ),
-					'discover'   => _x( 'Discover', 'Name of credit card', 'woocommerce-paypal-payments' ),
-					'jcb'        => _x( 'JCB', 'Name of credit card', 'woocommerce-paypal-payments' ),
-					'elo'        => _x( 'Elo', 'Name of credit card', 'woocommerce-paypal-payments' ),
-					'hiper'      => _x( 'Hiper', 'Name of credit card', 'woocommerce-paypal-payments' ),
+					'visa'            => _x( 'Visa (light)', 'Name of credit card', 'woocommerce-paypal-payments' ),
+					'visa-dark'       => _x( 'Visa (dark)', 'Name of credit card', 'woocommerce-paypal-payments' ),
+					'mastercard'      => _x( 'Mastercard (light)', 'Name of credit card', 'woocommerce-paypal-payments' ),
+					'mastercard-dark' => _x( 'Mastercard (dark)', 'Name of credit card', 'woocommerce-paypal-payments' ),
+					'amex'            => _x( 'American Express', 'Name of credit card', 'woocommerce-paypal-payments' ),
+					'discover'        => _x( 'Discover', 'Name of credit card', 'woocommerce-paypal-payments' ),
+					'jcb'             => _x( 'JCB', 'Name of credit card', 'woocommerce-paypal-payments' ),
+					'elo'             => _x( 'Elo', 'Name of credit card', 'woocommerce-paypal-payments' ),
+					'hiper'           => _x( 'Hiper', 'Name of credit card', 'woocommerce-paypal-payments' ),
 				),
 				'screens'      => array(
 					State::STATE_ONBOARDED,
@@ -2041,27 +2023,43 @@ return array(
 		 * Here, we filter them out.
 		 */
 		$card_options = $fields['disable_cards']['options'];
+		$card_icons = $fields['card_icons']['options'];
+		$dark_versions = array();
 		foreach ( $card_options as $card => $label ) {
 			if ( $dcc_applies->can_process_card( $card ) ) {
+				if ( 'visa' === $card || 'mastercard' === $card ) {
+					$dark_versions = array(
+						'visa-dark'       => $card_icons['visa-dark'],
+						'mastercard-dark' => $card_icons['mastercard-dark'],
+					);
+				}
 				continue;
 			}
 			unset( $card_options[ $card ] );
 		}
-		$fields['disable_cards']['options'] = $card_options;
-		$fields['card_icons']['options'] = $card_options;
 
-		/**
-		 * Display vault message on Pay Later label if vault is enabled.
-		 */
-		$settings = $container->get( 'wcgateway.settings' );
-		if ( $settings->has( 'vault_enabled' ) && $settings->get( 'vault_enabled' ) ) {
-			$message = __( "You have PayPal vaulting enabled, that's why Pay Later Messaging options are unavailable now. You cannot use both features at the same time.", 'woocommerce-paypal-payments' );
-			$fields['message_enabled']['label'] = $message;
-			$fields['message_product_enabled']['label'] = $message;
-			$fields['message_cart_enabled']['label'] = $message;
-		}
+		$fields['disable_cards']['options'] = $card_options;
+		$fields['card_icons']['options'] = array_merge( $dark_versions, $card_options );
 
 		return $fields;
+	},
+
+	'wcgateway.all-funding-sources'                => static function( ContainerInterface $container ): array {
+		return array(
+			'card'        => _x( 'Credit or debit cards', 'Name of payment method', 'woocommerce-paypal-payments' ),
+			'credit'      => _x( 'Pay Later', 'Name of payment method', 'woocommerce-paypal-payments' ),
+			'sepa'        => _x( 'SEPA-Lastschrift', 'Name of payment method', 'woocommerce-paypal-payments' ),
+			'bancontact'  => _x( 'Bancontact', 'Name of payment method', 'woocommerce-paypal-payments' ),
+			'blik'        => _x( 'BLIK', 'Name of payment method', 'woocommerce-paypal-payments' ),
+			'eps'         => _x( 'eps', 'Name of payment method', 'woocommerce-paypal-payments' ),
+			'giropay'     => _x( 'giropay', 'Name of payment method', 'woocommerce-paypal-payments' ),
+			'ideal'       => _x( 'iDEAL', 'Name of payment method', 'woocommerce-paypal-payments' ),
+			'mercadopago' => _x( 'Mercado Pago', 'Name of payment method', 'woocommerce-paypal-payments' ),
+			'mybank'      => _x( 'MyBank', 'Name of payment method', 'woocommerce-paypal-payments' ),
+			'p24'         => _x( 'Przelewy24', 'Name of payment method', 'woocommerce-paypal-payments' ),
+			'sofort'      => _x( 'Sofort', 'Name of payment method', 'woocommerce-paypal-payments' ),
+			'venmo'       => _x( 'Venmo', 'Name of payment method', 'woocommerce-paypal-payments' ),
+		);
 	},
 
 	'wcgateway.checkout.address-preset'            => static function( ContainerInterface $container ): CheckoutPayPalAddressPreset {
@@ -2128,5 +2126,57 @@ return array(
 		return new FundingSourceRenderer(
 			$container->get( 'wcgateway.settings' )
 		);
+	},
+
+	'wcgateway.logging.is-enabled'                 => function ( ContainerInterface $container ) : bool {
+		$settings = $container->get( 'wcgateway.settings' );
+
+		/**
+		 * Whether the logging of the plugin errors/events is enabled.
+		 */
+		return apply_filters(
+			'woocommerce_paypal_payments_is_logging_enabled',
+			$settings->has( 'logging_enabled' ) && $settings->get( 'logging_enabled' )
+		);
+	},
+
+	'wcgateway.helper.vaulting-scope'              => static function ( ContainerInterface $container ): bool {
+		try {
+			$token = $container->get( 'api.bearer' )->bearer();
+			return $token->vaulting_available();
+		} catch ( RuntimeException $exception ) {
+			return false;
+		}
+	},
+
+	'button.helper.vaulting-label'                 => static function ( ContainerInterface $container ): string {
+		$vaulting_label = __( 'Enable saved cards and subscription features on your store.', 'woocommerce-paypal-payments' );
+
+		if ( ! $container->get( 'wcgateway.helper.vaulting-scope' ) ) {
+			$vaulting_label .= sprintf(
+				// translators: %1$s and %2$s are the opening and closing of HTML <a> tag.
+				__( ' To use vaulting features, you must %1$senable vaulting on your account%2$s.', 'woocommerce-paypal-payments' ),
+				'<a
+					href="https://docs.woocommerce.com/document/woocommerce-paypal-payments/#enable-vaulting-on-your-live-account"
+					target="_blank"
+				>',
+				'</a>'
+			);
+		}
+
+		$vaulting_label .= '<p class="description">';
+		$vaulting_label .= __( 'This will disable all Pay Later messaging on your site.', 'woocommerce-paypal-payments' );
+		$vaulting_label .= '</p>';
+
+		return $vaulting_label;
+	},
+
+	'wcgateway.settings.fields.pay-later-label'    => static function ( ContainerInterface $container ): string {
+		$pay_later_label  = '<span class="ppcp-pay-later-enabled-label">%s</span>';
+		$pay_later_label .= '<span class="ppcp-pay-later-disabled-label">';
+		$pay_later_label .= __( "You have PayPal vaulting enabled, that's why Pay Later Messaging options are unavailable now. You cannot use both features at the same time.", 'woocommerce-paypal-payments' );
+		$pay_later_label .= '</span>';
+
+		return $pay_later_label;
 	},
 );

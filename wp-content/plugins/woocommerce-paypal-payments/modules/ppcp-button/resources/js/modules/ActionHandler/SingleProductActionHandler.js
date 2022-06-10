@@ -2,6 +2,7 @@ import ButtonsToggleListener from '../Helper/ButtonsToggleListener';
 import Product from '../Entity/Product';
 import onApprove from '../OnApproveHandler/onApproveForContinue';
 import {payerData} from "../Helper/PayerData";
+import {PaymentMethods} from "../Helper/CheckoutMethodState";
 
 class SingleProductActionHandler {
 
@@ -84,6 +85,8 @@ class SingleProductActionHandler {
                         purchase_units,
                         payer,
                         bn_code:bnCode,
+                        payment_method: PaymentMethods.PAYPAL,
+                        funding_source: window.ppcpFundingSource,
                         context:this.config.context
                     })
                 }).then(function (res) {

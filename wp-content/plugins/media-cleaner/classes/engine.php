@@ -217,7 +217,27 @@ SQL;
 	}
 
 	function check_file( $file ) {
-		return apply_filters( 'wpmc_check_file', true, $file );
+		// Basically, wpmc_check_file returns either true if it's used, or
+		// the codename of the issue.
+		$issue = apply_filters( 'wpmc_check_file', false, $file );
+		$used = $issue === true;
+		if ( !$used ) {
+			global $wpdb;
+			$filepath = $this->filepath_basedir . stripslashes( $file );
+			$clean_path = $this->core->clean_uploaded_filename( $file );
+			$table_name = $wpdb->prefix . "mclean_scan";
+			$filesize = file_exists( $filepath ) ? filesize ($filepath) : 0;
+			$wpdb->insert( $table_name,
+				array(
+					'time' => current_time('mysql'),
+					'type' => 0,
+					'path' => $clean_path,
+					'size' => $filesize,
+					'issue' => $issue
+				)
+			);
+		}
+		return $used;
 	}
 
 }

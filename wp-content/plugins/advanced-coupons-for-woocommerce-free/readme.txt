@@ -1,18 +1,18 @@
 === Advanced Coupons for WooCommerce Coupons ===
 Contributors: jkohlbach, RymeraWebCo, Rymera01
 Donate link:
-Tags: coupons, woocommerce coupons, bogo, url coupons, coupon plugin, store credit, advanced coupons
+Tags: woocommerce coupons, coupons, bogo, url coupons, coupon plugin, store credit
 Requires at least: 5.2
-Tested up to: 5.9
-Stable tag: 4.2
+Tested up to: 6.0
+Stable tag: 4.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Smart WooCommerce coupons with Advanced Coupons for WooCommerce. Add extra WooCommerce coupon features like WooCommerce BOGO, url coupons & more.
+Advanced Coupons, the WooCommerce Coupon plugin that adds BOGO, url coupons, store credit, gift cards, loyalty program + more!
 
 == DESCRIPTION ==
 
-Add extra smart WooCommerce coupons features with Advanced Coupons! It's the free WooCommerce coupon plugin that makes your WooCommerce coupons better.
+Add extended smart WooCommerce coupons features with Advanced Coupons! It's the free WooCommerce coupon plugin that makes your WooCommerce coupons better.
 
 = Best WooCommerce Coupons Plugin =
 
@@ -30,14 +30,15 @@ We made WooCommerce coupons better so you can:
 
 1. Run WooCommerce BOGO deals (new BOGO coupon type)
 1. Protect against accidental discount coupon usage with Cart Conditions (coupon rules)
-1. Give WooCommerce store credit (and even refund to store credit)
+1. Grant customers WooCommerce store credit to use for purchases
+1. Refund orders to store credit to help retain customers
 1. Organize your WooCommerce coupons with coupon categories
-1. Apply coupons with a URL easily (WooCommerce URL coupons)
+1. Apply WooCommerce coupons with a URL easily (WooCommerce coupon URLs)
 1. Restrict WooCommerce coupons by user role
 1. Show WooCommerce coupons on the quick order preview box
 
 > <strong>ADVANCED COUPONS PREMIUM ADD-ON</strong><br />
-> This plugin is the free version of the highly rated Advanced Coupons Premium plugin. The premium version adds EVEN MORE WooCommerce coupon enhancements and features.<br /><br />Click here to compare features and purchase the <a href="https://advancedcouponsplugin.com/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Advanced Coupons for WooCommerce Premium Add-on</a>.
+> This plugin is the free version of the highly rated Advanced Coupons Premium plugin. If you want more extended coupon features the premium version adds EVEN MORE to your WooCommerce coupons!<br /><br />Click here to compare features and purchase the <a href="https://advancedcouponsplugin.com/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Advanced Coupons for WooCommerce Premium Add-on</a>.
 
 Here are some FREE VERSION coupon features at a glance:
 
@@ -76,6 +77,9 @@ Refunding orders to store credit is a great way to grant a refund without having
 Finally, logged in customers will see an option on the checkout to utilize the store credit toward their order, this appears on the checkout totals box with an easy to use interface that works well with any theme. This smart detection system ensures that the store credit features are only showing on your site if the customer is logged in.
 
 We're building a smarter store credit system for WooCommerce with Advanced Coupons and there will be many new free and premium features that will utilize store credit going into the future.
+
+> <strong>ADVANCED GIFT CARDS</strong><br />
+> Sell WooCommerce gift cards as products wit the Advanced Gift Cards plugin. Customers redeem gift cards for store credit, a feature of this free plugin.<br /><br />Click here to view the features and purchase the <a href="https://advancedcouponsplugin.com/?utm_source=wprepo&utm_medium=link&utm_campaign=agc" rel="friend">Advanced Gift Cards</a> plugin.
 
 = WooCommerce URL Coupons (Easily Apply WooCommerce Coupons With A Link) =
 
@@ -173,7 +177,7 @@ We have hundreds of guides and frequently asked questions answered in our online
 
 = Who should use Advanced Coupons? =
 
-Advanced Coupons is perfect for store owners using WooCommerce that want more advanced features on their WooCommercec upon. If you need to run more interesting deals like BOGO deals and you want features like being able to restrict when and how a coupon is applied then Advanced Coupons is for you.
+Advanced Coupons is perfect for store owners using WooCommerce that want more advanced features on their WooCommerce coupons. If you need to run more interesting deals like BOGO deals and you want features like being able to restrict when and how a coupon is applied then Advanced Coupons is for you.
 
 = Do I need to have coding skills to use Advanced Coupons? =
 
@@ -189,14 +193,14 @@ Advanced Coupons lets you create lots of new and interesting WooCommerce deals. 
 * Add Products on apply
 * Cart conditions (advance coupon rules)
 * Store credits
-* Schedule coupons
-* Auto apply coupons
+* Schedule WooCommerce coupons
+* Auto apply WooCommerce coupons
 * URL coupons
 * Shipping coupons
 * Run a loyalty program
 * Gift cards (coming soon!)
 
-= What kinds of things can I test for with Cart Conditions (Coupon Rules)? =
+= What Cart Conditions or Coupon Rules can I add to my WooCommerce coupons? =
 
 You can use Cart Conditions to test the current customer's shopping cart, their past interactions with your store and things about their user account. All of this happens as the customer attempts to apply the WooCommerce coupons to their cart.
 
@@ -265,7 +269,7 @@ You can also explore our other compatible extensions as well:
 
 * <a href="https://advancedcouponsplugin.com/pricing/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Advanced Coupons Premium</a>
 * <a href="https://advancedcouponsplugin.com/pricing/?tab=loyalty&utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Loyalty Program for WooCommerce</a>
-* Gift Cards for WooCommerce (coming soon!)
+* <a href="https://advancedcouponsplugin.com/pricing/?tab=gift-cards&utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Advanced Gift Cards</a>
 
 == Screenshots ==
 
@@ -277,27 +281,41 @@ You can also explore our other compatible extensions as well:
 
 Advanced Coupons is absolutely, positively the <a href="https://advancedcouponsplugin.com/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend" title="Best WooCommerce Coupons Plugin">best WooCommerce coupons plugin</a> on the market. It is both easy and powerful.
 
-We took the pain out of creating advanced coupon deals in WooCommerce and made it easy. Check out all <a href="https://advancedcouponsplugin.com/pricing/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Advanced Coupons features</a>.
+We took the pain out of creating advanced WooCommerce coupon deals and made it easy to achieve your marketing goals. Check out all <a href="https://advancedcouponsplugin.com/pricing/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Advanced Coupons features</a>.
 
 Also, I'm the founder of <a href="https://wholesalesuiteplugin.com/?utm_source=wprepo&utm_medium=link&utm_campaign=acfwf" rel="friend">Wholesale Suite</a>, the biggest wholesale solution for WooCommerce. I'm obsessed with helping store owners grow their stores and I hope you enjoy using Advanced Coupons.
 
 Thanks,
-Josh Kohlbach (Found/CEO of Rymera Web Co)
+Josh Kohlbach (CEO of Rymera Web Co)
 
 == Changelog ==
 
+= 4.3.1 =
+* Bug Fix: Multisite: PHP warning shows up when viewing sites list
+
+= 4.3 =
+* Feature: New Advanced Coupons Dashboard
+
+= 4.2.1 =
+* Improvement: Adjust the help content API link to new base url
+* Improvement: Allow Gift Card Products to be selected on BOGO and Add Product feature
+* Improvement: Add Upsell for "Allowed Customers" restriction on ACFWF plugin under "Usage Restrictions" tab 
+* Bug Fix: Can't refund order that is bought with Store Credit
+* Bug Fix: Rounding issue when applying store credit on the checkout page
+* Bug Fix: WPML: search products AJAX is not returning the product ID for the default language when the product was added using a secondary language first
+
 = 4.2 =
 * Feature: Add option to always use regular price when sale price exists
-* Improvement: Add css classes for coupon type to coupon gutenberg blocks to help improve styling targeting
+* Improvement: Add css classes for WooCommerce coupon type to coupon gutenberg blocks to help improve styling targeting
 * Improvement: Pass the URL Coupon attributes to the redirect URL and remove blog permalink structure from the coupon permalink structure
 * Improvement: Create duplicate Store Credits REST API endpoints to add support for WC Basic Auth
 * Improvement: Store Credits: Option to hide store credits section on checkout screen if the customer currently has no store credit balance
 * Improvement: Feature description improvement for "Customer Buys"
 
 = 4.1 =
-* Improvement: Only allow one (1) BOGO coupon to be applied to the cart at once
+* Improvement: Only allow one (1) WooCommerce BOGO coupon to be applied to the cart at once
 * Improvement: WOOCS currency switcher plugin integration
-* Improvement: Show notice if a BOGO coupon already exists on the cart and don’t apply the new one 
+* Improvement: Show notice if a WooCommerce BOGO coupon already exists on the cart and don’t apply the new one 
 
 = 4.0.3 =
 * Bug Fix: Store Credits: Searching for existing customer on the second page of the customer list will show empty list
@@ -319,170 +337,6 @@ Josh Kohlbach (Found/CEO of Rymera Web Co)
 * Feature: Store Credits: Issue Refunds using store credit
 * Feature: Store Credits: Add a My account tab to show customers their store credit
 * Feature: Store Credits: Add REST API endpoints for store credit
-
-= 3.1.4 =
-Min Version Compatibility Update: Advanced Coupons Premium 3.1.3 (if present)
-
-* Bug Fix: BOGO Fixed Discount and Percentage Discount Get types were overriding product price
-* Bug Fix: Discount amount not have adaptive value based on product price and discount
-
-= 3.1.3 =
-* Bug Fix: The "acfw_coupon_code" tag from URL Coupons "Redirect To URL" setting is replaced with URL slug instead of coupon code
-* Bug Fix: BOGO: the discounted is calculated wrong when currency is converted (Aelia, WPML)
-
-= 3.1.2 =
-* Bug Fix: Admin notices won't show up on the new settings app pages.
-* Bug Fix: The coupon upsell tab will be missing when some of the modules are disabled
-* Bug Fix: Adding cart condition premium features on coupon and deactivate the premium plugin will produce console log
-* Bug Fix: Help links: Youtube videos won't load sometimes
-* Bug Fix: Restrict settings API to only work for ACFW related options
-* Bug Fix: "Advanced Coupons by Category" Gutenberg block, Select Categories is not translatable
-* Bug Fix: The button "Done" is not translatable when adding Gutenberg block
-
-= 3.1.1 =
-* Bug Fix: Comma syntax causing issues on older PHP versions after update
-
-= 3.1 =
-* Feature: Gutenberg Block: Single Advanced Coupon
-* Feature: Gutenberg Block: Advanced Coupons by Category
-* Feature: Gutenberg block: Advanced Coupons by Customer 
-* Bug Fix: Compatibility issue with Google listings and ads plugin
-
-= 3.0.2 =
-* Improvement: Add styling to the license activation notification on the Coupon Settings page
-* Bug Fix: Plugin not installing due to a file in the plugin repo. Remove the unused file.
-* Bug Fix: BOGO deal not saving Sort Priority in Cart
-
-= 3.0.1 =
-* Improvement: Remove code related to old ACFW settings
-* Bug Fix: Add warning notice when BOGO deal notice fixed and percentage discount is set to zero
-* Bug Fix: Remove un-necessary console logs
-* Bug Fix: Fixup Cart Conditions & Role Restrictions issues when running via WC REST API
-* Bug Fix: Coupon url should support special character or symbols and all of them has the same behavior
-* Bug Fix: Admin app related pages not loading for AWS hosted sites
-
-= 3.0 =
-* Improvement: BOGO: Create a BOGO coupon type "Buy X Get X Deal (BOGO)" 
-* Improvement: BOGO: Move the existing interface to the general tab and remove the BOGO tab 
-* Improvement: Change word "Trigger" to "Buy" and "Apply" to "Get" to make BOGO mechanics easy to understand
-* Bug Fix: Use correct variable for title in prevent_multiple_spaces_in_coupon_code function 
-
-= 1.6.1 =
-* Bug Fix: Plugin could not be activated with PHP 7.2 environment due to a fatal error
-
-= 1.6 =
-* Improvement: Set Max value for "Percentage and Fixed Discounts".
-* Improvement: Add a "Did you know?" tip to the General tab on the Coupon edit screen.
-* Improvement: Add "More Cart Conditions (Premium)" tab to the Cart Conditions meta box.
-* Improvement: Add a tip to the URL Coupons tab to ensure users know about auto-apply and one-click apply features as well.
-* Improvement: Add a tip to the BOGO global settings tab to explain about advanced BOGO types available.
-* Improvement: Add tip to Usage limits section to educate users and make premium options clearer.
-* Improvement: Code improvements.
-* Bug Fix: When empty boxes are exist on cart conditions, it should shows a warning and should not be saved as coupon settings.
-
-= 1.5 =
-* Feature: Add help links for each Advanced Coupons module (top right of tab content panel)
-* Improvement: Group cart condition select options and make select field searchable
-* Improvement: URL Coupons: Reverse condition to enable/disable to match other modules and update description
-* Improvement: Cart Conditions: make condition field borders less aggressive on the eyes
-* Improvement: Clone Coupon: Put clone button/link above "move to trash" in Publish metabox and remove sidebar metabox
-* Improvement: Add descriptions to Cart Conditions, Role Restrictions and URL Coupons
-* Bug Fix: Show all the coupon edit screen tabs that are in the Premium version with information describing their function
-
-= 1.4.3 =
-* Improvement: Make WC install link more obvious on plugin missing dependency notice
-* Bug Fix: Rename jQuery timepicker javascript handle to prevent conflicts
-* Bug Fix: Site Crashing when updating ACFWF for stores that have disabled WC admin notes
-* Bug Fix: PHP Log occurs when multiple bogo deals added with discounted and no discount
-* Bug Fix: Set the in_array to strict mode for the code for preventing default coupon category deletion
-
-= 1.4.2 =
-* Bug Fix: Multiple BOGO notification messages when WooCommerce Stripe Gateway enabled
-* Bug Fix: Ensure WC API response don't include empty meta data
-* Bug Fix: Make all text translatable
-* Bug Fix: The product from Add Products is not removed when a Cart Condition of Product Categories Exists In Cart MORE THAN 0 is no longer fulfilled
-* Bug Fix: User can add duplicate products in Cart Condition
-* Bug Fix: Coupon URL: Support special characters, e.g ziaodangjia/小当家
-* Bug Fix: PHP Log critical error on website when updating WPML Multilingual to 4.11.5
-
-= 1.4.1 =
-* Bug Fix: PHP 7.2 & lower: Issue with second param not present on function calls causing PHP fatal error
-
-= 1.4 =
-* Feature: BOGO Deals: Necessary changes to support new 'Any Products' trigger and apply type (premium) 
-* Improvement: Improve BOGO Deals implementation logic (code optimization)
-* Improvement: Improve BOGO discount display in cart table row
-* Bug Fix: Change new cloned coupon date with current date, not using the original coupon date
-
-= 1.3.7 =
-* Feature: Add coupons used list to Admin New Order admin email
-* Improvement: Add KB Article link in Coupon URL tab
-* Improvement: Improve codebase
-* Bug Fix: User can add duplicate products in BOGO specific & BOGO categories setting
-* Bug Fix: Sub-sub categories are not being recognized on the Cart Condition "Product Category Exist In Cart"
-* Bug Fix: Make BOGO and Add Product has same discounted price when Override Price discount is higher than product price
-
-= 1.3.6 =
-* Bug Fix: Critical error in Roles Restriction when loading guest session cleanup function on admin
-* Bug Fix: [Bogo Product Categories] Product counted twice as bogo trigger product, when product under more than 1 parent category
-* Bug Fix: The Advanced_Coupons object causes slow queries due to the wc_get_coupon_code_by_id function call
-
-= 1.3.5 =
-* Improvement: Code improvements
-* Bug Fix: Display notice when auto applied setting field is hidden in subfolder installs
-* Bug Fix: URL Force Apply generates an issue on cart when two auto apply individual use coupons are active
-* Bug Fix: When Multiple BOGO Coupon are applied at the same time, it keeps the coupon active when the apply condition isn't met
-
-= 1.3.4 =
-* Bug Fix: BOGO Deals apply table data is empty for combination products and product categories types after version 1.3.3
-
-= 1.3.3 =
-* Improvement: WooCommerce 4.8 compatibility
-* Improvement: Add French Translation (props <a href="https://wordpress.org/support/users/madmax4ever/" rel="nofollow">@madmax4ever</a>)
-* Bug Fix: Fix deprecated error with WooCommerce Admin Note function due to changes in WooCommerce 4.8
-* Bug Fix: Can't save comma as decimal separator on cart Sub-total condition
-
-= 1.3.2 =
-* Improvement: Add method to force URL coupon even when excluded with an auto apply coupon
-* Improvement: Update and improve translation file
-
-= 1.3.1 =
-* Bug Fix: Coupon with combination of BOGO and ADD PRODUCT with the same product name has incorrect discount
-
-= 1.3 =
-* Feature: Integration: WPML compatibility
-* Improvement: Add filter to all ACFWP upsell links
-* Improvement: Big code improvements
-* Bug Fix: Coupon code with Ampersand '&' does not apply to guest users
-* Bug Fix: PHP Notice error when ACFWF and WooCommerce Zapier is both activated
-
-= 1.2.3 =
-* Improvement: WC 4.4 compatibility
-* Improvement: WP 5.5 compatibility
-* Improvement: Code improvements
-
-= 1.2.2 =
-* Bug Fix: Minor code issues with WC Admin.
-
-= 1.2.1 =
-* Bug Fix: Compatibility with User Switching plugin
-* Bug Fix: Add placeholder values for BOGO and URL coupon settings
-
-= 1.2 =
-* Feature: Add Suggestions and actions to WC Inbox
-* Feature: WooCommerce Subscriptions Integration
-* Improvement: Allow quantity check for product categories cart condition
-* Improvement: Code improvements
-* Bug Fix: Able to set negative value in a BOGO specific product discounts
-* Bug Fix: Premium plugin upsell notice still showing when ACFWP added but not installed
-
-= 1.1 =
-* Improvement: Add getting started guide on activation
-* Improvement: Fix naming on shipping zone/region cart condition
-* Bug Fix: Duplicate BOGO notices in certain environments
-
-= 1.0 =
-* Initial release
 
 == Upgrade notice ==
 

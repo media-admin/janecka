@@ -41,7 +41,17 @@ class wpfcCLI extends \WP_CLI_Command
     public function clear($args, $args_assoc){
         if(isset($GLOBALS['wp_fastest_cache'])){
             if(method_exists($GLOBALS['wp_fastest_cache'], 'deleteCache')){
-                if(isset($args[0])){
+                if(isset($args_assoc["post_id"])){
+                    $post_ids = explode(',' , $args_assoc['post_id'] );
+
+                    foreach($post_ids as $post_id){
+
+                        WP_CLI::line("Clearing the cache of the post with ID number ".$post_id);
+                        $GLOBALS['wp_fastest_cache']->singleDeleteCache(false, $post_id);
+                        WP_CLI::success("The cache has been cleared!");
+                    }
+
+                }else if(isset($args[0])){
                     if($args[0] == "all"){
                         if(isset($args[1]) && isset($args[2])){
                             if($args[1] == "and" && $args[2] == "minified"){

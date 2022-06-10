@@ -882,7 +882,9 @@
 			if($this->isPluginActive('wp-super-cache/wp-cache.php')){
 				return array("WP Super Cache needs to be deactive", "error");
 			}else{
-				@unlink($path."wp-content/wp-cache-config.php");
+				if(file_exists($path."wp-content/wp-cache-config.php")){
+					@unlink($path."wp-content/wp-cache-config.php");
+				}
 
 				$message = "";
 				

@@ -27,6 +27,7 @@ use WooCommerce\PayPalCommerce\ApiClient\Factory\ApplicationContextFactory;
 use WooCommerce\PayPalCommerce\ApiClient\Factory\AuthorizationFactory;
 use WooCommerce\PayPalCommerce\ApiClient\Factory\CaptureFactory;
 use WooCommerce\PayPalCommerce\ApiClient\Factory\ExchangeRateFactory;
+use WooCommerce\PayPalCommerce\ApiClient\Factory\FraudProcessorResponseFactory;
 use WooCommerce\PayPalCommerce\ApiClient\Factory\ItemFactory;
 use WooCommerce\PayPalCommerce\ApiClient\Factory\MoneyFactory;
 use WooCommerce\PayPalCommerce\ApiClient\Factory\OrderFactory;
@@ -35,6 +36,7 @@ use WooCommerce\PayPalCommerce\ApiClient\Factory\PayeeFactory;
 use WooCommerce\PayPalCommerce\ApiClient\Factory\PayerFactory;
 use WooCommerce\PayPalCommerce\ApiClient\Factory\PaymentsFactory;
 use WooCommerce\PayPalCommerce\ApiClient\Factory\PaymentSourceFactory;
+use WooCommerce\PayPalCommerce\ApiClient\Factory\PaymentTokenActionLinksFactory;
 use WooCommerce\PayPalCommerce\ApiClient\Factory\PaymentTokenFactory;
 use WooCommerce\PayPalCommerce\ApiClient\Factory\PlatformFeeFactory;
 use WooCommerce\PayPalCommerce\ApiClient\Factory\PurchaseUnitFactory;
@@ -48,6 +50,7 @@ use WooCommerce\PayPalCommerce\ApiClient\Helper\DccApplies;
 use WooCommerce\PayPalCommerce\ApiClient\Repository\ApplicationContextRepository;
 use WooCommerce\PayPalCommerce\ApiClient\Repository\CartRepository;
 use WooCommerce\PayPalCommerce\ApiClient\Repository\CustomerRepository;
+use WooCommerce\PayPalCommerce\ApiClient\Repository\OrderRepository;
 use WooCommerce\PayPalCommerce\ApiClient\Repository\PartnerReferralsData;
 use WooCommerce\PayPalCommerce\ApiClient\Repository\PayeeRepository;
 use WooCommerce\PayPalCommerce\ApiClient\Repository\PayPalRequestIdRepository;
@@ -112,8 +115,10 @@ return array(
 			$container->get( 'api.host' ),
 			$container->get( 'api.bearer' ),
 			$container->get( 'api.factory.payment-token' ),
+			$container->get( 'api.factory.payment-token-action-links' ),
 			$container->get( 'woocommerce.logger.woocommerce' ),
-			$container->get( 'api.repository.customer' )
+			$container->get( 'api.repository.customer' ),
+			$container->get( 'api.repository.paypal-request-id' )
 		);
 	},
 	'api.endpoint.webhook'                      => static function ( ContainerInterface $container ) : WebhookEndpoint {
@@ -228,11 +233,19 @@ return array(
 		$prefix           = $container->get( 'api.prefix' );
 		return new CustomerRepository( $prefix );
 	},
+	'api.repository.order'                      => static function( ContainerInterface $container ): OrderRepository {
+		return new OrderRepository(
+			$container->get( 'api.endpoint.order' )
+		);
+	},
 	'api.factory.application-context'           => static function ( ContainerInterface $container ) : ApplicationContextFactory {
 		return new ApplicationContextFactory();
 	},
 	'api.factory.payment-token'                 => static function ( ContainerInterface $container ) : PaymentTokenFactory {
 		return new PaymentTokenFactory();
+	},
+	'api.factory.payment-token-action-links'    => static function ( ContainerInterface $container ) : PaymentTokenActionLinksFactory {
+		return new PaymentTokenActionLinksFactory();
 	},
 	'api.factory.webhook'                       => static function ( ContainerInterface $container ): WebhookFactory {
 		return new WebhookFactory();
@@ -245,7 +258,8 @@ return array(
 		$amount_factory   = $container->get( 'api.factory.amount' );
 		return new CaptureFactory(
 			$amount_factory,
-			$container->get( 'api.factory.seller-receivable-breakdown' )
+			$container->get( 'api.factory.seller-receivable-breakdown' ),
+			$container->get( 'api.factory.fraud-processor-response' )
 		);
 	},
 	'api.factory.purchase-unit'                 => static function ( ContainerInterface $container ): PurchaseUnitFactory {
@@ -341,6 +355,9 @@ return array(
 			$container->get( 'api.factory.exchange-rate' ),
 			$container->get( 'api.factory.platform-fee' )
 		);
+	},
+	'api.factory.fraud-processor-response'      => static function ( ContainerInterface $container ): FraudProcessorResponseFactory {
+		return new FraudProcessorResponseFactory();
 	},
 	'api.helpers.dccapplies'                    => static function ( ContainerInterface $container ) : DccApplies {
 		return new DccApplies(

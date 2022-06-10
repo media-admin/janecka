@@ -408,6 +408,9 @@ class Meow_WPMC_Core {
 	// Parse a meta, visit all the arrays, look for the attributes, fill $ids and $urls arrays
 	// If rawMode is enabled, it will not check if the value is an ID or an URL, it will just returns it in URLs
 	function get_from_meta( $meta, $lookFor, &$ids, &$urls, $rawMode = false ) {
+		if ( !is_array( $meta ) && !is_object( $meta) ) {
+			return;
+		}
 		foreach ( $meta as $key => $value ) {
 			if ( is_object( $value ) || is_array( $value ) )
 				$this->get_from_meta( $value, $lookFor, $ids, $urls, $rawMode );

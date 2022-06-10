@@ -158,12 +158,30 @@ class PurchaseUnit {
 	}
 
 	/**
+	 * Sets the amount.
+	 *
+	 * @param Amount $amount The value to set.
+	 */
+	public function set_amount( Amount $amount ): void {
+		$this->amount = $amount;
+	}
+
+	/**
 	 * Returns the shipping.
 	 *
 	 * @return Shipping|null
 	 */
 	public function shipping() {
 		return $this->shipping;
+	}
+
+	/**
+	 * Sets shipping info.
+	 *
+	 * @param Shipping|null $shipping The value to set.
+	 */
+	public function set_shipping( ?Shipping $shipping ): void {
+		$this->shipping = $shipping;
 	}
 
 	/**

@@ -72,7 +72,7 @@ class WC_GZD_Payment_Gateways {
 		$allowed = array( 'edit-shop_order', 'export' );
 		$screen  = get_current_screen();
 
-		if ( $screen && in_array( $screen->id, $allowed ) ) {
+		if ( $screen && in_array( $screen->id, $allowed, true ) ) {
 			$direct_debit = new WC_GZD_Gateway_Direct_Debit();
 		}
 	}
@@ -115,7 +115,7 @@ class WC_GZD_Payment_Gateways {
 		 * @since 2.0.0
 		 *
 		 */
-		return in_array( $id, apply_filters( 'woocommerce_gzd_fee_supporting_gateways', array( 'cod' ) ) ) ? true : false;
+		return in_array( $id, apply_filters( 'woocommerce_gzd_fee_supporting_gateways', array( 'cod' ) ), true ) ? true : false;
 	}
 
 	protected function maybe_force_gateway_button_text( $gateway ) {
@@ -132,18 +132,22 @@ class WC_GZD_Payment_Gateways {
 			 * @since 1.0.0
 			 *
 			 */
-			$gateway->order_button_text = apply_filters( 'woocommerce_gzd_order_button_payment_gateway_text', __( get_option( 'woocommerce_gzd_order_submit_btn_text' ), 'woocommerce-germanized' ), $gateway->id );
+			$gateway->order_button_text = apply_filters( 'woocommerce_gzd_order_button_payment_gateway_text', get_option( 'woocommerce_gzd_order_submit_btn_text', __( 'Buy Now', 'woocommerce-germanized' ) ), $gateway->id );
 		}
 	}
 
 	public function manipulate_gateways() {
-		if ( ! WC()->payment_gateways ) {
+		if ( ! WC()->payment_gateways() ) {
 			return;
 		}
 
-		$gateways = WC()->payment_gateways->get_available_payment_gateways();
+		$gateways = WC()->payment_gateways()->payment_gateways();
 
 		foreach ( $gateways as $gateway ) {
+
+			if ( 'yes' !== $gateway->enabled ) {
+				continue;
+			}
 
 			$this->maybe_set_gateway_data( $gateway );
 			$this->maybe_force_gateway_button_text( $gateway );
@@ -184,41 +188,10 @@ class WC_GZD_Payment_Gateways {
 	}
 
 	/**
-	 * Manipualte payment gateway title
-	 *
-	 * @param string $title
-	 * @param string $id gateway id
-	 */
-	public function set_title( $title, $id ) {
-		$gateways = WC()->payment_gateways->get_available_payment_gateways();
-
-		foreach ( $gateways as $gateway ) {
-
-			if ( $gateway->id != $id ) {
-				continue;
-			}
-
-			if ( ! $this->gateway_supports_fees( $gateway->id ) ) {
-				return $title;
-			}
-
-			$this->maybe_set_gateway_data( $gateway );
-
-			$title = $this->gateway_data[ $gateway->id ]['title'];
-
-			if ( $gateway->get_option( 'fee' ) && ( is_payment_methods() || ( is_checkout() || ( defined( 'DOING_AJAX' ) && isset( $_POST['action'] ) && $_POST['action'] == 'woocommerce_update_order_review' ) ) ) ) {
-				$title = $title . ' <span class="small">(' . sprintf( __( '%s payment charge', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'fee' ) ) ) . ')</span>';
-			}
-
-			return $title;
-		}
-	}
-
-	/**
 	 * Dynamically set filter to show additional fields
 	 */
 	public function init_fields() {
-		$gateways = WC()->payment_gateways->payment_gateways;
+		$gateways = WC()->payment_gateways()->payment_gateways();
 
 		if ( ! empty( $gateways ) ) {
 			foreach ( $gateways as $key => $gateway ) {
@@ -227,7 +200,7 @@ class WC_GZD_Payment_Gateways {
 					continue;
 				}
 
-				add_filter( 'woocommerce_settings_api_form_fields_' . $gateway->id, array( $this, "set_fields" ) );
+				add_filter( 'woocommerce_settings_api_form_fields_' . $gateway->id, array( $this, 'set_fields' ) );
 			}
 		}
 	}
@@ -238,7 +211,7 @@ class WC_GZD_Payment_Gateways {
 	 * @param array $fields
 	 */
 	public function set_fields( $fields ) {
-		$gateway = isset( $_GET['section'] ) ? wc_clean( $_GET['section'] ) : '';
+		$gateway = isset( $_GET['section'] ) ? wc_clean( wp_unslash( $_GET['section'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		$fields['fee'] = array(
 			'title'       => __( 'Fee', 'woocommerce-germanized' ),
@@ -272,13 +245,17 @@ class WC_GZD_Payment_Gateways {
 	 * Update fee for cart if feeable gateway has been selected as payment method
 	 */
 	public function init_fee() {
-		$gateways = WC()->payment_gateways()->get_available_payment_gateways();
+		$gateways = WC()->payment_gateways()->payment_gateways();
 
 		if ( ! ( $key = WC()->session->get( 'chosen_payment_method' ) ) || ! isset( $gateways[ $key ] ) ) {
 			return;
 		}
 
 		$gateway = $gateways[ $key ];
+
+		if ( 'yes' !== $gateway->enabled ) {
+			return;
+		}
 
 		if ( ! $this->gateway_supports_fees( $gateway->id ) ) {
 			return;

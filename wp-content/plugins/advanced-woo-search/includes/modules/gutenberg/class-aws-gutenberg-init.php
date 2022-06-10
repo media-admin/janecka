@@ -98,12 +98,8 @@ if (!class_exists('AWS_Gutenberg_Init')) :
         public function search_block_dynamic_render_callback( $block_attributes, $content ) {
 
             $placeholder = $block_attributes['placeholder'];
-            $search_form = aws_get_search_form( false );
-
-            if ( $placeholder ) {
-                $search_form = preg_replace( '/placeholder="([\S\s]*?)"/i', 'placeholder="' . esc_attr( $placeholder ) . '"', $search_form );
-
-            }
+            $args = $placeholder ? array( 'placeholder' => $placeholder ) : array();
+            $search_form = aws_get_search_form( false, $args );
 
             return $search_form;
 

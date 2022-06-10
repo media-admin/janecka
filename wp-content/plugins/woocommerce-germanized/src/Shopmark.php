@@ -29,14 +29,17 @@ class Shopmark {
 	protected $default_enabled = true;
 
 	public function __construct( $args = array() ) {
-		$args = wp_parse_args( $args, array(
-			'default_priority' => 10,
-			'callback'         => null,
-			'default_filter'   => '',
-			'location'         => '',
-			'type'             => '',
-			'default_enabled'  => true,
-		) );
+		$args = wp_parse_args(
+			$args,
+			array(
+				'default_priority' => 10,
+				'callback'         => null,
+				'default_filter'   => '',
+				'location'         => '',
+				'type'             => '',
+				'default_enabled'  => true,
+			)
+		);
 
 		$this->default_priority = $args['default_priority'];
 		$this->callback         = $args['callback'];
@@ -181,11 +184,15 @@ class Shopmark {
 		 * @since 3.0.0
 		 *
 		 */
-		$filter = apply_filters( $this->get_hook_prefix() . 'filter', $filter, $this );
+		$filtered     = apply_filters( $this->get_hook_prefix() . 'filter', $filter, $this );
+		$has_filtered = $filter !== $filtered;
+		$filter       = $filtered;
 
-		// Make sure that the current filter name exists during admin requests e.g. for custom theme support
-		if ( ( is_admin() && ! defined( 'DOING_AJAX' ) ) && ! Shopmarks::get_filter( $this->get_location(), $filter ) ) {
-			$filter = $this->get_default_filter();
+		// In case the filter was not adjusted by a third party, make sure the filter does really exist to prevent errors.
+		if ( ! $has_filtered && ( 'woocommerce_' === substr( $filter, 0, 12 ) || ( is_admin() && ! defined( 'DOING_AJAX' ) ) ) ) {
+			if ( ! Shopmarks::get_filter( $this->get_location(), $filter ) ) {
+				$filter = $this->get_default_filter();
+			}
 		}
 
 		return $filter;

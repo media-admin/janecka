@@ -63,7 +63,7 @@ class Elementor_AWS_Widget extends \Elementor\Widget_Base {
      * @since 1.0.0
      * @access protected
      */
-    protected function _register_controls() {
+    protected function register_controls() {
 
         $this->start_controls_section(
             'content_section',
@@ -98,10 +98,8 @@ class Elementor_AWS_Widget extends \Elementor\Widget_Base {
         $settings = $this->get_settings_for_display();
 
         if ( function_exists( 'aws_get_search_form' ) ) {
-            $search_form = aws_get_search_form( false );
-            if ( $settings['placeholder'] ) {
-                $search_form = preg_replace( '/placeholder="([\S\s]*?)"/i', 'placeholder="' . $settings['placeholder'] . '"', $search_form );
-            }
+            $args = $settings['placeholder'] ? array( 'placeholder' => $settings['placeholder'] ) : array();
+            $search_form = aws_get_search_form( false, $args );
             echo $search_form;
         }
 

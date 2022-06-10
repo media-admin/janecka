@@ -3,9 +3,9 @@ Contributors: TigrouMeow
 Tags: clean, delete, file, files, images, image, media, library, upload, acf
 Donate link: https://meowapps.com/donation/
 Requires at least: 5.0
-Tested up to: 5.9.3
+Tested up to: 6.0
 Requires PHP: 7.0
-Stable tag: 6.3.4
+Stable tag: 6.3.7
 
 Clean your WordPress from unused files, broken media entries. Powerful engine and beautiful UI!
 
@@ -35,7 +35,7 @@ The Pro version adds Filesystem Analysis, extra support for complex plugins, Liv
 
 With the Filesystem Analysis, [Media Cleaner Pro](https://meowapps.com/plugin/media-cleaner/) scans your physical /uploads directory, and match it against the Media Library. It also has extra support for complex plugins, such as:
 
-- ACF (+ ACF Widgets)
+- ACF, Metabox
 - Divi Builder
 - Fusion Builder (Avada)
 - WPBakery Page Builder
@@ -79,12 +79,23 @@ To make everything perfect, you will also need to clean and optimize your databa
 
 == Changelog ==
 
+= 6.3.7 (2022/06/07) =
+* Fix: Better support for filters for filesystem scan (and a little optimization as well).
+* Fix: Better support for backgrounds/overlays in elementor.
+* Info: I am working hard on Media Cleaner. If you want to give me some love and motivation, write a simple and nice review [here](https://wordpress.org/support/plugin/media-cleaner/reviews/?rate=5#new-post). Thank you so much! 💖
+
+= 6.3.6 (2022/05/17) =
+* Fix: Support for Elementor background images.
+
+= 6.3.5 (2022/05/05) =
+* Fix: There were a few warnings related to undeclared arrays.
+* Add: Support for Metabox.
+* Info: New plugin the the family! 🎉 It is simply called Database Cleaner, and it aims to be... the best Database Cleaner! You can find it [here](https://wordpress.org/plugins/database-cleaner).
+
 = 6.3.4 (2022/04/29) =
 * Fix: Issue with Elementor.
 * Fix: Issue with JetEngine.
 * Add: Support for ACF Photo Gallery.
-* Info: New plugin the the family! 🎉 It is simply called Database Cleaner, and it aims to be... the best Database Cleaner! You can find it [here](https://wordpress.org/plugins/database-cleaner).
-* Info: I am working hard on Media Cleaner. If you want to give me some love and motivation, write a simple and nice review [here](https://wordpress.org/support/plugin/media-cleaner/reviews/?rate=5#new-post). Thank you so much! 💖
 
 = 6.3.2 (2022/03/22) =
 * Fix: Better support for WebP.

@@ -32,12 +32,17 @@ class Plugin_Constants
     // Plugin configuration constants
     const TOKEN               = 'acfwf';
     const INSTALLED_VERSION   = 'acfwf_installed_version';
-    const VERSION             = '4.2';
+    const VERSION             = '4.3.1';
     const TEXT_DOMAIN         = 'advanced-coupons-for-woocommerce-free';
     const THEME_TEMPLATE_PATH = 'advanced-coupons-for-woocommerce-free';
     const META_PREFIX         = '_acfw_';
     const PREMIUM_PLUGIN      = 'advanced-coupons-for-woocommerce/advanced-coupons-for-woocommerce.php';
     const LOYALTY_PLUGIN      = 'loyalty-program-for-woocommerce/loyalty-program-for-woocommerce.php';
+    const GIFT_CARDS_PLUGIN   = 'advanced-gift-cards-for-woocommerce/advanced-gift-cards-for-woocommerce.php';
+
+    // License
+    const LICENSE_ACTIVATION_URL       = 'https://advancedcouponsplugin.com/wp-admin/admin-ajax.php?action=slmw_activate_license';
+    const PREMIUM_LICENSE_STATUS_CACHE = 'acfw_premium_license_status_cache';
 
     // Notices
     const SHOW_GETTING_STARTED_NOTICE = 'acfwf_show_getting_started_notice';
@@ -78,6 +83,7 @@ class Plugin_Constants
     // Store Credits
     const STORE_CREDITS_SESSION                    = 'acfw_store_credits_discount';
     const STORE_CREDITS_ORDER_META                 = 'acfw_store_credits_order_discount';
+    const STORE_CREDITS_ORDER_PAID                 = 'acfw_store_credits_order_paid';
     const STORE_CREDITS_ENDPOINT                   = 'acfw-store-credits';
     const STORE_CREDITS_HIDE_CHECKOUT_ZERO_BALANCE = 'acfw_store_credits_hide_checkout_zero_balance';
 

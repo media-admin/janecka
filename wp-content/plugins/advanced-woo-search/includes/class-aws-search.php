@@ -98,7 +98,7 @@ if ( ! class_exists( 'AWS_Search' ) ) :
 
             $cache = AWS()->get_settings( 'cache' );
 
-            $s = $keyword ? esc_attr( $keyword ) : esc_attr( $_POST['keyword'] );
+            $s = $keyword ? esc_attr( $keyword ) : ( isset( $_POST['keyword'] ) ? esc_attr( $_POST['keyword'] ) : '' );
             $s = htmlspecialchars_decode( $s );
 
             $this->data['s_nonormalize'] = $s;
@@ -589,13 +589,11 @@ if ( ! class_exists( 'AWS_Search' ) ) :
 
                             if ( $marked_content ) {
                                 $excerpt = $marked_content;
-                            } else {
-                                $excerpt = wp_trim_words( $excerpt, $excerpt_length, '...' );
                             }
 
-                        } else {
-                            $excerpt = wp_trim_words( $excerpt, $excerpt_length, '...' );
                         }
+
+                        $excerpt = wp_trim_words( $excerpt, $excerpt_length, '...' );
 
                     }
 
@@ -639,12 +637,12 @@ if ( ! class_exists( 'AWS_Search' ) ) :
                         if ( $product->is_in_stock() ) {
                             $stock_status = array(
                                 'status' => true,
-                                'text'   => esc_html__( 'In stock', 'advanced-woo-search' )
+                                'text'   => esc_html__( 'In stock', 'woocommerce' )
                             );
                         } else {
                             $stock_status = array(
                                 'status' => false,
-                                'text'   => esc_html__( 'Out of stock', 'advanced-woo-search' )
+                                'text'   => esc_html__( 'Out of stock', 'woocommerce' )
                             );
                         }
                     }

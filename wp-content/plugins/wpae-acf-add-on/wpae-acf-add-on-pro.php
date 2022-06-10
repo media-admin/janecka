@@ -3,7 +3,7 @@
 Plugin Name: WP All Export - ACF Export Add-On Pro
 Plugin URI: http://www.wpallimport.com/
 Description: Export ACF data from WordPress. Requires WP All Export Pro.
-Version: 1.0.3
+Version: 1.0.4
 Author: Soflyy
 */
 
@@ -25,7 +25,7 @@ define('PMAE_ROOT_URL', rtrim(plugin_dir_url(__FILE__), '/'));
  */
 define('PMAE_PREFIX', 'pmae_');
 
-define('PMAE_VERSION', '1.0.3');
+define('PMAE_VERSION', '1.0.4');
 
 if ( class_exists('PMAE_Plugin') and PMAE_EDITION == "free"){
 
@@ -33,7 +33,7 @@ if ( class_exists('PMAE_Plugin') and PMAE_EDITION == "free"){
 		
 		?>
 		<div class="error"><p>
-			<?php printf(__('Please de-activate and remove the free version of the ACF Export Add-On before activating the pro version.', 'wp_all_export_acf_add_on'));
+			<?php printf(esc_html__('Please de-activate and remove the free version of the ACF Export Add-On before activating the pro version.', 'wp_all_export_acf_add_on'));
 			?>
 		</p></div>
 		<?php
@@ -156,7 +156,6 @@ else {
 			$autoloader->init();
 
 			// register admin page pre-dispatcher
-			add_action('admin_init', array($this, 'adminInit'));
 			add_action('init', array($this, 'init'));
 
 			add_action( 'after_plugin_row_wpae-acf-add-on/wpae-acf-add-on-pro.php', array($this,'custom_update_message'), 10, 3 );
@@ -178,18 +177,6 @@ else {
 		public function load_plugin_textdomain() {
 			$locale = apply_filters( 'plugin_locale', get_locale(), 'wp_all_export_woocommerce_add_on' );
 			load_plugin_textdomain( 'wp_all_export_woocommerce_add_on', false, dirname( plugin_basename( __FILE__ ) ) . "/i18n/languages" );
-		}
-
-		/**
-		 * pre-dispatching logic for admin page controllers
-		 */
-		public function adminInit() {
-			$input = new PMAE_Input();
-			$adminDispatcher = new \Pmae\Common\Bootstrap\AdminDispatcher(self::PREFIX);
-			$page = strtolower($input->getpost('page', ''));
-            $action = $input->getpost('action', 'index');
-
-            $adminDispatcher->dispatch($page, $action);
 		}
 
 		/**

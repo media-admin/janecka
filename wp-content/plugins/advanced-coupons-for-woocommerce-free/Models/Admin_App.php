@@ -5,6 +5,7 @@ use ACFWF\Abstracts\Abstract_Main_Plugin_Class;
 use ACFWF\Helpers\Helper_Functions;
 use ACFWF\Helpers\Plugin_Constants;
 use ACFWF\Interfaces\Initializable_Interface;
+use ACFWF\Interfaces\Deactivatable_Interface;
 use ACFWF\Interfaces\Model_Interface;
 
 if (!defined('ABSPATH')) {
@@ -18,7 +19,7 @@ if (!defined('ABSPATH')) {
  *
  * @since 1.2
  */
-class Admin_App implements Model_Interface, Initializable_Interface
+class Admin_App implements Model_Interface, Initializable_Interface, Deactivatable_Interface
 {
 
     /*
@@ -61,7 +62,7 @@ class Admin_App implements Model_Interface, Initializable_Interface
      * @access private
      * @var string
      */
-    private $_app_pages;
+    private $_app_pages = array();
 
     /*
     |--------------------------------------------------------------------------
@@ -219,6 +220,7 @@ class Admin_App implements Model_Interface, Initializable_Interface
      * Enqueue settings react app styles and scripts.
      *
      * @since 1.2
+     * @since 4.3 Load scripts on dashboard page.
      * @access public
      *
      * @param WP_Screen $screen    Current screen object.
@@ -236,7 +238,10 @@ class Admin_App implements Model_Interface, Initializable_Interface
         $temp         = explode('_page_', $screen->id);
         $current_page = isset($temp[1]) ? $temp[1] : '';
 
-        if (!is_array($this->_app_pages) || !in_array($current_page, array_keys($this->_app_pages))) {
+        $app_page_keys   = array_keys($this->_app_pages);
+        $app_page_keys[] = 'acfw-dashboard';
+
+        if (!is_array($this->_app_pages) || !in_array($current_page, $app_page_keys)) {
             return;
         }
 
@@ -251,7 +256,8 @@ class Admin_App implements Model_Interface, Initializable_Interface
                 'desc'               => __('Adjust the global settings options for Advanced Coupons for WooCommerce.', 'advanced-coupons-for-woocommerce-free'),
                 'logo'               => $this->_constants->IMAGES_ROOT_URL() . 'acfw-logo.png',
                 'coupon_nav'         => array(
-                    'toplevel' => __('Coupons', 'advanced-coupons-for-woocommerce-free'),
+                    'toplevel'  => __('Coupons', 'advanced-coupons-for-woocommerce-free'),
+                    'dashboard' => __('Dashboard', 'advanced-coupons-for-woocommerce-free'),
                     'links'    => array(
                         array(
                             'link' => admin_url('edit.php?post_type=shop_coupon'),
@@ -276,6 +282,54 @@ class Admin_App implements Model_Interface, Initializable_Interface
                     'fail'    => __('failed to update', 'advanced-coupons-for-woocommerce-free'),
                 ),
                 'premium_upsell'     => false,
+                'dashboard_page'     => array(
+                    'title' => __('Dashboard', 'advanced-coupons-for-woocommerce-free'),
+                    'create_coupon' => array(
+                        'label'      => __('Quick Create', 'advanced-coupons-for-woocommerce-free'),
+                        'percentage' => __('New % Coupon', 'advanced-coupons-for-woocommerce-free'),
+                        'fixed'      => __('New Fixed Coupon', 'advanced-coupons-for-woocommerce-free'),
+                        'bogo'       => __('New BOGO Coupon', 'advanced-coupons-for-woocommerce-free'),
+                    ),
+                    'resources_links' => array(
+                        array(
+                            'key'   => 'getting_started',
+                            'slug'  => 'getting_started',
+                            'label' => __('Getting Started Guides', 'advanced-coupons-for-woocommerce-free'),
+                            'link'  => 'https://advancedcouponsplugin.com/kb/getting-started/?utm_source=acfwf&utm_medium=dashboard&utm_campaign=gettingstartedguideslink',
+                        ),
+                        array(
+                            'key'   => 'documentation',
+                            'slug'  => 'documentation',
+                            'label' => __('Read Documentation', 'advanced-coupons-for-woocommerce-free'),
+                            'link'  => 'https://advancedcouponsplugin.com/knowledge-base/?utm_source=acfwf&utm_medium=dashboard&utm_campaign=readdocslink',
+                        ),
+                        array(
+                            'key'   => 'settings',
+                            'slug'  => 'settings',
+                            'label' => __('Settings', 'advanced-coupons-for-woocommerce-free'),
+                            'link'  => 'acfw-settings',
+                        ),
+                        array(
+                            'key'   => 'support',
+                            'slug'  => 'support',
+                            'label' => __('Contact Support', 'advanced-coupons-for-woocommerce-free'),
+                            'link'  => $this->_helper_functions->get_contact_support_link(),
+                        ),
+                    ),
+                    'labels' => array(
+                        'coupon'                    => __('Coupon', 'advanced-coupons-for-woocommerce-free'),
+                        'uses'                      => __('Uses', 'advanced-coupons-for-woocommerce-free'),
+                        'discounted'                => __('Discounted', 'advanced-coupons-for-woocommerce-free'),
+                        'active'                    => __('Active', 'advanced-coupons-for-woocommerce-free'),
+                        'inactive'                  => __('Inactive', 'advanced-coupons-for-woocommerce-free'),
+                        'expired'                   => __('Expired', 'advanced-coupons-for-woocommerce-free'),
+                        'learn_more'                => __('Learn more →', 'advanced-coupons-for-woocommerce-free'),
+                        'helpful_resources'         => __('Helpful Resources', 'advanced-coupons-for-woocommerce-free'),
+                        'license_activation_status' => __('License Activation Status', 'advanced-coupons-for-woocommerce-free'),
+                        'view_licenses'             => __('View Licenses →', 'advanced-coupons-for-woocommerce-free'),
+                    ),
+                    'coupons_list_link' => admin_url('edit.php?post_type=shop_coupon'),
+                ),
                 'license_page'       => array(
                     'title'              => __('Advanced Coupons License Activation', 'advanced-coupons-for-woocommerce-free'),
                     'desc'               => __('Advanced Coupons comes in two versions - the free version (with feature limitations) and the Premium add-on.', 'advanced-coupons-for-woocommerce-free'),
@@ -619,11 +673,68 @@ class Admin_App implements Model_Interface, Initializable_Interface
         );
     }
 
+    /**
+     * Register the delete license status cache hooks.
+     * 
+     * @since 4.3
+     * @access private
+     */
+    private function _register_delete_license_status_cache_hooks() {
+
+        $delete_cache = function() {
+            delete_site_transient(Plugin_Constants::PREMIUM_LICENSE_STATUS_CACHE);
+        };
+
+        add_action('update_option_acfwp_license_activated', $delete_cache);
+        add_action('update_option_lpfw_license_activated', $delete_cache);
+        add_action('update_option_agcfw_license_activated', $delete_cache);
+    }
+
+    /**
+     * Check if we  need to delete transient/cache data for the report widgets in the dashboard when the order status is changed.
+     * 
+     * @since 4.3
+     * @access private
+     */
+    public function maybe_delete_dashboard_report_transients($order_id, $prev_status, $new_status) 
+    {
+        if ( 
+            in_array($prev_status, array('pending', 'failed', 'on-hold'), true) 
+            && in_array($new_status, wc_get_is_paid_statuses(), true)
+        ) {
+            $this->_delete_dashboard_report_transients();
+        }
+    }
+
+    /**
+     * Delete transient/cache data for the report widgets in the dashboard.
+     * 
+     * @since 4.3
+     * @access private
+     */
+    private function _delete_dashboard_report_transients()
+    {
+        global $wpdb;
+        $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '%acfwf_dashboard_%'");
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Fulfill implemented interface contracts
     |--------------------------------------------------------------------------
      */
+
+    /**
+     * Contract for deactivate.
+     *
+     * @since 1.0.1
+     * @access public
+     * @implements ACFWF\Interfaces\Deactivatable_Interface
+     */
+    public function deactivate() {
+        $this->_delete_dashboard_report_transients();
+        delete_site_transient(Plugin_Constants::PREMIUM_LICENSE_STATUS_CACHE);
+    }
 
     /**
      * Execute codes that needs to run plugin activation.
@@ -646,10 +757,12 @@ class Admin_App implements Model_Interface, Initializable_Interface
      */
     public function run()
     {
-
         add_action('acfw_register_admin_submenus', array($this, 'register_submenus'));
         add_action('acfw_after_load_backend_scripts', array($this, 'register_react_scripts'), 10, 2);
         add_filter('acfw_hide_wc_settings_tab', array($this, 'hide_acfw_settings_in_wc'));
+        
+        $this->_register_delete_license_status_cache_hooks();
+        add_action('woocommerce_order_status_changed', array($this, 'maybe_delete_dashboard_report_transients'), 10, 3);
     }
 
 }

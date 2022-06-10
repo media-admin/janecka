@@ -200,25 +200,25 @@ if( ! class_exists('PMAE_Updater') ) {
 
                 // build a plugin list row, with update notification
                 $wp_list_table = _get_list_table( 'WP_Plugins_List_Table' );
-                echo '<tr class="plugin-update-tr"><td colspan="' . $wp_list_table->get_column_count() . '" class="plugin-update colspanchange"><div class="update-message">';
+                echo '<tr class="plugin-update-tr"><td colspan="' . esc_attr($wp_list_table->get_column_count()) . '" class="plugin-update colspanchange"><div class="update-message">';
 
                 $changelog_link = self_admin_url( 'index.php?edd_sl_action=view_plugin_changelog&plugin=' . $this->name . '&slug=' . $this->slug . '&TB_iframe=true&width=772&height=911' );
 
                 if ( empty( $version_info->download_link ) ) {
-                    printf(
+                    echo wp_kses_post(srintf(
                         __( 'There is a new version of %1$s available. <a target="_blank" class="thickbox" href="%2$s">View version %3$s details</a>.', 'edd' ),
                         esc_html( $version_info->name ),
                         esc_url( $changelog_link ),
                         esc_html( $version_info->new_version )
-                    );
+                    ));
                 } else {
-                    printf(
+                    echo wp_kses_post(sprintf(
                         __( 'There is a new version of %1$s available. <a target="_blank" class="thickbox" href="%2$s">View version %3$s details</a> or <a href="%4$s">update now</a>.', 'edd' ),
                         esc_html( $version_info->name ),
                         esc_url( $changelog_link ),
                         esc_html( $version_info->new_version ),
                         esc_url( wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' ) . $this->name, 'upgrade-plugin_' . $this->name ) )
-                    );
+                    ));
                 }
 
                 echo '</div></td></tr>';
@@ -371,7 +371,7 @@ if( ! class_exists('PMAE_Updater') ) {
             $response = $this->api_request( 'show_changelog', array( 'slug' => $_REQUEST['slug'] ) );
 
             if( $response && isset( $response->sections['changelog'] ) ) {
-                echo '<div style="background:#fff;padding:10px;">' . $response->sections['changelog'] . '</div>';
+                echo '<div style="background:#fff;padding:10px;">' . wp_kses_post($response->sections['changelog']) . '</div>';
             }
 
 

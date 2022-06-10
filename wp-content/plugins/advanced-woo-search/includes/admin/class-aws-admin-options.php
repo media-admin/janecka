@@ -30,6 +30,10 @@ if ( ! class_exists( 'AWS_Admin_Options' ) ) :
                         continue;
                     }
 
+                    if ( isset( $values['type'] ) && $values['type'] === 'html' ) {
+                        continue;
+                    }
+
                     if ( isset( $values['type'] ) && $values['type'] === 'table' && empty( $values['value'] ) ) {
                         continue;
                     }
@@ -80,7 +84,7 @@ if ( ! class_exists( 'AWS_Admin_Options' ) ) :
 
             foreach ( $options[$current_tab] as $values ) {
 
-                if ( $values['type'] === 'heading' || $values['type'] === 'table' ) {
+                if ( $values['type'] === 'heading' || $values['type'] === 'table' || $values['type'] === 'html' ) {
                     continue;
                 }
 

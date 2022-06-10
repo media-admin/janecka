@@ -184,6 +184,7 @@ class Edit_Coupon implements Model_Interface, Initializable_Interface, Activatab
      * Add "Coupons" top level menu and transfer all coupon related submenus to it.
      *
      * @since 1.2
+     * @since 4.3 Add dashboard page.
      * @access public
      *
      * @global $submenu Global submenu list.
@@ -210,7 +211,7 @@ class Edit_Coupon implements Model_Interface, Initializable_Interface, Activatab
         });
 
         add_menu_page(
-            '',
+            __('Coupons', 'advanced-coupons-for-woocommerce-free'),
             __('Coupons', 'advanced-coupons-for-woocommerce-free'),
             'edit_shop_coupons',
             $toplevel_slug,
@@ -221,7 +222,16 @@ class Edit_Coupon implements Model_Interface, Initializable_Interface, Activatab
 
         add_submenu_page(
             $toplevel_slug,
-            '',
+            __('Advanced Coupons Dashboard', 'advanced-coupons-for-woocommerce-free'),
+            __('Dashboard', 'advanced-coupons-for-woocommerce-free'),
+            'edit_shop_coupons',
+            'acfw-dashboard',
+            array(\ACFWF()->Admin_App, 'display_settings_app')
+        );
+
+        add_submenu_page(
+            $toplevel_slug,
+            __('All Coupons', 'advanced-coupons-for-woocommerce-free'),
             __('All Coupons', 'advanced-coupons-for-woocommerce-free'),
             'edit_shop_coupons',
             'edit.php?post_type=shop_coupon&acfw'
@@ -237,13 +247,23 @@ class Edit_Coupon implements Model_Interface, Initializable_Interface, Activatab
 
         add_submenu_page(
             $toplevel_slug,
-            '',
+            __('Coupon Categories', 'advanced-coupons-for-woocommerce-free'),
             __('Coupon Categories', 'advanced-coupons-for-woocommerce-free'),
             'edit_shop_coupons',
             'edit-tags.php?taxonomy=' . Plugin_Constants::COUPON_CAT_TAXONOMY . '&amp;post_type=shop_coupon'
         );
 
         if ($this->_helper_functions->is_wc_admin_active() && function_exists('wc_admin_connect_page')) {
+
+            wc_admin_connect_page(
+                array(
+                    'id'        => 'acfw-dashboard',
+                    'title'     => __('Advanced Coupons', 'advanced-coupons-for-woocommerce-free'),
+                    'screen_id' => 'coupons_page_acfw-dashboard',
+                    'path'      => 'admin.php?page=acfw-dashboard',
+                    'js_page'   => false,
+                )
+            );
 
             wc_admin_connect_page(
                 array(
@@ -1359,7 +1379,7 @@ foreach ($field['options'] as $key => $value) {
 
         $product_objects = array_filter(array_map('wc_get_product', $ids), 'wc_products_array_filter_editable');
         $products        = array();
-        $supported_types = apply_filters('acfw_product_search_allowed_types', array('simple', 'variation', 'subscription', 'subscription_variation'));
+        $supported_types = apply_filters('acfw_product_search_allowed_types', array('simple', 'variation', 'subscription', 'subscription_variation', 'advanced_gift_card'));
 
         foreach ($product_objects as $product_object) {
             if (in_array($product_object->get_type(), $supported_types)) {

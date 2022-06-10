@@ -244,7 +244,6 @@ if ( ! class_exists('XmlExportACF') )
 					$implode_delimiter = XmlExportEngine::$implode;
 				}
 
-
 				switch ($field_options['type'])
 				{
 					case 'date_time_picker':
@@ -263,18 +262,26 @@ if ( ! class_exists('XmlExportACF') )
 					        $month = $dateParts[1];
 					        $day = $dateParts[2];
 					        $field_value = $year.$month.$day;
-
                         }
+
                         // retain this filter's control over the database format to avoid breaking existing workarounds
                         $format = apply_filters('pmxe_acf_date_picker_format', 'Ymd', $field_value);
+
 					    // separately calculate the output format to solve the original problem
 					    $output_format = empty($field_options['return_format']) ? 'Ymd' : $field_options['return_format'];
 					    // Try to generate the date object using the database format specified
 						// According to ACF documentation this value should always be saved in the database as 'Ymd'
+
 						$date_obj = DateTime::createFromFormat($format, $field_value);
+
+                        if(!$date_obj) {
+                            // We probably are in a field group
+                            $date_obj = DateTime::createFromFormat($output_format, $field_value);
+                        }
 						// avoid fatal errors by confirming there is a date object before using it
                         $field_value = date($output_format, ( !$date_obj ) ? strtotime($field_value): $date_obj->getTimestamp()); // strtotime is left to deal with any invalid/unexpected dates
-						break;
+
+                        break;
 
 					case 'file':
 					case 'image':
@@ -458,17 +465,24 @@ if ( ! class_exists('XmlExportACF') )
 
 						if ($is_xml_export)
 						{
-							$xmlWriter->beginElement($element_name_ns, $element_name, null);
-							$xmlWriter->startElement('title');
-							$xmlWriter->writeData($field_value['title'], 'title');
-							$xmlWriter->closeElement();
-							$xmlWriter->startElement('url');
-							$xmlWriter->writeData($field_value['url'], 'url');
-							$xmlWriter->closeElement();
-							$xmlWriter->startElement('target');
-							$xmlWriter->writeData($field_value['target'], 'target');
-							$xmlWriter->closeElement();
-							$xmlWriter->closeElement();
+						    if(is_array($field_value)) {
+                                $xmlWriter->beginElement($element_name_ns, $element_name, null);
+                                $xmlWriter->startElement('title');
+                                $xmlWriter->writeData($field_value['title'], 'title');
+                                $xmlWriter->closeElement();
+                                $xmlWriter->startElement('url');
+                                $xmlWriter->writeData($field_value['url'], 'url');
+                                $xmlWriter->closeElement();
+                                $xmlWriter->startElement('target');
+                                $xmlWriter->writeData($field_value['target'], 'target');
+                                $xmlWriter->closeElement();
+                                $xmlWriter->closeElement();
+                            } else {
+
+                                $xmlWriter->beginElement($element_name_ns, $element_name, null);
+                                $xmlWriter->writeData($field_value, 'link');
+                                $xmlWriter->closeElement();
+                            }
 						}
 						else
 						{
@@ -478,10 +492,17 @@ if ( ! class_exists('XmlExportACF') )
 									$article[$element_name] = json_encode($field_value);
 								}
 								else{
-									$acfs[$element_name] = array($element_name . '_title', $element_name . '_url', $element_name . '_target');
-									$article[$element_name . '_title'] = $field_value['title'];
-									$article[$element_name . '_url'] = $field_value['url'];
-									$article[$element_name . '_target'] = $field_value['target'];
+								    if(is_array($field_value)) {
+                                        $acfs[$element_name] = array($element_name . '_title', $element_name . '_url', $element_name . '_target');
+                                        $article[$element_name . '_title'] = $field_value['title'];
+                                        $article[$element_name . '_url'] = $field_value['url'];
+                                        $article[$element_name . '_target'] = $field_value['target'];
+                                    } else {
+
+								        $acfs[$element_name] = $element_name;
+                                        $article[$element_name] = $field_value;
+
+                                    }
 								}
 							}
 						}
@@ -654,8 +675,7 @@ if ( ! class_exists('XmlExportACF') )
 						break;
 
 					case 'checkbox':
-
-                        if ( is_array($field_value) ) {
+                        if ( is_array($field_value)) {
                             foreach ($field_value as $field_value_key => $field_value_value) {
                                 if (is_array($field_value_value)) {
                                     $field_value[$field_value_key] = $field_value_value['value'];
@@ -729,7 +749,12 @@ if ( ! class_exists('XmlExportACF') )
 									);
 
 									$acfs[$element_name][] = $element_name . '_' . $sub_field_name;
-									$article[$element_name . '_' . $sub_field_name] = ($preview) ? trim(preg_replace('~[\r\n]+~', ' ', htmlspecialchars($sub_field_value))) : $sub_field_value;
+
+									if(is_array($sub_field_value) && empty($sub_field_value)) {
+									    $sub_field_value = '';
+                                    }
+
+                                    $article[$element_name . '_' . $sub_field_name] = ($preview) ? trim(preg_replace('~[\r\n]+~', ' ', htmlspecialchars($sub_field_value))) : $sub_field_value;
 								}
 							}
 						}
@@ -768,6 +793,11 @@ if ( ! class_exists('XmlExportACF') )
 
                                     if ( ! isset( $acfs[ $element_name ] ) || is_array( $acfs[ $element_name ] ) ) {
                                         $acfs[$element_name][] = $element_name . '_' . $sub_field_name;
+                                    }
+
+
+                                    if(is_array($sub_field_value) && empty($sub_field_value)) {
+                                        $sub_field_value = '';
                                     }
 
                                     $article[$element_name . '_' . $sub_field_name] = ($preview) ? trim(preg_replace('~[\r\n]+~', ' ', htmlspecialchars($sub_field_value))) : $sub_field_value;                                }
@@ -1309,8 +1339,8 @@ if ( ! class_exists('XmlExportACF') )
 							<ul>
 								<li>
 									<div class="default_column" rel="">
-										<label class="wpallexport-element-label"><?php echo $group['title']; ?></label>
-										<input type="hidden" name="rules[]" value="pmxe_acf_<?php echo (!empty($group['ID'])) ? $group['ID'] : $group['id'];?>"/>
+										<label class="wpallexport-element-label"><?php echo esc_html($group['title']); ?></label>
+										<input type="hidden" name="rules[]" value="pmxe_acf_<?php echo esc_attr((!empty($group['ID'])) ? $group['ID'] : $group['id']);?>"/>
 									</div>
 								</li>
 								<?php
@@ -1319,18 +1349,18 @@ if ( ! class_exists('XmlExportACF') )
 									foreach ($group['fields'] as $field)
 									{
 										?>
-										<li class="pmxe_acf_<?php echo (!empty($group['ID'])) ? $group['ID'] : $group['id'];?> wp_all_export_auto_generate">
-											<div class="custom_column" rel="<?php echo ($i + 1);?>">
+										<li class="pmxe_acf_<?php echo esc_attr((!empty($group['ID'])) ? $group['ID'] : $group['id']);?> wp_all_export_auto_generate">
+											<div class="custom_column" rel="<?php echo esc_attr(($i + 1));?>">
 												<label class="wpallexport-xml-element"><?php echo $field['label']; ?></label>
 												<input type="hidden" name="ids[]" value="1"/>
-												<input type="hidden" name="cc_label[]" value="<?php echo $field['name']; ?>"/>
+												<input type="hidden" name="cc_label[]" value="<?php echo esc_attr($field['name']); ?>"/>
 												<input type="hidden" name="cc_php[]" value=""/>
 												<input type="hidden" name="cc_code[]" value=""/>
 												<input type="hidden" name="cc_sql[]" value=""/>
-												<input type="hidden" name="cc_options[]" value="<?php echo esc_html(serialize(array_merge($field, array('group_id' => ((!empty($group['ID'])) ? $group['ID'] : $group['id']) ))));?>"/>
+												<input type="hidden" name="cc_options[]" value="<?php echo esc_attr(serialize(array_merge($field, array('group_id' => ((!empty($group['ID'])) ? $group['ID'] : $group['id']) ))));?>"/>
 												<input type="hidden" name="cc_type[]" value="acf"/>
-												<input type="hidden" name="cc_value[]" value="<?php echo $field['name']; ?>"/>
-												<input type="hidden" name="cc_name[]" value="<?php echo $field['label'];?>"/>
+												<input type="hidden" name="cc_value[]" value="<?php echo esc_attr($field['name']); ?>"/>
+												<input type="hidden" name="cc_name[]" value="<?php echo esc_attr($field['label']);?>"/>
 												<input type="hidden" name="cc_settings[]" value=""/>
 											</div>
 										</li>
@@ -1356,7 +1386,7 @@ if ( ! class_exists('XmlExportACF') )
 				foreach ($this->_acf_groups as $key => $group)
 				{
 					?>
-					<optgroup label="<?php _e("ACF", "wp_all_export_plugin"); ?> - <?php echo $group['title']; ?>">
+					<optgroup label="<?php esc_html_e("ACF", "wp_all_export_plugin"); ?> - <?php echo esc_attr($group['title']); ?>">
 						<?php
 						if ( ! empty($group['fields']))
 						{
@@ -1366,8 +1396,8 @@ if ( ! class_exists('XmlExportACF') )
 								?>
 								<option
 									value="acf"
-									label="<?php echo $field['name'];?>"
-									options="<?php echo $field_options; ?>"><?php echo $field['label'];?></option>
+									label="<?php echo esc_attr($field['name']);?>"
+									options="<?php echo esc_attr($field_options); ?>"><?php echo esc_html($field['label']);?></option>
 								<?php
 							}
 						}
@@ -1391,7 +1421,7 @@ if ( ! class_exists('XmlExportACF') )
 						if ( ! empty($group['fields'])){
 							foreach ($group['fields'] as $field) {
 								?>
-								<option value="<?php echo 'cf_' . $field['name']; ?>"><?php echo $field['label']; ?></option>
+								<option value="<?php echo 'cf_' . esc_attr($field['name']); ?>"><?php echo esc_html($field['label']); ?></option>
 								<?php
 							}
 						}

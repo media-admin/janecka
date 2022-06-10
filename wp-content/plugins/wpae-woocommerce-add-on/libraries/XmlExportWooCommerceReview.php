@@ -310,7 +310,7 @@ if (!class_exists('XmlExportWooCommerceReview')) {
             $article = array();
 
             // associate exported comment with import
-            if (wp_all_export_is_compatible() && isset($exportOptions['is_generate_import']) && $exportOptions['is_generate_import'] && $exportOptions['import_id']) {
+            if (wp_all_export_is_compatible() && isset($exportOptions['is_generate_import']) && $exportOptions['is_generate_import'] && $exportOptions['import_id'] && (!isset($exportOptions['enable_real_time_exports']) || !$exportOptions['enable_real_time_exports'])) {
                 $postRecord = new PMXI_Post_Record();
                 $postRecord->clear();
                 $postRecord->getBy(array(

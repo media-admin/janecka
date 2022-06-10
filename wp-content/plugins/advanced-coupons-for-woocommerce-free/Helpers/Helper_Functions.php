@@ -1111,6 +1111,20 @@ class Helper_Functions
     }
 
     /**
+     * Format an integer value for display context so it's easier to read.
+     * 
+     * @since 4.3
+     * @access public
+     * 
+     * @param int $value Integer value.
+     * @return string Formatted integer value.
+     */
+    public function format_integer_for_display($value)
+    {
+        return \number_format($value, 0, '', wc_get_price_thousand_separator());
+    }
+
+    /**
      * Get customer display name.
      *
      * @since 4.0
@@ -1207,5 +1221,27 @@ class Helper_Functions
                 'classnames'          => $classnames,
             )
         );
+    }
+
+    /**
+     * Get the contact support link.
+     * If at least one premium plugin is active, then the premium support link is returned. Otherwise the free support link is returned.
+     * 
+     * @since 4.3
+     * @access public
+     * 
+     * @return string Support link.
+     */
+    public function get_contact_support_link()
+    {
+        if (
+            $this->is_plugin_active(Plugin_Constants::PREMIUM_PLUGIN) ||
+            $this->is_plugin_active(Plugin_Constants::LOYALTY_PLUGIN) || 
+            $this->is_plugin_active(Plugin_Constants::GIFT_CARDS_PLUGIN)
+        ) {
+            return 'https://advancedcouponsplugin.com/support/?utm_source=acfwf&utm_medium=dashboard&utm_campaign=contactsupportlink';
+        }
+
+        return 'https://wordpress.org/support/plugin/advanced-coupons-for-woocommerce-free/';
     }
 }

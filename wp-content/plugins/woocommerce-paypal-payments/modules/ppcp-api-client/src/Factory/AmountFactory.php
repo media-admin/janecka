@@ -14,12 +14,16 @@ use WooCommerce\PayPalCommerce\ApiClient\Entity\AmountBreakdown;
 use WooCommerce\PayPalCommerce\ApiClient\Entity\Item;
 use WooCommerce\PayPalCommerce\ApiClient\Entity\Money;
 use WooCommerce\PayPalCommerce\ApiClient\Exception\RuntimeException;
+use WooCommerce\PayPalCommerce\Subscription\FreeTrialHandlerTrait;
+use WooCommerce\PayPalCommerce\WcGateway\Gateway\CreditCardGateway;
+use WooCommerce\PayPalCommerce\WcGateway\Gateway\PayPalGateway;
 
 /**
  * Class AmountFactory
  */
 class AmountFactory {
 
+	use FreeTrialHandlerTrait;
 
 	/**
 	 * The item factory.
@@ -117,9 +121,41 @@ class AmountFactory {
 	 * @return Amount
 	 */
 	public function from_wc_order( \WC_Order $order ): Amount {
-		$currency   = $order->get_currency();
-		$items      = $this->item_factory->from_wc_order( $order );
-		$total      = new Money( (float) $order->get_total(), $currency );
+		$currency = $order->get_currency();
+		$items    = $this->item_factory->from_wc_order( $order );
+
+		$discount_value = array_sum(
+			array(
+				(float) $order->get_total_discount( false ), // Only coupons.
+				$this->discounts_from_items( $items ),
+			)
+		);
+		$discount       = null;
+		if ( $discount_value ) {
+			$discount = new Money(
+				(float) $discount_value,
+				$currency
+			);
+		}
+
+		$items = array_filter(
+			$items,
+			function ( Item $item ): bool {
+				return $item->unit_amount()->value() > 0;
+			}
+		);
+
+		$total_value = (float) $order->get_total();
+		if ( (
+			CreditCardGateway::ID === $order->get_payment_method()
+				|| ( PayPalGateway::ID === $order->get_payment_method() && 'card' === $order->get_meta( PayPalGateway::ORDER_PAYMENT_SOURCE_META_KEY ) )
+			)
+			&& $this->is_free_trial_order( $order )
+		) {
+			$total_value = 1.0;
+		}
+		$total = new Money( $total_value, $currency );
+
 		$item_total = new Money(
 			(float) array_reduce(
 				$items,
@@ -144,14 +180,6 @@ class AmountFactory {
 			),
 			$currency
 		);
-
-		$discount = null;
-		if ( (float) $order->get_total_discount( false ) ) {
-			$discount = new Money(
-				(float) $order->get_total_discount( false ),
-				$currency
-			);
-		}
 
 		$breakdown = new AmountBreakdown(
 			$item_total,
@@ -235,5 +263,30 @@ class AmountFactory {
 		}
 
 		return new AmountBreakdown( ...$money );
+	}
+
+	/**
+	 * Returns the sum of items with negative amount;
+	 *
+	 * @param Item[] $items PayPal order items.
+	 * @return float
+	 */
+	private function discounts_from_items( array $items ): float {
+		$discounts = array_filter(
+			$items,
+			function ( Item $item ): bool {
+				return $item->unit_amount()->value() < 0;
+			}
+		);
+		return abs(
+			array_sum(
+				array_map(
+					function ( Item $item ): float {
+						return (float) $item->quantity() * $item->unit_amount()->value();
+					},
+					$discounts
+				)
+			)
+		);
 	}
 }

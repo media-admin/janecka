@@ -1,5 +1,6 @@
 import onApprove from '../OnApproveHandler/onApproveForContinue.js';
 import {payerData} from "../Helper/PayerData";
+import {PaymentMethods} from "../Helper/CheckoutMethodState";
 
 class CartActionHandler {
 
@@ -18,6 +19,8 @@ class CartActionHandler {
                 body: JSON.stringify({
                     nonce: this.config.ajax.create_order.nonce,
                     purchase_units: [],
+                    payment_method: PaymentMethods.PAYPAL,
+                    funding_source: window.ppcpFundingSource,
                     bn_code:bnCode,
                     payer,
                     context:this.config.context

@@ -203,14 +203,6 @@ class ImportVariationProductType5 extends ImportVariationBase {
         // Generate a useful post title.
         $variationPostTitle = sprintf(__('Variation #%s of %s', \PMWI_Plugin::TEXT_DOMAIN), $variationSkuForTitle, $this->getParentProduct()->get_title());
 
-        $variation = [
-            'post_title'   => $variationPostTitle,
-            'post_content' => '',
-            'post_author'  => get_post_field( 'post_author', $this->getParentProduct()->get_id() ),
-            'post_status'  => $postStatus,
-            'post_parent'  => $this->getParentProduct()->get_id(),
-            'post_type'    => 'product_variation'
-        ];
         $this->isNewVariation = FALSE;
         $postRecord->getBy([
             'unique_key' => 'Variation ' . $variationSkuForTitle . ' of ' . $this->getParentProduct()->get_id(),
@@ -228,7 +220,11 @@ class ImportVariationProductType5 extends ImportVariationBase {
                 return FALSE;
             }
             // Create new variation.
-            $variationToUpdateID = wp_insert_post($variation);
+            $variation = new \WC_Product_Variation();
+            $variation->set_name($variationPostTitle);
+            $variation->set_status($postStatus);
+            $variation->set_parent_id($this->getParentProduct()->get_id());
+            $variationToUpdateID = $variation->save();
             // Associate variation with import.
             $postRecord->isEmpty() and $postRecord->set([
                 'post_id' => $variationToUpdateID,
@@ -247,7 +243,19 @@ class ImportVariationProductType5 extends ImportVariationBase {
                 return FALSE;
             }
             // Update existing variation.
-            $this->wpdb->update($this->wpdb->posts, $variation, ['ID' => $variationToUpdateID]);
+            $variation = new \WC_Product_Variation($variationToUpdateID);
+            $variation->set_name($variationPostTitle);
+
+            if ($this->getImport()->options['update_all_data'] == 'yes' || (
+                    $this->getImport()->options['update_all_data'] == 'no'
+                    && $this->getImport()->options['is_update_status'])
+            ) {
+                $variation->set_status($postStatus);
+            }
+
+            $variation->set_parent_id($this->getParentProduct()->get_id());
+            $variation->save();
+
             $this->getLogger() && call_user_func($this->getLogger(), sprintf(__('- `%s`: variation updated successfully', \PMWI_Plugin::TEXT_DOMAIN), $variationPostTitle));
             // Handle obsolete files (i.e. delete or keep) according to import settings.
             if ($this->getImport()->options['update_all_data'] == 'yes' || (
@@ -268,7 +276,7 @@ class ImportVariationProductType5 extends ImportVariationBase {
             }
         }
         // Init variation object.
-        $this->setProduct(new \WC_Product_Variation($variationToUpdateID));
+        $this->setProduct($variation);
     }
 
     /**
@@ -416,7 +424,7 @@ class ImportVariationProductType5 extends ImportVariationBase {
 
                 if ( ! empty( $key ) ) {
                     update_post_meta($this->getProduct()->get_id(), $key, $gallery );
-                }                
+                }
             }
         }
     }

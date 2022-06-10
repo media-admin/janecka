@@ -24,4 +24,20 @@ jQuery(document).ready(($: any) => {
 
   generateHelpLinks();
   helpLinkRegisterEvents();
+  preSelectCouponTypeFromUrl();
 });
+
+/**
+ * Pre select the coupon type when the parameter is available on the URL during new coupon creation.
+ *
+ * @since 4.3
+ */
+function preSelectCouponTypeFromUrl() {
+  const queryString = new URLSearchParams(window.location.search);
+  const type = queryString.get("type");
+
+  // only do this when creating a new coupon.
+  if (type && window.location.pathname.includes("post-new.php")) {
+    jQuery("select#discount_type").val(type).trigger("change");
+  }
+}

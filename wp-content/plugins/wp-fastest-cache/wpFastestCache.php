@@ -3,7 +3,7 @@
 Plugin Name: WP Fastest Cache
 Plugin URI: http://wordpress.org/plugins/wp-fastest-cache/
 Description: The simplest and fastest WP Cache system
-Version: 1.0.0
+Version: 1.0.2
 Author: Emre Vona
 Author URI: http://tr.linkedin.com/in/emrevona
 Text Domain: wp-fastest-cache
@@ -299,20 +299,22 @@ GNU General Public License for more details.
 							die("May be Directory Traversal Attack");
 						}
 
-						if($sources = @scandir($this->getWpContentDir("/cache/wpfc-minified/").$path[1], 1)){
-							if(isset($sources[0])){
-								// $exist_url = str_replace($path[2], $sources[0], $this->current_url());
-								// header('Location: ' . $exist_url, true, 301);
-								// exit;
+						if(is_dir($this->getWpContentDir("/cache/wpfc-minified/").$path[1])){
+							if($sources = @scandir($this->getWpContentDir("/cache/wpfc-minified/").$path[1], 1)){
+								if(isset($sources[0])){
+									// $exist_url = str_replace($path[2], $sources[0], $this->current_url());
+									// header('Location: ' . $exist_url, true, 301);
+									// exit;
 
-								if(preg_match("/\.css/", $this->current_url())){
-									header('Content-type: text/css');
-								}else if(preg_match("/\.js/", $this->current_url())){
-									header('Content-type: text/js');
+									if(preg_match("/\.css/", $this->current_url())){
+										header('Content-type: text/css');
+									}else if(preg_match("/\.js/", $this->current_url())){
+										header('Content-type: text/js');
+									}
+
+									echo file_get_contents($this->getWpContentDir("/cache/wpfc-minified/").$path[1]."/".$sources[0]);
+									exit;
 								}
-
-								echo file_get_contents($this->getWpContentDir("/cache/wpfc-minified/").$path[1]."/".$sources[0]);
-								exit;
 							}
 						}
 
@@ -1105,12 +1107,19 @@ GNU General Public License for more details.
 					}
 				}
 
-				if($new_status == "publish" && $old_status == "publish"){
+				if(isset($this->options->wpFastestCacheStatus) && $new_status == "publish" && $old_status == "publish"){
 
+					// if(isset($this->options->wpFastestCacheUpdatePost) && isset($this->options->wpFastestCacheStatus)){
 
+					// 	if($this->options->wpFastestCacheUpdatePost_type == "post"){
+					// 		$this->singleDeleteCache(false, $post->ID);
+					// 	}else if($this->options->wpFastestCacheUpdatePost_type == "all"){
+					// 		$this->deleteCache();
+					// 	}
+						
+					// }
 
-
-					if(isset($this->options->wpFastestCacheUpdatePost) && isset($this->options->wpFastestCacheStatus)){
+					if(isset($this->options->wpFastestCacheUpdatePost)){
 
 						if($this->options->wpFastestCacheUpdatePost_type == "post"){
 							$this->singleDeleteCache(false, $post->ID);
@@ -1118,6 +1127,9 @@ GNU General Public License for more details.
 							$this->deleteCache();
 						}
 						
+					}else{
+						// to clear only cache of content even though the "update post" option is disabled
+						$this->singleDeleteCache(false, $post->ID, false);
 					}
 				}
 
@@ -1153,12 +1165,11 @@ GNU General Public License for more details.
 			}
 		}
 
-		public function singleDeleteCache($comment_id = false, $post_id = false){
+		public function singleDeleteCache($comment_id = false, $post_id = false, $to_clear_parents = true){
 			include_once('inc/cdn.php');
 
 			CdnWPFC::cloudflare_clear_cache();
 
-			$to_clear_parents = true;
 			$to_clear_feed = true;
 
 			// not to clear cache of homepage/cats/tags after ajax request by other plugins
@@ -1426,8 +1437,13 @@ GNU General Public License for more details.
 						$store_url_path = trim($store_url_path, "/");
 
 						if($store_url_path){
-							@unlink($this->getWpContentDir("/cache/all/").$store_url_path."/index.html");
-							@unlink($this->getWpContentDir("/cache/wpfc-mobile-cache/").$store_url_path."/index.html");
+							if(file_exists($this->getWpContentDir("/cache/all/").$store_url_path."/index.html")){
+								@unlink($this->getWpContentDir("/cache/all/").$store_url_path."/index.html");
+							}
+
+							if(file_exists($this->getWpContentDir("/cache/wpfc-mobile-cache/").$store_url_path."/index.html")){
+								@unlink($this->getWpContentDir("/cache/wpfc-mobile-cache/").$store_url_path."/index.html");
+							}
 
 							//to clear pagination of store homepage cache
 							$this->rm_folder_recursively($this->getWpContentDir("/cache/all/").$store_url_path."/page");

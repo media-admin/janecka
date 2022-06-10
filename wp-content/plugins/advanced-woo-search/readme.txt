@@ -3,8 +3,8 @@ Contributors: Mihail Barinov
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GSE37FC4Y7CEY
 Tags: widget, plugin, woocommerce, search, product search, woocommerce search, ajax search, live search, custom search, ajax, shortcode, better search, relevance search, relevant search, search by sku, search plugin, shop, store, wordpress search, wp ajax search, wp search, wp search plugin, sidebar, ecommerce, merketing, products, category search, instant-search, search highlight, woocommerce advanced search, woocommerce live search, WooCommerce Plugin, woocommerce product search
 Requires at least: 4.0
-Tested up to: 5.9
-Stable tag: 2.53
+Tested up to: 6.0
+Stable tag: 2.55
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -166,6 +166,23 @@ Yep. This plugin is always compatible with the latest version of Woocommerce?
 4. Plugin settings page. Search results options
 
 == Changelog ==
+
+= 2.55 ( 2022-05-30 ) =
+* Add - Support for Savoy theme
+* Update - Admin page integration notices
+* Update - Search form shortcode parameters
+* Fix - Issue with search results caching for certain user roles
+
+= 2.54 ( 2022-05-16 ) =
+* Add - Support for Gecko theme
+* Update - Tested with WC 6.5
+* Update - Admin page integration notices
+* Update - Support for Be theme
+* Fix - Translations for stock statuses inside search results
+* Fix - Error notice for Elementor plugin search module
+* Fix - Php error notice about default options values
+* Fix - Length of products search results descriptions
+* Dev - Fix error with empty search query for results page
 
 = 2.53 ( 2022-04-25 ) =
 * Update - Tested with WC 6.4

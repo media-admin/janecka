@@ -615,6 +615,8 @@ class Cart_Conditions implements Model_Interface, Initializable_Interface
     {
         if (!defined('DOING_AJAX') || !DOING_AJAX) {
             $response = array('status' => 'fail', 'error_msg' => __('Invalid AJAX call', 'advanced-coupons-for-woocommerce-free'));
+        } elseif (!current_user_can(apply_filters('acfw_ajax_save_cart_conditions', 'manage_woocommerce'))) {
+            $response = array('status' => 'fail', 'error_msg' => __('You are not allowed to do this', 'advanced-coupons-for-woocommerce-free'));
         } elseif (!isset($_POST['coupon_id'])) {
             $response = array('status' => 'fail', 'error_msg' => __('Missing required post data', 'advanced-coupons-for-woocommerce-free'));
         } else {

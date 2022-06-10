@@ -34,10 +34,8 @@ function aws_divi_register_modules() {
 
             public function render( $unprocessed_props, $content = null, $render_slug = null ) {
                 if ( function_exists( 'aws_get_search_form' ) ) {
-                    $search_form = aws_get_search_form( false );
-                    if ( $this->props['placeholder'] ) {
-                        $search_form = preg_replace( '/placeholder="([\S\s]*?)"/i', 'placeholder="' . $this->props['placeholder'] . '"', $search_form );
-                    }
+                    $args = $this->props['placeholder'] ? array( 'placeholder' => $this->props['placeholder'] ) : array();
+                    $search_form = aws_get_search_form( false, $args );
                     return $search_form;
                 }
                 return '';

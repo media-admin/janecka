@@ -1,4 +1,5 @@
 import dccInputFactory from "../Helper/DccInputFactory";
+import {show} from "../Helper/Hiding";
 
 class CreditCardRenderer {
 
@@ -12,7 +13,6 @@ class CreditCardRenderer {
     }
 
     render(wrapper, contextConfig) {
-
         if (
             (
                 this.defaultConfig.context !== 'checkout'
@@ -32,6 +32,8 @@ class CreditCardRenderer {
             return;
         }
 
+        const buttonSelector = wrapper + ' button';
+
         if (this.currentHostedFieldsInstance) {
             this.currentHostedFieldsInstance.teardown()
                 .catch(err => console.error(`Hosted fields teardown error: ${err}`));
@@ -39,6 +41,9 @@ class CreditCardRenderer {
         }
 
         const gateWayBox = document.querySelector('.payment_box.payment_method_ppcp-credit-card-gateway');
+        if(! gateWayBox) {
+            return
+        }
         const oldDisplayStyle = gateWayBox.style.display;
         gateWayBox.style.display = 'block';
 
@@ -121,8 +126,10 @@ class CreditCardRenderer {
 
             });
 
+            show(buttonSelector);
+
             if (document.querySelector(wrapper).getAttribute('data-ppcp-subscribed') !== true) {
-                document.querySelector(wrapper + ' button').addEventListener(
+                document.querySelector(buttonSelector).addEventListener(
                     'click',
                     event => {
                         event.preventDefault();
@@ -201,12 +208,6 @@ class CreditCardRenderer {
             if (!hostedFieldsData.cardholderName) {
                 const firstName = document.getElementById('billing_first_name') ? document.getElementById('billing_first_name').value : '';
                 const lastName = document.getElementById('billing_last_name') ? document.getElementById('billing_last_name').value : '';
-
-                if (!firstName || !lastName) {
-                    this.spinner.unblock();
-                    this.errorHandler.message(this.defaultConfig.hosted_fields.labels.cardholder_name_required);
-                    return;
-                }
 
                 hostedFieldsData.cardholderName = firstName + ' ' + lastName;
             }

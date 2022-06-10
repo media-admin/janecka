@@ -132,7 +132,15 @@ p.wc-gzd-additional-info:empty {
 .product p.deposit-packaging-type {
   font-size: 1.2em !important;
 }
-
+.wc-gzd-rating-authenticity-status {
+  display: block;
+  font-size: .9em;
+}
+.woocommerce-product-rating {
+  .wc-gzd-rating-authenticity-status {
+    display: inline-block;
+  }
+}
 .product .product_meta {
   margin-top: 1rem;
 }
@@ -255,6 +263,37 @@ table.product-details-inner tr td:last-child {
   }
   100% {
     transform: translate3d(30%, 0, 0);
+  }
+}
+
+/**
+ * Blocks
+ */
+.wc-block-featured-product {
+  .wc-gzd-additional-info {
+    width: 100%;
+    padding: 5px 48px 0;
+    z-index: 1;
+    color: inherit;
+    text-align: center;
+    margin: 0;
+    font-size: .9em;
+  }
+  .wc-gzd-nutri-score {
+    width: auto;
+  }
+}
+
+ul.wc-block-grid__products {
+  li.wc-block-grid__product {
+    .wc-gzd-additional-info {
+      margin: .5em 0;
+    }
+
+    .wc-gzd-additional-info:not(.deposit-packaging-type) {
+      font-size: .9em;
+      font-weight: normal;
+    }
   }
 }
 

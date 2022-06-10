@@ -51,19 +51,29 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			add_action( 'in_plugin_update_message-woocommerce-germanized/woocommerce-germanized.php', array( $this, 'pro_incompatibility_notice' ), 10, 2 );
 			add_filter( 'site_transient_update_plugins', array( $this, 'pro_incompatibility_plain_update_message' ), 10 );
 
-			include_once( 'notes/class-wc-gzd-admin-note.php' );
-			include_once( 'notes/class-wc-gzd-admin-note-theme-supported.php' );
-			include_once( 'notes/class-wc-gzd-admin-note-update.php' );
-			include_once( 'notes/class-wc-gzd-admin-note-review.php' );
-			include_once( 'notes/class-wc-gzd-admin-note-template-outdated.php' );
-			include_once( 'notes/class-wc-gzd-admin-note-pro.php' );
-			include_once( 'notes/class-wc-gzd-admin-note-dhl-importer.php' );
-			include_once( 'notes/class-wc-gzd-admin-note-internetmarke-importer.php' );
-			include_once( 'notes/class-wc-gzd-admin-note-shipping-excl-tax.php' );
-			include_once( 'notes/class-wc-gzd-admin-note-encryption.php' );
-			include_once( 'notes/class-wc-gzd-admin-note-virtual-vat.php' );
+			include_once 'notes/class-wc-gzd-admin-note.php';
+			include_once 'notes/class-wc-gzd-admin-note-theme-supported.php';
+			include_once 'notes/class-wc-gzd-admin-note-update.php';
+			include_once 'notes/class-wc-gzd-admin-note-review.php';
+			include_once 'notes/class-wc-gzd-admin-note-template-outdated.php';
+			include_once 'notes/class-wc-gzd-admin-note-pro.php';
+			include_once 'notes/class-wc-gzd-admin-note-dhl-importer.php';
+			include_once 'notes/class-wc-gzd-admin-note-internetmarke-importer.php';
+			include_once 'notes/class-wc-gzd-admin-note-shipping-excl-tax.php';
+			include_once 'notes/class-wc-gzd-admin-note-encryption.php';
+			include_once 'notes/class-wc-gzd-admin-note-virtual-vat.php';
+			include_once 'notes/class-wc-gzd-admin-note-legal-news.php';
 		}
 
+		/**
+		 * Inform users of possible compatibility conflicts. Append a notice in case of detecting an incompatibility.
+		 *
+		 * @see https://github.com/woocommerce/woocommerce/blob/trunk/plugins/woocommerce/includes/admin/helper/class-wc-helper-updater.php#L25
+		 *
+		 * @param $data
+		 *
+		 * @return mixed
+		 */
 		public function pro_incompatibility_plain_update_message( $data ) {
 			if ( isset( $data->response ) && array_key_exists( 'woocommerce-germanized/woocommerce-germanized.php', $data->response ) && WC_germanized()->is_pro() ) {
 				$plugin_data = $data->response['woocommerce-germanized/woocommerce-germanized.php'];
@@ -107,8 +117,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 
 		public function pro_incompatibility_notice( $data, $plugin ) {
 			if ( WC_germanized()->is_pro() && ! $this->is_next_update_compatible_with_pro( $plugin->new_version ) ) {
-				echo '</p>' . $this->get_pro_incompatible_message();
- 			}
+				echo '</p>' . wp_kses_post( $this->get_pro_incompatible_message() );
+			}
 		}
 
 		protected function get_pro_incompatible_message( $plain = false ) {
@@ -158,6 +168,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 					'WC_GZD_Admin_Note_DHL_Importer',
 					'WC_GZD_Admin_Note_Internetmarke_Importer',
 					'WC_GZD_Admin_Note_Shipping_Excl_Tax',
+					'WC_GZD_Admin_Note_Legal_News',
 				);
 
 				if ( class_exists( 'WC_GZD_Secret_Box_Helper' ) ) {
@@ -171,7 +182,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 				$notes       = apply_filters( 'woocommerce_gzd_admin_notes', $core_notes );
 				$this->notes = array();
 
-				foreach( $notes as $note ) {
+				foreach ( $notes as $note ) {
 					$note = new $note();
 
 					$this->notes[ $note->get_name() ] = $note;
@@ -218,15 +229,26 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			);
 
 			$wc_screen_ids = function_exists( 'wc_get_screen_ids' ) ? wc_get_screen_ids() : array();
-			$wc_screen_ids = array_merge ( $wc_screen_ids, array( 'woocommerce_page_wc-admin' ) );
+			$wc_screen_ids = array_merge( $wc_screen_ids, array( 'woocommerce_page_wc-admin' ) );
 
 			// Notices should only show on WooCommerce screens, the main dashboard, and on the plugins screen.
 			if ( ! in_array( $screen_id, $wc_screen_ids, true ) && ! in_array( $screen_id, $show_on_screens, true ) ) {
 				return;
 			}
 
-			foreach( $this->get_notes() as $note_id => $note ) {
+			foreach ( $this->get_notes() as $note_id => $note ) {
 				$note->queue();
+			}
+		}
+
+		public function activate_legal_news_note() {
+			update_option( '_wc_gzd_has_legal_news', 'yes' );
+
+			/**
+			 * Reset to make sure the note is not dismissed.
+			 */
+			if ( $note = $this->get_note( 'legal_news' ) ) {
+				$note->reset();
 			}
 		}
 
@@ -241,31 +263,32 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 		}
 
 		public function check_notice_hide() {
-
 			if ( ! current_user_can( 'manage_woocommerce' ) ) {
 				return;
 			}
 
-			$notes = $this->get_notes();
+			if ( isset( $_GET['notice'] ) ) {
+				$notes = $this->get_notes();
 
-			foreach( $notes as $note ) {
-				$notice            = 'wc-gzd-hide-' . str_replace( '_', '-', $note->get_name() ) . '-notice';
-				$notice_deactivate = 'wc-gzd-disable-' . str_replace( '_', '-', $note->get_name() ) . '-notice';
+				foreach ( $notes as $note ) {
+					$notice            = 'wc-gzd-hide-' . str_replace( '_', '-', $note->get_name() ) . '-notice';
+					$notice_deactivate = 'wc-gzd-disable-' . str_replace( '_', '-', $note->get_name() ) . '-notice';
 
-				if ( isset( $_GET['notice'] ) && $_GET['notice'] === $notice && isset( $_GET['nonce'] ) && check_admin_referer( $notice, 'nonce' ) ) {
+					if ( $_GET['notice'] === $notice && isset( $_GET['nonce'] ) && check_admin_referer( $notice, 'nonce' ) ) {
 
-					$note->dismiss();
-					$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
+						$note->dismiss();
+						$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', wp_unslash( $_SERVER['REQUEST_URI'] ) ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
-					wp_safe_redirect( $redirect_url );
-					exit();
-				} elseif ( isset( $_GET['notice'] ) && $_GET['notice'] === $notice_deactivate && isset( $_GET['nonce'] ) && check_admin_referer( $notice_deactivate, 'nonce' ) ) {
+						wp_safe_redirect( esc_url_raw( $redirect_url ) );
+						exit();
+					} elseif ( $_GET['notice'] === $notice_deactivate && isset( $_GET['nonce'] ) && check_admin_referer( $notice_deactivate, 'nonce' ) ) {
 
-					$note->deactivate();
-					$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
+						$note->deactivate();
+						$redirect_url = remove_query_arg( 'notice', remove_query_arg( 'nonce', wp_unslash( $_SERVER['REQUEST_URI'] ) ) );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
-					wp_safe_redirect( $redirect_url );
-					exit();
+						wp_safe_redirect( esc_url_raw( $redirect_url ) );
+						exit();
+					}
 				}
 			}
 		}
@@ -288,12 +311,13 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 				'storefront',
 				'virtue',
 				'shopkeeper',
-				'astra'
+				'astra',
+				'oceanwp',
 			);
 
 			$current = wp_get_theme();
 
-			if ( in_array( $current->get_template(), $supporting ) ) {
+			if ( in_array( $current->get_template(), $supporting, true ) ) {
 				return true;
 			}
 
@@ -312,10 +336,12 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 				foreach ( $templates_to_check as $template ) {
 					$template_path = trailingslashit( 'woocommerce' ) . $template;
 
-					$theme_template = locate_template( array(
-						$template_path,
-						$template
-					) );
+					$theme_template = locate_template(
+						array(
+							$template_path,
+							$template,
+						)
+					);
 
 					if ( $theme_template ) {
 						return false;

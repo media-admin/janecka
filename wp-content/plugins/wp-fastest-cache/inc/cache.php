@@ -1086,9 +1086,17 @@
 				   						@file_put_contents($this->getWpContentDir("/cache/index.html"), "");
 				   					}
 				   				}else{
+
 				   					if(!file_exists($this->getWpContentDir("/cache/wpfc-minified/index.html"))){
-				   						@file_put_contents($this->getWpContentDir("/cache/wpfc-minified/index.html"), "");
+				   						if(!is_dir($this->getWpContentDir("/cache/wpfc-minified/"))){
+				   							@mkdir($this->getWpContentDir("/cache/wpfc-minified/"), 0755, true);
+				   						}
+
+				   						if(is_dir($this->getWpContentDir("/cache/wpfc-minified/"))){
+				   							@file_put_contents($this->getWpContentDir("/cache/wpfc-minified/index.html"), "");
+				   						}
 				   					}
+
 				   				}
 
 							}else{

@@ -350,16 +350,44 @@ class Upsell implements Model_Interface, Initializable_Interface
     public function uspell_exclude_coupons_restriction($coupon_id)
     {
         woocommerce_wp_select(array(
-            'id'                => 'exclude_coupon_ids',
+            'id'                => 'acfw_exclude_coupons',
             'class'             => 'wc-product-search',
             'style'             => 'width:50%;',
-            'label'             => __('Exclude coupons (premium)', 'advanced-coupons-for-woocommerce-free'),
+            'label'             => __('Exclude coupons (Premium)', 'advanced-coupons-for-woocommerce-free'),
             'description'       => __('This is the advanced version of the "Individual use only" field. Coupons listed here cannot be used in conjunction with this coupon.', 'advanced-coupons-for-woocommerce-free'),
             'desc_tip'          => true,
             'options'           => array(),
             'custom_attributes' => array(
                 'multiple'         => true,
                 'data-placeholder' => __('Search coupons&hellip;', 'advanced-coupons-for-woocommerce-free'),
+                'data-action'      => 'acfw_search_coupons',
+            ),
+        ));
+    }
+
+    /**
+     * Add allowed custmers upsell field in usage restrictions tab.
+     * 
+     * @since 4.2.1
+     * @access public
+     * 
+     * @param int $coupon_id Coupon ID.
+     */
+    public function upsell_allowed_customers_restriction($coupon_id)
+    {
+        woocommerce_wp_select(array(
+            'id'                => 'acfw_allowed_customers',
+            'class'             => 'wc-product-search',
+            'style'             => 'width:50%;',
+            'label'             => __('Allowed customers (Premium)', 'advanced-coupons-for-woocommerce-free'),
+            'description'       => __('Search and select customers that are eligible to only use this coupon.', 'advanced-coupons-for-woocommerce-free'),
+            'desc_tip'          => true,
+            'options'           => array(),
+            'custom_attributes' => array(
+                'multiple'         => true,
+                'data-placeholder' => __('Search customers&hellip;', 'advanced-coupons-for-woocommerce-free'),
+                'data-action'      => 'acfw_search_coupons',
+                'readonly'         => true,
             ),
         ));
     }
@@ -1050,7 +1078,7 @@ class Upsell implements Model_Interface, Initializable_Interface
             'usage_restriction'    => sprintf(
                 __('<img src="%s" alt="Advanced Coupons Premium" />
                 <h3>Upgrade To Get Advanced Coupons Restrictions</h3>
-                <p>In Advanced Coupons Premium you can restrict the usage of this coupon more granularly with other specific coupons. This is great if you have a coupon that is allowed to work with some coupons but not others.</p>
+                <p>In Advanced Coupons Premium you can restrict the usage of this coupon more granularly with other specific coupons and/or restrict it to a specifc list of customers.</p><p>This is great if you have a coupon that is allowed to work with some coupons but not others and/or only allow it to be used by certain customers registered on your store.</p>
                 <a href="%s" target="_blank">See all features & pricing &rarr;</a>', 'advanced-coupons-for-woocommerce-free'),
                 $this->_constants->IMAGES_ROOT_URL() . '/acfw-logo.png',
                 apply_filters('acfwp_upsell_link', 'https://advancedcouponsplugin.com/pricing/?utm_source=acfwf&utm_medium=upsell&utm_campaign=usagerestriction')
@@ -1448,6 +1476,7 @@ class Upsell implements Model_Interface, Initializable_Interface
         add_action('woocommerce_coupon_data_panels', array($this, 'display_upsell_panel_views'));
         add_action('woocommerce_coupon_options_usage_limit', array($this, 'upsell_advanced_usage_limits_fields'));
         add_action('woocommerce_coupon_options_usage_restriction', array($this, 'uspell_exclude_coupons_restriction'));
+        add_action('woocommerce_coupon_options_usage_restriction', array($this, 'upsell_allowed_customers_restriction'));
         add_action('woocommerce_coupon_options_usage_restriction', array($this, 'usage_restrictions_add_help_link'));
         add_action('woocommerce_coupon_options_usage_limit', array($this, 'usage_limits_add_help_link'));
 

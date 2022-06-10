@@ -3,18 +3,18 @@
 if ( ! class_exists('XmlExportWooCommerce') )
 {
 	final class XmlExportWooCommerce
-	{		
+	{
 		public static $products_data = null;
 
-		private $init_fields = array(			
+		private $init_fields = array(
 			array(
 				'name'  => 'SKU',
-				'type'  => 'woo',				
+				'type'  => 'woo',
 				'label' => '_sku'
 			),
 			array(
 				'name'  => 'product_type',
-				'type'  => 'cats',				
+				'type'  => 'cats',
 				'label' => 'product_type',
 			),
             array(
@@ -23,14 +23,14 @@ if ( ! class_exists('XmlExportWooCommerce') )
                 'type'  => 'parent',
             )
 		);
-		
+
 		private $_woo_data     = array();
 		private $_product_data = array();
 
 		/** @var \Pmwe\App\Service\WooCommerceVersion  */
 		private $wooCommerceVersion;
 
-		private static $_existing_attributes = array();					
+		private static $_existing_attributes = array();
 
 		public static $is_active = true;
 
@@ -52,12 +52,12 @@ if ( ! class_exists('XmlExportWooCommerce') )
                 $this->_product_data[] = '_visibility';
             }
 
-			if ( ! class_exists('WooCommerce') 
-				or ( XmlExportEngine::$exportOptions['export_type'] == 'specific' and ! in_array('product', XmlExportEngine::$post_types) ) 
+			if ( ! class_exists('WooCommerce')
+				or ( XmlExportEngine::$exportOptions['export_type'] == 'specific' and ! in_array('product', XmlExportEngine::$post_types) )
 					or ( XmlExportEngine::$exportOptions['export_type'] == 'advanced' and strpos(XmlExportEngine::$exportOptions['wp_query'], 'product') === false ) ) {
 				self::$is_active = false;
-				return;			
-			}			
+				return;
+			}
 
 			self::$is_active = true;
 
@@ -65,15 +65,15 @@ if ( ! class_exists('XmlExportWooCommerce') )
 			{
 				$id = $_GET['export_id'];
 				$export = new PMXE_Export_Record();
-				$export->getById($id);	
-				if ( $export->options['export_to'] == 'csv'){	
+				$export->getById($id);
+				if ( $export->options['export_to'] == 'csv'){
 					$this->init_additional_data();
 				}
-			} 
+			}
 			else
 			{
-				self::$products_data = PMXE_Plugin::$session->get('products_data');												
-				
+				self::$products_data = PMXE_Plugin::$session->get('products_data');
+
 				if (empty(self::$products_data))
 				{
 					$this->init_additional_data();
@@ -121,12 +121,12 @@ if ( ! class_exists('XmlExportWooCommerce') )
 			add_filter("wp_all_export_default_fields", 		array( &$this, "filter_default_fields"), 10, 1);
 			add_filter("wp_all_export_other_fields", 		array( &$this, "filter_other_fields"), 10, 1);
 			add_filter("wp_all_export_available_sections",  array( &$this, "filter_available_sections"), 10, 1);
-			add_filter("wp_all_export_available_data", 		array( &$this, "filter_available_data"), 10, 1);			
+			add_filter("wp_all_export_available_data", 		array( &$this, "filter_available_data"), 10, 1);
 
 		}
 
 		// [FILTERS]
-			
+
 			/**
 			*
 			* Filter Init Fields
@@ -135,7 +135,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 			public function filter_init_fields($init_fields){
 				foreach ($this->init_fields as $field) {
 					$init_fields[] = $field;
-				}			
+				}
 				return array_map(array( &$this, 'fix_titles'), $init_fields);
 			}
 
@@ -144,7 +144,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 			* Filter Default Fields
 			*
 			*/
-			public function filter_default_fields($default_fields){		
+			public function filter_default_fields($default_fields){
 				foreach ($default_fields as $key => $field) {
 					$default_fields[$key]['auto'] = true;
 				}
@@ -154,7 +154,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
                     'type'  => 'parent',
                     'auto'  => true
                 );
-				return array_map(array( &$this, 'fix_titles'), $default_fields);	
+				return array_map(array( &$this, 'fix_titles'), $default_fields);
 			}
 
 			/**
@@ -163,18 +163,18 @@ if ( ! class_exists('XmlExportWooCommerce') )
 			*
 			*/
 			public function filter_other_fields($other_fields){
-				
+
 				$advanced_fields = $this->get_fields_for_product_advanced_section();
 
-				foreach ($advanced_fields as $advanced_field) 
+				foreach ($advanced_fields as $advanced_field)
 				{
 					$other_fields[] = $advanced_field;
 				}
 
 				// add needed fields to auto generate list
-				foreach ($other_fields as $key => $field) 
+				foreach ($other_fields as $key => $field)
 				{
-					if ( strpos($field['label'], '_min_') === 0 || strpos($field['label'], '_max_') === 0 ) 
+					if ( strpos($field['label'], '_min_') === 0 || strpos($field['label'], '_max_') === 0 )
 						continue;
 
                     if ($field['type'] == 'parent'){
@@ -182,10 +182,10 @@ if ( ! class_exists('XmlExportWooCommerce') )
                         continue;
                     }
 
-					if ( $field['type'] != 'attr' ) $other_fields[$key]['auto'] = true;	
+					if ( $field['type'] != 'attr' ) $other_fields[$key]['auto'] = true;
 
-					$other_fields[$key] = $this->fix_titles($other_fields[$key]);					
-				}					
+					$other_fields[$key] = $this->fix_titles($other_fields[$key]);
+				}
 
 				return $other_fields;
 			}
@@ -203,7 +203,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 					else
 					{
 						$field = $this->fix_title($field);
-					}					
+					}
 					return $field;
 				}
 					/**
@@ -229,13 +229,13 @@ if ( ! class_exists('XmlExportWooCommerce') )
 
 					if ( ! empty($this->_woo_data))
 					{
-						foreach ($this->_woo_data as $woo_key) 
-						{						
-							if ( strpos($woo_key, 'attribute_pa_') === 0 ) continue;		
+						foreach ($this->_woo_data as $woo_key)
+						{
+							if ( strpos($woo_key, 'attribute_pa_') === 0 ) continue;
 
 							if ( ! in_array($woo_key, $this->_product_data) )
 							{
-								switch ($woo_key) 
+								switch ($woo_key)
 								{
 									case '_upsell_ids':
 										$advanced_fields[] = array(
@@ -251,24 +251,24 @@ if ( ! class_exists('XmlExportWooCommerce') )
 											'type'  => 'woo'
 										);
 										break;
-									
+
 									default:
 										$advanced_fields[] = $this->fix_titles(array(
 											'name'  => $woo_key,
 											'label' => $woo_key,
 											'type'  => 'woo'
-										));										
+										));
 										break;
-								}								
+								}
 							}
-						}						
+						}
 					}
 					return $advanced_fields;
 				}
 
 				protected function get_fields_for_product_attributes_section()
 				{
-					$attributes_fields = array();					
+					$attributes_fields = array();
 
 					if ( empty(self::$_existing_attributes) )
 					{
@@ -277,10 +277,10 @@ if ( ! class_exists('XmlExportWooCommerce') )
 						foreach ($wp_taxonomies as $key => $obj) {	if (in_array($obj->name, array('nav_menu'))) continue;
 
 							if (strpos($obj->name, "pa_") === 0 and strlen($obj->name) > 3 and ! in_array($obj->name, self::$_existing_attributes))
-								self::$_existing_attributes[] = $obj->name;															
+								self::$_existing_attributes[] = $obj->name;
 						}
 					}
-										
+
 					if ( ! empty(self::$_existing_attributes) )
 					{
 						foreach (self::$_existing_attributes as $key => $tx_name) {
@@ -299,11 +299,11 @@ if ( ! class_exists('XmlExportWooCommerce') )
 							$attributes_fields[] = $this->fix_titles(array(
 								'name'  => str_replace('attribute_', '', $attribute->meta_key),
 								'label' => $attribute->meta_key,
-								'type'  => 'cf'								
+								'type'  => 'cf'
 							));
 						}
 					}
-					
+
 					return $attributes_fields;
 				}
 
@@ -311,12 +311,12 @@ if ( ! class_exists('XmlExportWooCommerce') )
 			*
 			* Filter Available Data
 			*
-			*/	
+			*/
 			public function filter_available_data($available_data){
 				$available_data['woo_data'] = $this->_woo_data;
-				$available_data['existing_attributes'] = self::$_existing_attributes;				
+				$available_data['existing_attributes'] = self::$_existing_attributes;
 				$available_data['product_fields'] = $this->get_fields_for_product_data_section();
-				// $available_data['product_attributes'] = $this->get_fields_for_product_attributes_section();								
+				// $available_data['product_attributes'] = $this->get_fields_for_product_attributes_section();
 
 				if ( ! empty($available_data['existing_taxonomies']) )	{
 					$existing_taxonomies = $available_data['existing_taxonomies'];
@@ -333,19 +333,40 @@ if ( ! class_exists('XmlExportWooCommerce') )
 							);
 						}
 						else
-						{							
-							$available_data['existing_taxonomies'][] = 	array(
-								'name'  => ($taxonomy['label'] == 'product_type') ? 'Product Type' : (empty($tx->label) ? $tx->name : $tx->label),
-								'label' => $taxonomy['label'],
-								'type'  => 'cats',
-								'auto'  => true
-							);						
-						}						
+						{
+							if($taxonomy['label'] === 'product_type') {
+                                $available_data['product_fields'][] = array(
+                                    'name' => 'Product Type',
+                                    'label' => $taxonomy['label'],
+                                    'type' => 'cats',
+                                    'auto' => true
+                                );
+
+                            } else if ($taxonomy['label'] === 'product_tag') {
+                                $available_data['product_fields'][] = array(
+                                    'name' => 'Product Tags',
+                                    'label' => $taxonomy['label'],
+                                    'type' => 'cats',
+                                    'auto' => true
+                                );
+                            }
+                            else if($taxonomy['label'] !== 'product_visibility' ) {
+                                $available_data['existing_taxonomies'][] = array(
+                                    'name' => (empty($tx->label) ? $tx->name : $tx->label),
+                                    'label' => $taxonomy['label'],
+                                    'type' => 'cats',
+                                    'auto' => true
+                                );
+                            }
+
+
+						}
 					}
 				}
 
+
 				if(\Pmwe\App\Service\WooCommerceVersion::isWooCommerceNewerThan('3.0')) {
-				    $available_data['existing_taxonomies'][] = array(
+				    $available_data['product_fields'][] = array(
                         'name'  => 'Product Visibility',
                         'label' => 'product_visibility',
                         'type'  => 'cats',
@@ -354,16 +375,16 @@ if ( ! class_exists('XmlExportWooCommerce') )
                 }
 
 				return $available_data;
-			}		
+			}
 				// helper method
 				protected function get_fields_for_product_data_section()
 				{
 					$product_fields = array();
 					if ( ! empty($this->_product_data) )
 					{
-						foreach ($this->_product_data as $woo_key) 
-						{						
-							switch ($woo_key) 
+						foreach ($this->_product_data as $woo_key)
+						{
+							switch ($woo_key)
 							{
 								case '_product_url':
 									$product_fields[] = array(
@@ -373,7 +394,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 										'auto'  => true
 									);
 									break;
-								
+
 								default:
 									$product_fields[] = $this->fix_titles(array(
 										'name'  => $woo_key,
@@ -382,11 +403,11 @@ if ( ! class_exists('XmlExportWooCommerce') )
 										'auto'  => true
 									));
 									break;
-							}						
-						}					
-					}					
+							}
+						}
+					}
 					return $product_fields;
-				}		
+				}
 
 			/**
 			*
@@ -399,21 +420,21 @@ if ( ! class_exists('XmlExportWooCommerce') )
 
 				$product_data = array(
 					'product_data' => array(
-						'title'    => __("Product Data", "wp_all_export_plugin"), 
+						'title'    => __("Product Data", "wp_all_export_plugin"),
 						'content'  => 'product_fields',
 						'additional' => array(
 							'attributes' => array(
-								'title' => __("Attributes", "wp_all_export_plugin"), 
+								'title' => __("Attributes", "wp_all_export_plugin"),
 								'meta'  => $this->get_fields_for_product_attributes_section()
 							)
-						)						
+						)
 					),
 					// 'product_attributes' => array(
-					// 	'title'    => __("Attributes", "wp_all_export_plugin"), 
-					// 	'content'  => 'product_attributes'						
+					// 	'title'    => __("Attributes", "wp_all_export_plugin"),
+					// 	'content'  => 'product_attributes'
 					// ),
-				);					
-				return array_merge(array_slice($available_sections, 0, 1), $product_data, array_slice($available_sections, 1));	
+				);
+				return array_merge(array_slice($available_sections, 0, 1), $product_data, array_slice($available_sections, 1));
 			}
 
 		// [\FILTERS]
@@ -422,16 +443,16 @@ if ( ! class_exists('XmlExportWooCommerce') )
 
 			if ( ! self::$is_active ) return;
 
-			$hide_fields = array('_edit_lock', '_edit_last');		
+			$hide_fields = array('_edit_lock', '_edit_last');
 
-			$this->filter_meta_keys( $existing_meta_keys );			
+			$this->filter_meta_keys( $existing_meta_keys );
 
-			global $wp_taxonomies;	
+			global $wp_taxonomies;
 
 			foreach ($wp_taxonomies as $key => $obj) {	if (in_array($obj->name, array('nav_menu'))) continue;
 
 				if (strpos($obj->name, "pa_") === 0 and strlen($obj->name) > 3 and ! in_array($obj->name, self::$_existing_attributes))
-					self::$_existing_attributes[] = $obj->name;															
+					self::$_existing_attributes[] = $obj->name;
 			}
 
 		}
@@ -441,43 +462,43 @@ if ( ! class_exists('XmlExportWooCommerce') )
 				if ( ! empty($meta_keys) )
 				{
 					foreach ($meta_keys as $key => $record_meta_key) {
-						
+
 						if ( in_array($record_meta_key, $this->_woo_data) ) unset($meta_keys[$key]);
 
 						if ( strpos($record_meta_key, 'attribute_pa_') === 0 || strpos($record_meta_key, '_min_') === 0 || strpos($record_meta_key, '_max_') === 0){
 							if ( ! in_array($record_meta_key, $this->_woo_data)){
 								$this->_woo_data[] = $record_meta_key;
 								unset($meta_keys[$key]);
-							}												
-						}		
+							}
+						}
 						if ( strpos($record_meta_key, 'attribute_') === 0 && strpos($record_meta_key, 'attribute_pa_') === false )
 						{
 							unset($meta_keys[$key]);
-						}				
+						}
 					}
 				}
 			}
 
 		public function init_additional_data()
-		{			
-			if ( ! self::$is_active ) return;								
+		{
+			if ( ! self::$is_active ) return;
 
 			$cs = PMXE_Plugin::getInstance()->getAdminCurrentScreen();
 
 			if ( empty(self::$products_data) or ! empty($cs) and 'PMXE_Admin_Manage' == $cs->base )
-			{				
+			{
 
-				self::$products_data = array();				
+				self::$products_data = array();
 
 				global $wpdb;
 
 				$table_prefix = $wpdb->prefix;
 
 				self::$products_data['attributes'] = $wpdb->get_results($wpdb->prepare("SELECT DISTINCT meta_key FROM {$table_prefix}postmeta 
-						WHERE {$table_prefix}postmeta.meta_key LIKE %s AND {$table_prefix}postmeta.meta_key NOT LIKE %s", 'attribute_%', 'attribute_pa_%'));				
+						WHERE {$table_prefix}postmeta.meta_key LIKE %s AND {$table_prefix}postmeta.meta_key NOT LIKE %s", 'attribute_%', 'attribute_pa_%'));
 
 				if ( ! empty(PMXE_Plugin::$session) )
-				{ 
+				{
 					PMXE_Plugin::$session->set('products_data', self::$products_data);
 					PMXE_Plugin::$session->save_data();
 				}
@@ -486,9 +507,10 @@ if ( ! class_exists('XmlExportWooCommerce') )
 
 		// [prepare fields for order items]
 		public function get_all_fields_for_order_items()
-		{			
-			$meta_keys = wp_all_export_get_existing_meta_by_cpt('product');
-			
+		{
+
+            $meta_keys = wp_all_export_get_existing_meta_by_cpt('product');
+
 			$this->filter_meta_keys( $meta_keys );
 
 			$default_data   = $this->get_default_fields_for_order_items();
@@ -496,8 +518,8 @@ if ( ! class_exists('XmlExportWooCommerce') )
 			$product_data   = $this->get_fields_for_product_data_section();
 
 			$taxes_data     = array();
-			
-			foreach ($product_data as $field) 
+
+			foreach ($product_data as $field)
 			{
 				if ( ! in_array($field['label'], array('_sku', 'attributes')))	$default_data[] = $field;
 			}
@@ -517,19 +539,19 @@ if ( ! class_exists('XmlExportWooCommerce') )
 					);
 				}
 				else
-				{							
+				{
 					$taxes_data[] = 	array(
 						'name'  => ($taxonomy['label'] == 'product_type') ? 'Product Type' : $tx->label,
 						'label' => $taxonomy['label'],
 						'type'  => 'cats',
 						'auto'  => true
-					);						
-				}						
+					);
+				}
 			}
 
-			return array(
+			$order_items_fields = array(
 				'product_data'  => array(
-					'title' => __('Product Data', 'wp_all_export_plugin'), 
+					'title' => __('Product Data', 'wp_all_export_plugin'),
 					'meta'  => $default_data,
 					// 'additional' => array(
 					// 	'attributes' => array(
@@ -555,6 +577,9 @@ if ( ! class_exists('XmlExportWooCommerce') )
 					'meta'  => $this->get_fields_for_product_advanced_section()
 				)
 			);
+
+			return $order_items_fields;
+
 		}
 			// helper method
 			protected function get_default_fields_for_order_items()
@@ -562,7 +587,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 				$exclude_default_fields = array('id', 'title', 'permalink');
 
 				$default_fields = array();
-				foreach (XmlExportEngine::$default_fields as $field) 
+				foreach (XmlExportEngine::$default_fields as $field)
 				{
 					if ( ! in_array($field['type'], $exclude_default_fields) ) $default_fields[] = $field;
 				}
@@ -577,10 +602,10 @@ if ( ! class_exists('XmlExportWooCommerce') )
 			$element_value = str_replace("item_data__", "", $options['cc_value'][$elId]);
 
 			if ( ! empty($element_value) )
-			{									
+			{
 				$implode_delimiter = XmlExportEngine::$implode;
 
-				$element_name = ( ! empty($options['cc_name'][$elId]) ) ? $options['cc_name'][$elId] : 'untitled_' . $elId;				
+				$element_name = ( ! empty($options['cc_name'][$elId]) ) ? $options['cc_name'][$elId] : 'untitled_' . $elId;
 				$fieldSnipped = ( ! empty($options['cc_php'][$elId]) and ! empty($options['cc_code'][$elId]) ) ? $options['cc_code'][$elId] : false;
 
 				switch ($element_value)
@@ -590,12 +615,12 @@ if ( ! class_exists('XmlExportWooCommerce') )
 
 						if ( empty(self::$_existing_attributes) )
 						{
-							global $wp_taxonomies;	
+							global $wp_taxonomies;
 
 							foreach ($wp_taxonomies as $key => $obj) {	if (in_array($obj->name, array('nav_menu'))) continue;
 
 								if (strpos($obj->name, "pa_") === 0 and strlen($obj->name) > 3 and ! in_array($obj->name, self::$_existing_attributes))
-									self::$_existing_attributes[] = $obj->name;															
+									self::$_existing_attributes[] = $obj->name;
 							}
 						}
 
@@ -649,7 +674,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 						// combine custom attributes
 						if ( ! empty(self::$products_data['attributes']))
 						{
-							foreach (self::$products_data['attributes'] as $attribute) 
+							foreach (self::$products_data['attributes'] as $attribute)
 							{
 								$attribute_standart_name = str_replace('attribute_', '', $attribute->meta_key);
 								$attribute_name = ucfirst($attribute_standart_name);
@@ -671,26 +696,26 @@ if ( ! class_exists('XmlExportWooCommerce') )
 
 						if ( ! empty($cur_meta_values) and is_array($cur_meta_values) )
 						{
-							foreach ($cur_meta_values as $key => $cur_meta_value) 
+							foreach ($cur_meta_values as $key => $cur_meta_value)
 							{
 								$fieldOptions = $options['cc_options'][$elId];
 								$fieldSettings = empty($options['cc_settings'][$elId]) ? $fieldOptions : $options['cc_settings'][$elId];
 
 								switch ($element_value)
-								{									
+								{
 									case '_downloadable_files':
-										
+
 										$files = maybe_unserialize($cur_meta_value);
 										$file_paths = array();
 										$file_names = array();
 
 										if ( ! empty($files) ){
-											
+
 											foreach ($files as $key => $file) {
 												$file_paths[] = $file['file'];
 												$file_names[] = $file['name'];
-											}											
-											
+											}
+
 										}
 										$data[$element_name . ' Paths'] = pmxe_filter(implode($implode_delimiter, $file_paths), $fieldSnipped);
 										$data[$element_name . ' Names'] = pmxe_filter(implode($implode_delimiter, $file_names), $fieldSnipped);
@@ -729,16 +754,16 @@ if ( ! class_exists('XmlExportWooCommerce') )
 														$p = get_post($_id);
 														if ($p)
 														{
-															$_values[] = $p->post_name;	
-														}														
+															$_values[] = $p->post_name;
+														}
 													}
 													break;
 												default:
 													# code...
 													break;
-											}																																	
+											}
 										}
-										$data[$element_name] = apply_filters('pmxe_woo_field', pmxe_filter(implode($implode_delimiter, $_values), $fieldSnipped), $element_value, $record->ID);								
+										$data[$element_name] = apply_filters('pmxe_woo_field', pmxe_filter(implode($implode_delimiter, $_values), $fieldSnipped), $element_value, $record->ID);
 										break;
 
 									case '_sale_price_dates_from':
@@ -747,9 +772,8 @@ if ( ! class_exists('XmlExportWooCommerce') )
                                         $post_date = $cur_meta_value ? prepare_date_field_value($fieldSettings, $cur_meta_value) : "";
 
 										$data[$element_name] = apply_filters('pmxe_woo_field', pmxe_filter($post_date, $fieldSnipped), $element_value, $record->ID);
-										
-										// wp_all_export_write_article( $article, $element_name, apply_filters('pmxe_post_date', pmxe_filter($post_date, $fieldSnipped), $record->ID) );
-										break;		
+
+										break;
 
                                     case '_tax_class':
 
@@ -765,16 +789,16 @@ if ( ! class_exists('XmlExportWooCommerce') )
 									default:
 
 										if ( empty($data[$element_name]) )
-										{											
-											$data[$element_name] = apply_filters('pmxe_woo_field', pmxe_filter(maybe_serialize($cur_meta_value), $fieldSnipped), $element_value, $record->ID);																			
+										{
+											$data[$element_name] = apply_filters('pmxe_woo_field', pmxe_filter(maybe_serialize($cur_meta_value), $fieldSnipped), $element_value, $record->ID);
 										}
 										else
 										{
-											$data[$element_name . '_' . $key] = apply_filters('pmxe_woo_field', pmxe_filter(maybe_serialize($cur_meta_value), $fieldSnipped), $element_value, $record->ID);																														
+											$data[$element_name . '_' . $key] = apply_filters('pmxe_woo_field', pmxe_filter(maybe_serialize($cur_meta_value), $fieldSnipped), $element_value, $record->ID);
 										}
 
 										break;
-								}		
+								}
 							}
 						}
 
@@ -795,13 +819,13 @@ if ( ! class_exists('XmlExportWooCommerce') )
 						}
 
 						if ( empty($cur_meta_values) && $element_value != '_featured' )
-						{												
+						{
 							$data[$element_name] = apply_filters('pmxe_woo_field', pmxe_filter('', $fieldSnipped), $element_value, $record->ID);
 						}
 
 						break;
 				}
-																																																																						
+
 			}
 
 
@@ -809,7 +833,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 		}
 
 		public function export_csv( & $article, & $titles, $record, $options, $element_key )
-		{			
+		{
 			$data_to_export = $this->prepare_export_data( $record, $options, $element_key );
 
 			$rawPrices = false;
@@ -827,7 +851,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 		{
 			$element_value = str_replace("item_data__", "", $options['cc_value'][$element_key]);
 
-			switch ($element_value) 
+			switch ($element_value)
 			{
 				case 'attributes':
 
@@ -849,7 +873,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 					// headers for custom attributes
 					if ( ! empty(self::$products_data['attributes']))
 					{
-						foreach (self::$products_data['attributes'] as $attribute) 
+						foreach (self::$products_data['attributes'] as $attribute)
 						{
 							$attribute_name = ucfirst(str_replace('attribute_', '', $attribute->meta_key));
 
@@ -872,7 +896,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 
 				default:
 
-					if ( ! in_array($options['cc_name'][$element_key], $headers)) 
+					if ( ! in_array($options['cc_name'][$element_key], $headers))
 					{
 						$headers[] = $options['cc_name'][$element_key];
 					}
@@ -892,8 +916,8 @@ if ( ! class_exists('XmlExportWooCommerce') )
 
 							$i++;
 						}
-						while ( ! $is_added );						
-					}					
+						while ( ! $is_added );
+					}
 
 					break;
 			}
@@ -901,13 +925,13 @@ if ( ! class_exists('XmlExportWooCommerce') )
 
 		public function export_xml( & $xmlWriter, $record, $options, $elId ){
 
-			if ( ! self::$is_active ) return;	
+			if ( ! self::$is_active ) return;
 
 			$data_to_export = $this->prepare_export_data( $record, $options, $elId );
 
-			foreach ($data_to_export as $key => $data) 
+			foreach ($data_to_export as $key => $data)
 			{
-				$element_name_ns = '';	
+				$element_name_ns = '';
 				$element_name = str_replace("-", "_", preg_replace('/[^a-z0-9:_]/i', '', $key));
 				if (strpos($element_name, ":") !== false)
 				{
@@ -927,12 +951,12 @@ if ( ! class_exists('XmlExportWooCommerce') )
 
 				$xmlWriter->beginElement($element_name_ns, $element_name, null);
 					$xmlWriter->writeData($data, $element_name);
-				$xmlWriter->closeElement();			
+				$xmlWriter->closeElement();
 
-				$xmlWriter = apply_filters('wp_all_export_add_after_element', $xmlWriter, $element_name, XmlExportEngine::$exportID, $record->ID);		
+				$xmlWriter = apply_filters('wp_all_export_add_after_element', $xmlWriter, $element_name, XmlExportEngine::$exportID, $record->ID);
 			}
 
-		}		
+		}
 
 		public static function prepare_import_template( $exportOptions, &$templateOptions, &$cf_list, &$attr_list, $element_name, $element_key )
 		{
@@ -942,12 +966,12 @@ if ( ! class_exists('XmlExportWooCommerce') )
 
 			$implode_delimiter = XmlExportEngine::$implode;
 
-			switch ($element_key) 
-			{												
+			switch ($element_key)
+			{
 				case '_visibility':
 					$templateOptions['is_product_visibility'] = 'xpath';
 					$templateOptions['single_product_visibility'] = '{'. $element_name .'[1]}';
-					break;				
+					break;
 				case '_stock_status':
 					$templateOptions['product_stock_status'] = 'xpath';
 					$templateOptions['single_product_stock_status'] = '{'. $element_name .'[1]}';
@@ -967,31 +991,31 @@ if ( ! class_exists('XmlExportWooCommerce') )
 					$templateOptions['single_product_regular_price'] = '{'. $element_name .'[1]}';
 					if ( ! in_array('_price', $cf_list)) $cf_list[] = '_price';
 					break;
-				case '_sale_price':													
+				case '_sale_price':
 					$templateOptions['single_product_sale_price'] = '{'. $element_name .'[1]}';
 					if ( ! in_array('_price', $cf_list)) $cf_list[] = '_price';
 					break;
-				case '_purchase_note':													
+				case '_purchase_note':
 					$templateOptions['single_product_purchase_note'] = '{'. $element_name .'[1]}';
 					break;
-				case '_featured':				
-					$templateOptions['is_product_featured'] = 'xpath';									
+				case '_featured':
+					$templateOptions['is_product_featured'] = 'xpath';
 					$templateOptions['single_product_featured'] = '{'. $element_name .'[1]}';
 					break;
-				case '_weight':																	
+				case '_weight':
 					$templateOptions['single_product_weight'] = '{'. $element_name .'[1]}';
 					break;
 				case '_length':
 					$templateOptions['single_product_length'] = '{'. $element_name .'[1]}';
 					break;
-				case '_width':																	
+				case '_width':
 					$templateOptions['single_product_width'] = '{'. $element_name .'[1]}';
 					break;
 				case '_height':
 					$templateOptions['single_product_height'] = '{'. $element_name .'[1]}';
 					break;
 				case '_sku':
-					$templateOptions['single_product_sku'] = '{'. $element_name .'[1]}';								
+					$templateOptions['single_product_sku'] = '{'. $element_name .'[1]}';
 					//$templateOptions['single_product_parent_id'] = '{parent_id[1]}';
 					break;
 				case '_sale_price_dates_from':
@@ -1001,11 +1025,11 @@ if ( ! class_exists('XmlExportWooCommerce') )
 					$templateOptions['single_sale_price_dates_to'] = '{'. $element_name .'[1]}';
 					break;
 				case '_sold_individually':
-					$templateOptions['product_sold_individually'] = 'xpath';	
+					$templateOptions['product_sold_individually'] = 'xpath';
 					$templateOptions['single_product_sold_individually'] = '{'. $element_name .'[1]}';
 					break;
 				case '_manage_stock':
-					$templateOptions['is_product_manage_stock'] = 'xpath';	
+					$templateOptions['is_product_manage_stock'] = 'xpath';
 					$templateOptions['single_product_manage_stock'] = '{'. $element_name .'[1]}';
 					break;
 				case '_stock':
@@ -1018,7 +1042,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 						$templateOptions['grouped_product_children_xpath'] = '{' . $element_name . '[1]}';
 					}
 					break;
-				case '_upsell_ids':								
+				case '_upsell_ids':
 
 					if ($implode_delimiter == "|")
 						$templateOptions['single_product_up_sells'] = '[str_replace("|", ",",{' . $element_name . '[1]})]';
@@ -1026,7 +1050,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 						$templateOptions['single_product_up_sells'] = '{' . $element_name . '[1]}';
 
 					break;
-				case '_crosssell_ids':								
+				case '_crosssell_ids':
 
 					if ($implode_delimiter == "|")
 						$templateOptions['single_product_cross_sells'] = '[str_replace("|", ",",{' . $element_name . '[1]})]';
@@ -1037,10 +1061,10 @@ if ( ! class_exists('XmlExportWooCommerce') )
 				case '_downloadable_files':
 					if ($is_xml_template) {
 						$templateOptions['single_product_files'] = '{'. $element_name .'Paths[1]}';
-						$templateOptions['single_product_files_names'] = '{'. $element_name .'Names[1]}';												
+						$templateOptions['single_product_files_names'] = '{'. $element_name .'Names[1]}';
 					} else {
 						$templateOptions['single_product_files'] = '{'. $element_name .'paths[1]}';
-						$templateOptions['single_product_files_names'] = '{'. $element_name .'names[1]}';	
+						$templateOptions['single_product_files_names'] = '{'. $element_name .'names[1]}';
 						$templateOptions['product_files_delim'] = $implode_delimiter;
 						$templateOptions['product_files_names_delim'] = $implode_delimiter;
 					}
@@ -1090,11 +1114,11 @@ if ( ! class_exists('XmlExportWooCommerce') )
                     $templateOptions['single_product_visibility'] = '{'. $element_name .'[1]}';
                     break;
 				case 'attributes':
-						
-					global $wp_taxonomies;									
+
+					global $wp_taxonomies;
 
 					foreach ($wp_taxonomies as $key => $obj) {	if (in_array($obj->name, array('nav_menu'))) continue;
-						
+
 						if (strpos($obj->name, "pa_") === 0 and strlen($obj->name) > 3)
 						{
                             $attribute_name = preg_replace('/[^a-z0-9_]/i', '', str_replace("-", "_", $obj->name));
@@ -1161,17 +1185,17 @@ if ( ! class_exists('XmlExportWooCommerce') )
                                     }
                                 }
                             }
-							
+
 							$templateOptions['in_variations'][] = "1";
 							$templateOptions['is_visible'][] = "1";
 							$templateOptions['is_taxonomy'][] = "1";
-							$templateOptions['create_taxonomy_in_not_exists'][] = "1";	
-							
+							$templateOptions['create_taxonomy_in_not_exists'][] = "1";
+
 							$templateOptions['is_advanced'][] = "1";
 							$templateOptions['advanced_is_create_terms'][] = "yes";
 							$templateOptions['advanced_in_variations'][] = "xpath";
 							$templateOptions['advanced_is_visible'][] = "xpath";
-							$templateOptions['advanced_is_taxonomy'][] = "xpath";							
+							$templateOptions['advanced_is_taxonomy'][] = "xpath";
 
 							$attr_list[] = $obj->name;
 						}
@@ -1182,11 +1206,11 @@ if ( ! class_exists('XmlExportWooCommerce') )
 					$table_prefix = $wpdb->prefix;
 
 					$attributes = $wpdb->get_results($wpdb->prepare("SELECT DISTINCT meta_key FROM {$table_prefix}postmeta 
-							WHERE {$table_prefix}postmeta.meta_key LIKE %s AND {$table_prefix}postmeta.meta_key NOT LIKE %s", 'attribute_%', 'attribute_pa_%'));	
+							WHERE {$table_prefix}postmeta.meta_key LIKE %s AND {$table_prefix}postmeta.meta_key NOT LIKE %s", 'attribute_%', 'attribute_pa_%'));
 
 					if ( ! empty($attributes))
 					{
-						foreach ($attributes as $attribute) 
+						foreach ($attributes as $attribute)
 						{
 							if ($is_xml_template)
 							{
@@ -1236,17 +1260,17 @@ if ( ! class_exists('XmlExportWooCommerce') )
                                     }
                                 }
 							}
-														
+
 							$templateOptions['in_variations'][] = "1";
 							$templateOptions['is_visible'][] = "1";
-							$templateOptions['is_taxonomy'][] = "1";										
-							$templateOptions['create_taxonomy_in_not_exists'][] = "1";	
+							$templateOptions['is_taxonomy'][] = "1";
+							$templateOptions['create_taxonomy_in_not_exists'][] = "1";
 
 							$templateOptions['is_advanced'][] = "1";
 							$templateOptions['advanced_is_create_terms'][] = "yes";
 							$templateOptions['advanced_in_variations'][] = "xpath";
 							$templateOptions['advanced_is_visible'][] = "xpath";
-							$templateOptions['advanced_is_taxonomy'][] = "xpath";							
+							$templateOptions['advanced_is_taxonomy'][] = "xpath";
 
 							$attr_list[] = str_replace('attribute_', '', $attribute->meta_key);
 						}
@@ -1268,7 +1292,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 	     */
 	    public function __get( $key ) {
 	        return $this->get( $key );
-	    }	
+	    }
 
 	    /**
 	     * Get a session variable
@@ -1277,7 +1301,7 @@ if ( ! class_exists('XmlExportWooCommerce') )
 	     * @param  mixed $default used if the session variable isn't set
 	     * @return mixed value of session variable
 	     */
-	    public function get( $key, $default = null ) {        
+	    public function get( $key, $default = null ) {
 	        return isset( $this->{$key} ) ? $this->{$key} : $default;
 	    }
 	}

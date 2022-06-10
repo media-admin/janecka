@@ -11,6 +11,20 @@ if ( ! class_exists( 'AWS_Markup' ) ) :
      */
     class AWS_Markup {
 
+        /**
+         * @var AWS_Markup Array of form parameters $atts
+         */
+        private $atts;
+
+        /*
+        * Constructor
+        */
+        public function __construct( $atts = array() ) {
+
+            $this->atts = $atts;
+
+        }
+
         /*
          * Generate search box markup
          */
@@ -27,18 +41,19 @@ if ( ! class_exists( 'AWS_Markup' ) ) :
                 return;
             }
 
-
-            $placeholder    = AWS_Helpers::translate( 'search_field_text', AWS()->get_settings( 'search_field_text' ) );
-            $min_chars      = AWS()->get_settings( 'min_chars' );
-            $show_loader    = AWS()->get_settings( 'show_loader' );
-            $show_more      = AWS()->get_settings( 'show_more' );
-            $ajax_search    = AWS()->get_settings( 'enable_ajax' );
-            $show_page      = AWS()->get_settings( 'search_page' );
-            $show_clear     = AWS()->get_settings( 'show_clear' );
-            $mobile_screen  = AWS()->get_settings( 'mobile_overlay' );
-            $use_analytics  = AWS()->get_settings( 'use_analytics' );
-            $buttons_order  = AWS()->get_settings( 'buttons_order' );
-            $search_timeout = AWS()->get_settings( 'search_timeout' );
+            extract( shortcode_atts( array(
+                'placeholder'    => AWS_Helpers::translate( 'search_field_text', AWS()->get_settings( 'search_field_text' ) ),
+                'min_chars'      => AWS()->get_settings( 'min_chars' ),
+                'show_loader'    => AWS()->get_settings( 'show_loader' ),
+                'show_more'      => AWS()->get_settings( 'show_more' ),
+                'ajax_search'    => AWS()->get_settings( 'enable_ajax' ),
+                'show_page'      => AWS()->get_settings( 'search_page' ),
+                'show_clear'     => AWS()->get_settings( 'show_clear' ),
+                'mobile_screen'  => AWS()->get_settings( 'mobile_overlay' ),
+                'use_analytics'  => AWS()->get_settings( 'use_analytics' ),
+                'buttons_order'  => AWS()->get_settings( 'buttons_order' ),
+                'search_timeout' => AWS()->get_settings( 'search_timeout' )
+            ), $this->atts ) );
 
             $current_lang = AWS_Helpers::get_lang();
 

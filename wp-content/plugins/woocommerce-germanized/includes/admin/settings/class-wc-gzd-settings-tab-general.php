@@ -44,16 +44,31 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 	}
 
 	protected function get_legal_page_settings() {
+		$page_type = 'single_select_page';
+		$class     = 'wc-enhanced-select-nostd';
+
+		if ( function_exists( 'WC' ) && version_compare( WC()->version, '5.3.3', '>=' ) ) {
+			$page_type = 'single_select_page_with_search';
+			$class     = 'wc-page-search';
+		}
+
 		return array(
-			array( 'title' => '', 'type' => 'title', 'id' => 'legal_page_options' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'id'    => 'legal_page_options',
+			),
 
 			array(
 				'title'    => __( 'Terms & Conditions', 'woocommerce-germanized' ),
 				'desc_tip' => __( 'This page should contain your terms & conditions.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_terms_page_id',
-				'type'     => 'single_select_page',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
 				'default'  => '',
-				'class'    => 'wc-enhanced-select-nostd',
+				'class'    => $class,
 				'css'      => 'min-width:300px;',
 				'desc'     => ( ! get_option( 'woocommerce_terms_page_id' ) ? sprintf( __( 'Don\'t have terms & conditions yet? <a href="%s">Generate now</a>!', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-terms_generator' ) ) : '' ),
 			),
@@ -61,9 +76,12 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'title'    => __( 'Cancellation Policy', 'woocommerce-germanized' ),
 				'desc_tip' => __( 'This page should contain information regarding your customer\'s Right of Withdrawal.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_revocation_page_id',
-				'type'     => 'single_select_page',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
 				'default'  => '',
-				'class'    => 'wc-enhanced-select-nostd',
+				'class'    => $class,
 				'css'      => 'min-width:300px;',
 				'desc'     => ( ! get_option( 'woocommerce_revocation_page_id' ) ? sprintf( __( 'Don\'t have a revocation page yet? <a href="%s">Generate now</a>!', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-revocation_generator' ) ) : '' ),
 			),
@@ -82,9 +100,12 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'title'    => __( 'Imprint', 'woocommerce-germanized' ),
 				'desc'     => __( 'This page should contain an imprint with your company\'s information.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_imprint_page_id',
-				'type'     => 'single_select_page',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
 				'default'  => '',
-				'class'    => 'wc-enhanced-select-nostd',
+				'class'    => $class,
 				'css'      => 'min-width:300px;',
 				'desc_tip' => true,
 			),
@@ -92,19 +113,25 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'title'    => __( 'Privacy Policy', 'woocommerce-germanized' ),
 				'desc_tip' => __( 'This page should contain information regarding your privacy policy.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_data_security_page_id',
-				'type'     => 'single_select_page',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
 				'default'  => '',
-				'class'    => 'wc-enhanced-select-nostd',
+				'class'    => $class,
 				'desc'     => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Please make sure to place your privacy policy to be directly accessible to the user on the website, e.g. as a link within your footer.', 'woocommerce-germanized' ) ) . '</div>',
-				'css'      => 'min-width:300px;'
+				'css'      => 'min-width:300px;',
 			),
 			array(
 				'title'    => __( 'Payment Methods', 'woocommerce-germanized' ),
 				'desc'     => __( 'This page should contain information regarding the Payment Methods that are chooseable during checkout.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_payment_methods_page_id',
-				'type'     => 'single_select_page',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
 				'default'  => '',
-				'class'    => 'wc-enhanced-select-nostd',
+				'class'    => $class,
 				'css'      => 'min-width:300px;',
 				'desc_tip' => true,
 			),
@@ -112,14 +139,33 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'title'    => __( 'Shipping Methods', 'woocommerce-germanized' ),
 				'desc'     => __( 'This page should contain information regarding shipping methods that are chooseable during checkout.', 'woocommerce-germanized' ),
 				'id'       => 'woocommerce_shipping_costs_page_id',
-				'type'     => 'single_select_page',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
 				'default'  => '',
-				'class'    => 'wc-enhanced-select-nostd',
+				'class'    => $class,
+				'css'      => 'min-width:300px;',
+				'desc_tip' => true,
+			),
+			array(
+				'title'    => __( 'Review Authenticity', 'woocommerce-germanized' ),
+				'desc'     => __( 'This page should contain information about the authenticity of customer reviews.', 'woocommerce-germanized' ),
+				'id'       => 'woocommerce_review_authenticity_page_id',
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'type'     => $page_type,
+				'default'  => '',
+				'class'    => $class,
 				'css'      => 'min-width:300px;',
 				'desc_tip' => true,
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'legal_page_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'legal_page_options',
+			),
 		);
 	}
 
@@ -131,14 +177,18 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 		foreach ( $complaints_pages as $page => $page_id ) {
 			if ( ! WC_GZD_Admin::instance()->is_complaints_shortcode_inserted( $page_id ) ) {
 				$is_complaints_shortcode_inserted = false;
-				array_push( $complaints_shortcode_missing, ( $page === 'terms' ? __( 'Terms & Conditions', 'woocommerce-germanized' ) : __( 'Imprint', 'woocommerce-germanized' ) ) );
+				array_push( $complaints_shortcode_missing, ( 'terms' === $page ? __( 'Terms & Conditions', 'woocommerce-germanized' ) : __( 'Imprint', 'woocommerce-germanized' ) ) );
 			}
 		}
 
 		$additional_shortcode_info = __( 'This status indicates whether your terms & conditions contain the [gzd_complaints] shortcode which outputs the complaints options chosen from above or not. If you\'ve added the text manually, you might ignore this status.', 'woocommerce-germanized' );
 
 		return array(
-			array( 'title' => '', 'type' => 'title', 'id' => 'complaints_options' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'id'    => 'complaints_options',
+			),
 
 			array(
 				'title'    => __( 'Dispute Resolution', 'woocommerce-germanized' ),
@@ -185,16 +235,24 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'id'       => 'woocommerce_gzd_complaints_procedure_status',
 				'type'     => 'html',
 				'desc_tip' => false,
-				'html'     => '<p><span class="wc-gzd-status-text wc-gzd-text-' . ( $is_complaints_shortcode_inserted ? 'green' : 'red' ) . '"> ' . ( $is_complaints_shortcode_inserted ? __( 'Found', 'woocommerce-germanized' ) : sprintf( __( 'Not found within %s', 'woocommerce-germanized' ), implode( ', ', $complaints_shortcode_missing ) ) ) . '</span> ' . ( ! $is_complaints_shortcode_inserted ? '<a class="button button-secondary" style="margin-left: 1em" href="' . wp_nonce_url( add_query_arg( array( 'wc-gzd-check-complaints_shortcode_append' => true ) ), 'wc-gzd-check-complaints_shortcode_append' ) . '">' . __( 'Append it now', 'woocommerce-germanized' ) . '</a></p>' : '' ) . '<div class="wc-gzd-additional-desc">' . $additional_shortcode_info . '</div>',
+				'html'     => '<p><span class="wc-gzd-status-text wc-gzd-text-' . ( $is_complaints_shortcode_inserted ? 'green' : 'red' ) . '"> ' . ( $is_complaints_shortcode_inserted ? __( 'Found', 'woocommerce-germanized' ) : sprintf( __( 'Not found within %s', 'woocommerce-germanized' ), implode( ', ', $complaints_shortcode_missing ) ) ) . '</span> ' . ( ! $is_complaints_shortcode_inserted ? '<a class="button button-secondary" style="margin-left: 1em" href="' . esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-complaints_shortcode_append' => true ) ), 'wc-gzd-check-complaints_shortcode_append' ) ) . '">' . __( 'Append it now', 'woocommerce-germanized' ) . '</a></p>' : '' ) . '<div class="wc-gzd-additional-desc">' . $additional_shortcode_info . '</div>',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'complaints_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'complaints_options',
+			),
 		);
 	}
 
 	protected function get_small_business_settings() {
 		return array(
-			array( 'title' => '', 'type' => 'title', 'desc' => '', 'id' => 'small_business_options' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'desc'  => '',
+				'id'    => 'small_business_options',
+			),
 
 			array(
 				'title'   => __( 'Small-Enterprise-Regulation', 'woocommerce-germanized' ),
@@ -216,7 +274,10 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'css'               => 'width:100%; height: 50px;',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'small_business_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'small_business_options',
+			),
 		);
 	}
 
@@ -224,7 +285,12 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 		$shipping_methods_options = WC_GZD_Admin::instance()->get_shipping_method_instances_options();
 
 		return array(
-			array( 'title' => '', 'type' => 'title', 'desc' => '', 'id' => 'checkout_options' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'desc'  => '',
+				'id'    => 'checkout_options',
+			),
 
 			array(
 				'title'   => __( 'Title', 'woocommerce-germanized' ),
@@ -240,10 +306,10 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'type'    => 'select',
 				'default' => 'never',
 				'options' => array(
-					'never'      => __( 'Never', 'woocommerce-germanized' ),
-					'always'     => __( 'Always', 'woocommerce-germanized' ),
-					'base_only'  => __( 'Base country only', 'woocommerce-germanized' ),
-					'eu_only'    => __( 'EU countries only', 'woocommerce-germanized' ),
+					'never'     => __( 'Never', 'woocommerce-germanized' ),
+					'always'    => __( 'Always', 'woocommerce-germanized' ),
+					'base_only' => __( 'Base country only', 'woocommerce-germanized' ),
+					'eu_only'   => __( 'EU countries only', 'woocommerce-germanized' ),
 				),
 			),
 			array(
@@ -281,13 +347,21 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'desc'              => '<div class="wc-gzd-additional-desc">' . __( 'Optionally choose methods which should be excluded from hiding when free shipping is available (e.g. express shipping options).', 'woocommerce-germanized' ) . '</div>',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'checkout_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'checkout_options',
+			),
 		);
 	}
 
 	protected function get_shop_settings() {
 		return array(
-			array( 'title' => '', 'type' => 'title', 'desc' => '', 'id' => 'shop_options' ),
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'desc'  => '',
+				'id'    => 'shop_options',
+			),
 
 			array(
 				'title'    => __( 'Add to Cart', 'woocommerce-germanized' ),
@@ -317,7 +391,95 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'css'               => 'min-width:300px;',
 			),
 
-			array( 'type' => 'sectionend', 'id' => 'shop_options' ),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'shop_options',
+			),
+
+			array(
+				'title' => __( 'Review Authenticity', 'woocommerce-germanized' ),
+				'type'  => 'title',
+				'desc'  => sprintf( __( 'Provide information on the authenticity of customer reviews. Learn more about the <a href="%1$s">Omnibus-Policy</a>.', 'woocommerce-germanized' ), 'https://www.haendlerbund.de/de/news/aktuelles/rechtliches/4145-omnibus-rezensionen-gekennzeichnet' ),
+				'id'    => 'review_authenticity_options',
+			),
+
+			array(
+				'title'   => __( 'Overall notice', 'woocommerce-germanized' ),
+				'desc'    => sprintf( __( 'Notify customers about the authenticity of overall product ratings.', 'woocommerce-germanized' ) ),
+				'id'      => 'woocommerce_gzd_display_rating_authenticity_notice',
+				'default' => 'yes',
+				'type'    => 'gzd_toggle',
+			),
+
+			array(
+				'title'             => __( 'Verified?', 'woocommerce-germanized' ),
+				'desc'              => sprintf( __( 'Whether your current product ratings are verified, e.g. only verified owners were able to submit reviews.', 'woocommerce-germanized' ) ),
+				'id'                => 'woocommerce_gzd_product_ratings_verified',
+				'default'           => get_option( 'woocommerce_review_rating_verification_required' ) === 'yes' ? 'yes' : 'no',
+				'type'              => 'gzd_toggle',
+				'custom_attributes' => array(
+					'data-show_if_woocommerce_gzd_display_rating_authenticity_notice' => '',
+				),
+			),
+
+			array(
+				'title'             => __( 'Format', 'woocommerce-germanized' ),
+				'id'                => 'woocommerce_gzd_product_rating_verified_text',
+				'default'           => __( '{link}Verified overall ratings{/link}', 'woocommerce-germanized' ),
+				'type'              => 'text',
+				'custom_attributes' => array(
+					'data-show_if_woocommerce_gzd_display_rating_authenticity_notice' => '',
+					'data-show_if_woocommerce_gzd_product_ratings_verified' => 'yes',
+				),
+				'desc'              => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Customize the format used to notify customers about the authenticity of the ratings. Use {link}{/link} as placeholders to link your <a href="%1$s">review information page</a>.', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-general' ) ) . '</div>',
+			),
+
+			array(
+				'title'             => __( 'Format', 'woocommerce-germanized' ),
+				'id'                => 'woocommerce_gzd_product_rating_unverified_text',
+				'default'           => __( '{link}Unverified overall ratings{/link}', 'woocommerce-germanized' ),
+				'type'              => 'text',
+				'custom_attributes' => array(
+					'data-show_if_woocommerce_gzd_display_rating_authenticity_notice' => '',
+					'data-show_if_woocommerce_gzd_product_ratings_verified' => 'no',
+				),
+				'desc'              => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Customize the format used to notify customers about the authenticity of the ratings. Use {link}{/link} as placeholders to link your <a href="%1$s">review information page</a>.', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-general' ) ) . '</div>',
+			),
+
+			array(
+				'title'   => __( 'Review notice', 'woocommerce-germanized' ),
+				'desc'    => sprintf( __( 'Display an authenticity notice on a per-review basis.', 'woocommerce-germanized' ) ),
+				'id'      => 'woocommerce_gzd_display_review_authenticity_notice',
+				'default' => 'yes',
+				'type'    => 'gzd_toggle',
+			),
+
+			array(
+				'title'             => __( 'Verified Format', 'woocommerce-germanized' ),
+				'id'                => 'woocommerce_gzd_product_review_verified_text',
+				'default'           => __( 'Verified purchase. {link}Find out more{/link}', 'woocommerce-germanized' ),
+				'type'              => 'text',
+				'custom_attributes' => array(
+					'data-show_if_woocommerce_gzd_display_review_authenticity_notice' => '',
+				),
+				'desc'              => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Customize the format used to notify customers about the authenticity of the review. Use {link}{/link} as placeholders to link your <a href="%1$s">review information page</a>.', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-general' ) ) . '</div>',
+			),
+
+			array(
+				'title'             => __( 'Unverified Format', 'woocommerce-germanized' ),
+				'id'                => 'woocommerce_gzd_product_review_unverified_text',
+				'default'           => __( 'Purchase not verified. {link}Find out more{/link}', 'woocommerce-germanized' ),
+				'type'              => 'text',
+				'custom_attributes' => array(
+					'data-show_if_woocommerce_gzd_display_review_authenticity_notice' => '',
+				),
+				'desc'              => '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Customize the format used to notify customers about the authenticity of the review. Use {link}{/link} as placeholders to link your <a href="%1$s">review information page</a>.', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-general' ) ) . '</div>',
+			),
+
+			array(
+				'type' => 'sectionend',
+				'id'   => 'review_authenticity_options',
+			),
 		);
 	}
 
@@ -334,8 +496,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 						'next_url'     => '',
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Overview', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'You can always return to the settings overview by navigating through the breadcrumb navigation.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Overview', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'You can always return to the settings overview by navigating through the breadcrumb navigation.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'top',
 								'align' => 'left',
@@ -348,8 +509,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 						'next_url'     => '',
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Sections', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'Each setting tab might have sub sections containing more specific options.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Sections', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Each setting tab might have sub sections containing more specific options.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'top',
 								'align' => 'left',
@@ -362,8 +522,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&tutorial=yes' ),
 						'next_trigger' => array(),
 						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Legal Pages', 'woocommerce-germanized' ) . '</h3>' .
-							              '<p>' . esc_html__( 'Adjust legal pages e.g. terms and conditions. These pages are used to add links within checkboxes and text attachments to emails.', 'woocommerce-germanized' ) . '</p>',
+							'content'  => '<h3>' . esc_html__( 'Legal Pages', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Adjust legal pages e.g. terms and conditions. These pages are used to add links within checkboxes and text attachments to emails.', 'woocommerce-germanized' ) . '</p>',
 							'position' => array(
 								'edge'  => 'left',
 								'align' => 'left',
@@ -397,9 +556,9 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 
 	protected function before_save( $settings, $current_section = '' ) {
 		if ( 'small_business' === $current_section ) {
-			if ( ! wc_gzd_is_small_business() && ! empty( $_POST['woocommerce_gzd_small_enterprise'] ) ) {
+			if ( ! wc_gzd_is_small_business() && ! empty( $_POST['woocommerce_gzd_small_enterprise'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 				WC_GZD_Admin::instance()->enable_small_business_options();
-			} elseif ( wc_gzd_is_small_business() && ! isset( $_POST['woocommerce_gzd_small_enterprise'] ) ) {
+			} elseif ( wc_gzd_is_small_business() && ! isset( $_POST['woocommerce_gzd_small_enterprise'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 				WC_GZD_Admin::instance()->disable_small_business_options();
 			}
 		}

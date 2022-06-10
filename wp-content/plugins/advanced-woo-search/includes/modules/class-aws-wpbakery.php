@@ -75,10 +75,8 @@ class AWS_WPBakery extends WPBakeryShortCode {
         $output = '';
 
         if ( function_exists( 'aws_get_search_form' ) ) {
-            $search_form = aws_get_search_form( false );
-            if ( $placeholder ) {
-                $search_form = preg_replace( '/placeholder="([\S\s]*?)"/i', 'placeholder="' . $placeholder . '"', $search_form );
-            }
+            $args = $placeholder ? array( 'placeholder' => $placeholder ) : array();
+            $search_form = aws_get_search_form( false, $args );
             $output = '<div class="aws-wpbakery-form ' . $extra_class . '" id="' . $element_id . '" >' . $search_form . '</div>';
         }
 

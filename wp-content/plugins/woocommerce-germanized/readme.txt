@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce german, woocommerce DE, woocommerce germany, wooc
 Requires at least: 5.4
 Tested up to: 6.0
 WC requires at least: 3.9
-WC tested up to: 6.5
-Stable tag: 3.9.0
+WC tested up to: 6.6
+Stable tag: 3.9.7
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -102,6 +102,8 @@ By default, Germanized works with *every WooCommerce theme*. Some themes may nee
 * Storefront
 * Virtue
 * Shopkeeper
+* Astra
+* OceanWP
 
 == Installation ==
 
@@ -209,6 +211,46 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.9.7 =
+* Fix: IM print/product settings saving
+* Fix: Missing SEPA form fields due to wrong output escape
+
+= 3.9.6 =
+* Improvement: PHP code sniffer fixes
+* Fix: IM label settings save
+* Fix: Skip shipment return item in case quantity <= 0
+
+= 3.9.5 =
+* Security: Hardened URL escaping to prevent XSS attack vectors
+* Improvement: Register meta boxes for legal page email content for legal pages only
+* Improvement: Variable unit price data transmission while saving variations
+
+= 3.9.4 =
+* Tweak: Temporarily patch WooCommerce Multilingual bug which leads to update issues
+* Improvement: Added additional checks to determine whether WooCommerce reviews are enabled
+* Improvement: Legal news update note
+
+= 3.9.3 =
+* Feature: Omnibus-Policy compliance (notify customers about the authenticity of customer reviews)
+* Improvement: Quick-View general compatibility
+* Improvement: Do not use deprecated elementor _register_controls
+* Improvement: Allergenic product import handling
+* Improvement: Voucher discount calculation
+* Improvement: Divi template builder checkout
+* Fix: Template locating for checkboxes
+
+= 3.9.2 =
+* Fix: State select hide for DE
+* Fix: Food nutrients variation parent merge
+* Improvement: Food attribute formatting
+* Improvement: Admin notes handling with nonce links
+
+= 3.9.1 =
+* Fix: Default shopmark filter for deposits in mini-cart dropdown
+* Fix: Deprecated virtual VAT helper legacy load
+* Improvement: Validate filter existence before executing shopmarks
+* Improvement: DP Internetmarke products transient expiration
+
 = 3.9.0 =
 * Feature: WP 6.0 compatibility
 * Feature: Sell food in a legally secure way (Pro)
