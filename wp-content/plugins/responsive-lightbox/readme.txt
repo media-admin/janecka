@@ -3,9 +3,9 @@ Contributors: dfactory
 Donate link: http://www.dfactory.eu/
 Tags: gallery, galleries, image, images, responsive, lightbox, photo, photography, masonry, video, builder
 Requires at least: 5.0
-Tested up to: 5.9.1
-Stable tag: 2.3.5
-Requires PHP: 5.3.0
+Tested up to: 6.0
+Stable tag: 2.4.1
+Requires PHP: 5.4
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -67,6 +67,7 @@ Responsive Lightbox and Gallery plugin can be extended with our <a href="?utm_so
 > [Lightgallery Lightbox](https://www.dfactory.eu/products/lightgallery-lightbox/)
 > [Strip Lightbox](https://www.dfactory.eu/products/strip-lightbox/)
 > [Fancybox Pro](https://www.dfactory.eu/products/fancybox-pro/)
+> [Lightbox Comments](https://dfactory.co/products/lightbox-comments/)
 
 = Full Feature List =
 
@@ -138,6 +139,18 @@ Responsive Lightbox and Gallery plugin comes with many styles and effects alread
 2. screenshot-2.jpg
 
 == Changelog ==
+
+= 2.4.1 =
+* Fix: WooCommerce product gallery
+* Fix: WooCommerce gallery lightbox
+
+= 2.4.0 =
+* New: WordPress 6.0 compatibility
+* New: HTML5 Media Library videos support (with Lightgallery, Fancybox Pro and Lightcase lightboxes)
+* New: Embed Youtube & Vimeo videos support (with Lightgallery, Fancybox Pro and Lightcase lightboxes)
+* New: [Lightbox Comments](https://dfactory.co/products/lightbox-comments/) extension
+* New: WP Gallery block support
+* New: WP Image block support
 
 = 2.3.5 =
 * Fix: Insert gallery double preview
@@ -483,8 +496,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 2.3.5 =
-* Fix: Insert gallery double preview
-* Tweak: Display of horizontal / vertical igallery images 
-* Tweak: Improved gallery images loading performance
-* Tweak: Add gallery number of images displayed
+= 2.4.1 =
+* Fix: WooCommerce product gallery
+* Fix: WooCommerce gallery lightbox

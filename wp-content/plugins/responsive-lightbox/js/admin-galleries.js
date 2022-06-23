@@ -5,9 +5,11 @@
 	 */
 	$( function() {
 		var galleryFrame = null;
+		var embedFrame = null;
 		var attachmentFrame = null;
 		var galleryContainer = $( '.rl-gallery-images' );
 		var galleryIds = $( '.rl-gallery-ids' );
+		var embedNumber = galleryContainer.find( 'li[data-type="embed"]' ).length;
 		var mediaProviders = {};
 		var secondaryToolbar = false;
 
@@ -130,10 +132,10 @@
 				return false;
 
 			var li = $( this ).closest( 'li.rl-gallery-image' );
-			var attachmentIds = getCurrentAttachments( galleryIds );
+			var attachmentIds = getCurrentAttachments( galleryIds, false );
 
 			// remove id
-			attachmentIds = _.without( attachmentIds, parseInt( li.data( 'attachment_id' ) ) );
+			attachmentIds = _.without( attachmentIds, li.data( 'attachment_id' ) );
 
 			// remove attachment
 			li.remove();
@@ -150,55 +152,150 @@
 		$( document ).on( 'click', '.rl-gallery-image-edit', function( e ) {
 			e.preventDefault();
 
-			var li = $( this ).closest( 'li.rl-gallery-image' );
-			var attachmentId = parseInt( li.data( 'attachment_id' ) );
+			var attachmentId = $( this ).closest( 'li.rl-gallery-image' ).data( 'attachment_id' );
+			var parsedInt = parseInt( attachmentId );
 
-			// frame already exists?
-			if ( attachmentFrame !== null ) {
-				attachmentFrame.detach();
-				attachmentFrame.dispose();
-				attachmentFrame = null;
-			}
+			// integer id
+			if ( parsedInt == attachmentId ) {
+				attachmentId = parsedInt;
 
-			// create new frame
-			attachmentFrame = wp.media( {
-				id: 'rl-edit-attachment-modal',
-				frame: 'select',
-				uploader: false,
-				title: rlArgsGalleries.editTitle,
-				library: {
-					post__in: [ attachmentId ],
-					type: 'image',
-					content: 'browse',
-					contentUserSetting: false,
-					router: 'browse',
-					searchable: false,
-					sortable: false,
-					multiple: false,
-					editable: true
-				},
-				button: {
-					text: rlArgsGalleries.buttonEditFile
+				// frame already exists?
+				if ( attachmentFrame !== null ) {
+					attachmentFrame.detach();
+					attachmentFrame.dispose();
+					attachmentFrame = null;
 				}
-			} ).on( 'open', function() {
-				var attachment = wp.media.attachment( attachmentId );
-				var selection = attachmentFrame.state().get( 'selection' );
 
-				// set browser mode
-				attachmentFrame.content.mode( 'browse' );
+				// create new frame
+				attachmentFrame = wp.media( {
+					id: 'rl-edit-attachment-modal',
+					frame: 'select',
+					uploader: false,
+					title: rlArgsGalleries.editAttachment,
+					library: {
+						post__in: [attachmentId],
+						type: rlArgsGalleries.supports.default,
+						content: 'browse',
+						contentUserSetting: false,
+						router: 'browse',
+						searchable: false,
+						sortable: false,
+						multiple: false,
+						editable: true
+					},
+					button: {
+						text: rlArgsGalleries.saveChanges
+					}
+				} ).on( 'open', function() {
+					var attachment = wp.media.attachment( attachmentId );
+					var selection = attachmentFrame.state().get( 'selection' );
 
-				// add classes
-				attachmentFrame.$el.closest( '.media-modal' ).addClass( 'rl-edit-modal' );
-				attachmentFrame.$el.closest( '.media-frame' ).addClass( 'hide-router' );
+					// set browser mode
+					attachmentFrame.content.mode( 'browse' );
 
-				// get attachment
-				attachment.fetch();
+					// add classes
+					attachmentFrame.$el.closest( '.media-modal' ).addClass( 'rl-edit-modal' );
+					attachmentFrame.$el.closest( '.media-frame' ).addClass( 'hide-router' );
 
-				// add attachment
-				selection.add( attachment );
-			} );
+					// get attachment
+					attachment.fetch();
 
-			attachmentFrame.open();
+					// add attachment
+					selection.add( attachment );
+				} ).on( 'close', function() {
+					var selection = attachmentFrame.state().get( 'selection' );
+
+					// unselect attachment to avoid issues with videos
+					selection.reset();
+				} );
+
+				attachmentFrame.open();
+			// embed string
+			} else if ( /^e\d+$/.test( attachmentId ) ) {
+				// attachmentId = 0;
+
+				// frame already exists?
+				if ( attachmentFrame !== null ) {
+					attachmentFrame.detach();
+					attachmentFrame.dispose();
+					attachmentFrame = null;
+				}
+
+				// create new frame
+				attachmentFrame = wp.media( {
+					id: 'rl-edit-attachment-modal',
+					frame: 'select',
+					uploader: false,
+					title: rlArgsGalleries.editEmbed,
+					library: {
+						post__in: [0]
+					},
+					button: {
+						text: rlArgsGalleries.saveChanges
+					}
+				} ).on( 'open', function() {
+					var attachment = wp.media.attachment( attachmentId );
+					var selection = attachmentFrame.state().get( 'selection' );
+					var embedItem = $( '.rl-gallery-image[data-attachment_id="' + attachmentId + '"]' );
+
+					// set browser mode
+					attachmentFrame.content.mode( 'browse' );
+
+					// add classes
+					attachmentFrame.$el.closest( '.media-modal' ).addClass( 'rl-edit-modal' );
+					attachmentFrame.$el.closest( '.media-frame' ).addClass( 'hide-router' );
+
+					// get attachment
+					attachment.fetch();
+
+					// simulate real attachment
+					attachment.id = attachmentId;
+					attachment.attributes = {
+						id: attachmentId,
+						filename: embedItem.find( 'input[data-type="url"]' ).val(),
+						dateFormatted: embedItem.find( 'input[data-type="date"]' ).val(),
+						width: embedItem.find( 'input[data-type="width"]' ).val(),
+						height: embedItem.find( 'input[data-type="height"]' ).val(),
+						title: embedItem.find( 'input[data-type="title"]' ).val(),
+						description: embedItem.find( 'textarea[data-type="caption"]' ).val(),
+						url: embedItem.find( 'input[data-type="url"]' ).val(),
+						sizes: {
+							thumbnail: {
+								width: embedItem.find( 'input[data-type="thumbnail_width"]' ).val(),
+								height: embedItem.find( 'input[data-type="thumbnail_height"]' ).val(),
+								url: embedItem.find( 'input[data-type="thumbnail_url"]' ).val(),
+								orientation: 'landscape'
+							}
+						},
+						type: 'image',
+					};
+
+					// add attachment
+					selection.add( attachment );
+
+					// update details label
+					attachmentFrame.$el.find( '.media-sidebar h2' ).text( rlArgsGalleries.videoDetails );
+
+					var detailsItem = attachmentFrame.$el.find( '.attachment-details' );
+
+					// hide unwanted html
+					detailsItem.find( 'p.description' ).hide();
+					detailsItem.find( '[data-setting="alt"]' ).hide();
+					detailsItem.find( '[data-setting="caption"]' ).hide();
+					detailsItem.find( '[data-setting="title"] input' ).prop( 'readonly', false );
+					detailsItem.find( '[data-setting="description"] textarea' ).prop( 'readonly', false );
+
+					// get media toolbar
+					var toolbar = attachmentFrame.toolbar.get();
+
+					toolbar.primary.$el.find( 'button' ).on( 'click', function() {
+						embedItem.find( 'input[data-type="title"]' ).val( detailsItem.find( '[data-setting="title"] input' ).val() );
+						embedItem.find( 'textarea[data-type="caption"]' ).val( detailsItem.find( '[data-setting="description"] textarea' ).val() );
+					} );
+				} );
+
+				attachmentFrame.open();
+			}
 
 			return false;
 		} );
@@ -210,27 +307,18 @@
 			e.preventDefault();
 
 			var li = $( this ).closest( 'li.rl-gallery-image' );
-			var input = li.find( '.rl-gallery-exclude' );
-			var status = li.hasClass( 'rl-status-active' );
-			var id = parseInt( li.data( 'attachment_id' ) );
-			var item = '';
 
-			if ( id > 0 )
-				item = id;
-			else
-				item = li.find( '.rl-gallery-inner img' ).attr( 'src' );
-
-			// exclude?
-			if ( status ) {
+			// active?
+			if ( li.hasClass( 'rl-status-active' ) ) {
 				li.addClass( 'rl-status-inactive' ).removeClass( 'rl-status-active' );
 
 				// add item
-				input.val( item );
+				li.find( '.rl-gallery-exclude' ).val( li.data( 'attachment_id' ) );
 			} else {
 				li.addClass( 'rl-status-active' ).removeClass( 'rl-status-inactive' );
 
 				// remove item
-				input.val( '' );
+				li.find( '.rl-gallery-exclude' ).val( '' );
 			}
 
 			return false;
@@ -254,8 +342,10 @@
 				title: rlArgsGalleries.textSelectImages,
 				multiple: 'add',
 				autoSelect: true,
+				filters: 'all',
 				library: {
-					type: 'image'
+					type: rlArgsGalleries.supports.default,
+					filters: 'all'
 				},
 				button: {
 					text: rlArgsGalleries.textUseImages
@@ -284,7 +374,9 @@
 					style: 'secondary',
 					priority: 0,
 					text: rlArgsGalleries.clearSelection,
-					requires: { selection: true },
+					requires: {
+						selection: true
+					},
 					click: function() {
 						var state = this.controller.state();
 						var selection = state.get( 'selection' );
@@ -298,7 +390,7 @@
 				} );
 
 				var selection = galleryFrame.state().get( 'selection' );
-				var attachmentIds = getCurrentAttachments( galleryIds );
+				var attachmentIds = getCurrentAttachments( galleryIds, true );
 
 				if ( ! secondaryToolbar ) {
 					toolbar.secondary.$el.append(
@@ -325,7 +417,7 @@
 					selection.off( 'remove', toggleSelection );
 
 					// select attachment
-					selection.add( attachment ? [ attachment ] : [ ] );
+					selection.add( attachment ? [attachment] : [] );
 				} );
 
 				var span = toolbar.secondary.$el.find( '.rl-gallery-count' );
@@ -340,16 +432,10 @@
 				} );
 			} ).on( 'select', function() {
 				var selection = galleryFrame.state().get( 'selection' );
-				var attachmentIds = getCurrentAttachments( galleryIds );
-				var selectedIds = [ ];
+				var attachmentIds = getCurrentAttachments( galleryIds, false );
+				var selectedIds = [];
 
 				if ( selection ) {
-					var tabId = $( 'input[name="rl_active_tab"]' ).val();
-					var menuItem = $( '.rl-gallery-tab-menu-' + tabId ).find( '.rl-gallery-tab-menu-item:checked' ).val();
-					var fieldName = galleryContainer.closest( 'tr[data-field_name]' ).data( 'field_name' );
-					var excludedInput = '<input type="hidden" class="rl-gallery-exclude" name="rl_gallery[__IMAGE_TAB_ID__][__IMAGE_MENU_ITEM__][__IMAGE_FIELD_NAME__][exclude][]" value="" />';
-					var input = excludedInput.replace( /__IMAGE_TAB_ID__/g, tabId ).replace( /__IMAGE_MENU_ITEM__/g, menuItem ).replace( /__IMAGE_FIELD_NAME__/g, fieldName );
-
 					selection.map( function( attachment ) {
 						// fetched attachment? attachment visible in modal
 						if ( typeof attachment.id === 'number' ) {
@@ -357,7 +443,7 @@
 							selectedIds.push( attachment.id );
 
 							// is image already in gallery?
-							if ( $.inArray( attachment.id, attachmentIds ) !== -1 )
+							if ( $.inArray( attachment.id, attachmentIds ) !== - 1 )
 								return;
 
 							// add attachment
@@ -366,32 +452,77 @@
 
 							// default size
 							var size = {
+								width: 150,
 								height: 150,
 								orientation: 'landscape',
-								url: attachment.url,
-								width: 150
+								url: attachment.url
 							};
 
-							// is preview size available?
-							if ( attachment.sizes && attachment.sizes['thumbnail'] )
-								size = attachment.sizes['thumbnail'];
+							// image?
+							if ( attachment.type === 'image' ) {
+								// is preview size available?
+								if ( attachment.sizes && attachment.sizes.thumbnail ) {
+									if ( attachment.sizes.thumbnail.url )
+										size.url = attachment.sizes.thumbnail.url;
+
+									if ( attachment.sizes.thumbnail.height )
+										size.height = attachment.sizes.thumbnail.height;
+
+									if ( attachment.sizes.thumbnail.width )
+										size.width = attachment.sizes.thumbnail.width;
+
+									if ( attachment.sizes.thumbnail.orientation )
+										size.orientation = attachment.sizes.thumbnail.orientation;
+								}
+							// video?
+							} else if ( attachment.type === 'video' ) {
+								size.url = rlArgsGalleries.videoIcon;
+
+								// is preview size available?
+								if ( attachment.thumb ) {
+									if ( attachment.thumb.src && attachment.icon !== attachment.thumb.src )
+										size.url = attachment.thumb.src;
+
+									if ( attachment.thumb.height )
+										size.height = attachment.thumb.height;
+
+									if ( attachment.thumb.width )
+										size.width = attachment.thumb.width;
+
+									if ( attachment.thumb.orientation )
+										size.orientation = attachment.thumb.orientation;
+								// fallback to full size preview image
+								} else if ( attachment.image ) {
+									if ( attachment.image.src && attachment.icon !== attachment.image.src )
+										size.url = attachment.image.src;
+
+									if ( attachment.image.height )
+										size.height = attachment.image.height;
+
+									if ( attachment.image.width )
+										size.width = attachment.image.width;
+
+									if ( attachment.image.orientation )
+										size.orientation = attachment.image.orientation;
+								}
+							}
 
 							// append new image
-							galleryContainer.append( rlArgsGalleries.mediaItemTemplate.replace( /__IMAGE_ID__/g, attachment.id ).replace( /__IMAGE__/g, input + '<img width="' + size.width + '" height="' + size.height + '" src="' + rlArgsGalleries.thumbnail[0] + '" class="attachment-thumbnail size-thumbnail format-' + size.orientation + '" alt="" />' ).replace( /__IMAGE_STATUS__/g, 'rl-status-active' ) );
+							galleryContainer.append( rlArgsGalleries.mediaItemTemplate.replace( /__MEDIA_ID__/g, attachment.id ).replace( /__MEDIA_DATA__/g, getExcludeInput( galleryContainer ) + '<img width="' + size.width + '" height="' + size.height + '" src="' + rlArgsGalleries.thumbnail[0] + '" class="attachment-thumbnail size-thumbnail format-' + size.orientation + '" alt="" />' ).replace( /__MEDIA_STATUS__/g, ' rl-status-active' ).replace( /__MEDIA_TYPE__/g, attachment.type ) );
 
 							// update image src and alt the safe way
 							$( 'li[data-attachment_id="' + attachment.id + '"]' ).find( 'img' ).attr( 'alt', attachment.alt ).attr( 'src', size.url );
 						// only attachment id? attachment not visible in modal
 						} else {
 							// add attachment
-							selectedIds.push( +attachment.id );
+							selectedIds.push( + attachment.id );
 
 							// is image already in gallery?
-							if ( $.inArray( +attachment.id, attachmentIds ) !== -1 )
+							if ( $.inArray( + attachment.id, attachmentIds ) !== - 1 )
 								return;
 
 							// add attachment
-							attachmentIds.push( +attachment.id );
+							attachmentIds.push( + attachment.id );
 						}
 					} );
 				}
@@ -399,20 +530,233 @@
 				// assign copy of attachment ids
 				var copy = attachmentIds;
 
-				for ( var i = 0; i < attachmentIds.length; i++ ) {
+				for ( var i = 0; i < attachmentIds.length; i ++ ) {
 					// unselected image?
-					if ( $.inArray( attachmentIds[i], selectedIds ) === -1 ) {
+					if ( $.inArray( attachmentIds[i], selectedIds ) === - 1 ) {
+						// skip embed
+						if ( /^e\d+$/.test( attachmentIds[i] ) )
+							continue;
+
+						// remove unselected attachment
 						galleryContainer.find( 'li.rl-gallery-image[data-attachment_id="' + attachmentIds[i] + '"]' ).remove();
 
+						// update attachment ids
 						copy = _.without( copy, attachmentIds[i] );
 					}
 				}
 
+				// update gallery ids
 				galleryIds.val( _.uniq( copy ).join( ',' ) );
 			} );
 
 			// open media frame
 			galleryFrame.open();
+		} );
+
+		// extend Embed
+		var RLToolbarEmbed = wp.media.view.Toolbar.Embed;
+
+		wp.media.view.Toolbar.Embed = wp.media.view.Toolbar.Embed.extend( {
+			initialize: function() {
+				// replace button text
+				this.options.text = rlArgsGalleries.embedVideo;
+
+				// call original function
+				RLToolbarEmbed.prototype.initialize.apply( this, arguments );
+			}
+		} );
+
+		// extend EmbedLink
+		var RLEmbedLink = wp.media.view.EmbedLink;
+
+		wp.media.view.EmbedLink = wp.media.view.EmbedLink.extend( {
+			rlVideoFrameToolbar: null,
+			rlDisableButton: function() {
+				this.rlVideoFrameToolbar.primary.$el.find( 'button' ).prop( 'disabled', true );
+			},
+			updateoEmbed: function( model, url ) {
+				var youtube = new RegExp( 'https?://((m|www)\.)?youtube\.com/watch.*', 'i' );
+				var vimeo = new RegExp( 'https?://(.+\.)?vimeo\.com/.*', 'i' );
+
+				if ( ( rlArgsGalleries.supports.youtube && youtube.test( url ) ) || ( rlArgsGalleries.supports.vimeo && vimeo.test( url ) ) ) {
+					this.$el.find( '.rl-embed-video-text' ).hide();
+				} else {
+					// clear url
+					model.set( 'url', '' );
+
+					this.$el.find( '.rl-embed-video-text' ).show();
+				}
+
+				// call original function
+				RLEmbedLink.prototype.updateoEmbed.apply( this, arguments );
+			},
+			fetch: function() {
+				// no url?
+				if ( ! this.controller.state().props.get( 'url' ) )
+					return;
+
+				// call original function
+				RLEmbedLink.prototype.fetch.apply( this, arguments );
+
+				this.dfd.done( function( response, status, xhr ) {
+					// save response for later use
+					embedFrame.rlOembedResponse = response;
+
+					this.rlVideoFrameToolbar.primary.$el.find( 'button' ).prop( 'disabled', false );
+				} );
+			},
+			initialize: function() {
+				this.rlVideoFrameToolbar = embedFrame.toolbar.get();
+
+				// call original function
+				RLEmbedLink.prototype.initialize.apply( this, arguments );
+
+				this.listenTo( this.model, 'change:url', this.rlDisableButton );
+			}
+		} );
+
+		/**
+		 * Handle gallery modal.
+		 */
+		$( document ).on( 'click', '.rl-gallery-select-videos', function( e ) {
+			e.preventDefault();
+
+			// open media frame if already exists
+			if ( embedFrame !== null ) {
+				embedFrame.open();
+
+				return;
+			}
+
+			// create the media frame
+			embedFrame = wp.media( {
+				frame: 'post',
+				state: 'embed',
+				type: 'link',
+				metadata: {}
+			} ).on( 'open', function() {
+				// clear response
+				embedFrame.rlOembedResponse = {};
+
+				// get content
+				var content = embedFrame.content.get();
+
+				// hide setting link text
+				content.$( '.setting' ).hide();
+
+				var supportedEmbeds = [];
+
+				if ( rlArgsGalleries.supports.youtube )
+					supportedEmbeds.push( 'YouTube' );
+
+				if ( rlArgsGalleries.supports.vimeo )
+					supportedEmbeds.push( 'Vimeo' );
+
+				if ( content.$( '.embed-link-settings' ).find( '.rl-embed-video-text' ).length === 0 ) {
+					// append text
+					content.$( '.embed-link-settings' ).prepend( '<span class="rl-embed-video-text">' + rlArgsGalleries.onlyEmbedProviders.replace( '%s', supportedEmbeds.join( ', ' ) ) + '</span>' );
+				}
+
+				// get menu
+				var menu = embedFrame.$el;
+
+				// hide menu
+				if ( menu.length > 0 )
+					$( menu ).addClass( 'hide-menu' );
+
+				// get media toolbar
+				var toolbar = embedFrame.toolbar.get();
+
+				// update button
+				toolbar.primary.$el.find( 'button' ).prop( 'disabled', true );
+			} ).on( 'close', function() {
+				var state = embedFrame.state();
+
+				// save url before clearing
+				embedFrame.rlSelectedUrl = state.props.get( 'url' );
+
+				// clear url
+				state.props.set( 'url', 'http://' );
+			} ).on( 'select', function() {
+				var attachmentIds = getCurrentAttachments( galleryIds, false );
+
+				// embed id
+				var embedId = 'e' + embedNumber;
+
+				// add attachment
+				attachmentIds.push( embedId );
+
+				// update gallery ids
+				galleryIds.val( _.uniq( attachmentIds ).join( ',' ) );
+
+				// get embed item
+				var embedItem = $( rlArgsGalleries.mediaEmbedTemplate.replace( /__EMBED_ID__/g, embedId ) );
+
+				// update embed item values
+				embedItem.find( 'input[data-type="url"]' ).val( embedFrame.rlSelectedUrl );
+
+				// check width
+				if ( 'width' in embedFrame.rlOembedResponse )
+					embedItem.find( 'input[data-type="width"]' ).val( embedFrame.rlOembedResponse.width );
+				else
+					embedItem.find( 'input[data-type="width"]' ).val( 0 );
+
+				// check height
+				if ( 'height' in embedFrame.rlOembedResponse )
+					embedItem.find( 'input[data-type="height"]' ).val( embedFrame.rlOembedResponse.height );
+				else
+					embedItem.find( 'input[data-type="height"]' ).val( 0 );
+
+				// check thumbnail url
+				if ( 'thumbnail_url' in embedFrame.rlOembedResponse )
+					embedItem.find( 'input[data-type="thumbnail_url"]' ).val( embedFrame.rlOembedResponse.thumbnail_url );
+				else
+					embedItem.find( 'input[data-type="thumbnail_url"]' ).val( '' );
+
+				// check thumbnail width
+				if ( 'thumbnail_width' in embedFrame.rlOembedResponse )
+					embedItem.find( 'input[data-type="thumbnail_width"]' ).val( embedFrame.rlOembedResponse.thumbnail_width );
+				else
+					embedItem.find( 'input[data-type="thumbnail_width"]' ).val( 0 );
+
+				// check thumbnail height
+				if ( 'thumbnail_height' in embedFrame.rlOembedResponse )
+					embedItem.find( 'input[data-type="thumbnail_height"]' ).val( embedFrame.rlOembedResponse.thumbnail_height );
+				else
+					embedItem.find( 'input[data-type="thumbnail_height"]' ).val( 0 );
+
+				// check title
+				if ( 'title' in embedFrame.rlOembedResponse )
+					embedItem.find( 'input[data-type="title"]' ).val( embedFrame.rlOembedResponse.title );
+				else
+					embedItem.find( 'input[data-type="title"]' ).val( '' );
+
+				// check description
+				if ( 'description' in embedFrame.rlOembedResponse )
+					embedItem.find( 'textarea[data-type="caption"]' ).text( embedFrame.rlOembedResponse.description );
+				else
+					embedItem.find( 'textarea[data-type="caption"]' ).text( '' );
+
+				// check upload date
+				if ( 'upload_date' in embedFrame.rlOembedResponse )
+					embedItem.find( 'input[data-type="date"]' ).val( embedFrame.rlOembedResponse.upload_date );
+				else
+					embedItem.find( 'input[data-type="date"]' ).val( '' );
+
+				// append new image
+				galleryContainer.append(
+					rlArgsGalleries.mediaItemTemplate
+					.replace( /__MEDIA_ID__/g, embedId )
+					.replace( /__MEDIA_DATA__/g, getExcludeInput( galleryContainer ) + embedItem.html() + '<img width="' + embedFrame.rlOembedResponse.thumbnail_width + '" height="' + embedFrame.rlOembedResponse.thumbnail_height + '" src="' + embedFrame.rlOembedResponse.thumbnail_url + '" class="attachment-thumbnail size-thumbnail format-' + ( embedFrame.rlOembedResponse.thumbnail_width > embedFrame.rlOembedResponse.thumbnail_height ? 'landscape' : 'portrait' ) + '" alt="" />' )
+					.replace( /__MEDIA_STATUS__/g, ' rl-status-active' )
+					.replace( /__MEDIA_TYPE__/g, 'embed' )
+				);
+
+				embedNumber++
+			} );
+
+			// open media frame
+			embedFrame.open();
 		} );
 
 		/**
@@ -551,45 +895,43 @@
 				menu_item: menuItem,
 				query: queryArgs,
 				preview_type: type,
-				excluded: $( '.rl-gallery-exclude' ).map( function( i, elem ) { return $( elem ).val(); } ).get(),
+				excluded: $( '.rl-gallery-exclude' ).map( function( i, elem ) {
+					return $( elem ).val();
+				} ).get(),
 				nonce: rlArgsGalleries.nonce
 			} ).done( function( response ) {
-				// try {
-					if ( response.success ) {
-						container.find( 'tr[data-field_type]' ).each( function() {
-							var el = $( this );
+				if ( response.success ) {
+					container.find( 'tr[data-field_type]' ).each( function() {
+						var el = $( this );
 
-							// any response data fields?
-							if ( el.data( 'field_type' ) === 'hidden' && el.data( 'field_name' ) === 'response_data' ) {
-								var responseData = response.data.response_data;
+						// any response data fields?
+						if ( el.data( 'field_type' ) === 'hidden' && el.data( 'field_name' ) === 'response_data' ) {
+							var responseData = response.data.response_data;
 
-								// loop through all providers
-								for ( var provider in responseData ) {
-									if ( responseData.hasOwnProperty( provider ) ) {
-										var arguments = responseData[provider];
+							// loop through all providers
+							for ( var provider in responseData ) {
+								if ( responseData.hasOwnProperty( provider ) ) {
+									var arguments = responseData[provider];
 
-										// loop through all arguments
-										for ( var argument in arguments ) {
-											if ( arguments.hasOwnProperty( argument ) ) {
-												$( '#rl_images_remote_library_response_data_' + provider + '_' + argument ).data( 'value', arguments[argument] );
-											}
+									// loop through all arguments
+									for ( var argument in arguments ) {
+										if ( arguments.hasOwnProperty( argument ) ) {
+											$( '#rl_images_remote_library_response_data_' + provider + '_' + argument ).data( 'value', arguments[argument] );
 										}
 									}
 								}
 							}
-						} );
+						}
+					} );
 
-						// update images
-						$( '.rl-gallery-images' ).empty().append( response.data.images );
+					// update images
+					$( '.rl-gallery-images' ).empty().append( response.data.images );
 
-						// update pagination
-						$( '.rl-gallery-preview-pagination' ).replaceWith( response.data.pagination );
-					} else {
-						// @todo
-					}
-				// } catch ( e ) {
-					// console.log( 'err' );
-				// }
+					// update pagination
+					$( '.rl-gallery-preview-pagination' ).replaceWith( response.data.pagination );
+				} else {
+					// @todo
+				}
 			} ).always( function() {
 				// hide spinner
 				spinner.fadeOut( 'fast' );
@@ -636,13 +978,13 @@
 			var thumbnail_id = parseInt( $( '#_thumbnail_id' ).attr( 'data-featured-id' ) );
 
 			if ( thumbnail_id > 0 )
-				$( '#_thumbnail_id' ).val( thumbnail_id ).attr( 'data-featured-id', -1 );
-		// custom URL or first gallery image
+				$( '#_thumbnail_id' ).val( thumbnail_id ).attr( 'data-featured-id', - 1 );
+			// custom URL or first gallery image
 		} else {
 			var thumbnail_id = parseInt( $( '#_thumbnail_id' ).val() );
 
 			if ( thumbnail_id > 0 )
-				$( '#_thumbnail_id' ).attr( 'data-featured-id', thumbnail_id ).val( -1 );
+				$( '#_thumbnail_id' ).attr( 'data-featured-id', thumbnail_id ).val( - 1 );
 		}
 	} );
 
@@ -725,21 +1067,21 @@
 								} );
 
 								// handle toggling postboxes
-								$( document).on( 'postbox-toggled', disableFirstButton );
+								$( document ).on( 'postbox-toggled', disableFirstButton );
 
 								// handle moving postboxes
 								$( '.postbox .handle-order-higher, .postbox .handle-order-lower' ).on( 'click.postboxes', disableFirstButton );
 
 								// stop observer
 								observer.disconnect();
-							}, 10 );
+							}, 50 );
 						}
 					}
 				} );
 			} );
 
 			// start observing
-			observer.observe( metabox, { attributes: true } );
+			observer.observe( metabox, {attributes: true} );
 		}
 	}
 
@@ -767,15 +1109,47 @@
 	}
 
 	/**
+	 * Get gallery item exclude input.
+	 */
+	function getExcludeInput( container ) {
+		var tabId = $( 'input[name="rl_active_tab"]' ).val();
+		var menuItem = $( '.rl-gallery-tab-menu-' + tabId ).find( '.rl-gallery-tab-menu-item:checked' ).val();
+		var fieldName = container.closest( 'tr[data-field_name]' ).data( 'field_name' );
+
+		return rlArgsGalleries.mediaExcludeTemplate
+			.replace( /__MEDIA_TAB_ID__/g, tabId )
+			.replace( /__MEDIA_MENU_ITEM__/g, menuItem )
+			.replace( /__MEDIA_FIELD_NAME__/g, fieldName );
+	}
+
+	/**
 	 * Get attachment IDs.
 	 */
-	function getCurrentAttachments( galleryIds ) {
-		var attachments = galleryIds.val();
+	function getCurrentAttachments( ids, onlyAttachments ) {
+		var attachments = ids.val();
+		var parsedAttachments = [];
 
-		// return integer image ids or empty array
-		return attachments !== '' ? attachments.split( ',' ).map( function( i ) {
-			return parseInt( i );
-		} ) : [];
+		if ( attachments !== '' ) {
+			attachments.split( ',' ).forEach( function( val, i ) {
+				var parsedInt = parseInt( val );
+
+				// only real attachments?
+				if ( onlyAttachments ) {
+					// integer ids
+					if ( Number.isInteger( parsedInt ) && parsedInt > 0 )
+						parsedAttachments.push( parsedInt );
+				} else {
+					// integer ids
+					if ( parsedInt == val )
+						parsedAttachments.push( parsedInt );
+					// embed strings
+					else if ( /^e\d+$/.test( val ) )
+						parsedAttachments.push( val );
+				}
+			} );
+		}
+
+		return parsedAttachments;
 	}
 
 	/**
@@ -800,10 +1174,10 @@
 					ui.item.removeAttr( 'style' );
 				},
 				update: function( event, ui ) {
-					var attachmentIds = [ ];
+					var attachmentIds = [];
 
 					gallery.find( 'li.rl-gallery-image' ).each( function() {
-						attachmentIds.push( parseInt( $( this ).attr( 'data-attachment_id' ) ) );
+						attachmentIds.push( $( this ).attr( 'data-attachment_id' ) );
 					} );
 
 					ids.val( _.uniq( attachmentIds ).join( ',' ) );

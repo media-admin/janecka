@@ -157,8 +157,8 @@
 }
 .rl-display-metabox {
 	display: block !important;
+	margin-bottom: 0;
 }
-
 .rl-gallery-tab-menu {
 	margin: 10px 0;
 }
@@ -403,17 +403,52 @@ label[for="responsive-gallery-misc-hide"] {
 .media-modal.rl-edit-modal .media-toolbar {
 	right: 0;
 }
+#rl-edit-attachment-modal .attachment-info .details {
+	min-width: 65%;
+}
 #rl-edit-attachment-modal .attachment-info .thumbnail {
-	max-width: 100%;
+	max-width: calc(35% - 10px);
 	max-height: 200px;
 }
 #rl-edit-attachment-modal .attachment-info .thumbnail img {
 	max-width: 100%;
 	max-height: 200px;
 }
+#rl-edit-attachment-modal .attachment-info .wp-media-wrapper {
+	max-width: calc(35% - 10px);
+	float: left;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
 #rl-edit-attachment-modal .attachment-details .edit-attachment {
 	display: none;
 }
+#rl-edit-attachment-modal .attachment-details .setting .name {
+	min-width: 34%;
+	margin-right: 0;
+}
+#rl-edit-attachment-modal .compat-item .label {
+	min-width: 34%;
+	margin-right: 0;
+}
+
+@media only screen and (max-width: 640px), screen and (max-height: 400px) {
+	#rl-edit-attachment-modal .media-sidebar {
+		z-index: inherit;
+		max-width: 100%;
+		bottom: 0;
+		box-sizing: border-box;
+		padding-bottom: 0;
+	}
+	#rl-edit-attachment-modal .attachment-info .thumbnail {
+		max-width: 100%;
+	}
+	#rl-edit-attachment-modal .attachment-info .wp-media-wrapper {
+		max-width: 100%;
+	}
+}
+
 
 @media (max-width: 960px) {
 	.media-modal.rl-edit-modal {

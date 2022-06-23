@@ -875,7 +875,7 @@ class Responsive_Lightbox_Folders {
 	 * @global string $pagenow
 	 * @global object $wp_list_table
 	 * @global array $_wp_admin_css_colors
-	 * 
+	 *
 	 * @param string $page Current page similar to $pagenow depends on from which filter function was called
 	 * @return void
 	 */

@@ -21,6 +21,14 @@ html.swipebox-html.swipebox-touch {
           user-select: none;
 }
 
+.admin-bar #swipebox-overlay {
+    top: 32px;
+}
+
+.admin-bar #swipebox-container {
+    bottom: 32px;
+}
+
 #swipebox-container {
   position: relative;
   width: 100%;

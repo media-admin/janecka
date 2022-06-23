@@ -451,7 +451,7 @@
 				} );
 			} );
 		}
-    }
+	}
 
 	ResponsiveLightboxGallery.init();
 

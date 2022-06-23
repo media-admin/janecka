@@ -5,7 +5,7 @@ Donate link: https://meowapps.com/donation/
 Requires at least: 5.0
 Tested up to: 6.0
 Requires PHP: 7.0
-Stable tag: 6.3.7
+Stable tag: 6.3.9
 
 Clean your WordPress from unused files, broken media entries. Powerful engine and beautiful UI!
 
@@ -79,6 +79,13 @@ To make everything perfect, you will also need to clean and optimize your databa
 
 == Changelog ==
 
+= 6.3.9 (2022/06/23) =
+* Add: Support of the source tag.
+
+= 6.3.8 (2022/06/13) =
+* Fix: The links and thumbnails were broken in the Dashboard Trash.
+* Info: New plugin the the family! 🎉 It is simply called Database Cleaner, and it aims to be... the best Database Cleaner! You can find it [here](https://wordpress.org/plugins/database-cleaner).
+
 = 6.3.7 (2022/06/07) =
 * Fix: Better support for filters for filesystem scan (and a little optimization as well).
 * Fix: Better support for backgrounds/overlays in elementor.
@@ -90,7 +97,6 @@ To make everything perfect, you will also need to clean and optimize your databa
 = 6.3.5 (2022/05/05) =
 * Fix: There were a few warnings related to undeclared arrays.
 * Add: Support for Metabox.
-* Info: New plugin the the family! 🎉 It is simply called Database Cleaner, and it aims to be... the best Database Cleaner! You can find it [here](https://wordpress.org/plugins/database-cleaner).
 
 = 6.3.4 (2022/04/29) =
 * Fix: Issue with Elementor.

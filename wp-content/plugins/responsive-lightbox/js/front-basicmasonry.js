@@ -34,14 +34,17 @@
 					grid.imagesLoaded( function() {
 						grid.masonry( 'layout' );
 
-						// reinitialize lightbox
-						$.event.trigger( {
-							type: 'doResponsiveLightbox',
-							script: rlArgs.script,
-							selector: rlArgs.selector,
-							args: rlArgs,
-							masonry: false
-						} );
+						// trigger event only for standard lightboxes
+						if ( rlArgs.scriptExtension !== '1' ) {
+							// reinitialize lightbox
+							$.event.trigger( {
+								type: 'doResponsiveLightbox',
+								script: rlArgs.script,
+								selector: rlArgs.selector,
+								args: rlArgs,
+								masonry: false
+							} );
+						}
 					} );
 				}
 			// ajax

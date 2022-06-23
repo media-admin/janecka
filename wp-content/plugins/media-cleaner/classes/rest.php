@@ -463,9 +463,25 @@ class Meow_WPMC_Rest
 				$attachment_src_large = wp_get_attachment_image_src( $entry->postId, 'large' );
 				$thumbnail = empty( $attachment_src ) ? null : $attachment_src[0];
 				$image = empty( $attachment_src_large ) ? null : $attachment_src_large[0];
+				// This was working when the Post Type" was attachment"
 				if ( $filterBy == 'trash' && !empty( $thumbnail ) ) {
 					$new_url = $this->core->clean_url( $thumbnail );
 					$thumbnail = htmlspecialchars( trailingslashit( $base ) . $new_url, ENT_QUOTES );
+				}
+				if ( $filterBy == 'trash' && empty( $thumbnail ) ) {
+					$file = get_post_meta( $entry->postId, '_wp_attached_file', true );
+					$featured_image = wp_get_attachment_metadata( $entry->postId );
+					$thumbnail = "";
+					$image = htmlspecialchars( trailingslashit( $base ) . $file, ENT_QUOTES );
+					if ( isset( $featured_image['sizes']['thumbnail']['file'] ) ) {
+						$path = pathinfo( $file );
+						$thumbnail = $featured_image['sizes']['thumbnail']['file'];
+						$thumbnail = htmlspecialchars( trailingslashit( $base ) .
+							trailingslashit( $path['dirname'] ) . $thumbnail, ENT_QUOTES );
+					}
+					else {
+						$thumbnail = $image;
+					}
 				}
 				$entry->thumbnail_url = $thumbnail;
 				$entry->image_url = $image;

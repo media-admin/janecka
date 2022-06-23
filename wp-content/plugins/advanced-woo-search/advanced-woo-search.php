@@ -3,7 +3,7 @@
 /*
 Plugin Name: Advanced Woo Search
 Description: Advance ajax WooCommerce product search.
-Version: 2.55
+Version: 2.56
 Author: ILLID
 Author URI: https://advanced-woo-search.com/
 Text Domain: advanced-woo-search
@@ -96,7 +96,7 @@ final class AWS_Main {
      */
     private function define_constants() {
 
-        $this->define( 'AWS_VERSION', '2.55' );
+        $this->define( 'AWS_VERSION', '2.56' );
 
         $this->define( 'AWS_DIR', plugin_dir_path( AWS_FILE ) );
         $this->define( 'AWS_URL', plugin_dir_url( AWS_FILE ) );
@@ -140,6 +140,10 @@ final class AWS_Main {
 	 * Generate search box markup
 	 */
 	 public function markup( $args = array() ) {
+
+         if ( ! $args || ! is_array( $args ) ) {
+             $args = array();
+         }
 
          $markup = new AWS_Markup( $args );
 

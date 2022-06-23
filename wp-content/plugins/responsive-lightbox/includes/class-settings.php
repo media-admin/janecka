@@ -1024,14 +1024,7 @@ class Responsive_Lightbox_Settings {
 			'reset'	 => 'reset_rl_remote_library'
 		);
 
-		// push licenses just before the addons
-		if ( isset( $this->tabs['seo_images'] ) ) {
-			$seo = $this->tabs['seo_images'];
-
-			unset( $this->tabs['seo_images'] );
-
-			$this->tabs['seo_images'] = $seo;
-		}
+		$this->tabs = apply_filters( 'rl_settings_tabs_extra', $this->tabs );
 
 		// push licenses just before the addons
 		if ( isset( $this->tabs['licenses'] ) ) {

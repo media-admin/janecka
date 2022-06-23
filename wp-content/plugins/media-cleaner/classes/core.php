@@ -361,6 +361,14 @@ class Meow_WPMC_Core {
     	array_push( $results, $src );
 		}
 
+		// Sources: src
+		$audios = $dom->getElementsByTagName( 'source' );
+		foreach ( $audios as $audio ) {
+			//error_log($audio->getAttribute('src'));
+			$src = $this->clean_url( $audio->getAttribute('src') );
+    	array_push( $results, $src );
+		}
+
 		// Links, href
 		$urls = $dom->getElementsByTagName( 'a' );
 		foreach ( $urls as $url ) {

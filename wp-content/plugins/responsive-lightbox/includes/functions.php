@@ -110,20 +110,73 @@ function rl_get_image_size_by_url( $url ) {
 }
 
 /**
+ * Get current lightbox script.
+ *
+ * @return string
+ */
+function rl_get_lightbox_script() {
+	return Responsive_Lightbox()->get_lightbox_script();
+}
+
+/**
+ * Set current lightbox script.
+ *
+ * @return bool
+ */
+function rl_set_lightbox_script( $script ) {
+	return Responsive_Lightbox()->set_lightbox_script( $script );
+}
+
+/**
  * Check whether lightbox supports specified type.
  *
- * @param string $type Lightbox support type
- * @return bool|array 
+ * @param string|array $type Lightbox support type(s), leave empty to get all supported features
+ * @param string $compare_mode
+ * @return bool|array
  */
-function rl_current_lightbox_supports( $type = '' ) {
-	$script = Responsive_Lightbox()->options['settings']['script'];
-	$scripts = Responsive_Lightbox()->settings->scripts;
+function rl_current_lightbox_supports( $type = '', $compare_mode = 'AND' ) {
+	// get main instance
+	$rl = Responsive_Lightbox();
 
-	if ( $type !== '' ) {
-		if ( array_key_exists( $script, $scripts ) && array_key_exists( 'supports', $scripts[$script] ) )
-			return in_array( $type, $scripts[$script]['supports'], true );
-	} else
-		return $scripts[$script]['supports'];
+	// get current script
+	$script = $rl->get_lightbox_script();
+
+	// get scripts
+	$scripts = $rl->settings->scripts;
+
+	// valid script?
+	if ( array_key_exists( $script, $scripts ) && array_key_exists( 'supports', $scripts[$script] ) ) {
+		if ( ! empty( $type ) ) {
+			// multitype?
+			if ( is_array( $type ) ) {
+				// filter types
+				$type = array_filter( $type );
+
+				if ( empty( $type ) )
+					return false;
+
+				$supports = ( $compare_mode === 'AND' );
+
+				foreach ( $type as $_type ) {
+					// single type required
+					if ( $compare_mode === 'OR' ) {
+						if ( in_array( $_type, $scripts[$script]['supports'], true ) )
+							return true;
+					// all types required
+					} else {
+						if ( ! in_array( $_type, $scripts[$script]['supports'], true ) )
+							return false;
+					}
+				}
+
+				return $supports;
+			// single type
+			} else
+				return in_array( $type, $scripts[$script]['supports'], true );
+		// return all supported features
+		} else
+			return $scripts[$script]['supports'];
+	}
 
 	return false;
 }

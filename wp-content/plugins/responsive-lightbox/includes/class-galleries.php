@@ -32,6 +32,7 @@ class Responsive_Lightbox_Galleries {
 		// actions
 		add_action( 'init', array( $this, 'init' ), 11 );
 		add_action( 'admin_init', array( $this, 'init_admin' ) );
+		add_action( 'current_screen', array( $this, 'clear_metaboxes' ) );
 		add_action( 'edit_form_after_title', array( $this, 'after_title_nav_menu' ) );
 		add_action( 'admin_footer', array( $this, 'modal_gallery_template' ) );
 		add_action( 'customize_controls_print_footer_scripts', array( $this, 'modal_gallery_template' ) );
@@ -49,6 +50,7 @@ class Responsive_Lightbox_Galleries {
 		add_action( '_wp_put_post_revision', array( $this, 'save_revision' ) );
 		add_action( 'delete_attachment', array( $this, 'delete_attachment' ) );
 		add_action( 'shutdown', array( $this, 'shutdown_preview' ) );
+		add_action( 'wp_loaded', array( $this, 'maybe_change_lightbox' ), 1 );
 
 		// filters
 		add_filter( 'manage_rl_gallery_posts_columns', array( $this, 'gallery_columns' ) );
@@ -70,19 +72,19 @@ class Responsive_Lightbox_Galleries {
 	public function get_media_item_template( $args = [] ) {
 		$args = array_merge(
 			array(
-				'draggable'	=> false,
-				'editable'	=> false,
-				'removable'	=> false,
-				'changable'	=> false
+				'draggable'		=> false,
+				'editable'		=> false,
+				'removable'		=> false,
+				'changeable'	=> false
 			),
 			$args
 		);
 
 		return '
-		<li class="rl-gallery-image __IMAGE_STATUS__" data-attachment_id="__IMAGE_ID__"' . ( $args['draggable'] ? ' style="cursor: move;"' : '' ) . '>
+		<li class="rl-gallery-image__MEDIA_STATUS__" data-attachment_id="__MEDIA_ID__" data-type="__MEDIA_TYPE__"' . ( $args['draggable'] ? ' style="cursor: move;"' : '' ) . '>
 			<div class="rl-gallery-inner">
 				<div class="centered">
-					__IMAGE__
+					__MEDIA_DATA__
 				</div>
 			</div>
 			<div class="rl-gallery-actions">' .
@@ -91,6 +93,67 @@ class Responsive_Lightbox_Galleries {
 				( $args['removable'] ? '<a href="#" class="rl-gallery-image-remove dashicons dashicons-no" title="' . __( 'Remove image', 'responsive-lightbox' ) . '"></a>' : '' ) . '
 			</div>
 		</li>';
+	}
+
+	/**
+	 * Get default gallery embed template.
+	 *
+	 * @param bool $js
+	 * @return string
+	 */
+	public function get_media_embed_template( $js = false ) {
+		$html = '';
+
+		if ( $js )
+			$html .= '<div data-id="__EMBED_ID__" style="display: none;">';
+
+		$html .= '
+		<input type="hidden" name="rl_gallery[images][media][attachments][embed][__EMBED_ID__][url]" data-type="url" value="__EMBED_URL__">
+		<input type="hidden" name="rl_gallery[images][media][attachments][embed][__EMBED_ID__][width]" data-type="width" value="__EMBED_WIDTH__">
+		<input type="hidden" name="rl_gallery[images][media][attachments][embed][__EMBED_ID__][height]" data-type="height" value="__EMBED_HEIGHT__">
+		<input type="hidden" name="rl_gallery[images][media][attachments][embed][__EMBED_ID__][thumbnail_url]" data-type="thumbnail_url" value="__EMBED_THUMBNAIL_URL__">
+		<input type="hidden" name="rl_gallery[images][media][attachments][embed][__EMBED_ID__][thumbnail_width]" data-type="thumbnail_width" value="__EMBED_THUMBNAIL_WIDTH__">
+		<input type="hidden" name="rl_gallery[images][media][attachments][embed][__EMBED_ID__][thumbnail_height]" data-type="thumbnail_height" value="__EMBED_THUMBNAIL_HEIGHT__">
+		<input type="hidden" name="rl_gallery[images][media][attachments][embed][__EMBED_ID__][title]" data-type="title" value="__EMBED_TITLE__">
+		<textarea class="hidden" name="rl_gallery[images][media][attachments][embed][__EMBED_ID__][caption]" data-type="caption">__EMBED_DESCRIPTION__</textarea>
+		<input type="hidden" name="rl_gallery[images][media][attachments][embed][__EMBED_ID__][date]" data-type="date" value="__EMBED_DATE__">';
+
+		if ( $js )
+			$html .= '</div>';
+
+		return $html;
+	}
+
+	/**
+	 * Get default gallery exclude input template.
+	 *
+	 * @param string $tab_id
+	 * @param string $menu_item
+	 * @param string $field_name
+	 * @param mixed $excluded_value
+	 * @return string
+	 */
+	public function get_media_exclude_input_template( $tab_id = '', $menu_item = '', $field_name = '', $excluded_value = '' ) {
+		$template = '<input type="hidden" class="rl-gallery-exclude" name="rl_gallery[__MEDIA_TAB_ID__][__MEDIA_MENU_ITEM__][__MEDIA_FIELD_NAME__][exclude][]" value="__MEDIA_FIELD_VALUE__" />';
+
+		if ( $tab_id === '' && $menu_item === '' && $field_name === '' && $excluded_value === '' )
+			return str_replace( '__MEDIA_FIELD_VALUE__', '', $template );
+
+		return str_replace(
+			[
+				'__MEDIA_TAB_ID__',
+				'__MEDIA_MENU_ITEM__',
+				'__MEDIA_FIELD_NAME__',
+				'__MEDIA_FIELD_VALUE__'
+			],
+			[
+				$tab_id,
+				$menu_item,
+				$field_name,
+				empty( $excluded_value ) ? '' : esc_attr( $excluded_value )
+			],
+			$template
+		);
 	}
 
 	/**
@@ -104,6 +167,10 @@ class Responsive_Lightbox_Galleries {
 
 		// get main instance
 		$rl = Responsive_Lightbox();
+
+		// set lightbox script for infinite scroll pages
+		if ( isset( $_GET['rl_gallery_no'], $_GET['rl_page'], $_GET['rl_lightbox_script'] ) )
+			$rl->set_lightbox_script( $_GET['rl_lightbox_script'] );
 
 		$config_menu_items = apply_filters( 'rl_gallery_types', $rl->gallery_types );
 		$config_menu_items['default'] = __( 'Global', 'responsive-lightbox' );
@@ -180,7 +247,8 @@ class Responsive_Lightbox_Galleries {
 							'type' => 'media_library',
 							'default' => array(
 								'ids' => [],
-								'exclude' => []
+								'exclude' => [],
+								'embed' => []
 							),
 							'preview' => array(
 								'pagination' => true,
@@ -944,7 +1012,24 @@ class Responsive_Lightbox_Galleries {
 			}
 		}
 
-		return do_shortcode( '[gallery rl_gallery_id="' . $args['id'] .'" include="' . ( empty( $attachments ) ? '' : implode( ',', $attachments ) ) . '"' . $shortcode . ']' );
+		$forced_gallery_no = '';
+
+		// check forced gallery number
+		if ( isset( $args['gallery_no'] ) ) {
+			$args['gallery_no'] = (int) $args['gallery_no'];
+
+			if ( $args['gallery_no'] > 0 )
+				$forced_gallery_no = ' rl_gallery_no="' . $args['gallery_no'] .'"';
+		}
+
+		// get content
+		$content = do_shortcode( '[gallery rl_gallery_id="' . $args['id'] .'"' . $forced_gallery_no . ' include="' . ( empty( $attachments ) ? '' : implode( ',', $attachments ) ) . '"' . $shortcode . ']' );
+
+		// make sure every filter is available in frontend ajax
+		if ( wp_doing_ajax() )
+			$content = $rl->frontend->add_lightbox( $content );
+
+		return $content;
 	}
 
 	/**
@@ -1308,6 +1393,12 @@ class Responsive_Lightbox_Galleries {
 			case 'media_library':
 				$data = get_post_meta( $gallery_id, '_rl_images', true );
 
+				// video support?
+				if ( rl_current_lightbox_supports( 'video' ) )
+					$button_label = __( 'Select images & videos', 'responsive-lightbox' );
+				else
+					$button_label = __( 'Select images', 'responsive-lightbox' );
+
 				// get images
 				if ( ( ! empty( $data['menu_item'] ) && $data['menu_item'] === 'media' ) || ! ( defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_POST['action'] ) && $_POST['action'] === 'rl-get-menu-content' ) )
 					$images = $this->get_gallery_images( $gallery_id );
@@ -1317,10 +1408,21 @@ class Responsive_Lightbox_Galleries {
 				// get media item template
 				$media_item_template = $this->get_media_item_template( $args['preview'] );
 
+				// media buttons
+				$buttons = [ '<a href="#" class="rl-gallery-select button button-secondary">' . $button_label . '</a>' ];
+
 				$html .= '
 				<td colspan="2" class="rl-colspan">
-					<input type="hidden" class="rl-gallery-ids" name="rl_gallery[' . $tab_id . '][' . $menu_item . '][' . $field . '][ids]" value="' . ( ! empty( $args['value']['ids'] ) ? implode( ',', $args['value']['ids'] ) : '' ) . '">
-					<a href="#" class="rl-gallery-select button button-secondary">' . __( 'Select images', 'responsive-lightbox' ) . '</a>
+					<input type="hidden" class="rl-gallery-ids" name="rl_gallery[' . $tab_id . '][' . $menu_item . '][' . $field . '][ids]" value="' . ( ! empty( $args['value']['ids'] ) ? implode( ',', $args['value']['ids'] ) : '' ) . '">';
+
+				// embed video support?
+				if ( rl_current_lightbox_supports( [ 'youtube', 'vimeo' ], 'OR' ) )
+					$buttons[] = '<a href="#" class="rl-gallery-select-videos button button-secondary" style="margin-left: 10px;">' . __( 'Embed videos', 'responsive-lightbox' ) . '</a>';
+
+				// add buttons
+				$html .= implode( '', $buttons );
+
+				$html .= '
 					<div class="rl-gallery-content">
 						<ul class="rl-gallery-images rl-gallery-images-media">';
 
@@ -1628,7 +1730,7 @@ class Responsive_Lightbox_Galleries {
 					if ( strpos( $value, '<' ) !== false ) {
 						$value = wp_pre_kses_less_than( $value );
 
-						// this will strip extra whitespace for us.
+						// this will strip extra whitespace for us
 						$value = wp_strip_all_tags( $value, false );
 
 						// use html entities in a special case to make sure no later newline stripping stage could lead to a functional tag
@@ -1643,7 +1745,7 @@ class Responsive_Lightbox_Galleries {
 						$found = true;
 					}
 
-					// strip out the whitespace that may now exist after removing the octets.
+					// strip out the whitespace that may now exist after removing the octets
 					if ( $found )
 						$value = trim( preg_replace( '/ +/', ' ', $value ) );
 				}
@@ -1658,36 +1760,121 @@ class Responsive_Lightbox_Galleries {
 				if ( is_array( $value ) ) {
 					$data = $args['default'];
 
-					// check IDs
+					if ( rl_current_lightbox_supports( [ 'youtube', 'vimeo' ], 'OR' ) ) {
+						$reindexed_embed = [];
+
+						// check embed items
+						if ( array_key_exists( 'embed', $value ) && is_array( $value['embed'] ) && ! empty( $value['embed'] ) ) {
+							$copy = $value['embed'];
+
+							$index = 0;
+
+							foreach ( $value['embed'] as $embed_id => $embed_data ) {
+								// check url
+								if ( ! array_key_exists( 'url', $embed_data ) ) {
+									unset( $copy[$embed_id] );
+
+									continue;
+								} else
+									$copy[$embed_id]['url'] = esc_url( $embed_data['url'] );
+
+								// check width
+								if ( ! array_key_exists( 'width', $embed_data ) )
+									$copy[$embed_id]['width'] = 0;
+								else
+									$copy[$embed_id]['width'] = (int) $embed_data['width'];
+
+								// check height
+								if ( ! array_key_exists( 'height', $embed_data ) )
+									$copy[$embed_id]['height'] = 0;
+								else
+									$copy[$embed_id]['height'] = (int) $embed_data['height'];
+
+								// check thumbnail url
+								if ( empty( $embed_data['thumbnail_url'] ) )
+									$copy[$embed_id]['thumbnail_url'] = '';
+								else
+									$copy[$embed_id]['thumbnail_url'] = esc_url( $embed_data['thumbnail_url'] );
+
+								// check thumbnail width
+								if ( ! array_key_exists( 'thumbnail_width', $embed_data ) )
+									$copy[$embed_id]['thumbnail_width'] = 0;
+								else
+									$copy[$embed_id]['thumbnail_width'] = (int) $embed_data['thumbnail_width'];
+
+								// check thumbnail height
+								if ( ! array_key_exists( 'thumbnail_height', $embed_data ) )
+									$copy[$embed_id]['thumbnail_height'] = 0;
+								else
+									$copy[$embed_id]['thumbnail_height'] = (int) $embed_data['thumbnail_height'];
+
+								// check title
+								if ( empty( $embed_data['title'] ) )
+									$copy[$embed_id]['title'] = '';
+								else
+									$copy[$embed_id]['title'] = trim( sanitize_text_field( $embed_data['title'] ) );
+
+								// check caption
+								if ( empty( $embed_data['caption'] ) )
+									$copy[$embed_id]['caption'] = '';
+								else
+									$copy[$embed_id]['caption'] = trim( sanitize_textarea_field( $embed_data['caption'] ) );
+
+								// check date
+								if ( empty( $embed_data['date'] ) )
+									$copy[$embed_id]['date'] = '';
+								else
+									$copy[$embed_id]['date'] = date( 'Y-m-d H:i:s', strtotime( $embed_data['date'] ) );
+
+								// new embed id
+								$new_id = 'e' . $index;
+
+								// add embed data
+								$data['embed'][$new_id] = $copy[$embed_id];
+								$data['embed'][$new_id]['id'] = $new_id;
+
+								// add special id
+								$reindexed_embed[$embed_id] = 'em' . $index++;
+							}
+
+							// last replacement is 'em' to avoid replacing same embed ids
+							$reindexed_embed['em'] = 'e';
+
+							// prepare embed additional data
+							$atts_args = [
+								'embed_keys'	=> array_keys( $data['embed'] ),
+								'providers'		=> [ 'youtube', 'vimeo' ]
+							];
+						} else
+							$atts_args = [];
+					} else
+						$atts_args = [];
+
+
+					// check ids
 					if ( array_key_exists( 'ids', $value ) ) {
+						// prepare ids
 						$ids = (string) trim( $value['ids'] );
 
-						if ( $ids !== '' )
-							// get unique and non empty attachment IDs only
-							$data['ids'] = $this->check_attachments( array_unique( array_filter( array_map( 'intval', explode( ',', $ids ) ) ) ) );
-						else
+						if ( $ids !== '' ) {
+							// reindex embed
+							if ( ! empty( $reindexed_embed ) )
+								$ids = str_replace( array_keys( $reindexed_embed ), array_values( $reindexed_embed ), $ids );
+
+							// get unique and non empty attachment ids only
+							$data['ids'] = $this->check_attachments( array_unique( array_filter( explode( ',', $ids ) ) ), $atts_args );
+						} else
 							$data['ids'] = [];
 					}
 
 					// check excluded items
 					if ( array_key_exists( 'exclude', $value ) && is_array( $value['exclude'] ) && ! empty( $value['exclude'] ) ) {
-						$ids = $strings = [];
+						// reindex embed
+						if ( ! empty( $reindexed_embed ) )
+							$value['exclude'] = explode( ',', str_replace( array_keys( $reindexed_embed ), array_values( $reindexed_embed ), implode( ',', array_filter( $value['exclude'] ) ) ) );
 
-						foreach ( $value['exclude'] as $exclude_item ) {
-							$item = trim( $exclude_item );
-
-							if ( is_numeric( $item ) )
-								$ids[] = (int) $item;
-							elseif ( $item !== '' )
-								$strings[] = $item;
-						}
-
-						if ( ! empty( $ids ) ) {
-							// get unique and non empty attachment IDs only
-							$ids = $this->check_attachments( array_unique( array_filter( $ids ) ) );
-						}
-
-						$data['exclude'] = $ids + $strings;
+						// get unique and non empty attachment ids only
+						$data['exclude'] = $this->check_attachments( array_unique( array_filter( $value['exclude'] ) ), $atts_args );
 					}
 
 					$value = $data;
@@ -1713,7 +1900,7 @@ class Responsive_Lightbox_Galleries {
 						}
 
 						if ( ! empty( $ids ) ) {
-							// get unique and non empty attachment IDs only
+							// get unique and non empty attachment ids only
 							$ids = $this->check_attachments( array_unique( array_filter( $ids ) ) );
 						}
 
@@ -2116,8 +2303,11 @@ class Responsive_Lightbox_Galleries {
 		$args['posts_per_page'] = ! empty( $args['posts_per_page'] ) ? (int) $args['posts_per_page'] : -1;
 		$args['nopaging'] = (bool) ! empty( $args['nopaging'] );
 
-		// is it rl_gallery?
-		if ( ( $valid_gallery_type = ( get_post_type( $gallery_id ) === 'rl_gallery' ) ) && ! $args['count_images'] ) {
+		// check gallery post type
+		$valid_gallery_type = ( get_post_type( $gallery_id ) === 'rl_gallery' );
+
+		// is it rl_gallery? skip when counting mode is enabled
+		if ( $valid_gallery_type && ! $args['count_images'] ) {
 			$paging = get_post_meta( $gallery_id, '_rl_paging', true );
 
 			if ( isset( $paging['menu_item'] ) ) {
@@ -2195,15 +2385,27 @@ class Responsive_Lightbox_Galleries {
 
 			switch ( $menu_item ) {
 				case 'media':
+					// check embed data
+					if ( ! empty( $data[$menu_item]['attachments']['embed'] ) ) {
+						$atts_args = [
+							'embed_keys'	=> array_keys( $data[$menu_item]['attachments']['embed'] ),
+							'providers'		=> [ 'youtube', 'vimeo' ]
+						];
+					} else
+						$atts_args = [];
+
 					// get attachment ids
-					$attachments = ! empty( $data[$menu_item]['attachments']['ids'] ) ? array_map( 'absint', $data[$menu_item]['attachments']['ids'] ) : [];
+					$attachments = ! empty( $data[$menu_item]['attachments']['ids'] ) ? $this->check_attachments( array_unique( array_filter( $data[$menu_item]['attachments']['ids'] ) ), $atts_args ) : [];
 
 					// filter attachments
-					$attachments = apply_filters( 'rl_get_gallery_images_attachments', $attachments );
+					$attachments = apply_filters( 'rl_get_gallery_images_attachments', $attachments, $atts_args );
 
 					// exclude any attachments?
 					if ( $args['exclude'] && ! empty( $data[$menu_item]['attachments']['exclude'] ) )
 						$attachments = array_diff( $attachments, $data[$menu_item]['attachments']['exclude'] );
+
+					// check filtered attachments
+					$attachments = $this->check_attachments( $attachments, $atts_args );
 
 					// any attachments?
 					if ( $attachments ) {
@@ -2211,16 +2413,19 @@ class Responsive_Lightbox_Galleries {
 							$counter = 0;
 
 						foreach ( $attachments as $attachment_id ) {
-							// real attachment?
-							if ( ! wp_attachment_is_image( $attachment_id ) )
-								continue;
-
 							// for counting mode get attachment id only
 							if ( $args['count_images'] )
 								$images[] = $attachment_id;
 							else {
+								// embed?
+								if ( preg_match( '/^e\d+$/', $attachment_id ) === 1 ) {
+									$attachment_data = $data[$menu_item]['attachments']['embed'][$attachment_id];
+									$attachment_data['type'] = 'embed';
+								} else
+									$attachment_data = $attachment_id;
+
 								// get attachment image data
-								$images[] = $this->get_gallery_image_src( $attachment_id, $args['image_size'], $args['thumbnail_size'] );
+								$images[] = $this->get_gallery_image_src( $attachment_data, $args['image_size'], $args['thumbnail_size'] );
 
 								// limit attachments?
 								if ( $args['limit'] ) {
@@ -2572,14 +2777,8 @@ class Responsive_Lightbox_Galleries {
 		$images_count = count( $images );
 
 		// no preview?
-		if ( ! $args['preview'] && ! $args['count_images'] ) {
-			if ( metadata_exists( 'post', $gallery_id, '_rl_images_count' ) ) {
-				$images_count_prev = get_post_meta( $gallery_id, '_rl_images_count', true );
-
-				update_post_meta( $gallery_id, '_rl_images_count', $images_count, $images_count_prev );
-			} else
-				add_post_meta( $gallery_id, '_rl_images_count', $images_count );
-		}
+		if ( ! $args['preview'] && ! $args['count_images'] && $args['limit'] === 0 )
+			update_post_meta( $gallery_id, '_rl_images_count', $images_count );
 
 		// images pagination?
 		if ( $images && ! $args['nopaging'] && $args['images_per_page'] > 0 && ! $args['count_images'] ) {
@@ -2590,14 +2789,18 @@ class Responsive_Lightbox_Galleries {
 			$this->gallery_args = $args;
 			$this->gallery_args['total'] = (int) ceil( $images_count / $args['images_per_page'] );
 
+			// remove actions to avoid issues with multiple galleries on single page
+			remove_action( 'rl_before_gallery', [ $this, 'do_pagination' ], 10 );
+			remove_action( 'rl_after_gallery', [ $this, 'do_pagination' ], 10 );
+
 			// pagination position
 			if ( $args['pagination_position'] === 'top' )
-				add_action( 'rl_before_gallery', array( $this, 'do_pagination' ), 10, 2 );
+				add_action( 'rl_before_gallery', [ $this, 'do_pagination' ], 10, 2 );
 			elseif ( $args['pagination_position'] === 'bottom' )
-				add_action( 'rl_after_gallery', array( $this, 'do_pagination' ), 10, 2 );
+				add_action( 'rl_after_gallery', [ $this, 'do_pagination' ], 10, 2 );
 			else {
-				add_action( 'rl_before_gallery', array( $this, 'do_pagination' ), 10, 2 );
-				add_action( 'rl_after_gallery', array( $this, 'do_pagination' ), 10, 2 );
+				add_action( 'rl_before_gallery', [ $this, 'do_pagination' ], 10, 2 );
+				add_action( 'rl_after_gallery', [ $this, 'do_pagination' ], 10, 2 );
 			}
 		}
 
@@ -2616,6 +2819,9 @@ class Responsive_Lightbox_Galleries {
 	public function do_pagination( $args, $gallery_id ) {
 		global $wp;
 
+		// get main instance
+		$rl = Responsive_Lightbox();
+
 		// get current action
 		$current_action = current_action();
 
@@ -2626,12 +2832,22 @@ class Responsive_Lightbox_Galleries {
 		else
 			$class = '';
 
+		// set base arguments
+		$base_args = [ 'rl_gallery_no' => $rl->frontend->gallery_no, 'rl_page' => '%#%' ];
+
+		if ( empty( $args['pagination_type'] ) )
+			$args['pagination_type'] = 'paged';
+
+		// infinite scroll?
+		if ( $args['pagination_type'] === 'infinite' )
+			$base_args['rl_lightbox_script'] = $rl->get_lightbox_script();
+
 		echo
 		'<div class="rl-pagination' . $class . '"' . ( $args['pagination_type'] === 'infinite' ? ' data-button="' . $args['load_more'] . '"' : '' ) .'>' .
 		paginate_links(
-			array(
+			[
 				'format' => '?rl_page=%#%',
-				'base' => add_query_arg( array( 'rl_gallery_no' => Responsive_Lightbox()->frontend->gallery_no, 'rl_page' => '%#%' ), $args['pagination_type'] !== 'paged' ? get_permalink( $gallery_id ) : home_url( $wp->request ) ),
+				'base' => add_query_arg( $base_args, $args['pagination_type'] !== 'paged' ? get_permalink( $gallery_id ) : home_url( $wp->request ) ),
 				'total' => $this->gallery_args['total'],
 				'current' => $this->gallery_args['page'],
 				'show_all' => false,
@@ -2645,9 +2861,31 @@ class Responsive_Lightbox_Galleries {
 				'add_fragment' => '',
 				'before_page_number' => '',
 				'after_page_number' => ''
-			)
+			]
 		) .
 		'</div>' . ( $args['pagination_type'] === 'infinite' && $args['load_more'] === 'manually' ? '<div class="rl-gallery-button"><button class="rl-button rl-load-more">' . esc_html__( 'Load more', 'responsive-lightbox' ) . '</button></div>' : '' );
+	}
+
+	/**
+	 * Check whether is it valid gallery AJAX request (rl-get-gallery-page-content action).
+	 *
+	 * @return bool
+	 */
+	public function gallery_ajax_verified() {
+		return ( wp_doing_ajax() && isset( $_POST['action'], $_POST['gallery_id'], $_POST['gallery_no'], $_POST['page'], $_POST['nonce'], $_POST['preview'], $_POST['post_id'], $_POST['lightbox'] ) && $_POST['action'] === 'rl-get-gallery-page-content' && wp_verify_nonce( $_POST['nonce'], 'rl_nonce' ) );
+	}
+
+	/**
+	 * Try to change lightbox in valid gallery AJAX request (rl-get-gallery-page-content action).
+	 *
+	 * @return void
+	 */
+	public function maybe_change_lightbox() {
+		// early ajax check
+		if ( $this->gallery_ajax_verified() ) {
+			// set new lightbox script
+			Responsive_Lightbox()->set_lightbox_script( $_POST['lightbox'] );
+		}
 	}
 
 	/**
@@ -2657,7 +2895,7 @@ class Responsive_Lightbox_Galleries {
 	 * @return void
 	 */
 	public function get_gallery_page( $args ) {
-		if ( isset( $_POST['gallery_id'], $_POST['page'], $_POST['nonce'], $_POST['preview'], $_POST['post_id'] ) && wp_verify_nonce( $_POST['nonce'], 'rl_nonce' ) ) {
+		if ( $this->gallery_ajax_verified() ) {
 			// cast page number
 			$_GET['rl_page'] = (int) $_POST['page'];
 
@@ -2666,8 +2904,9 @@ class Responsive_Lightbox_Galleries {
 
 			echo $this->gallery_shortcode(
 				[
-					'id'		=> (int) $_POST['gallery_id'],
-					'preview'	=> $preview
+					'id'			=> (int) $_POST['gallery_id'],
+					'gallery_no'	=> (int) $_POST['gallery_no'],
+					'preview'		=> $preview
 				]
 			);
 		}
@@ -3014,19 +3253,53 @@ class Responsive_Lightbox_Galleries {
 		else
 			$excluded_flag = in_array( $excluded_item, $excluded, true );
 
-		// replace ID and URL of an image
+		if ( $image['type'] === 'embed' ) {
+			// replace all embed data
+			$media_html = str_replace(
+				[
+					'__EMBED_ID__',
+					'__EMBED_URL__',
+					'__EMBED_WIDTH__',
+					'__EMBED_HEIGHT__',
+					'__EMBED_THUMBNAIL_URL__',
+					'__EMBED_THUMBNAIL_WIDTH__',
+					'__EMBED_THUMBNAIL_HEIGHT__',
+					'__EMBED_TITLE__',
+					'__EMBED_DESCRIPTION__',
+					'__EMBED_DATE__'
+				],
+				[
+					$image['id'],
+					esc_url( $image['url'] ),
+					(int) $image['width'],
+					(int) $image['height'],
+					esc_url( $image['thumbnail_url'] ),
+					(int) $image['thumbnail_width'],
+					(int) $image['thumbnail_height'],
+					esc_attr( $image['title'] ),
+					esc_textarea( $image['caption'] ),
+					$image['date']
+				],
+				$this->get_media_embed_template( false )
+			);
+		} else
+			$media_html = '';
+
+		// replace id and url of an image
 		return str_replace(
-			'__IMAGE__',
-			'<input type="hidden" class="rl-gallery-exclude" name="rl_gallery[' . $tab_id . '][' . $menu_item . '][' . $field_name . '][exclude][]" value="' . ( $excluded_flag ? $excluded_item : '' ) . '" />' . $image['thumbnail_link'],
-			str_replace(
-				'__IMAGE_ID__',
+			[
+				'__MEDIA_DATA__',
+				'__MEDIA_ID__',
+				'__MEDIA_STATUS__',
+				'__MEDIA_TYPE__'
+			],
+			[
+				$this->get_media_exclude_input_template( $tab_id, $menu_item, $field_name, $excluded_flag ? $excluded_item : '' ) . $media_html . $image['thumbnail_link'],
 				$image['id'],
-				str_replace(
-					'__IMAGE_STATUS__',
-					$excluded_flag ? 'rl-status-inactive' : 'rl-status-active',
-					$template
-				)
-			)
+				$excluded_flag ? ' rl-status-inactive' : ' rl-status-active',
+				$image['type']
+			],
+			$template
 		);
 	}
 
@@ -3104,14 +3377,54 @@ class Responsive_Lightbox_Galleries {
 
 		// attachment id?
 		if ( is_int( $image ) ) {
-			if ( $image && wp_attachment_is_image( $image ) ) {
-				$image_src = wp_get_attachment_image_src( $image, $image_size, false );
+			if ( $image ) {
+				$type = 'image';
+				$width = 0;
+				$height = 0;
 
-				// different image and thumbnail sizes?
-				if ( $diff_sizes )
-					$thumbnail_src = wp_get_attachment_image_src( $image, $thumbnail_size, false );
-				else
-					$thumbnail_src = $image_src;
+				// image src
+				if ( wp_attachment_is_image( $image ) ) {
+					$image_src = wp_get_attachment_image_src( $image, $image_size, false );
+
+					// different image and thumbnail sizes?
+					if ( $diff_sizes )
+						$thumbnail_src = wp_get_attachment_image_src( $image, $thumbnail_size, false );
+					else
+						$thumbnail_src = $image_src;
+
+					$file_url = $image_src[0];
+					$width = $image_src[1];
+					$height = $image_src[2];
+					$thumbnail_url = $thumbnail_src[0];
+					$thumbnail_width = $thumbnail_src[1];
+					$thumbnail_height = $thumbnail_src[2];
+				// video, blank thumbnail src
+				} elseif ( rl_current_lightbox_supports( 'video' ) && wp_attachment_is( 'video', $image ) ) {
+					$type = 'video';
+					$thumbnail_id = $this->get_video_thumbnail_id( $image );
+					$thumbnail_src = wp_get_attachment_image_src( $thumbnail_id, $image_size, false );
+
+					// get video metadata
+					$meta = wp_get_attachment_metadata( $image );
+
+					if ( $meta ) {
+						$width = $meta['width'];
+						$height = $meta['height'];
+					} else {
+						$width = $thumbnail_src[1];
+						$height = $thumbnail_src[2];
+					}
+
+					// different image and thumbnail sizes?
+					if ( $diff_sizes )
+						$thumbnail_src = wp_get_attachment_image_src( $thumbnail_id, $thumbnail_size, false );
+
+					// file url
+					$file_url = wp_get_attachment_url( $image );
+					$thumbnail_url = $thumbnail_src[0];
+					$thumbnail_width = $thumbnail_src[1];
+					$thumbnail_height = $thumbnail_src[2];
+				}
 
 				// get alternative text
 				$alt = get_post_meta( $image, '_wp_attachment_image_alt', true );
@@ -3126,13 +3439,14 @@ class Responsive_Lightbox_Galleries {
 					'date'				=> get_the_date( 'Y-m-d H:i:s', $image ),
 					'caption'			=> '',
 					'alt'				=> $alt,
-					'url'				=> $image_src[0],
-					'width'				=> $image_src[1],
-					'height'			=> $image_src[2],
-					'orientation'		=> $image_src[2] > $image_src[1] ? 'portrait' : 'landscape',
-					'thumbnail_url'		=> $thumbnail_src[0],
-					'thumbnail_width'	=> $thumbnail_src[1],
-					'thumbnail_height'	=> $thumbnail_src[2]
+					'url'				=> $file_url, // $image_src[0],
+					'width'				=> $width,
+					'height'			=> $height,
+					'orientation'		=> $height > $width ? 'portrait' : 'landscape',
+					'thumbnail_url'		=> $thumbnail_url,
+					'thumbnail_width'	=> $thumbnail_width,
+					'thumbnail_height'	=> $thumbnail_height,
+					'type'				=> $type
 				);
 
 				if ( $diff_sizes )
@@ -3149,6 +3463,7 @@ class Responsive_Lightbox_Galleries {
 			$imagedata = array(
 				'id'				=> 0,
 				'title'				=> '',
+				'date'				=> '',
 				'caption'			=> '',
 				'alt'				=> '',
 				'url'				=> $imagedata['url'],
@@ -3157,7 +3472,8 @@ class Responsive_Lightbox_Galleries {
 				'orientation'		=> $imagedata['height'] > $imagedata['width'] ? 'portrait' : 'landscape',
 				'thumbnail_url'		=> $imagedata['url'],
 				'thumbnail_width'	=> $imagedata['width'],
-				'thumbnail_height'	=> $imagedata['height']
+				'thumbnail_height'	=> $imagedata['height'],
+				'type'				=> 'image'
 			);
 
 			$imagedata['thumbnail_orientation'] = $imagedata['orientation'];
@@ -3179,8 +3495,9 @@ class Responsive_Lightbox_Galleries {
 			}
 
 			$imagedata = array(
-				'id'				=> ! empty( $image['id'] ) ? (int) $image['id'] : 0,
+				'id'				=> ! empty( $image['id'] ) ? ( preg_match( '/^e\d+$/', $image['id'] ) === 1 ? $image['id'] : (int) $image['id'] ) : 0,
 				'title'				=> ! empty( $image['title'] ) ? esc_html( $image['title'] ) : '',
+				'date'				=> ! empty( $image['date'] ) ? esc_html( $image['date'] ) : '',
 				'caption'			=> ! empty( $image['caption'] ) ? esc_html( $image['caption'] ) : '',
 				'alt'				=> ! empty( $image['alt'] ) ? esc_html( $image['alt'] ) : '',
 				'url'				=> ! empty( $image['url'] ) ? esc_url( $image['url'] ) : '',
@@ -3190,7 +3507,8 @@ class Responsive_Lightbox_Galleries {
 				'thumbnail_width'	=> ! empty( $image['thumbnail_width'] ) ? (int) $image['thumbnail_width'] : 0,
 				'thumbnail_height'	=> ! empty( $image['thumbnail_height'] ) ? (int) $image['thumbnail_height'] : 0,
 				'link'				=> ! empty( $image['link'] ) ? esc_url( $image['link'] ) : '',
-				'thumbnail_link'	=> ! empty( $image['thumbnail_link'] ) ? esc_url( $image['thumbnail_link'] ) : ''
+				'thumbnail_link'	=> ! empty( $image['thumbnail_link'] ) ? esc_url( $image['thumbnail_link'] ) : '',
+				'type'				=> ! empty( $image['type'] ) ? esc_html( $image['type'] ) : 'image'
 			);
 
 			$imagedata['orientation'] = $imagedata['height'] > $imagedata['width'] ? 'portrait' : 'landscape';
@@ -3703,6 +4021,102 @@ class Responsive_Lightbox_Galleries {
 	}
 
 	/**
+	 * Get video thumbnail replacement.
+	 *
+	 * @param int $post_id
+	 * @return int
+	 */
+	public function get_video_thumbnail_id( $post_id ) {
+		$thumbnail_id = 0;
+
+		// try to get video thumbnail
+		$attachment_id = (int) get_post_thumbnail_id( $post_id );
+
+		// real attachment?
+		if ( wp_attachment_is_image( $attachment_id ) )
+			$thumbnail_id = $attachment_id;
+
+		// try to get default video poster image
+		if ( ! $thumbnail_id ) {
+			$thumbnail_id = get_posts(
+				array(
+					'name'			 => 'responsive-lightbox-video-thumbnail',
+					'post_type'		 => 'attachment',
+					'post_status'	 => 'inherit',
+					'numberposts'	 => 1,
+					'fields'		 => 'ids'
+				)
+			);
+		}
+
+		// no attachment?
+		if ( ! $thumbnail_id ) {
+			// get new attachment
+			$thumbnail_id = get_posts(
+				array(
+					'name'			 => 'responsive-lightbox-video-thumbnail',
+					'post_type'		 => 'attachment',
+					'post_status'	 => 'pending',
+					'numberposts'	 => 1,
+					'fields'		 => 'ids'
+				)
+			);
+
+			// no attachment?
+			if ( ! $thumbnail_id ) {
+				// get upload directory data
+				$wp_upload_dir = wp_upload_dir();
+
+				// get file path
+				$filepath = str_replace( '\\', '/', RESPONSIVE_LIGHTBOX_PATH . 'images/responsive-lightbox-video-thumbnail.png' );
+
+				// get file name
+				$filename = basename( $filepath );
+
+				// new filepath in upload dir
+				$new_filepath = $wp_upload_dir['path'] . '/' . $filename;
+
+				// copty file to upload dir
+				copy( $filepath, $new_filepath );
+
+				// get type of file
+				$filetype = wp_check_filetype( $filename );
+
+				// force pending status for the attachment
+				add_filter( 'wp_insert_attachment_data', array( $this, 'set_attachment_post_status' ) );
+
+				// insert attachment
+				$thumbnail_id = wp_insert_attachment(
+					array(
+						'guid'				=> $wp_upload_dir['url'] . '/' . $filename,
+						'post_mime_type'	=> $filetype['type'],
+						'post_title'		=> preg_replace( '/\.[^.]+$/', '', $filename ),
+						'post_content'		=> '',
+						'post_parent'		=> 0,
+						'post_status'		=> 'inherit'
+					),
+					$new_filepath,
+					0
+				);
+
+				remove_filter( 'wp_insert_attachment_data', array( $this, 'set_attachment_post_status' ) );
+
+				// success?
+				if ( $thumbnail_id ) {
+					// make sure that this file is included
+					require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+					// update database with generated metadata for the attachment
+					wp_update_attachment_metadata( $thumbnail_id, wp_generate_attachment_metadata( $thumbnail_id, $new_filepath ) );
+				}
+			} else
+				$thumbnail_id = $thumbnail_id[0];
+		}
+
+		return (int) $thumbnail_id;
+	}
+
+	/**
 	 * Change status of new attachment thumbnail replacement.
 	 *
 	 * @param array $data
@@ -4009,6 +4423,61 @@ class Responsive_Lightbox_Galleries {
 	}
 
 	/**
+	 * Fix possible misplaced or hidden metaboxes do to old 'after_title' metabox and possibility to move internal metaboxes.
+	 *
+	 * @return void
+	 */
+	public function clear_metaboxes( $screen ) {
+		global $pagenow;
+
+		if ( ! ( ( $pagenow === 'post.php' || $pagenow === 'post-new.php' ) && ! empty( $screen->post_type ) && $screen->post_type === 'rl_gallery' && empty( $_POST['rl_gallery'] ) ) )
+			return;
+
+		// get user id
+		$user_id = get_current_user_id();
+
+		// get rl metaboxes
+		$order = get_user_meta( $user_id, 'meta-box-order_rl_gallery', true );
+
+		// any metabox order? fix possible misplaced metaboxes
+		if ( is_array( $order ) && ! empty( $order ) ) {
+			// save metaboxes
+			$_order = $order;
+
+			// default rl metaboxes
+			$rl_boxes = [ 'responsive-gallery-images', 'responsive-gallery-config', 'responsive-gallery-design', 'responsive-gallery-paging', 'responsive-gallery-lightbox', 'responsive-gallery-misc' ];
+
+			foreach ( $_order as $group => $metaboxes ) {
+				if ( $group === 'after_title' ) {
+					// remove deprecated after_title metabox
+					unset( $order['after_title'] );
+				} elseif ( $metaboxes !== '' ) {
+					$boxes = explode( ',', $metaboxes );
+					$new_boxes = [];
+
+					foreach ( $boxes as $box ) {
+						if ( ! in_array( $box, $rl_boxes, true ) )
+							$new_boxes[] = $box;
+					}
+
+					if ( ! empty( $new_boxes ) )
+						$order[$group] = implode( ',', $new_boxes );
+					else
+						$order[$group] = '';
+				}
+			}
+
+			// remove default metaboxes storage
+			if ( array_key_exists( 'responsive_lightbox_metaboxes', $order ) )
+				unset( $order['responsive_lightbox_metaboxes'] );
+
+			// update usermeta to prevent issues with rl metaboxes
+			if ( $order !== $_order )
+				update_user_meta( $user_id, 'meta-box-order_rl_gallery', $order );
+		}
+	}
+
+	/**
 	 * Save gallery metadata.
 	 *
 	 * @param int $post_id
@@ -4020,6 +4489,7 @@ class Responsive_Lightbox_Galleries {
 		if ( wp_is_post_revision( $post_id ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ! $update || in_array( $post->post_status, array( 'trash', 'auto-draft' ), true ) || ( isset( $_GET['action'] ) && $_GET['action'] === 'untrash' ) || empty( $_POST['rl_gallery'] ) )
 			return;
 
+		// save gallery
 		$this->save_gallery( wp_unslash( $_POST ), $post_id );
 	}
 
@@ -4032,6 +4502,7 @@ class Responsive_Lightbox_Galleries {
 	 * @return void
 	 */
 	public function save_gallery( $post_data, $post_id, $preview = false ) {
+		// get gallery data
 		$data = $post_data['rl_gallery'];
 
 		// prepare sanitized data
@@ -4081,11 +4552,8 @@ class Responsive_Lightbox_Galleries {
 					// add menu item
 					$menu_item = isset( $data[$tab_id], $data[$tab_id]['menu_item'] ) && array_key_exists( $data[$tab_id]['menu_item'], $this->tabs[$tab_id]['menu_items'] ) ? $data[$tab_id]['menu_item'] : 'options';
 
-					// prepare fields
-					$items = $menu_items[$menu_item];
-
 					// sanitize fields
-					$safedata = $this->sanitize_fields( $items, $data, $tab_id, $menu_item );
+					$safedata = $this->sanitize_fields( $menu_items[$menu_item], $data, $tab_id, $menu_item );
 
 					// add menu item
 					$safedata[$tab_id]['menu_item'] = $menu_item;
@@ -4155,22 +4623,51 @@ class Responsive_Lightbox_Galleries {
 	 * Check attachments IDs.
 	 *
 	 * @param array $attachments Attachment ID's
+	 * @param array $args
 	 * @return array
 	 */
-	public function check_attachments( $attachments ) {
+	public function check_attachments( $attachments, $args = [] ) {
+		// no attachments?
 		if ( empty( $attachments ) || ! is_array( $attachments ) )
 			return [];
 
-		$copy = array_map( 'intval', $attachments );
+		// check providers support
+		if ( ! empty( $args['providers'] ) )
+			$embed = rl_current_lightbox_supports( $args['providers'], 'OR' );
+		else
+			$embed = false;
+
+		// no embed data?
+		if ( ! $embed )
+			$copy = array_map( 'intval', $attachments );
+		else
+			$copy = $attachments;
 
 		// check attachments
 		foreach ( $attachments as $key => $attachment_id ) {
-			// is it an image?
-			if ( ! wp_attachment_is_image( $attachment_id ) )
-				unset( $copy[$key] );
+			// embed?
+			if ( $embed && preg_match( '/^e\d+$/', $attachment_id ) === 1 ) {
+				if ( ! in_array( $attachment_id, $args['embed_keys'], true ) )
+					unset( $copy[$key] );
+			// video support?
+			} elseif ( rl_current_lightbox_supports( 'video' ) ) {
+				// is it an image or video?
+				if ( ! wp_attachment_is( 'video', $attachment_id ) && ! wp_attachment_is( 'image', $attachment_id ) )
+					unset( $copy[$key] );
+				// make sure it's integer
+				elseif ( $embed )
+					$copy[$key] = (int) $copy[$key];
+			} else {
+				// is it an image?
+				if ( ! wp_attachment_is_image( $attachment_id ) )
+					unset( $copy[$key] );
+				// make sure it's integer
+				elseif ( $embed )
+					$copy[$key] = (int) $copy[$key];
+			}
 		}
 
-		return $copy;
+		return array_values( $copy );
 	}
 
 	/**

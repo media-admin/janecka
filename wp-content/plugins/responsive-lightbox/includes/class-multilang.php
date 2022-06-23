@@ -293,7 +293,7 @@ class Responsive_Lightbox_Multilang {
 			$taxonomy = $rl->options['folders']['media_taxonomy'];
 
 			// parse URL
-			$params = parse_url( html_entity_decode( urldecode( add_query_arg() ) ) );
+			$params = parse_url( html_entity_decode( urldecode( add_query_arg( '', '' ) ) ) );
 
 			if ( isset( $params['query'] ) ) {
 				// parse query string

@@ -136,6 +136,7 @@
 			e.stopPropagation();
 
 			var galleryId = container.data( 'gallery_id' );
+			var galleryNo = container.find( '.rl-gallery' ).data( 'gallery_no' );
 
 			// add loading class
 			container.addClass( 'rl-loading' );
@@ -143,10 +144,12 @@
 			$.post( rlArgs.ajaxurl, {
 				action: 'rl-get-gallery-page-content',
 				gallery_id: galleryId,
+				gallery_no: galleryNo,
 				post_id: rlArgs.postId,
 				page: parseQueryString( 'rl_page', link.prop( 'href' ) ),
 				nonce: rlArgs.nonce,
-				preview: rlArgs.preview
+				preview: rlArgs.preview,
+				lightbox: rlArgs.script
 			} ).done( function( response ) {
 				// replace container with new content
 				container.replaceWith( $( response ).removeClass( 'rl-loading' ) );
@@ -158,7 +161,8 @@
 					selector: rlArgs.selector,
 					args: rlArgs,
 					pagination_type: 'ajax',
-					gallery_id: galleryId
+					gallery_id: galleryId,
+					gallery_no: galleryNo
 				} );
 			} ).always( function() {
 				container.removeClass( 'rl-loading' );
@@ -210,10 +214,39 @@
 						e.preventDefault();
 						e.stopPropagation();
 
-						if ( flex.length )
-							flex.find( '.flex-active-slide a[data-rel]' ).trigger( 'click' );
-						else
-							gallery.find( 'a[data-rel]' ).first().trigger( 'click' );
+						if ( script === 'lightgallery' ) {
+							if ( flex.length ) {
+								var image = flex.find( '.flex-active-slide a[data-rel] img' );
+								var linkId = flex.find( '.flex-active-slide a[data-rel]' ).data( 'lg-id' );
+
+								image.trigger( 'click.lgcustom-item-' + linkId );
+							} else {
+								var link = gallery.find( 'a[data-rel]' ).first();
+								var image = link.find( 'img' );
+
+								image.trigger( 'click.lgcustom-item-' + link.data( 'lg-id' ) );
+							}
+						} else if ( script === 'fancybox_pro' ) {
+							if ( flex.length ) {
+								var index = flex.find( '.flex-active-slide' ).index();
+								var imageId = flex.find( '.flex-active-slide a[data-rel]' ).data( 'fancybox' );
+
+								Fancybox.fromOpener( '[data-fancybox="' + imageId + '"]', {
+									startIndex: index
+								} );
+							} else {
+								var link = gallery.find( 'a[data-rel]' ).first();
+
+								Fancybox.fromOpener( '[data-fancybox="' + link.data( 'fancybox' ) + '"]', {
+									startIndex: 0
+								} );
+							}
+						} else {
+							if ( flex.length )
+								flex.find( '.flex-active-slide a[data-rel]' ).trigger( 'click' );
+							else
+								gallery.find( 'a[data-rel]' ).first().trigger( 'click' );
+						}
 					} );
 				}
 			}
@@ -330,12 +363,20 @@
 
 				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).each( function() {
 					var el = $( this );
+					var title = el.data( 'rl_title' );
+					var caption = el.data( 'rl_caption' );
+
+					if ( ! title )
+						title = '';
+
+					if ( ! caption )
+						caption = '';
 
 					// set description
-					el.attr( 'title', el.data( 'rl_caption' ) );
+					el.attr( 'title', caption );
 
 					// set title
-					el.find( 'img' ).attr( 'alt', el.data( 'rl_title' ) );
+					el.find( 'img' ).attr( 'alt', title );
 				} );
 
 				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).prettyPhoto( {
@@ -762,7 +803,16 @@
 							fixedBgPos: args.fixedBgPos === 'auto' ? 'auto' : ( args.fixedBgPos === '1' ),
 							image: {
 								titleSrc: function( item ) {
-									return item.el.attr( 'data-rl_title' ) + '<small>' + item.el.attr( 'data-rl_caption' ) + '</small>';
+									var title = item.el.data( 'rl_title' );
+									var caption = item.el.data( 'rl_caption' );
+
+									if ( ! title )
+										title = '';
+
+									if ( ! caption )
+										caption = '';
+
+									return title + '<small>' + caption + '</small>';
 								}
 							},
 							gallery: {

@@ -78,4 +78,15 @@
 	#rl-modal-gallery .media-frame.hide-router .media-frame-content {
 		top: 50px;
 	}
+	#rl-edit-attachment-modal .compat-item .label {
+		width: 100%;
+		text-align: left;
+	}
+	#rl-edit-attachment-modal .compat-item .label br {
+		display: none;
+	}
+	.compat-item .field {
+		width: 99%;
+		float: left;
+	}
 }
