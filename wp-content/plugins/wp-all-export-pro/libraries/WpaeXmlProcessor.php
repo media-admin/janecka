@@ -181,8 +181,10 @@ class WpaeXmlProcessor
                         $tagValues[$snippet] = $snippetValue;
 
 
-                        if (count($tagValues[$snippet]) > $maxTagValues) {
-                            $maxTagValues = count($tagValues[$snippet]);
+                        if(is_array($tagValues[$snippet])) {
+                            if (count($tagValues[$snippet]) > $maxTagValues) {
+                                $maxTagValues = count($tagValues[$snippet]);
+                            }
                         }
                     }
                     //We have arrays

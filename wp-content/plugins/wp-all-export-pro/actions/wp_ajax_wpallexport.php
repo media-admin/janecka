@@ -55,6 +55,11 @@ function pmxe_wp_ajax_wpallexport()
 
     $posts_per_page = $exportOptions['records_per_iteration'];
 
+    if($exportOptions['enable_real_time_exports']) {
+        // Only export one record the first time a real-time export runs
+        $posts_per_page = 1;
+    }
+
     if ($exportOptions['export_type'] == 'advanced') {
         if (XmlExportEngine::$is_user_export) {
             add_action('pre_user_query', 'wp_all_export_pre_user_query', 10, 1);
@@ -145,6 +150,7 @@ function pmxe_wp_ajax_wpallexport()
                 add_filter('posts_where', 'wp_all_export_posts_where', 10, 1);
 
                 $exportQuery = new WP_Query(array('post_type' => $exportOptions['cpt'], 'post_status' => 'any', 'orderby' => 'ID', 'order' => 'ASC', 'offset' => $export->exported, 'posts_per_page' => $posts_per_page));
+
                 remove_filter('posts_where', 'wp_all_export_posts_where');
                 remove_filter('posts_join', 'wp_all_export_posts_join');
             }
@@ -231,6 +237,12 @@ function pmxe_wp_ajax_wpallexport()
         }
     }
     // [ \get total founded records ]
+
+    if($exportOptions['enable_real_time_exports']) {
+        // Only export one post when first running a real-time export
+        $foundPosts = 1;
+        $postCount = 1;
+    }
 
     if (!$export->exported) {
 

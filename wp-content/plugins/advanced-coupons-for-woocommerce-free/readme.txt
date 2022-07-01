@@ -4,7 +4,7 @@ Donate link:
 Tags: woocommerce coupons, coupons, bogo, url coupons, coupon plugin, store credit
 Requires at least: 5.2
 Tested up to: 6.0
-Stable tag: 4.3.1
+Stable tag: 4.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -289,6 +289,14 @@ Thanks,
 Josh Kohlbach (CEO of Rymera Web Co)
 
 == Changelog ==
+
+= 4.3.2 =
+* Feature: Loyalty Program upsell page on Coupons menu
+* Improvement: Upsell: Link all instances of Advanced Coupons logo with premium link
+* Improvement: Add Virtual Coupon Upsell to ACFWF plugin under "Coupons > Settings > Modules"
+* Improvement: URL Coupons: Add button to copy the URL to the clipboard
+* Improvement: Change the Free Guide offer on the Settings->General tab to accept first name & email instead of just a link to our landing page
+* Improvement: Add upsell for Cart Condition: WC Allowed and WC Disallowed WC Membership options when WC Membership plugin is active
 
 = 4.3.1 =
 * Bug Fix: Multisite: PHP warning shows up when viewing sites list

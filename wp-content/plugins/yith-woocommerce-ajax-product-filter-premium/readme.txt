@@ -2,13 +2,26 @@
 
 Contributors: yithemes
 Tags: woocommerce, widget, ajax, ajax filtered nav, ajax navigation, ajax filtered navigation
-Requires at least: 5.7
-Tested up to: 5.9
-Stable tag: 4.9.0
+Requires at least: 5.8
+Tested up to: 6.0
+Stable tag: 4.11.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Changelog =
+
+= 4.11.0 - Released on 9 June 2022 =
+
+* New: support for WooCommerce 6.6
+* Tweak: remove reference to heading tag from CSS, and replaced with specific clases (allow to change filters titles tags without breaking appearance)
+* Update: YITH plugin framework
+
+= 4.10.0 - Released on 10 May 2022 =
+
+* New: support for WordPress 6.0
+* New: support for WooCommerce 6.5
+* Update: YITH plugin framework
+* Fix: add in stock status to filtered products query
 
 = 4.9.0 - Released on 04 April 2022 =
 

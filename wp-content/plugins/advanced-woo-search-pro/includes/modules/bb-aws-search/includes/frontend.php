@@ -1,7 +1,10 @@
 <?php
 
-$form_id = $settings->form_id;
-$search_form = aws_get_search_form( false, array( 'id' => $form_id ) );
-$search_form = preg_replace( '/placeholder="([\S\s]*?)"/i', 'placeholder="' . esc_attr( $settings->placeholder ) . '"', $search_form );
+$args = array();
+$args['id'] = $settings->form_id;
+if ( $settings->placeholder ) {
+    $args['placeholder'] = $settings->placeholder;
+}
+$search_form = aws_get_search_form( false, $args );
 
 echo $search_form;

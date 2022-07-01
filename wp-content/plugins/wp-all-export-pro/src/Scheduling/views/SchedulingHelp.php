@@ -1,3 +1,8 @@
+<?php
+if(!defined('ABSPATH')) {
+    die();
+}
+?>
 <div id="wp-all-export-scheduling-help-inner" class="wp_all_export_scheduling_help">
 
     <p style="margin-top:5px; padding-left: 0;"><?php esc_html_e('This service is provided by Soflyy, the company that makes WP All Export. Automatic Scheduling makes it very easy to run exports on a schedule.', 'wp_all_export_plugin'); ?></p>

@@ -198,8 +198,6 @@ if (!class_exists('XmlExportComment')) {
             $sections['author_info']['title'] = __('Author Info', PMXE_Plugin::LANGUAGE_DOMAIN);
             $sections['author_info']['content'] = 'author_fields';
 
-            //$sections['cf']['title'] = __("Other", PMXE_Plugin::LANGUAGE_DOMAIN);
-
             $sections['parent']['title'] = __('Parent', PMXE_Plugin::LANGUAGE_DOMAIN);
             $sections['parent']['content'] = 'parent_fields';
 
@@ -273,7 +271,7 @@ if (!class_exists('XmlExportComment')) {
             $article = array();
 
             // associate exported comment with import
-            if (wp_all_export_is_compatible() && isset($exportOptions['is_generate_import']) && $exportOptions['is_generate_import'] && $exportOptions['import_id']) {
+            if (wp_all_export_is_compatible() && isset($exportOptions['is_generate_import']) && $exportOptions['is_generate_import'] && $exportOptions['import_id'] && !$exportOptions['enable_real_time_exports']) {
                 $postRecord = new PMXI_Post_Record();
                 $postRecord->clear();
                 $postRecord->getBy(array(

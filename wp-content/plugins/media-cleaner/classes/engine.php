@@ -223,7 +223,7 @@ SQL;
 		$used = $issue === true;
 		if ( !$used ) {
 			global $wpdb;
-			$filepath = $this->filepath_basedir . stripslashes( $file );
+			$filepath = trailingslashit( $this->core->upload_path ) . stripslashes( $file );
 			$clean_path = $this->core->clean_uploaded_filename( $file );
 			$table_name = $wpdb->prefix . "mclean_scan";
 			$filesize = file_exists( $filepath ) ? filesize ($filepath) : 0;

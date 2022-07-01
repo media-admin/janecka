@@ -23,5 +23,7 @@ function wp_all_export_terms_clauses($clauses, $taxonomies, $args)
 		}
 	}
 
+
+
 	return $clauses;
 }

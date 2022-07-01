@@ -16,12 +16,19 @@ if ( ! class_exists( 'AWS_Markup' ) ) :
          */
         private $form_id;
 
+        /**
+         * @var AWS_Markup Array of form parameters $atts
+         */
+        private $atts;
+
         /*
          * Constructor
          */
-        public function __construct( $id = 1 ) {
+        public function __construct( $atts = array() ) {
 
-            $this->form_id = $id;
+            $this->form_id = isset( $atts['id'] ) ? $atts['id'] : 1;
+
+            $this->atts = $atts;
 
         }
 
@@ -45,24 +52,24 @@ if ( ! class_exists( 'AWS_Markup' ) ) :
                 return;
             }
 
-
-            $placeholder   = AWS_Helpers::translate( 'search_field_text_' . $this->form_id, AWS_PRO()->get_settings( 'search_field_text', $this->form_id ) );
-            $notfound_text = AWS_Helpers::translate( 'not_found_text_' . $this->form_id, AWS_PRO()->get_settings( 'not_found_text', $this->form_id ) );
-            $showmore_text = AWS_Helpers::translate( 'show_more_text_' . $this->form_id, AWS_PRO()->get_settings( 'show_more_text', $this->form_id ) );
-            $min_chars     = AWS_PRO()->get_settings( 'min_chars', $this->form_id );
-            $show_loader   = AWS_PRO()->get_settings( 'show_loader', $this->form_id );
-            $show_more     = AWS_PRO()->get_settings( 'show_more', $this->form_id );
-            $ajax_search   = AWS_PRO()->get_settings( 'enable_ajax', $this->form_id );
-            $show_page     = AWS_PRO()->get_settings( 'search_page', $this->form_id );
-            $show_clear    = AWS_PRO()->get_settings( 'show_clear', $this->form_id );
-            $mobile_screen = AWS_PRO()->get_settings( 'mobile_overlay', $this->form_id );
-            $buttons_order = AWS_PRO()->get_settings( 'buttons_order', $this->form_id );
-            $target_blank  = AWS_PRO()->get_settings( 'target_blank', $this->form_id );
-            $use_analytics = AWS_PRO()->get_settings( 'use_analytics', $this->form_id );
-            $show_addon    = AWS_PRO()->get_settings( 'show_addon', $this->form_id );
-            $filters       = AWS_PRO()->get_settings( 'filters', $this->form_id );
-
-            $search_timeout = AWS_PRO()->get_common_settings( 'search_timeout' );
+            extract( shortcode_atts( array(
+                'placeholder'    => AWS_Helpers::translate( 'search_field_text_' . $this->form_id, AWS_PRO()->get_settings( 'search_field_text', $this->form_id ) ),
+                'notfound_text'  => AWS_Helpers::translate( 'not_found_text_' . $this->form_id, AWS_PRO()->get_settings( 'not_found_text', $this->form_id ) ),
+                'showmore_text'  => AWS_Helpers::translate( 'show_more_text_' . $this->form_id, AWS_PRO()->get_settings( 'show_more_text', $this->form_id ) ),
+                'min_chars'      => AWS_PRO()->get_settings( 'min_chars', $this->form_id ),
+                'show_loader'    => AWS_PRO()->get_settings( 'show_loader', $this->form_id ),
+                'show_more'      => AWS_PRO()->get_settings( 'show_more', $this->form_id ),
+                'ajax_search'    => AWS_PRO()->get_settings( 'enable_ajax', $this->form_id ),
+                'show_page'      => AWS_PRO()->get_settings( 'search_page', $this->form_id ),
+                'show_clear'     => AWS_PRO()->get_settings( 'show_clear', $this->form_id ),
+                'mobile_screen'  => AWS_PRO()->get_settings( 'mobile_overlay', $this->form_id ),
+                'buttons_order'  => AWS_PRO()->get_settings( 'buttons_order', $this->form_id ),
+                'target_blank'   => AWS_PRO()->get_settings( 'target_blank', $this->form_id ),
+                'use_analytics'  => AWS_PRO()->get_settings( 'use_analytics', $this->form_id ),
+                'show_addon'     => AWS_PRO()->get_settings( 'show_addon', $this->form_id ),
+                'filters'        => AWS_PRO()->get_settings( 'filters', $this->form_id ),
+                'search_timeout' => AWS_PRO()->get_common_settings( 'search_timeout' ),
+            ), $this->atts ) );
 
             $current_lang = AWS_Helpers::get_lang();
             $filter_current = '1';

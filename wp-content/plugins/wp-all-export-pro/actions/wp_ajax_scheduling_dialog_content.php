@@ -248,6 +248,7 @@ function pmxe_wp_ajax_scheduling_dialog_content()
         .manual-scheduling {
             margin-left: 26px;
         }
+
         .chosen-container .chosen-results {
 
             margin: 0 4px 4px 0 !important;
@@ -498,14 +499,14 @@ function pmxe_wp_ajax_scheduling_dialog_content()
                     ?>
                     var timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-                    if($('#timezone').find("option:contains('"+ timeZone +"')").length != 0){
+                    if ($('#timezone').find("option:contains('" + timeZone + "')").length != 0) {
                         $('#timezone').trigger("chosen:updated");
                         $('#timezone').val(timeZone);
                         $('#timezone').trigger("chosen:updated");
-                    }else{
+                    } else {
                         var parts = timeZone.split('/');
-                        var lastPart = parts[parts.length-1];
-                        var opt = $('#timezone').find("option:contains('"+ lastPart +"')");
+                        var lastPart = parts[parts.length - 1];
+                        var opt = $('#timezone').find("option:contains('" + lastPart + "')");
 
                         $('#timezone').val(opt.val());
                         $('#timezone').trigger("chosen:updated");
@@ -639,7 +640,8 @@ function pmxe_wp_ajax_scheduling_dialog_content()
     </script>
     <?php require __DIR__ . '/../src/Scheduling/views/CommonJs.php'; ?>
     <div id="post-preview" class="wpallexport-preview wpallexport-scheduling-dialog">
-        <p class="wpallexport-preview-title"><strong>Scheduling Options for Export ID #<?php echo intval($export_id); ?></strong></p>
+        <p class="wpallexport-preview-title"><strong>Scheduling Options for Export ID
+                #<?php echo intval($export_id); ?></strong></p>
         <div class="wpallexport-preview-content" style="max-height: 700px; overflow: visible;">
 
             <div style="margin-bottom: 20px;">
@@ -655,10 +657,12 @@ function pmxe_wp_ajax_scheduling_dialog_content()
                            value="1" <?php if ($schedulingExportOptions['scheduling_enable'] == 1) { ?> checked="checked" <?php } ?>/>
                     <h4 style="margin: 0; display: inline-flex; align-items: center;"><?php esc_html_e('Automatic Scheduling', PMXE_Plugin::LANGUAGE_DOMAIN); ?>
                         <span class="connection-icon" style="margin-left: 8px; height: 16px;">
-															<?php include __DIR__ . '/../src/Scheduling/views/ConnectionIcon.php'; ?>
-														</span>
-                        <?php if (!$scheduling->checkConnection()) { ?>
-                            <span class="wpai-license" style="margin-left: 8px; font-weight: normal; <?php if(!$hasActiveLicense) { ?> display: none; <?php }?>"><span class="unable-to-connect">Unable to connect, please contact support.</span></span>
+                                                        <?php include __DIR__ . '/../src/Scheduling/views/ConnectionIcon.php'; ?>
+                                                    </span>
+                        <?php if($schedulingExportOptions['scheduling_enable'] == 1) { ?>
+                            <?php if (!$scheduling->checkConnection()) { ?>
+                                <span class="wpai-license" style="margin-left: 8px; font-weight: normal; font-weight: normal; <?php if(!$hasActiveLicense) { ?> display: none; <?php }?>"><span class="unable-to-connect">Unable to connect, please contact support.</span></span>
+                            <?php } ?>
                         <?php } ?>
                     </h4>
                 </label>
@@ -681,7 +685,8 @@ function pmxe_wp_ajax_scheduling_dialog_content()
                             </label>
                         </div>
                         <input type="hidden" style="width: 500px;" name="scheduling_weekly_days"
-                               value="<?php echo esc_attr($schedulingExportOptions['scheduling_weekly_days']); ?>" id="weekly_days"/>
+                               value="<?php echo esc_attr($schedulingExportOptions['scheduling_weekly_days']); ?>"
+                               id="weekly_days"/>
                         <?php
                         if (isset($schedulingExportOptions['scheduling_weekly_days'])) {
                             $weeklyArray = explode(',', $schedulingExportOptions['scheduling_weekly_days']);
@@ -725,7 +730,8 @@ function pmxe_wp_ajax_scheduling_dialog_content()
                             </label>
                         </div>
                         <input type="hidden" name="scheduling_monthly_days"
-                               value="<?php if(isset($schedulingExportOptions['scheduling_monthly_days'])) echo esc_attr($schedulingExportOptions['scheduling_monthly_days']); ?>" id="monthly_days"/>
+                               value="<?php if (isset($schedulingExportOptions['scheduling_monthly_days'])) echo esc_attr($schedulingExportOptions['scheduling_monthly_days']); ?>"
+                               id="monthly_days"/>
                         <?php
                         if (isset($schedulingExportOptions['scheduling_monthly_days'])) {
                             $monthlyArray = explode(',', $schedulingExportOptions['scheduling_monthly_days']);

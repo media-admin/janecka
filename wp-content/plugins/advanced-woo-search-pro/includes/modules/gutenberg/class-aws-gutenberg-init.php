@@ -109,12 +109,13 @@ if (!class_exists('AWS_Gutenberg_Init')) :
 
             $placeholder = $block_attributes['placeholder'];
             $form_id = $block_attributes['form_id_val'];
-            $search_form = aws_get_search_form( false, array( 'id' => $form_id ) );
 
+            $args = array();
+            $args['id'] = $form_id;
             if ( $placeholder ) {
-                $search_form = preg_replace( '/placeholder="([\S\s]*?)"/i', 'placeholder="' . esc_attr( $placeholder ) . '"', $search_form );
-
+                $args['placeholder'] = $placeholder;
             }
+            $search_form = aws_get_search_form( false, $args );
 
             return $search_form;
 

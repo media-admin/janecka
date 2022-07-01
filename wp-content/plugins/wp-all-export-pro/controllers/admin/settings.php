@@ -188,7 +188,7 @@ class PMXE_Admin_Settings extends PMXE_Controller_Admin
                                             unset($template_data['id']);
                                             $template->clear()->set($template_data)->insert();
                                         }
-                                        wp_redirect(add_query_arg('pmxe_nt', urlencode(sprintf(_n('%d template imported', '%d templates imported', count($templates_data), 'wp_all_export_plugin'), count($templates_data))), $this->baseUrl));
+                                        wp_redirect(esc_url_raw(add_query_arg('pmxe_nt', urlencode(sprintf(_n('%d template imported', '%d templates imported', count($templates_data), 'wp_all_export_plugin'), count($templates_data))), $this->baseUrl)));
                                         die();
                                     }
                                 }
@@ -210,7 +210,7 @@ class PMXE_Admin_Settings extends PMXE_Controller_Admin
                     foreach ($templates_ids as $template_id) {
                         $template->clear()->set('id', $template_id)->delete();
                     }
-                    wp_redirect(add_query_arg('pmxe_nt', urlencode(sprintf(_n('%d template deleted', '%d templates deleted', count($templates_ids), 'wp_all_export_plugin'), count($templates_ids))), $this->baseUrl));
+                    wp_redirect(esc_url_raw(add_query_arg('pmxe_nt', urlencode(sprintf(_n('%d template deleted', '%d templates deleted', count($templates_ids), 'wp_all_export_plugin'), count($templates_ids))), $this->baseUrl)));
                     die();
                 }
                 if ($this->input->post('export_templates')) {
@@ -297,7 +297,7 @@ class PMXE_Admin_Settings extends PMXE_Controller_Admin
 
             isset($_POST['pmxe_license_activate']) and $this->activate_licenses();
 
-            wp_redirect(add_query_arg('pmxe_nt', urlencode(__('Settings saved', 'wp_all_export_plugin')), $this->baseUrl));
+            wp_redirect(esc_url_raw(add_query_arg('pmxe_nt', urlencode(__('Settings saved', 'wp_all_export_plugin')), $this->baseUrl)));
             die();
         }
     }
@@ -332,7 +332,7 @@ class PMXE_Admin_Settings extends PMXE_Controller_Admin
 
             PMXE_Plugin::getInstance()->updateOption(array('client_mode_roles' => $client_mode_roles));
 
-            wp_redirect(add_query_arg('pmxe_nt', urlencode(__('Settings saved', 'wp_all_export_plugin')), $this->baseUrl));
+            wp_redirect(esc_url_raw(add_query_arg('pmxe_nt', urlencode(__('Settings saved', 'wp_all_export_plugin')), $this->baseUrl)));
 
             die();
         }

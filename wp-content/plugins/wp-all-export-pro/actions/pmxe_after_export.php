@@ -265,7 +265,7 @@ function pmxe_pmxe_after_export($export_id, $export)
 
 				$export->set(array('options' => $exportOptions))->save();
 			}	
-		}	
+		}
 
 		// convert CSV to XLS
 		if ( @file_exists($filepath) and $export->options['export_to'] == 'csv' && ! empty($export->options['export_to_sheet']) and $export->options['export_to_sheet'] != 'csv')
@@ -360,7 +360,6 @@ function pmxe_pmxe_after_export($export_id, $export)
 				}
 			}
 		}
-
 
 		// send exported data to zapier.com
 		$subscriptions = get_option('zapier_subscribe', array());		

@@ -3,6 +3,56 @@
  */
 (function($, EventService ){$(function () {
 
+    // Applies automatic formatting to the specified range
+    wp.CodeMirror.defineExtension("autoFormatRange", function (from, to) {
+        var cm = this;
+        var outer = cm.getMode(), text = cm.getRange(from, to).split("\n");
+        var state = CodeMirror.copyState(outer, cm.getTokenAt(from).state);
+        var tabSize = cm.getOption("tabSize");
+
+        var out = "", lines = 0, atSol = from.ch == 0;
+        function newline() {
+            out += "\n";
+            atSol = true;
+            ++lines;
+        }
+
+        for (var i = 0; i < text.length; ++i) {
+            var stream = new CodeMirror.StringStream(text[i], tabSize);
+            while (!stream.eol()) {
+                var inner = CodeMirror.innerMode(outer, state);
+                var style = outer.token(stream, state), cur = stream.current();
+                stream.start = stream.pos;
+                if (!atSol || /\S/.test(cur)) {
+                    out += cur;
+                    atSol = false;
+                }
+                if (!atSol && inner.mode.newlineAfterToken &&
+                    inner.mode.newlineAfterToken(style, cur, stream.string.slice(stream.pos) || text[i+1] || "", inner.state))
+                    newline();
+            }
+            if (!stream.pos && outer.blankLine) outer.blankLine(state);
+            if (!atSol) newline();
+        }
+
+        cm.operation(function () {
+            cm.replaceRange(out, from, to);
+            for (var cur = from.line + 1, end = from.line + lines; cur <= end; ++cur)
+                cm.indentLine(cur, "smart");
+            cm.setSelection(from, cm.getCursor(false));
+        });
+    });
+
+	// Applies automatic mode-aware indentation to the specified range
+    wp.CodeMirror.defineExtension("autoIndentRange", function (from, to) {
+        var cmInstance = this;
+        this.operation(function () {
+            for (var i = from.line; i <= to.line; i++) {
+                cmInstance.indentLine(i, "smart");
+            }
+        });
+    });
+
 	var vm = {
 		'preiviewText' :'',
 		'isGoogleMerchantsExport' : false,
@@ -115,7 +165,7 @@
 
 		if ( exportType == 'custom' && isDraggingOverTextEditor(e))
 		{
-			xml_editor.focus();
+			xml_editor.codemirror.focus();
 
 			if ( ui.helper.find('.custom_column').length )
 			{
@@ -133,8 +183,8 @@
 				if ( ! ui.helper.find('.default_column').hasClass('wp-all-export-custom-xml-drag-over') ) ui.helper.find('.default_column').addClass('wp-all-export-custom-xml-drag-over');
 			}
 
-			var line = xml_editor.lineAtHeight(ui.position.top, 'page');
-			var ch   = xml_editor.coordsChar(ui.position, 'page');
+			var line = xml_editor.codemirror.lineAtHeight(ui.position.top, 'page');
+			var ch   = xml_editor.codemirror.coordsChar(ui.position, 'page');
 
 			if( line == currentLine ) {
 				return;
@@ -155,18 +205,18 @@
 
 	function isDraggingOverTextEditor(event) {
 		var e = event.originalEvent.originalEvent.target;
-		return $.contains(xml_editor.display.scroller, e)
+		return $.contains(xml_editor.codemirror.display.scroller, e)
 	}
 
 	function addLine(str, line, ch) {
 		if(typeof ch === 'undefined') {
 			ch = 0;
 		}
-		xml_editor.replaceRange(str, {line: line, ch:0}, {line:line, ch:0});
+		xml_editor.codemirror.replaceRange(str, {line: line, ch:0}, {line:line, ch:0});
 	}
 
 	function removeLine(line) {
-		xml_editor.removeLine(line);
+		xml_editor.codemirror.replaceRange("", {line: line, ch: 0}, {line: line + 1, ch: 0});
 	}
 
 	var initDraggable = function() {
@@ -265,26 +315,21 @@
 	});
 
 	if ($('#wp_all_export_code').length){
-		var editor = CodeMirror.fromTextArea(document.getElementById("wp_all_export_code"), {
-	        lineNumbers: true,
-	        matchBrackets: true,
-	        mode: "application/x-httpd-php",
-	        indentUnit: 4,
-	        indentWithTabs: true,
-	        lineWrapping: true
-	    });
-	    editor.setCursor(1);
+
+        var editor = wp.codeEditor.initialize($('#wp_all_export_code'), wpae_cm_settings);
+        editor.codemirror.setCursor(1);
 
 	    $('.CodeMirror').resizable({
 		  resize: function() {
-		    editor.setSize("100%", $(this).height());
+		    editor.codemirror.setSize("100%", $(this).height());
 		  }
 		});
 	}
 
 	if ($('#wp_all_export_custom_xml_template').length)
 	{
-		var xml_editor = CodeMirror.fromTextArea(document.getElementById("wp_all_export_custom_xml_template"), {
+
+		var xml_editor = wp.codeEditor.initialize(document.getElementById("wp_all_export_custom_xml_template"), {
 	        lineNumbers: true,
 	        matchBrackets: true,
 	        mode: "xml",
@@ -292,34 +337,28 @@
 	        indentWithTabs: true,
 	        lineWrapping: true,
 	        autoRefresh: true
-	        // dragDrop: true,
-	        // handleMouseEvents: true
 	    });
 
-	    xml_editor.setCursor(1);
+	    xml_editor.codemirror.setCursor(1);
+
 	    $('.CodeMirror').resizable({
 		  resize: function() {
-		    xml_editor.setSize("100%", $(this).height());
+		    xml_editor.codemirror.setSize("100%", $(this).height());
 		  }
 		});
 
-		var xml_editor_doc = xml_editor.getDoc();
+		var xml_editor_doc = xml_editor.codemirror.getDoc();
 
 	}
 
 	if ($('#wp_all_export_main_code').length){
-		var main_editor = CodeMirror.fromTextArea(document.getElementById("wp_all_export_main_code"), {
-	        lineNumbers: true,
-	        matchBrackets: true,
-	        mode: "application/x-httpd-php",
-	        indentUnit: 4,
-	        indentWithTabs: true,
-	        lineWrapping: true
-	    });
-	    main_editor.setCursor(1);
+
+        var main_editor = wp.codeEditor.initialize($('#wp_all_export_main_code'), wpae_cm_settings);
+        main_editor.codemirror.setCursor(1);
+
 	    $('.CodeMirror').resizable({
 		  resize: function() {
-		    main_editor.setSize("100%", $(this).height());
+		    main_editor.codemirror.setSize("100%", $(this).height());
 		  }
 		});
 	}
@@ -346,7 +385,127 @@
 		}
 	}).change();
 
-	// swither show/hide logic
+
+	$('#enable_real_time_exports').change(function(e) {
+
+        if ($(this).is(':checked')) {
+
+            $('.wpallexport-scheduling').slideUp({queue: false});
+			$('.wpallexport_realtime_show_bom').slideDown(function() {
+
+			});
+			$('.wpallexport-no-realtime-options').slideUp();
+
+        } else {
+
+            $('.wpallexport-scheduling').slideDown(function() {
+
+            });
+			$('.wpallexport_realtime_show_bom').slideUp();
+			$('.wpallexport-no-realtime-options').slideDown({queue: false});
+
+        }
+
+	});
+
+	$('.wpae-switch-real-time').click(function() {
+
+		var $link = $(this);
+
+        var request = {
+            action: 'wpae_realtime_export_status',
+            data: $(this).data('item-id'),
+            security: wp_all_export_security
+        };
+
+        $.ajax({
+                type: 'POST',
+                url: get_valid_ajaxurl(),
+                data: request,
+                success: function (response) {
+                	if($link.html() === 'Enable Real Time Exporting') {
+						$link.html('Disable Real Time Exporting');
+                        $('.wpae-export-row-' + $link.data('item-id')).find('.wpae-rt-export-enabled').show();
+                        $('.wpae-export-row-' + $link.data('item-id')).find('.wpae-rt-export-disabled').hide();
+                    } else {
+                        $link.html('Enable Real Time Exporting');
+                        $('.wpae-export-row-' + $link.data('item-id')).find('.wpae-rt-export-enabled').hide();
+                        $('.wpae-export-row-' + $link.data('item-id')).find('.wpae-rt-export-disabled').show();
+					}
+
+                },
+                dataType: "json"
+		});
+
+        return false;
+	});
+
+	$('#wpae-generate-token').click(function(){
+
+
+		if($(this).find('span').html() === 'Generate' ) {
+            var currentToken = $('#wpae-secure-url').val();
+
+            if (currentToken) {
+                $('#wpae-secure-url').val('');
+            }
+
+            $(this).css('background-color', '#F0F0F1');
+            $(this).find('img').show();
+            $(this).find('span').hide();
+
+            var request = {
+                action: 'wpae_generate_token',
+                data: $(this).data('id'),
+                security: wp_all_export_security
+            };
+
+            setTimeout(function () {
+
+                $.ajax({
+                    type: 'POST',
+                    url: get_valid_ajaxurl(),
+                    data: request,
+                    success: function (response) {
+                        $('#wpae-generate-token').css('background-color', '#435F9A');
+                        $('#wpae-generate-token').find('img').hide();
+                        $('#wpae-generate-token').find('span').show();
+                        $('#wpae-secure-url').val(response);
+                        $('#wpae-generate-token span').html('Remove URL');
+
+                    }
+                });
+
+            }, 250);
+        } else {
+
+
+            var removeRequest = {
+                action: 'wpae_remove_token',
+                data: $(this).data('id'),
+                security: wp_all_export_security
+            };
+
+            setTimeout(function () {
+
+                $.ajax({
+                    type: 'POST',
+                    url: get_valid_ajaxurl(),
+                    data: removeRequest,
+                    success: function (response) {
+                        $('#wpae-secure-url').val('');
+                        $('#wpae-generate-token span').html('Generate');
+                    }
+                });
+
+            }, 250);
+
+		}
+
+	});
+
+
+    // swither show/hide logic
 	$('input.switcher-horizontal').change(function (e) {
 
 		if ($(this).is(':checked')) {
@@ -395,10 +554,10 @@
 			$parent.removeClass('closed');
 			$parent.find('.wpallexport-collapsed-content:first').slideDown(400, function(){
 				if ($('#wp_all_export_main_code').length) {
-					main_editor.setCursor(1);
+					main_editor.codemirror.setCursor(1);
 				}
 				if ($('#wp_all_export_custom_xml_template').length){
-					xml_editor.setCursor(1);
+					xml_editor.codemirror.setCursor(1);
 				}
 			});
 		}
@@ -744,7 +903,7 @@
 	    			if (response.found_records)
 	    			{
 	    				$('.wp_all_export_confirm_and_run').show();
-	    				$('.confirm_and_run_bottom').val(wp_all_export_L10n.confirm_and_run);
+	    				$('.confirm_and_run_bottom').val(wp_all_export_L10n.confirm_and_run.replace('&amp;', '&'));
 	    				$('#filtering_result').removeClass('nothing_to_export');
 	    			}
 	    			else
@@ -823,7 +982,7 @@
                             $('.taxonomy_to_export_wrapper').slideDown();
                         }
 
-                        if ((postType == 'users' || postType == 'shop_customer') && !$('#pmxe_user_addon_installed').length) {
+                        if ((postType == 'users' || postType == 'shop_customer') && !($('#pmxe_user_addon_installed').length || $('#pmxe_user_addon_free_installed').length)) {
                             $('.wp_all_export_continue_step_two span.wp_all_export_btn_with_note').slideUp();
 
                             $('.wpallexport-free-edition-notice').slideUp();
@@ -848,7 +1007,7 @@
 					break;
 				case 'advanced_type':
 
-                    if($('#wp_query_selector .dd-selected-value').val() == 'wp_user_query' && !$('#pmxe_user_addon_installed').length) {
+                    if($('#wp_query_selector .dd-selected-value').val() == 'wp_user_query' && !($('#pmxe_user_addon_installed').length || $('#pmxe_user_addon_free_installed').length)) {
                         $('.wp_all_export_continue_step_two span.wp_all_export_btn_with_note').slideUp();
                         $('.wpallexport-user-export-notice').slideDown();
                     } else {
@@ -932,7 +1091,7 @@
 							$('.wpallexport-choose-file').find('.wpallexport-upload-resource-step-two').slideUp();
 							$('.wpallexport-choose-file').find('.wpallexport-submit-buttons').hide();
 						}
-					} else if((postType == 'users') && !$('#pmxe_user_addon_installed').length) {
+					} else if((postType == 'users') && !($('#pmxe_user_addon_installed').length || $('#pmxe_user_addon_free_installed'))) {
                     	showNotice('.wpallexport-user-export-notice');
 						return;
 					}  else if((postType == 'shop_customer') && !$('#pmxe_user_addon_installed').length) {
@@ -1062,7 +1221,8 @@
 
                     }
 		    		else{
-		    			if(queryType == 'wp_user_query' && !$('#pmxe_user_addon_installed').length) {
+
+		    			if(queryType == 'wp_user_query' && !($('#pmxe_user_addon_free_installed').length || $('#pmxe_user_addon_installed').length)) {
 		    				$('.wp_all_export_continue_step_two span.wp_all_export_btn_with_note').slideUp();
 		    				$('.wpallexport-user-export-notice').slideDown();
 						} else {
@@ -1251,8 +1411,8 @@
 					addLine( content, currentLine, currentLine);
 					currentLine = -1;
 
-					var totalLines = xml_editor.lineCount();
-					xml_editor.autoIndentRange({line:0, ch:0}, {line:totalLines,ch:100});
+					var totalLines = xml_editor.codemirror.lineCount();
+					xml_editor.codemirror.autoIndentRange({line:0, ch:0}, {line:totalLines,ch:100});
 				}
 
 				if ($('#available_data').find(ui.draggable.find('input[name^=rules]')).length){
@@ -1752,7 +1912,7 @@
             var request = {
                 action: 'wpae_preview',
                 data: $('form.wpallexport-step-3').serialize(),
-                custom_xml: xml_editor.getValue(),
+                custom_xml: xml_editor.codemirror.getValue(),
                 tagno: tagno,
                 security: wp_all_export_security
             };
@@ -2010,7 +2170,7 @@
 					var request = {
 						action: 'wpae_preview',
 						data: $('form.wpallexport-step-3').serialize(),
-						custom_xml: xml_editor.getValue(),
+						custom_xml: xml_editor.codemirror.getValue(),
 						security: wp_all_export_security
 					};
 
@@ -2292,7 +2452,7 @@
     $('.wp_all_export_save_functions').click(function(){
 
 
-    	var data = $(this).hasClass('wp_all_export_save_main_code') ? main_editor.getValue() : editor.getValue();
+    	var data = $(this).hasClass('wp_all_export_save_main_code') ? main_editor.codemirror.getValue() : editor.codemirror.getValue();
 
     	var request = {
 			action: 'save_functions',
@@ -2403,27 +2563,29 @@
 				}
 
     			$('.wpallexport-custom-xml-template').slideDown(400, function(){
-    				xml_editor.setCursor(1);
+                    setTimeout(function() {
+                        xml_editor.codemirror.setCursor(1);
+					},1000);
     			});
     			$('.pmxe_product_data').find(".wpallexport-xml-element:contains('Attributes')").parents('li:first').hide();
 
                 if ( $(this).find('option:selected').val() == 'XmlGoogleMerchants' ){
                     if ( ! $xml_template_first_load ) {
-                        $tmp_xml_template = xml_editor.getValue();
+                        $tmp_xml_template = xml_editor.codemirror.getValue();
                         // Get all necessary data according to the spec
                         var request = {
                             action: 'get_xml_spec',
                             security: wp_all_export_security,
                             spec_class: $(this).find('option:selected').val()
                         };
-                        xml_editor.setValue("Loading...");
+                        xml_editor.codemirror.setValue("Loading...");
                         $.ajax({
                             type: 'POST',
                             url: get_valid_ajaxurl(),
                             data: request,
                             success: function (response) {
                                 if (response.result) {
-                                    xml_editor.setValue(response.fields);
+                                    xml_editor.codemirror.setValue(response.fields);
                                 }
                             },
                             error: function (jqXHR, textStatus) {
@@ -2435,7 +2597,8 @@
                 }
                 else{
                     if ( $tmp_xml_template != '' ){
-                        xml_editor.setValue($tmp_xml_template);
+                        xml_editor.codemirror.setValue($tmp_xml_template);
+
                         $tmp_xml_template = '';
                     }
                 }

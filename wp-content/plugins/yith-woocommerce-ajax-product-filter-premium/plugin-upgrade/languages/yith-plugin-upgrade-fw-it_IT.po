@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YITH Licensing\n"
 "Report-Msgid-Bugs-To: YITH <plugins@yithemes.com>\n"
-"POT-Creation-Date: 2021-12-22 08:49:00+00:00\n"
-"PO-Revision-Date: 2021-11-23 09:59:58+0000\n"
+"POT-Creation-Date: 2022-04-13 07:41:16+00:00\n"
+"PO-Revision-Date: 2021-12-22 10:04:50+0000\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,7 +67,6 @@ msgid "Invalid Request"
 msgstr "Richiesta non valida"
 
 #: lib/yit-licence.php:867
-#, fuzzy
 msgid ""
 "Matching license key not found. Be sure to use the email used for the order "
 "in YITH and the correct license serial number."
@@ -335,7 +334,6 @@ msgid "All done!"
 msgstr "Tutto fatto!"
 
 #: templates/panel/activation/onboarding-activation.php:89
-#, fuzzy
 msgid "Thank you for activating the plugin license."
 msgstr "Grazie per aver attivato la licenza del plugin."
 
@@ -471,7 +469,6 @@ msgid "Email associated with order"
 msgstr "Email associata all'ordine"
 
 #: templates/panel/activation/onboarding-activation.php:65
-#, fuzzy
 msgctxt "Link on activation license panel"
 msgid "Where to find your license key?"
 msgstr "Dove trovare la licenza?"

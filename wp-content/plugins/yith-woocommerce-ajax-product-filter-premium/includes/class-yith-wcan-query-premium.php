@@ -46,6 +46,7 @@ if ( ! class_exists( 'YITH_WCAN_Query_Premium' ) ) {
 			// additional query handling.
 			add_action( 'posts_clauses', array( $this, 'price_ranges_handling' ), 10, 2 );
 			add_action( 'yith_wcan_after_query', array( $this, 'additional_query_handling' ) );
+			add_filter( 'yith_wcan_filtered_products_query', array( $this, 'check_in_stock_products' ) );
 
 			parent::__construct();
 		}
@@ -1191,6 +1192,19 @@ if ( ! class_exists( 'YITH_WCAN_Query_Premium' ) ) {
 			}
 
 			return $query_vars;
+		}
+
+		/**
+		 * Adds in stock status to the query
+		 *
+		 * @param  array $args array of arguments for the query.
+		 * @return array
+		 */
+		public function check_in_stock_products( $args ) {
+			if ( 'yes' === yith_wcan_get_option( 'yith_wcan_hide_out_of_stock_products', 'no' ) ) {
+				$args['post__in'] = $this->get_product_ids_in_stock();
+			}
+			return $args;
 		}
 
 		/* === UTILS === */

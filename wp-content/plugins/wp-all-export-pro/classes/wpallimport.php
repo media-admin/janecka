@@ -24,8 +24,12 @@ final class PMXE_Wpallimport
 	public static function create_an_import( & $export )
 	{
 
-		if ( $export->options['is_generate_import'] and wp_all_export_is_compatible() ){				
-				
+		if (
+		    $export->options['is_generate_import'] && wp_all_export_is_compatible()
+            && (!isset($export->options['enable_real_time_exports']) || !$export->options['enable_real_time_exports'])
+        )
+		{
+
 			$import = new PMXI_Import_Record();
 
 			if ( ! empty($export->options['import_id']) ) $import->getById($export->options['import_id']);
@@ -392,7 +396,11 @@ final class PMXE_Wpallimport
 
 		}
 
-		if($link_to_import && $export->options['is_generate_import']) {
+		if($link_to_import && $export->options['is_generate_import']
+            &&
+            (!isset($export->options['enable_real_time_exports'])
+                || !$export->options['enable_real_time_exports'])
+        ) {
             self::link_template_to_import( $export, $file_path, $foundPosts );
         }
 	}
@@ -409,7 +417,7 @@ final class PMXE_Wpallimport
 									
 			$import = new PMXI_Import_Record();
 
-			$import->getById($exportOptions['import_id']);	
+			$import->getById($exportOptions['import_id']);
 
 			if ( ! $import->isEmpty() and $import->parent_import_id == 99999 ){
 
@@ -441,7 +449,7 @@ final class PMXE_Wpallimport
 
 					if ( ! in_array($xmlPath, $exportOptions['attachment_list']) )
 					{
-						$exportOptions['attachment_list'][] = $csv->xml_path;							
+						$exportOptions['attachment_list'][] = $csv->xml_path;
 					}
 					
 					$historyPath = $csv->xml_path;

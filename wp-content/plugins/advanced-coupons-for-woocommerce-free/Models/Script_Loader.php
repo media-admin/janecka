@@ -168,10 +168,17 @@ class Script_Loader implements Model_Interface
                 'footer' => true,
             ),
 
+            'acfw-clipboard' => array(
+                'src'    => $this->_constants->JS_ROOT_URL() . 'lib/clipboard.min.js',
+                'deps'   => array('jquery'),
+                'ver'    => Plugin_Constants::VERSION,
+                'footer' => true,
+            ),
+
             // edit advanced coupon JS
             'acfw-edit-advanced-coupon' => array(
                 'src'    => $this->_constants->JS_ROOT_URL() . 'app/edit-advanced-coupon/dist/edit-advanced-coupon.js',
-                'deps'   => array('jquery-ui-core', 'jquery-ui-datepicker', 'vex'),
+                'deps'   => array('jquery-ui-core', 'jquery-ui-datepicker', 'vex', 'acfw-clipboard'),
                 'ver'    => Plugin_Constants::VERSION,
                 'footer' => true,
             ),
@@ -279,6 +286,7 @@ class Script_Loader implements Model_Interface
                     'fail_add_condition_field'        => __("Failed to add condition field.", 'advanced-coupons-for-woocommerce-free'),
                     'add_new_and_rule'                => __("Add a New 'AND' Rule", 'advanced-coupons-for-woocommerce-free'),
                     'each_product_same_product_error' => __("Any products trigger type based on each product's quantity can only work with <em>Same Products</em> apply type.", 'advanced-coupons-for-woocommerce-free'),
+                    'copied_label'                    => __('Copied', 'advanced-coupons-for-woocommerce-free'),
                     'product_table_buttons'           => array(
                         'add'    => __('Add', 'advanced-coupons-for-woocommerce-free'),
                         'edit'   => __('Edit', 'advanced-coupons-for-woocommerce-free'),

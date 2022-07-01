@@ -9,6 +9,11 @@ class Feed
 
     public function __construct($feedData)
     {
+
+        if(!isset($feedData['shipping']['includeAttributes'])) {
+            $feedData['shipping']['includeAttributes'] = 'include';
+        }
+        
         $this->feedData = $feedData;
 
         //CASES:

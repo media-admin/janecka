@@ -8,14 +8,15 @@ class Meow_WPMC_Core {
 	public $is_pro = false;
 	public $engine = null;
 	public $catch_timeout = true; // This will halt the plugin before reaching the PHP timeout.
-	private $regex_file = '/[A-Za-z0-9-_,.\(\)\s]+[.]{1}(MIMETYPES)/';
 	public $types = "jpg|jpeg|jpe|gif|png|tiff|bmp|csv|svg|pdf|xls|xlsx|doc|docx|odt|wpd|rtf|tiff|mp3|mp4|mov|wav|lua";
 	public $current_method = 'media';
-	private $refcache = array();
 	public $servername = null; // meowapps.com (site URL without http/https)
 	public $site_url = null; // https://meowapps.com
 	public $upload_path = null; // /www/wp-content/uploads (path to uploads)
 	public $upload_url = null; // wp-content/uploads (uploads without domain)
+
+	private $regex_file = '/[A-Za-z0-9-_,.\(\)\s]+[.]{1}(MIMETYPES)/';
+	private $refcache = array();
 	private $check_content = null;
 	private $debug_logs = null;
 	private $multilingual = false;

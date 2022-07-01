@@ -40,9 +40,9 @@
 $columns = array(
 	'id'		=> __('ID', 'wp_all_import_plugin'),
 	'name'		=> __('File', 'wp_all_import_plugin'),
-	'actions'	=> '',	
+	'actions'	=> '',
 	'summary'	=> __('Summary', 'wp_all_import_plugin'),
-	'info'		=> __('Info & Options', 'wp_all_import_plugin'),		
+	'info'		=> __('Info & Options', 'wp_all_import_plugin'),
 );
 
 $columns = apply_filters('pmxi_manage_imports_columns', $columns);
@@ -119,7 +119,7 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 			?>
 			<?php foreach ($list as $item): ?>
 				<?php $class = ('alternate' == $class) ? '' : 'alternate'; ?>
-				<tr class="<?php echo $class; ?>" valign="middle">					
+				<tr class="<?php echo $class; ?>" valign="middle">
 					<th scope="row" class="check-column">
 						<input type="checkbox" id="item_<?php echo $item['id'] ?>" name="items[]" value="<?php echo esc_attr($item['id']) ?>" />
 					</th>
@@ -158,12 +158,12 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 							case 'name':
 								?>
 								<td>
-									<strong><?php echo apply_filters("pmxi_import_name", (!empty($item['friendly_name'])) ? $item['friendly_name'] : $item['name'], $item['id']); ?></strong><br>																		
+									<strong><?php echo apply_filters("pmxi_import_name", (!empty($item['friendly_name'])) ? $item['friendly_name'] : $item['name'], $item['id']); ?></strong><br>
 
-									<?php if ($item['path']): ?>										
+									<?php if ($item['path']): ?>
 										<?php if ( in_array($item['type'], array('upload'))): ?>
 											<?php $item['path'] = wp_all_import_get_absolute_path($item['path']); ?>
-											<?php											
+											<?php
 											$path = $item['path'];
 											$path_parts = pathinfo($item['path']);
 											if ( ! empty($path_parts['dirname'])){
@@ -190,21 +190,21 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 											$import_actions = array(
 												'import_template' => array(
 													'url' => ( ! $item['processing'] and ! $item['executing'] ) ? add_query_arg(array('id' => $item['id'], 'action' => 'edit'), $this->baseUrl) : '',
-													'title' => __('Edit Import', 'wp_all_import_plugin'),
+													'title' => __('Edit Template', 'wp_all_import_plugin'),
 													'class' => 'edit'
 												),
-												'import_settings' => array( 
-													'url' => ( ! $item['processing'] and ! $item['executing'] ) ? add_query_arg(array('id' => $item['id'], 'action' => 'options'), $this->baseUrl) : '',  
-													'title' => __('Import Settings', 'wp_all_import_plugin'), 
+												'import_settings' => array(
+													'url' => ( ! $item['processing'] and ! $item['executing'] ) ? add_query_arg(array('id' => $item['id'], 'action' => 'options'), $this->baseUrl) : '',
+													'title' => __('Settings', 'wp_all_import_plugin'),
 													'class' => 'edit'
-												),						
-												'delete' => array( 
-													'url' => add_query_arg(array('id' => $item['id'], 'action' => 'delete'), $this->baseUrl),  
-													'title' => __('Delete', 'wp_all_import_plugin'), 
+												),
+												'delete' => array(
+													'url' => add_query_arg(array('id' => $item['id'], 'action' => 'delete'), $this->baseUrl),
+													'title' => __('Delete', 'wp_all_import_plugin'),
 													'class' => 'delete'
-												),																												
+												),
 											);
-											
+
 											$import_actions = apply_filters('pmxi_import_actions', $import_actions, $item );
 
 											$ai = 1;
@@ -221,10 +221,10 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 														</span> <?php if ($ai != count($import_actions)): ?>|<?php endif; ?>
 														<?php
 														break;
-												}												
-												$ai++;		
+												}
+												$ai++;
 											}
-										?>																			
+										?>
 
 									</div>
 								</td>
@@ -233,7 +233,7 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 							case 'summary':
 								?>
 								<td>
-									<?php 
+									<?php
 									if ($item['triggered'] and ! $item['processing']){
 										_e('triggered with cron', 'wp_all_import_plugin');
 										if ($item['last_activity'] != '0000-00-00 00:00:00'){
@@ -336,7 +336,7 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 									if ($item['settings_update_on'] != '0000-00-00 00:00:00' and $item['last_activity'] != '0000-00-00 00:00:00' and strtotime($item['settings_update_on']) > strtotime($item['last_activity'])){
 										echo '<br/>';
 										?>
-										<strong><?php _e('settings edited since last run', 'wp_all_import_plugin'); ?></strong>																				
+										<strong><?php _e('settings edited since last run', 'wp_all_import_plugin'); ?></strong>
 										<?php
 									}
 
@@ -376,7 +376,7 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 									<?php endif; ?>
 								</td>
 								<?php
-								break;							
+								break;
 							default:
 								?>
 								<td>
@@ -387,7 +387,7 @@ $columns = apply_filters('pmxi_manage_imports_columns', $columns);
 						endswitch;
 						?>
 					<?php endforeach; ?>
-				</tr>				
+				</tr>
 				<?php do_action('pmxi_manage_imports', $item, $class); ?>
 			<?php endforeach; ?>
 		<?php endif ?>

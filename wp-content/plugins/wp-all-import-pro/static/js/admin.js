@@ -65,7 +65,7 @@
 	
 	// fix wpallimport-layout position
 	setTimeout(function () {
-		$('table.wpallimport-layout').length && $('table.wpallimport-layout td.left h2:first-child').css('margin-top',  $('.wrap').offset().top - $('table.wpallimport-layout').offset().top);
+		$('table.wpallimport-layout').length && $('table.wpallimport-layout td.left h2:first-child').css('margin-top',  $('.wrap').has('.wpallimport-layout').offset().top - $('table.wpallimport-layout').offset().top);
 	}, 10);
 	
 	// help icons
@@ -224,7 +224,7 @@
 	});
 
 	$('.change_file').each(function(){
-		let $wrap = $('.wrap');
+		let $wrap = $('.wrap').has('.wpallimport-layout');
 		let formHeight = ($('.wpallimport-layout').height() < 730) ? 730 : $('.wpallimport-layout').height();
 		$('#file_selector').ddslick({
 			width: 600,
@@ -368,7 +368,7 @@
 	// enter-submit form on step 1
 	$('.wpallimport-step-1').each(function(){
 
-		var $wrap = $('.wrap');
+		var $wrap = $('.wrap').has('.wpallimport-layout');
 
 		var formHeight = ($('.wpallimport-layout').height() < 730) ? 730 : $('.wpallimport-layout').height();
 
@@ -1890,7 +1890,7 @@
 	});
 
 	$(document).on('click', '.add-new-ico', function() {
-		let count = $(this).parents('tr:first').find('ol.sortable').find('li.dragging').length + 1;
+		let count = parseInt($(this).parents('tr:first').find('ol.sortable').find('li.dragging').last().attr('id').replace('item_', '')) + 1;
 		let $template = $(this).parents('td:first').find('ol').children('li.template');
 		$clone = $template.clone(true);
 		$clone.addClass('dragging').attr({'id': $clone.attr('id') + '_' + count}).find('input[type=checkbox][name^=categories_mapping]').each(function(){

@@ -1,4 +1,9 @@
 <?php
+if(!defined('ABSPATH')) {
+    die();
+}
+?>
+<?php
 $scheduling = \Wpae\Scheduling\Scheduling::create();
 $schedulingExportOptions = $export->options;
 $hasActiveLicense = $scheduling->checkLicense();
@@ -409,7 +414,7 @@ $options = \PMXE_Plugin::getInstance()->getOption();
                         e.preventDefault();
                         return false;
                     }
-                    
+
                     var $button = $(this);
 
                     var formData = $('#scheduling-form :input').serializeArray();
@@ -653,8 +658,7 @@ $options = \PMXE_Plugin::getInstance()->getOption();
 
 </script>
 <?php require __DIR__.'/CommonJs.php'; ?>
-<div class="wpallexport-collapsed wpallexport-section wpallexport-file-options closed"
-     style="margin-top: -10px; margin-bottom: 10px;">
+<div class="wpallexport-collapsed wpallexport-section wpallexport-file-options closed wpallexport-scheduling" style="margin-top: -10px; margin-bottom: 10px; <?php if($post['enable_real_time_exports']) { ?> display: none; <?php } ?>">
     <div id="scheduling-form">
 
         <div class="wpallexport-content-section" style="padding-bottom: 15px; margin-bottom: 10px;">
@@ -680,8 +684,10 @@ $options = \PMXE_Plugin::getInstance()->getOption();
                                 <span class="connection-icon" style="margin-left: 8px; height: 16px;">
 															<?php include_once('ConnectionIcon.php'); ?>
 														</span>
-                                <?php if (!$scheduling->checkConnection()) { ?>
-                                    <span class="wpai-license" style="margin-left: 8px; font-weight: normal; <?php if(!$hasActiveLicense) { ?> display: none; <?php }?>"><span class="unable-to-connect">Unable to connect, please contact support.</span></span>
+                                <?php if($schedulingExportOptions['scheduling_enable'] == 1) { ?>
+                                    <?php if (!$scheduling->checkConnection()) { ?>
+                                        <span class="wpai-license" style="margin-left: 8px; font-weight: normal; <?php if(!$hasActiveLicense) { ?> display: none; <?php }?>"><span class="unable-to-connect">Unable to connect, please contact support.</span></span>
+                                    <?php } ?>
                                 <?php } ?>
                             </h4>
                         </label>

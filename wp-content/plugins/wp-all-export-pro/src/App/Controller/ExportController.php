@@ -56,10 +56,15 @@ class ExportController extends BaseController
             $id = intval($_GET['id']);
             $export = new \PMXE_Export_Record();
             if ($export->getById($id)->isEmpty()) { // specified import is not found
-                wp_redirect(add_query_arg('page', 'pmxe-admin-manage', admin_url('admin.php'))); die();
+                wp_redirect(esc_url_raw(add_query_arg('page', 'pmxe-admin-manage', admin_url('admin.php'))));
+                die();
             }
 
             $exportData = $export->options['google_merchants_post_data'];
+
+            if(!isset($exportData['shipping']['includeAttributes'])) {
+                $exportData['shipping']['includeAttributes'] = 'include';
+            }
         }
 
         if($exportData === 'false' || !$exportData) {
@@ -107,7 +112,8 @@ class ExportController extends BaseController
             $id = $params['exportId'];
 
             if ( ! $id or $export->getById($id)->isEmpty()) { // specified import is not found
-                wp_redirect(add_query_arg('page', 'pmxe-admin-manage', admin_url('admin.php'))); die();
+                wp_redirect(esc_url_raw(add_query_arg('page', 'pmxe-admin-manage', admin_url('admin.php'))));
+                die();
             }
             $defaultOptions = (array)$this->data['export']->options + (array)$default;
             $post = $this->input->post($defaultOptions);
@@ -155,8 +161,13 @@ class ExportController extends BaseController
             if(!empty($post['allow_client_mode'])) {
                 $this->data['export']->set(array('allow_client_mode' => 1));
             }
+
+            if(!empty($post['enable_real_time_exports'])) {
+                $this->data['export']->set(array('enable_real_time_exports' => 1));
+                $this->data['export']->set(array('enable_real_time_exports_running' => 1));
+            }
             // Return an url to redirect here
-            return new JsonResponse(array( 'redirect' => add_query_arg(array('page' => 'pmxe-admin-manage', 'pmxe_nt' => urlencode(__('Options updated', 'pmxi_plugin'))) + array_intersect_key($_GET, array_flip($this->baseUrlParamNames)), admin_url('admin.php'))));
+            return new JsonResponse(array( 'redirect' => esc_url_raw(add_query_arg(array('page' => 'pmxe-admin-manage', 'pmxe_nt' => urlencode(__('Options updated', 'pmxi_plugin'))) + array_intersect_key($_GET, array_flip($this->baseUrlParamNames)), admin_url('admin.php')))));
         }
 
         return new JsonResponse(array());

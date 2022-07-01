@@ -1,3 +1,8 @@
+<?php
+if(!defined('ABSPATH')) {
+    die();
+}
+?>
 <style type="text/css">
     .days-of-week {
         margin-left: 5px;
@@ -561,8 +566,10 @@ $export_id = $export->id;
                             <span class="connection-icon" style="margin-left: 8px; height: 16px;">
 															<?php include_once('ConnectionIcon.php'); ?>
 														</span>
-                            <?php if (!$scheduling->checkConnection()) { ?>
-                                <span class="wpai-license" style="margin-left: 8px; font-weight: normal; font-weight: normal; <?php if(!$hasActiveLicense) { ?> display: none; <?php }?>"><span class="unable-to-connect">Unable to connect, please contact support.</span></span>
+                            <?php if($schedulingExportOptions['scheduling_enable'] == 1) { ?>
+                                <?php if (!$scheduling->checkConnection()) { ?>
+                                    <span class="wpai-license" style="margin-left: 8px; font-weight: normal; font-weight: normal; <?php if(!$hasActiveLicense) { ?> display: none; <?php }?>"><span class="unable-to-connect">Unable to connect, please contact support.</span></span>
+                                <?php } ?>
                             <?php } ?>
                         </h4>
                     </label>

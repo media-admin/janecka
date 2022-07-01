@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YITH Licensing\n"
 "Report-Msgid-Bugs-To: YITH <plugins@yithemes.com>\n"
-"POT-Creation-Date: 2021-12-22 08:49:00+00:00\n"
-"PO-Revision-Date: 2021-07-16 10:24:14+0000\n"
+"POT-Creation-Date: 2022-04-13 07:41:16+00:00\n"
+"PO-Revision-Date: 2021-12-22 16:43:38+0000\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgstr "Активация лицензии YITH"
 #. translators: %1$s and %2$s stand for the field names.
 #: lib/yit-licence.php:226
 msgid "Please, insert a valid %1$s and a valid %2$s"
-msgstr ""
+msgstr "Пожалуйста, вставьте действительный %1$s и действительный %2$s"
 
 #: lib/yit-licence.php:228 lib/yit-plugin-licence-onboarding.php:226
 msgid ""
@@ -71,6 +71,9 @@ msgid ""
 "Matching license key not found. Be sure to use the email used for the order "
 "in YITH and the correct license serial number."
 msgstr ""
+"Не найден подходящий лицензионный ключ. Обязательно используйте электронную "
+"почту, использованную для заказа в YITH, и правильный серийный номер "
+"лицензии."
 
 #: lib/yit-licence.php:868
 msgid "Software has been deactivated"
@@ -114,7 +117,7 @@ msgstr "Лицензионный ключ деактивирован для са
 
 #: lib/yit-licence.php:892
 msgid "Error"
-msgstr ""
+msgstr "Ошибка"
 
 #: lib/yit-licence.php:1005
 msgid "Thank you for choosing YITH to improve your shop!"
@@ -291,45 +294,51 @@ msgstr "Истекает:"
 
 #: templates/panel/activation/onboarding-activation.php:37
 msgid "Thank you for choosing to install"
-msgstr ""
+msgstr "Спасибо, что решили установить"
 
 #: templates/panel/activation/onboarding-activation.php:43
 msgid "Activate your license now to"
-msgstr ""
+msgstr "Активируйте свою лицензию сейчас, чтобы"
 
 #: templates/panel/activation/onboarding-activation.php:46
 msgid "Unblock <b>advanced features</b> available only with a valid license"
 msgstr ""
+"Разблокируйте <b>расширенные функции</b>, доступные только при наличии "
+"действующей лицензии"
 
 #: templates/panel/activation/onboarding-activation.php:49
 msgid ""
 "Get <b>automatic and regular updates</b> to remain compatible with the "
 "latest WordPress and WooCommerce versions, and to keep you shop safe"
 msgstr ""
+"Получите <b>автоматические и регулярные обновления</b> для обеспечения "
+"совместимости с последними версиями WordPress и WooCommerce, а также для "
+"обеспечения безопасности вашего магазина"
 
 #: templates/panel/activation/onboarding-activation.php:52
 msgid "Get <b>dedicated expert help</b> in our support desk"
 msgstr ""
+"Получите <b>специализированную помощь экспертов</b> в нашей службе поддержки"
 
 #: templates/panel/activation/onboarding-activation.php:72
 msgid "Activate license"
-msgstr ""
+msgstr "Активировать лицензию"
 
 #: templates/panel/activation/onboarding-activation.php:77
 msgid "Return to the dashboard and activate the license later"
-msgstr ""
+msgstr "Вернуться на приборную панель и активировать лицензию позже"
 
 #: templates/panel/activation/onboarding-activation.php:88
 msgid "All done!"
-msgstr ""
+msgstr "Все готово!"
 
 #: templates/panel/activation/onboarding-activation.php:89
 msgid "Thank you for activating the plugin license."
-msgstr ""
+msgstr "Спасибо за активацию лицензии плагина."
 
 #: templates/panel/activation/onboarding-activation.php:90
 msgid "Go to plugin dashboard"
-msgstr ""
+msgstr "Перейти в приборную панель плагина"
 
 #. Author of the plugin/theme
 msgid "YITHEMES"
@@ -459,13 +468,12 @@ msgstr "Где их найти?"
 #: templates/panel/activation/onboarding-activation.php:57
 msgctxt "Link on activation license panel"
 msgid "Email associated with order"
-msgstr ""
+msgstr "Электронная почта, связанная с заказом"
 
 #: templates/panel/activation/onboarding-activation.php:65
-#, fuzzy
 msgctxt "Link on activation license panel"
 msgid "Where to find your license key?"
-msgstr "введите свой лицензионный ключ"
+msgstr "Где найти лицензионный ключ?"
 
 #: templates/panel/activation/activation-panel.php:99
 msgctxt "Placeholder"

@@ -3,7 +3,7 @@
 Plugin Name: WP All Export Pro
 Plugin URI: http://www.wpallimport.com/export/
 Description: Export any post type to a CSV or XML file. Edit the exported data, and then re-import it later using WP All Import.
-Version: 1.7.5
+Version: 1.7.8
 Author: Soflyy
 */
 
@@ -46,7 +46,7 @@ if (class_exists('PMXE_Plugin') and PMXE_EDITION == "free") {
      */
     define('PMXE_PREFIX', 'pmxe_');
 
-    define('PMXE_VERSION', '1.7.5');
+    define('PMXE_VERSION', '1.7.8');
 
     define('PMXE_EDITION', 'paid');
 
@@ -368,7 +368,6 @@ if (class_exists('PMXE_Plugin') and PMXE_EDITION == "free") {
          */
         public function adminInit()
         {
-
             $addons_not_included = get_option('wp_all_export_pro_addons_not_included',false);
 
             $addons = new \Wpae\App\Service\Addons\AddonService();
@@ -664,10 +663,12 @@ Some of the features you used in WP All Export Pro now require paid add-ons. If 
                     return TRUE;
                 }
                 if (!$is_prefix) {
-                    $pathAlt = self::ROOT_DIR . '/' . $subdir . '/' . $filePathAlt;
                     if (strpos($className, '_') !== false) {
-                        $pathAlt = $this->lreplace('_', DIRECTORY_SEPARATOR, $pathAlt);
+                        $filePathAlt = $this->lreplace('_', DIRECTORY_SEPARATOR, $filePathAlt);
                     }
+
+                    $pathAlt = self::ROOT_DIR . DIRECTORY_SEPARATOR . $subdir . DIRECTORY_SEPARATOR . $filePathAlt;
+
                     if (is_file($pathAlt)) {
                         require_once $pathAlt;
                         return TRUE;
@@ -935,7 +936,7 @@ Some of the features you used in WP All Export Pro now require paid add-ons. If 
             }
 
             if ( ! $created_at ){
-                $wpdb->query("ALTER TABLE {$table} ADD `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP;");
+                $wpdb->query("ALTER TABLE {$table} ADD `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;");
                 $wpdb->query("UPDATE {$table} SET `created_at` = `registered_on` WHERE 1");
             }
 
@@ -1086,8 +1087,12 @@ Some of the features you used in WP All Export Pro now require paid add-ons. If 
                 'scheduling_times' => array(),
                 'scheduling_timezone' => 'UTC',
 
-                'allow_client_mode' => 0
+                'allow_client_mode' => 0,
+                'enable_real_time_exports' => 0,
+                'enable_real_time_exports_running' => 0,
+                'do_not_generate_file_on_new_records' => 0,
 
+                'security_token' => ''
             );
         }
 

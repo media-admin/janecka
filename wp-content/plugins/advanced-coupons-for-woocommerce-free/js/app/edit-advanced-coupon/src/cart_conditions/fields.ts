@@ -15,11 +15,7 @@ declare var acfw_edit_coupon: any;
 declare var vex: any;
 
 const $: any = jQuery;
-const {
-  cart_condition_fields,
-  premium_cart_condition_fields,
-  upsell,
-} = acfw_edit_coupon;
+const { cart_condition_fields, upsell } = acfw_edit_coupon;
 
 /**
  * Add condition field.
@@ -38,6 +34,9 @@ export function add_condition_field(): void {
     overlay: HTMLElement = document.querySelector(
       "#acfw_cart_conditions .acfw-overlay"
     );
+  const premiumConditions: string[] = $("#acfw_cart_conditions").data(
+    "premium-conditions"
+  );
 
   const condition_type: string = $condition_type.val() + "";
   const fields_count: number = $condition_fields.find(
@@ -46,10 +45,7 @@ export function add_condition_field(): void {
 
   toggle_overlay(overlay, "show");
 
-  if (
-    premium_cart_condition_fields &&
-    premium_cart_condition_fields.indexOf(condition_type) > -1
-  ) {
+  if (premiumConditions && premiumConditions.indexOf(condition_type) > -1) {
     // upsell
     vex.dialog.alert({ unsafeMessage: upsell.cart_condition_field });
   } else {
@@ -162,9 +158,8 @@ export function get_condition_field(
     default:
       const field_key: string = condition_type.replace(/-/g, "_");
       if (cart_condition_fields[field_key]) {
-        const { template_callback, default_data_value } = cart_condition_fields[
-          field_key
-        ];
+        const { template_callback, default_data_value } =
+          cart_condition_fields[field_key];
         if (default_data_value) data = data ? data : default_data_value;
 
         if (template_callback) markup += template_callback(data, field_key);

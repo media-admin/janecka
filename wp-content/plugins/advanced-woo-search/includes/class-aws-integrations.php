@@ -1422,6 +1422,11 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
                 #Header_wrapper #searchform {
                     opacity: 0;
                 }
+                #Side_slide .aws-container .aws-search-field,
+                #Side_slide .aws-container .aws-search-field:focus {
+                    background-color: #191919 !important;
+                    border-color: rgba(255,255,255,.05);
+                }
             </style>
         <?php }
 
@@ -1739,7 +1744,7 @@ if ( ! class_exists( 'AWS_Integrations' ) ) :
             }
 
             if ( 'Betheme' === $this->current_theme ) {
-                $selectors[] = '#Header_wrapper #searchform';
+                $selectors[] = '#Header_wrapper #searchform, #side-form';
             }
 
             if ( 'Gecko' === $this->current_theme ) {

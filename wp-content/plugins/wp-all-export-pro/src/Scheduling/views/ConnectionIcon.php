@@ -1,4 +1,7 @@
 <?php
+if(!defined('ABSPATH')) {
+    die();
+}
 $scheduling = \Wpae\Scheduling\Scheduling::create();
 ?>
 <span class="wpai-no-license" <?php if ($scheduling->checkLicense()) { ?> style="display: none;" <?php } ?> >
@@ -9,19 +12,23 @@ $scheduling = \Wpae\Scheduling\Scheduling::create();
     </a>
 </span>
 
+<?php if ($scheduling->checkLicense()) { ?>
+    <span class="wpai-license">
+        <?php if ( $scheduling->checkConnection() ) {
+            ?>
+            <span class="wpallexport-help" title="Connection to WP All Export servers is stable and confirmed"
+                  style="background-image: none; width: 20px; height: 20px;">
+            <img src="<?php echo esc_url(PMXE_ROOT_URL); ?>/static/img/s-check.png" style="width: 16px;"/>
+            </span>
+            <?php
+        } else  { ?>
+            <img src="<?php echo esc_url(PMXE_ROOT_URL); ?>/static/img/s-exclamation.png" style="width: 16px;"/>
 
-<span class="wpai-license" <?php if (!$scheduling->checkLicense()) { ?> style="display: none;" <?php } ?> >
-    <?php if ( $scheduling->checkConnection() ) {
+            <?php
+        }
         ?>
-        <span class="wpallexport-help" title="Connection to WP All Export servers is stable and confirmed"
-              style="background-image: none; width: 20px; height: 20px;">
-        <img src="<?php echo esc_url(PMXE_ROOT_URL); ?>/static/img/s-check.png" style="width: 16px;"/>
     </span>
-        <?php
-    } else  { ?>
-        <img src="<?php echo esc_url(PMXE_ROOT_URL); ?>/static/img/s-exclamation.png" style="width: 16px;"/>
+<?php
+}
 
-        <?php
-    }
-    ?>
-</span>
+?>

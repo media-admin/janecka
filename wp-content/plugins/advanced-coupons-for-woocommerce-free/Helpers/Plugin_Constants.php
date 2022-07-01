@@ -32,7 +32,7 @@ class Plugin_Constants
     // Plugin configuration constants
     const TOKEN               = 'acfwf';
     const INSTALLED_VERSION   = 'acfwf_installed_version';
-    const VERSION             = '4.3.1';
+    const VERSION             = '4.3.2';
     const TEXT_DOMAIN         = 'advanced-coupons-for-woocommerce-free';
     const THEME_TEMPLATE_PATH = 'advanced-coupons-for-woocommerce-free';
     const META_PREFIX         = '_acfw_';
@@ -108,6 +108,7 @@ class Plugin_Constants
     const SORT_COUPONS_MODULE       = 'acfw_sort_coupons_module';
     const PAYMENT_METHODS_RESTRICT  = 'acfw_payment_methods_restrict_module';
     const STORE_CREDITS_MODULE      = 'acfw_store_credits_module';
+    const VIRTUAL_COUPONS_MODULE    = 'acfw_virtual_coupons_module';
 
     // URL Coupons section
 

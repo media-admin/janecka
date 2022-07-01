@@ -17,7 +17,7 @@ function pmxe_wp_ajax_save_functions(){
 	
 	$post = $input->post('data', '');
 
-	$response = wp_remote_post('http://phpcodechecker.com/api', array(
+	$response = wp_remote_post('https://phpcodechecker.com/api', array(
 		'body' => array(
 			'code' => $post
 		)

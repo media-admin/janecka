@@ -19,7 +19,14 @@ class ShippingLength extends Field
             $product = $_product = wc_get_product($this->entry->ID);
 
             if($currentUnit !== $toUnit) {
-                $length = wc_get_dimension($product->get_length(), $toUnit, $currentUnit);
+
+                $shippingLength = $product->get_length();
+
+                if(is_numeric($shippingLength)) {
+                    $length = wc_get_dimension($shippingLength, $toUnit, $currentUnit);
+                } else {
+                    $length = $shippingLength;
+                }
             } else {
                 $length = $product->get_length();
             }

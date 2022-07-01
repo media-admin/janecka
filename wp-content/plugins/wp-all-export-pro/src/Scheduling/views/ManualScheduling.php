@@ -1,4 +1,9 @@
 <?php
+if(!defined('ABSPATH')) {
+    die();
+}
+?>
+<?php
 $exportOptions = ( isset($post) ) ? $post : $schedulingExportOptions;
 $is_rapid_addon_export = PMXE_Helper::is_rapid_export_addon($exportOptions['cpt']);
 ?>

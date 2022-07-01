@@ -74,7 +74,7 @@ if ( ! defined( 'YITH_WCAN' ) ) {
 				true
 			);
 			?>
-			<a href="#" role="button" class="term-hide-second-color"><i class="material-icons">close</i></a>
+			<a href="#" role="button" class="term-hide-second-color">&times;</a>
 		</div>
 	</div>
 
@@ -82,7 +82,7 @@ if ( ! defined( 'YITH_WCAN' ) ) {
 		<div class="image-selector">
 
 			<div class="placeholder-image" <?php echo ! empty( $term_options['image'] ) ? 'style="display:none"' : ''; ?> >
-				<i class="material-icons">image</i>
+				<i class="yith-icon yith-icon-image"></i>
 				<p><?php echo esc_html_x( 'Click to upload image', '[Admin] Label to term image uploader', 'yith-woocommerce-ajax-navigation' ); ?></p>
 			</div>
 

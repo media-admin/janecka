@@ -16,9 +16,15 @@ class ShippingDimensions extends Field
             $currentUnit = get_option('woocommerce_dimension_unit');
             $toUnit = $shippingData['convertTo'];
 
-            $product = $_product = wc_get_product($this->entry->ID);
-            $width = wc_get_dimension($product->get_width(), $toUnit, $currentUnit );
+            $product = wc_get_product($this->entry->ID);
 
+            $product_width = $product->get_width();
+
+            if(is_numeric($product_width)) {
+                $width = wc_get_dimension($product->get_width(), $toUnit, $currentUnit);
+            } else {
+                $width = '';
+            }
 
             return $width . ' '.$toUnit;
         } else {

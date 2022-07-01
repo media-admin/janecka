@@ -18,6 +18,46 @@
 	border: none;
 	cursor: pointer;
 }
+
+.wpallexport-plugin .wp-all-export-link-wrapper{
+	display: inline-block;
+	text-aling: left;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+	transition-property: all;
+	color: #00b3b6;
+	text-decoration: none;
+	font-weight: 600;
+	line-height: 1.75;
+	font-size: 16px;
+	font-family: 'Graphik';
+}
+
+.wpallexport-plugin .wp-all-export-link{
+
+}
+
+.wpallexport-plugin .wp-all-export-link:hover, .wpallexport-plugin .wp-all-export-link:focus{
+	color: #007a7c;
+}
+
+.wpallexport-plugin .wp-all-export-link-text{
+	font-family: 'Graphik';
+	font-weight: 500;
+	text-decoration: none;
+	float:left;
+	font-size: 16px;
+}
+
+.wpallexport-plugin .wp-all-export-link-arrow{
+	margin-left: 10px;
+	transition-duration: .3s;
+	transition-timing-function: ease;
+	transition-property: all;
+	height: auto;
+
+}
+
 .wpallexport-plugin .wp_all_export_custom_xml_help,
 .wpallexport-plugin .wp_all_export_scheduling_help
 {
@@ -204,13 +244,17 @@
 	width: 100%;
 	border: 4px dashed #bbb;
 }
+.wpallexport-plugin .columns-to-export-content ol {
+	position: relative;
+}
 .wpallexport-plugin .columns-to-export-content ol li.placeholder{
 	font-size: 20px;	
 	line-height: 26px;
 	margin-bottom: 0;
-	margin-left: 25% !important;
+	margin-left: calc(50% - 225px) !important;
+	top: calc(50% - 39px);
+	position: absolute;
 	margin-right: auto;
-	margin-top: 7% !important;
 	text-align: center;
 	width: 450px;
 }
@@ -946,7 +990,7 @@ a.wpallexport-import-to-format span.wpallexport-import-to-title {
 	top: 0;
 }
 .wpallexport-plugin .wpallexport-template .wpallexport-section input[type="text"], 
-.wpallexport-plugin .options .wpallexport-section input[type="text"],
+.wpallexport-plugin .options .wpallexport-section input[type="text"], .wpallexport-plugin .edit .wpallexport-section input[type="text"],
 .wpallexport-plugin .wp-pointer-content input[type="text"]
 {
 	font-size: 14px;
@@ -4456,4 +4500,46 @@ input label {
 
 .wpallexport-plugin .download-import-templates h2 {
 	margin-bottom: 10px;
+}
+
+.open_cron_scheduling-disabled {
+	color: #555 !important;
+	text-decoration: none;
+}
+
+/**
+ * Generate Secure URL
+ */
+
+#wpae-secure-url-container {
+
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 696px;
+	margin: auto;
+}
+
+#wpae-generate-token {
+
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	margin-top: 0 !important;
+	background-color: #435F9A;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	margin-left: 0;
+	outline: none;
+}
+
+#wpae-secure-url {
+
+	width: 350px;
+	margin-right: 0;
+	padding: 9px;
+	border: none;
+	flex: 1;
+	border-radius: 0 3px 3px 0;
 }

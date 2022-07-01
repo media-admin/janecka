@@ -372,6 +372,7 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 
 								// Delete posts from database.
 								if (!empty($missing_ids) && is_array($missing_ids)) {
+                                    $outofstock_term = get_term_by( 'name', 'outofstock', 'product_visibility' );
 									$missing_ids_arr = array_chunk($missing_ids, $this->options['records_per_request']);
                                     $count_deleted_missing_records = 0;
 									foreach ($missing_ids_arr as $key => $missingPostRecords) {
@@ -420,7 +421,16 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 													$to_delete = false;
 												}
 
-                                                if ($this->options['custom_type'] == "product" and class_exists('PMWI_Plugin') and !empty($this->options['missing_records_stock_status'])) {
+                                                if (!empty($this->options['missing_records_stock_status']) && class_exists('PMWI_Plugin') && $this->options['custom_type'] == "product") {
+                                                    update_post_meta( $missingPostRecord['post_id'], '_stock_status', 'outofstock' );
+                                                    update_post_meta( $missingPostRecord['post_id'], '_stock', 0 );
+
+                                                    $term_ids = wp_get_object_terms($missingPostRecord['post_id'], 'product_visibility', array('fields' => 'ids'));
+
+                                                    if (!empty($outofstock_term) && !is_wp_error($outofstock_term) && !in_array($outofstock_term->term_taxonomy_id, $term_ids)){
+                                                        $term_ids[] = $outofstock_term->term_taxonomy_id;
+                                                    }
+                                                    $this->associate_terms( $missingPostRecord['post_id'], $term_ids, 'product_visibility', $logger );
                                                     $to_delete = false;
                                                 }
 
@@ -529,65 +539,6 @@ class PMXI_Import_Record extends PMXI_Model_Record {
                                                     'message'    => sprintf(__('Deleted missing records %s for import #%s', 'wp_all_import_plugin'), $count_deleted_missing_records, $this->id)
                                                 );
                                             }
-										}
-									}
-								}
-							}
-
-							// Set out of stock status for missing records [Woocommerce add-on option]
-							if (!empty($this->options['is_delete_missing']) and $this->options['custom_type'] == "product" and class_exists('PMWI_Plugin') and !empty($this->options['missing_records_stock_status']) and "manual" != $this->options['duplicate_matching']) {
-
-								$postList = new PMXI_Post_List();
-								$args = array('import_id' => $this->id, 'iteration !=' => $this->iteration);
-								if ( ! empty($this->options['is_import_specified']) ) $args['specified'] = 1;
-								$missing_ids = array();
-								$missingPosts = $postList->getBy($args);
-
-								if (!$missingPosts->isEmpty()) {
-                                    foreach ($missingPosts as $missingPost) {
-                                        $missing_ids[] = $missingPost;
-                                    }
-                                }
-								// Delete posts from database.
-								if (!empty($missing_ids) && is_array($missing_ids)) {
-									$missing_ids_arr = array_chunk($missing_ids, 50);
-									foreach ($missing_ids_arr as $key => $missingPostRecords) {
-										if (!empty($missingPostRecords)) {
-											foreach ( $missingPostRecords as $k => $missingPostRecord ) {
-
-												// Invalidate hash for records even if they're not deleted
-												$this->invalidateHash( $missingPostRecord['post_id']);
-
-												$this->update_meta( $missingPostRecord['post_id'], '_stock_status', 'outofstock' );
-												$this->update_meta( $missingPostRecord['post_id'], '_stock', 0 );
-                                                $term_ids = wp_get_object_terms($missingPostRecord['post_id'], 'product_visibility', array('fields' => 'ids'));
-                                                $outofstock_term = get_term_by( 'name', 'outofstock', 'product_visibility' );
-                                                if (!empty($outofstock_term) && !is_wp_error($outofstock_term) && !in_array($outofstock_term->term_taxonomy_id, $term_ids)){
-                                                    $term_ids[] = $outofstock_term->term_taxonomy_id;
-                                                }
-                                                $this->associate_terms( $missingPostRecord['post_id'], $term_ids, 'product_visibility', $logger );
-
-												$postRecord = new PMXI_Post_Record();
-												$postRecord->getBy(array(
-													'post_id' => $missingPostRecord['post_id'],
-													'import_id' => $this->id,
-												));
-												if (!$postRecord->isEmpty() && empty($this->options['is_delete_missing'])) {
-													$postRecord->set(array(
-														'iteration' => $this->iteration
-													))->save();
-												}
-												unset($postRecord);
-											}
-
-											$this->set(array(
-												'processing' => 0
-											))->update();
-
-											return array(
-												'status'     => 200,
-												'message'    => sprintf(__('Updating stock status for missing records %s for import #%s', 'wp_all_import_plugin'), count($missing_ids), $this->id)
-											);
 										}
 									}
 								}
@@ -3654,7 +3605,10 @@ class PMXI_Import_Record extends PMXI_Model_Record {
                                 }
                             }
                             // Update post content
-                            $this->wpdb->update( $this->wpdb->posts, array('post_content' => $articleData['post_content']), array('ID' => $pid) );
+                            wp_update_post( [
+                                'ID' => $pid,
+                                'post_content' => $articleData['post_content']
+                            ] );
                         }
                     }
 
@@ -5147,7 +5101,11 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 		$assign_taxes = ( is_array( $assign_taxes ) ) ? array_filter( $assign_taxes ) : false;
 
 		if ( ! empty( $term_ids ) && ! is_wp_error( $term_ids ) ) {
-			$in_tt_ids = "'" . implode( "', '", $term_ids ) . "'";
+            $tids = [];
+            foreach ($term_ids as $t) {
+                $tids[] = is_object($t) ? $t->term_taxonomy_id : $t;
+            }
+			$in_tt_ids = "'" . implode( "', '", $tids ) . "'";
 			$this->wpdb->query( "UPDATE {$this->wpdb->term_taxonomy} SET count = count - 1 WHERE term_taxonomy_id IN ($in_tt_ids) AND count > 0" );
 			$this->wpdb->query( $this->wpdb->prepare( "DELETE FROM {$this->wpdb->term_relationships} WHERE object_id = %d AND term_taxonomy_id IN ($in_tt_ids)", $pid ) );
 		}

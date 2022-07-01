@@ -99,7 +99,11 @@ if ($update_previous->options['export_to'] == XmlExportEngine::EXPORT_TYPE_XML &
                 </div>
             </div>
         </span>
-        <?php include ('success_page.php'); ?>
+        <?php if($update_previous->options['enable_real_time_exports']) { ?>
+            <?php include ('success_page_realtime.php'); ?>
+        <?php } else { ?>
+            <?php include ('success_page.php'); ?>
+        <?php } ?>
 
     </div>
 

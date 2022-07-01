@@ -1,9 +1,9 @@
 <?php
 
 /**
-* Template Name: Seite Shop Hochzeit & Liebe
-* Template Description: Shop-Bereich für Hochzeit & Liebe
-*/
+ * Template Name: Seite Shop Hochzeit & Liebe
+ * Template Description: Shop-Bereich für Hochzeit & Liebe
+ */
 
 get_header(); ?>
 
@@ -13,22 +13,27 @@ get_header(); ?>
 
 		<?php the_content(); ?>
 
+		<!--
 		<article class="shop-overview__columns--one-column" id="product-grid">
 			<section class="container content-shop__column-filters--one-column">
 				<aside class="sidebar-filters">
-					<?php echo do_shortcode ('[yith_wcan_filters slug="filter-set-verlobungsringe"]') ?>
+					<?php echo do_shortcode('[yith_wcan_filters slug="filter-set-verlobungsringe"]'
+		 ); ?>
 				</aside>
 			</section>
 
 			<section class="container content-shop__column-products--one-column">
 				<div class="container">
-					<?php echo do_shortcode ('[products limit="60" columns="4" category="liebe-hochzeit" paginate="true"]') ?>
+					<?php echo do_shortcode(
+			 '[products limit="60" columns="4" category="liebe-hochzeit" paginate="true"]'
+		 ); ?>
 				</div>
 			</section>
 		</article>
+		-->
 
 			<section class="service-notice">
-			<?php echo do_shortcode('[content_schmuckservice]'); ?>
+			<?php echo do_shortcode("[content_schmuckservice]"); ?>
 		</section>
 
 	</main>

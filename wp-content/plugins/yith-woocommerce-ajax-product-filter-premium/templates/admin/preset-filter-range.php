@@ -22,7 +22,7 @@ if ( ! defined( 'YITH_WCAN' ) ) {
 
 <div id="range_<?php echo esc_attr( $filter_id ); ?>_<?php echo esc_attr( $range_id ); ?>" class="range-box" data-range_id="<?php echo esc_attr( $range_id ); ?>">
 
-	<a href="#" role="button" class="range-remove"><i class="material-icons">close</i></a>
+	<a href="#" role="button" class="range-remove">&times;</a>
 
 	<p class="yith-plugin-fw-field-wrapper yith-plugin-fw-text-field-wrapper min">
 		<label for="filters_<?php echo esc_attr( $filter_id ); ?>_price_ranges_<?php echo esc_attr( $range_id ); ?>_min"><?php echo esc_html_x( 'Min', '[Admin] Range min (preset edit page)', 'yith-woocommerce-ajax-navigation' ); ?></label>

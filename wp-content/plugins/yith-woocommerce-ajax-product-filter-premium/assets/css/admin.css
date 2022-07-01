@@ -343,10 +343,12 @@
   color: #757575;
 }
 #yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-title .title-arrow {
+  font-size: 14px;
+  margin: 0 10px;
   vertical-align: middle;
 }
 #yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-title h3 {
-  padding: 0 10px !important;
+  padding: 0 !important;
   margin: 10px 0 !important;
   vertical-align: middle;
 }
@@ -482,18 +484,16 @@
 }
 #yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-content-row .terms-wrapper .term-box .additional-color a.term-hide-second-color,
 #yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-content-row .ranges-wrapper .term-box .additional-color a.term-hide-second-color {
+  color: #ba3e3e;
+  font-size: 18px;
+  font-weight: 700;
   line-height: 1em;
   padding: 5px;
   position: absolute;
   right: -20px;
-  top: 10px;
+  text-decoration: none;
+  top: 5px;
   z-index: 2;
-}
-#yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-content-row .terms-wrapper .term-box .additional-color a.term-hide-second-color i,
-#yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-content-row .ranges-wrapper .term-box .additional-color a.term-hide-second-color i {
-  color: #ba3e3e;
-  font-size: 12px;
-  font-weight: 700;
 }
 #yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-content-row .terms-wrapper .term-box .image-selector .placeholder-image,
 #yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-content-row .ranges-wrapper .term-box .image-selector .placeholder-image {
@@ -579,20 +579,22 @@
 #yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-content-row .ranges-wrapper .range-box p:last-of-type {
   margin-bottom: 0;
 }
+#yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-content-row .terms-wrapper .range-box input[type=number],
+#yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-content-row .ranges-wrapper .range-box input[type=number] {
+  width: 100%;
+}
 #yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-content-row .terms-wrapper .range-box a.range-remove,
 #yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-content-row .ranges-wrapper .range-box a.range-remove {
+  color: #ba3e3e;
+  font-size: 18px;
+  font-weight: 700;
   line-height: 1em;
   padding: 5px;
   position: absolute;
   right: 10px;
+  text-decoration: none;
   top: 10px;
   z-index: 2;
-}
-#yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-content-row .terms-wrapper .range-box a.range-remove i,
-#yith_wcan_panel_filter-preset-edit .yith-toggle-row .yith-toggle-content-row .ranges-wrapper .range-box a.range-remove i {
-  color: #ba3e3e;
-  font-size: 14px;
-  font-weight: 700;
 }
 #yith_wcan_panel_filter-preset-edit .add-new-filter {
   background-color: #f0f6fb;

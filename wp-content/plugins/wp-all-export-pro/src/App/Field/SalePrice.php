@@ -24,6 +24,9 @@ class SalePrice extends Field
 
         if($availabilityPriceData['adjustSalePriceValue']) {
             $adjustPriceValue = $this->replaceSnippetsInValue($availabilityPriceData['adjustSalePriceValue'], $snippetData);
+            $adjustPriceValue = floatval($adjustPriceValue);
+            $price = floatval($price);
+
             if($availabilityPriceData['adjustSalePriceType'] == '%') {
                 if($price != 0) {
                     $price = $adjustPriceValue/100*$price;

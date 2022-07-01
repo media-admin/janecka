@@ -87,7 +87,6 @@ if ( ! class_exists( 'YITH_WCAN_Admin' ) ) {
 		public function register_styles_scripts() {
 			// register styles.
 			wp_register_style( 'yith_wcan_admin', YITH_WCAN_URL . 'assets/css/admin.css', array( 'yit-plugin-style' ), YITH_WCAN_VERSION );
-			wp_register_style( 'yith-wcan-material-icons', YITH_WCAN_URL . 'assets/material-icons/material-icons.css', array(), '3.0.1' );
 
 			// register scripts.
 			wp_register_script( 'yith_wcan_admin_filters', YITH_WCAN_URL . 'assets/js/yith-wcan-admin-filters.js', array( 'jquery' ), YITH_WCAN_VERSION, true );
@@ -145,10 +144,6 @@ if ( ! class_exists( 'YITH_WCAN_Admin' ) ) {
 				wp_enqueue_script( 'yith_wcan_admin' );
 
 				wp_enqueue_media();
-
-				if ( ! isset( $_GET['tab'] ) || 'filter-preset' === $_GET['tab'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-					wp_enqueue_style( 'yith-wcan-material-icons' );
-				}
 			}
 		}
 

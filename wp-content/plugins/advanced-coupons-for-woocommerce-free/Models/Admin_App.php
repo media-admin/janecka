@@ -220,7 +220,8 @@ class Admin_App implements Model_Interface, Initializable_Interface, Deactivatab
      * Enqueue settings react app styles and scripts.
      *
      * @since 1.2
-     * @since 4.3 Load scripts on dashboard page.
+     * @since 4.3   Load scripts on dashboard page.
+     * @since 4.3.3 Add additiona texts for the free guide form. Remove unused JS files on admin app development mode.
      * @access public
      *
      * @param WP_Screen $screen    Current screen object.
@@ -380,6 +381,7 @@ class Admin_App implements Model_Interface, Initializable_Interface, Deactivatab
                     ),
                 ),
                 'free_guide'         => array(
+                    'show'     => 'yes' !== get_user_meta(get_current_user_id(), '_acfwf_hide_free_guide_form', true),
                     'tag'      => __('Recommended', 'advanced-coupons-for-woocommerce-free'),
                     'title'    => __('FREE GUIDE: How To Grow A WooCommerce Store Using Coupons', 'advanced-coupons-for-woocommerce-free'),
                     'subtitle' => __('The key to growing an online store is promoting it!', 'advanced-coupons-for-woocommerce-free'),
@@ -396,6 +398,17 @@ class Admin_App implements Model_Interface, Initializable_Interface, Deactivatab
                         __('How to get 4-10x the sales on your next once-off coupon campaign', 'advanced-coupons-for-woocommerce-free'),
                         __('The tools you need to run these deals in your WooCommerce store', 'advanced-coupons-for-woocommerce-free'),
                     ),
+                    'field_values' => array(
+                        'name'  => get_user_meta(get_current_user_id(), 'first_name', true),
+                        'email' => wp_get_current_user()->data->user_email,
+                    ),
+                    'placeholders' => array(
+                        'name'  => __('Enter your first name here...', 'advanced-coupons-for-woocommerce-free'),
+                        'email' => __('Enter your email here...', 'advanced-coupons-for-woocommerce-free'),
+                    ),
+                    'form_nonce'          => wp_create_nonce('acfwf_get_free_training_guide'),
+                    'missing_form_fields' => __('Please fill out your name and/or email correctly.', 'advanced-coupons-for-woocommerce-free'),
+                    'failed_form_error'   => __('There was an error trying to process your request. Please refresh the page and try again.', 'advanced-coupons-for-woocommerce-free'),
                 ),
                 'about_page'         => array(
                     'title'        => __('About Advanced Coupons', 'advanced-coupons-for-woocommerce-free'),
@@ -533,11 +546,7 @@ class Admin_App implements Model_Interface, Initializable_Interface, Deactivatab
         wp_enqueue_script('acfw-axios', $this->_constants->JS_ROOT_URL() . '/lib/axios/axios.min.js', array(), Plugin_Constants::VERSION, true);
 
         if (defined('ACFW_ADMIN_APP_URL') && ACFW_ADMIN_APP_URL) {
-
             wp_enqueue_script('acfwp-edit-coupon-app-bundle', ACFW_ADMIN_APP_URL . '/static/js/bundle.js', array('wp-api'), Plugin_Constants::VERSION, true);
-            wp_enqueue_script('acfwp-edit-coupon-app-vendor', ACFW_ADMIN_APP_URL . '/static/js/vendors~main.chunk.js', array('wp-api'), Plugin_Constants::VERSION, true);
-            wp_enqueue_script('acfwp-edit-coupon-app-main', ACFW_ADMIN_APP_URL . '/static/js/main.chunk.js', array('wp-api'), Plugin_Constants::VERSION, true);
-
         } else {
 
             $app_js_path  = $this->_constants->JS_ROOT_PATH() . '/app/admin-app/build/static/js/';
@@ -720,6 +729,116 @@ class Admin_App implements Model_Interface, Initializable_Interface, Deactivatab
 
     /*
     |--------------------------------------------------------------------------
+    | AJAX methods
+    |--------------------------------------------------------------------------
+     */
+
+    /**
+     * AJAX get free training guide.
+     * Subscribe the user to our email campaign so they will receive the PDF download link in their emails.
+     * 
+     * @since 4.3.2
+     * @access public
+     */
+    public function ajax_get_free_training_guide()
+    {
+        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+            $response = array('status' => 'fail', 'error_msg' => __('Invalid AJAX call', 'advanced-coupons-for-woocommerce-free'));
+        } elseif (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'acfwf_get_free_training_guide')) {
+            $response = array('status' => 'fail', 'error_msg' => __('You are not allowed to do this', 'advanced-coupons-for-woocommerce-free'));
+        } else {
+
+            $args = wp_parse_args( $_POST, array(
+                'name'      => '',
+                'email'     => '',
+                'title'     => '',
+                'url'       => '',
+                'referrer'  => '',
+                'timestamp' => '',
+            ));
+
+            $name = explode(' ', $args['name']);
+
+            // prepare drip form data.
+            $form_data = array(
+                'fields' => array(
+                    'comments'  => '',
+                    'name'      => $args['name'],
+                    'email'     => $args['email'],
+                ),
+                'page' => array(
+                    'title' => $args['title'],
+                    'url'   => $args['url'],
+                ),
+                'previous' => $args['referrer'],
+                'referrer' => $args['url'],
+                'site'     => '5a6588252b4b4',
+                'tags'     => array(
+                    'page_url'        => $args['url'],
+                    'referer_url'     => $args['referrer'],
+                    'referrer_url'    => $args['referrer'],
+                    'pages_visited'   => "1",
+                    'time_on_site'    => 5,
+                    'visit_timestamp' => $args['timestamp'],
+                    'page_title'      => $args['title'],
+                    'cn'              => "LP How To Grow Your WooCommerce Store With Coupons PDF",
+                    'campaign_name'   => "LP How To Grow Your WooCommerce Store With Coupons PDF",
+                    'form_name'       => $args['name'],
+                    'form_first_name' => isset($name[0]) ? $name[0] : '',
+                    'form_last_name'  => isset($name[1]) ? $name[1] : '',
+                    'form_email'      => $args['email']
+                ),
+            );
+
+            $is_failed = false;
+            $raw_data   = wp_remote_retrieve_body(wp_remote_post(
+                'https://campaigns.advancedcouponsplugin.com/api/v2/optin/unv4v451r3w5jdwdbmm0',
+                array(
+                    'headers' => array(
+                        'Accept'       => '*/*',
+                        'Content-Type' => 'application/json',
+                        'User-Agent'   => $_SERVER['HTTP_USER_AGENT'],
+                    ),
+                    'body'    => json_encode($form_data),
+                )
+            ));
+
+            if (!is_wp_error($raw_data)) {
+
+                $data = json_decode($raw_data, true);
+
+                if (isset($data['success']) && $data['success']) {
+                    $response = array(
+                        'status'  => 'success',
+                        'message' => __('Please check your email to get the download link.', 'advanced-coupons-for-woocommerce-free'),
+                    );
+
+                    // hide the form for user on next reload.
+                    update_user_meta(get_current_user_id(), '_acfwf_hide_free_guide_form', 'yes');
+                } else {
+                    $is_failed = true;
+                }
+
+            } else {
+                $is_failed = true;
+            }
+            
+            // return generic response on form submit failure.
+            if ($is_failed) {
+                $response = array(
+                    'status'    => 'fail',
+                    'error_msg' => __('There was an error trying to process your request. Please refresh the page and try again.', 'advanced-coupons-for-woocommerce-free'),
+                );
+            }
+        }
+
+        @header('Content-Type: application/json; charset=' . get_option('blog_charset'));
+        echo wp_json_encode($response);
+        wp_die();
+    }
+
+    /*
+    |--------------------------------------------------------------------------
     | Fulfill implemented interface contracts
     |--------------------------------------------------------------------------
      */
@@ -740,12 +859,13 @@ class Admin_App implements Model_Interface, Initializable_Interface, Deactivatab
      * Execute codes that needs to run plugin activation.
      *
      * @since 1.2
+     * @since 4.3.2 add AJAX hook for get free training guide.
      * @access public
      * @implements ACFWF\Interfaces\Initializable_Interface
      */
     public function initialize()
     {
-
+        add_action('wp_ajax_acfwf_get_free_training_guide', array($this, 'ajax_get_free_training_guide'));
     }
 
     /**

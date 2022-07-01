@@ -29,7 +29,7 @@ class VariationOptions implements VariationOptionsInterface
         $langQuery = '';
 
         if($this->isLanguageFilterEnabled()) {
-            $langQuery .= " AND ".$this->getWpmlAlias().".language_code = '".\XmlExportEngine::$exportOptions['wpml_lang']."' ";
+            $langQuery .= $wpdb->prepare(" AND ".$this->getWpmlAlias().".language_code = %s ", \XmlExportEngine::$exportOptions['wpml_lang']);
         }
 
         if($closeBracket) {

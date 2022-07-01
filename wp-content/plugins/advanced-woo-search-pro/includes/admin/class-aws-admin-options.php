@@ -30,6 +30,10 @@ if ( ! class_exists( 'AWS_Admin_Options' ) ) :
                         continue;
                     }
 
+                    if ( isset( $values['type'] ) && $values['type'] === 'html' ) {
+                        continue;
+                    }
+
                     if ( isset( $values['type'] ) && $values['type'] === 'table' && empty( $values['value'] ) ) {
                         continue;
                     }
@@ -114,7 +118,7 @@ if ( ! class_exists( 'AWS_Admin_Options' ) ) :
 
             foreach ( $options[$current_tab] as $values ) {
 
-                if ( $values['type'] === 'heading' || $values['type'] === 'table' ) {
+                if ( $values['type'] === 'heading' || $values['type'] === 'table' || $values['type'] === 'html' ) {
                     continue;
                 }
 
@@ -1300,10 +1304,50 @@ if ( ! class_exists( 'AWS_Admin_Options' ) ) :
             );
 
             $options['product'][] = array(
+                "name" => __( "Product type", "advanced-woo-search" ),
+                "id"   => "product_type",
+                "type" => "callback",
+                "operators" => "equals",
+                "choices" => array(
+                    'callback' => 'AWS_Admin_Filters_Helpers::get_product_types',
+                    'params'   => array()
+                ),
+            );
+
+            $options['product'][] = array(
+                "name" => __( "Product stock status", "advanced-woo-search" ),
+                "id"   => "product_stock_status",
+                "type" => "callback",
+                "operators" => "equals",
+                "choices" => array(
+                    'callback' => 'AWS_Admin_Filters_Helpers::get_stock_statuses',
+                    'params'   => array()
+                ),
+            );
+
+            $options['product'][] = array(
+                "name" => __( "Product is on sale", "advanced-woo-search" ),
+                "id"   => "product_sale_status",
+                "type" => "bool",
+                "operators" => "equals",
+            );
+
+            $options['product'][] = array(
                 "name" => __( "Product is featured", "advanced-woo-search" ),
                 "id"   => "product_featured",
                 "type" => "bool",
                 "operators" => "equals",
+            );
+
+            $options['product'][] = array(
+                "name" => __( "Product visibility", "advanced-woo-search" ),
+                "id"   => "product_visibility",
+                "type" => "callback",
+                "operators" => "equals",
+                "choices" => array(
+                    'callback' => 'AWS_Admin_Filters_Helpers::get_visibilities',
+                    'params'   => array()
+                ),
             );
 
             $options['product'][] = array(

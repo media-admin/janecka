@@ -28,6 +28,11 @@ export default function upsell_events() {
     "#acfw_auto_apply_coupon_field",
     upsell_auto_apply
   );
+  $("#acfw-virtual-coupon").on(
+    "change",
+    "#acfw_enable_virtual_coupons",
+    upsell_virtual_coupons
+  );
   $("#acfw_cart_conditions").on(
     "change",
     ".condition-types",
@@ -106,6 +111,20 @@ function upsell_auto_apply() {
 
   vex.dialog.alert({
     unsafeMessage: `<div class="upsell-alert auto-apply">${auto_apply}</div>`,
+  });
+  $(this).prop("checked", false);
+}
+
+/**
+ * Virtual coupons upsell vex dialog.
+ *
+ * @since 4.3
+ */
+function upsell_virtual_coupons() {
+  const { virtual_coupons } = acfw_edit_coupon.upsell;
+
+  vex.dialog.alert({
+    unsafeMessage: `<div class="upsell-alert auto-apply">${virtual_coupons}</div>`,
   });
   $(this).prop("checked", false);
 }

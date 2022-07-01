@@ -119,8 +119,8 @@ if($is_rapid_addon_export) {
 																	<input type="hidden" name="cc_value[]" value="<?php echo esc_attr($post['cc_value'][$ID]); ?>"/>
 																	<input type="hidden" name="cc_name[]" value="<?php echo XmlExportEngine::sanitizeFieldName(esc_attr($field_name)); ?>"/>
 																	<input type="hidden" name="cc_settings[]" value="<?php echo (!empty($post['cc_settings'][$ID])) ? esc_attr($post['cc_settings'][$ID]) : 0; ?>"/>
-																	<input type="hidden" name="cc_combine_multiple_fields[]" value="<?php echo (!empty($post['cc_combine_multiple_fields'][$ID])) ? esc_attr($post['cc_combine_multiple_fields'][$ID]) : 0; ?>"/>
-																	<input type="hidden" name="cc_combine_multiple_fields_value[]" value="<?php echo (!empty($post['cc_combine_multiple_fields_value'][$ID])) ? esc_attr($post['cc_combine_multiple_fields_value'][$ID]) : 0; ?>"/>
+																	<input type="hidden" name="cc_combine_multiple_fields[]" value="<?php echo (!empty($post['cc_combine_multiple_fields'][$ID])) ? esc_attr($post['cc_combine_multiple_fields'][$ID]) : ''; ?>"/>
+																	<input type="hidden" name="cc_combine_multiple_fields_value[]" value="<?php echo (!empty($post['cc_combine_multiple_fields_value'][$ID])) ? esc_attr($post['cc_combine_multiple_fields_value'][$ID]) : ''; ?>"/>
 																</div>
 															</li>
 															<?php
@@ -182,22 +182,22 @@ if($is_rapid_addon_export) {
 									<input type="hidden" name="cc_value[]" value=""/>
 									<input type="hidden" name="cc_name[]" value=""/>
 									<input type="hidden" name="cc_settings[]" value="0"/>
-									<input type="hidden" name="cc_combine_multiple_fields[]" value="0"/>
-									<input type="hidden" name="cc_combine_multiple_fields_value[]" value="0"/>
+									<input type="hidden" name="cc_combine_multiple_fields[]" value=""/>
+									<input type="hidden" name="cc_combine_multiple_fields_value[]" value=""/>
 								</div>
 
-								<!-- Warning Messages -->
-								<?php if ( XmlExportEngine::get_addons_service()->isWooCommerceAddonActive() &&  ! XmlExportWooCommerceOrder::$is_active && ! XmlExportComment::$is_active && !XmlExportWooCommerceReview::$is_active && ! XmlExportTaxonomy::$is_active ) : ?>
-								<div class="wp-all-export-warning" <?php if ( empty($post['ids']) or count($post['ids']) > 1 ) echo 'style="display:none;"'; ?>>
-									<p></p>
-									<input type="hidden" id="warning_template" value="<?php esc_html_e("Warning: without %s you won't be able to re-import this data back to this site using WP All Import.", "wp_all_export_plugin"); ?>"/>
-                                    <button class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></button>
-								</div>
-								<?php endif; ?>
+                                <!-- Warning Messages -->
+                                <?php if ( (($addons->isWooCommerceAddonActive() || $addons->isWooCommerceOrderAddonActive()) && ! XmlExportWooCommerceOrder::$is_active) && ! XmlExportComment::$is_active && ! XmlExportTaxonomy::$is_active ) : ?>
+                                    <div class="wp-all-export-warning" <?php if ( empty($post['ids']) or count($post['ids']) > 1 ) echo 'style="display:none;"'; ?>>
+                                        <p></p>
+                                        <input type="hidden" id="warning_template" value="<?php esc_html_e("Warning: without %s you won't be able to re-import this data back to this site using WP All Import.", "wp_all_export_plugin"); ?>"/>
+                                        <button class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></button>
+                                    </div>
+                                <?php endif; ?>
 
-								<?php if ( XmlExportEngine::get_addons_service()->isWooCommerceAddonActive() && XmlExportWooCommerce::$is_active ) : ?>
-								<input type="hidden" id="is_product_export" value="1"/>													
-								<?php endif; ?>
+                                <?php if ( ($addons->isWooCommerceAddonActive() || $addons->isWooCommerceProductAddonActive()) && in_array('product', XmlExportEngine::$post_types) ) : ?>
+                                    <input type="hidden" id="is_product_export" value="1"/>
+                                <?php endif; ?>
 
 								<?php if ( XmlExportEngine::get_addons_service()->isWooCommerceAddonActive() && empty($post['cpt']) && ! XmlExportWooCommerceOrder::$is_active && ! $addons->isUserAddonActiveAndIsUserExport() && ! XmlExportComment::$is_active && !XmlExportWooCommerceReview::$is_active && ! XmlExportTaxonomy::$is_active ) : ?>
 								<input type="hidden" id="is_wp_query" value="1"/>								
@@ -628,7 +628,7 @@ if($is_rapid_addon_export) {
                                class="back rad3"
                                style="float:none;"><?php esc_html_e('Back to Manage Exports', 'wp_all_export_plugin') ?></a>
                         <?php else: ?>
-                            <a href="<?php echo esc_url(add_query_arg('action', 'index', $this->baseUrl)); ?>"
+                            <a href="<?php echo esc_url_raw(add_query_arg('action', 'index', $this->baseUrl)); ?>"
                                class="back rad3"><?php esc_html_e('Back', 'wp_all_export_plugin') ?></a>
                         <?php endif; ?>
                         <input type="submit" class="button button-primary button-hero wpallexport-large-button"

@@ -1,3 +1,8 @@
+<?php
+if(!defined('ABSPATH')) {
+    die();
+}
+?>
 <script type="text/javascript">
     (function ($) {
         $(function () {

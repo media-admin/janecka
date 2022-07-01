@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: YITH WooCommerce Ajax Product Filter\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/yith-woocommerce-"
 "ajax-product-filter.premium\n"
-"POT-Creation-Date: 2022-04-04 12:12:51+00:00\n"
+"POT-Creation-Date: 2022-06-09 14:52:04+00:00\n"
 "PO-Revision-Date: 2021-02-12 13:32:43+0000\n"
 "Language: el_GR\n"
 "MIME-Version: 1.0\n"
@@ -429,7 +429,6 @@ msgid "After filters"
 msgstr "Μετά από φίλτρα"
 
 #: includes/class-yith-wcan-admin-premium.php:132
-#, fuzzy
 msgctxt "[ADMIN] General settings page"
 msgid ""
 "Above products list<small>When using WooCommerce's Gutenberg product blocks, "
@@ -437,11 +436,6 @@ msgid ""
 "anywhere in the page using <code>[yith_wcan_active_filters_labels]</code> "
 "shortcode or <code>YITH Active Filters Labels</code> block</small>"
 msgstr ""
-"Λίστα παραπάνω προϊόντων<small>Κατα την χρήση πλαισίων προϊόντος WooCommerce "
-"Gutenberg, μπορεί να μην λειτουργήσει όπως αναμένεται. Σε αυτή την περίπτωση "
-"μπορείτε να τοποθετήσετε Κουμπί Επαναφοράς οπουδήποτε στη σελίδα "
-"χρησιμοποιώντας μικροκώδικα <code>[yith_wcan_active_filters_labels]</code> ή "
-"στο <code>YITH Άνοιγμα Παραθύρου Φίλτρων Κινητού</code> πλαίσιο</small>"
 
 #: includes/class-yith-wcan-admin-premium.php:141
 msgctxt "[ADMIN] General settings page"
@@ -1658,27 +1652,27 @@ msgctxt "[Admin] tab name"
 msgid "Customization"
 msgstr "Προσαρμογή"
 
-#: includes/class-yith-wcan-admin.php:184
+#: includes/class-yith-wcan-admin.php:179
 msgctxt "[Admin] tab name"
 msgid "Filter presets"
 msgstr "Προρυθμίσεις φίλτρου"
 
-#: includes/class-yith-wcan-admin.php:185
+#: includes/class-yith-wcan-admin.php:180
 msgctxt "[Admin] tab name"
 msgid "General settings"
 msgstr "Γενικές ρυθμίσεις"
 
-#: includes/class-yith-wcan-admin.php:186
+#: includes/class-yith-wcan-admin.php:181
 msgctxt "[Admin] tab name"
 msgid "SEO"
 msgstr ""
 
-#: includes/class-yith-wcan-admin.php:187
+#: includes/class-yith-wcan-admin.php:182
 msgctxt "[Admin] tab name"
 msgid "Premium Version"
 msgstr "Premium Έκδοση"
 
-#: includes/class-yith-wcan-admin.php:191
+#: includes/class-yith-wcan-admin.php:186
 msgctxt "[Admin] tab name"
 msgid "Legacy"
 msgstr "Σύστημα κληρονομιάς"
@@ -1688,23 +1682,23 @@ msgctxt "[ADMIN] WooCommerce Tools tab, name of the tool"
 msgid "Clear Product Filter sessions"
 msgstr "Καθαρισμός συνεδριών φίλτρου προϊόντος"
 
-#: includes/class-yith-wcan-admin.php:480
+#: includes/class-yith-wcan-admin.php:475
 msgctxt "[ADMIN] WooCommerce Tools tab, name of the tool"
 msgid "Clear Product Filter transients"
 msgstr "Καθαρισμός μεταβάσεων φίλτρου προϊόντος"
 
-#: includes/class-yith-wcan-admin.php:486
+#: includes/class-yith-wcan-admin.php:481
 msgctxt "[ADMIN] WooCommerce Tools tab, name of the tool"
 msgid "Run filter widgets upgrade"
 msgstr "Εκτέλεση αναβάθμισης μικροεφαρμογών φίλτρου"
 
 #: includes/class-yith-wcan-admin-premium.php:683
-#: includes/class-yith-wcan-admin.php:481
+#: includes/class-yith-wcan-admin.php:476
 msgctxt "[ADMIN] WooCommerce Tools tab, button for the tool"
 msgid "Clear"
 msgstr "Καθαρισμός"
 
-#: includes/class-yith-wcan-admin.php:487
+#: includes/class-yith-wcan-admin.php:482
 msgctxt "[ADMIN] WooCommerce Tools tab, button for the tool"
 msgid "Run"
 msgstr "Εκτέλεση"
@@ -1720,7 +1714,7 @@ msgstr ""
 "σας. Σας είναι χρήσιμο αν θέλετε να απελευθερώσετε χώρο (οι προηγουμένως "
 "κοινοποιημένες συνεδρίες δεν θα είναι πλέον προσβάσιμες)."
 
-#: includes/class-yith-wcan-admin.php:482
+#: includes/class-yith-wcan-admin.php:477
 msgctxt "[ADMIN] WooCommerce Tools tab, description of the tool"
 msgid ""
 "This will clear all transients related to the YITH WooCommerce AJAX Product "
@@ -1732,7 +1726,7 @@ msgstr ""
 "κατα την αλλαγή της ρύθμισης του προϊόντος σας, τα φίλτρα δεν εμφανίζουν τα "
 "αποτελέσματα που περιμένετε. "
 
-#: includes/class-yith-wcan-admin.php:488
+#: includes/class-yith-wcan-admin.php:483
 msgctxt "[ADMIN] WooCommerce Tools tab, description of the tool"
 msgid ""
 "This will create a preset for any sidebar of your shop containing filter "
@@ -1742,45 +1736,45 @@ msgstr ""
 "καταστήματός σας, που περιέχει μικροεφαρμογές φίλτρου. Η προρύθμιση θα "
 "ρυθμιστεί για να αντιστοιχεί με τις προδιαγραφές μικροεφαρμογών"
 
-#: includes/class-yith-wcan-admin.php:107
+#: includes/class-yith-wcan-admin.php:106
 msgctxt "[Admin] Copy confirmation message"
 msgid "Content copied to your clipboard"
 msgstr "Έγινε αντιγραφή περιεχομένου σε πρόχειρο"
 
-#: includes/class-yith-wcan-admin.php:108
+#: includes/class-yith-wcan-admin.php:107
 msgctxt "[Admin] Confirm filter delete message"
 msgid "Are you sure you want to delete this item?"
 msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το αντικείμενο;"
 
 #. translators: 1. Number of items that will be added.
-#: includes/class-yith-wcan-admin.php:110
+#: includes/class-yith-wcan-admin.php:109
 msgctxt "[Admin] Confirm add all terms message"
 msgid "Are you sure you want to proceed? This operation will add %s items"
 msgstr ""
 "Είστε σίγουροι ότι θέλετε να προχωρήσετε; Αυτή η διαδικασία θα προσθέσει %s "
 "αντικείμενα"
 
-#: includes/class-yith-wcan-admin.php:111
+#: includes/class-yith-wcan-admin.php:110
 msgctxt "[Admin] Error message"
 msgid "\"Filter title\" is a required field"
 msgstr ""
 
-#: includes/class-yith-wcan-admin.php:114 templates/admin/preset-filter.php:33
+#: includes/class-yith-wcan-admin.php:113 templates/admin/preset-filter.php:33
 msgctxt "[Admin] Message shown when filter has empty title"
 msgid "&lt; no title &gt;"
 msgstr "&lt; χωρίς τίτλο &gt;"
 
-#: includes/class-yith-wcan-admin.php:115
+#: includes/class-yith-wcan-admin.php:114
 msgctxt "[Admin] Media library title, when selecting images"
 msgid "Select media you want to use"
 msgstr "Επιλέξτε τα πολυμέσα που θέλετε να χρησιμοποιήσετε"
 
-#: includes/class-yith-wcan-admin.php:116
+#: includes/class-yith-wcan-admin.php:115
 msgctxt "[Admin] Media library confirm button, when selecting images"
 msgid "Use this media"
 msgstr "Χρησιμοποιήστε αυτά τα πολυμέσα"
 
-#: includes/class-yith-wcan-admin.php:199
+#: includes/class-yith-wcan-admin.php:194
 msgctxt "[Admin] Plugin description"
 msgid ""
 "It allows your users to find the product they are looking for as quickly as "
@@ -1789,19 +1783,19 @@ msgstr ""
 "Επιτρέπει στους χρήστες σας να βρουν το προϊόν που επιθυμούν το συντομότερο "
 "δυνατό."
 
-#: includes/class-yith-wcan-admin.php:211
+#: includes/class-yith-wcan-admin.php:206
 msgctxt "[HELP TAB] Video title"
 msgid ""
 "Check this video to learn how to <b>create a filter preset and show it on "
 "the shop page:</b>"
 msgstr ""
 
-#: includes/class-yith-wcan-admin.php:329
+#: includes/class-yith-wcan-admin.php:324
 msgctxt "[Admin] Generic item name, in \"You have no x yet\""
 msgid "item"
 msgstr "αντικείμενο"
 
-#: includes/class-yith-wcan-admin.php:330
+#: includes/class-yith-wcan-admin.php:325
 msgctxt "[Admin] Preset table empty message second line"
 msgid "But don't worry, here you can create your first one!"
 msgstr "Μην ανησυχείτε, εδώ μπορείτε να δημιουργήσετε το πρώτο!"
@@ -1959,46 +1953,46 @@ msgctxt "[ADMIN] Convert widgets tools, in preset tab"
 msgid "Convert widgets in a preset"
 msgstr "Μετατροπή μικροεφαρμογών σε προρύθμιση"
 
-#: includes/class-yith-wcan-query-premium.php:68
+#: includes/class-yith-wcan-query-premium.php:69
 msgctxt "[FRONTEND] Active filter labels"
 msgid "Price"
 msgstr "Τιμή"
 
-#: includes/class-yith-wcan-query-premium.php:69
+#: includes/class-yith-wcan-query-premium.php:70
 msgctxt "[FRONTEND] Active filter labels"
 msgid "Order by"
 msgstr "Ταξινόμηση κατα"
 
-#: includes/class-yith-wcan-query-premium.php:70
+#: includes/class-yith-wcan-query-premium.php:71
 msgctxt "[FRONTEND] Active filter labels"
 msgid "Rating"
 msgstr "Βαθμολογία"
 
-#: includes/class-yith-wcan-query-premium.php:71
+#: includes/class-yith-wcan-query-premium.php:72
 msgctxt "[FRONTEND] Active filter labels"
 msgid "On sale"
 msgstr "Σε προσφορά"
 
-#: includes/class-yith-wcan-query-premium.php:72
+#: includes/class-yith-wcan-query-premium.php:73
 msgctxt "[FRONTEND] Active filter labels"
 msgid "In stock"
 msgstr "Σε απόθεμα"
 
-#: includes/class-yith-wcan-query-premium.php:73
+#: includes/class-yith-wcan-query-premium.php:74
 msgctxt "[FRONTEND] Active filter labels"
 msgid "Featured"
 msgstr ""
 
 #. translators: 1. Formatted min price of the range. 2. Formatted max price of
 #. the range.
-#: includes/class-yith-wcan-query-premium.php:262
+#: includes/class-yith-wcan-query-premium.php:263
 msgctxt "[FRONTEND] Active price filter label"
 msgid "%1$s - %2$s"
 msgstr "%1$s - %2$s"
 
 #. translators: 1. Formatted min price of the range. 2. Formatted max price of
 #. the range.
-#: includes/class-yith-wcan-query-premium.php:269
+#: includes/class-yith-wcan-query-premium.php:270
 msgctxt "[FRONTEND] Active price filter label"
 msgid "%1$s & above"
 msgstr "%1$s & παραπάνω"
@@ -2683,7 +2677,3 @@ msgstr "Από"
 msgctxt "Price filter option: price ends to"
 msgid "To"
 msgstr "Σε"
-
-#~ msgctxt "[Admin] Menu title"
-#~ msgid "Ajax Product Filter"
-#~ msgstr "Ajax Product Filter"

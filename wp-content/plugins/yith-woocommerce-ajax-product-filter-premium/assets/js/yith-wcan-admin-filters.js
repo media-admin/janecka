@@ -1013,7 +1013,8 @@ function YITH_WCAN_Filters( $ ) {
 		$filter
 			.find( '.yith-toggle-title' )
 			.find( '.title-arrow' )
-			.text( 'keyboard_arrow_down' );
+			.removeClass( 'yith-icon-arrow-right-alt' )
+			.addClass( 'yith-icon-arrow-down-alt' );
 
 		// animate content and return promise
 		return $filter
@@ -1032,7 +1033,8 @@ function YITH_WCAN_Filters( $ ) {
 		$filter
 			.find( '.yith-toggle-title' )
 			.find( '.title-arrow' )
-			.text( 'keyboard_arrow_right' );
+			.addClass( 'yith-icon-arrow-right-alt' )
+			.removeClass( 'yith-icon-arrow-down-alt' );
 
 		// animate content and return promise
 		return $filter

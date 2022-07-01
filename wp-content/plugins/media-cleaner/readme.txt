@@ -5,7 +5,7 @@ Donate link: https://meowapps.com/donation/
 Requires at least: 5.0
 Tested up to: 6.0
 Requires PHP: 7.0
-Stable tag: 6.3.9
+Stable tag: 6.4.0
 
 Clean your WordPress from unused files, broken media entries. Powerful engine and beautiful UI!
 
@@ -78,6 +78,10 @@ To make everything perfect, you will also need to clean and optimize your databa
 1. Media -> Media Cleaner
 
 == Changelog ==
+
+= 6.4.0 (2022/06/30) =
+* Add: Support for retry when an error occurs.
+* Fix: There was an issue with the resolution of some filepaths.
 
 = 6.3.9 (2022/06/23) =
 * Add: Support of the source tag.

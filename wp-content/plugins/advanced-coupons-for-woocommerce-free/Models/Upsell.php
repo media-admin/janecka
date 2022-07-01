@@ -132,6 +132,14 @@ class Upsell implements Model_Interface, Initializable_Interface
         );
 
         add_meta_box(
+            'acfw-virtual-coupon',
+            __('Virtual Coupons (premium)', 'advanced-coupons-for-woocommerce-free'),
+            array($this, 'display_virtual_coupons_upsell_metabox'),
+            'shop_coupon',
+            'side'
+        );
+
+        add_meta_box(
             'acfw-premium-upsell',
             __('Upgrade to premium', 'advanced-coupons-for-woocommerce-free'),
             array($this, 'display_upsell_metabox'),
@@ -171,6 +179,16 @@ class Upsell implements Model_Interface, Initializable_Interface
         echo '<label>
             <input id="acfw_auto_apply_coupon_field" type="checkbox" value="yes">
             ' . __('Enable auto apply for this coupon.', 'advanced-coupons-for-woocommerce-free') . '
+        </label>';
+    }
+
+    public function display_virtual_coupons_upsell_metabox($post)
+    {
+        echo sprintf('<p class="description">%s</p>', __('Virtual coupons are other codes that are also valid for this coupon. It’s great when you need lots of unique codes for the same deal.', 'advanced-coupons-for-woocommerce-free'));
+
+        echo '<label>
+            <input id="acfw_enable_virtual_coupons" type="checkbox" value="yes">
+            ' . __('Enable virtual coupons', 'advanced-coupons-for-woocommerce-free') . '
         </label>';
     }
 
@@ -452,6 +470,22 @@ class Upsell implements Model_Interface, Initializable_Interface
             ),
         );
 
+        // add WC Membership cart conditions when plugin is active.
+        if ($this->_helper_functions->is_plugin_active('woocommerce-memberships/woocommerce-memberships.php')) {
+            $premium = array_merge($premium, array(
+                'wc_memberships_allowed' => array(
+                    'group' => 'customers',
+                    'key'   => 'wc-memberships-allowed',
+                    'title' => __('WC Memberships: Allowed Membership Plans (Premium)', 'advanced-coupons-for-woocommerce-free'),
+                ),
+                'wc_memberships_disallowed' => array(
+                    'group' => 'customers',
+                    'key'   => 'wc-memberships-disallowed',
+                    'title' => __('WC Memberships: Disallowed Membership Plans (Premium)', 'advanced-coupons-for-woocommerce-free'),
+                ),
+            ));
+        }
+
         return array_merge($options, $premium);
     }
 
@@ -516,6 +550,21 @@ class Upsell implements Model_Interface, Initializable_Interface
                 'description' => __('Restricting coupons based on the shipping zone is great when you need to apply coupons geographically.', 'advanced-coupons-for-woocommerce-free'),
             ),
         );
+
+        // add WC Membership cart conditions when plugin is active.
+        if ($this->_helper_functions->is_plugin_active('woocommerce-memberships/woocommerce-memberships.php')) {
+            $cart_conditions = array_merge($cart_conditions, array(
+                array(
+                    'title'       => __('WC Memberships: Allowed Membership Plans (Premium)', 'advanced-coupons-for-woocommerce-free'),
+                    'description' => __('Restrict the coupon to be only applied to customers that are members of the specified membership plan(s).', 'advanced-coupons-for-woocommerce-free'),
+                ),
+                array(
+                    'title'       => __('WC Memberships: Disallowed Membership Plans (Premium)', 'advanced-coupons-for-woocommerce-free'),
+                    'description' => __('Restrict the coupon to be only applied to customers that are not a member of the specified membership plan(s).', 'advanced-coupons-for-woocommerce-free'),
+                ),
+            ));
+        }
+
         include $this->_constants->VIEWS_ROOT_PATH() . 'premium' . DIRECTORY_SEPARATOR . 'view-more-cart-conditions-panel.php';
     }
 
@@ -801,6 +850,14 @@ class Upsell implements Model_Interface, Initializable_Interface
             'default' => '',
         );
 
+        $modules[] = array(
+            'title'   => __('Virtual Coupons', 'advanced-coupons-for-woocommerce-free'),
+            'type'    => 'premiummodule',
+            'desc'    => __("Bulk generate 100's or 1000's of unique alternative coupon codes for a coupon to use in welcome sequences, abandoned cart sequences, and other scenarios.", 'advanced-coupons-for-woocommerce-free'),
+            'id'      => Plugin_Constants::VIRTUAL_COUPONS_MODULE,
+            'default' => '',
+        );
+
         return $modules;
     }
 
@@ -1042,18 +1099,6 @@ class Upsell implements Model_Interface, Initializable_Interface
      */
     public function add_upsell_localized_script_data_on_edit_advanced_coupon_js($data)
     {
-        $data['premium_cart_condition_fields'] = array(
-            'product-quantity',
-            'custom-taxonomy',
-            'customer-registration-date',
-            'customer-last-ordered',
-            'custom-user-meta',
-            'custom-cart-item-meta',
-            'total-customer-spend',
-            'has-ordered-before',
-            'shipping-zone-region',
-        );
-
         $data['upsell'] = array(
             'cart_condition_field' => sprintf(
                 __('<img src="%s" alt="Advanced Coupons Premium" style="height: 50px;" />
@@ -1090,6 +1135,14 @@ class Upsell implements Model_Interface, Initializable_Interface
                 <a href="%s" target="_blank">See all features & pricing &rarr;</a>', 'advanced-coupons-for-woocommerce-free'),
                 $this->_constants->IMAGES_ROOT_URL() . '/acfw-logo.png',
                 apply_filters('acfwp_upsell_link', 'https://advancedcouponsplugin.com/pricing/?utm_source=acfwf&utm_medium=upsell&utm_campaign=autoapply')
+            ),
+            'virtual_coupons'       => sprintf(
+                __('<img src="%s" alt="Advanced Coupons Premium" />
+                <h3>Upgrade To Get Virtual Coupons</h3>
+                <p>In Advanced Coupons Premium you can have virtual coupons which are other codes that are also valid for this coupon. Bulk generate 100’s or 1000’s of unique alternative coupon codes for a coupon to use in welcome sequences, abandoned cart sequences, and other scenarios.</p>
+                <a href="%s" target="_blank">See all features & pricing &rarr;</a>', 'advanced-coupons-for-woocommerce-free'),
+                $this->_constants->IMAGES_ROOT_URL() . '/acfw-logo.png',
+                apply_filters('acfwp_upsell_link', 'https://advancedcouponsplugin.com/pricing/?utm_source=acfwf&utm_medium=upsell&utm_campaign=virtualcoupons')
             ),
             'bogo_auto_add_get_products' => sprintf(
                 __('<img src="%s" alt="Advanced Coupons Premium" />
@@ -1344,10 +1397,11 @@ class Upsell implements Model_Interface, Initializable_Interface
         $data['coupon_nav']['premium'] = __('Upgrade to Premium', 'advanced-coupons-for-woocommerce-free');
 
         $data['premium_page'] = array(
-            'image'  => $this->_constants->IMAGES_ROOT_URL() . '/acfw-logo-alt.png',
-            'title'  => __('<strong>Free</strong> vs <strong>Premium</strong>', 'advanced-coupons-for-woocommerce-free'),
-            'desc'   => __('If you are serious about growing your sales within your WooCommerce store then the Premium add-on to the free Advanced Coupons for WooCommerce plugin that you are currently using can help you.', 'advanced-coupons-for-woocommerce-free'),
-            'header' => array(
+            'image'   => $this->_constants->IMAGES_ROOT_URL() . '/acfw-logo-alt.png',
+            'title'   => __('<strong>Free</strong> vs <strong>Premium</strong>', 'advanced-coupons-for-woocommerce-free'),
+            'desc'    => __('If you are serious about growing your sales within your WooCommerce store then the Premium add-on to the free Advanced Coupons for WooCommerce plugin that you are currently using can help you.', 'advanced-coupons-for-woocommerce-free'),
+            'upgrade' => __('Upgrade', 'advanced-coupons-for-woocommerce-free'),
+            'header'  => array(
                 'feature' => __('Features', 'advanced-coupons-for-woocommerce-free'),
                 'free'    => __('Free Plugin', 'advanced-coupons-for-woocommerce-free'),
                 'premium' => __('Premium Add-on', 'advanced-coupons-for-woocommerce-free'),
@@ -1415,7 +1469,85 @@ class Upsell implements Model_Interface, Initializable_Interface
         })(jQuery);
         </script>
     <?php
-}
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Loyalty Program Upsell
+    |--------------------------------------------------------------------------
+     */
+
+    /**
+     * Register Loyalty Program settings upsell page.
+     *
+     * @since 4.3.1
+     * @access public
+     *
+     * @param array $app_pages List of app pages.
+     * @return array Filtered list of app pages.
+     */
+    public function register_loyalty_program_menu($app_pages)
+    {
+        $merged = array_merge(array(
+            'acfw-loyalty-program' => array(
+                'slug'  => 'acfw-loyalty-program',
+                'label' => __('Loyalty Program', 'advanced-coupons-for-woocommerce-free'),
+                'page'  => 'loyalty_program',
+            ),
+        ), $app_pages);
+
+        return $merged;
+    }
+
+    /**
+     * Register loyalty program upsell localized data on admin app.
+     *
+     * @since 4.3.1
+     * @access public
+     *
+     * @param array $data Localized data.
+     * @return array Filtered localized data.
+     */
+    public function register_loyalty_program_upsell_localized_data($data)
+    {
+        $data['loyalty_program'] = array(
+            'title'         => __('Increase Customer Loyalty & Repeat Orders With A Loyalty Program', 'advanced-coupons-for-woocommerce-free'),
+            'description'   => __('Loyalty Program for WooCommerce is proven to increase customer loyalty and help you get more repeat orders. It’s a great way to incentivize your customers without having to give steep discounts.', 'advanced-coupons-for-woocommerce-free'),
+            'plugin_image'  => array(
+                'src' => $this->_constants->IMAGES_ROOT_URL() . 'lpfw-icon.png',
+                'alt' => __('Loyalty Program plugin icon', 'advanced-coupons-for-woocommerce-free')
+            ),
+            'features_list' => array(
+                __('❤️ Trusted by over 10,000+ stores', 'advanced-coupons-for-woocommerce-free'),
+                __('⭐ 5-star customer satisfaction rating', 'advanced-coupons-for-woocommerce-free'),
+                __('🚀️ Lots of options for customer to earn points', 'advanced-coupons-for-woocommerce-free'),
+                __('📱 Control how points are valued', 'advanced-coupons-for-woocommerce-free'),
+                __('🔍 Hooks into your existing store', 'advanced-coupons-for-woocommerce-free'),
+            ),
+            'steps_list' => array(
+                array(
+                    'step_count'  => '1',
+                    'title'       => __('Purchase & Install Loyalty Program for WooCommerce', 'advanced-coupons-for-woocommerce-free'),
+                    'description' => __('Your customers will love being able to earn points for their orders so they can redeem them for coupons on future orders. Get set up and running in a few minutes.', 'advanced-coupons-for-woocommerce-free'),
+                    'is_active'   => !$this->_helper_functions->is_plugin_installed(Plugin_Constants::LOYALTY_PLUGIN),
+                    'action_text' => __('Get Loyalty Program', 'advanced-coupons-for-woocommerce-free'),
+                    'link'        => 'https://advancedcouponsplugin.com/pricing/?tab=loyalty&utm_source=acfwf&utm_medium=upsell&utm_campaign=loyaltyprogrampage',
+                    'is_external' => true,
+                ),
+                array(
+                    'step_count'  => '2',
+                    'title'       => __('Configure Loyalty Program Settings', 'advanced-coupons-for-woocommerce-free'),
+                    'description' => __('Loyalty Program for WooCommerce lets you configure an amazing points & rewards program in minutes. It comes mostly configured out of the box, but there’s loads of great customizations you can deploy.', 'advanced-coupons-for-woocommerce-free'),
+                    'is_active'   => $this->_helper_functions->is_plugin_installed(Plugin_Constants::LOYALTY_PLUGIN),
+                    'action_text' => __('Start Setup', 'advanced-coupons-for-woocommerce-free'),
+                    'link'        => sprintf('plugins.php?action=activate&plugin=%s&plugin_status=all&s&_wpnonce=%s', 'loyalty-program-for-woocommerce%2Floyalty-program-for-woocommerce.php', wp_create_nonce('activate-plugin_' . Plugin_Constants::LOYALTY_PLUGIN)),
+                    'is_external' => false,
+                ),
+            ),
+        );
+
+        return $data;
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -1446,54 +1578,59 @@ class Upsell implements Model_Interface, Initializable_Interface
         add_filter('transient_wc_marketing_knowledge_base_marketing', array($this, 'filter_wc_marketing_knowledge_base'), 10, 2);
         add_filter('transient_wc_marketing_knowledge_base_coupons', array($this, 'filter_wc_marketing_knowledge_base'), 10, 2);
 
-        if ($this->_helper_functions->is_plugin_active(Plugin_Constants::PREMIUM_PLUGIN)) {
-            return;
+        // only run when premium plugin is not active.
+        if (!$this->_helper_functions->is_plugin_active(Plugin_Constants::PREMIUM_PLUGIN)) {
+            add_action('add_meta_boxes', array($this, 'register_upsell_metabox'), 10, 2);
+            add_filter('woocommerce_coupon_data_tabs', array($this, 'register_upsell_panels'), 99, 1);
+            add_action('woocommerce_coupon_options', array($this, 'display_did_you_know_notice_in_general'));
+            add_action('acfw_after_coupon_generic_panel', array($this, 'display_did_you_know_notice_in_generic_panel'));
+            add_filter('acfw_condition_fields_localized_data', array($this, 'cart_condition_premium_field_options'));
+            add_filter('acfw_cart_condition_panel_tabs', array($this, 'register_more_cart_conditions_tab'));
+            add_action('acfw_cart_condition_tabs_panels', array($this, 'display_more_cart_conditions_panel'));
+            add_filter('acfw_cart_conditions_panel_data_atts', array($this, 'register_dyk_notice_html_attribute'));
+            add_filter('acfw_bogo_trigger_apply_type_descs', array($this, 'bogo_premium_trigger_apply_type_descs'));
+            add_filter('acfw_bogo_trigger_type_options', array($this, 'bogo_premium_trigger_type_options'));
+            add_filter('acfw_bogo_apply_type_options', array($this, 'bogo_premium_apply_type_options'));
+            add_action('acfw_bogo_before_additional_settings', array($this, 'upsell_automatically_add_deal_products_feature'), 10, 2);
+            add_filter('woocommerce_get_sections_acfw_settings', array($this, 'register_upsell_settings_section'));
+            add_filter('woocommerce_get_settings_acfw_settings', array($this, 'get_upsell_settings_section_fields'), 10, 2);
+            add_action('acfw_settings_help_section_options', array($this, 'help_settings_upgrade_section'));
+            add_filter('acfw_setting_general_options', array($this, 'register_general_license_field'));
+            add_filter('acfw_setting_bogo_deals_options', array($this, 'bogo_settings_append_dyk_notice'));
+            add_filter('acfw_modules_settings', array($this, 'register_premium_modules_settings'));
+            add_filter('acfwf_admin_app_localized', array($this, 'register_upsell_modal_settings_localized_data'));
+            add_action('woocommerce_admin_field_acfw_premium', array($this, 'render_acfw_premium_settings_content'));
+            add_action('woocommerce_admin_field_acfw_license_placeholder', array($this, 'render_acfw_license_placeholder_content'));
+            add_action('woocommerce_admin_field_acfw_upgrade_setting_field', array($this, 'render_acfw_upgrade_setting_field'));
+            add_action('acfw_after_load_backend_scripts', array($this, 'enqueue_upgrade_settings_scripts'), 10, 2);
+            add_action('woocommerce_coupon_data_panels', array($this, 'display_upsell_panel_views'));
+            add_action('woocommerce_coupon_options_usage_limit', array($this, 'upsell_advanced_usage_limits_fields'));
+            add_action('woocommerce_coupon_options_usage_restriction', array($this, 'uspell_exclude_coupons_restriction'));
+            add_action('woocommerce_coupon_options_usage_restriction', array($this, 'upsell_allowed_customers_restriction'));
+            add_action('woocommerce_coupon_options_usage_restriction', array($this, 'usage_restrictions_add_help_link'));
+            add_action('woocommerce_coupon_options_usage_limit', array($this, 'usage_limits_add_help_link'));
+
+            add_filter('acfw_edit_advanced_coupon_localize', array($this, 'add_upsell_localized_script_data_on_edit_advanced_coupon_js'));
+            add_filter('plugin_action_links_' . $this->_constants->PLUGIN_BASENAME(), array($this, 'plugin_upgrade_action_link'), 20);
+
+            add_action('admin_init', array($this, 'schedule_upgrade_notice_for_later'));
+            add_action(Plugin_Constants::UPRADE_NOTICE_CRON, array($this, 'trigger_show_upgrade_notice_for_later'));
+            add_filter('acfw_admin_notice_option_names', array($this, 'register_upgrade_notice_option'));
+            add_filter('acfw_admin_notice_view_paths', array($this, 'register_upgrade_notice_view_path'));
+
+            // admin app related
+            add_filter('acfw_admin_app_pages', array($this, 'register_upsell_admin_app_page'), 10, 2);
+            add_action('acfw_register_admin_submenus', array($this, 'register_acfwp_link_in_marketing_top_level_menu'));
+            add_filter('acfwf_admin_app_localized', array($this, 'upsell_localized_data_for_admin_app'));
+
+            add_action('admin_footer', array($this, 'highlight_upgrade_to_premium_submenu_link'));
         }
 
-        add_action('add_meta_boxes', array($this, 'register_upsell_metabox'), 10, 2);
-        add_filter('woocommerce_coupon_data_tabs', array($this, 'register_upsell_panels'), 99, 1);
-        add_action('woocommerce_coupon_options', array($this, 'display_did_you_know_notice_in_general'));
-        add_action('acfw_after_coupon_generic_panel', array($this, 'display_did_you_know_notice_in_generic_panel'));
-        add_filter('acfw_condition_fields_localized_data', array($this, 'cart_condition_premium_field_options'));
-        add_filter('acfw_cart_condition_panel_tabs', array($this, 'register_more_cart_conditions_tab'));
-        add_action('acfw_cart_condition_tabs_panels', array($this, 'display_more_cart_conditions_panel'));
-        add_filter('acfw_cart_conditions_panel_data_atts', array($this, 'register_dyk_notice_html_attribute'));
-        add_filter('acfw_bogo_trigger_apply_type_descs', array($this, 'bogo_premium_trigger_apply_type_descs'));
-        add_filter('acfw_bogo_trigger_type_options', array($this, 'bogo_premium_trigger_type_options'));
-        add_filter('acfw_bogo_apply_type_options', array($this, 'bogo_premium_apply_type_options'));
-        add_action('acfw_bogo_before_additional_settings', array($this, 'upsell_automatically_add_deal_products_feature'), 10, 2);
-        add_filter('woocommerce_get_sections_acfw_settings', array($this, 'register_upsell_settings_section'));
-        add_filter('woocommerce_get_settings_acfw_settings', array($this, 'get_upsell_settings_section_fields'), 10, 2);
-        add_action('acfw_settings_help_section_options', array($this, 'help_settings_upgrade_section'));
-        add_filter('acfw_setting_general_options', array($this, 'register_general_license_field'));
-        add_filter('acfw_setting_bogo_deals_options', array($this, 'bogo_settings_append_dyk_notice'));
-        add_filter('acfw_modules_settings', array($this, 'register_premium_modules_settings'));
-        add_filter('acfwf_admin_app_localized', array($this, 'register_upsell_modal_settings_localized_data'));
-        add_action('woocommerce_admin_field_acfw_premium', array($this, 'render_acfw_premium_settings_content'));
-        add_action('woocommerce_admin_field_acfw_license_placeholder', array($this, 'render_acfw_license_placeholder_content'));
-        add_action('woocommerce_admin_field_acfw_upgrade_setting_field', array($this, 'render_acfw_upgrade_setting_field'));
-        add_action('acfw_after_load_backend_scripts', array($this, 'enqueue_upgrade_settings_scripts'), 10, 2);
-        add_action('woocommerce_coupon_data_panels', array($this, 'display_upsell_panel_views'));
-        add_action('woocommerce_coupon_options_usage_limit', array($this, 'upsell_advanced_usage_limits_fields'));
-        add_action('woocommerce_coupon_options_usage_restriction', array($this, 'uspell_exclude_coupons_restriction'));
-        add_action('woocommerce_coupon_options_usage_restriction', array($this, 'upsell_allowed_customers_restriction'));
-        add_action('woocommerce_coupon_options_usage_restriction', array($this, 'usage_restrictions_add_help_link'));
-        add_action('woocommerce_coupon_options_usage_limit', array($this, 'usage_limits_add_help_link'));
-
-        add_filter('acfw_edit_advanced_coupon_localize', array($this, 'add_upsell_localized_script_data_on_edit_advanced_coupon_js'));
-        add_filter('plugin_action_links_' . $this->_constants->PLUGIN_BASENAME(), array($this, 'plugin_upgrade_action_link'), 20);
-
-        add_action('admin_init', array($this, 'schedule_upgrade_notice_for_later'));
-        add_action(Plugin_Constants::UPRADE_NOTICE_CRON, array($this, 'trigger_show_upgrade_notice_for_later'));
-        add_filter('acfw_admin_notice_option_names', array($this, 'register_upgrade_notice_option'));
-        add_filter('acfw_admin_notice_view_paths', array($this, 'register_upgrade_notice_view_path'));
-
-        // admin app related
-        add_filter('acfw_admin_app_pages', array($this, 'register_upsell_admin_app_page'), 10, 2);
-        add_action('acfw_register_admin_submenus', array($this, 'register_acfwp_link_in_marketing_top_level_menu'));
-        add_filter('acfwf_admin_app_localized', array($this, 'upsell_localized_data_for_admin_app'));
-
-        add_action('admin_footer', array($this, 'highlight_upgrade_to_premium_submenu_link'));
+        // only run when loyalty plugin is not active.
+        if (!$this->_helper_functions->is_plugin_active(Plugin_Constants::LOYALTY_PLUGIN)) {
+            add_filter('acfw_admin_app_pages', array($this, 'register_loyalty_program_menu'));
+            add_filter('acfwf_admin_app_localized', array($this, 'register_loyalty_program_upsell_localized_data'));
+        }
     }
 
 }

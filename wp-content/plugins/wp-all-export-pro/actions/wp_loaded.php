@@ -178,7 +178,7 @@ function pmxe_wp_loaded() {
                     (!$addons->isWooCommerceAddonActive() && strpos($export->options['wp_query'], 'shop_coupon') !== false)
 
                 ) {
-                    die(wp_kses_post(\__('The WooCommerce Export Add-On Pro is required to run this export. If you already own it, you can download the add-on here: <a href="https://www.wpallimport.com/portal/downloads" target="_blank">https://www.wpallimport.com/portal/downloads</a>', \PMXE_Plugin::LANGUAGE_DOMAIN)));
+                    die(wp_kses_post(\__('The WooCommerce Export Add-On Pro is required to run this expor t. If you already own it, you can download the add-on here: <a href="https://www.wpallimport.com/portal/downloads" target="_blank">https://www.wpallimport.com/portal/downloads</a>', \PMXE_Plugin::LANGUAGE_DOMAIN)));
                 }
 
                 if (((in_array('product', $cpt) && in_array('product_variation', $cpt) ) ||
@@ -196,7 +196,7 @@ function pmxe_wp_loaded() {
 
 				}
 
-					if((in_array('acf', $export->options['cc_type']) || $export->options['xml_template_type'] == 'custom' && in_array('acf', $export->options['custom_xml_template_options']['cc_type'])) && !$addons->isAcfAddonActive()) {
+                if((in_array('acf', $export->options['cc_type']) || $export->options['xml_template_type'] == 'custom' && in_array('acf', $export->options['custom_xml_template_options']['cc_type'])) && !$addons->isAcfAddonActive()) {
 					die(wp_kses_post(\__('The ACF Export Add-On Pro is required to run this export. If you already own it, you can download the add-on here: <a href="https://www.wpallimport.com/portal/downloads" target="_blank">https://www.wpallimport.com/portal/downloads</a>', \PMXE_Plugin::LANGUAGE_DOMAIN)));
 				}
 
@@ -311,17 +311,17 @@ function pmxe_wp_loaded() {
 		}
 	}
 
-	if ( ! empty($_GET['action']) && ! empty($_GET['export_id']) && (!empty($_GET['export_hash']) || !empty($_GET['security_token'])))
+	if ( ! empty($_GET['action']) && ! empty($_GET['export_id']) && (!empty($_GET['export_hash']) || !empty($_GET['security_token']) || !empty($_GET['security_key'])))
 	{
         pmxe_set_max_execution_time();
-		$securityToken = '';
-		if(empty($_GET['export_hash'])) {
-			$securityToken = $_GET['security_token'];
-		} else {
-			$securityToken = $_GET['export_hash'];
-		}
 
-		if ( $securityToken == substr(md5($cron_job_key . $_GET['export_id']), 0, 16) )
+        if(isset($_GET['security_key'])) {
+
+            $export = new PMXE_Export_Record();
+            $export->getById(intval($_GET['export_id']));
+        }
+
+		if ( (isset($_GET['security_token']) && $_GET['security_token'] == substr(md5($cron_job_key . $_GET['export_id']), 0, 16)) || (isset($_GET['security_key']) && $_GET['security_key'] === $export->options['security_token']) )
 		{
 			$export = new PMXE_Export_Record();
 
@@ -376,6 +376,9 @@ function pmxe_wp_loaded() {
 						// If we are doing a google merchants export, send the file as a download.
 						header("Content-type: text/plain");
 						header("Content-Disposition: attachment; filename=".basename($filepath));
+						header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+						header("Cache-Control: post-check=0, pre-check=0", false);
+						header("Pragma: no-cache");
 						if ( ob_get_length() !== false ) {
 							ob_end_clean();
 						}

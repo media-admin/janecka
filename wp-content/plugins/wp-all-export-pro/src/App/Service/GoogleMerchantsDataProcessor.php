@@ -128,6 +128,10 @@ class GoogleMerchantsDataProcessor
             $this->removeField('shipping_weight');
         }
 
+        if(!isset($shipping['includeAttributes']) || $shipping['includeAttributes'] !== 'include') {
+            $this->removeField('shipping');
+        }
+
         if(empty($advancedAttributes['unitPricingBaseMeasure'])) {
             $this->removeField('unit_pricing_base_measure');
         }

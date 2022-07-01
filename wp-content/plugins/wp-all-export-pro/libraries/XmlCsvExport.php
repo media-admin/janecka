@@ -310,10 +310,6 @@ final Class XmlCsvExport
         self::$main_xml_tag = apply_filters('wp_all_export_main_xml_tag', XmlExportEngine::$exportOptions['main_xml_tag'], XmlExportEngine::$exportID);
         self::$node_xml_tag = apply_filters('wp_all_export_record_xml_tag', XmlExportEngine::$exportOptions['record_xml_tag'], XmlExportEngine::$exportID);
 
-//        self::$implode = (XmlExportEngine::$exportOptions['delimiter'] == ',') ? '|' : ',';
-//
-//        if ( $is_custom_xml ) self::$implode = '#delimiter#';
-
         $xmlWriter = new PMXE_XMLWriter();
 
         if (!$is_custom_xml) {
@@ -804,6 +800,12 @@ final Class XmlCsvExport
     // Add missing ACF headers
     public static function merge_headers($file, &$headers)
     {
+        if(isset(XmlExportEngine::$exportOptions['enable_real_time_exports'])
+            && XmlExportEngine::$exportOptions['enable_real_time_exports'])
+        {
+            // Don't merge headers when realtime exporting
+            return;
+        }
 
         $in = fopen($file, 'r');
 

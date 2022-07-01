@@ -1207,7 +1207,19 @@ msgstr ""
 msgid "Product is featured"
 msgstr ""
 
+msgid "Product type"
+msgstr ""
+
+msgid "Product stock status"
+msgstr ""
+
+msgid "Product is on sale"
+msgstr ""
+
 msgid "Product category"
+msgstr ""
+
+msgid "Product visibility"
 msgstr ""
 
 msgid "Product tag"

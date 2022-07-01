@@ -1,3 +1,8 @@
+<?php
+if(!defined('ABSPATH')) {
+    die();
+}
+?>
 <div class="wpae-save-button button button-primary button-hero wpallexport-large-button"
      style="position: relative; width: 285px; margin-left: 5px;">
     <svg width="30" height="30" viewBox="0 0 1792 1792"

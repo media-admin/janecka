@@ -282,9 +282,9 @@ final class XmlExportMediaGallery
 				break;
 			case 'image_title':
 				$field_options = json_decode($options['cc_options'][$ID], true);
-				if ( (int) $field_options['is_export_featured'] == (int) self::$is_include_feature_meta && (int) $field_options['is_export_attached'] == (int) self::$is_include_gallery_meta )
-				{					
-					$templateOptions['set_image_meta_title'] = 1;				
+				if ( isset($field_options['is_export_featured']) && (int) $field_options['is_export_featured'] == (int) self::$is_include_feature_meta && isset($field_option['is_export_attached']) &&(int) $field_options['is_export_attached'] == (int) self::$is_include_gallery_meta )
+				{
+					$templateOptions['set_image_meta_title'] = 1;
 					$templateOptions['image_meta_title_delim'] = (empty($field_options['image_separator'])) ? "|" : $field_options['image_separator'];
 					if ( empty($templateOptions['image_meta_title'])) {
 						$templateOptions['image_meta_title'] = '{'. $element_name .'[1]}';
@@ -296,7 +296,7 @@ final class XmlExportMediaGallery
 				break;
 			case 'image_caption':
 				$field_options = json_decode($options['cc_options'][$ID], true);
-				if ( (int) $field_options['is_export_featured'] == (int) self::$is_include_feature_meta && (int) $field_options['is_export_attached'] == (int) self::$is_include_gallery_meta )
+				if ( isset($field_options['is_export_featured']) && (int) $field_options['is_export_featured'] == (int) self::$is_include_feature_meta && isset($field_options['is_export_attached']) && (int) $field_options['is_export_attached'] == (int) self::$is_include_gallery_meta )
 				{
 					$templateOptions['set_image_meta_caption'] = 1;				
 					$templateOptions['image_meta_caption_delim'] = (empty($field_options['image_separator'])) ? "|" : $field_options['image_separator'];
@@ -310,7 +310,7 @@ final class XmlExportMediaGallery
 				break;
 			case 'image_description':
 				$field_options = json_decode($options['cc_options'][$ID], true);
-				if ( (int) $field_options['is_export_featured'] == (int) self::$is_include_feature_meta && (int) $field_options['is_export_attached'] == (int) self::$is_include_gallery_meta )
+				if ( isset($field_options['is_export_featured']) && (int) $field_options['is_export_featured'] == (int) self::$is_include_feature_meta && isset($field_options['is_export_attached']) && (int) $field_options['is_export_attached'] == (int) self::$is_include_gallery_meta )
 				{
 					$templateOptions['set_image_meta_description'] = 1;				
 					$templateOptions['image_meta_description_delim'] = (empty($field_options['image_separator'])) ? "|" : $field_options['image_separator'];
@@ -324,7 +324,7 @@ final class XmlExportMediaGallery
 				break;
 			case 'image_alt':
 				$field_options = json_decode($options['cc_options'][$ID], true);
-				if ( (int) $field_options['is_export_featured'] == (int) self::$is_include_feature_meta && (int) $field_options['is_export_attached'] == (int) self::$is_include_gallery_meta )
+				if ( isset($field_options['is_export_featured']) && (int) $field_options['is_export_featured'] == (int) self::$is_include_feature_meta && isset($field_options['is_export_attached']) && (int) $field_options['is_export_attached'] == (int) self::$is_include_gallery_meta )
 				{
 					$templateOptions['set_image_meta_alt'] = 1;			
 					$templateOptions['image_meta_alt_delim'] = (empty($field_options['image_separator'])) ? "|" : $field_options['image_separator'];

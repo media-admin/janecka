@@ -20,12 +20,12 @@ class ShippingWidth extends Field
 
             if($currentUnit !== $toUnit) {
 
-                $productWidth = $product->get_width();
+                $shippingWidth = $product->get_width();
 
-                if(is_numeric($productWidth)) {
-                    $width = wc_get_dimension($productWidth, $currentUnit, $toUnit);
+                if(is_numeric($shippingWidth)) {
+                    $width = wc_get_dimension($shippingWidth, $currentUnit, $toUnit);
                 } else {
-                    $width = $productWidth;
+                    $width = $shippingWidth;
                 }
 
             } else {

@@ -110,7 +110,7 @@ class AWS_Search {
 
         $cache = AWS_PRO()->get_common_settings( 'cache' );
 
-        $s = $keyword ? esc_attr( $keyword ) : esc_attr( $_REQUEST['keyword'] );
+        $s = $keyword ? esc_attr( $keyword ) : ( isset( $_REQUEST['keyword'] ) ? esc_attr( $_REQUEST['keyword'] ) : '' );
         $s = htmlspecialchars_decode( $s );
 
         $this->data['s_nonormalize'] = $s;
@@ -855,13 +855,10 @@ class AWS_Search {
 
                         if ( $marked_content ) {
                             $excerpt = $marked_content;
-                        } else {
-                            $excerpt = wp_trim_words( $excerpt, $excerpt_length, '...' );
                         }
-
-                    } else {
-                        $excerpt = wp_trim_words( $excerpt, $excerpt_length, '...' );
                     }
+
+                    $excerpt = wp_trim_words( $excerpt, $excerpt_length, '...' );
 
                 }
 
@@ -890,19 +887,19 @@ class AWS_Search {
                         if ( $show_stock_status === 'quantity' && $product->get_stock_quantity() ) {
                             $stock_status = array(
                                 'status' => true,
-                                'text'   => $product->get_stock_quantity() . ' ' . esc_html__( 'In stock', 'advanced-woo-search' )
+                                'text'   => $product->get_stock_quantity() . ' ' . esc_html__( 'In stock', 'woocommerce' )
                             );
                         } else {
                             $stock_status = array(
                                 'status' => true,
-                                'text'   => esc_html__( 'In stock', 'advanced-woo-search' )
+                                'text'   => esc_html__( 'In stock', 'woocommerce' )
                             );
                         }
                        
                     } else {
                         $stock_status = array(
                             'status' => false,
-                            'text'   => $product_stock_status === 'onbackorder' ? esc_html__( 'On Backorder', 'advanced-woo-search' ) : esc_html__( 'Out of stock', 'advanced-woo-search' )
+                            'text'   => $product_stock_status === 'onbackorder' ? esc_html__( 'On backorder', 'woocommerce' ) : esc_html__( 'Out of stock', 'woocommerce' )
                         );
                     }
                 }

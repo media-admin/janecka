@@ -17,7 +17,9 @@ final class XmlExportCpt
 		$article = array();
 
 		// associate exported post with import
-		if ( ! $is_item_data and wp_all_export_is_compatible() && isset($exportOptions['is_generate_import']) && isset($exportOptions['import_id']))
+		if ( ! $is_item_data and wp_all_export_is_compatible() && isset($exportOptions['is_generate_import']) && isset($exportOptions['import_id']) &&
+            (!isset($exportOptions['enable_real_time_exports'])
+                || !$exportOptions['enable_real_time_exports']))
 		{
 			$postRecord = new PMXI_Post_Record();
 			$postRecord->clear();
@@ -555,7 +557,12 @@ final class XmlExportCpt
                                                         }
                                                     }
                                                     $hierarchy_group[] = $t->name;
-                                                    $hierarchy_groups[] = implode('>', $hierarchy_group);
+
+                                                    if(isset(XmlExportEngine::$exportOptions['xml_template_type']) && XmlExportEngine::$exportOptions['xml_template_type'] == \XmlExportEngine::EXPORT_TYPE_GOOLE_MERCHANTS) {
+                                                        $hierarchy_groups[] = implode(' > ', $hierarchy_group);
+                                                    } else {
+                                                        $hierarchy_groups[] = implode('>', $hierarchy_group);
+                                                    }
                                                 } else {
                                                     $hierarchy_groups[] = $t->name;
                                                 }

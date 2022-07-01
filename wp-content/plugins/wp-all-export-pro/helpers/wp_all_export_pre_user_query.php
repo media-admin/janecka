@@ -24,6 +24,16 @@ function wp_all_export_pre_user_query($obj)
 		if ( ! empty(XmlExportEngine::$exportOptions['joinclause']) ) {
 			$obj->query_from .= implode( ' ', array_unique( XmlExportEngine::$exportOptions['joinclause'] ) );		
 		}
-	}	
+	}
+
+    if(isset(XmlExportEngine::$exportOptions['enable_real_time_exports']) && XmlExportEngine::$exportOptions['enable_real_time_exports'] ) {
+
+        // Real-Time Exports
+        if ( ! empty(XmlExportEngine::$exportOptions['whereclause']) ) $obj->query_where .= XmlExportEngine::$exportOptions['whereclause'];
+        if ( ! empty(XmlExportEngine::$exportOptions['joinclause']) ) {
+            $obj->query_from .= implode( ' ', array_unique( XmlExportEngine::$exportOptions['joinclause'] ) );
+        }
+	}
+
 	return $obj;
 }
