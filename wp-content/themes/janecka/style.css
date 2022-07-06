@@ -2217,7 +2217,7 @@ a.navbar-item:hover {
 	.navbar-dropdown {
 		display: none !important;
 		position: absolute;
-		background-color: rgba(255,255,255,0.98) !important;
+		background-color: rgba(255,255,255,1.00) !important;
 		width: 100% !important;
 		left: 0;
 		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -3193,13 +3193,47 @@ section.hero {
 
 
 
+/* Startseite - Beliebte Kategorien */
+.overview__categories {
+	display: grid;
+	grid-template-columns: 50% 1fr;
+	grid-template-rows: auto;
+	padding: 0px;
+}
+
+.overview__categories-item {
+	width: 100%;
+}
+
+.overview__categories-item h3.cover-img {
+	font-size: 0.9rem !important;
+}
+
+.overview__categories-item .cover-img {
+	padding: 0.5rem;
+}
 
 
+@media screen and (min-width: 768px) {
+	.overview__categories {
+		display: grid;
+		grid-template-columns: repeat(4, 25%);
+		grid-template-rows: auto;
+	}
 
+	.overview__categories-item {
+		width: 100%;
+		margin-left: 0px !important;
+	}
 
+	.overview__categories-item h3.cover-img {
+		font-size: 1.4rem !important;
+	}
 
-
-
+	.overview__categories-item .cover-img {
+		padding: 0.5rem;
+	}
+}
 
 
 

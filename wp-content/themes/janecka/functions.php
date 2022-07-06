@@ -27,6 +27,11 @@ function medialab_admin_bar(){
 add_action('init', 'medialab_admin_bar' );
 
 
+/* Remove Responsive Images */
+function disable_srcset( $sources ) {
+return false;
+}
+add_filter( 'wp_calculate_image_srcset', 'disable_srcset' );
 
 
 
@@ -1280,16 +1285,6 @@ add_action( 'woocommerce_after_single_product', 'woocommerce_output_related_prod
 
 
 
-
-
-
-
-
-
-
-
-
-
 /* --- Shopping Cart --- */
 
 function janecka_cart_info_shipping_costs( $args ){
@@ -1302,11 +1297,31 @@ add_filter( 'yith_wcan_suppress_cache', '__return_true' );
 
 
 
-/* Repairing the Ajax Product Filter Functionality */
+/* Repairing the YITH Ajax Product Filter Functionality
 add_filter ('yith_wcan_use_wp_the_query_object', '__return_true');
+*/
+
+add_filter( 'yith_wcan_suppress_cache', '__return_true' );
+
+if( ! function_exists( 'yith_wcan_content_selector' ) ){
+
+		function yith_wcan_content_selector( $selector ){
+
+						 $selector = '.site-main';
+								error_log('YITH Test: ' . print_r($selector, true));
+						 return $selector;
+
+		}
+
+		add_filter( 'yith_wcan_content_selector', 'yith_wcan_content_selector' );
+
+}
 
 
-/* Making the Ajac Product Filter Auto Completion work again  */
+
+
+
+/* Making the YITH Ajax Product Filter Auto Completion work again  */
 
 if ( ! function_exists( 'yith_wcan_set_query_vars' ) ) {
  function yith_wcan_set_query_vars() {
@@ -1332,3 +1347,4 @@ if ( ! function_exists( 'yith_wcan_set_query_vars' ) ) {
 
  add_action( 'wp', 'yith_wcan_set_query_vars' );
 }
+
